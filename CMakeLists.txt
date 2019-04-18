@@ -34,4 +34,4 @@ verify_key_environmental_are_set()
 #                                                    -
 #                                                    -
 #-----------------------------------------------------
-
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
