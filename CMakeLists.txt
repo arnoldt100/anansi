@@ -3,10 +3,35 @@
 # satisfied.                                         -
 #                                                    -
 #-----------------------------------------------------
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
 
+#-----------------------------------------------------
+# Define the project.                                -
+#                                                    -
+#-----------------------------------------------------
 project(anansi)
 
-include(cmake_macros_and_functions/version_check.cmake)
+#-----------------------------------------------------
+# Modify the variable CMAKE_MODULE_PATH              -
+# to include for anansi cmake modules.               -
+#                                                    -
+#-----------------------------------------------------
+set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/$ENV{ANANSI_CMAKE_MODULE_PATH}" )
 
-verify_cmake_mimimum_version()
+#-----------------------------------------------------
+# Make availble the project cmake modules.           -
+#                                                    -
+#-----------------------------------------------------
+include(anansi_build_prerequisites)
+
+#-----------------------------------------------------
+# Check that key environmental variables are set.    -
+#                                                    -
+#-----------------------------------------------------
+verify_key_environmental_are_set()
+
+#-----------------------------------------------------
+#                                                    -
+#                                                    -
+#-----------------------------------------------------
+
