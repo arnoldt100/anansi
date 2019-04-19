@@ -31,7 +31,9 @@ include(anansi_build_prerequisites)
 verify_key_environmental_are_set()
 
 #-----------------------------------------------------
-#                                                    -
+# Add the subdirectories for the various             -
+# libraries.                                         -
 #                                                    -
 #-----------------------------------------------------
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/boundary_conditions)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
