@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+
 #-----------------------------------------------------
 # Define the top level directory of anansi           -
 #                                                    -
@@ -6,17 +7,25 @@
 export ANANSI_TOP_LEVEL=${HOME}/anansi
 
 #-----------------------------------------------------
-# The minimum cmake version required to build        -
-# this project.                                      -
+# Define the c++ compiler.                           -
 #                                                    -
-# This variable is mandatory.                        -
 #-----------------------------------------------------
-export ANANSI_MINIMUM_CMAKE_VERSION="3.10"
+export ANANSI_CMAKE_CXX_COMPILER=mpiCC
 
 #-----------------------------------------------------
-# Define the path to Anansi cmake modules.           -
+# Define the c compiler.                           -
 #                                                    -
-# This variable is mandatory.                        -
 #-----------------------------------------------------
-export ANANSI_CMAKE_MODULE_PATH=cmake_macros_and_functions
+export ANANSI_CMAKE_CXX_COMPILER=mpicc
+
+#-----------------------------------------------------
+# This anansi core configuration must be sourced.    -
+#                                                    -
+#-----------------------------------------------------
+source ${ANANSI_TOP_LEVEL}/configurations/anansi_core_configurations.sh
+
+
+
+
+
 
