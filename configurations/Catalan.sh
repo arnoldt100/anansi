@@ -13,10 +13,16 @@ export ANANSI_TOP_LEVEL=${HOME}/anansi
 export ANANSI_CMAKE_CXX_COMPILER=mpiCC
 
 #-----------------------------------------------------
-# Define the c compiler.                           -
+# Define the c compiler.                             -
 #                                                    -
 #-----------------------------------------------------
-export ANANSI_CMAKE_CXX_COMPILER=mpicc
+export ANANSI_CMAKE_C_COMPILER=mpicc
+
+#-----------------------------------------------------
+# Define the install prefix.                         -
+#                                                    -
+#-----------------------------------------------------
+export ANANSI_INSTALL_PREFIX=${HOME}/sw/Anansi
 
 #-----------------------------------------------------
 # This anansi core configuration must be sourced.    -

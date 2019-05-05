@@ -9,7 +9,7 @@
     #                                                    -
     #-----------------------------------------------------
     set(my_project_name "anansi_md")
-    project(anansi_${my_project_name})
+    project(${my_project_name})
 
     #-----------------------------------------------------
     # Define the variable my_target_binary.              -
@@ -77,7 +77,11 @@
 #                                                    -
 #                                                    -
 #-----------------------------------------------------
-add_execurable( ${my_target_binary}
+add_executable( ${my_target_binary}
                 ${anansi_md_public_implementation} )
+
+install ( TARGETS ${my_target_binary} 
+          RUNTIME DESTINATION bin )
+                     
 
 
