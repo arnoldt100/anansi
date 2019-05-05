@@ -36,4 +36,4 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/main_programs/molecular_dynamics)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_dynamics)
