@@ -1,4 +1,4 @@
-#include "anansi_md.h"
+#include "anansi_main_md.h"
 
 int main( int argc, char** argv )
 {

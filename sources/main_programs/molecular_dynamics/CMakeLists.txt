@@ -8,7 +8,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "anansi_md")
+    set(my_project_name "anansi_main_md")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -40,7 +40,7 @@
     #                                                    -
     #-----------------------------------------------------
     set(anansi_md_public_headers 
-        header_files/anansi_md.h )
+        header_files/anansi_main_md.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -50,7 +50,7 @@
     #                                                    -
     #-----------------------------------------------------
     set(anansi_md_public_implementation
-        implementation_files/anansi_md.cpp )
+        implementation_files/anansi_main_md.cpp )
 
     #-----------------------------------------------------
     # Add the directory header_files to search for       -
