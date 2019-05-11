@@ -13,38 +13,43 @@
 #ifndef  MolecularDynamics_INC
 #define  MolecularDynamics_INC
 
+namespace ANANSI
+{
+
 class MolecularDynamics
 {
 
-public:
-    /* ====================  LIFECYCLE     ======================================= */
-    MolecularDynamics (); /* constructor */
+    public:
+        /* ====================  LIFECYCLE     ======================================= */
+        MolecularDynamics(); /* constructor */
 
-    virtual ~MolecularDynamics=0 /* destructor */ 
+        virtual ~MolecularDynamics()=0; /* destructor */ 
 
-    MolecularDynamics(MolecularDynamics const & other) = delete; // Avoid implicit of copying the
-                                                                 // MolecularDynamics class.
+        MolecularDynamics(MolecularDynamics const & other) = delete; // Avoid implicit of copying the
+        // MolecularDynamics class.
 
-    /* ====================  ACCESSORS     ======================================= */
+        /* ====================  ACCESSORS     ======================================= */
 
-    /* ====================  MUTATORS      ======================================= */
+        /* ====================  MUTATORS      ======================================= */
 
-    /* ====================  OPERATORS     ======================================= */
+        /* ====================  OPERATORS     ======================================= */
 
-    MolecularDynamics&                                                 
-    operator=(MolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
-                                                         // MolecularDynamics class.
-protected:
-    /* ====================  METHODS       ======================================= */
+        MolecularDynamics&                                                 
+            operator=(MolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
+        // MolecularDynamics class.
+    protected:
+        /* ====================  METHODS       ======================================= */
 
-    /* ====================  DATA MEMBERS  ======================================= */
+        /* ====================  DATA MEMBERS  ======================================= */
 
-private:
-    /* ====================  METHODS       ======================================= */
+    private:
+        /* ====================  METHODS       ======================================= */
 
-    /* ====================  DATA MEMBERS  ======================================= */
+        /* ====================  DATA MEMBERS  ======================================= */
 
 }; /* -----  end of class MolecularDynamics  ----- */
+
+}; /* -----  end of namespace ANANSI  ----- */
 
 #endif   /* ----- #ifndef MolecularDynamics_INC  ----- */
 
