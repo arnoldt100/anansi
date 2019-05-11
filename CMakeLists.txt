@@ -15,7 +15,6 @@ project(anansi)
 # Make available the project cmake modules.          -
 #                                                    -
 #-----------------------------------------------------
-
 include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
 
 #-----------------------------------------------------
@@ -29,8 +28,14 @@ verify_key_environmental_are_set()
 # Here we define some variables.                     -
 #                                                    -
 #-----------------------------------------------------
-set (anansi_install_prefix $ENV{ANANSI_INSTALL_PREFIX} )
-
+set(anansi_top_level $ENV{ANANSI_TOP_LEVEL}) 
+set(anansi_cmake_cxx_compiler $ENV{ANANSI_CMAKE_CXX_COMPILER})
+set(anansi_cmake_c_compiler $ENV{ANANSI_CMAKE_C_COMPILER})
+set(anansi_install_prefix $ENV{ANANSI_INSTALL_PREFIX})
+set(anansi_install_bin_directory $ENV{ANANSI_INSTALL_BIN_DIRECTORY})
+set(anansi_install_include_directory $ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY})
+set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
+set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
 
 #-----------------------------------------------------
 # Add the subdirectories for the various             -

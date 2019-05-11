@@ -1,8 +1,8 @@
 /*
- * anansi_molecular_dynamics.cpp
+ * MolecularDynamics.cpp
  */
 
-#include "anansi_molecular_dynamics.h"
+#include "MolecularDynamics.h"
 
 namespace ANANSI {
 
@@ -12,15 +12,30 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-AnansiMolecularDynamics::AnansiMolecularDynamics() : MolecularDynamics()
-{
-	return;
-}
 
-AnansiMolecularDynamics::~AnansiMolecularDynamics()
+/*
+ *--------------------------------------------------------------------------------------
+ *       Class:  MolecularDynamics
+ *      Method:  MolecularDynamics
+ * Description:  constructor
+ *--------------------------------------------------------------------------------------
+ */
+MolecularDynamics::MolecularDynamics()
 {
-	return;
-}
+    return;
+}  /* -----  end of method MolecularDynamics::MolecularDynamics  (constructor)  ----- */
+
+
+/*--------------------------------------------------------------------------------------
+ *       Class:  MolecularDynamics
+ *      Method:  MolecularDynamics
+ * Description:  destructor
+ *--------------------------------------------------------------------------------------
+ */
+MolecularDynamics::~MolecularDynamics()
+{
+    return ;
+}		/* -----  end of method MolecularDynamics::~MolecularDynamics  ----- */
 
 //============================= ACCESSORS ====================================
 
@@ -53,5 +68,4 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= OPERATORS ====================================
 
 
-}; /* -----  end of namespace ANANSI  ----- */
-
+} /* namespace ANANSI */

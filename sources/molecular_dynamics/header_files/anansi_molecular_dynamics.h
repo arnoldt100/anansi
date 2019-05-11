@@ -8,45 +8,50 @@
 #ifndef  anansi_molecular_dynamics_INC
 #define  anansi_molecular_dynamics_INC
 
+// System includes
+
+// Local includes
+#include "MolecularDynamics.h"
+
 namespace ANANSI {
 
-    class AnansiMolecularDynamics
-    {
-        public:
-            /* ====================  LIFECYCLE     ======================================= */
+class AnansiMolecularDynamics : public MolecularDynamics
+{
+    public:
+        /* ====================  LIFECYCLE     ======================================= */
 
-            AnansiMolecularDynamics ();  /* constructor */
+        AnansiMolecularDynamics ();  /* constructor */
 
-            ~AnansiMolecularDynamics (); /* destructor */
+        ~AnansiMolecularDynamics (); /* destructor */
 
-            AnansiMolecularDynamics(AnansiMolecularDynamics const & other) = delete; // Avoid implicit of copying the
-                                                                                     // AnansiMolecularDynamics class.
+        AnansiMolecularDynamics(AnansiMolecularDynamics const & other) = delete; // Avoid implicit of copying the
+                                                                                 // AnansiMolecularDynamics class.
 
-            /* ====================  ACCESSORS     ======================================= */
+        /* ====================  ACCESSORS     ======================================= */
 
-            /* ====================  MUTATORS      ======================================= */
+        /* ====================  MUTATORS      ======================================= */
 
-            /* ====================  OPERATORS     ======================================= */
+        /* ====================  OPERATORS     ======================================= */
 
-            AnansiMolecularDynamics&                                                 
-            operator=(AnansiMolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
-                                                                       // AnansiMolecularDynamics class.
+        AnansiMolecularDynamics&                                                 
+        operator=(AnansiMolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
+                                                                   // AnansiMolecularDynamics class.
 
-            /* ====================  STATIC        ======================================= */
+        /* ====================  STATIC        ======================================= */
 
-        protected:
-            /* ====================  METHODS       ======================================= */
+    protected:
+        /* ====================  METHODS       ======================================= */
 
-            /* ====================  DATA MEMBERS  ======================================= */
+        /* ====================  DATA MEMBERS  ======================================= */
 
-        private:
-            /* ====================  METHODS       ======================================= */
+    private:
+        /* ====================  METHODS       ======================================= */
 
-            /* ====================  DATA MEMBERS  ======================================= */
+        /* ====================  DATA MEMBERS  ======================================= */
 
-            /* ====================  STATIC        ======================================= */
+        /* ====================  STATIC        ======================================= */
 
-    }; /* -----  end of class AnansiMolecularDynamics  ----- */
+}; /* -----  end of class AnansiMolecularDynamics  ----- */
 
 }; /* -----  end of namespace ANANSI  ----- */
 

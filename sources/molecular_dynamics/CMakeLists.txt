@@ -68,7 +68,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (anansi_md_library_headers  
-        header_files/anansi_molecular_dynamics.h )
+         header_files/anansi_molecular_dynamics.h
+         header_files/MolecularDynamics.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -77,7 +78,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (anansi_md_library_implementation  
-        implementation_files/anansi_molecular_dynamics.cpp )
+         implementation_files/anansi_molecular_dynamics.cpp
+         implementation_files/MolecularDynamics.cpp )
 
     #-----------------------------------------------------
     # Add the directory header_files to search for       -
@@ -118,9 +120,9 @@ add_library( ${my_anansi_md_library} STATIC
 set_target_properties(${my_anansi_md_library} PROPERTIES
                       PUBLIC_HEADER "${anansi_md_library_headers}" )
        
-install(TARGETS ${my_anansi_md_library}
-    ARCHIVE DESTINATION ${ANANSI_INSTALL_LIB_DIRECTORY}
-    PUBLIC_HEADER DESTINATION ${ANANSI_INSTALL_INCLUDE_DIRECTORY} )
+install( TARGETS ${my_anansi_md_library}
+         ARCHIVE DESTINATION ${anansi_install_lib_directory}
+         PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -136,7 +138,7 @@ add_executable( ${my_main_target_binary}
                 ${anansi_main_md_public_implementation} )
 
 install ( TARGETS ${my_main_target_binary} 
-          RUNTIME DESTINATION ${ANANSI_INSTALL_BIN_DIRECTORY} )
+          RUNTIME DESTINATION ${anansi_install_bin_directory} )
                      
 
 
