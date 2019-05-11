@@ -137,8 +137,11 @@ install( TARGETS ${my_anansi_md_library}
 add_executable( ${my_main_target_binary}
                 ${anansi_main_md_public_implementation} )
 
-install ( TARGETS ${my_main_target_binary} 
-          RUNTIME DESTINATION ${anansi_install_bin_directory} )
+target_link_libraries(${my_main_target_binary}
+                      PUBLIC ${my_anansi_md_library} )
+
+install( TARGETS ${my_main_target_binary} 
+         RUNTIME DESTINATION ${anansi_install_bin_directory} )
                      
 
 
