@@ -12,9 +12,10 @@ cmake_minimum_required(VERSION $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
 project(anansi)
 
 #-----------------------------------------------------
-# Make availble the project cmake modules.           -
+# Make available the project cmake modules.          -
 #                                                    -
 #-----------------------------------------------------
+
 include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
 
 #-----------------------------------------------------
@@ -22,6 +23,14 @@ include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
 #                                                    -
 #-----------------------------------------------------
 verify_key_environmental_are_set()
+
+
+#-----------------------------------------------------
+# Here we define some variables.                     -
+#                                                    -
+#-----------------------------------------------------
+set (anansi_install_prefix $ENV{ANANSI_INSTALL_PREFIX} )
+
 
 #-----------------------------------------------------
 # Add the subdirectories for the various             -
@@ -36,4 +45,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
 
+#-----------------------------------------------------
+#                                                    -
+#                                                    -
+#-----------------------------------------------------
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_dynamics)

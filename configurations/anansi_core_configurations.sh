@@ -27,7 +27,7 @@ else
     export ANANSI_TOP_LEVEL_MD=${ANANSI_TOP_LEVEL}/source/main_programs/molecular_dynamics
 
     #-----------------------------------------------------
-    # Define the anansin bin directory.                  -
+    # Define the anansi bin directory.                   -
     #                                                    -
     #-----------------------------------------------------
     export ANANSI_BIN_DIRECTORY=${ANANSI_TOP_LEVEL}/bin

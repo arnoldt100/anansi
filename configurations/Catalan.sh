@@ -25,6 +25,24 @@ export ANANSI_CMAKE_C_COMPILER=mpicc
 export ANANSI_INSTALL_PREFIX=${HOME}/sw/Anansi
 
 #-----------------------------------------------------
+# Define the anansi bin directory.                   -
+#                                                    -
+#-----------------------------------------------------
+export ANANSI_INSTALL_BIN_DIRECTORY=${ANANSI_INSTALL_PREFIX}/bin
+
+#-----------------------------------------------------
+# Define the anansi include directory.               -
+#                                                    -
+#-----------------------------------------------------
+export ANANSI_INSTALL_INCLUDE_DIRECTORY=${ANANSI_INSTALL_PREFIX}/include
+
+#-----------------------------------------------------
+# Define the anansi include directory.               -
+#                                                    -
+#-----------------------------------------------------
+export ANANSI_INSTALL_LIB_DIRECTORY=${ANANSI_INSTALL_PREFIX}/lib
+
+#-----------------------------------------------------
 # This anansi core configuration must be sourced.    -
 #                                                    -
 #-----------------------------------------------------
