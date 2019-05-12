@@ -36,12 +36,15 @@ set(anansi_install_bin_directory $ENV{ANANSI_INSTALL_BIN_DIRECTORY})
 set(anansi_install_include_directory $ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY})
 set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
 set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
+set(memory_management_install_lib_directory ${anansi_install_bin_directory})
+set(memory_management_install_include_directory  ${anansi_install_include_directory})
 
 #-----------------------------------------------------
 # Add the subdirectories for the various             -
 # libraries.                                         -
 #                                                    -
 #-----------------------------------------------------
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPUMemoryAllocation)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/boundary_conditions)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/force_fields)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
@@ -49,7 +52,6 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/integrators)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPUMemoryAllocation)
 
 #-----------------------------------------------------
 #                                                    -
