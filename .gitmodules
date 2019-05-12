@@ -1,0 +1,3 @@
+[submodule "sources/CPUMemoryAlllocation"]
+	path = sources/CPUMemoryAlllocation
+	url = https://github.com/arnoldt100/CPUMemoryAlllocation.git
