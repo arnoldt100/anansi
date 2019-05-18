@@ -81,12 +81,6 @@
          implementation_files/anansi_molecular_dynamics.cpp
          implementation_files/MolecularDynamics.cpp )
 
-    #-----------------------------------------------------
-    # Add the directory header_files to search for       -
-    # header files.                                      -
-    #                                                    -
-    #-----------------------------------------------------
-    include_directories( header_files )
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -111,15 +105,23 @@ add_library( ${my_anansi_md_library} STATIC
              ${anansi_md_library_implementation} )
 
 #-----------------------------------------------------
-# Here we set the PUBLIC_HEADER property on target   -
-# errors_and_exceptions. This property will define   -
-# the header files associated with the               -
-# with the errors_and_exceptions library.            -
+# Add the directory header_files to search for       -
+# header files.                                      -
 #                                                    -
 #-----------------------------------------------------
-set_target_properties(${my_anansi_md_library} PROPERTIES
-                      PUBLIC_HEADER "${anansi_md_library_headers}" )
-       
+
+get_target_property(mm_include_dir memory_management memory_management_include)
+target_include_directories(${my_anansi_md_library} 
+                            PUBLIC header_files
+                            PUBLIC ${mm_include_dir} )
+
+#-----------------------------------------------------
+# Here we set the propertes on target.               -
+#                                                    -
+#-----------------------------------------------------
+set_target_properties(${my_anansi_md_library} 
+                      PROPERTIES PUBLIC_HEADER "${anansi_md_library_headers}" )
+
 install( TARGETS ${my_anansi_md_library}
          ARCHIVE DESTINATION ${anansi_install_lib_directory}
          PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
@@ -136,6 +138,10 @@ install( TARGETS ${my_anansi_md_library}
 #-----------------------------------------------------
 add_executable( ${my_main_target_binary}
                 ${anansi_main_md_public_implementation} )
+
+target_include_directories(${my_main_target_binary} 
+                            PUBLIC header_files
+                            PUBLIC ${mm_include_dir} )
 
 target_link_libraries(${my_main_target_binary}
                       PUBLIC ${my_anansi_md_library} )

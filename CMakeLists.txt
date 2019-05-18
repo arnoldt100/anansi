@@ -12,6 +12,12 @@ cmake_minimum_required(VERSION $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
 project(anansi)
 
 #-----------------------------------------------------
+# Turn on verbose debugging.                         -
+#                                                    -
+#-----------------------------------------------------
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
+#-----------------------------------------------------
 # Make available the project cmake modules.          -
 #                                                    -
 #-----------------------------------------------------
@@ -36,8 +42,8 @@ set(anansi_install_bin_directory $ENV{ANANSI_INSTALL_BIN_DIRECTORY})
 set(anansi_install_include_directory $ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY})
 set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
 set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
-set(memory_management_install_lib_directory ${anansi_install_bin_directory})
-set(memory_management_install_include_directory  ${anansi_install_include_directory})
+set(memory_management_install_lib_directory ${anansi_install_lib_directory})
+set(memory_management_install_include_directory ${anansi_install_include_directory})
 
 #-----------------------------------------------------
 # Add the subdirectories for the various             -

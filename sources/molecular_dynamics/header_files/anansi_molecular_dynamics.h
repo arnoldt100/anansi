@@ -11,6 +11,7 @@
 // System includes
 
 // Local includes
+#include "Pointer.hpp"
 #include "MolecularDynamics.h"
 
 namespace ANANSI {
