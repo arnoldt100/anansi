@@ -49,6 +49,11 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void AnansiMolecularDynamics::_doSimulation()
+{
+    std::cout << "Doing AnansiMolecularDynamics simulation" << std::endl;
+    return;
+}
 
 //============================= OPERATORS ====================================
 

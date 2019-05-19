@@ -42,6 +42,7 @@ class AnansiMolecularDynamics : public MolecularDynamics
 
     protected:
         /* ====================  METHODS       ======================================= */
+        void _doSimulation() override;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

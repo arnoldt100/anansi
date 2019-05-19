@@ -31,7 +31,11 @@ class MolecularDynamics
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
-
+        void doSimulation()
+        {
+            this->_doSimulation();
+            return;
+        }
         /* ====================  OPERATORS     ======================================= */
 
         MolecularDynamics&                                                 
@@ -44,6 +48,7 @@ class MolecularDynamics
 
     private:
         /* ====================  METHODS       ======================================= */
+        virtual void _doSimulation()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

@@ -14,6 +14,8 @@
 #ifndef  MolecularDynamicsFactory_INC
 #define  MolecularDynamicsFactory_INC
 
+#include "MolecularDynamics.h"
+
 namespace ANANSI
 {
     /*
@@ -33,6 +35,10 @@ namespace ANANSI
             virtual ~MolecularDynamicsFactory()=0; /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
+            MolecularDynamics* create() 
+            {
+                return this->_create();
+            }
 
             /* ====================  MUTATORS      ======================================= */
 
@@ -48,6 +54,7 @@ namespace ANANSI
 
         private:
             /* ====================  METHODS       ======================================= */
+            virtual MolecularDynamics* _create()=0; 
 
             /* ====================  DATA MEMBERS  ======================================= */
 
