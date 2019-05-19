@@ -69,7 +69,8 @@
     #-----------------------------------------------------
     set (anansi_md_library_headers  
          header_files/anansi_molecular_dynamics.h
-         header_files/MolecularDynamics.h )
+         header_files/MolecularDynamics.h 
+         header_files/MolecularDynamicsFactory.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -79,7 +80,8 @@
     #-----------------------------------------------------
     set (anansi_md_library_implementation  
          implementation_files/anansi_molecular_dynamics.cpp
-         implementation_files/MolecularDynamics.cpp )
+         implementation_files/MolecularDynamics.cpp
+         implementation_files/MolecularDynamicsFactory.cpp )
 
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -144,7 +146,8 @@ target_include_directories(${my_main_target_binary}
                             PUBLIC ${mm_include_dir} )
 
 target_link_libraries(${my_main_target_binary}
-                      PUBLIC ${my_anansi_md_library} )
+                      PUBLIC ${my_anansi_md_library}
+                      ${memory_management} )
 
 install( TARGETS ${my_main_target_binary} 
          RUNTIME DESTINATION ${anansi_install_bin_directory} )
