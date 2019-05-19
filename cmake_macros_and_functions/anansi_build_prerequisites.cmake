@@ -83,4 +83,15 @@ function(verify_key_environmental_are_set)
         variable defines the location to install anansi libraries." )
     endif()
 
+    #-----------------------------------------------------
+    # Verify environment variable                        -
+    # ANANSI_BOOST_TOP_LEVEL is defined.                 -
+    #-----------------------------------------------------
+    if( DEFINED ENV{ANANSI_BOOST_TOP_LEVEL})
+        message("ANANSI_BOOST_TOP_LEVEL=$ENV{ANANSI_BOOST_TOP_LEVEL}")
+    else()
+        message( FATAL_ERROR "The environmental ANANSI_BOOST_TOP_LEVEL is not defined. This \
+        variable defines the location to BOOST top level." )
+    endif()
+
 endfunction()
