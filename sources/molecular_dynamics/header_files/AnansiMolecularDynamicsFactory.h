@@ -17,7 +17,7 @@
 // System includes
 
 // Local includes
-#include "MoleculaDynamicsFactory.h"
+#include "MolecularDynamicsFactory.h"
 
 namespace ANANSI
 {
@@ -27,7 +27,7 @@ namespace ANANSI
      *  Description:  
      * =====================================================================================
      */
-    class AnansiMolecularDynamicsFactory : public MoleculaDynamicsFactory
+    class AnansiMolecularDynamicsFactory : public MolecularDynamicsFactory 
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */

@@ -22,8 +22,8 @@ namespace ANANSI
      * Description:  constructor
      *--------------------------------------------------------------------------------------
      */
-    AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory () :
-    MoleculaDynamicsFactory()
+    AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory() :
+        MolecularDynamicsFactory()
     {
         return;
     }  /* -----  end of method AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory  (constructor)  ----- */
@@ -42,4 +42,4 @@ namespace ANANSI
     }  /* -----  end of method AnansiMolecularDynamicsFactory::~AnansiMolecularDynamicsFactory  (destructor)  ----- */
 
 
-} /* -----  end of namespace ANANSI  ----- */
+}; /* -----  end of namespace ANANSI  ----- */

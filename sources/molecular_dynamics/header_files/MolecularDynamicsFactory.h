@@ -14,7 +14,7 @@
 #ifndef  MolecularDynamicsFactory_INC
 #define  MolecularDynamicsFactory_INC
 
-namespace MEMORY_MANAGEMENT
+namespace ANANSI
 {
     /*
      * =====================================================================================
