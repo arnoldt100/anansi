@@ -29,7 +29,6 @@ include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
 #-----------------------------------------------------
 verify_key_environmental_are_set()
 
-
 #-----------------------------------------------------
 # Here we define some variables.                     -
 #                                                    -
