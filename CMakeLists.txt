@@ -22,6 +22,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 #                                                    -
 #-----------------------------------------------------
 include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
+include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_boost.cmake )
 
 #-----------------------------------------------------
 # Check that key environmental variables are set.    -
@@ -31,7 +32,7 @@ verify_key_environmental_are_set()
 
 #-----------------------------------------------------
 # Here we define some variables.                     -
-#                                                    -
+# that are critical for building and deploying.      -
 #-----------------------------------------------------
 set(anansi_top_level $ENV{ANANSI_TOP_LEVEL}) 
 set(anansi_cmake_cxx_compiler $ENV{ANANSI_CMAKE_CXX_COMPILER})
@@ -43,6 +44,15 @@ set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
 set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
 set(memory_management_install_lib_directory ${anansi_install_lib_directory})
 set(memory_management_install_include_directory ${anansi_install_include_directory})
+
+#-----------------------------------------------------
+# This section permits use to find the header files  -
+# and link against the BOOST library.                -
+#                                                    -
+#-----------------------------------------------------
+enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro 
+                                           # sets up the boost library for
+                                           # linking against.
 
 #-----------------------------------------------------
 # Add the subdirectories for the various             -
@@ -59,7 +69,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
 
 #-----------------------------------------------------
-#                                                    -
+# This subdirectory builds the main molecular        -
+# dynamics program.                                  -
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_dynamics)
