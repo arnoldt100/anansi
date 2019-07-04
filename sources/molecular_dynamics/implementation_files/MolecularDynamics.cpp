@@ -40,6 +40,16 @@ MolecularDynamics::~MolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void MolecularDynamics::initializeSimulation(int const argc, char const *const *const argv )
+{
+    return;
+}
+
+void MolecularDynamics::doSimulation()
+{
+    this->_doSimulation();
+    return;
+}
 
 //============================= OPERATORS ====================================
 

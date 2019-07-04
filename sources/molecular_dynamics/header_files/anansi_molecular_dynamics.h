@@ -43,6 +43,7 @@ class AnansiMolecularDynamics : public MolecularDynamics
     protected:
         /* ====================  METHODS       ======================================= */
         void _doSimulation() override;
+        void _doInitialization(int const argc, char const *const *const argv ) override;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

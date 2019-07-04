@@ -6,6 +6,9 @@ int main( int argc, char** argv )
     ANANSI::MolecularDynamicsFactory* my_md_factory_ptr = new ANANSI::AnansiMolecularDynamicsFactory;
     ANANSI::MolecularDynamics * md_ptr = my_md_factory_ptr->create();
 
+    // Initialize the simulation.
+    md_ptr->initializeSimulation(argc,argv);
+
     // Do md simulation.
     md_ptr->doSimulation();
 

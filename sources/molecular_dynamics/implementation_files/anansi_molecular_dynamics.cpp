@@ -14,6 +14,7 @@ namespace ANANSI {
 
 AnansiMolecularDynamics::AnansiMolecularDynamics() : MolecularDynamics()
 {
+    // Parse the command line and store in a 
 	return;
 }
 
@@ -55,6 +56,11 @@ void AnansiMolecularDynamics::_doSimulation()
     return;
 }
 
+void AnansiMolecularDynamics::_doInitialization(int const argc, char const *const *const argv )
+{
+    std::cout << "Initializing AnansiMolecularDynamics simulation" << std::endl;
+    return;
+}
 //============================= OPERATORS ====================================
 
 
