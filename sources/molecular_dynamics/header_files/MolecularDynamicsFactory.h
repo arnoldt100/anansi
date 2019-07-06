@@ -35,7 +35,7 @@ namespace ANANSI
             virtual ~MolecularDynamicsFactory()=0; /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
-            MolecularDynamics* create() 
+            MolecularDynamics* create() final
             {
                 return this->_create();
             }
@@ -53,8 +53,12 @@ namespace ANANSI
             /* ====================  DATA MEMBERS  ======================================= */
 
         private:
-            /* ====================  METHODS       ======================================= */
+            /* ====================  ACCESSORS     ======================================= */
             virtual MolecularDynamics* _create()=0; 
+
+            /* ====================  MUTATORS      ======================================= */
+
+            /* ====================  OPERATORS     ======================================= */
 
             /* ====================  DATA MEMBERS  ======================================= */
 

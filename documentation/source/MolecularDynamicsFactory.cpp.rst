@@ -5,7 +5,8 @@ MolecularDynamicsFactory Documentation
 ######################################
 
 The base class for the molecular dynamics factory classes. This
-class is an abstract base class. 
+class is an abstract base class, and this class is not assignable
+or copyable.
 
 .. namespace:: ANANSI
 
@@ -15,9 +16,9 @@ class is an abstract base class.
 Public Members
 ==============
 
----------
-Lifecycle
----------
+----------
+Life Cycle
+----------
 
 .. function:: MolecularDynamicsFactory()
 
@@ -35,9 +36,19 @@ Lifecycle
 Accessors
 ---------
 
+.. function:: MolecularDynamics* create() final 
+
+    This function is final and serves as the public interface to create a
+    MolecularDynamics object. It creates a MolecularDynamics class by means
+    of the template design pattern.
+
 ---------
 Operators
 ---------
+
+.. function:: MolecularDynamicsFactory& operator=( const MolecularDynamicsFactory &other )=delete
+
+    The assignment operator. The function is deleted.
 
 --------
 Mutators
@@ -54,6 +65,12 @@ Private Members
 ---------
 Accessors
 ---------
+
+.. function:: virtual MolecularDynamics* _create()=0
+
+    This function is overriden by the derived class. The derived class is to 
+    implement its implementation details of creating the MolecularDynamics
+    object.
 
 ---------
 Operators
