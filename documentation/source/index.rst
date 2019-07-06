@@ -9,9 +9,12 @@ Welcome to Anansi's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :titlesonly:
+   
  
    anansi_main_md.cpp.rst
-   MolecularDynamicsFactory.cpp.rst
+   Classes <classes.rst>
+   
 
 
 
