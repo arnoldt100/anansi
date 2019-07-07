@@ -1,10 +1,12 @@
 /*
- * MolecularDynamics.cpp
+ * CommandLineArguments.cpp
+ *
+ *      Authors: Arnold N. Tharrington
  */
 
-#include "MolecularDynamics.h"
+#include "CommandLineArguments.h"
 
-namespace ANANSI {
+namespace COMMANDLINE {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -12,50 +14,31 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-
-/*
- *--------------------------------------------------------------------------------------
- *       Class:  MolecularDynamics
- *      Method:  MolecularDynamics
- * Description:  constructor
- *--------------------------------------------------------------------------------------
- */
-MolecularDynamics::MolecularDynamics()
+CommandLineArguments::CommandLineArguments()
 {
     return;
-}  /* -----  end of method MolecularDynamics::MolecularDynamics  (constructor)  ----- */
+}
 
-
-/*--------------------------------------------------------------------------------------
- *       Class:  MolecularDynamics
- *      Method:  MolecularDynamics
- * Description:  destructor
- *--------------------------------------------------------------------------------------
- */
-MolecularDynamics::~MolecularDynamics()
+CommandLineArguments::~CommandLineArguments()
 {
-    return ;
-}		/* -----  end of method MolecularDynamics::~MolecularDynamics  ----- */
+    return;
+}
 
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MolecularDynamics::initializeSimulation(int const argc, char const *const *const argv )
-{
-    // Store command line arguments in class CommandLineArguments.
-
-    this->_doInitialization();
-
-    return;
-}
-
-void MolecularDynamics::doSimulation()
-{
-    this->_doSimulation();
-    return;
-}
 
 //============================= OPERATORS ====================================
+
+CommandLineArguments&
+CommandLineArguments::operator=( const CommandLineArguments &other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -82,4 +65,4 @@ void MolecularDynamics::doSimulation()
 //============================= OPERATORS ====================================
 
 
-} /* namespace ANANSI */
+} /* namespace COMMANDLINE */

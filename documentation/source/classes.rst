@@ -9,4 +9,5 @@ Welcome to Anansi's class documentation!
    :titlesonly:
    
    Classes/MolecularDynamics.cpp.rst
+   Classes/AnansiMolecularDynamics.cpp.rst
    Classes/MolecularDynamicsFactory.cpp.rst

@@ -16,7 +16,7 @@
 
 namespace ANANSI {
 
-class AnansiMolecularDynamics : public MolecularDynamics
+class AnansiMolecularDynamics final : public MolecularDynamics
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
@@ -42,13 +42,15 @@ class AnansiMolecularDynamics : public MolecularDynamics
 
     protected:
         /* ====================  METHODS       ======================================= */
-        void _doSimulation() override;
-        void _doInitialization(int const argc, char const *const *const argv ) override;
 
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
         /* ====================  METHODS       ======================================= */
+
+        void _doSimulation() final override;
+
+        void _doInitialization(int const argc, char const *const *const argv ) final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
 
