@@ -31,9 +31,9 @@ class MolecularDynamics
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
-        void doSimulation() final;
+        void doSimulation();
 
-        void initializeSimulation( int const argc, char const *const *const argv ) final;
+        void initializeSimulation( int const argc, char const *const *const argv );
 
         /* ====================  OPERATORS     ======================================= */
 
