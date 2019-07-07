@@ -1,8 +1,8 @@
 /*
- * anansi_molecular_dynamics.cpp
+ * AnansiMolecularDynamics.cpp
  */
 
-#include "anansi_molecular_dynamics.h"
+#include "AnansiMolecularDynamics.h"
 
 namespace ANANSI {
 

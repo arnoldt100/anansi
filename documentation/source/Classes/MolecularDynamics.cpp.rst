@@ -51,13 +51,14 @@ Mutators
 .. function:: void doSimulation() final
 
     Performs the simulation. The function is final and serves as the public
-    interface of the template design pattern. 
+    interface of the template design pattern. The derived class is to provide 
+    its implementation for performaing the simulation.
 
 .. function:: void initializeSimulation( int const argc, char const \*const \*const argv ) final
 
     Performs the simulation. The function is final and serves as the public
     interface of the template design pattern for performing the simulation. The
-    derived class is to provide its implementation for performing the simulation.
+    derived class is to provide its implementation for initializing the simulation.
 
     :param argc int: The size of the array char* argv[].
     :param argv char const \*const \*const: Contains the command line options.

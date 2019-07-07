@@ -4,7 +4,7 @@ Welcome to Anansi's class documentation!
 ========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
    :titlesonly:
    

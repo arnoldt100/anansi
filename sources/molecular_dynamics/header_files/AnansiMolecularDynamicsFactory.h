@@ -17,7 +17,7 @@
 // System includes
 
 // Local includes
-#include "anansi_molecular_dynamics.h"
+#include "AnansiMolecularDynamics.h"
 #include "Pointer.hpp"
 #include "MolecularDynamicsFactory.h"
 

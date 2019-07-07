@@ -46,8 +46,9 @@ class MolecularDynamics
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
-        /* ====================  METHODS       ======================================= */
+        /* ====================  MUTATORS      ======================================= */
         virtual void _doInitialization( int const argc, char const *const *const argv )=0;
+
         virtual void _doSimulation()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
