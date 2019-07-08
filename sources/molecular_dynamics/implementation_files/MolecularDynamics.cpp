@@ -44,7 +44,7 @@ void MolecularDynamics::initializeSimulation(int const argc, char const *const *
 {
     // Store command line arguments in class CommandLineArguments.
 
-    this->_doInitialization();
+    this->_doInitialization(argc, argv);
 
     return;
 }

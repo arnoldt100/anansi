@@ -48,9 +48,9 @@ class AnansiMolecularDynamics final : public MolecularDynamics
     private:
         /* ====================  METHODS       ======================================= */
 
-        void _doSimulation() final override;
+        void _doSimulation() override;
 
-        void _doInitialization(int const argc, char const *const *const argv ) final override;
+        void _doInitialization(int const argc, char const *const *const argv ) override;
 
         /* ====================  DATA MEMBERS  ======================================= */
 
