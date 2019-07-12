@@ -8,6 +8,7 @@ Welcome to Anansi's class documentation!
    :caption: Contents:
    :titlesonly:
    
+   Classes/CommandLineArguments.cpp.rst
    Classes/MolecularDynamics.cpp.rst
    Classes/AnansiMolecularDynamics.cpp.rst
    Classes/MolecularDynamicsFactory.cpp.rst

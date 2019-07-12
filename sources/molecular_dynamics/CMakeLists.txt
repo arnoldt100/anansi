@@ -26,6 +26,13 @@
     #-----------------------------------------------------
     string(TOLOWER ${PROJECT_NAME} my_anansi_md_library)
 
+    #-----------------------------------------------------
+    #                                                    -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(mm_include_dir memory_management memory_management_include)
+    get_target_property(command_line_include_dir command_line_arguments command_line_arguments_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -69,9 +76,9 @@
     #-----------------------------------------------------
     set (anansi_md_library_headers  
         header_files/AnansiMolecularDynamics.h
-         header_files/MolecularDynamics.h 
-         header_files/MolecularDynamicsFactory.h 
-         header_files/AnansiMolecularDynamicsFactory.h)
+        header_files/MolecularDynamics.h 
+        header_files/MolecularDynamicsFactory.h 
+        header_files/AnansiMolecularDynamicsFactory.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -114,15 +121,14 @@ add_library( ${my_anansi_md_library} STATIC
              ${anansi_md_library_implementation} )
 
 #-----------------------------------------------------
-# Add the directory header_files to search for       -
+# Set the list of directories to search for          -
 # header files.                                      -
 #                                                    -
 #-----------------------------------------------------
-
-get_target_property(mm_include_dir memory_management memory_management_include)
-target_include_directories(${my_anansi_md_library} 
+target_include_directories( ${my_anansi_md_library} 
                             PUBLIC header_files
-                            PUBLIC ${mm_include_dir} )
+                            PUBLIC ${mm_include_dir}
+                            PUBLIC ${command_line_include_dir} )
 
 #-----------------------------------------------------
 # Here we set the propertes on target.               -
@@ -150,11 +156,20 @@ add_executable( ${my_main_target_binary}
 
 target_include_directories(${my_main_target_binary} 
                             PUBLIC header_files
-                            PUBLIC ${mm_include_dir} )
+                            PUBLIC ${mm_include_dir}
+                            PUBLIC ${command_line_include_dir} )
+
+
+message("command_line_include_dir=${command_line_include_dir}")
+message("mm_include_dir=${mm_include_dir}")
+message("command_line_arguments=${command_line_arguments}")
+message("memory_management=${memory_management}")
+message("command_line_arguments=${command_line_arguments}")
 
 target_link_libraries(${my_main_target_binary}
-                      PUBLIC ${my_anansi_md_library}
-                      ${memory_management} )
+                      ${my_anansi_md_library}
+                      memory_management
+                      command_line_arguments)
 
 install( TARGETS ${my_main_target_binary} 
          RUNTIME DESTINATION ${anansi_install_bin_directory} )

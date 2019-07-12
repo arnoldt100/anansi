@@ -19,6 +19,11 @@ CommandLineArguments::CommandLineArguments()
     return;
 }
 
+CommandLineArguments::CommandLineArguments( const int argc, char const * const *const & argv)
+{
+    return;
+}
+
 CommandLineArguments::~CommandLineArguments()
 {
     return;

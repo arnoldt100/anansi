@@ -1,3 +1,18 @@
+# This CMakeLists.txt file creates the library libcommand_line_arguments.a
+# and its unit tests. To add source files, simply append the appropiate variable
+# command_line_arguments_header_files or command_line_arguments_implementation_files.
+#
+# The target for the library is command_line_arguments. 
+#
+# The following properties are set for the target command_line_arguments:
+#
+#   Property                            Value                                               Description
+#----------------------------------------------------------------------------------------------------------------------------
+#   command_line_arguments_include      ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+#   PUBLIC_HEADER                       ${command_line_arguments_header_files}
+#
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
@@ -35,17 +50,19 @@
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # library_headers associated with the                -
-    # library                                            -
+    # command_line_arguments_header_files.               -
+    # A list of header files is stored in                -
+    # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
     set (command_line_arguments_header_files
-        header_files/CommandLineArguments.hpp )
+         header_files/CommandLineArguments.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # memory_management_implementation associated with   -
-    # the molecular dynamics library                     -
+    # command_line_arguments_implementation_files.       -
+    # A list of implementation files is stored in this   -
+    # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
     set (command_line_arguments_implementation_files
@@ -54,20 +71,25 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
-# with the memory_management targets.                             @
+# with the command_line_arguments targets.                        @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #-----------------------------------------------------
-# Add the library target.                            -
+# Add the library associated with target             -
+# command_line_arguments.                            -
 #                                                    -
 #-----------------------------------------------------
 add_library( ${target} STATIC 
-             "" )
+             "")
 
+#-----------------------------------------------------
+#                                                    -
+# We associate the source files with the target.     -
+#                                                    -
+#-----------------------------------------------------
 target_sources(${target}
-               PUBLIC ${command_line_arguments_library_headers} 
-               PRIVATE ${command_line_arguments_implementation_files} )
+    PRIVATE ${command_line_arguments_header_files} ${command_line_arguments_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -87,17 +109,16 @@ enable_compile_warnings(${target})
 # Here we set the properties on target               -
 #                                                    -
 #-----------------------------------------------------
-set_target_properties(${target} 
-                      PROPERTIES
+set_target_properties(${target} PROPERTIES
                       command_line_arguments_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${command_line_arguments_library_headers}" )
+                      PUBLIC_HEADER "${command_line_arguments_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${command_line_arguments_install_lib_directory}
          PUBLIC_HEADER DESTINATION ${command_line_arguments_install_include_directory} )
 
 #-----------------------------------------------------
-# We now define the unit test code.                  -
+# Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(unit_tests)

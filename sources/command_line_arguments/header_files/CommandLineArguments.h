@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -46,6 +47,19 @@ namespace COMMANDLINE
              *--------------------------------------------------------------------------------------
              */
             CommandLineArguments (); /* constructor      */
+            
+            /*
+             *--------------------------------------------------------------------------------------
+             *       Class:  CommandLineArguments
+             *      Method:  CommandLineArguments :: CommandLineArguments
+             * Description:  Constructor
+             *
+             * Arguments: 
+             *      argc - The number of command line arguments.
+             *      argv - A array of char* that contain the command line options.
+             *--------------------------------------------------------------------------------------
+             */
+            CommandLineArguments ( const int argc, char* const *const & argv); /* constructor      */
 
             CommandLineArguments( const CommandLineArguments &other ); /* copy constructor */
 
@@ -69,6 +83,8 @@ namespace COMMANDLINE
             /* ====================  METHODS       ======================================= */
 
             /* ====================  DATA MEMBERS  ======================================= */
+            std::size_t _numberOfArguments;
+            std::vector<std::string> _commandLineArguments;
 
     }; /* -----  end of class CommandLineArguments  ----- */
 
@@ -76,3 +92,5 @@ namespace COMMANDLINE
 }; /* namespace COMMANDLINE */
 
 #endif /* COMMANDLINEARGUMENTS_INC */
+
+

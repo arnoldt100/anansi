@@ -17,6 +17,7 @@
 #include "AnansiMolecularDynamics.h"
 #include "AnansiMolecularDynamicsFactory.h"
 #include "Pointer.hpp"
+#include "CommandLineArguments.h"
 
 
 // ===  FUNCTION  ======================================================================
