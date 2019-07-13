@@ -69,11 +69,21 @@
     # current target "command_line_arguments_unit_tests".-
     #                                                    -
     #-----------------------------------------------------
+    set (command_line_arguments_unit_tests_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_command_line_arguments.h )
+
+    set (command_line_arguments_unit_tests_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_command_line_arguments.cpp )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
+    get_target_property( cla_include_dir command_line_arguments command_line_arguments_include )
+    target_include_directories(${target} 
+                               PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                               PRIVATE ${cla_include_dir}
+                               PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
@@ -81,18 +91,26 @@
     # (2) libcommand_line_arguments.a                    -
     #                                                    -
     #-----------------------------------------------------
+    target_link_libraries(${target}
+                          PRIVATE command_line_argumenmts ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
     # command_line_arguments_unit_tests.                 -
     #                                                    -
     #-----------------------------------------------------
+    set_target_properties( ${target}
+                           PROPERTIES
+                           PUBLIC_HEADER "${command_line_arguments_unit_tests_header_files}" )
 
     #-----------------------------------------------------
     # Here we define the installations rules for         -
     # this target command_line_arguments_unit_tests.     -
     #                                                    -
     #-----------------------------------------------------
+    install( TARGETS ${target}
+             RUNTIME DESTINATION ${anansi_install_bin_directory} 
+             PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
