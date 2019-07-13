@@ -61,19 +61,28 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+#-----------------------------------------------------
+# Define the source files to build the               -
+# current target "command_line_arguments_unit_tests".-
+#                                                    -
+#-----------------------------------------------------
+set (command_line_arguments_unit_tests_header_files
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_command_line_arguments.h )
+
+set (command_line_arguments_unit_tests_implementation_files
+    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_command_line_arguments.cpp )
+
 add_executable( ${target}
                 "" )
 
-    #-----------------------------------------------------
-    # Define the source files to build the               -
-    # current target "command_line_arguments_unit_tests".-
-    #                                                    -
-    #-----------------------------------------------------
-    set (command_line_arguments_unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_command_line_arguments.h )
-
-    set (command_line_arguments_unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_command_line_arguments.cpp )
+#-----------------------------------------------------
+#                                                    -
+# We associate the source files with the target.     -
+#                                                    -
+#-----------------------------------------------------
+    target_sources(${target}
+        PRIVATE ${command_line_arguments_unit_tests_header_files}
+                ${command_line_arguments_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
@@ -92,7 +101,7 @@ add_executable( ${target}
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
-                          PRIVATE command_line_argumenmts ${Boost_LIBRARIES} )
+                          PRIVATE command_line_arguments ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
