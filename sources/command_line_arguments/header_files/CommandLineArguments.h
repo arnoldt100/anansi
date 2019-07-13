@@ -18,6 +18,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <string>
+#include <vector>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -25,68 +26,69 @@
 
 namespace COMMANDLINE
 {
-    /*
-     * =====================================================================================
-     *        Class:  CommandLineArguments
-     *  Description:  
-     * =====================================================================================
-     */
-    class CommandLineArguments
-    {
-        public:
-            /* ====================  LIFECYCLE     ======================================= */
 
-            /*
-             *--------------------------------------------------------------------------------------
-             *       Class:  CommandLineArguments
-             *      Method:  CommandLineArguments :: CommandLineArguments
-             * Description:  Constructor
-             *
-             * Arguments: 
-             *
-             *--------------------------------------------------------------------------------------
-             */
-            CommandLineArguments (); /* constructor      */
-            
-            /*
-             *--------------------------------------------------------------------------------------
-             *       Class:  CommandLineArguments
-             *      Method:  CommandLineArguments :: CommandLineArguments
-             * Description:  Constructor
-             *
-             * Arguments: 
-             *      argc - The number of command line arguments.
-             *      argv - A array of char* that contain the command line options.
-             *--------------------------------------------------------------------------------------
-             */
-            CommandLineArguments ( const int argc, char* const *const & argv); /* constructor      */
+/*
+ * =====================================================================================
+ *        Class:  CommandLineArguments
+ *  Description:  
+ * =====================================================================================
+ */
+class CommandLineArguments
+{
+    public:
+        /* ====================  LIFECYCLE     ======================================= */
 
-            CommandLineArguments( const CommandLineArguments &other ); /* copy constructor */
+        /*
+         *--------------------------------------------------------------------------------------
+         *       Class:  CommandLineArguments
+         *      Method:  CommandLineArguments :: CommandLineArguments
+         * Description:  Constructor
+         *
+         * Arguments: 
+         *
+         *--------------------------------------------------------------------------------------
+         */
+        CommandLineArguments(); /* constructor      */
+        
+        /*
+         *--------------------------------------------------------------------------------------
+         *       Class:  CommandLineArguments
+         *      Method:  CommandLineArguments :: CommandLineArguments
+         * Description:  Constructor
+         *
+         * Arguments: 
+         *      argc - The number of command line arguments.
+         *      argv - A array of char* that contain the command line options.
+         *--------------------------------------------------------------------------------------
+         */
+        CommandLineArguments( const int argc, char const * const *const & argv); /* Constructor */
 
-            ~CommandLineArguments(); /* destructor       */
+        CommandLineArguments( const CommandLineArguments &other ); /* Copy constructor */
 
-            /* ====================  ACCESSORS     ======================================= */
+        ~CommandLineArguments(); /* destructor       */
 
-            /* ====================  MUTATORS      ======================================= */
+        /* ====================  ACCESSORS     ======================================= */
 
-            /* ====================  OPERATORS     ======================================= */
+        /* ====================  MUTATORS      ======================================= */
 
-            CommandLineArguments&
-            operator=( const CommandLineArguments &other ); /* assignment operator */
+        /* ====================  OPERATORS     ======================================= */
 
-        protected:
-            /* ====================  METHODS       ======================================= */
+        CommandLineArguments&
+        operator=( const CommandLineArguments &other ); /* Assignment operator */
 
-            /* ====================  DATA MEMBERS  ======================================= */
+    protected:
+        /* ====================  METHODS       ======================================= */
 
-        private:
-            /* ====================  METHODS       ======================================= */
+        /* ====================  DATA MEMBERS  ======================================= */
 
-            /* ====================  DATA MEMBERS  ======================================= */
-            std::size_t _numberOfArguments;
-            std::vector<std::string> _commandLineArguments;
+    private:
+        /* ====================  METHODS       ======================================= */
 
-    }; /* -----  end of class CommandLineArguments  ----- */
+        /* ====================  DATA MEMBERS  ======================================= */
+        std::size_t _numberOfArguments;
+        std::vector<std::string> _commandLineArguments;
+
+}; /* -----  end of class CommandLineArguments  ----- */
 
 
 }; /* namespace COMMANDLINE */

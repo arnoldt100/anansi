@@ -14,12 +14,26 @@ namespace COMMANDLINE {
 
 //============================= LIFECYCLE ====================================
 
-CommandLineArguments::CommandLineArguments()
+CommandLineArguments::CommandLineArguments() :
+_numberOfArguments(0)
 {
     return;
 }
 
-CommandLineArguments::CommandLineArguments( const int argc, char const * const *const & argv)
+CommandLineArguments::CommandLineArguments( const int argc, char const * const *const & argv) :
+_numberOfArguments(argc)
+{
+    for (int ip=0; ip < argc; ++ip)
+    {
+        const std::string aArgument(argv[ip]); 
+        (this->_commandLineArguments).push_back(aArgument);
+    }
+    return;
+}
+
+CommandLineArguments::CommandLineArguments( const CommandLineArguments &other ) :
+_numberOfArguments(other._numberOfArguments),
+_commandLineArguments(other._commandLineArguments)
 {
     return;
 }
@@ -40,7 +54,8 @@ CommandLineArguments::operator=( const CommandLineArguments &other )
 {
     if (this != &other)
     {
-
+        this->_numberOfArguments = other._numberOfArguments;
+        this->_commandLineArguments = other._commandLineArguments;
     }
     return *this;
 }
