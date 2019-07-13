@@ -160,12 +160,6 @@ target_include_directories(${my_main_target_binary}
                             PUBLIC ${command_line_include_dir} )
 
 
-message("command_line_include_dir=${command_line_include_dir}")
-message("mm_include_dir=${mm_include_dir}")
-message("command_line_arguments=${command_line_arguments}")
-message("memory_management=${memory_management}")
-message("command_line_arguments=${command_line_arguments}")
-
 target_link_libraries(${my_main_target_binary}
                       ${my_anansi_md_library}
                       memory_management
