@@ -157,11 +157,6 @@ install( TARGETS ${my_anansi_md_library}
 add_executable( ${my_main_target_binary}
                 ${anansi_main_md_public_implementation} )
 
-            # target_link_libraries(${my_main_target_binary}
-            #                       ${my_anansi_md_library}
-            #                       command_line_arguments
-            #                       simulationparameters
-            #                       memory_management )
 
 target_link_libraries(${my_main_target_binary}
                       ${my_anansi_md_library} )

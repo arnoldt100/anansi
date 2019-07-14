@@ -15,7 +15,7 @@
 #include "Pointer.hpp"
 #include "MolecularDynamics.h"
 #include "CommandLineArguments.h"
-#include "SimulationParameters.h"
+#include "SimulationParametersFactory.h"
 
 namespace ANANSI {
 

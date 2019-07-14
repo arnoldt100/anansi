@@ -62,7 +62,9 @@ void AnansiMolecularDynamics::_doSimulation()
 void AnansiMolecularDynamics::_doInitialization(int const argc, char const *const *const argv )
 {
     this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
-    this->_simulationParameters = ANANSI::SimulationParameters();
+
+    this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
+
 
     return;
 }

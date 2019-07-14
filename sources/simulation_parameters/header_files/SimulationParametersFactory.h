@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  CommandLineArguments.h
+ *       Filename:  SimulationParametersFactory.h
  *
  *    Description:  
  *
@@ -11,73 +11,59 @@
  * =====================================================================================
  */
 
-#ifndef COMMANDLINEARGUMENTS_INC
-#define COMMANDLINEARGUMENTS_INC
+#ifndef SimulationParametersFactory_INC
+#define SimulationParametersFactory_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <new>
-#include <cstring>
-#include <string>
-#include <vector>
-
+#include "SimulationParameters.h"
+#include "CommandLineArguments.h"
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace COMMANDLINE
+namespace ANANSI
 {
 
 /*
  * =====================================================================================
- *        Class:  CommandLineArguments
+ *        Class:  SimulationParametersFactory
  *  Description:  
  * =====================================================================================
  */
-class CommandLineArguments
+class SimulationParametersFactory
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
         /*
          *--------------------------------------------------------------------------------------
-         *       Class:  CommandLineArguments
-         *      Method:  CommandLineArguments :: CommandLineArguments
+         *       Class:  SimulationParametersFactory
+         *      Method:  SimulationParametersFactory :: SimulationParametersFactory
          * Description:  Constructor
          *
          * Arguments: 
          *
          *--------------------------------------------------------------------------------------
          */
-        CommandLineArguments(); /* constructor      */
-        
-        /*
-         *--------------------------------------------------------------------------------------
-         *       Class:  CommandLineArguments
-         *      Method:  CommandLineArguments :: CommandLineArguments
-         * Description:  Constructor
-         *
-         * Arguments: 
-         *      argc - The number of command line arguments.
-         *      argv - A array of char* that contain the command line options.
-         *--------------------------------------------------------------------------------------
-         */
-        CommandLineArguments( const int argc, char const * const *const & argv); /* Constructor */
+        SimulationParametersFactory();                             /* constructor      */
 
-        CommandLineArguments( const CommandLineArguments &other ); /* Copy constructor */
 
-        ~CommandLineArguments(); /* destructor */
+        SimulationParametersFactory( const SimulationParametersFactory &other );   /* copy constructor */
+
+        ~SimulationParametersFactory();                            /* destructor       */
 
         /* ====================  ACCESSORS     ======================================= */
-        void reformCommandLineArguments(int & argc, char** & argv) const;
 
         /* ====================  MUTATORS      ======================================= */
 
         /* ====================  OPERATORS     ======================================= */
 
-        CommandLineArguments&
-        operator=( const CommandLineArguments &other ); /* Assignment operator */
+        SimulationParametersFactory& operator=( const SimulationParametersFactory &other ); /* assignment operator */
+
+        /* ====================  STATIC        ======================================= */
+        static SimulationParameters create(COMMANDLINE::CommandLineArguments const & aCommandLine );
 
     protected:
         /* ====================  METHODS       ======================================= */
@@ -88,14 +74,10 @@ class CommandLineArguments
         /* ====================  METHODS       ======================================= */
 
         /* ====================  DATA MEMBERS  ======================================= */
-        std::size_t _numberOfArguments;
-        std::vector<std::string> _commandLineArguments;
 
-}; /* -----  end of class CommandLineArguments  ----- */
+}; /* -----  end of class SimulationParametersFactory  ----- */
 
 
-}; /* namespace COMMANDLINE */
+}; /* namespace ANANSI */
 
-#endif /* COMMANDLINEARGUMENTS_INC */
-
-
+#endif /* SimulationParametersFactory_INC */

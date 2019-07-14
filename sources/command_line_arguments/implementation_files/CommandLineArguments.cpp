@@ -44,6 +44,18 @@ CommandLineArguments::~CommandLineArguments()
 }
 
 //============================= ACCESSORS ====================================
+void CommandLineArguments::reformCommandLineArguments(int & argc, char** & argv) const
+{
+    argc = this->_numberOfArguments;
+    argv = new char*[argc];
+    for (int ip=0; ip < argc; ++ip)
+    {
+        const int c_string_length = this->_commandLineArguments[ip].length() + 1;
+        argv[ip] = new char[c_string_length];
+        strcpy(argv[ip],this->_commandLineArguments[ip].c_str());
+    }
+    return;
+}
 
 //============================= MUTATORS =====================================
 

@@ -22,6 +22,29 @@ SimulationParameters::SimulationParameters()
 
 SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
+
+    // Reform the command line.
+    int argc=0;
+    char** argv=nullptr;
+    aCommandLine.reformCommandLineArguments(argc,argv);
+
+    // Use the Boost program options library to parse the command line.
+
+    // Add the program options to this SimulationParameters class.
+
+    // Delete the nonuniform 2d char array.
+    if (argv != nullptr)
+    {
+        for (int ip=0; ip < argc; ++ip)
+        {
+            if ( argv[ip] != nullptr)
+            {
+                delete argv[ip];
+            }
+        }
+        delete [] argv;
+    }
+
     return;
 }
 

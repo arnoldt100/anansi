@@ -54,7 +54,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (simulationparameters_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationParameters.h )
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationParameters.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationParametersFactory.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -64,7 +65,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (simulationparameters_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParameters.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParameters.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParametersFactory.cpp )
 
     #-----------------------------------------------------
     #                                                    -

@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include "boost/program_options.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -61,7 +62,7 @@ class SimulationParameters
 
         /* ====================  OPERATORS     ======================================= */
 
-        SimulationParameters& operator = ( const SimulationParameters &other ); /* assignment operator */
+        SimulationParameters& operator=( const SimulationParameters &other ); /* assignment operator */
 
     protected:
         /* ====================  METHODS       ======================================= */
