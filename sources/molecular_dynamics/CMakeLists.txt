@@ -32,6 +32,7 @@
     #-----------------------------------------------------
     get_target_property(mm_include_dir memory_management memory_management_include)
     get_target_property(command_line_include_dir command_line_arguments command_line_arguments_include)
+    get_target_property(simulationparameters_include_dir simulationparameters simulationparameters_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -106,11 +107,6 @@
 # Start of section that adds the anansi libray target.            @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-#-----------------------------------------------------
-#                                                    -
-#                                                    -
-#-----------------------------------------------------
-add_subdirectory(unit_tests)
 
 #-----------------------------------------------------
 # Add the  library target called from the source     -
@@ -128,7 +124,8 @@ add_library( ${my_anansi_md_library} STATIC
 target_include_directories( ${my_anansi_md_library} 
                             PUBLIC header_files
                             PUBLIC ${mm_include_dir}
-                            PUBLIC ${command_line_include_dir} )
+                            PUBLIC ${command_line_include_dir}
+                            PUBLIC ${simulationparameters_include_dir}  )
 
 #-----------------------------------------------------
 # Here we set the propertes on target.               -
@@ -154,14 +151,16 @@ install( TARGETS ${my_anansi_md_library}
 add_executable( ${my_main_target_binary}
                 ${anansi_main_md_public_implementation} )
 
+# Debug message
+message("simulationparameters_include is ${simulationparameters_include_dir}")
+
 target_include_directories(${my_main_target_binary} 
-                            PUBLIC header_files
-                            PUBLIC ${mm_include_dir}
-                            PUBLIC ${command_line_include_dir} )
+                            PUBLIC header_files )
 
 
 target_link_libraries(${my_main_target_binary}
                       ${my_anansi_md_library}
+                      simulationparameters
                       memory_management
                       command_line_arguments)
 
@@ -170,3 +169,8 @@ install( TARGETS ${my_main_target_binary}
                      
 
 
+#-----------------------------------------------------
+# Add the unit tests.                                -
+#                                                    -
+#-----------------------------------------------------
+add_subdirectory(unit_tests)

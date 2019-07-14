@@ -15,6 +15,7 @@
 #include "Pointer.hpp"
 #include "MolecularDynamics.h"
 #include "CommandLineArguments.h"
+#include "SimulationParameters.h"
 
 namespace ANANSI {
 
@@ -56,6 +57,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;
+        ANANSI::SimulationParameters _simulationParameters;
 
         /* ====================  STATIC        ======================================= */
 

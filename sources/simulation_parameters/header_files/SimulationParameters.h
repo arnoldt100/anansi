@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  __filename__.h
+ *       Filename:  SimulationParameters.h
  *
  *    Description:  
  *
@@ -11,8 +11,8 @@
  * =====================================================================================
  */
 
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef SIMULATIONPARAMETERS_INC
+#define SIMULATIONPARAMETERS_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -22,58 +22,57 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
-    /*
-     * =====================================================================================
-     *        Class:  __classname__
-     *  Description:  
-     * =====================================================================================
-     */
-    class __classname__
-    {
-        public:
-            /* ====================  LIFECYCLE     ======================================= */
+/*
+ * =====================================================================================
+ *        Class:  SimulationParameters
+ *  Description:  
+ * =====================================================================================
+ */
+class SimulationParameters
+{
+    public:
+        /* ====================  LIFECYCLE     ======================================= */
 
-            /*
-             *--------------------------------------------------------------------------------------
-             *       Class:  __classname__
-             *      Method:  __classname__ :: __classname__
-             * Description:  Constructor
-             *
-             * Arguments: 
-             *
-             *--------------------------------------------------------------------------------------
-             */
-            __classname__ ();                             /* constructor      */
+        /*
+         *--------------------------------------------------------------------------------------
+         *       Class:  SimulationParameters
+         *      Method:  SimulationParameters :: SimulationParameters
+         * Description:  Constructor
+         *
+         * Arguments: 
+         *
+         *--------------------------------------------------------------------------------------
+         */
+        SimulationParameters ();                             /* constructor      */
+
+        SimulationParameters ( const SimulationParameters &other );   /* copy constructor */
+
+        ~SimulationParameters ();                            /* destructor       */
+
+        /* ====================  ACCESSORS     ======================================= */
+
+        /* ====================  MUTATORS      ======================================= */
+
+        /* ====================  OPERATORS     ======================================= */
+
+        SimulationParameters& operator = ( const SimulationParameters &other ); /* assignment operator */
+
+    protected:
+        /* ====================  METHODS       ======================================= */
+
+        /* ====================  DATA MEMBERS  ======================================= */
+
+    private:
+        /* ====================  METHODS       ======================================= */
+
+        /* ====================  DATA MEMBERS  ======================================= */
+
+}; /* -----  end of class SimulationParameters  ----- */
 
 
-            __classname__ ( const __classname__ &other );   /* copy constructor */
+}; /* namespace ANANSI */
 
-            ~__classname__ ();                            /* destructor       */
-
-            /* ====================  ACCESSORS     ======================================= */
-
-            /* ====================  MUTATORS      ======================================= */
-
-            /* ====================  OPERATORS     ======================================= */
-
-            __classname__& operator = ( const __classname__ &other ); /* assignment operator */
-
-        protected:
-            /* ====================  METHODS       ======================================= */
-
-            /* ====================  DATA MEMBERS  ======================================= */
-
-        private:
-            /* ====================  METHODS       ======================================= */
-
-            /* ====================  DATA MEMBERS  ======================================= */
-
-    }; /* -----  end of class __classname__  ----- */
-
-
-}; /* namespace __NAMESPACE__ */
-
-#endif /* __filepreprocessordefine__ */
+#endif /* SIMULATIONPARAMETERS_INC */

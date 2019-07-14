@@ -1,13 +1,13 @@
 /*
- * __filename__.cpp
+ * SimulationParameters.cpp
  *
- *  Created on: __Date__
- *      Authors: __Author__
+ *         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
+ *   Organization:  ORNL-National Center of Computational Sciences
  */
 
-#include "__filename__.h"
+#include "SimulationParameters.h"
 
-namespace __NAMESPACE__ {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -15,13 +15,19 @@ namespace __NAMESPACE__ {
 
 //============================= LIFECYCLE ====================================
 
-__classname__::__classname__() {
-	// TODO Auto-generated constructor stub
-
+SimulationParameters::SimulationParameters()
+{
+    return;
 }
 
-__classname__::~__classname__() {
-	// TODO Auto-generated destructor stub
+SimulationParameters::SimulationParameters(const SimulationParameters &other )
+{
+    return;
+}
+
+SimulationParameters::~SimulationParameters()
+{
+    return;
 }
 
 //============================= ACCESSORS ====================================
@@ -29,6 +35,15 @@ __classname__::~__classname__() {
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
+
+SimulationParameters& SimulationParameters::operator=( const SimulationParameters &other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -55,4 +70,4 @@ __classname__::~__classname__() {
 //============================= OPERATORS ====================================
 
 
-} /* namespace __NAMESPACE__ */
+} /* namespace ANANSI */

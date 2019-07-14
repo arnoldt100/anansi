@@ -14,7 +14,8 @@ namespace ANANSI {
 
 AnansiMolecularDynamics::AnansiMolecularDynamics() : 
     MolecularDynamics(),
-    _commandLineArguments()
+    _commandLineArguments(),
+    _simulationParameters()
 {
     // Parse the command line and store in a 
 	return;
@@ -61,6 +62,7 @@ void AnansiMolecularDynamics::_doSimulation()
 void AnansiMolecularDynamics::_doInitialization(int const argc, char const *const *const argv )
 {
     this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
+    this->_simulationParameters = ANANSI::SimulationParameters();
 
     return;
 }
