@@ -1,10 +1,13 @@
 /*
- * AnansiMolecularDynamics.cpp
+ * __filename__.cpp
+ *
+ *  Created on: __Date__
+ *      Authors: __Author__
  */
 
-#include "AnansiMolecularDynamics.h"
+#include "__filename__.h"
 
-namespace ANANSI {
+namespace __NAMESPACE__ {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -12,17 +15,13 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-AnansiMolecularDynamics::AnansiMolecularDynamics() : 
-    MolecularDynamics(),
-    _commandLineArguments()
-{
-    // Parse the command line and store in a 
-	return;
+__classname__::__classname__() {
+	// TODO Auto-generated constructor stub
+
 }
 
-AnansiMolecularDynamics::~AnansiMolecularDynamics()
-{
-	return;
+__classname__::~__classname__() {
+	// TODO Auto-generated destructor stub
 }
 
 //============================= ACCESSORS ====================================
@@ -52,20 +51,8 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMolecularDynamics::_doSimulation()
-{
-    std::cout << "Doing AnansiMolecularDynamics simulation" << std::endl;
-    return;
-}
 
-void AnansiMolecularDynamics::_doInitialization(int const argc, char const *const *const argv )
-{
-    this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
-
-    return;
-}
 //============================= OPERATORS ====================================
 
 
-}; /* -----  end of namespace ANANSI  ----- */
-
+} /* namespace __NAMESPACE__ */

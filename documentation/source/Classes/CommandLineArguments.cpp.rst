@@ -4,6 +4,8 @@
 CommandLineArguments Documentation
 ######################################
 
+This responsibilty of this class is to store and provide an encapusulation of the command line arguments. 
+
 namespace COMMANDLINE
 
 .. namespace:: COMMANDLINE
@@ -35,7 +37,7 @@ Lifecycle
     
     :param CommandLineArguments other: The other object to be copied.
 
-.. function:: ~CommandLineArguments()=0
+.. function:: ~CommandLineArguments()
 
     The destructor.
 

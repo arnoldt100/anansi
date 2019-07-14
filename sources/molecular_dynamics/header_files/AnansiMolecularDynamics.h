@@ -9,10 +9,12 @@
 #define  anansi_molecular_dynamics_INC
 
 // System includes
+#include <boost/program_options.hpp>
 
 // Local includes
 #include "Pointer.hpp"
 #include "MolecularDynamics.h"
+#include "CommandLineArguments.h"
 
 namespace ANANSI {
 
@@ -53,6 +55,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void _doInitialization(int const argc, char const *const *const argv ) override;
 
         /* ====================  DATA MEMBERS  ======================================= */
+        COMMANDLINE::CommandLineArguments _commandLineArguments;
 
         /* ====================  STATIC        ======================================= */
 

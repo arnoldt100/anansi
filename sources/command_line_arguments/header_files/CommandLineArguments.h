@@ -65,7 +65,7 @@ class CommandLineArguments
 
         CommandLineArguments( const CommandLineArguments &other ); /* Copy constructor */
 
-        ~CommandLineArguments(); /* destructor       */
+        ~CommandLineArguments(); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
 
