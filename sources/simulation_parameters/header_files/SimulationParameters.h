@@ -21,6 +21,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "CommandLineArguments.h"
 
 namespace ANANSI
 {
@@ -47,6 +48,8 @@ class SimulationParameters
          *--------------------------------------------------------------------------------------
          */
         SimulationParameters ();                             /* constructor      */
+        
+        SimulationParameters (COMMANDLINE::CommandLineArguments const & aCommandLine); /* constructor      */
 
         SimulationParameters ( const SimulationParameters &other );   /* copy constructor */
 

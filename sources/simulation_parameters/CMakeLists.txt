@@ -66,6 +66,12 @@
     set (simulationparameters_implementation_files
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParameters.cpp )
 
+    #-----------------------------------------------------
+    #                                                    -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(command_line_include_dir command_line_arguments command_line_arguments_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
@@ -87,7 +93,8 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${simulationparameters_header_files} ${simulationparameters_implementation_files} )
+    PRIVATE ${simulationparameters_header_files} 
+            ${simulationparameters_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -95,7 +102,8 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PUBLIC ${command_line_include_dir} )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

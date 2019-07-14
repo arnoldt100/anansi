@@ -20,6 +20,11 @@ SimulationParameters::SimulationParameters()
     return;
 }
 
+SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine)
+{
+    return;
+}
+
 SimulationParameters::SimulationParameters(const SimulationParameters &other )
 {
     return;
