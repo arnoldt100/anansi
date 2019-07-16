@@ -33,7 +33,7 @@ class MolecularDynamics
         /* ====================  MUTATORS      ======================================= */
         void doSimulation();
 
-        void initializeSimulation( int const argc, char const *const *const argv );
+        void initializeSimulation( int const argc, char const *const *const & argv );
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -47,7 +47,7 @@ class MolecularDynamics
 
     private:
         /* ====================  MUTATORS      ======================================= */
-        virtual void _doInitialization( int const argc, char const *const *const argv )=0;
+        virtual void _doInitialization( int const argc, char const *const *const & argv )=0;
 
         virtual void _doSimulation()=0;
 

@@ -40,11 +40,11 @@ MolecularDynamics::~MolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MolecularDynamics::initializeSimulation(int const argc, char const *const *const argv )
+void MolecularDynamics::initializeSimulation(int const argc, char const *const *const & argv )
 {
     // Store command line arguments in class CommandLineArguments.
 
-    this->_doInitialization(argc, argv);
+     this->_doInitialization(argc, argv);
 
     return;
 }

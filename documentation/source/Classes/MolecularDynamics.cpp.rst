@@ -24,9 +24,11 @@ Lifecycle
 
    The default constructor.
 
-.. function:: MolecularDynamics( const MolecularDynamics &other ) = delete
+.. function:: MolecularDynamics( MolecularDynamics const &other ) = delete
 
     The copy constructor. This function is deleted.
+
+    :param MolecularDynamics const & other: The other object to be copied.
 
 .. function:: ~MolecularDynamics()=0
 
@@ -54,14 +56,14 @@ Mutators
     interface of the template design pattern. The derived class is to provide 
     its implementation for performaing the simulation.
 
-.. function:: void initializeSimulation( int const argc, char const \*const \*const argv ) final
+.. function:: void initializeSimulation( int const argc, char const \*const \*const & argv ) final
 
     Performs the simulation. The function is final and serves as the public
     interface of the template design pattern for performing the simulation. The
     derived class is to provide its implementation for initializing the simulation.
 
-    :param argc int: The size of the array char* argv[].
-    :param argv char const \*const \*const: Contains the command line options.
+    :param int const argc: The size of the array argv.
+    :param char const \*const \*const &argv: Contains the command line options.
 
 =================
 Protected Members

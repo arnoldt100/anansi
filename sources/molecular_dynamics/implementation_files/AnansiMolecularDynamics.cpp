@@ -59,7 +59,7 @@ void AnansiMolecularDynamics::_doSimulation()
     return;
 }
 
-void AnansiMolecularDynamics::_doInitialization(int const argc, char const *const *const argv )
+void AnansiMolecularDynamics::_doInitialization(int const argc, char const *const *const & argv )
 {
     this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
 

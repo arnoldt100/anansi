@@ -24,12 +24,12 @@ Lifecycle
 
    The default constructor.
 
-.. function:: CommandLineArguments( const int argc, char**  & argv)
+.. function:: CommandLineArguments( const int argc, char const \*const \*const & argv)
     
     The preferred constructor.
 
-    :param argc int: The size of the array char* argv[].
-    :param argv char const \*const \*const \&: Contains the command line options.
+    :param int const argc: The size of the array char* argv[].
+    :param char const \*const \*const \& argv: Contains the command line options.
     
 .. function:: CommandLineArguments( const CommandLineArguments &other )
 
@@ -49,12 +49,12 @@ Accessors
 Operators
 ---------
 
-.. function:: CommandLineArguments& operator=( const CommandLineArguments &other )
+.. function:: CommandLineArguments& operator=( CommandLineArguments const &other )
 
     The assignment operator.
 
-    :param CommandLineArguments other: The other object to be copied.
-    :return:  Returns a copy of other.
+    :param CommandLineArguments const & other: The other object to be copied.
+    :return: Returns a copy of other.
     :rtype: CommandLineArguments
 
 --------

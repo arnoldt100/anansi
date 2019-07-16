@@ -28,8 +28,10 @@ SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments con
     char** argv=nullptr;
     aCommandLine.reformCommandLineArguments(argc,argv);
 
+    // TO BE IMPLEMENTED: 
     // Use the Boost program options library to parse the command line.
-
+    
+    // TO BE IMPLEMENTED: 
     // Add the program options to this SimulationParameters class.
 
     // Delete the nonuniform 2d char array.

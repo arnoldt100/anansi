@@ -53,7 +53,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         void _doSimulation() override;
 
-        void _doInitialization(int const argc, char const *const *const argv ) override;
+        void _doInitialization(int const argc, char const *const *const & argv ) override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;

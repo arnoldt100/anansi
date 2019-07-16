@@ -25,7 +25,7 @@ Lifecycle
 
    The default constructor.
 
-.. function:: AnansiMolecularDynamics( const AnansiMolecularDynamics &other )=delete
+.. function:: AnansiMolecularDynamics( AnansiMolecularDynamics const  &other )=delete
 
     The copy constructor. It is deleted.
 
@@ -72,6 +72,11 @@ Mutators
 .. function:: void _doSimulation() override
 
 .. function:: void _doInitialization( int const argc, char const \*const \*const argv ) override
+
+    Performs the initialization of the simulation. 
+
+    :param argc const int: The size of the array char* argv[].
+    :param argv char const \*const \*const \&: Contains the command line options.
 
 ------------
 Data Members
