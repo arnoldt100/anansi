@@ -1,11 +1,11 @@
 /*
- * SimulationParameters.cpp
+ * SimulationParametersFactory.cpp
  *
  *         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
  *   Organization:  ORNL-National Center of Computational Sciences
  */
 
-#include "SimulationParameters.h"
+#include "SimulationParametersFactory.h"
 
 namespace ANANSI {
 
@@ -15,33 +15,19 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-SimulationParameters::SimulationParameters()
+SimulationParametersFactory::SimulationParametersFactory() 
+{
+	return;
+}
+
+SimulationParametersFactory::SimulationParametersFactory( const SimulationParametersFactory &other )
 {
     return;
 }
 
-SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine)
+SimulationParametersFactory::~SimulationParametersFactory() 
 {
-
-
-    // Use the Boost program options library to parse the command line.
-    SimulationParameters::_parseProgramOptionsFromCommandLine(aCommandLine);
-
-    // Add the program options to this SimulationParameters class.
-    // TO BE IMPLEMENTED
-
-
-    return;
-}
-
-SimulationParameters::SimulationParameters(const SimulationParameters &other )
-{
-    return;
-}
-
-SimulationParameters::~SimulationParameters()
-{
-    return;
+	return;
 }
 
 //============================= ACCESSORS ====================================
@@ -50,7 +36,7 @@ SimulationParameters::~SimulationParameters()
 
 //============================= OPERATORS ====================================
 
-SimulationParameters& SimulationParameters::operator=( const SimulationParameters &other )
+SimulationParametersFactory& SimulationParametersFactory::operator=( const SimulationParametersFactory &other )
 {
     if (this != &other)
     {
@@ -58,6 +44,15 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
     }
     return *this;
 }
+
+//============================= STATIC    ====================================
+
+SimulationParameters SimulationParametersFactory::create(COMMANDLINE::CommandLineArguments const & aCommandLine )
+{
+    SimulationParameters aSimulationParameters(aCommandLine);
+    return aSimulationParameters;
+}
+       
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -83,34 +78,5 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
 
 //============================= OPERATORS ====================================
 
-//============================= STATIC    ====================================
-void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine)
-{
-    // Unpak the command line arguments;
-    int argc=0;
-    char** argv=nullptr;
-    aCommandLine.reformCommandLineArguments(argc,argv);
-
-    boost::program_options::options_description description;
-    // description.add_options()("help", "Produce the help message.");
-    // description.add_options()("control_file", po::value<std::string>(), "The name of the control file.");
-    // po::variables_map vm;
-    // po::store(po::parse_command_line(argc, argv, description), vm);
-    // po::notify(vm);    
-
-    // Delete the nonuniform 2d char array.
-    if (argv != nullptr)
-    {
-        for (int ip=0; ip < argc; ++ip)
-        {
-            if ( argv[ip] != nullptr)
-            {
-                delete argv[ip];
-            }
-        }
-        delete [] argv;
-    }
-    return;
-}
 
 } /* namespace ANANSI */

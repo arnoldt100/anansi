@@ -16,7 +16,7 @@
     # This variable stores the name of main md binary.   -
     #                                                    -
     #-----------------------------------------------------
-    string(TOLOWER ${PROJECT_NAME}_main_md my_main_target_binary)
+    string(TOLOWER ${PROJECT_NAME}_md my_main_target_binary)
 
     #-----------------------------------------------------
     # Define the variable anansi.                        -
@@ -114,7 +114,10 @@
 #                                                    -
 #-----------------------------------------------------
 add_library( ${my_anansi_md_library} STATIC 
-             ${anansi_md_library_implementation} )
+             "" )
+
+target_sources(${my_anansi_md_library}
+               PRIVATE ${anansi_md_library_implementation} ${anansi_md_library_headers}  )
 
 #-----------------------------------------------------
 # Set the list of directories to search for          -
@@ -122,16 +125,17 @@ add_library( ${my_anansi_md_library} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_include_directories( ${my_anansi_md_library} 
-                            PUBLIC header_files )
+                            PUBLIC header_files ${Boost_INCLUDE_DIR} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${my_anansi_md_library}
-                      command_line_arguments
+                      memory_management 
                       simulationparameters
-                      memory_management )
+                      command_line_arguments
+                      ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
 # Here we set the propertes on target.               -
@@ -155,11 +159,20 @@ install( TARGETS ${my_anansi_md_library}
 #                                                    -
 #-----------------------------------------------------
 add_executable( ${my_main_target_binary}
-                ${anansi_main_md_public_implementation} )
+                "" )
 
+target_sources(${my_main_target_binary}
+               PRIVATE ${anansi_main_md_public_implementation} ${anansi_main_md_public_headers} )
+
+target_include_directories( ${my_main_target_binary} 
+                            PUBLIC header_files ${Boost_INCLUDE_DIR} )
 
 target_link_libraries(${my_main_target_binary}
-                      ${my_anansi_md_library} )
+                      ${my_anansi_md_library} 
+                      command_line_arguments
+                      simulationparameters
+                      memory_management 
+                      ${Boost_LIBRARIES} )
 
 install( TARGETS ${my_main_target_binary} 
          RUNTIME DESTINATION ${anansi_install_bin_directory} )

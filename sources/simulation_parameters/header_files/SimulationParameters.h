@@ -48,13 +48,13 @@ class SimulationParameters
          *
          *--------------------------------------------------------------------------------------
          */
-        SimulationParameters ();                             /* constructor      */
+        SimulationParameters (); /* constructor */
         
-        SimulationParameters (COMMANDLINE::CommandLineArguments const & aCommandLine); /* constructor      */
+        SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine); /* constructor */
 
-        SimulationParameters ( const SimulationParameters &other );   /* copy constructor */
+        SimulationParameters( const SimulationParameters &other ); /* copy constructor */
 
-        ~SimulationParameters ();                            /* destructor       */
+        ~SimulationParameters(); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
 
@@ -71,6 +71,10 @@ class SimulationParameters
 
     private:
         /* ====================  METHODS       ======================================= */
+
+        /* ====================  STATIC        ======================================= */
+
+        static void _parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine);
 
         /* ====================  DATA MEMBERS  ======================================= */
 

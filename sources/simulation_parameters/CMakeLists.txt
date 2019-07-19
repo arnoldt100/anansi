@@ -105,6 +105,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PUBLIC ${Boost_INCLUDE_DIR}
                            PUBLIC ${command_line_include_dir} )
 
 #-----------------------------------------------------
