@@ -4,7 +4,10 @@
 # Define the top level directory of anansi           -
 #                                                    -
 #-----------------------------------------------------
-export ANANSI_TOP_LEVEL=${HOME}/anansi
+if [ -z ${ANANSI_TOP_LEVEL+x} ]
+then
+    export ANANSI_TOP_LEVEL=${HOME}/anansi
+fi
 
 #-----------------------------------------------------
 # Define the c++ compiler.                           -
