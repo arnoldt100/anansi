@@ -37,13 +37,13 @@ def main():
 
     # The variable 'message_env_def' stores a message on the critical
     # defined environmental variables.
-    message_env_def = "\nCrtitcal environmental variables that are defineded\n"
-    message_env_def += "-"*len(message_env_def) + "\n"
+    message_env_def = "\nCrititcal environmental variables that are defined\n"
+    message_env_def += "-"*(len(message_env_def)-2) + "\n"
 
     # The variable 'message_env_undef' stores a message on the critical
     # undefined environmental variables.
-    message_env_undef = "\nCrtitcal environmental variables that are undefineded\n"
-    message_env_undef += "-"*len(message_env_undef) + "\n"
+    message_env_undef = "\nCritical environmental variables that are undefined\n"
+    message_env_undef += "-"*(len(message_env_undef)-2) + "\n"
 
     # The variable 'critical_env_variables' is a list of the critical
     # environmental variables.
@@ -53,7 +53,7 @@ def main():
     for env_var_name in critical_env_variables:
         env_var_value = os.getenv(env_var_name)
         if env_var_value:
-            message_env_def += f"{env_var_name}={env_var_value}.\n"
+            message_env_def += f"{env_var_name}={env_var_value}\n"
         else:
             message_env_undef += f"{env_var_name}\n"
 
