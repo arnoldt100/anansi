@@ -3,21 +3,26 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+==================================
 Welcome to Anansi's documentation!
 ==================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Contents:
    :titlesonly:
    
- 
+    
+   notational_conventions.rst
+   Introduction <introduction.rst>
+   How to Build Anansi <how_to_build_anansi.rst>
    anansi_main_md.cpp.rst
    Classes <classes.rst>
    
 
 
 
+==================
 Indices and tables
 ==================
 
