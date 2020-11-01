@@ -10,15 +10,16 @@ critical environmental variables.
 
 The last step to run the Anansi build commands.
 
-+++++++++++++++++++++
+#####################
 Library Prerequisites
-+++++++++++++++++++++
+#####################
 
 The following are the library prerequisites for building Anansi.
 
 -----
 CMake
 -----
+
 An implementation > 3.16
 
 ---
@@ -49,3 +50,9 @@ Sphinx
 An implementation > 3.1.0
 
 
+#####################################
+Setting the Build Runtime Environment
+#####################################
+
+* The first step is to set the environmental variable **ANANSI_TOP_LEVEL**. This
+  variable is a fully qualified path the Anansi software package.
