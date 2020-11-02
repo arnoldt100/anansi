@@ -71,11 +71,11 @@ variable to include Anansi's python packages directory.
 
 **ANANSI_TOP_LEVEL** is the fully qualified path
 the Anansi software package. A utility Bash script,
-*set_env_var_anansi_top_level.sh*, is provided to perform these tasks.
+*set_env_var_anansi.sh*, is provided to perform these tasks.
 The script must be sourced while the current working directory is the
 Anansi software package top level.
 
-**source ./bin/set_env_var_anansi_top_level.sh**
+**source ./bin/set_env_var_anansi.sh**
 
 ------
 Step 2
