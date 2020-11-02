@@ -64,8 +64,8 @@ Setting the Build Runtime Environment Stage
 Step 1
 ------
 
-The first step is to set the environmental variable **ANANSI_TOP_LEVEL**
-, modify your PATH environmental variable to include Anansi's software
+The first step is to set the environmental variable **ANANSI_TOP_LEVEL**,
+modify your PATH environmental variable to include Anansi's software
 package bin dire3ctory, and modify your PYTHONPATH environmental
 variable to include Anansi's python packages directory. 
 
