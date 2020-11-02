@@ -51,6 +51,11 @@ Sphinx
 An implementation > 3.1.0
 
 
+------
+Python
+------
+An implementation > 3.6
+
 ###########################################
 Setting the Build Runtime Environment Stage
 ###########################################
@@ -59,12 +64,16 @@ Setting the Build Runtime Environment Stage
 Step 1
 ------
 
-The first step is to set the environmental variable
-**ANANSI_TOP_LEVEL**. This variable is a fully qualified path the Anansi
-software package. A utility Bash script,
-*set_env_var_anansi_top_level.sh*, is provided to perform this task. The
-script must be sourced while the current working directory is the Anansi
-software package top level.
+The first step is to set the environmental variable **ANANSI_TOP_LEVEL**
+, modify your PATH environmental variable to include Anansi's software
+package bin dire3ctory, and modify your PYTHONPATH environmental
+variable to include Anansi's python packages directory. 
+
+**ANANSI_TOP_LEVEL** is the fully qualified path
+the Anansi software package. A utility Bash script,
+*set_env_var_anansi_top_level.sh*, is provided to perform these tasks.
+The script must be sourced while the current working directory is the
+Anansi software package top level.
 
 **source ./bin/set_env_var_anansi_top_level.sh**
 
@@ -94,6 +103,18 @@ variables:
 
 Sample bash scripts are provided in the *configurations* directory that
 are to be sourced to set these primary critical environmental variables.
-Copy a configuration to am appropiate name, modify to suit your needs,
+Copy a configuration to an appropiate name, modify to suit your needs,
 then source. Once the file is sourced, other secondary critical
-environmental variables are definded.
+environmental variables are defined.
+
+To check that primary critical environmental variables are defined,
+execute the python program named *check_environment_variables.py*.
+
+**check_environment_variables.py \--env-config-file ${ANANSI_TOP_LEVEL}/etc/mandatory_environmental_variables.ini**
+
+The program will print the critical environmental variables and their
+values.
+
+------
+Step 3
+------
