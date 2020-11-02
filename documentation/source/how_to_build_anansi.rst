@@ -112,8 +112,7 @@ execute the python program named *check_environment_variables.py*.
 
 **check_environment_variables.py \--env-config-file ${ANANSI_TOP_LEVEL}/etc/mandatory_environmental_variables.ini**
 
-The program will print the critical environmental variables and their
-values.
+The program will print the critical environmental variables and their values.
 
 ------
 Step 3
