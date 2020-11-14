@@ -38,4 +38,4 @@
 documentation/build
 
 # Ignore the CMake build directory.
-anansi_cmake_build_dir/
+anansi_cmake_build_dir/*
