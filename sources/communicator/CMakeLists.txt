@@ -151,16 +151,23 @@ target_include_directories(${target}
 enable_compile_warnings(${target})
 
 #-----------------------------------------------------
+# The libraries to use when linking to target.       -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries( ${my_library_target}
+                       string_utilities 
+                       memory_management)
+
+#-----------------------------------------------------
 # Here we set the properties on target               -
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      mpi_communicator_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${mpi_communicator_header_files}" )
 
-install( TARGETS ${target}
-         ARCHIVE DESTINATION ${mpi_communicator_install_lib_directory}
-         PUBLIC_HEADER DESTINATION ${mpi_communicator_install_include_directory} )
+install(TARGETS ${target}
+        ARCHIVE DESTINATION ${mpi_communicator_install_lib_directory}
+        PUBLIC_HEADER DESTINATION ${mpi_communicator_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
