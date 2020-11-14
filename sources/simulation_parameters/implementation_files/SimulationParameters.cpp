@@ -86,7 +86,7 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
 //============================= STATIC    ====================================
 void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
-    // Unpak the command line arguments;
+    // Unpack the command line arguments;
     int argc=0;
     char** argv=nullptr;
     aCommandLine.reformCommandLineArguments(argc,argv);

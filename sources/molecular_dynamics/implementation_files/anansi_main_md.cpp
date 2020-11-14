@@ -2,6 +2,14 @@
 
 int main( int argc, char** argv )
 {
+	int mpi_error = MPI_Init(&argc,&argv);
+
+	int world_size;
+	MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+	int world_rank;
+	MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+
     // Store the command line arguments.
     COMMANDLINE::CommandLineArguments aCommandLine(argc,argv);
 
@@ -27,6 +35,8 @@ int main( int argc, char** argv )
         delete my_md_factory_ptr;
         my_md_factory_ptr=nullptr;
     }
+
+    mpi_error = MPI_Finalize();
 
     return 0;
 }

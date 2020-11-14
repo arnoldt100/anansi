@@ -68,13 +68,13 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPUMemoryAllocation)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/boundary_conditions)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/force_fields)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/integrators)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -

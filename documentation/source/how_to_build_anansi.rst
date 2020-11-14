@@ -117,3 +117,8 @@ The program will print the critical environmental variables and their values.
 ------
 Step 3
 ------
+The last step is to run the command to build Anansi:
+
+**build_anansi_md.sh**
+
+Anansi will be install under the directory *${ANANSI_INSTALL_PREFIX}*.

@@ -18,7 +18,7 @@
 #include "AnansiMolecularDynamicsFactory.h"
 #include "Pointer.hpp"
 #include "CommandLineArguments.h"
-
+#include "mpi.h"
 
 // ===  FUNCTION  ======================================================================
 //         Name:  main
