@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Temporary vim swp file.
+*.sw?
+
+# Ignore the documentation build directory.
+documentation/build
