@@ -89,9 +89,9 @@
     #-----------------------------------------------------
     set (anansi_md_library_implementation  
         implementation_files/AnansiMolecularDynamics.cpp
-         implementation_files/MolecularDynamics.cpp
-         implementation_files/MolecularDynamicsFactory.cpp
-         implementation_files/AnansiMolecularDynamicsFactory.cpp)
+        implementation_files/MolecularDynamics.cpp
+        implementation_files/MolecularDynamicsFactory.cpp
+        implementation_files/AnansiMolecularDynamicsFactory.cpp)
 
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -172,6 +172,7 @@ target_link_libraries(${my_main_target_binary}
                       command_line_arguments
                       simulationparameters
                       memory_management 
+                      mpi_communicator
                       ${Boost_LIBRARIES} )
 
 install( TARGETS ${my_main_target_binary} 

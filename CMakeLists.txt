@@ -43,13 +43,35 @@ set(anansi_install_include_directory $ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY})
 set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
 set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
 
+#-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the memory_management libraries,        -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
 set(memory_management_install_lib_directory ${anansi_install_lib_directory})
 set(memory_management_install_include_directory ${anansi_install_include_directory})
 set(memory_management_install_bin_directory ${anansi_install_bin_directory} )
 
+#-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the command_line_arguments libraries,   -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
 set(command_line_arguments_install_lib_directory ${anansi_install_lib_directory})
 set(command_line_arguments_install_include_directory ${anansi_install_include_directory})
 set(command_line_arguments_install_bin_directory ${anansi_install_bin_directory} )
+
+#-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the mpi_communicator libraries,         -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
+set(mpi_communicator_install_lib_directory ${anansi_install_lib_directory})
+set(mpi_communicator_install_include_directory ${anansi_install_include_directory})
+set(mpi_communicator_install_bin_directory ${anansi_install_bin_directory} )
 
 #-----------------------------------------------------
 # This section permits use to find the header files  -
@@ -69,12 +91,12 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPUMemoryAllocation)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/boundary_conditions)
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/force_fields)
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/integrators)
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/boundary_conditions)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/force_fields)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/integrators)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -
