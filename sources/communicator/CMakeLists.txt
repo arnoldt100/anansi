@@ -52,7 +52,32 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_header_files
-         header_files/mpi_communicator.h )
+         header_files/CommunicatorFactory.h
+         header_files/Communicator.h
+         header_files/Identification.h
+         header_files/MasterSlaveIdentification.h
+         header_files/MasterSlaveIdentification_Specialization_0.h
+         header_files/MasterSlaveIdentification_Specialization_1.h
+         header_files/MPIGather.h
+         header_files/MPIAllgather.h
+         header_files/MPIAllGatherException.h
+         header_files/MPIGatherException.h
+         header_files/MPIAllReduceException.h
+         header_files/MPICommDuplicateException.h
+         header_files/MPICommSplitException.h
+         header_files/MPICommunicatorFactory.h
+         header_files/MPICommunicator.h
+         header_files/MPIDataType.h
+         header_files/MPIFinalizedException.h
+         header_files/MPIFreeException.h
+         header_files/MPICommSizeException.h
+         header_files/MPIGenericException.h
+         header_files/MPIInitException.h
+         header_files/MPIInitializedException.h
+         header_files/MPIReduce.h
+         header_files/MPIReductionOperation.h
+         header_files/MPIUtilityFunctions.h
+         header_files/MPIAllgather.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -62,7 +87,31 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_implementation_files
-         implementation_files/mpi_communicator.cpp )
+         implementation_files/CommunicatorFactory.cpp
+         implementation_files/Identification.cpp
+         implementation_files/MasterSlaveIdentification.cpp
+         implementation_files/MasterSlaveIdentification_Specialization_0.cpp
+         implementation_files/MasterSlaveIdentification_Specialization_1.cpp
+         implementation_files/MasterSlaveIdentification.cpp
+         implementation_files/MPICommunicatorFactory.cpp 
+         implementation_files/Communicator.cpp 
+         implementation_files/MPIGather.cpp
+         implementation_files/MPIDataType.cpp
+         implementation_files/MPICommunicator.cpp
+         implementation_files/MPIInitializedException.cpp
+         implementation_files/MPICommSizeException.cpp
+         implementation_files/MPIGenericException.cpp
+         implementation_files/MPIFreeException.cpp
+         implementation_files/MPICommSplitException.cpp
+         implementation_files/MPIAllReduceException.cpp
+         implementation_files/MPIFinalizedException.cpp
+         implementation_files/MPIInitException.cpp
+         implementation_files/MPIReductionOperation.cpp
+         implementation_files/MPICommDuplicateException.cpp
+         implementation_files/MPIAllGatherException.cpp
+         implementation_files/MPIGatherException.cpp
+         implementation_files/MPIUtilityFunctions.cpp
+         implementation_files/MPIAllgather.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
