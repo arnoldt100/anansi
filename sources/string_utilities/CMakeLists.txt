@@ -1,56 +1,106 @@
-project(STRING_UTILITIES
-        VERSION 1.0)
-string(TOLOWER ${PROJECT_NAME} my_target_library)
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# CMake preamble section.                                         @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-#-----------------------------------------------------
-# Here we define a list of all header files          -
-# associated with the STRING_UTILITIES project.      -
-#                                                    -
-#-----------------------------------------------------
-set(my_public_headers
-    header_files/convert_commandline_to_2d_char_array.h
-    header_files/convert_commandline_to_vector_string_array.h
-    header_files/convert_vector_to_a_string.h 
-    header_files/convert_string_to_char_array.h
-    header_files/convert_sequence_of_chars_to_vector_string.h
-    header_files/get_maximum_width_of_vector_string.h
-    header_files/under_line_string.h )
+    #-----------------------------------------------------
+    # Define the project.                                -
+    #                                                    -
+    #-----------------------------------------------------
+    set(my_project_name "string_utilities")
+    project(${my_project_name})
 
-#-----------------------------------------------------
-# Here we define a list of all implementation files  -
-# associated with the STRING_UTILITIES project       -
-#                                                    -
-#-----------------------------------------------------
-set(my_public_implementation_files 
-    implementation_files/convert_commandline_to_2d_char_array.cpp
-    implementation_files/convert_commandline_to_vector_string_array.cpp
-    implementation_files/convert_vector_to_a_string.cpp
-    implementation_files/convert_string_to_char_array.cpp
-    implementation_files/convert_sequence_of_chars_to_vector_string.cpp 
-    implementation_files/get_maximum_width_of_vector_string.cpp
-    implementation_files/under_line_string.cpp )
+    #-----------------------------------------------------
+    # Define the target name.                            -
+    #                                                    -
+    #-----------------------------------------------------
+    set(target ${my_project_name})
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of CMake preamble section.                                  @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# Here we define the sources and header files associated          @
+# with the various targets.                                       @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    #-----------------------------------------------------
+    # Here we define a list of all header files          -
+    # associated with the string_utilities project.      -
+    #                                                    -
+    #-----------------------------------------------------
+    set(my_public_headers
+        header_files/convert_commandline_to_2d_char_array.h
+        header_files/convert_commandline_to_vector_string_array.h
+        header_files/convert_vector_to_a_string.h 
+        header_files/convert_string_to_char_array.h
+        header_files/convert_sequence_of_chars_to_vector_string.h
+        header_files/get_maximum_width_of_vector_string.h
+        header_files/under_line_string.h )
+
+    #-----------------------------------------------------
+    # Here we define a list of all implementation files  -
+    # associated with the string_utilities project       -
+    #                                                    -
+    #-----------------------------------------------------
+    set(my_public_implementation_files 
+        implementation_files/convert_commandline_to_2d_char_array.cpp
+        implementation_files/convert_commandline_to_vector_string_array.cpp
+        implementation_files/convert_vector_to_a_string.cpp
+        implementation_files/convert_string_to_char_array.cpp
+        implementation_files/convert_sequence_of_chars_to_vector_string.cpp 
+        implementation_files/get_maximum_width_of_vector_string.cpp
+        implementation_files/under_line_string.cpp )
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of defining the sources and header files associated         @
+# with the memory_management targets.                             @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #-----------------------------------------------------
 # Add the  library target called from the source     -
 # files listed in the command invocation.            -
 #                                                    -
 #-----------------------------------------------------
-add_library(${my_target_library} STATIC 
-           ${my_public_implementation_files} )
+add_library(${target} STATIC 
+            "")
+
+#-----------------------------------------------------
+#                                                    -
+# We associate the source files with the target.     -
+#                                                    -
+#-----------------------------------------------------
+target_sources(${target}
+    PRIVATE ${my_public_headers} ${my_public_implementation_files})
 
 #-----------------------------------------------------
 # Define the diretories to search for                -
 # for the string_utilities library header files.     -
 #                                                    -
 #-----------------------------------------------------
-target_include_directories(${my_target_library}  PUBLIC 
-                           header_files )
+target_include_directories(${target}  
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+
+#-----------------------------------------------------
+# Other dependencies.                                -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries(${target} 
+                      memory_management)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -
 #-----------------------------------------------------
-enable_compile_warnings(${my_target_library})
+enable_compile_warnings(${target})
 
 
 #-----------------------------------------------------
@@ -60,16 +110,11 @@ enable_compile_warnings(${my_target_library})
 # with the string_utilities library.                 -
 #                                                    -
 #-----------------------------------------------------
-set_target_properties(${my_target_library} PROPERTIES
+set_target_properties(${target} PROPERTIES
+                      string_utilities_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${my_public_headers}" )
 
-#-----------------------------------------------------
-# Other dependencies.                                -
-#                                                    -
-#-----------------------------------------------------
-target_link_libraries(${my_target_library} 
-                      memory_management)
 
-install(TARGETS ${my_target_library}
-        ARCHIVE DESTINATION ${BUGGET_LIB}
-        PUBLIC_HEADER DESTINATION ${BUGGET_INCLUDE} )   
+install(TARGETS ${target}
+        ARCHIVE DESTINATION ${string_utilities_install_lib_directory}
+        PUBLIC_HEADER DESTINATION ${string_utilities_install_include_directory} )   

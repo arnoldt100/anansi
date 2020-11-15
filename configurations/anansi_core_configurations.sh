@@ -38,7 +38,7 @@ else
     #                                                    -
     # This variable is mandatory.                        -
     #-----------------------------------------------------
-    export ANANSI_MINIMUM_CMAKE_VERSION="3.10"
+    export ANANSI_MINIMUM_CMAKE_VERSION="3.16"
 
     #-----------------------------------------------------
     # Define the path to Anansi cmake modules.           -

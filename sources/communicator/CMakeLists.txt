@@ -23,13 +23,21 @@
     #                                                    -
     #-----------------------------------------------------
     set(my_project_name "mpi_communicator")
-    project(anansi_${my_project_name})
+    project(${my_project_name})
 
     #-----------------------------------------------------
     # Define the target name.                            -
     #                                                    -
     #-----------------------------------------------------
     set(target ${my_project_name})
+
+    #-----------------------------------------------------
+    # Set the path to the memory management              -
+    # and string_utilities header files.                 -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_mm_include memory_management memory_management_include)
+    get_target_property(my_su_include string_utilities string_utilities_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -134,7 +142,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${mpi_communicator_header_files} ${mpi_communicator_implementation_files} )
+               PRIVATE ${mpi_communicator_header_files} ${mpi_communicator_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -142,7 +150,9 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                                  ${my_su_include}
+                                  ${my_mm_include})
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -74,6 +74,16 @@ set(mpi_communicator_install_include_directory ${anansi_install_include_director
 set(mpi_communicator_install_bin_directory ${anansi_install_bin_directory} )
 
 #-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the mpi_communicator libraries,         -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
+set(string_utilities_install_lib_directory ${anansi_install_lib_directory})
+set(string_utilities_install_include_directory ${anansi_install_include_directory})
+set(string_utilities_install_bin_directory ${anansi_install_bin_directory} )
+
+#-----------------------------------------------------
 # This section permits use to find the header files  -
 # and link against the BOOST library.                -
 #                                                    -
@@ -88,10 +98,10 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPUMemoryAllocation)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/string_utilities)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/communicator)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/string_utilities)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/boundary_conditions)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/force_fields)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
