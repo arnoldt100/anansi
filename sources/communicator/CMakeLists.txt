@@ -36,7 +36,7 @@
     set(target ${my_project_name})
 
     #-----------------------------------------------------
-    #                                                    -
+    # Include various functions and macros.              -
     #                                                    -
     #-----------------------------------------------------
     include(cmake_macros_and_functions/communicator_build_prerequisites.cmake)

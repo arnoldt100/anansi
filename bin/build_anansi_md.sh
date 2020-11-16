@@ -7,11 +7,20 @@
 anansi_cmake_build_dir="anansi_cmake_build_dir"
 
 #-----------------------------------------------------
-# Define the Anansi source directory.                -
+# Define a log file                                  -
 #                                                    -
 #-----------------------------------------------------
-anasi_source_dir=${ANANSI_TOP_LEVEL}
+log_file="${ANANSI_TOP_LEVEL}/anansi_log.txt"
 
+#-----------------------------------------------------
+# No edits should be needed below this line.         -
+#                                                    -
+#-----------------------------------------------------
+
+if [ -f ${log_file} ]
+then
+    rm -f ${log_file}
+fi
 
 if [ -d ${anansi_cmake_build_dir} ]
 then

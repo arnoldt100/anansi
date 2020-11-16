@@ -24,6 +24,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
 include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_boost.cmake )
 include( $ENV{ANANSI_CMAKE_MODULE_PATH}/enable_compile_warnings.cmake )
+
 #-----------------------------------------------------
 # Check that key environmental variables are set.    -
 #                                                    -
@@ -42,6 +43,12 @@ set(anansi_install_bin_directory $ENV{ANANSI_INSTALL_BIN_DIRECTORY})
 set(anansi_install_include_directory $ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY})
 set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
 set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
+
+#-----------------------------------------------------
+# Define the file to write messages to.              -
+#                                                    -
+#-----------------------------------------------------
+set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -

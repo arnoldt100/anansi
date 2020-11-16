@@ -12,7 +12,8 @@ function(verify_key_environmental_are_set)
     # defined.                                           -
     #-----------------------------------------------------
     if(DEFINED mpi_communicator_install_lib_directory)
-        message("mpi_communicator_install_lib_directory=${mpi_communicator_install_lib_directory}")
+        set(log_message "mpi_communicator_install_lib_directory=${mpi_communicator_install_lib_directory}\n")
+        file(APPEND ${anansi_log_file} "${log_message}")
     else()
         message( FATAL_ERROR "The variable mpi_communicator_install_lib_directory is not defined. This \
         variable defines the directory to install the library mpi_communicator." )
@@ -24,7 +25,8 @@ function(verify_key_environmental_are_set)
     # defined.                                           -
     #-----------------------------------------------------
     if(DEFINED mpi_communicator_install_include_directory)
-        message("mpi_communicator_install_include_directory=${mpi_communicator_install_include_directory}")
+        set(log_message "mpi_communicator_install_include_directory=${mpi_communicator_install_include_directory}\n")
+        file(APPEND ${anansi_log_file} "${log_message}")
     else()
         message( FATAL_ERROR "The variable mpi_communicator_install_include_directory is not defined. This \
         variable defines the directory to install the header files for mpi_communicator." )
