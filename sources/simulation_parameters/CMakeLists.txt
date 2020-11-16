@@ -9,7 +9,14 @@
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #
-# simulationparameters_include          ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+# simulation_parameters_include         ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+#   PUBLIC_HEADER                       ${simulation_parameters_header_files}               The list of headers files associated with this librarry.
+#
+# The build will abort unless the following variables are defined to
+# install the library archive, header files, and unit tests:
+#   simulation_parameters_install_lib_directory
+#   simulation_parameters_install_include_directory
+#   simulation_parameters_install_bin_directory
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -21,7 +28,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "simulationparameters")
+    set(my_project_name "simulation_parameters")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -30,13 +37,33 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # Include various functions and macros.              -
+    #                                                    -
+    #-----------------------------------------------------
+    include(cmake_macros_and_functions/simulation_parameters_build_prerequisites.cmake)
+
+    #-----------------------------------------------------
+    # Verify key variables are set.                      -
+    #                                                    -
+    #-----------------------------------------------------
+    verify_key_environmental_are_set()
+
+    #-----------------------------------------------------
+    # This library needs access to the following header  -
+    # files:                                             -
+    #                                                    -
+    #   command_line_arguments target header files       -
+    #                                                    -
+    # We get the path to the above header files.         -
+    #-----------------------------------------------------
+    get_target_property(my_cl_include_dir command_line_arguments command_line_arguments_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -48,12 +75,12 @@
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # command_line_arguments_header_files.               -
+    # simulation_parameters_header_files.                -
     # A list of header files is stored in                -
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (simulationparameters_header_files
+    set (simulation_parameters_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationParameters.h 
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationParametersFactory.h )
 
@@ -64,15 +91,9 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (simulationparameters_implementation_files
+    set (simulation_parameters_implementation_files
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParametersFactory.cpp )
-
-    #-----------------------------------------------------
-    #                                                    -
-    #                                                    -
-    #-----------------------------------------------------
-    get_target_property(command_line_include_dir command_line_arguments command_line_arguments_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -90,13 +111,18 @@ add_library( ${target} STATIC
              "")
 
 #-----------------------------------------------------
+# Enable compile warnings.                           -
+#                                                    -
+#-----------------------------------------------------
+enable_compile_warnings(${target})
+
+#-----------------------------------------------------
 #                                                    -
 # We associate the source files with the target.     -
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${simulationparameters_header_files} 
-            ${simulationparameters_implementation_files} )
+               PRIVATE ${simulation_parameters_header_files} ${simulation_parameters_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -105,22 +131,23 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PUBLIC ${Boost_INCLUDE_DIR}
-                           PUBLIC ${command_line_include_dir} )
+                           PRIVATE ${Boost_INCLUDE_DIR}
+                           PRIVATE ${my_cl_include_dir} )
 
 #-----------------------------------------------------
-# Enable compile warnings.                           -
+# The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-enable_compile_warnings(${target})
+target_link_libraries( ${my_library_target}
+                       command_line_arguments)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      simulationparameters_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${simulationparameters_header_files}" )
+                      simulation_parameters_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      PUBLIC_HEADER "${simulation_parameters_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${anansi_install_lib_directory} 

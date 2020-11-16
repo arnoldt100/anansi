@@ -91,6 +91,16 @@ set(string_utilities_install_include_directory ${anansi_install_include_director
 set(string_utilities_install_bin_directory ${anansi_install_bin_directory} )
 
 #-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the simulation_parameters libraries,    -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
+set(simulation_parameters_install_lib_directory ${anansi_install_lib_directory})
+set(simulation_parameters_install_include_directory ${anansi_install_include_directory})
+set(simulation_parameters_install_bin_directory ${anansi_install_bin_directory} )
+
+#-----------------------------------------------------
 # This section permits use to find the header files  -
 # and link against the BOOST library.                -
 #                                                    -
