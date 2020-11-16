@@ -11,10 +11,11 @@
 #   mpi_communicator_include            ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
 #   PUBLIC_HEADER                       ${mpi_communicator_header_files}                    The list of headers files associated with this librarry.
 #
-# The following variables must be defined to install the library
-# archive and header files, or the build will abort:
+# The build will abort unless the following variables are defined to
+# install the library archive, header files, and unit tests:
 #   mpi_communicator_install_lib_directory
 #   mpi_communicator_install_include_directory
+#   mpi_communicator_install_bin_directory
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -157,6 +158,12 @@ add_library( ${target} STATIC
              "")
 
 #-----------------------------------------------------
+# Enable compile warnings.                           -
+#                                                    -
+#-----------------------------------------------------
+enable_compile_warnings(${target})
+
+#-----------------------------------------------------
 #                                                    -
 # We associate the source files with the target.     -
 #                                                    -
@@ -173,12 +180,6 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_su_include}
                            PRIVATE ${my_mm_include})
-
-#-----------------------------------------------------
-# Enable compile warnings.                           -
-#                                                    -
-#-----------------------------------------------------
-enable_compile_warnings(${target})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -

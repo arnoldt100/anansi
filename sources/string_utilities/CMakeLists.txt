@@ -1,3 +1,22 @@
+# This CMakeLists.txt file creates the library libstring_utilities.a
+# and its unit tests. To add source files, simply append the appropiate variable
+# string_utilities_header_files or string_utilities_implementation_files.
+#
+# The target for the library is string_utilities.
+#
+# The following properties are set for the target :
+#
+#   Property                            Value                                               Description
+#----------------------------------------------------------------------------------------------------------------------------
+#   string_utilities_include            ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+#   PUBLIC_HEADER                       ${string_utilities_header_files}                    The list of headers files associated with this librarry.
+#
+# The build will abort unless the following variables are defined to
+# install the library archive, header files, and unit tests:
+#   string_utilities_install_lib_directory
+#   string_utilities_install_include_directory
+#   string_utilities_install_bin_directory
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
@@ -17,6 +36,18 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # Include various functions and macros.              -
+    #                                                    -
+    #-----------------------------------------------------
+    include(cmake_macros_and_functions/string_utilities_build_prerequisites.cmake)
+
+    #-----------------------------------------------------
+    # Verify key variables are set.                      -
+    #                                                    -
+    #-----------------------------------------------------
+    verify_key_environmental_are_set()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -35,7 +66,7 @@
     # associated with the string_utilities project.      -
     #                                                    -
     #-----------------------------------------------------
-    set(my_public_headers
+    set(string_utilities_header_files
         header_files/convert_commandline_to_2d_char_array.h
         header_files/convert_commandline_to_vector_string_array.h
         header_files/convert_vector_to_a_string.h 
@@ -49,7 +80,7 @@
     # associated with the string_utilities project       -
     #                                                    -
     #-----------------------------------------------------
-    set(my_public_implementation_files 
+    set(string_utilities_implementation_files 
         implementation_files/convert_commandline_to_2d_char_array.cpp
         implementation_files/convert_commandline_to_vector_string_array.cpp
         implementation_files/convert_vector_to_a_string.cpp
@@ -74,12 +105,18 @@ add_library(${target} STATIC
             "")
 
 #-----------------------------------------------------
+# Enable compile warnings.                           -
+#                                                    -
+#-----------------------------------------------------
+enable_compile_warnings(${target})
+
+#-----------------------------------------------------
 #                                                    -
 # We associate the source files with the target.     -
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${my_public_headers} ${my_public_implementation_files})
+               PRIVATE ${string_utilities_header_files} ${string_utilities_implementation_files})
 
 #-----------------------------------------------------
 # Define the diretories to search for                -
@@ -96,12 +133,6 @@ target_include_directories(${target}
 target_link_libraries(${target} 
                       memory_management)
 
-#-----------------------------------------------------
-# Enable compile warnings.                           -
-#                                                    -
-#-----------------------------------------------------
-enable_compile_warnings(${target})
-
 
 #-----------------------------------------------------
 # Here we set the PUBLIC_HEADER property on target   -
@@ -112,7 +143,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       string_utilities_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${my_public_headers}" )
+                      PUBLIC_HEADER "${string_utilities_header_files}" )
 
 
 install(TARGETS ${target}
