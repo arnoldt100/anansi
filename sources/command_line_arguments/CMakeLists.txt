@@ -11,6 +11,11 @@
 #   command_line_arguments_include      ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
 #   PUBLIC_HEADER                       ${command_line_arguments_header_files}
 #
+# The build will abort unless the following variables are defined to
+# install the library archive, header files, and unit tests:
+#   command_line_arguments_install_lib_directory
+#   command_line_arguments_install_include_directory
+#   command_line_arguments_install_bin_directory
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -32,13 +37,23 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # Include various functions and macros.              -
+    #                                                    -
+    #-----------------------------------------------------
+    include(cmake_macros_and_functions/command_line_arguments_build_prerequisites.cmake)
+
+    #-----------------------------------------------------
+    # Verify key variables are set.                      -
+    #                                                    -
+    #-----------------------------------------------------
+    verify_key_environmental_are_set()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -47,7 +62,6 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    
     #-----------------------------------------------------
     # Here we define the variable                        -
     # command_line_arguments_header_files.               -
@@ -89,7 +103,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${command_line_arguments_header_files} ${command_line_arguments_implementation_files} )
+               PRIVATE ${command_line_arguments_header_files} ${command_line_arguments_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
