@@ -32,7 +32,7 @@
     #-----------------------------------------------------
     get_target_property(mm_include_dir memory_management memory_management_include)
     get_target_property(command_line_include_dir command_line_arguments command_line_arguments_include)
-    get_target_property(simulationparameters_include_dir simulationparameters simulationparameters_include)
+    get_target_property(simulation_parameters_include_dir simulation_parameters simulation_parameters_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -133,7 +133,7 @@ target_include_directories( ${my_anansi_md_library}
 #-----------------------------------------------------
 target_link_libraries(${my_anansi_md_library}
                       memory_management 
-                      simulationparameters
+                      simulation_parameters
                       command_line_arguments
                       ${Boost_LIBRARIES} )
 
@@ -170,7 +170,7 @@ target_include_directories( ${my_main_target_binary}
 target_link_libraries(${my_main_target_binary}
                       ${my_anansi_md_library} 
                       command_line_arguments
-                      simulationparameters
+                      simulation_parameters
                       memory_management 
                       mpi_communicator
                       ${Boost_LIBRARIES} )
