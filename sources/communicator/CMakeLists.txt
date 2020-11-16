@@ -9,8 +9,12 @@
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #   mpi_communicator_include            ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-#   PUBLIC_HEADER                       ${mpi_communicator_header_files}
+#   PUBLIC_HEADER                       ${mpi_communicator_header_files}                    The list of headers files associated with this librarry.
 #
+# The following variables must be defined to install the library
+# archive and header files, or the build will abort:
+#   mpi_communicator_install_lib_directory
+#   mpi_communicator_install_include_directory
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -32,9 +36,13 @@
     set(target ${my_project_name})
 
     #-----------------------------------------------------
-    # Set the path to the memory management              -
-    # and string_utilities header files.                 -
+    # This library needs access to the following header  -
+    # files:                                             -
     #                                                    -
+    #   memory_management target header files            -
+    #   string_utilities target header files             -
+    #                                                    -
+    # We get the path to the above header files.         -
     #-----------------------------------------------------
     get_target_property(my_mm_include memory_management memory_management_include)
     get_target_property(my_su_include string_utilities string_utilities_include)
@@ -151,8 +159,8 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                                  ${my_su_include}
-                                  ${my_mm_include})
+                           PRIVATE ${my_su_include}
+                           PRIVATE ${my_mm_include})
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
