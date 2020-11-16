@@ -36,6 +36,18 @@
     set(target ${my_project_name})
 
     #-----------------------------------------------------
+    #                                                    -
+    #                                                    -
+    #-----------------------------------------------------
+    include(cmake_macros_and_functions/communicator_build_prerequisites.cmake)
+
+    #-----------------------------------------------------
+    # Verify key variables are set.                      -
+    #                                                    -
+    #-----------------------------------------------------
+    verify_key_environmental_are_set()
+
+    #-----------------------------------------------------
     # This library needs access to the following header  -
     # files:                                             -
     #                                                    -
