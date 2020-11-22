@@ -64,8 +64,8 @@
 # target properties, etc.                                         @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-add_executable( ${target}
-                "" )
+    add_executable( ${target}
+                    "" )
 
     #-----------------------------------------------------
     #                                                    -
@@ -92,6 +92,19 @@ add_executable( ${target}
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                                PRIVATE ${mpicomm_include_dir}
                                PRIVATE ${Boost_INCLUDE_DIR} )
+
+    #-----------------------------------------------------
+    # Here we set the properties on target               -
+    # mpi_communicator_unit_tests.                       -
+    #                                                    -
+    #-----------------------------------------------------
+    set_target_properties( ${target}
+                           PROPERTIES
+                           PUBLIC_HEADER "${mpi_communicator_unit_tests_header_files}" )
+
+    install(TARGETS ${target}
+            RUNTIME DESTINATION ${anansi_install_bin_directory}
+            PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

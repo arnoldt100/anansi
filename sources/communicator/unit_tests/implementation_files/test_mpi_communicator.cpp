@@ -1,4 +1,4 @@
-#include "test_mpi_communicator_arguments.h"
+#include "test_mpi_communicator.h"
 
 BOOST_AUTO_TEST_SUITE( Test_Suite_MPI_COMMUNICATOR )
 

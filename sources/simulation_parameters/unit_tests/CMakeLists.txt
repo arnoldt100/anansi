@@ -75,7 +75,7 @@ add_executable( ${target}
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # simulationparameters_unit_tests.                 -
+    # simulationparameters_unit_tests.                   -
     #                                                    -
     #-----------------------------------------------------
     set_target_properties( ${target}

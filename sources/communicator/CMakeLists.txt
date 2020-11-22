@@ -186,7 +186,8 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${my_library_target}
-                       PUBLIC string_utilities memory_management)
+                       string_utilities 
+                       memory_management)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
@@ -204,4 +205,4 @@ install(TARGETS ${target}
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-# add_subdirectory(unit_tests)
+add_subdirectory(unit_tests)
