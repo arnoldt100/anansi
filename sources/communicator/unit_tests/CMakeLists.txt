@@ -8,7 +8,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "command_line_arguments_unit_tests")
+    set(my_project_name "mpi_communicator_unit_tests")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -23,42 +23,40 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # Here we define the sources and header files associated          @
-# with the command_line_arguments_unit_test target.               @
+# with the mpi_communicator_unit_test target.                     @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # command_line_arguments_unit_tests_header_files.    -
+    # mpi_communicator_unit_tests_header_files.          -
     # A list of header files is stored in                -
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (command_line_arguments_unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_command_line_arguments.h )
+    set (mpi_communicator_unit_tests_header_files
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_mpi_communicator.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # command_line_arguments_unit_tests_implementation_files. -
+    # mpi_communicator_unit_tests_implementation_files.  -
     # A list of implementation files is stored in this   -
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (command_line_arguments_unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_command_line_arguments.cpp )
+    set (mpi_communicator_unit_tests_implementation_files
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_mpi_communicator.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the implementation and header files associated  @
-# with the command_line_arguments_unit_tests target.              @
+# with the mpi_communicator_unit_tests target.                    @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -75,45 +73,25 @@ add_executable( ${target}
     #                                                    -
     #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${command_line_arguments_unit_tests_header_files}
-                ${command_line_arguments_unit_tests_implementation_files} )
+        PRIVATE ${mpi_communicator_unit_tests_header_files}
+                ${mpi_communicator_unit_tests_implementation_files} )
+
+    #-----------------------------------------------------
+    # The libraries to use when linking to target.       -
+    #                                                    -
+    #-----------------------------------------------------
+    target_link_libraries( ${target}
+                           PUBLIC mpi_communicator)
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property( cla_include_dir command_line_arguments command_line_arguments_include )
+    get_target_property( mpicomm_include_dir mpi_communicator mpi_communicator_include )
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                               PRIVATE ${cla_include_dir}
+                               PRIVATE ${mpicomm_include_dir}
                                PRIVATE ${Boost_INCLUDE_DIR} )
-
-    #-----------------------------------------------------
-    # Define the external libraries to link against.     -
-    # (1) Boost libraries                                -
-    # (2) libcommand_line_arguments.a                    -
-    #                                                    -
-    #-----------------------------------------------------
-    target_link_libraries(${target}
-                          PRIVATE command_line_arguments ${Boost_LIBRARIES} )
-
-    #-----------------------------------------------------
-    # Here we set the properties on target               -
-    # command_line_arguments_unit_tests.                 -
-    #                                                    -
-    #-----------------------------------------------------
-    set_target_properties( ${target}
-                           PROPERTIES
-                           PUBLIC_HEADER "${command_line_arguments_unit_tests_header_files}" )
-
-    #-----------------------------------------------------
-    # Here we define the installations rules for         -
-    # this target command_line_arguments_unit_tests.     -
-    #                                                    -
-    #-----------------------------------------------------
-    install( TARGETS ${target}
-             RUNTIME DESTINATION ${anansi_install_bin_directory} 
-             PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -121,3 +99,4 @@ add_executable( ${target}
 # target properties, etc.                                         @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
