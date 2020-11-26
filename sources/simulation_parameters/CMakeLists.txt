@@ -10,7 +10,7 @@
 #----------------------------------------------------------------------------------------------------------------------------
 #
 # simulation_parameters_include         ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-#   PUBLIC_HEADER                       ${simulation_parameters_header_files}               The list of headers files associated with this librarry.
+# PUBLIC_HEADER                         ${simulation_parameters_header_files}               The list of headers files associated with this librarry.
 #
 # The build will abort unless the following variables are defined to
 # install the library archive, header files, and unit tests:
@@ -157,4 +157,4 @@ install( TARGETS ${target}
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-# add_subdirectory(unit_tests)
+add_subdirectory(unit_tests)

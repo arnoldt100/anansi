@@ -31,25 +31,25 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-#-----------------------------------------------------
-# Define the source files to build the               -
-# current target "simulationparameters_unit_tests"   -
-#                                                    -
-#-----------------------------------------------------
-set (simulationparameters_unit_tests_header_files
-    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_simulationparameters.h )
+    #-----------------------------------------------------
+    # Define the source files to build the               -
+    # current target "simulationparameters_unit_tests"   -
+    #                                                    -
+    #-----------------------------------------------------
+    set (simulationparameters_unit_tests_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_simulationparameters.h )
 
-set (simulationparameters_unit_tests_implementation_files
-    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_simulationparameters.cpp )
+    set (simulationparameters_unit_tests_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_simulationparameters.cpp )
 
-add_executable( ${target}
-                "" )
+    add_executable( ${target}
+                    "" )
 
-#-----------------------------------------------------
-#                                                    -
-# We associate the source files with the target.     -
-#                                                    -
-#-----------------------------------------------------
+    #-----------------------------------------------------
+    #                                                    -
+    # We associate the source files with the target.     -
+    #                                                    -
+    #-----------------------------------------------------
     target_sources(${target}
         PRIVATE ${simulationparameters_unit_tests_header_files}
                 ${simulationparameters_unit_tests_implementation_files} )
@@ -58,7 +58,7 @@ add_executable( ${target}
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property( sp_include_dir simulationparameters simulationparameters_include )
+    get_target_property( sp_include_dir simulation_parameters simulation_parameters_include )
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                                PRIVATE ${sp_include_dir}
@@ -71,7 +71,7 @@ add_executable( ${target}
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
-                          PRIVATE simulationparameters ${Boost_LIBRARIES} )
+                          PRIVATE simulation_parameters ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
