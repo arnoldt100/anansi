@@ -38,6 +38,9 @@
     # with the target header files.                      -
     #                                                    -
     #-----------------------------------------------------
+    set (__target___unit_tests_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test___target__.h )
+
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -45,6 +48,8 @@
     # associated with target implementation files.       -
     #                                                    -
     #-----------------------------------------------------
+    set (__target___unit_tests_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test___target__.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -61,25 +66,14 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-#-----------------------------------------------------
-# Define the source files to build the               -
-# current target "__target___unit_tests".            -
-#                                                    -
-#-----------------------------------------------------
-set (__target___unit_tests_header_files
-    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test___target__.h )
+    add_executable( ${target}
+                    "" )
 
-set (__target___unit_tests_implementation_files
-    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test___target__.cpp )
-
-add_executable( ${target}
-                "" )
-
-#-----------------------------------------------------
-#                                                    -
-# We associate the source files with the target.     -
-#                                                    -
-#-----------------------------------------------------
+    #-----------------------------------------------------
+    #                                                    -
+    # We associate the source files with the target.     -
+    #                                                    -
+    #-----------------------------------------------------
     target_sources(${target}
         PRIVATE ${__target___unit_tests_header_files}
                 ${__target___unit_tests_implementation_files} )
@@ -88,10 +82,10 @@ add_executable( ${target}
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property( cla_include_dir __target__ __target___include )
+    get_target_property( <cla>_include_dir __target__ __target___include )
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                               PRIVATE ${cla_include_dir}
+                               PRIVATE ${<cla>_include_dir}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------

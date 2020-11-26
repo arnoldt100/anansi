@@ -149,3 +149,5 @@ set_target_properties(${target} PROPERTIES
 install(TARGETS ${target}
         ARCHIVE DESTINATION ${string_utilities_install_lib_directory}
         PUBLIC_HEADER DESTINATION ${string_utilities_install_include_directory} )   
+
+add_subdirectory(unit_tests)
