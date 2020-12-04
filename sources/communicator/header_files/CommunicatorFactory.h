@@ -25,9 +25,9 @@ class CommunicatorFactory
 
 public:
     //===== LIFECYCLE ======
-	CommunicatorFactory();
+    CommunicatorFactory();
 
-	virtual ~CommunicatorFactory()=0;
+    virtual ~CommunicatorFactory()=0;
 
     CommunicatorFactory(const CommunicatorFactory& other);
 

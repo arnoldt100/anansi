@@ -33,9 +33,9 @@ class Communicator
 {
 public:
     //===== LIFECYCLE ======
-	Communicator();
+    Communicator();
 
-	virtual ~Communicator();
+    virtual ~Communicator();
 
     Communicator(Communicator const & other);
 
@@ -45,13 +45,13 @@ public:
 
     //===== ACCESSORS ======
     int 
-	getWorldCommunicatorRank() const
+    getWorldCommunicatorRank() const
     {
         return this->_getWorldCommunicatorRank();
     }
 
     int
-	getSubCommunicatorRank(const std::string & tag) const
+    getSubCommunicatorRank(const std::string & tag) const
     {
         return this->_getSubCommunicatorRank(tag);
     }
@@ -118,10 +118,10 @@ private:
     _getMaximum(int const aValue) const=0;
 
     virtual int 
-	_getWorldCommunicatorRank() const=0;
+    _getWorldCommunicatorRank() const=0;
 
     virtual int 
-	_getSubCommunicatorRank(const std::string & tag) const=0;
+    _getSubCommunicatorRank(const std::string & tag) const=0;
 
     virtual std::unique_ptr<COMMUNICATOR::Communicator>
     _duplicateCommunicator() const =0;

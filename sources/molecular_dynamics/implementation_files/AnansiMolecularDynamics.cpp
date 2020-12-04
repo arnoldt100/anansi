@@ -23,6 +23,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
 
 AnansiMolecularDynamics::~AnansiMolecularDynamics()
 {
+    // Disable the communication.
+    this->disableCommunication();
 	return;
 }
 
@@ -59,13 +61,24 @@ void AnansiMolecularDynamics::_doSimulation()
     return;
 }
 
-void AnansiMolecularDynamics::_doInitialization(int const argc, char const *const *const & argv )
+void
+AnansiMolecularDynamics::_enableCommunication()
+{
+    std::cout << "Enabling AnansiMolecularDynamics communication." << std::endl;
+    return;
+}		/* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */
+
+void
+AnansiMolecularDynamics::_disableCommunication()
+{
+    std::cout << "Disabling AnansiMolecularDynamics communication." << std::endl;
+    return;
+}		/* -----  end of method AnansiMolecularDynamics::_disableCommunication  ----- */
+
+void AnansiMolecularDynamics::_initializeSimulation(int const argc, char const *const *const & argv )
 {
     this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
-
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
-
-
     return;
 }
 //============================= OPERATORS ====================================

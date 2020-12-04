@@ -22,8 +22,6 @@ SimulationParameters::SimulationParameters()
 
 SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
-
-
     // Use the Boost program options library to parse the command line.
     SimulationParameters::_parseProgramOptionsFromCommandLine(aCommandLine);
 
@@ -86,17 +84,29 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
 //============================= STATIC    ====================================
 void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
+    namespace po = boost::program_options;
+
     // Unpack the command line arguments;
     int argc=0;
     char** argv=nullptr;
     aCommandLine.reformCommandLineArguments(argc,argv);
 
-    boost::program_options::options_description description;
-    // description.add_options()("help", "Produce the help message.");
-    // description.add_options()("control_file", po::value<std::string>(), "The name of the control file.");
-    // po::variables_map vm;
-    // po::store(po::parse_command_line(argc, argv, description), vm);
-    // po::notify(vm);    
+    po::options_description description;
+    description.add_options()("help", "Produce the help message.");
+
+    boost::optional<std::string> controlfile;
+    description.add_options()("control-file", po::value(&controlfile), "The name of the control file.");
+
+    po::variables_map vm;
+    po::store(po::parse_command_line(argc, argv, description), vm);
+    po::notify(vm);    
+
+    // If the help option is present, then print help message and return.
+    // Only the the "world parent process" should print the help message.
+    if ( vm.count("help") )
+    {
+        std::cout << description << std::endl;
+    }
 
     // Delete the nonuniform 2d char array.
     if (argv != nullptr)
@@ -110,6 +120,7 @@ void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::Comm
         }
         delete [] argv;
     }
+
     return;
 }
 

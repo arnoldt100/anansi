@@ -24,12 +24,12 @@ Lifecycle
 
    The default constructor.
 
-.. function:: CommandLineArguments( const int argc, char const \*const \*const & argv)
+.. function:: CommandLineArguments( const int argc, char const *const *const & argv)
     
     The preferred constructor.
 
     :param int const argc: The size of the array char* argv[].
-    :param char const \*const \*const \& argv: Contains the command line options.
+    :param char const *const *const & argv: Contains the command line options.
     
 .. function:: CommandLineArguments( const CommandLineArguments &other )
 

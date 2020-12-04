@@ -16,6 +16,7 @@
 #include "MolecularDynamics.h"
 #include "CommandLineArguments.h"
 #include "SimulationParametersFactory.h"
+#include "MPICommunicatorFactory.h"
 
 namespace ANANSI {
 
@@ -53,11 +54,16 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         void _doSimulation() override;
 
-        void _doInitialization(int const argc, char const *const *const & argv ) override;
+        void _enableCommunication() override;
+
+        void _disableCommunication() override;
+
+        void _initializeSimulation(int const argc, char const *const *const & argv ) override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;
         ANANSI::SimulationParameters _simulationParameters;
+        std::unique_ptr<COMMUNICATOR::MPICommunicator> _MpiWorldCommunicator;
 
         /* ====================  STATIC        ======================================= */
 

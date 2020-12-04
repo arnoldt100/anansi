@@ -25,11 +25,11 @@ class MPICommunicatorFactory : public CommunicatorFactory
 
 public:
     //===== LIFECYCLE ======
-	MPICommunicatorFactory();
+    MPICommunicatorFactory();
 
-	~MPICommunicatorFactory();
+    ~MPICommunicatorFactory();
 
-    MPICommunicatorFactory(const MPICommunicatorFactory& other);
+    MPICommunicatorFactory(MPICommunicatorFactory const & other);
 
     //===== DATA MEMBERS ===
 
@@ -55,14 +55,13 @@ private:
     //===== LIFECYCLE ======
 
     //===== DATA MEMBERS ===
-    std::unique_ptr<COMMUNICATOR::Communicator>
-    _createCommunicator() const override;
-
-    std::unique_ptr<COMMUNICATOR::Communicator> 
-    _cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
-
 
     //===== ACCESSORS ======
+    std::unique_ptr<COMMUNICATOR::Communicator>
+     _createCommunicator() const override;
+
+     std::unique_ptr<COMMUNICATOR::Communicator>
+     _cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
 
     //===== MUTATORS =======
 

@@ -115,7 +115,7 @@ void
 MPICommunicator::initializeWorldCommunicator()
 {
 
-    // Create a copy of the world communicator.
+    // Create a copy of the MPI world communicator.
     try
     {
         int mpi_return_code = MPI_Comm_dup(MPI_COMM_WORLD,
@@ -131,7 +131,7 @@ MPICommunicator::initializeWorldCommunicator()
         std::abort();
     }
 
-    // Set the hostname of this mpi communicator.
+    // Set the hostname of this MPI communicator.
     this->_hostname = boost::asio::ip::host_name();
 
     return;

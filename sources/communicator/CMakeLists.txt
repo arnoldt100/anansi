@@ -178,16 +178,17 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_su_include}
-                           PRIVATE ${my_mm_include})
+                           PUBLIC ${my_su_include}
+                           PUBLIC ${my_mm_include})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries( ${my_library_target}
-                       string_utilities 
-                       memory_management)
+                   # This works, version 1.0
+                   # target_link_libraries( ${my_library_target}
+                   #                        string_utilities 
+                   #                        memory_management)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

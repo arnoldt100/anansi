@@ -133,6 +133,7 @@ target_include_directories( ${my_anansi_md_library}
 #-----------------------------------------------------
 target_link_libraries(${my_anansi_md_library}
                       memory_management 
+                      mpi_communicator
                       simulation_parameters
                       command_line_arguments
                       ${Boost_LIBRARIES} )
@@ -169,10 +170,11 @@ target_include_directories( ${my_main_target_binary}
 
 target_link_libraries(${my_main_target_binary}
                       ${my_anansi_md_library} 
+                      memory_management 
                       command_line_arguments
                       simulation_parameters
-                      memory_management 
                       mpi_communicator
+                      string_utilities 
                       ${Boost_LIBRARIES} )
 
 install( TARGETS ${my_main_target_binary} 

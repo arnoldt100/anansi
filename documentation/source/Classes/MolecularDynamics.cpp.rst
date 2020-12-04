@@ -56,14 +56,14 @@ Mutators
     interface of the template design pattern. The derived class is to provide 
     its implementation for performaing the simulation.
 
-.. function:: void initializeSimulation( int const argc, char const \*const \*const & argv ) final
+.. function:: void initializeSimulation( int const argc, char const * const * const & argv ) final
 
-    Performs the simulation. The function is final and serves as the public
+    Initializes the simulation. The function is final and serves as the public
     interface of the template design pattern for performing the simulation. The
     derived class is to provide its implementation for initializing the simulation.
 
     :param int const argc: The size of the array argv.
-    :param char const \*const \*const &argv: Contains the command line options.
+    :param char const * const * const &argv: Contains the command line options.
 
 =================
 Protected Members

@@ -71,13 +71,20 @@ Mutators
 
 .. function:: void _doSimulation() override
 
-.. function:: void _doInitialization( int const argc, char const \*const \*const argv ) override
+.. function:: void _initializeSimulation( int const argc, char const * const * const argv ) override
 
-    Performs the initialization of the simulation. 
+    Performs the initialization of the simulation.
+    
+    Some key functionality initialized are the following:
+    A duplicate communicator of the MPI_WORLD_COMMUNICATOR.
 
     :param argc const int: The size of the array char* argv[].
-    :param argv char const \*const \*const \&: Contains the command line options.
+    :param argv char const * const * const &: Contains the command line options.
 
 ------------
 Data Members
 ------------
+
+.. member::  COMMANDLINE::CommandLineArguments _commandLineArguments
+
+.. member:: ANANSI::SimulationParameters _simulationParameters

@@ -33,6 +33,10 @@ class MolecularDynamics
         /* ====================  MUTATORS      ======================================= */
         void doSimulation();
 
+        void enableCommunication();
+
+        void disableCommunication();
+
         void initializeSimulation( int const argc, char const *const *const & argv );
 
         /* ====================  OPERATORS     ======================================= */
@@ -47,9 +51,13 @@ class MolecularDynamics
 
     private:
         /* ====================  MUTATORS      ======================================= */
-        virtual void _doInitialization( int const argc, char const *const *const & argv )=0;
-
         virtual void _doSimulation()=0;
+
+        virtual void _enableCommunication()=0;
+
+        virtual void _disableCommunication()=0;
+
+        virtual void _initializeSimulation( int const argc, char const *const *const & argv )=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 
