@@ -138,8 +138,9 @@ target_include_directories(${target}
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries( ${my_library_target}
-                       command_line_arguments)
+# This works, version 2.0
+# target_link_libraries( ${my_library_target}
+#                        command_line_arguments)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

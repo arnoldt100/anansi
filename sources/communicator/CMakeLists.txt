@@ -185,10 +185,10 @@ target_include_directories(${target}
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-                   # This works, version 1.0
-                   # target_link_libraries( ${my_library_target}
-                   #                        string_utilities 
-                   #                        memory_management)
+# This works, version 1.0
+# target_link_libraries( ${my_library_target}
+#                        string_utilities 
+#                        memory_management)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
