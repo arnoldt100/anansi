@@ -59,19 +59,14 @@ public:
     //===== ACCESSORS ======
 
     //===== STATIC METHODS ======
-    static void
-    initializeMPIEnvironment(int &argc, char **argv);
+    //static void
+    //initializeMPIEnvironment(int &argc, char **argv);
 
-    static void
-    finalizeMPIEnvironment();
+    //static void
+    //finalizeMPIEnvironment();
 
     //===== MUTATORS =======
-    void
-    initializeWorldCommunicator();
-
-    void
-    freeMPICommunicator();
-
+    //
     //===== OPERATORS ======
 
     MPICommunicator& operator=(MPICommunicator const & other);
@@ -81,16 +76,16 @@ public:
 private:
     //===== ACCESSORS ======
     std::size_t
-    _getSizeofCommunicator(const std::string & id) const;
+    _getSizeofCommunicator(const std::string & id) const final override;
 
     int
-    _getWorldCommunicatorRank() const override;
+    _getWorldCommunicatorRank() const final override;
 
     int 
-	_getSubCommunicatorRank(const std::string & tag) const override;
+	_getSubCommunicatorRank(const std::string & tag) const final override;
 
     std::unique_ptr<COMMUNICATOR::Communicator>
-    _duplicateCommunicator() const override;
+    _duplicateCommunicator() const final override;
 
     int
      _getMaximum(int const value) const override;
@@ -100,7 +95,7 @@ private:
                const std::size_t aLengthMaximum,
                std::size_t & offset_size,
                int* & start_offsets_ptr,
-               int* & end_offsets_ptr ) const override;
+               int* & end_offsets_ptr ) const final override;
 
     char*
     _gather(const std::size_t task_id_gather_data,
@@ -108,7 +103,7 @@ private:
             const std::size_t aLengthMaximum,
             std::size_t & offset_size, 
             int* & start_offsets_ptr,
-            int* & end_offsets_ptr) const override;
+            int* & end_offsets_ptr) const final override;
 
     virtual std::unique_ptr<char[]>
     _gather(const std::size_t task_id_gather_data,
@@ -116,22 +111,22 @@ private:
             const std::size_t aLengthMaximum,
             std::size_t & offset_size, 
             std::unique_ptr<int[]> & start_offsets_ptr,
-            std::unique_ptr<int[]> & end_offsets_ptr) const override;
+            std::unique_ptr<int[]> & end_offsets_ptr) const final override;
 
 
     std::vector<std::string>
     _gatherString(const std::string & data_to_gather,
-                  const std::size_t task_id_gather_data) const override;
+                  const std::size_t task_id_gather_data) const final override;
 
     std::vector<int>
     _gatherInt(const int & data_to_gather,
-               const std::size_t task_id_gather_data) const override;
+               const std::size_t task_id_gather_data) const final override;
 
     //===== MUTATORS =======
-    void _freeCommunicator() override
-    { 
-        this->freeMPICommunicator();
-    }
+    void
+    _initializeWorldCommunicator() final override;
+
+    void _freeCommunicator() final override;
    
     void
     _addCommunicator(std::string const & key, MPI_Comm const & my_mpi_comm);
@@ -140,7 +135,7 @@ private:
     _eraseCommunicator(std::string const & key);
 
     void 
-    _createSubcommunicator(const std::string & tag) override;
+    _createSubcommunicator(const std::string & tag) final override;
 
     //===== STATIC METHODS ======
     static void

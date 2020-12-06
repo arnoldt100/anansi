@@ -42,8 +42,8 @@ class MolecularDynamics
         /* ====================  OPERATORS     ======================================= */
 
         MolecularDynamics&                                                 
-            operator=(MolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
-        // MolecularDynamics class.
+        operator=(MolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
+                                                             // MolecularDynamics class.
     protected:
         /* ====================  METHODS       ======================================= */
 
@@ -51,9 +51,11 @@ class MolecularDynamics
 
     private:
         /* ====================  MUTATORS      ======================================= */
-        virtual void _doSimulation()=0;
+        virtual void 
+        _doSimulation()=0;
 
-        virtual void _enableCommunication()=0;
+        virtual void 
+        _enableCommunication()=0;
 
         virtual void _disableCommunication()=0;
 

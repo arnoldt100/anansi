@@ -17,9 +17,9 @@
 // System includes
 
 // Local includes
-#include "AnansiMolecularDynamics.h"
 #include "Pointer.hpp"
 #include "MolecularDynamicsFactory.h"
+#include "AnansiMolecularDynamics.h"
 
 namespace ANANSI
 {
@@ -53,7 +53,7 @@ namespace ANANSI
 
         private:
             /* ====================  METHODS       ======================================= */
-            MolecularDynamics* _create() override;
+            MolecularDynamics* _create() final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

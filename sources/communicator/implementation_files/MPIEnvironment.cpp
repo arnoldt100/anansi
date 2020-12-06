@@ -1,10 +1,6 @@
-/*
- * AnansiMolecularDynamics.cpp
- */
+#include "MPIEnvironment.h"
 
-#include "AnansiMolecularDynamics.h"
-
-namespace ANANSI {
+namespace COMMUNICATOR {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -12,20 +8,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-AnansiMolecularDynamics::AnansiMolecularDynamics() : 
-    MolecularDynamics(),
-    _commandLineArguments(),
-    _simulationParameters()
+MPIEnvironment::MPIEnvironment()
 {
-    // Parse the command line and store in a 
-    return;
+	// TODO Auto-generated constructor stub
 }
 
-AnansiMolecularDynamics::~AnansiMolecularDynamics()
+MPIEnvironment::~MPIEnvironment()
 {
-    // Disable the communication.
-    this->disableCommunication();
-    return;
+	// TODO Auto-generated destructor stub
 }
 
 //============================= ACCESSORS ====================================
@@ -33,6 +23,17 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
+MPIEnvironment& 
+MPIEnvironment::operator=(const MPIEnvironment &other )
+{
+    if (this != &other)
+    {
+    }
+    return *this;
+}
+
+
+//============================= STATIC =======================================
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -55,39 +56,8 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMolecularDynamics::_doSimulation()
-{
-    std::cout << "Doing AnansiMolecularDynamics simulation" << std::endl;
-    return;
-}
 
-void
-AnansiMolecularDynamics::_enableCommunication()
-{
-    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
-
-    this->_MpiWorldCommunicator = a_communicator_factory.createCommunicator();
-    std::cout << "Enabling AnansiMolecularDynamics communication." << std::endl;
-    return;
-}       /* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */
-
-void
-AnansiMolecularDynamics::_disableCommunication()
-{
-    this->_MpiWorldCommunicator->freeCommunicator();
-    std::cout << "Disabling AnansiMolecularDynamics communication." << std::endl;
-    return;
-}       /* -----  end of method AnansiMolecularDynamics::_disableCommunication  ----- */
-
-void
-AnansiMolecularDynamics::_initializeSimulation(int const argc, char const *const *const & argv )
-{
-    this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
-    this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
-    return;
-}
 //============================= OPERATORS ====================================
 
 
-}; /* -----  end of namespace ANANSI  ----- */
-
+} /* namespace COMMUNICATOR */

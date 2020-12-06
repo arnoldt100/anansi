@@ -1,3 +1,6 @@
+#ifndef  anansi_main_md_INC
+#define  anansi_main_md_INC
+
 // =====================================================================================
 //
 //       Filename:  anansi_main_md.h
@@ -14,11 +17,11 @@
 #include <iostream>
 
 // Local includes
+#include "MPIEnvironment.h"
 #include "AnansiMolecularDynamics.h"
 #include "AnansiMolecularDynamicsFactory.h"
 #include "Pointer.hpp"
 #include "CommandLineArguments.h"
-#include "mpi.h"
 
 // ===  FUNCTION  ======================================================================
 //         Name:  main
@@ -29,3 +32,5 @@
 //      argv - A array of char* that contain the command line options.
 // =====================================================================================
 int main(int argc, char** argv);
+
+#endif   /* ----- #ifndef anansi_main_md_INC  ----- */

@@ -125,7 +125,8 @@ target_sources(${my_anansi_md_library}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories( ${my_anansi_md_library} 
-                            PUBLIC header_files ${Boost_INCLUDE_DIR} )
+                            PUBLIC header_files
+                            PRIVATE ${Boost_INCLUDE_DIR} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -166,14 +167,15 @@ target_sources(${my_main_target_binary}
                PRIVATE ${anansi_main_md_public_implementation} ${anansi_main_md_public_headers} )
 
 target_include_directories( ${my_main_target_binary} 
-                            PUBLIC header_files ${Boost_INCLUDE_DIR} )
+                            PUBLIC header_files 
+                            PRIVATE ${Boost_INCLUDE_DIR} )
 
 target_link_libraries(${my_main_target_binary}
-                      ${my_anansi_md_library} 
-                      memory_management 
+                      PRIVATE ${my_anansi_md_library} 
                       command_line_arguments
                       simulation_parameters
                       mpi_communicator
+                      memory_management 
                       string_utilities 
                       ${Boost_LIBRARIES} )
 

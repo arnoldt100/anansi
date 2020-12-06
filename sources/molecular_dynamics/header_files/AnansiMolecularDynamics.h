@@ -52,18 +52,22 @@ class AnansiMolecularDynamics final : public MolecularDynamics
     private:
         /* ====================  METHODS       ======================================= */
 
-        void _doSimulation() override;
+        void 
+        _doSimulation() final override;
 
-        void _enableCommunication() override;
+        void 
+        _enableCommunication() final override;
 
-        void _disableCommunication() override;
+        void 
+        _disableCommunication() final override;
 
-        void _initializeSimulation(int const argc, char const *const *const & argv ) override;
+        void 
+        _initializeSimulation(int const argc, char const *const *const & argv ) final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;
         ANANSI::SimulationParameters _simulationParameters;
-        std::unique_ptr<COMMUNICATOR::MPICommunicator> _MpiWorldCommunicator;
+        std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
 
         /* ====================  STATIC        ======================================= */
 

@@ -103,6 +103,7 @@
          header_files/MPIGenericException.h
          header_files/MPIInitException.h
          header_files/MPIInitializedException.h
+         header_files/MPIEnvironment.h
          header_files/MPIReduce.h
          header_files/MPIReductionOperation.h
          header_files/MPIUtilityFunctions.h
@@ -136,6 +137,7 @@
          implementation_files/MPIFinalizedException.cpp
          implementation_files/MPIInitException.cpp
          implementation_files/MPIReductionOperation.cpp
+         implementation_files/MPIEnvironment.cpp
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIAllGatherException.cpp
          implementation_files/MPIGatherException.cpp
@@ -179,16 +181,15 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PUBLIC ${my_su_include}
-                           PUBLIC ${my_mm_include})
+                           PRIVATE ${my_mm_include})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-# This works, version 1.0
-# target_link_libraries( ${my_library_target}
-#                        string_utilities 
-#                        memory_management)
+target_link_libraries( ${my_library_target}
+                       string_utilities 
+                       memory_management )
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

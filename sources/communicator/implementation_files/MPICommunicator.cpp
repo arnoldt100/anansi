@@ -11,7 +11,7 @@
 namespace COMMUNICATOR
 {
 
- std::string MPICommunicator::HOSTNAME_NOT_DEFINED("Hostname not defined");
+std::string MPICommunicator::HOSTNAME_NOT_DEFINED("Hostname not defined");
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ MPICommunicator::MPICommunicator(MPICommunicator && other) :
 
 MPICommunicator::~MPICommunicator()
 {
-    this->freeMPICommunicator();
+    this->_freeCommunicator();
     return;
 }
 
@@ -55,64 +55,64 @@ MPICommunicator::~MPICommunicator()
 
 
 //============================= STATIC =======================================
-void
-MPICommunicator::finalizeMPIEnvironment()
-{
-    try 
-    {
-        int mpi_return_code = MPI_Finalize();
-        if (mpi_return_code != MPI_SUCCESS)
-        {
-            throw COMMUNICATOR::MPIFinalizedException();
-        }
-    }
-    catch(COMMUNICATOR::MPIFinalizedException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-
-    return;
-}
-
-void
-MPICommunicator::initializeMPIEnvironment(int & argc, char **argv)
-{
-    // Verify that the MPI environment is not already initialized. If
-    // the MPI environment is not initialized, the call MPI_Init.
-    try
-    {
-        int flag;
-        int mpi_return_code = MPI_Initialized( &flag ); 
-        if (flag)
-        {
-            throw COMMUNICATOR::MPIInitializedException();       
-        }
-
-        mpi_return_code = MPI_Init(&argc,&argv);
-        if (mpi_return_code != MPI_SUCCESS)
-        {
-            throw COMMUNICATOR::MPIInitException();       
-        }
-    }
-    catch(COMMUNICATOR::MPIInitializedException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-    catch (COMMUNICATOR::MPIInitException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-
-    return;
-}
+// void
+// MPICommunicator::finalizeMPIEnvironment()
+// {
+//     try 
+//     {
+//         int mpi_return_code = MPI_Finalize();
+//         if (mpi_return_code != MPI_SUCCESS)
+//         {
+//             throw COMMUNICATOR::MPIFinalizedException();
+//         }
+//     }
+//     catch(COMMUNICATOR::MPIFinalizedException const & my_mpi_exception)
+//     {
+//         std::cout << my_mpi_exception.what() << std::endl;
+//         std::abort();
+//     }
+// 
+//     return;
+// }
+// 
+// void
+// MPICommunicator::initializeMPIEnvironment(int & argc, char **argv)
+// {
+//     // Verify that the MPI environment is not already initialized. If
+//     // the MPI environment is not initialized, the call MPI_Init.
+//     try
+//     {
+//         int flag;
+//         int mpi_return_code = MPI_Initialized( &flag ); 
+//         if (flag)
+//         {
+//             throw COMMUNICATOR::MPIInitializedException();       
+//         }
+// 
+//         mpi_return_code = MPI_Init(&argc,&argv);
+//         if (mpi_return_code != MPI_SUCCESS)
+//         {
+//             throw COMMUNICATOR::MPIInitException();       
+//         }
+//     }
+//     catch(COMMUNICATOR::MPIInitializedException const & my_mpi_exception)
+//     {
+//         std::cout << my_mpi_exception.what() << std::endl;
+//         std::abort();
+//     }
+//     catch (COMMUNICATOR::MPIInitException const & my_mpi_exception)
+//     {
+//         std::cout << my_mpi_exception.what() << std::endl;
+//         std::abort();
+//     }
+// 
+//     return;
+// }
 
 //============================= MUTATORS =====================================
 
 void
-MPICommunicator::initializeWorldCommunicator()
+MPICommunicator::_initializeWorldCommunicator()
 {
 
     // Create a copy of the MPI world communicator.
@@ -138,7 +138,7 @@ MPICommunicator::initializeWorldCommunicator()
 }
 
 void
-MPICommunicator::freeMPICommunicator()
+MPICommunicator::_freeCommunicator()
 {
     // We now destroy/free all communicators.
     this->_freeMPICommunicator(this->_mpiWorldCommunicator);
@@ -686,7 +686,6 @@ MPICommunicator::_freeMPICommunicator(MPI_Comm & a_communicator)
     }
     return;
 }
-
 
 
 } /* namespace COMMUNICATOR */

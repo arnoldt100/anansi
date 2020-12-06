@@ -2,13 +2,8 @@
 
 int main( int argc, char** argv )
 {
-    int mpi_error = MPI_Init(&argc,&argv);
-
-    int world_size;
-    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
-
-    int world_rank;
-    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+    // Initialize the MPI environment.
+    COMMUNICATOR::MPIEnvironment* mpi_environment_ptr = new COMMUNICATOR::MPIEnvironment;
 
     // Create an AnansiMolecularDynamicsFactory and instantiate a MD object.
     ANANSI::MolecularDynamicsFactory* my_md_factory_ptr = new ANANSI::AnansiMolecularDynamicsFactory;
@@ -20,7 +15,7 @@ int main( int argc, char** argv )
     // Do md simulation.
     md_ptr->doSimulation();
 
-    // Free all memory.
+    // Free the md_ptr.
     if (md_ptr != nullptr)
     {
         delete md_ptr;
@@ -33,7 +28,12 @@ int main( int argc, char** argv )
         my_md_factory_ptr=nullptr;
     }
 
-    mpi_error = MPI_Finalize();
+    // Finalize the MPI environment.
+    if (mpi_environment_ptr != nullptr)
+    {
+        delete mpi_environment_ptr;
+        mpi_environment_ptr = nullptr;
+    }
 
     return 0;
 }

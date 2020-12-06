@@ -17,6 +17,17 @@
 #   string_utilities_install_include_directory
 #   string_utilities_install_bin_directory
 
+    #-----------------------------------------------------
+    # This library needs access to the following header  -
+    # files:                                             -
+    #                                                    -
+    #   memory_management target header files            -
+    #   string_utilities target header files             -
+    #                                                    -
+    # We get the path to the above header files.         -
+    #-----------------------------------------------------
+    get_target_property(my_mm_include memory_management memory_management_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
@@ -124,14 +135,15 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target}  
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_mm_include} )
 
 #-----------------------------------------------------
 # Other dependencies.                                -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries(${target} 
-                      memory_management)
+# target_link_libraries(${target} 
+#                       memory_management)
 
 
 #-----------------------------------------------------

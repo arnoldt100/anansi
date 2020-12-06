@@ -64,6 +64,13 @@ public:
     }
 
     //===== MUTATORS =======
+    void
+    initializeWorldCommunicator()
+    {
+        this->_initializeWorldCommunicator();
+        return;
+    }
+
     void 
     freeCommunicator()
     {
@@ -159,6 +166,9 @@ private:
                const std::size_t task_id_gather_data) const=0;
 
     //===== MUTATORS =======
+    virtual void
+    _initializeWorldCommunicator()=0;
+
     virtual void
     _createSubcommunicator(const std::string & tag)=0;
 
