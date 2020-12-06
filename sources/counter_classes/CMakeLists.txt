@@ -1,10 +1,10 @@
-# This CMakeLists.txt file creates the library lib__library__.a
+# This CMakeLists.txt file creates the library libcounterclass.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# __target___header_files or __target___implementation_files.
+# counterclass_header_files or counterclass_implementation_files.
 #
-# The target for the library is __target__.
+# The target for the library is counterclass.
 #
-# The following properties are set for the target __target__.
+# The following properties are set for the target counterclass.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "__target__")
+    set(my_project_name "counterclass")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -53,8 +53,8 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___header_files
-         <list of header files> )
+    set (counterclass_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CounterClass.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -63,8 +63,8 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___implementation_files
-         <list of implementation files> )
+    set (counterclass_implementation_files
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CounterClass.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -87,7 +87,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${__target___header_files} ${__target___implementation_files} )
+    PRIVATE ${counterclass_header_files} ${counterclass_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -108,15 +108,15 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      __target___include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${__target___header_files}" )
+                      counterclass_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      PUBLIC_HEADER "${counterclass_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION <where to install library> 
-         PUBLIC_HEADER DESTINATION <where to install headers> )
+         ARCHIVE DESTINATION ${counterclass_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${counterclass_install_include_directory})
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(unit_tests)
+# add_subdirectory(unit_tests)

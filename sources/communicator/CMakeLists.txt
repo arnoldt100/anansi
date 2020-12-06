@@ -59,6 +59,7 @@
     #-----------------------------------------------------
     get_target_property(my_mm_include memory_management memory_management_include)
     get_target_property(my_su_include string_utilities string_utilities_include)
+    get_target_property(my_cc_include counterclass counterclass_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -181,7 +182,8 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PUBLIC ${my_su_include}
-                           PRIVATE ${my_mm_include})
+                           PRIVATE ${my_mm_include}
+                           PRIVATE ${my_cc_include})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
@@ -189,7 +191,8 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries( ${my_library_target}
                        string_utilities 
-                       memory_management )
+                       memory_management
+                       counterclass )
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

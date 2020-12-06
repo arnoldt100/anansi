@@ -101,6 +101,16 @@ set(simulation_parameters_install_include_directory ${anansi_install_include_dir
 set(simulation_parameters_install_bin_directory ${anansi_install_bin_directory} )
 
 #-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the counterclass libraries,             -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
+set(counterclass_install_lib_directory ${anansi_install_lib_directory})
+set(counterclass_install_include_directory ${anansi_install_include_directory})
+set(counterclass_install_bin_directory ${anansi_install_bin_directory} )
+
+#-----------------------------------------------------
 # This section permits use to find the header files  -
 # and link against the BOOST library.                -
 #                                                    -
@@ -115,6 +125,7 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/CPUMemoryAllocation)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/counter_classes)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/string_utilities)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)

@@ -1,40 +1,28 @@
-
-#ifndef  MPIEnvironment_INC
-#define  MPIEnvironment_INC
+#ifndef  CounterClass_INC
+#define  CounterClass_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include "mpi.h"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "CounterClass.h"
 
-namespace COMMUNICATOR
+namespace COUNTERCLASSES
 {
 
-class MPIEnvironment
+class ClassCounter
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
-        /*
-         *--------------------------------------------------------------------------------------
-         *       Class:  MPIEnvironment
-         *      Method:  MPIEnvironment :: MPIEnvironment
-         * Description:  Constructor
-         *
-         * Arguments: 
-         *
-         *--------------------------------------------------------------------------------------
-         */
-        MPIEnvironment(); /* constructor */
+        ClassCounter (); /* constructor */
 
-        MPIEnvironment( const MPIEnvironment &other ); /* copy constructor */
 
-        ~MPIEnvironment(); /* destructor */
+        ClassCounter (const ClassCounter &other); /* copy constructor */
+
+        ~ClassCounter (); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
 
@@ -42,10 +30,8 @@ class MPIEnvironment
 
         /* ====================  OPERATORS     ======================================= */
 
-        MPIEnvironment& 
-        operator=( const MPIEnvironment &other ); /* assignment operator */
-
-        /* ====================  STATIC        ======================================= */
+        ClassCounter& 
+        operator=(const ClassCounter &other); /* assignment operator */
 
     protected:
         /* ====================  METHODS       ======================================= */
@@ -57,9 +43,9 @@ class MPIEnvironment
 
         /* ====================  DATA MEMBERS  ======================================= */
 
-}; /* -----  end of class MPIEnvironment  ----- */
+}; /* -----  end of class ClassCounter  ----- */
 
 
-}; /* namespace COMMUNICATOR */
+}; /* namespace COUNTERCLASSES */
 
-#endif   /* ----- #ifndef MPIEnvironment_INC  ----- */
+#endif   /* ----- #ifndef CounterClass_INC  ----- */
