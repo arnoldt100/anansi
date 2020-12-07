@@ -17,10 +17,12 @@ class ClassCounter
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
-        ClassCounter (); /* constructor */
+        ClassCounter() /* constructor */
+        {
+            return;
+        }
 
-
-        ClassCounter (const ClassCounter &other); /* copy constructor */
+        ClassCounter(const ClassCounter &other)=delete; /* copy constructor */
 
         ~ClassCounter (); /* destructor */
 
@@ -31,7 +33,7 @@ class ClassCounter
         /* ====================  OPERATORS     ======================================= */
 
         ClassCounter& 
-        operator=(const ClassCounter &other); /* assignment operator */
+        operator=(const ClassCounter &other)=delete; /* assignment operator */
 
     protected:
         /* ====================  METHODS       ======================================= */

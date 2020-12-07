@@ -32,7 +32,7 @@ class MPIEnvironment
          */
         MPIEnvironment(); /* constructor */
 
-        MPIEnvironment( const MPIEnvironment &other ); /* copy constructor */
+        MPIEnvironment( const MPIEnvironment &other )=delete; /* copy constructor */
 
         ~MPIEnvironment(); /* destructor */
 
@@ -43,7 +43,7 @@ class MPIEnvironment
         /* ====================  OPERATORS     ======================================= */
 
         MPIEnvironment& 
-        operator=( const MPIEnvironment &other ); /* assignment operator */
+        operator=( const MPIEnvironment &other )=delete; /* assignment operator */
 
         /* ====================  STATIC        ======================================= */
 

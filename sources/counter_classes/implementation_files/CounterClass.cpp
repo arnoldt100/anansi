@@ -8,29 +8,13 @@ namespace COUNTERCLASSES {
 
 //============================= LIFECYCLE ====================================
 
-ClassCounter::ClassCounter() {
-	// TODO Auto-generated constructor stub
 
-}
-
-ClassCounter::~ClassCounter() {
-	// TODO Auto-generated destructor stub
-}
 
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-ClassCounter& 
-ClassCounter::operator=(const ClassCounter& other )
-{
-    if ( this != &other)
-    {
-
-    }
-    return *this;
-}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

@@ -23,15 +23,6 @@ MPIEnvironment::~MPIEnvironment()
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-MPIEnvironment& 
-MPIEnvironment::operator=(const MPIEnvironment &other )
-{
-    if (this != &other)
-    {
-    }
-    return *this;
-}
-
 
 //============================= STATIC =======================================
 
