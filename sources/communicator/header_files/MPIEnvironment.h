@@ -15,7 +15,9 @@
 namespace COMMUNICATOR
 {
 
-class MPIEnvironment : COUNTERCLASSES::ClassCounter<MPIEnvironment,1>
+constexpr auto max_mpi_environment = 1;
+
+class MPIEnvironment : COUNTERCLASSES::ClassCounter<MPIEnvironment,max_mpi_environment>
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
