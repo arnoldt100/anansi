@@ -10,6 +10,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPIInitializedException.h"
+#include "MPIFinalizedException.h"
 #include "CounterClass.h"
 
 namespace COMMUNICATOR
@@ -32,7 +34,7 @@ class MPIEnvironment : COUNTERCLASSES::ClassCounter<MPIEnvironment,max_mpi_envir
          *
          *--------------------------------------------------------------------------------------
          */
-        MPIEnvironment(); /* constructor */
+        MPIEnvironment(int argc, char** argv); /* constructor */
 
         MPIEnvironment( const MPIEnvironment &other )=delete; /* copy constructor */
 

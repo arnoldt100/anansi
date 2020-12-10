@@ -21,10 +21,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Communicator.h"
-#include "MPIInitializedException.h"
 #include "MPIInitException.h"
 #include "MPIGenericException.h"
-#include "MPIFinalizedException.h"
 #include "MPICommDuplicateException.h"
 #include "MPIFreeException.h"
 #include "MPIAllGatherException.h"
@@ -59,11 +57,6 @@ public:
     //===== ACCESSORS ======
 
     //===== STATIC METHODS ======
-    //static void
-    //initializeMPIEnvironment(int &argc, char **argv);
-
-    //static void
-    //finalizeMPIEnvironment();
 
     //===== MUTATORS =======
     //
