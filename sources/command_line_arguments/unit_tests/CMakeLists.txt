@@ -102,8 +102,8 @@ add_executable( ${target}
     # command_line_arguments_unit_tests.                 -
     #                                                    -
     #-----------------------------------------------------
-    set_target_properties( ${target}
-                           PROPERTIES
+    set_target_properties( ${target} PROPERTIES
+                           CXX_STANDARD ${command_line_arguments_cxx_standard}
                            PUBLIC_HEADER "${command_line_arguments_unit_tests_header_files}" )
 
     #-----------------------------------------------------

@@ -155,6 +155,7 @@ target_include_directories(${target}
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       string_utilities_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD ${string_utilities_cxx_standard}
                       PUBLIC_HEADER "${string_utilities_header_files}" )
 
 

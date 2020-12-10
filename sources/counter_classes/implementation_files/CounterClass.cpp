@@ -40,5 +40,4 @@ namespace COUNTERCLASSES {
 
 //============================= OPERATORS ====================================
 
-
 } /* namespace COUNTERCLASSES */

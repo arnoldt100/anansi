@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <atomic>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -12,6 +13,7 @@
 namespace COUNTERCLASSES
 {
 
+template<typename T ,int MAX_INSTANCES>
 class ClassCounter
 {
     public:
@@ -19,12 +21,16 @@ class ClassCounter
 
         ClassCounter() /* constructor */
         {
+            ++(this->numberOfInstances);
             return;
         }
 
         ClassCounter(const ClassCounter &other)=delete; /* copy constructor */
 
-        ~ClassCounter (); /* destructor */
+        ~ClassCounter ()
+        {
+            return;
+        };
 
         /* ====================  ACCESSORS     ======================================= */
 
@@ -34,6 +40,9 @@ class ClassCounter
 
         ClassCounter& 
         operator=(const ClassCounter &other)=delete; /* assignment operator */
+
+        /* ====================  DATA MEMBERS  ======================================= */
+        static inline std::atomic<int> numberOfInstances=0;
 
     protected:
         /* ====================  METHODS       ======================================= */
@@ -46,6 +55,7 @@ class ClassCounter
         /* ====================  DATA MEMBERS  ======================================= */
 
 }; /* -----  end of class ClassCounter  ----- */
+
 
 
 }; /* namespace COUNTERCLASSES */

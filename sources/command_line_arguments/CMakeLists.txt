@@ -125,6 +125,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       command_line_arguments_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD ${command_line_arguments_cxx_standard}
                       PUBLIC_HEADER "${command_line_arguments_header_files}" )
 
 install( TARGETS ${target}

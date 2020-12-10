@@ -98,8 +98,8 @@
     # mpi_communicator_unit_tests.                       -
     #                                                    -
     #-----------------------------------------------------
-    set_target_properties( ${target}
-                           PROPERTIES
+    set_target_properties( ${target} PROPERTIES
+                           CXX_STANDARD ${mpi_communicator_cxx_standard}
                            PUBLIC_HEADER "${mpi_communicator_unit_tests_header_files}" )
 
     install(TARGETS ${target}

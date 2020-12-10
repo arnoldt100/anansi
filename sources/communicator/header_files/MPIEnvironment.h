@@ -15,7 +15,7 @@
 namespace COMMUNICATOR
 {
 
-class MPIEnvironment
+class MPIEnvironment : COUNTERCLASSES::ClassCounter<MPIEnvironment,1>
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */

@@ -80,6 +80,7 @@
     #-----------------------------------------------------
     set_target_properties( ${target}
                            PROPERTIES
+                           CXX_STANDARD ${simulation_parameters_cxx_standard}
                            PUBLIC_HEADER "${simulationparameters_unit_tests_header_files}" )
 
     #-----------------------------------------------------

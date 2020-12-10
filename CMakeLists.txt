@@ -37,6 +37,7 @@ verify_key_environmental_are_set()
 #-----------------------------------------------------
 set(anansi_top_level $ENV{ANANSI_TOP_LEVEL}) 
 set(anansi_cmake_cxx_compiler $ENV{ANANSI_CMAKE_CXX_COMPILER})
+set(anansi_cxx_standard 17)
 set(anansi_cmake_c_compiler $ENV{ANANSI_CMAKE_C_COMPILER})
 set(anansi_install_prefix $ENV{ANANSI_INSTALL_PREFIX})
 set(anansi_install_bin_directory $ENV{ANANSI_INSTALL_BIN_DIRECTORY})
@@ -59,6 +60,7 @@ set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 set(memory_management_install_lib_directory ${anansi_install_lib_directory})
 set(memory_management_install_include_directory ${anansi_install_include_directory})
 set(memory_management_install_bin_directory ${anansi_install_bin_directory} )
+set(memory_management_cxx_standard ${anansi_cxx_standard} )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -69,6 +71,7 @@ set(memory_management_install_bin_directory ${anansi_install_bin_directory} )
 set(command_line_arguments_install_lib_directory ${anansi_install_lib_directory})
 set(command_line_arguments_install_include_directory ${anansi_install_include_directory})
 set(command_line_arguments_install_bin_directory ${anansi_install_bin_directory} )
+set(command_line_arguments_cxx_standard ${anansi_cxx_standard} )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -79,6 +82,7 @@ set(command_line_arguments_install_bin_directory ${anansi_install_bin_directory}
 set(mpi_communicator_install_lib_directory ${anansi_install_lib_directory})
 set(mpi_communicator_install_include_directory ${anansi_install_include_directory})
 set(mpi_communicator_install_bin_directory ${anansi_install_bin_directory} )
+set(mpi_communicator_cxx_standard ${anansi_cxx_standard} )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -89,6 +93,7 @@ set(mpi_communicator_install_bin_directory ${anansi_install_bin_directory} )
 set(string_utilities_install_lib_directory ${anansi_install_lib_directory})
 set(string_utilities_install_include_directory ${anansi_install_include_directory})
 set(string_utilities_install_bin_directory ${anansi_install_bin_directory} )
+set(string_utilities_cxx_standard ${anansi_cxx_standard} )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -99,6 +104,7 @@ set(string_utilities_install_bin_directory ${anansi_install_bin_directory} )
 set(simulation_parameters_install_lib_directory ${anansi_install_lib_directory})
 set(simulation_parameters_install_include_directory ${anansi_install_include_directory})
 set(simulation_parameters_install_bin_directory ${anansi_install_bin_directory} )
+set(simulation_parameters_cxx_standard ${anansi_cxx_standard} )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -109,6 +115,7 @@ set(simulation_parameters_install_bin_directory ${anansi_install_bin_directory} 
 set(counterclass_install_lib_directory ${anansi_install_lib_directory})
 set(counterclass_install_include_directory ${anansi_install_include_directory})
 set(counterclass_install_bin_directory ${anansi_install_bin_directory} )
+set(counterclass_cxx_standard ${anansi_cxx_standard} )
 
 #-----------------------------------------------------
 # This section permits use to find the header files  -

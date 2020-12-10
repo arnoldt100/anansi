@@ -143,8 +143,9 @@ target_link_libraries(${my_anansi_md_library}
 # Here we set the propertes on target.               -
 #                                                    -
 #-----------------------------------------------------
-set_target_properties(${my_anansi_md_library} 
-                      PROPERTIES PUBLIC_HEADER "${anansi_md_library_headers}" )
+set_target_properties(${my_anansi_md_library} PROPERTIES 
+    PUBLIC_HEADER "${anansi_md_library_headers}" 
+    CXX_STANDARD ${anansi_cxx_standard} )
 
 install( TARGETS ${my_anansi_md_library}
          ARCHIVE DESTINATION ${anansi_install_lib_directory}
@@ -156,10 +157,6 @@ install( TARGETS ${my_anansi_md_library}
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-#-----------------------------------------------------
-#                                                    -
-#                                                    -
-#-----------------------------------------------------
 add_executable( ${my_main_target_binary}
                 "" )
 
@@ -178,6 +175,10 @@ target_link_libraries(${my_main_target_binary}
                       memory_management 
                       string_utilities 
                       ${Boost_LIBRARIES} )
+
+                  
+set_target_properties(${my_main_target_binary} PROPERTIES
+                      CXX_STANDARD ${anansi_cxx_standard} )
 
 install( TARGETS ${my_main_target_binary} 
          RUNTIME DESTINATION ${anansi_install_bin_directory} )

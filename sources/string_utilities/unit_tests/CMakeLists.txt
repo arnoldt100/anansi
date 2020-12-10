@@ -109,6 +109,7 @@
     #-----------------------------------------------------
     set_target_properties( ${target}
                            PROPERTIES
+                           CXX_STANDARD ${string_utilities_cxx_standard}
                            PUBLIC_HEADER "${string_utilities_unit_tests_header_files}" )
 
     #-----------------------------------------------------
