@@ -1,5 +1,5 @@
-#ifndef  CounterClass_INC
-#define  CounterClass_INC
+#ifndef  ClassInstanceLimiter_INC
+#define  ClassInstanceLimiter_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -14,20 +14,20 @@ namespace COUNTERCLASSES
 {
 
 template<typename T ,int MAX_INSTANCES>
-class ClassCounter
+class ClassInstanceLimiter
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
-        ClassCounter() /* constructor */
+        ClassInstanceLimiter() /* constructor */
         {
             ++(this->numberOfInstances);
             return;
         }
 
-        ClassCounter(const ClassCounter &other)=delete; /* copy constructor */
+        ClassInstanceLimiter(const ClassInstanceLimiter &other)=delete; /* copy constructor */
 
-        ~ClassCounter ()
+        ~ClassInstanceLimiter ()
         {
             return;
         };
@@ -38,8 +38,8 @@ class ClassCounter
 
         /* ====================  OPERATORS     ======================================= */
 
-        ClassCounter& 
-        operator=(const ClassCounter &other)=delete; /* assignment operator */
+        ClassInstanceLimiter& 
+        operator=(const ClassInstanceLimiter &other)=delete; /* assignment operator */
 
         /* ====================  DATA MEMBERS  ======================================= */
         static inline std::atomic<int> numberOfInstances=0;
@@ -54,10 +54,10 @@ class ClassCounter
 
         /* ====================  DATA MEMBERS  ======================================= */
 
-}; /* -----  end of class ClassCounter  ----- */
+}; /* -----  end of class ClassInstanceLimiter  ----- */
 
 
 
 }; /* namespace COUNTERCLASSES */
 
-#endif   /* ----- #ifndef CounterClass_INC  ----- */
+#endif   /* ----- #ifndef ClassInstanceLimiter_INC  ----- */

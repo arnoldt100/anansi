@@ -6,37 +6,30 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include "mpi.h"
+#include <iostream>
+#include <cstdlib>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPIInitException.h"
 #include "MPIInitializedException.h"
 #include "MPIFinalizedException.h"
-#include "CounterClass.h"
+#include "ClassInstanceLimiter.hpp"
 
 namespace COMMUNICATOR
 {
 
-constexpr auto max_mpi_environment = 1;
+constexpr auto MAX_MPIENVIRONMENT_INSTANCES = 1;
 
-class MPIEnvironment : COUNTERCLASSES::ClassCounter<MPIEnvironment,max_mpi_environment>
+class MPIEnvironment : COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
-        /*
-         *--------------------------------------------------------------------------------------
-         *       Class:  MPIEnvironment
-         *      Method:  MPIEnvironment :: MPIEnvironment
-         * Description:  Constructor
-         *
-         * Arguments: 
-         *
-         *--------------------------------------------------------------------------------------
-         */
         MPIEnvironment(int argc, char** argv); /* constructor */
 
-        MPIEnvironment( const MPIEnvironment &other )=delete; /* copy constructor */
+        MPIEnvironment(const MPIEnvironment &other)=delete; /* copy constructor */
 
         ~MPIEnvironment(); /* destructor */
 
@@ -47,7 +40,7 @@ class MPIEnvironment : COUNTERCLASSES::ClassCounter<MPIEnvironment,max_mpi_envir
         /* ====================  OPERATORS     ======================================= */
 
         MPIEnvironment& 
-        operator=( const MPIEnvironment &other )=delete; /* assignment operator */
+        operator=(const MPIEnvironment &other)=delete; /* assignment operator */
 
         /* ====================  STATIC        ======================================= */
 

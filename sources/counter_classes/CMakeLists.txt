@@ -54,7 +54,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (counterclass_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CounterClass.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ClassInstanceLimiter.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -64,7 +64,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (counterclass_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CounterClass.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ClassInstanceLimiter.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

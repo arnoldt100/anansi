@@ -1,4 +1,4 @@
-#include "CounterClass.h"
+#include "ClassInstanceLimiter.hpp"
 
 namespace COUNTERCLASSES {
 

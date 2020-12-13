@@ -3,7 +3,7 @@
 int main( int argc, char** argv )
 {
     // Initialize the MPI environment.
-    COMMUNICATOR::MPIEnvironment* mpi_environment_ptr = new COMMUNICATOR::MPIEnvironment;
+    COMMUNICATOR::MPIEnvironment* mpi_environment_ptr = new COMMUNICATOR::MPIEnvironment(argc,argv);
 
     // Create an AnansiMolecularDynamicsFactory and instantiate a MD object.
     ANANSI::MolecularDynamicsFactory* my_md_factory_ptr = new ANANSI::AnansiMolecularDynamicsFactory;
