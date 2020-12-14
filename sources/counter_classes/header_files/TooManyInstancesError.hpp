@@ -7,6 +7,9 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <exception>
+#include <typeinfo>
+#include <string>
+#include <algorithm>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -39,9 +42,13 @@ namespace COUNTERCLASS
 
             /* ====================  ACCESSORS     ======================================= */
             const char* 
-            what() const throw()
+            what() const noexcept
             {
-                return "Too many instances of a class.";
+                const auto message = std::string("Too many instances of class: ") + std::string( typeid(T).name()) ;
+                const auto len = message.size();
+                auto message_ptr = new char[len+1];
+                std::copy(message.begin(), message.end(), message_ptr);
+                return message_ptr;
             }
 
             /* ====================  MUTATORS      ======================================= */

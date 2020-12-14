@@ -1,10 +1,3 @@
-/*
- * MPIInitializedException.h
- *
- *  Created on: October 18, 2018
- *      Authors: Arnold Tharrington
- */
-
 #ifndef COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPIINITIALIZEDEXCEPTION_H_
 #define COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPIINITIALIZEDEXCEPTION_H_
 

@@ -26,7 +26,7 @@ MPIFreeException::~MPIFreeException()
 }
 
 //============================= ACCESSORS ====================================
-const char * MPIFreeException::what() const noexcept
+const char * MPIFreeException::what() const noexcept 
 {
        return "The MPI Free call experienced an exception."; 
 }
