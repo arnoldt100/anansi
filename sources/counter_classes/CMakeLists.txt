@@ -54,7 +54,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (counterclass_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ClassInstanceLimiter.hpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ClassInstanceLimiter.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/TooManyInstancesError.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -64,7 +65,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (counterclass_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ClassInstanceLimiter.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ClassInstanceLimiter.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/TooManyInstancesError.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

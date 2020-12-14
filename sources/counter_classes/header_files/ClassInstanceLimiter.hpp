@@ -9,11 +9,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "TooManyInstancesError.hpp"
 
 namespace COUNTERCLASSES
 {
 
-template<typename T ,int MAX_INSTANCES>
+template<typename T, int MAX_INSTANCES>
 class ClassInstanceLimiter
 {
     public:
@@ -21,7 +22,15 @@ class ClassInstanceLimiter
 
         ClassInstanceLimiter() /* constructor */
         {
-            ++(this->numberOfInstances);
+            const auto tmp_nm_of_instances = this->numberOfInstances + 1;
+            if ( tmp_nm_of_instances > MAX_INSTANCES)
+            {
+                throw COUNTERCLASS::TooManyInstancesError<T,MAX_INSTANCES>();
+            }
+            else
+            {
+            	++(this->numberOfInstances);
+            }
             return;
         }
 
