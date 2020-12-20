@@ -4,7 +4,7 @@
 SimulationParameters Documentation
 ##################################
 
-This class encapsulates the parametrs of the simulation.
+This class encapsulates the parameters of the simulation.
 
 .. namespace:: ANANSI
 
