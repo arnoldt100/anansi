@@ -10,9 +10,11 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "TooManyInstancesError.hpp"
+#include "MaxInstancesNegativeError.hpp"
 
 namespace COUNTERCLASSES
 {
+
 
 template<typename T, int MAX_INSTANCES>
 class ClassInstanceLimiter
@@ -22,6 +24,14 @@ class ClassInstanceLimiter
 
         ClassInstanceLimiter() /* constructor */
         {
+            // Verify MAX_INSTANCES is > 0, otherwise throw an exception.
+            if (MAX_INSTANCES <= 0)
+            {
+                throw COUNTERCLASS::MaxInstancesNegativeError<T,MAX_INSTANCES>();
+            }
+
+            // Verify that we have not exceeded MAX_INSTANCES instantiations
+            // of objects of type T.
             const auto tmp_nm_of_instances = this->numberOfInstances + 1;
             if ( tmp_nm_of_instances > MAX_INSTANCES)
             {

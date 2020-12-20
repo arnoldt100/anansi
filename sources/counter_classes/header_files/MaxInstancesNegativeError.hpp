@@ -1,6 +1,5 @@
-#ifndef  TooManyInstancesError_INC
-#define  TooManyInstancesError_INC
-
+#ifndef  MaxInstancesNegativeError_INC
+#define  MaxInstancesNegativeError_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -19,28 +18,28 @@ namespace COUNTERCLASS
 {
     /*
      * =====================================================================================
-     *        Class:  TooManyInstancesError
+     *        Class:  MaxInstancesNegativeError
      *  Description:  
      * =====================================================================================
      */
     template <typename T, int MAX_INSTANCES>
-    class TooManyInstancesError : std::exception
+    class MaxInstancesNegativeError : std::exception
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
 
             
-            TooManyInstancesError ()
+            MaxInstancesNegativeError ()
             {
                 return;
             }
 
-            ~TooManyInstancesError()
+            ~MaxInstancesNegativeError()
             {
                 return;
             }
 
-            TooManyInstancesError (TooManyInstancesError const & other)
+            MaxInstancesNegativeError (MaxInstancesNegativeError const & other)
             {
                 if (&other != this)
                 {
@@ -49,7 +48,7 @@ namespace COUNTERCLASS
                 return;
             }
 
-            TooManyInstancesError (TooManyInstancesError && other)
+            MaxInstancesNegativeError (MaxInstancesNegativeError && other)
             {
                 if (&other != this)
                 {
@@ -58,8 +57,8 @@ namespace COUNTERCLASS
                 return;
             }
 
-            TooManyInstancesError& 
-            operator=(TooManyInstancesError const & other)
+            MaxInstancesNegativeError& 
+            operator=(MaxInstancesNegativeError const & other)
             {
                 if (&other != this)
                 {
@@ -69,8 +68,8 @@ namespace COUNTERCLASS
                 return *this;
             }
 
-            TooManyInstancesError& 
-            operator=(TooManyInstancesError && other)
+            MaxInstancesNegativeError& 
+            operator=(MaxInstancesNegativeError && other)
             {
                 if (&other != this)
                 {
@@ -84,7 +83,7 @@ namespace COUNTERCLASS
             const char* 
             what() const noexcept override 
             {
-                const auto message = std::string("Too many instances of class: ") + std::string( typeid(T).name()) ;
+                const auto message = std::string("MAX_INSTANCES is set to a negative value for class: ") + std::string( typeid(T).name()) ;
                 const auto len = message.size();
                 auto message_ptr = new char[len+1];
                 std::copy(message.begin(), message.end(), message_ptr);
@@ -105,9 +104,9 @@ namespace COUNTERCLASS
 
             /* ====================  DATA MEMBERS  ======================================= */
 
-    }; /* -----  end of class TooManyInstancesError  ----- */
+    }; /* -----  end of class MaxInstancesNegativeError  ----- */
 
 
 }; /* namespace COUNTERCLASS */
 
-#endif   /* ----- #ifndef TooManyInstancesError_INC  ----- */
+#endif   /* ----- #ifndef MaxInstancesNegativeError_INC  ----- */
