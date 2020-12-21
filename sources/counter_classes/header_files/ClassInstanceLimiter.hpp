@@ -46,7 +46,7 @@ class ClassInstanceLimiter
 
         ClassInstanceLimiter(const ClassInstanceLimiter &other)=delete; /* copy constructor */
 
-        ~ClassInstanceLimiter()
+        virtual ~ClassInstanceLimiter()
         {
             return;
         };
