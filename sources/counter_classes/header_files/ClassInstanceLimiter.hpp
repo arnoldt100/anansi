@@ -31,7 +31,7 @@ class ClassInstanceLimiter
             }
 
             // Verify that we have not exceeded MAX_INSTANCES instantiations
-            // of objects of type T.
+            // of type T objects.
             const auto tmp_nm_of_instances = this->numberOfInstances + 1;
             if ( tmp_nm_of_instances > MAX_INSTANCES)
             {

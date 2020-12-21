@@ -31,6 +31,8 @@ class MPIEnvironment : COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_M
 
         MPIEnvironment(const MPIEnvironment &other)=delete; /* copy constructor */
 
+        MPIEnvironment (MPIEnvironment && other)= delete;
+
         ~MPIEnvironment(); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
@@ -41,6 +43,9 @@ class MPIEnvironment : COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_M
 
         MPIEnvironment& 
         operator=(const MPIEnvironment &other)=delete; /* assignment operator */
+
+        MPIEnvironment&
+		operator=(MPIEnvironment &&other)=delete;
 
         /* ====================  STATIC        ======================================= */
 

@@ -58,6 +58,22 @@ namespace COUNTERCLASS
                 return;
             }
 
+            /* ====================  ACCESSORS     ======================================= */
+
+            const char* 
+            what() const noexcept override 
+            {
+                const auto message = std::string("Too many instances of class: ") + std::string( typeid(T).name()) ;
+                const auto len = message.size();
+                auto message_ptr = new char[len+1];
+                std::copy(message.begin(), message.end(), message_ptr);
+                return message_ptr;
+            }
+
+            /* ====================  MUTATORS      ======================================= */
+
+            /* ====================  OPERATORS     ======================================= */
+
             TooManyInstancesError& 
             operator=(TooManyInstancesError const & other)
             {
@@ -79,21 +95,6 @@ namespace COUNTERCLASS
                 }
                 return *this;
             }
-            /* ====================  ACCESSORS     ======================================= */
-
-            const char* 
-            what() const noexcept override 
-            {
-                const auto message = std::string("Too many instances of class: ") + std::string( typeid(T).name()) ;
-                const auto len = message.size();
-                auto message_ptr = new char[len+1];
-                std::copy(message.begin(), message.end(), message_ptr);
-                return message_ptr;
-            }
-
-            /* ====================  MUTATORS      ======================================= */
-
-            /* ====================  OPERATORS     ======================================= */
 
         protected:
             /* ====================  METHODS       ======================================= */
