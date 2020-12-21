@@ -15,3 +15,4 @@ Welcome to Anansi's class documentation!
    Classes/SimulationParametersFactory.cpp.rst
    Classes/SimulationParameters.cpp.rst
    Classes/TooManyInstancesError.hpp.rst
+   Classes/MPIEnvironment.cpp.rst

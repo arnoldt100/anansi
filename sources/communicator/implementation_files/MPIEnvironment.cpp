@@ -8,7 +8,8 @@ namespace COMMUNICATOR {
 
 //============================= LIFECYCLE ====================================
 
-MPIEnvironment::MPIEnvironment(int argc, char** argv)
+MPIEnvironment::MPIEnvironment(int argc, char** argv) :
+    COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>()
 {
     // Verify that the MPI environment is not already initialized. If
     // the MPI environment is not initialized, the call MPI_Init.
