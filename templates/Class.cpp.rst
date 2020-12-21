@@ -1,5 +1,7 @@
 .. default-domain:: cpp
 
+.. namespace:: __Namespace__
+
 ######################################
 __Class__ Documentation
 ######################################
@@ -7,62 +9,71 @@ __Class__ Documentation
 The base class for the molecular dynamics factory classes. This
 class is an abstract base class. 
 
-.. namespace:: __Namespace__
+=============================
+__Class__ Class Documentation
+=============================
 
 .. class:: __Class__
 
-==============
+--------------
 Public Members
-==============
+--------------
 
----------
+^^^^^^^^^
 Lifecycle
----------
+^^^^^^^^^
 
-.. function:: __Class__()
+    .. function:: __Class__()
 
-   The default constructor.
+       The default constructor.
 
-.. function:: __Class__( const __Class__ &other )
+    .. function:: __Class__( const __Class__ &other )
 
-    The copy constructor.
+        The copy constructor.
 
-.. function:: ~__Class__()=0
+    .. function:: ~__Class__()=0
 
-    The destructor.
+        The destructor.
 
----------
+^^^^^^^^^
 Accessors
----------
+^^^^^^^^^
 
----------
+    No public accessors
+
+^^^^^^^^^
 Operators
----------
+^^^^^^^^^
 
---------
+^^^^^^^^
 Mutators
---------
+^^^^^^^^
 
-=================
+-----------------
 Protected Members
-=================
+-----------------
 
-===============
+    No protected members
+
+---------------
 Private Members
-===============
+---------------
 
----------
-Accessors
----------
+    No private members
 
----------
-Operators
----------
-
---------
-Mutators
---------
-
-------------
-Data Members
-------------
+.. Commented out. 
+.. ---------
+.. Accessors
+.. ---------
+.. 
+.. ---------
+.. Operators
+.. ---------
+.. 
+.. --------
+.. Mutators
+.. --------
+.. 
+.. ------------
+.. Data Members
+.. ------------
