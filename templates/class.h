@@ -1,21 +1,12 @@
-/*
- * =====================================================================================
- *
- *       Filename:  __filename__.h
- *
- *    Description:  
- *
- *         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
- *   Organization:  ORNL-National Center of Computational Sciences
- *
- * =====================================================================================
- */
-
 #ifndef __filepreprocessordefine__
 #define __filepreprocessordefine__
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
 //--------------------------------------------------------//
 
 //--------------------------------------------------------//
@@ -46,12 +37,14 @@ namespace __NAMESPACE__
              *
              *--------------------------------------------------------------------------------------
              */
-            __classname__ ();                             /* constructor      */
+            __classname__ ();   /* constructor      */
 
 
-            __classname__ ( const __classname__ &other );   /* copy constructor */
+            __classname__ (const __classname__ & other);   /* copy constructor */
 
-            ~__classname__ ();                            /* destructor       */
+            __classname__ (__classname__ && other);   /* copy-move constructor */
+
+            virtual ~__classname__ ();  /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
 
@@ -59,7 +52,9 @@ namespace __NAMESPACE__
 
             /* ====================  OPERATORS     ======================================= */
 
-            __classname__& operator = ( const __classname__ &other ); /* assignment operator */
+            __classname__& operator= ( const __classname__ &other ); /* assignment operator */
+
+            __classname__& operator= ( __classname__ && other ); /* assignment-move operator */
 
         protected:
             /* ====================  METHODS       ======================================= */

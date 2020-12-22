@@ -22,7 +22,7 @@ namespace COMMUNICATOR
 
 constexpr auto MAX_MPIENVIRONMENT_INSTANCES = 1;
 
-class MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
+class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
@@ -33,7 +33,7 @@ class MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironme
 
         MPIEnvironment (MPIEnvironment && other)= delete;
 
-        ~MPIEnvironment(); /* destructor */
+        virtual ~MPIEnvironment(); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
 

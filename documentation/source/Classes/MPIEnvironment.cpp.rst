@@ -39,17 +39,18 @@ MPIEnvironment.h Global Variables
 MPIEnvironment Class Documentation
 ==================================
 
-.. class:: MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
+.. class:: MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
 
 This MPIEnvironment class abstracts the initialization of the MPI environment. 
 The instantiation of the class calls MPI_Init, and the class destruction calls
 MPI_Finalize.
 
-This class can only be instantiated once. The class inherits *privately* from template <T,
+This class can only be instantiated once, and it inherits *privately* from template <T,
 int MAX_INSTANCES> ClassInstanceLimiter() to achieve this constraint. 
 
-Furthermore, the copy constructor, move copy, copy assignment, and move assignment functions
-are deleted to enforce only 1 single instantiation.
+The class is designated as final, and furthermore the copy constructor, 
+move-copy, copy assignment, and move-assignment functions are deleted to enforce
+only 1 single instantiation.
 
 If more than 1 MPIEnvironment class is instantiated, then the error
 COUNTERCLASS::TooManyInstances is raised by means of the private base class
@@ -78,7 +79,7 @@ Lifecycle
 
     .. function:: MPIEnvironment (MPIEnvironment && other)=delete
 
-        The copy move constructor is deleted.
+        The copy-move constructor is deleted.
 
     .. function:: ~MPIEnvironment()=0
 
@@ -100,7 +101,7 @@ Operators
 
     .. function:: MPIEnvironment& operator=(MPIEnvironment &&other)=delete;
 
-        The assignment move operator is deleted.
+        The assignment-move operator is deleted.
 
 ^^^^^^^^
 Mutators
