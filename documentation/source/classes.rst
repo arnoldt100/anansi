@@ -16,3 +16,4 @@ Welcome to Anansi's class documentation!
    Classes/SimulationParameters.cpp.rst
    Classes/TooManyInstancesError.hpp.rst
    Classes/MPIEnvironment.cpp.rst
+   Clasess/Pointer2d.hpp.rst
