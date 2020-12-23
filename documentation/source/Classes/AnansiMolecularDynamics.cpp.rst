@@ -82,6 +82,7 @@ Operators
     .. function:: AnansiMolecularDynamics& operator=( AnansiMolecularDynamics && other)
 
         The assignment-move operator is deleted.
+
 ^^^^^^^^
 Mutators
 ^^^^^^^^
