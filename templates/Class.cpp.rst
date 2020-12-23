@@ -27,6 +27,10 @@ Include Header Files
 * #include "dummy4"
 * #include "dummy5"
 
+============================
+__Class__.h Global Variables
+============================
+
 =============================
 __Class__ Class Documentation
 =============================
@@ -49,7 +53,7 @@ Lifecycle
 
         The copy constructor.
 
-    .. function:: __Class(__Class__ && other) 
+    .. function:: __Class__(__Class__ && other) 
 
         The copy-move constructor.
 

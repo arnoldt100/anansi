@@ -57,6 +57,7 @@
     #                                                    -
     # We get the path to the above header files.         -
     #-----------------------------------------------------
+    get_target_property(mm_include_dir memory_management memory_management_include)
     get_target_property(my_cl_include_dir command_line_arguments command_line_arguments_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -132,15 +133,15 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${Boost_INCLUDE_DIR}
+                           PRIVATE ${mm_include_dir}
                            PRIVATE ${my_cl_include_dir} )
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-# This works, version 2.0
-# target_link_libraries( ${my_library_target}
-#                        command_line_arguments)
+target_link_libraries( ${my_library_target}
+                       command_line_arguments)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

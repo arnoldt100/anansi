@@ -27,7 +27,7 @@
     string(TOLOWER ${PROJECT_NAME} my_anansi_md_library)
 
     #-----------------------------------------------------
-    #                                                    -
+    # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
     get_target_property(mm_include_dir memory_management memory_management_include)

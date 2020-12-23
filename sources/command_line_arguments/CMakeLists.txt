@@ -38,6 +38,12 @@
     set(target ${my_project_name})
 
     #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(mm_include_dir memory_management memory_management_include)
+
+    #-----------------------------------------------------
     # Include various functions and macros.              -
     #                                                    -
     #-----------------------------------------------------
@@ -111,7 +117,15 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${mm_include_dir}  )
+
+#-----------------------------------------------------
+# Set the list of libraries to link against.         -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries( ${target}
+                       memory_management )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

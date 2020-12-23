@@ -106,19 +106,14 @@ void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::Comm
     if ( vm.count("help") )
     {
         std::cout << description << std::endl;
+        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(argc,argv);
+        return;
     }
 
     // Delete the nonuniform 2d char array.
     if (argv != nullptr)
     {
-        for (int ip=0; ip < argc; ++ip)
-        {
-            if ( argv[ip] != nullptr)
-            {
-                delete argv[ip];
-            }
-        }
-        delete [] argv;
+        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(argc,argv);
     }
 
     return;
