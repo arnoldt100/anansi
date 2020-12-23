@@ -32,6 +32,8 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         AnansiMolecularDynamics(AnansiMolecularDynamics const & other) = delete; // Avoid implicit of copying the
                                                                                  // AnansiMolecularDynamics class.
 
+        AnansiMolecularDynamics(AnansiMolecularDynamics && other) = delete;
+
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
@@ -41,6 +43,9 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         AnansiMolecularDynamics&                                                 
         operator=(AnansiMolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
                                                                    // AnansiMolecularDynamics class.
+
+        AnansiMolecularDynamics&                                                 
+        operator=(AnansiMolecularDynamics && other) = delete;
 
         /* ====================  STATIC        ======================================= */
 
