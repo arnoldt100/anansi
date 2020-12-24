@@ -30,6 +30,7 @@ No C++ include files
 * #include "CommandLineArguments.h"
 * #include "SimulationParametersFactory.h"
 * #include "MPICommunicatorFactory.h"
+* #include "AnansiMDState.h"
 
 ========================================
 AnansiMolecularDynamics Global Variables
@@ -134,3 +135,7 @@ Data Members
     .. member:: COMMANDLINE::CommandLineArguments _commandLineArguments
 
     .. member:: ANANSI::SimulationParameters _simulationParameters
+
+    .. nenber:: std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
+
+    .. member:: std::unique_ptr<AnansiMDState> _mdState;

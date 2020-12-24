@@ -17,6 +17,7 @@
 #include "CommandLineArguments.h"
 #include "SimulationParametersFactory.h"
 #include "MPICommunicatorFactory.h"
+#include "AnansiMDState.h"
 
 namespace ANANSI {
 
@@ -73,6 +74,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         COMMANDLINE::CommandLineArguments _commandLineArguments;
         ANANSI::SimulationParameters _simulationParameters;
         std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
+        std::unique_ptr<ANANSI::AnansiMDState> _mdState;
 
         /* ====================  STATIC        ======================================= */
 
