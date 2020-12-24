@@ -1,6 +1,6 @@
 .. default-domain:: cpp
 
-.. namespace:: Anansi
+.. namespace:: ANANSI
 
 ######################################
 AnansiMDState Documentation

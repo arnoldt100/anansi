@@ -77,6 +77,7 @@
     #-----------------------------------------------------
     set (anansi_md_library_headers  
         header_files/AnansiMolecularDynamics.h
+        header_files/AnansiMDState.h
         header_files/MolecularDynamics.h 
         header_files/MolecularDynamicsFactory.h 
         header_files/AnansiMolecularDynamicsFactory.h)
@@ -89,6 +90,7 @@
     #-----------------------------------------------------
     set (anansi_md_library_implementation  
         implementation_files/AnansiMolecularDynamics.cpp
+        implementation_files/AnansiMDState.cpp
         implementation_files/MolecularDynamics.cpp
         implementation_files/MolecularDynamicsFactory.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp)
