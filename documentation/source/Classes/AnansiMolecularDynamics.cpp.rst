@@ -136,6 +136,6 @@ Data Members
 
     .. member:: ANANSI::SimulationParameters _simulationParameters
 
-    .. nenber:: std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
+    .. member:: std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
 
     .. member:: std::unique_ptr<AnansiMDState> _mdState;

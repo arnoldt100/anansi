@@ -22,7 +22,7 @@ AnansiMolecularDynamics has 5 states or beahvoirs:
     be performed unless the InitializingSimulationEnvironment is successfully
     completed.
     
-* InitializingSimulation
+* InitializingInitialCondition
 
     This state controls initialization of the simulation - reading various
     input files, setting up various MPI communicators, initializing the

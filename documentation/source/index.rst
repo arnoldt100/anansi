@@ -17,6 +17,7 @@ Welcome to Anansi's documentation!
    Introduction <introduction.rst>
    How to Build Anansi <how_to_build_anansi.rst>
    anansi_main_md.cpp.rst
+   Enumerations <enumerations.rst>
    Classes <classes.rst>
    
 

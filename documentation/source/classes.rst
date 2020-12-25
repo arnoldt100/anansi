@@ -1,5 +1,3 @@
-.. Anansi documentation master class file, created by
-
 Welcome to Anansi's class documentation!
 ========================================
 
