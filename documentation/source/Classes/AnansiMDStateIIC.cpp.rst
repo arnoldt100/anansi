@@ -31,7 +31,7 @@ AnansiMDStateIIC.h Global Variables
 AnansiMDStateIIC Class Documentation
 ====================================
 
-.. class:: AnansiMDStateIIC : public AnansiMDState final
+.. class:: AnansiMDStateIIC final : public AnansiMDState
 
 --------------
 Public Members

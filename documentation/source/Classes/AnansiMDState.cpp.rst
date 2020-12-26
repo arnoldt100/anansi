@@ -46,17 +46,11 @@ Include Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
-* #include <dummy2>
+*  #include <utility>
 
 **External Library Files**
 
-* #include "dummy3"
-
 **Project Include Files**
-
-* #include "dummy4"
-* #include "dummy5"
 
 ================================
 AnansiMDState.h Global Variables
@@ -76,19 +70,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: AnansiMDState()
+    .. function:: AnansiMDState::AnansiMDState()
 
        The default constructor.
 
-    .. function:: AnansiMDState( const AnansiMDState &other )
+    .. function:: AnansiMDState::AnansiMDState( const AnansiMDState &other )
 
         The copy constructor.
 
-    .. function:: AnansiMDState(AnansiMDState && other) 
+    .. function:: AnansiMDState::AnansiMDState(AnansiMDState && other) 
 
         The copy-move constructor.
 
-    .. function:: ~AnansiMDState()=0
+    .. function:: AnansiMDState::~AnansiMDState()=0
 
         The destructor.
 
@@ -102,11 +96,11 @@ Accessors
 Operators
 ^^^^^^^^^
 
-    .. function:: AnansiMDState& operator=( AnansiMDState const & other)
+    .. function:: AnansiMDState& AnansiMDState::operator=( AnansiMDState const & other)
 
         The assignment operator.
 
-    .. function:: AnansiMDState& operator=( AnansiMDState && other)
+    .. function:: AnansiMDState& AnansiMDState::operator=( AnansiMDState && other)
 
         The assignment-move operator.
 

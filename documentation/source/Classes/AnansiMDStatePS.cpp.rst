@@ -30,7 +30,7 @@ AnansiMDStatePS.h Global Variables
 AnansiMDStatePS Class Documentation
 ===================================
 
-.. class:: AnansiMDStatePS : public AnansiMDState final
+.. class:: AnansiMDStatePS final : public AnansiMDState
 
 --------------
 Public Members

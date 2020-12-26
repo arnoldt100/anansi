@@ -30,7 +30,7 @@ AnansiMDStatePCL.h Global Variables
 AnansiMDStatePCL Class Documentation
 ====================================
 
-.. class:: AnansiMDStatePCL : public AnansiMDState final
+.. class:: AnansiMDStatePCL final : public AnansiMDState
 
 --------------
 Public Members

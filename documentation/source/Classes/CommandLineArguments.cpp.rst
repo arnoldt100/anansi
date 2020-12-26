@@ -24,7 +24,7 @@ Lifecycle
 
    The default constructor.
 
-.. function:: CommandLineArguments( const int argc, char const *const *const & argv)
+.. function:: CommandLineArguments( int const argc, char const * const * const & argv)
     
     The preferred constructor.
 

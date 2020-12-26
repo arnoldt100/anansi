@@ -5,7 +5,7 @@ Notational Conventions
 .. toctree::
    :maxdepth: 1
 
-We shall adopt the conventions used in the book Learning the bash Shell [NR1998]_:
+We shall adopt the following notational convention :
 
     - The *italic* font is used for filenames, directories, non-unix shell commands, and shell
       functions.

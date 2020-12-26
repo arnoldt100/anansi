@@ -31,7 +31,7 @@ AnansiMDStateISE.h Global Variables
 AnansiMDStateISE Class Documentation
 ====================================
 
-.. class:: AnansiMDStateISE : public AnansiMDState final
+.. class:: AnansiMDStateISE final : public AnansiMDState
 
 --------------
 Public Members
