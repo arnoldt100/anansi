@@ -13,6 +13,7 @@ Welcome to Anansi's class documentation!
    Classes/AnansiMDStateISE.cpp.rst
    Classes/AnansiMDStatePCL.cpp.rst
    Classes/AnansiMDStateIIC.cpp.rst
+   Classes/AnansiMDStatePS.cpp.rst
    Classes/MolecularDynamicsFactory.cpp.rst
    Classes/SimulationParametersFactory.cpp.rst
    Classes/SimulationParameters.cpp.rst

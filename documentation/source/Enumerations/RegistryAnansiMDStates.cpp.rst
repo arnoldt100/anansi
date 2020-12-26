@@ -2,8 +2,6 @@
 
 .. namespace:: ANANSI
 
-.. |ETYPE| replace:: int
-
 ####################################
 RegistryAnansiMDStates Documentation
 ####################################
@@ -15,7 +13,7 @@ currently 5 states :
 * ProcessingCommandLine
 * InitializingInitialCondition
 * PerfomingSimulation
-* TerminatingSimulationEnvironment |ETYPE|
+* TerminatingSimulationEnvironment
 
 ==========================================
 RegistryAnansiMDStates Class Documentation

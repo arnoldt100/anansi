@@ -1,4 +1,4 @@
-Welcome to Anansi's Emnum documentation!
+Welcome to Anansi's Enum documentation!
 ========================================
 
 .. toctree::
