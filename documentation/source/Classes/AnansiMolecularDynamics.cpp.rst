@@ -30,7 +30,12 @@ No C++ include files
 * #include "CommandLineArguments.h"
 * #include "SimulationParametersFactory.h"
 * #include "MPICommunicatorFactory.h"
-* #include "AnansiMDState.h"
+* #include "AnansiMDStateISE.h"
+* #include "AnansiMDStatePCL.h"
+* #include "AnansiMDStateIIC.h"
+* #include "AnansiMDStatePS.h"
+* #include "AnansiMDStateTSE.h"
+  
 
 ========================================
 AnansiMolecularDynamics Global Variables
@@ -116,9 +121,9 @@ Operators
 Mutators
 ^^^^^^^^
 
-    .. function:: void _doSimulation() override
+    .. function:: void AnansiMolecularDynamics::_doSimulation() override
 
-    .. function:: void _initializeSimulation( int const argc, char const * const * const argv ) override
+    .. function:: void AnansiMolecularDynamics::_initializeSimulation( int const argc, char const * const * const argv ) override
 
         Performs the initialization of the simulation.
         
@@ -127,6 +132,12 @@ Mutators
 
         :param argc const int: The size of the array char* argv[].
         :param argv char const * const * const &: Contains the command line options.
+
+    .. function:: void AnansiMolecularDynamics::_enableCommunication() final override
+        
+    .. function:: void AnansiMolecularDynamics::_setMDState() final override;
+
+        Changes the state of the MD simulation. 
 
 ^^^^^^^^^^^^
 Data Members

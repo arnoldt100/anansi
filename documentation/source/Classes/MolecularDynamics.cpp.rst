@@ -1,5 +1,7 @@
 .. default-domain:: cpp
 
+.. namespace:: ANANSI
+
 ###############################
 MolecularDynamics Documentation
 ###############################
@@ -8,83 +10,173 @@ The base class for the MolecularDynamics classes. This
 class is an abstract base class, and it is not copyable
 or assignable.
 
-.. namespace:: ANANSI
+====================
+Include Header Files
+====================
+
+**C++ Include Files**
+
+* #include <iostream>
+
+**External Library Files**
+
+* #include <boost/program_options.hpp>
+
+**Project Include Files**
+
+* #include "AnansiMDState.h"
+
+====================================
+MolecularDynamics.h Global Variables
+====================================
+
+=====================================
+MolecularDynamics Class Documentation
+=====================================
 
 .. class:: MolecularDynamics
 
-==============
+--------------
 Public Members
-==============
+--------------
 
----------
+^^^^^^^^^
 Lifecycle
----------
+^^^^^^^^^
 
-.. function:: MolecularDynamics::MolecularDynamics()
+    .. function:: MolecularDynamics::MolecularDynamics()
 
-   The default constructor.
+       The default constructor.
 
-.. function:: MolecularDynamics::MolecularDynamics( MolecularDynamics const &other ) = delete
+    .. function:: MolecularDynamics::MolecularDynamics( MolecularDynamics const &other ) = delete
 
-    The copy constructor. This function is deleted.
+        The copy constructor. This function is deleted.
 
-    :param MolecularDynamics const & other: The other object to be copied.
+        :param MolecularDynamics const & other: The other object to be copied.
 
-.. function:: MolecularDynamics::~MolecularDynamics()=0
+    .. function:: MolecularDynamics::~MolecularDynamics()=0
 
-    The destructor. This is a pure virtual destructor.
+        The destructor. This is a pure virtual destructor.
 
----------
-Accessors
----------
+.. ^^^^^^^^^
+.. Accessors
+.. ^^^^^^^^^
+.. 
+..     No public accessors
 
----------
+^^^^^^^^^
 Operators
----------
+^^^^^^^^^
 
-.. function:: MolecularDynamics& MolecularDynamics::operator=(MolecularDynamics const & other) = delete 
+    .. function:: MolecularDynamics& MolecularDynamics::operator=(MolecularDynamics const & other) = delete 
 
-    The assingment operator. This function is deleted.
+        The assingment operator. This function is deleted.
 
---------
+^^^^^^^^
 Mutators
---------
+^^^^^^^^
 
-.. function:: void doSimulation() final
+    .. function:: void MolecularDynamics::doSimulation() 
 
-    Performs the simulation. The function is final and serves as the public
-    interface of the template design pattern. The derived class is to provide 
-    its implementation for performaing the simulation.
+        Performs the simulation. The function is final and serves as the public
+        interface of the template design pattern. The derived class is to provide 
+        its implementation for performaing the simulation.
 
-.. function:: void initializeSimulation( int const argc, char const * const * const & argv ) final
+    .. function:: void MolecularDynamics::enableCommunication()
 
-    Initializes the simulation. The function is final and serves as the public
-    interface of the template design pattern for performing the simulation. The
-    derived class is to provide its implementation for initializing the simulation.
+        Enables MPI execution environment. This function is the public
+        interface of the template design pattern for enabling the MPI  environment. The
+        derived class is to provide the implementation.
 
-    :param int const argc: The size of the array argv.
-    :param char const * const * const &argv: Contains the command line options.
+    .. function:: void MolecularDynamics::disableCommunication()
 
-=================
-Protected Members
-=================
+        Disables MPI execution environment. This function is the public
+        interface of the template design pattern for enabling the MPI  environment. The
+        derived class is to provide the implementation.
 
-===============
+    .. function:: void MolecularDynamics::initializeSimulation( int const argc, char const * const * const & argv ) final
+
+        Initializes the simulation. This function is the public
+        interface of the template design pattern for performing the simulation. The
+        derived class is to provide the implementation for initializing the simulation.
+
+        :param int const argc: The size of the array argv.
+        :param char const * const * const &argv: Contains the command line options.
+
+    .. function:: void MolecularDynamics::setMDState()
+
+        Changes the state of the MD simulation. The derived class is to provide the implementation
+        for initializing the simulation.
+
+
+.. -----------------
+.. Protected Members
+.. -----------------
+.. 
+..     No protected members
+.. 
+.. Commented out. 
+.. ^^^^^^^^^
+.. Lifecycle
+.. ^^^^^^^^^
+..
+.. ^^^^^^^^^
+.. Accessors
+.. ^^^^^^^^^
+.. 
+.. ^^^^^^^^^
+.. Operators
+.. ^^^^^^^^^
+.. 
+.. ^^^^^^^^^
+.. Mutators
+.. ^^^^^^^^^
+.. 
+.. ^^^^^^^^^^^^
+.. Data Members
+.. ^^^^^^^^^^^^
+
+---------------
 Private Members
-===============
+---------------
 
----------
-Accessors
----------
+.. ^^^^^^^^^
+.. Accessors
+.. ^^^^^^^^^
+.. 
+.. ^^^^^^^^^
+.. Operators
+.. ^^^^^^^^^
 
----------
-Operators
----------
-
---------
+^^^^^^^^
 Mutators
---------
+^^^^^^^^
 
-------------
-Data Members
-------------
+    .. function:: virtual void MolecularDynamics::_doSimulation()=0
+
+        Performs the MD simulation. This function must be overriden in the derived class
+        or a compile time error will occur.
+
+    .. function:: virtual void MolecularDynamics::_enableCommunication()=0
+
+        Enables the MPI communication. This function must be overriden in the derived class or a
+        compile time error will occur.
+
+    .. function:: virtual void MolecularDynamics::_disableCommunication()=0
+
+        Disables the MPI communication. This function must be overriden in the derived class or a
+        compile time error will occur.
+
+    .. function:: virtual void MolecularDynamics::_initializeSimulation( int const argc, char const * const * const & argv )=0
+
+        Initializes the simulation to its initial conditions. This function must be overriden in the
+        derived class or a compile time error will occur.
+
+    .. function:: virtual void MolecularDynamics::MolecularDynamics::_setMDState()=0
+
+        Changes the state of the MD simulation. This function must be overriden in the derived class
+        or a compile time error will occur.
+
+.. ^^^^^^^^^^^^
+.. Data Members
+.. ^^^^^^^^^^^^

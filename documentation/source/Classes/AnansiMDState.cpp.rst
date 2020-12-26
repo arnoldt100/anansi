@@ -46,7 +46,8 @@ Include Header Files
 
 **C++ Include Files**
 
-*  #include <utility>
+* #include <utility>
+* #include <iostream>
 
 **External Library Files**
 
@@ -108,13 +109,17 @@ Operators
 Mutators
 ^^^^^^^^
 
+    .. function:: void AnansiMDState::initializeSimulationEnvironment()
+
+        Initializes the simulation environment.
+
 -----------------
 Protected Members
 -----------------
 
     No protected members
 
-.. Commented out. 
+.. Commented out.
 .. ^^^^^^^^^
 .. Lifecycle
 .. ^^^^^^^^^
@@ -122,15 +127,15 @@ Protected Members
 .. ^^^^^^^^^
 .. Accessors
 .. ^^^^^^^^^
-.. 
+..
 .. ^^^^^^^^^
 .. Operators
 .. ^^^^^^^^^
-.. 
+..
 .. ^^^^^^^^^
 .. Mutators
 .. ^^^^^^^^^
-.. 
+..
 .. ^^^^^^^^^^^^
 .. Data Members
 .. ^^^^^^^^^^^^
@@ -153,11 +158,18 @@ Private Members
 .. ^^^^^^^^^
 .. Operators
 .. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Mutators
-.. ^^^^^^^^^
-.. 
+
+^^^^^^^^
+Mutators
+^^^^^^^^
+
+    .. function virtual void _initializeSimulationEnvironment()
+
+        This function should be overriden for by all valid MD states. If not
+        overriden, then this base method is called and a error is thrown.
+        Curremtly only the MD state AnansiMDStateISE should override this
+        method.
+
 .. ^^^^^^^^^^^^
 .. Data Members
 .. ^^^^^^^^^^^^

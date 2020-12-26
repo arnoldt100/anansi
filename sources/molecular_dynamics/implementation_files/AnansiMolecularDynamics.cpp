@@ -86,6 +86,14 @@ AnansiMolecularDynamics::_initializeSimulation(int const argc, char const *const
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
     return;
 }
+
+void
+AnansiMolecularDynamics::_setMDState()
+{
+    std::cout << "State transition occurred." << std::endl;
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 

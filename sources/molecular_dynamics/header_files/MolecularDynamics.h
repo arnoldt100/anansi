@@ -6,8 +6,10 @@
  */
 
 // System includes
+#include <iostream>
 
 // Local incudes
+#include "AnansiMDState.h"
 
 
 #ifndef  MolecularDynamics_INC
@@ -39,6 +41,11 @@ class MolecularDynamics
 
         void initializeSimulation( int const argc, char const *const *const & argv );
 
+        void setMDState()
+        {
+            this->_setMDState();
+        }
+
         /* ====================  OPERATORS     ======================================= */
 
         MolecularDynamics&                                                 
@@ -60,6 +67,8 @@ class MolecularDynamics
         virtual void _disableCommunication()=0;
 
         virtual void _initializeSimulation( int const argc, char const *const *const & argv )=0;
+
+        virtual void _setMDState()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

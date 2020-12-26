@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -31,6 +32,10 @@ namespace ANANSI
             /* ====================  ACCESSORS     ======================================= */
 
             /* ====================  MUTATORS      ======================================= */
+            void initializeSimulationEnvironment()
+            {
+                this->_initializeSimulationEnvironment();
+            }
 
             /* ====================  OPERATORS     ======================================= */
 
@@ -45,6 +50,11 @@ namespace ANANSI
 
         private:
             /* ====================  METHODS       ======================================= */
+            virtual void _initializeSimulationEnvironment()
+            {
+                std::cout << "Error: This state can't initialize the simulation Environment.";
+                return;
+            }
 
             /* ====================  DATA MEMBERS  ======================================= */
 

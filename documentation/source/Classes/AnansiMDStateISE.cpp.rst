@@ -15,7 +15,9 @@ Include Header Files
 ====================
 
 **C++ Include Files**
-#include <utility>
+
+* #include <utility>
+* #include <iostream>
 
 **External Library Files**
 
@@ -58,12 +60,6 @@ Lifecycle
         The destructor.
 
 ^^^^^^^^^
-Accessors
-^^^^^^^^^
-
-    No public accessors
-
-^^^^^^^^^
 Operators
 ^^^^^^^^^
 
@@ -74,10 +70,6 @@ Operators
     .. function:: AnansiMDStateISE& AnansiMDStateISE::operator=( AnansiMDStateISE && other)
 
         The assignment-move operator.
-
-^^^^^^^^
-Mutators
-^^^^^^^^
 
 -----------------
 Protected Members
@@ -110,8 +102,6 @@ Protected Members
 Private Members
 ---------------
 
-    No private members
-
 .. Commented out. 
 .. ^^^^^^^^^
 .. Lifecycle
@@ -124,11 +114,16 @@ Private Members
 .. ^^^^^^^^^
 .. Operators
 .. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Mutators
-.. ^^^^^^^^^
-.. 
+
+^^^^^^^^
+Mutators
+^^^^^^^^
+
+    .. function:: void AnansiMDStateISE::_initializeSimulationEnvironment() final override
+
+        This function initializes the MD simulation environment. If
+        successful, the MD state is changed to AnansiMDStateIIC.
+
 .. ^^^^^^^^^^^^
 .. Data Members
 .. ^^^^^^^^^^^^

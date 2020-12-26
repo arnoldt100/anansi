@@ -17,7 +17,11 @@
 #include "CommandLineArguments.h"
 #include "SimulationParametersFactory.h"
 #include "MPICommunicatorFactory.h"
-#include "AnansiMDState.h"
+#include "AnansiMDStateISE.h"
+#include "AnansiMDStatePCL.h"
+#include "AnansiMDStateIIC.h"
+#include "AnansiMDStatePS.h"
+#include "AnansiMDStateTSE.h"
 
 namespace ANANSI {
 
@@ -69,6 +73,8 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         void 
         _initializeSimulation(int const argc, char const *const *const & argv ) final override;
+
+        void _setMDState() final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;
