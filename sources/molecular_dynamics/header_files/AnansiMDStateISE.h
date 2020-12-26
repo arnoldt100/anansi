@@ -1,9 +1,10 @@
-#ifndef  AnansiMDState_INC
-#define  AnansiMDState_INC
+#ifndef  AnansiMDStateISE_INC
+#define  AnansiMDStateISE_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -12,21 +13,23 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiMDState.h"
 
 namespace ANANSI
 {
-    class AnansiMDState
+
+    class AnansiMDStateISE final : public AnansiMDState 
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
 
-            AnansiMDState ();   /* constructor      */
+            AnansiMDStateISE ();  /* constructor      */
 
-            AnansiMDState (const AnansiMDState & other);   /* copy constructor */
+            AnansiMDStateISE (AnansiMDStateISE const & other);   /* copy constructor */
 
-            AnansiMDState (AnansiMDState && other);   /* copy-move constructor */
+            AnansiMDStateISE (AnansiMDStateISE && other);   /* copy-move constructor */
 
-            virtual ~AnansiMDState ();  /* destructor */
+            virtual ~AnansiMDStateISE ();  /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
 
@@ -34,9 +37,9 @@ namespace ANANSI
 
             /* ====================  OPERATORS     ======================================= */
 
-            AnansiMDState& operator=( const AnansiMDState &other ); /* assignment operator */
+            AnansiMDStateISE& operator= ( const AnansiMDStateISE &other ); /* assignment operator */
 
-            AnansiMDState& operator=( AnansiMDState && other ); /* assignment-move operator */
+            AnansiMDStateISE& operator= ( AnansiMDStateISE && other ); /* assignment-move operator */
 
         protected:
             /* ====================  METHODS       ======================================= */
@@ -48,10 +51,9 @@ namespace ANANSI
 
             /* ====================  DATA MEMBERS  ======================================= */
 
-    }; /* -----  end of class AnansiMDState  ----- */
+    }; /* -----  end of class AnansiMDStateISE  ----- */
 
 
 }; /* namespace ANANSI */
 
-
-#endif   /* ----- #ifndef AnansiMDState_INC  ----- */
+#endif   /* ----- #ifndef AnansiMDStateISE_INC  ----- */

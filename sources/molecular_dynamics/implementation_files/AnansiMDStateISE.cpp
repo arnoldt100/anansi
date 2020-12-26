@@ -1,13 +1,6 @@
-/*
- * __filename__.cpp
- *
- *  Created on: __Date__
- *      Authors: __Author__
- */
+#include "AnansiMDStateISE.h"
 
-#include "__filename__.h"
-
-namespace __NAMESPACE__ {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -15,21 +8,35 @@ namespace __NAMESPACE__ {
 
 //============================= LIFECYCLE ====================================
 
-__classname__::__classname__()
+AnansiMDStateISE::AnansiMDStateISE() :
+    AnansiMDState()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
-__classname__::__classname__( __classname__ && other)
+AnansiMDStateISE::AnansiMDStateISE( AnansiMDStateISE const & other) :
+    AnansiMDState(other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
-}		/* -----  end of method __classname__::__classname__  ----- */
+}		/* -----  end of method AnansiMDStateISE::AnansiMDStateISE  ----- */
 
-
-__classname__::~__classname__()
+AnansiMDStateISE::AnansiMDStateISE( AnansiMDStateISE && other) :
+    AnansiMDState(std::move(other))
 {
-	// TODO Auto-generated destructor stub
+    if (this != &other)
+    {
+
+    }
+    return;
+}		/* -----  end of method AnansiMDStateISE::AnansiMDStateISE  ----- */
+
+
+AnansiMDStateISE::~AnansiMDStateISE()
+{
     return;
 }
 
@@ -39,20 +46,20 @@ __classname__::~__classname__()
 
 //============================= OPERATORS ====================================
 
-__classname__& __classname__::operator= ( const __classname__ &other )
+AnansiMDStateISE& AnansiMDStateISE::operator=( const AnansiMDStateISE & other )
 {
     if (this != &other)
     {
-
+        AnansiMDState::operator=(other);
     }
     return *this;
 } /* assignment operator */
 
-__classname__& __classname__::operator= ( __classname__ && other )
+AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 {
     if (this != &other)
     {
-
+        AnansiMDState::operator=(std::move(other));
     }
     return *this;
 } /* assignment-move operator */
@@ -82,4 +89,4 @@ __classname__& __classname__::operator= ( __classname__ && other )
 //============================= OPERATORS ====================================
 
 
-} /* namespace __NAMESPACE__ */
+} /* namespace ANANSI */
