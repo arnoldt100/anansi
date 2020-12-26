@@ -41,19 +41,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: AnansiMDStateIIC()
+    .. function:: AnansiMDState::IICAnansiMDStateIIC()
 
        The default constructor.
 
-    .. function:: AnansiMDStateIIC( const AnansiMDStateIIC &other )
+    .. function:: AnansiMDState::AnansiMDStateIIC( const AnansiMDStateIIC &other )
 
         The copy constructor.
 
-    .. function:: AnansiMDStateIIC(AnansiMDStateIIC && other) 
+    .. function:: AnansiMDState::AnansiMDStateIIC(AnansiMDStateIIC && other) 
 
         The copy-move constructor.
 
-    .. function:: ~AnansiMDStateIIC()=0
+    .. function:: AnansiMDState::~AnansiMDStateIIC()=0
 
         The destructor.
 

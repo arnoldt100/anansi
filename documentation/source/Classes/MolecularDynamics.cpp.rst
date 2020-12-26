@@ -20,17 +20,17 @@ Public Members
 Lifecycle
 ---------
 
-.. function:: MolecularDynamics()
+.. function:: MolecularDynamics::MolecularDynamics()
 
    The default constructor.
 
-.. function:: MolecularDynamics( MolecularDynamics const &other ) = delete
+.. function:: MolecularDynamics::MolecularDynamics( MolecularDynamics const &other ) = delete
 
     The copy constructor. This function is deleted.
 
     :param MolecularDynamics const & other: The other object to be copied.
 
-.. function:: ~MolecularDynamics()=0
+.. function:: MolecularDynamics::~MolecularDynamics()=0
 
     The destructor. This is a pure virtual destructor.
 
@@ -42,7 +42,7 @@ Accessors
 Operators
 ---------
 
-.. function:: MolecularDynamics& operator=(MolecularDynamics const & other) = delete 
+.. function:: MolecularDynamics& MolecularDynamics::operator=(MolecularDynamics const & other) = delete 
 
     The assingment operator. This function is deleted.
 

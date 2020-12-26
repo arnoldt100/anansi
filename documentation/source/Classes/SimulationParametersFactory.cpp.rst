@@ -18,17 +18,17 @@ Public Members
 Lifecycle
 ---------
 
-.. function:: SimulationParametersFactory()
+.. function:: SimulationParametersFactory::SimulationParametersFactory()
 
    The default constructor.
 
-.. function:: SimulationParametersFactory( SimulationParametersFactory const & other )
+.. function:: SimulationParametersFactory::SimulationParametersFactory( SimulationParametersFactory const & other )
 
     The copy constructor.
     
     :param SimulationParametersFactory const & other: The other object to be copied.
 
-.. function:: ~SimulationParametersFactory()
+.. function:: SimulationParametersFactory::~SimulationParametersFactory()
 
     The destructor.
 
@@ -40,7 +40,7 @@ Accessors
 Operators
 ---------
 
-.. function:: SimulationParametersFactory& operator=( const SimulationParametersFactory &other )
+.. function:: SimulationParametersFactory& SimulationParametersFactory::operator=( const SimulationParametersFactory &other )
 
     The assignment operator.
 

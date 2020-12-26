@@ -18,17 +18,17 @@ Public Members
 Lifecycle
 ---------
 
-.. function:: SimulationParameters()
+.. function:: SimulationParameters::SimulationParameters()
 
    The default constructor.
 
-.. function:: SimulationParameters( SimulationParameters const & other )
+.. function:: SimulationParameters::SimulationParameters( SimulationParameters const & other )
 
     The copy constructor.
 
     :param  SimulationParameters const & other: The object to copy.
 
-.. function:: ~SimulationParameters()
+.. function:: SimulationParameters::~SimulationParameters()
 
     The destructor.
 
@@ -68,7 +68,7 @@ Mutators
 Static
 ------
 
-.. function:: static _parseProgramOptionsFromCommandLine()
+.. function:: static SimulationParameters::_parseProgramOptionsFromCommandLine()
 
     Parses the program options from the command line.
 

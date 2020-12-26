@@ -50,19 +50,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: AnansiMolecularDynamics()
+    .. function:: AnansiMolecularDynamics::AnansiMolecularDynamics()
 
        The default constructor.
 
-    .. function:: AnansiMolecularDynamics( AnansiMolecularDynamics const  &other )=delete
+    .. function:: AnansiMolecularDynamics::AnansiMolecularDynamics( AnansiMolecularDynamics const  &other )=delete
 
         The copy constructor. It is deleted.
 
-    .. function:: AnansiMolecularDynamics(AnansiMolecularDynamics && other)=delete 
+    .. function:: AnansiMolecularDynamics::AnansiMolecularDynamics(AnansiMolecularDynamics && other)=delete 
 
         The copy-move constructor is deleted
 
-    .. function:: ~AnansiMolecularDynamics()=0
+    .. function:: AnansiMolecularDynamics::~AnansiMolecularDynamics()=0
 
         The destructor.
 
@@ -76,11 +76,11 @@ Accessors
 Operators
 ^^^^^^^^^
 
-    .. function:: AnansiMolecularDynamics& operator=(AnansiMolecularDynamics const & other) = delete
+    .. function:: AnansiMolecularDynamics& AnansiMolecularDynamics::operator=(AnansiMolecularDynamics const & other) = delete
         
         The assignment operator. It is deleted.
 
-    .. function:: AnansiMolecularDynamics& operator=( AnansiMolecularDynamics && other)
+    .. function:: AnansiMolecularDynamics& AnansiMolecularDynamics::operator=( AnansiMolecularDynamics && other)
 
         The assignment-move operator is deleted.
 

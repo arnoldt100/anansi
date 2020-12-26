@@ -41,19 +41,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: AnansiMDStateTSE()
+    .. function:: AnansiMDStateTSE::AnansiMDStateTSE()
 
        The default constructor.
 
-    .. function:: AnansiMDStateTSE( const AnansiMDStateTSE &other )
+    .. function:: AnansiMDStateTSE::AnansiMDStateTSE( const AnansiMDStateTSE &other )
 
         The copy constructor.
 
-    .. function:: AnansiMDStateTSE(AnansiMDStateTSE && other) 
+    .. function:: AnansiMDStateTSE::AnansiMDStateTSE(AnansiMDStateTSE && other) 
 
         The copy-move constructor.
 
-    .. function:: ~AnansiMDStateTSE()=0
+    .. function:: AnansiMDStateTSE::~AnansiMDStateTSE()=0
 
         The destructor.
 

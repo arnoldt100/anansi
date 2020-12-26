@@ -65,7 +65,7 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: MPIEnvironment(int argc, char** argv)
+    .. function:: MPIEnvironment::MPIEnvironment(int argc, char ** argv)
 
         The constructor.
 
@@ -73,15 +73,15 @@ Lifecycle
         :param char** argv: The command line arguments.
         :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
 
-    .. function:: MPIEnvironment(const MPIEnvironment &other)=delete
+    .. function:: MPIEnvironment::MPIEnvironmentMPIEnvironment(const MPIEnvironment &other)=delete
 
         The copy constructor is deleted.
 
-    .. function:: MPIEnvironment (MPIEnvironment && other)=delete
+    .. function:: MPIEnvironment::MPIEnvironmentMPIEnvironment (MPIEnvironment && other)=delete
 
         The copy-move constructor is deleted.
 
-    .. function:: ~MPIEnvironment()=0
+    .. function:: MPIEnvironment::MPIEnvironment~MPIEnvironment()=0
 
         The destructor.
 
@@ -95,11 +95,11 @@ Accessors
 Operators
 ^^^^^^^^^
 
-    .. function:: MPIEnvironment& operator=(const MPIEnvironment &other)=delete
+    .. function:: MPIEnvironment& MPIEnvironment::operator=(const MPIEnvironment &other)=delete
 
         The copy assignment operator is deleted.
 
-    .. function:: MPIEnvironment& operator=(MPIEnvironment &&other)=delete;
+    .. function:: MPIEnvironment& MPIEnvironment::operator=(MPIEnvironment &&other)=delete;
 
         The assignment-move operator is deleted.
 

@@ -20,15 +20,15 @@ Public Members
 Life Cycle
 ----------
 
-.. function:: MolecularDynamicsFactory()
+.. function:: MolecularDynamicsFactory::MolecularDynamicsFactory()
 
    The default constructor.
 
-.. function:: MolecularDynamicsFactory( const MolecularDynamicsFactory &other )=delete
+.. function:: MolecularDynamicsFactory::MolecularDynamicsFactory( const MolecularDynamicsFactory &other )=delete
 
     The copy constructor. The copy constructor is a deleted.
 
-.. function:: virtual ~MolecularDynamicsFactory()=0
+.. function:: virtual MolecularDynamicsFactory::~MolecularDynamicsFactory()=0
 
     The destructor. The destructor is a pure virtual destructor.
 
@@ -36,7 +36,7 @@ Life Cycle
 Accessors
 ---------
 
-.. function:: MolecularDynamics* create() final 
+.. function:: MolecularDynamics* MolecularDynamicsFactory::create() final 
 
     This function is final and serves as the public interface to create a
     MolecularDynamics object. It creates a MolecularDynamics class by means
@@ -46,7 +46,7 @@ Accessors
 Operators
 ---------
 
-.. function:: MolecularDynamicsFactory& operator=( const MolecularDynamicsFactory &other )=delete
+.. function:: MolecularDynamicsFactory& MolecularDynamicsFactory::operator=( const MolecularDynamicsFactory &other )=delete
 
     The assignment operator. The function is deleted.
 
@@ -66,7 +66,7 @@ Private Members
 Accessors
 ---------
 
-.. function:: virtual MolecularDynamics* _create()=0
+.. function:: virtual MolecularDynamics* MolecularDynamicsFactory::_create()=0
 
     This function is overriden by the derived class. The derived class is to 
     implement its implementation details of creating the MolecularDynamics

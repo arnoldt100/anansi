@@ -20,24 +20,24 @@ Public Members
 Lifecycle
 ---------
 
-.. function:: CommandLineArguments()
+.. function:: CommandLineArguments::CommandLineArguments()
 
    The default constructor.
 
-.. function:: CommandLineArguments( int const argc, char const * const * const & argv)
+.. function:: CommandLineArguments::CommandLineArguments( int const argc, char const * const * const & argv)
     
     The preferred constructor.
 
     :param int const argc: The size of the array char* argv[].
-    :param char const *const *const & argv: Contains the command line options.
+    :param char const * const * const & argv: Contains the command line options.
     
-.. function:: CommandLineArguments( const CommandLineArguments &other )
+.. function:: CommandLineArguments::CommandLineArguments( const CommandLineArguments &other )
 
     The copy constructor.
     
     :param CommandLineArguments other: The other object to be copied.
 
-.. function:: ~CommandLineArguments()
+.. function:: CommandLineArguments::~CommandLineArguments()
 
     The destructor.
 
@@ -49,7 +49,7 @@ Accessors
 Operators
 ---------
 
-.. function:: CommandLineArguments& operator=( CommandLineArguments const &other )
+.. function:: CommandLineArguments& CommandLineArguments::operator=( CommandLineArguments const &other )
 
     The assignment operator.
 

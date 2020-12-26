@@ -40,19 +40,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: AnansiMDStatePS()
+    .. function:: AnansiMDStatePS::AnansiMDStatePS()
 
        The default constructor.
 
-    .. function:: AnansiMDStatePS( const AnansiMDStatePS &other )
+    .. function:: AnansiMDStatePS::AnansiMDStatePS( const AnansiMDStatePS &other )
 
         The copy constructor.
 
-    .. function:: AnansiMDStatePS(AnansiMDStatePS && other) 
+    .. function:: AnansiMDStatePS::AnansiMDStatePS(AnansiMDStatePS && other) 
 
         The copy-move constructor.
 
-    .. function:: ~AnansiMDStatePS()=0
+    .. function:: AnansiMDStatePS::~AnansiMDStatePS()=0
 
         The destructor.
 
