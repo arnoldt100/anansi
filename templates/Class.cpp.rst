@@ -9,22 +9,36 @@ __Class__ Documentation
 The base class for the molecular dynamics factory classes. This
 class is an abstract base class. 
 
-====================
-Include Header Files
-====================
+======================
+Interface Header Files
+======================
 
 **C++ Include Files**
 
 * #include <dummy1>
-* #include <dummy2>
 
 **External Library Files**
 
 * #include "dummy3"
 
-**__Project__ Include Files**
+**Project Include Files**
 
-* #include "dummy4"
+* #include "dummy5"
+
+==========================
+Implementaion Header Files
+==========================
+
+**C++ Include Files**
+
+* #include <dummy1>
+
+**External Library Files**
+
+* #include "dummy3"
+
+**Project Include Files**
+
 * #include "dummy5"
 
 ============================

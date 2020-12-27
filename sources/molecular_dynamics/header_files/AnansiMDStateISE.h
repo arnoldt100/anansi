@@ -4,8 +4,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
-#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -50,11 +48,7 @@ namespace ANANSI
         private:
 
             /* ====================  MUTATORS      ======================================= */
-            void _initializeSimulationEnvironment() final override
-            {
-                std::cout << "This state initialized the simulation Environment.";
-                return;
-            }
+            void _initializeSimulationEnvironment() final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

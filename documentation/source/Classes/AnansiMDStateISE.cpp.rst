@@ -16,14 +16,15 @@ Include Header Files
 
 **C++ Include Files**
 
+**External Library Files**
+
+**Interface Include Files**
+* #include "AnansiMDState.h"
+
+**Implementation Include Files**
 * #include <utility>
 * #include <iostream>
 
-**External Library Files**
-
-**Project Include Files**
-
-* #include "AnansiMDState.h"
 
 ===================================
 AnansiMDStateISE.h Global Variables
