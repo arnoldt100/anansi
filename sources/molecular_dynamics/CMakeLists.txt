@@ -145,6 +145,7 @@ target_include_directories( ${my_anansi_md_library}
 target_link_libraries(${my_anansi_md_library}
                       memory_management 
                       mpi_communicator
+                      string_utilities 
                       simulation_parameters
                       command_line_arguments
                       counterclass
@@ -184,7 +185,6 @@ target_link_libraries(${my_main_target_binary}
                       simulation_parameters
                       mpi_communicator
                       memory_management 
-                      string_utilities 
                       counterclass
                       ${Boost_LIBRARIES} )
 
