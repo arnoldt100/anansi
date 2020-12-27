@@ -16,6 +16,9 @@
 
 #include "convert_commandline_to_2d_char_array.h"
 #include "Array1d.hpp"
+#include <sstream>
+#include <vector>
+#include <cstring>
 
 void STRING_UTILITIES::convert_commandline_to_2d_char_array(
         std::string const & my_string,
