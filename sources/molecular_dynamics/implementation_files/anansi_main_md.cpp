@@ -2,10 +2,9 @@
 
 int main( int argc, char** argv )
 {
-
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // Initialize the MPI environment.                                 @
+    // Initialize the the sumulation execution environment.            @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     COMMUNICATOR::MPIEnvironment* mpi_environment_ptr = nullptr;
@@ -34,6 +33,13 @@ int main( int argc, char** argv )
     ANANSI::MolecularDynamicsFactory* my_md_factory_ptr = 
         new ANANSI::AnansiMolecularDynamicsFactory;
     ANANSI::MolecularDynamics* md_ptr = my_md_factory_ptr->create();
+
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //                                                                 @
+    // Initialize the the simulation execution environment.            @
+    //                                                                 @
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    md_ptr->initializeSimulationEnvironment(argc,argv);
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @

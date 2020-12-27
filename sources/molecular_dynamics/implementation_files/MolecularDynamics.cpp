@@ -61,6 +61,12 @@ MolecularDynamics::disableCommunication()
     return ;
 }		/* -----  end of method MolecularDynamics::disableCommunication  ----- */
 
+void MolecularDynamics::initializeSimulationEnvironment( int const argc, char const *const *const & argv )
+{
+
+    return;
+}
+
 void
 MolecularDynamics::initializeSimulation(int const argc, char const *const *const & argv )
 {

@@ -10,6 +10,7 @@
 
 // System includes
 #include <boost/program_options.hpp>
+#include <memory>
 
 // Local includes
 #include "Pointer.hpp"
@@ -73,6 +74,9 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         void 
         _initializeSimulation(int const argc, char const *const *const & argv ) final override;
+
+        void 
+        _initializeSimulationEnvironment(int const argc, char const *const *const & argv ) final override;
 
         void _setMDState() final override;
 

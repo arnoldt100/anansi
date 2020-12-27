@@ -41,6 +41,8 @@ class MolecularDynamics
 
         void initializeSimulation( int const argc, char const *const *const & argv );
 
+        void initializeSimulationEnvironment( int const argc, char const *const *const & argv );
+
         void setMDState()
         {
             this->_setMDState();
@@ -67,6 +69,8 @@ class MolecularDynamics
         virtual void _disableCommunication()=0;
 
         virtual void _initializeSimulation( int const argc, char const *const *const & argv )=0;
+
+        virtual void _initializeSimulationEnvironment( int const argc, char const *const *const & argv )=0;
 
         virtual void _setMDState()=0;
 

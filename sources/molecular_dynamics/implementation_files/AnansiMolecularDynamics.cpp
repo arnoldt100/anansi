@@ -87,6 +87,19 @@ AnansiMolecularDynamics::_initializeSimulation(int const argc, char const *const
     return;
 }
 
+
+void
+AnansiMolecularDynamics::_initializeSimulationEnvironment(int const argc, char const *const *const & argv )
+{
+    
+    // After successfully initializing the environment, we change the MD state to
+    // AnansiMDStateIIC.
+    std::unique_ptr<AnansiMDState> simulation_state = std::make_unique<AnansiMDStateIIC>(); 
+    this->setMDState();
+
+    return;
+}
+
 void
 AnansiMolecularDynamics::_setMDState()
 {

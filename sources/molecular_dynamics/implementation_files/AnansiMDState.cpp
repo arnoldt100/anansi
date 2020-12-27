@@ -13,8 +13,21 @@ AnansiMDState::AnansiMDState()
     return;
 } /* -----  end of method AnansiMDState::AnansiMDState  ----- */
 
+AnansiMDState::AnansiMDState( AnansiMDState const & other)
+{
+    if (this != &other)
+    {
+
+    }
+    return;
+} /* -----  end of method AnansiMDState::AnansiMDState  ----- */
+
 AnansiMDState::AnansiMDState( AnansiMDState && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 } /* -----  end of method AnansiMDState::AnansiMDState  ----- */
 

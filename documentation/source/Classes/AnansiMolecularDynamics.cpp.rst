@@ -17,7 +17,7 @@ Include Header Files
 
 **C++ Include Files**
 
-No C++ include files
+* #include <memory>
 
 **External Library Files**
 
@@ -123,12 +123,12 @@ Mutators
 
     .. function:: void AnansiMolecularDynamics::_doSimulation() override
 
-    .. function:: void AnansiMolecularDynamics::_initializeSimulation( int const argc, char const * const * const argv ) override
+    .. function:: void AnansiMolecularDynamics::_initializeSimulationEnvironmnet( int const argc, char const * const * const argv ) override
 
-        Performs the initialization of the simulation.
-        
-        Some key functionality initialized are the following:
-        A duplicate communicator of the MPI_WORLD_COMMUNICATOR.
+        Performs the initialization of the simulation execution environment.
+       
+        The MPI environment is initiated. A duplicate communicator of the MPI_WORLD_COMMUNICATOR
+        is made.
 
         :param argc const int: The size of the array char* argv[].
         :param argv char const * const * const &: Contains the command line options.

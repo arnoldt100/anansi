@@ -94,6 +94,12 @@ Mutators
         interface of the template design pattern for enabling the MPI  environment. The
         derived class is to provide the implementation.
 
+    .. function:: void MolecularDynamics::initializeSimulationEnvironmnet( int const argc, char const * const * const & argv ) final
+
+        Initializes the simulation execution environmnet. This function is the public
+        interface of the template design pattern for performing the simulation. The
+        derived class is to provide the implementation.
+
     .. function:: void MolecularDynamics::initializeSimulation( int const argc, char const * const * const & argv ) final
 
         Initializes the simulation. This function is the public
@@ -166,6 +172,11 @@ Mutators
 
         Disables the MPI communication. This function must be overriden in the derived class or a
         compile time error will occur.
+
+    .. function:: virtual void MolecularDynamics::_initializeSimulationEnvironment( int const argc, char const * const * const & argv )=0
+
+        Initializes the simulation execution environment. This function must be overriden in the
+        derived class or a compile time error will occur.
 
     .. function:: virtual void MolecularDynamics::_initializeSimulation( int const argc, char const * const * const & argv )=0
 
