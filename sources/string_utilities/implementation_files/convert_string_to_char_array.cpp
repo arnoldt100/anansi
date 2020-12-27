@@ -1,4 +1,7 @@
 #include "convert_string_to_char_array.h"
+#include "Array1dChar.hpp"
+#include "PointerInitializationTraits.hpp"
+#include "ExceptionLengthOfCharPointerIsTooSmall.h"
 
 char* convert_string_char_array(std::string const & aString, std::size_t const & length)
 {
