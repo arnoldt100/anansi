@@ -10,6 +10,7 @@
 /*==================================================================================*/
 
 #include "convert_sequence_of_chars_to_vector_string.h"
+#include <algorithm>
 
 
 namespace STRING_UTILITIES 
