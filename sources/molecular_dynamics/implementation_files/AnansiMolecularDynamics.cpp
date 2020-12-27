@@ -3,6 +3,14 @@
  */
 
 #include "AnansiMolecularDynamics.h"
+#include "AnansiMDStateIIC.h"
+#include "AnansiMDStateISE.h"
+#include "AnansiMDStatePCL.h"
+#include "AnansiMDStatePS.h"
+#include "AnansiMDStateTSE.h"
+#include "Pointer.hpp"
+#include "SimulationParametersFactory.h"
+#include "MPICommunicatorFactory.h"
 
 namespace ANANSI {
 

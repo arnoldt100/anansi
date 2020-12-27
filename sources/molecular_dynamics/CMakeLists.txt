@@ -136,16 +136,15 @@ target_sources(${my_anansi_md_library}
 target_include_directories( ${my_anansi_md_library} 
                             PUBLIC header_files
                             PRIVATE ${Boost_INCLUDE_DIR}
-                            PUBLIC ${my_cc_include} )
+                            PRIVATE ${my_cc_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${my_anansi_md_library}
-                      memory_management 
+                      string_utilities
                       mpi_communicator
-                      string_utilities 
                       simulation_parameters
                       command_line_arguments
                       counterclass
@@ -172,6 +171,9 @@ install( TARGETS ${my_anansi_md_library}
 add_executable( ${my_main_target_binary}
                 "" )
 
+add_dependencies(${my_main_target_binary} 
+                 ${my_anansi_md_library})
+
 target_sources(${my_main_target_binary}
                PRIVATE ${anansi_main_md_public_implementation} ${anansi_main_md_public_headers} )
 
@@ -184,7 +186,6 @@ target_link_libraries(${my_main_target_binary}
                       command_line_arguments
                       simulation_parameters
                       mpi_communicator
-                      memory_management 
                       counterclass
                       ${Boost_LIBRARIES} )
 
@@ -195,7 +196,6 @@ set_target_properties(${my_main_target_binary} PROPERTIES
 install( TARGETS ${my_main_target_binary} 
          RUNTIME DESTINATION ${anansi_install_bin_directory} )
                      
-
 
 #-----------------------------------------------------
 # Add the unit tests.                                -

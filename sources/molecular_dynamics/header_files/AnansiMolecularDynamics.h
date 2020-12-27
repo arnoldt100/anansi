@@ -1,10 +1,3 @@
-/*
- * =====================================================================================
- *        Class:  AnansiMolecularDynamics
- *  Description:  
- * =====================================================================================
- */
-
 #ifndef  anansi_molecular_dynamics_INC
 #define  anansi_molecular_dynamics_INC
 
@@ -12,18 +5,12 @@
 #include <boost/program_options.hpp>
 #include <memory>
 
-// Local includes
+// Package includes
 #include "MPIEnvironment.h"
-#include "Pointer.hpp"
 #include "MolecularDynamics.h"
 #include "CommandLineArguments.h"
-#include "SimulationParametersFactory.h"
-#include "MPICommunicatorFactory.h"
-#include "AnansiMDStateISE.h"
-#include "AnansiMDStatePCL.h"
-#include "AnansiMDStateIIC.h"
-#include "AnansiMDStatePS.h"
-#include "AnansiMDStateTSE.h"
+#include "SimulationParameters.h"
+#include "Communicator.h"
 
 namespace ANANSI {
 

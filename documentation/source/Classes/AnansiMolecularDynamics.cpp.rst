@@ -23,19 +23,24 @@ Include Header Files
 
 * #include <boost/program_options.hpp>
 
-**Project Include Files**
+**Interface Include Files**
 
-* #include "Pointer.hpp"
+* #include "MPIEnvironment.h"
 * #include "MolecularDynamics.h"
 * #include "CommandLineArguments.h"
-* #include "SimulationParametersFactory.h"
-* #include "MPICommunicatorFactory.h"
+* #include "SimulationParameters.h"
+* #include "Communicator.h"
+  
+**Implementation Include Files**
+
 * #include "AnansiMDStateISE.h"
 * #include "AnansiMDStatePCL.h"
 * #include "AnansiMDStateIIC.h"
 * #include "AnansiMDStatePS.h"
 * #include "AnansiMDStateTSE.h"
-  
+* #include "SimulationParametersFactory.h"
+* #include "MPICommunicatorFactory.h"
+* #include "Pointer.hpp"
 
 ========================================
 AnansiMolecularDynamics Global Variables

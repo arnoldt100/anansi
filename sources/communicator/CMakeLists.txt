@@ -190,8 +190,8 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${my_library_target}
-                       string_utilities 
-                       memory_management
+                       string_utilities
+                       memory_management 
                        counterclass )
 
 #-----------------------------------------------------
