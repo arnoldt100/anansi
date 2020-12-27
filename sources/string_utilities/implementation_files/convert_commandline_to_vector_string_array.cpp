@@ -1,20 +1,5 @@
-/*
- * =====================================================================================
- *
- *       Filename:  convert_commandline_to_vector_string_array.cpp
- *
- *    Description:  
- *
- *        Version:  1.0
- *        Created:  11/10/18 14:58:08
- *
- *         Author:  Arnold Tharrington (), arnoldt@ornl.gov
- *   Organization:  National Center of Computational Sciences
- *
- * =====================================================================================
- */
-
 #include "convert_commandline_to_vector_string_array.h"
+#include <sstream>
 
 namespace STRING_UTILITIES 
 {
