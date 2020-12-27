@@ -142,8 +142,8 @@ target_include_directories(${target}
 # Other dependencies.                                -
 #                                                    -
 #-----------------------------------------------------
-# target_link_libraries(${target} 
-#                       memory_management)
+target_link_libraries(${target} 
+                      memory_management)
 
 
 #-----------------------------------------------------

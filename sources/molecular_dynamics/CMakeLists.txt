@@ -33,6 +33,7 @@
     get_target_property(mm_include_dir memory_management memory_management_include)
     get_target_property(command_line_include_dir command_line_arguments command_line_arguments_include)
     get_target_property(simulation_parameters_include_dir simulation_parameters simulation_parameters_include)
+    get_target_property(my_cc_include counterclass counterclass_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -134,7 +135,8 @@ target_sources(${my_anansi_md_library}
 #-----------------------------------------------------
 target_include_directories( ${my_anansi_md_library} 
                             PUBLIC header_files
-                            PRIVATE ${Boost_INCLUDE_DIR} )
+                            PRIVATE ${Boost_INCLUDE_DIR}
+                            PUBLIC ${my_cc_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -145,6 +147,7 @@ target_link_libraries(${my_anansi_md_library}
                       mpi_communicator
                       simulation_parameters
                       command_line_arguments
+                      counterclass
                       ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
@@ -182,6 +185,7 @@ target_link_libraries(${my_main_target_binary}
                       mpi_communicator
                       memory_management 
                       string_utilities 
+                      counterclass
                       ${Boost_LIBRARIES} )
 
                   

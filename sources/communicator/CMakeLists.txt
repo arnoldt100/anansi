@@ -181,7 +181,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PUBLIC ${my_su_include}
+                           PRIVATE ${my_su_include}
                            PRIVATE ${my_mm_include}
                            PRIVATE ${my_cc_include})
 

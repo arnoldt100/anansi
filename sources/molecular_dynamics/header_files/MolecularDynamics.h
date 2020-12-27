@@ -7,6 +7,7 @@
 
 // System includes
 #include <iostream>
+#include <memory>
 
 // Local incudes
 #include "AnansiMDState.h"
@@ -43,9 +44,9 @@ class MolecularDynamics
 
         void initializeSimulationEnvironment( int const argc, char const *const *const & argv );
 
-        void setMDState()
+        void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
         {
-            this->_setMDState();
+            this->_setMDState(std::move(a_AnansiMDState));
         }
 
         /* ====================  OPERATORS     ======================================= */
@@ -72,7 +73,7 @@ class MolecularDynamics
 
         virtual void _initializeSimulationEnvironment( int const argc, char const *const *const & argv )=0;
 
-        virtual void _setMDState()=0;
+        virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

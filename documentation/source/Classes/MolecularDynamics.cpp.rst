@@ -17,6 +17,7 @@ Include Header Files
 **C++ Include Files**
 
 * #include <iostream>
+* #include <memory>
 
 **External Library Files**
 
@@ -109,11 +110,12 @@ Mutators
         :param int const argc: The size of the array argv.
         :param char const * const * const &argv: Contains the command line options.
 
-    .. function:: void MolecularDynamics::setMDState()
+    .. function:: void MolecularDynamics::setMDState(std::unique_ptr && a_AnansiMDState)
 
         Changes the state of the MD simulation. The derived class is to provide the implementation
         for initializing the simulation.
 
+        :param std::unique_ptr && a_AnansiMDState: The new state to set the simulation to.
 
 .. -----------------
 .. Protected Members
@@ -183,10 +185,12 @@ Mutators
         Initializes the simulation to its initial conditions. This function must be overriden in the
         derived class or a compile time error will occur.
 
-    .. function:: virtual void MolecularDynamics::MolecularDynamics::_setMDState()=0
+    .. function:: virtual void MolecularDynamics::MolecularDynamics::_setMDState(std::unique_ptr && a_AnansiMDState)=0
 
         Changes the state of the MD simulation. This function must be overriden in the derived class
         or a compile time error will occur.
+
+        :param std::unique_ptr && a_AnansiMDState: The state to change the simulation to.
 
 .. ^^^^^^^^^^^^
 .. Data Members

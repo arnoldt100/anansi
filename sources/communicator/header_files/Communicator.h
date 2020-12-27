@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 #include "mpi.h"
 #include <string>
+#include <vector>
 #include <memory>
 #include <map>
 #include <cstring>
@@ -21,9 +22,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Array1d.hpp"
-#include "Array1dChar.hpp"
-#include "convert_sequence_of_chars_to_vector_string.h"
 
 namespace COMMUNICATOR {
 

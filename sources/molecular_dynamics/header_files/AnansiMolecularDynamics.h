@@ -13,6 +13,7 @@
 #include <memory>
 
 // Local includes
+#include "MPIEnvironment.h"
 #include "Pointer.hpp"
 #include "MolecularDynamics.h"
 #include "CommandLineArguments.h"
@@ -78,12 +79,13 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void 
         _initializeSimulationEnvironment(int const argc, char const *const *const & argv ) final override;
 
-        void _setMDState() final override;
+        void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;
         ANANSI::SimulationParameters _simulationParameters;
         std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
+        std::unique_ptr<COMMUNICATOR::MPIEnvironment> _MpiEnvironment;
         std::unique_ptr<ANANSI::AnansiMDState> _mdState;
 
         /* ====================  STATIC        ======================================= */

@@ -15,9 +15,11 @@ namespace ANANSI {
 AnansiMolecularDynamics::AnansiMolecularDynamics() : 
     MolecularDynamics(),
     _commandLineArguments(),
-    _simulationParameters()
+    _simulationParameters(),
+    _MpiWorldCommunicator(),
+    _MpiEnvironment(),
+    _mdState()
 {
-    // Parse the command line and store in a 
     return;
 }
 
@@ -94,16 +96,16 @@ AnansiMolecularDynamics::_initializeSimulationEnvironment(int const argc, char c
     
     // After successfully initializing the environment, we change the MD state to
     // AnansiMDStateIIC.
-    std::unique_ptr<AnansiMDState> simulation_state = std::make_unique<AnansiMDStateIIC>(); 
-    this->setMDState();
+    std::unique_ptr<AnansiMDState> new_simulation_state = std::make_unique<AnansiMDStateIIC>(); 
+    this->setMDState(std::move(new_simulation_state));
 
     return;
 }
 
 void
-AnansiMolecularDynamics::_setMDState()
+AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
 {
-    std::cout << "State transition occurred." << std::endl;
+    this->_mdState = std::move(a_AnansiMDState);
     return;
 }
 
