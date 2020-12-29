@@ -1,3 +1,5 @@
+.. _AnansiMDStatePCL class target:
+
 .. default-domain:: cpp
 
 .. namespace:: ANANSI

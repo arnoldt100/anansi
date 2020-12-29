@@ -1,10 +1,12 @@
+.. _AnansiMDState class target:
+
 .. default-domain:: cpp
 
 .. namespace:: ANANSI
 
-######################################
+###########################
 AnansiMDState Documentation
-######################################
+###########################
 
 This is the State class for the AnansiMolecularDynamics. We are using the
 State design pattern to implement different behavoirs of AnansiMolecularDynamics.

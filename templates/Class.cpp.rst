@@ -1,3 +1,5 @@
+.. ___Class__ source target:
+
 .. default-domain:: cpp
 
 .. namespace:: __Namespace__

@@ -1,3 +1,5 @@
+.. _AnansiMDStateIIC class target:
+
 .. default-domain:: cpp
 
 .. namespace:: ANANSI

@@ -1,3 +1,5 @@
+.. _AnansiMDStateISE class target:
+
 .. default-domain:: cpp
 
 .. namespace:: ANANSI
