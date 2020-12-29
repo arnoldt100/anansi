@@ -19,12 +19,35 @@ Include Header Files
 **External Library Files**
 
 **Interface Include Files**
-* #include "AnansiMDState.h"
 
 **Implementation Include Files**
+
+======================
+Interface Header Files
+======================
+
+**C++ Include Files**
+
+**External Library Files**
+
+**Project Include Files**
+
+* #include "AnansiMDState.h"
+
+==========================
+Implementaion Header Files
+==========================
+
+**C++ Include Files**
+
 * #include <utility>
 * #include <iostream>
 
+**External Library Files**
+
+**Project Include Files**
+
+* #include "AnansiMDStateISE.h"
 
 ===================================
 AnansiMDStateISE.h Global Variables
