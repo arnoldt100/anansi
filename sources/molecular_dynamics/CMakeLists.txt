@@ -3,13 +3,14 @@
 # CMake preamble section.                                         @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    include( cmake_macros_and_functions/project_properties.cmake )
 
     #-----------------------------------------------------
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "anansi")
-    project(${my_project_name})
+    DEFINE_PROJECT_NAME() 
+    project(${molecular_dynamics_project_name})
 
     #-----------------------------------------------------
     # Define the variable my_main_target_binary.         -
