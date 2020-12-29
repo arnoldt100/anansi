@@ -1,3 +1,5 @@
+.. _AnansiMolecularDynamics class target:
+
 .. default-domain:: cpp
 
 .. namespace:: ANANSI

@@ -12,8 +12,8 @@ Header files
     * :ref:`AnansiMDStateISE.h <AnansiMDStateISE class target>`
     * :ref:`AnansiMDStatePCL.h <AnansiMDStatePCL class target>`
     * :ref:`AnansiMDStatePS.h <AnansiMDStatePS class target>`
-    * AnansiMDStateTSE.h
-    * AnansiMolecularDynamics.h
+    * :ref:`AnansiMDStateTSE.h <AnansiMDStateTSE class target>`
+    * :ref:`AnansiMolecularDynamics.h <AnansiMolecularDynamics class target>`
     * AnansiMolecularDynamicsFactory.h
     * MolecularDynamics.h
     * MolecularDynamicsFactory.h
