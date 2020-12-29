@@ -1,15 +1,15 @@
-.. ___Class__ source target:
+.. _AnansiMolecularDynamicsFactory class target:
 
 .. default-domain:: cpp
 
-.. namespace:: __Namespace__
+.. namespace:: Anansi
 
-######################################
-__Class__ Documentation
-######################################
+############################################
+AnansiMolecularDynamicsFactory Documentation
+############################################
 
-The base class for the molecular dynamics factory classes. This
-class is an abstract base class. 
+This is the factory class for AnansiMolecularDynamics. This class
+is not copyable or moveable.
 
 ======================
 Interface Header Files
@@ -17,15 +17,12 @@ Interface Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
-
 **External Library Files**
-
-* #include "dummy3"
 
 **Project Include Files**
 
-* #include "dummy5"
+* #include "AnansiMolecularDynamics.h"
+* #include "MolecularDynamicsFactory.h"
 
 ==========================
 Implementaion Header Files
@@ -33,25 +30,22 @@ Implementaion Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
-
 **External Library Files**
-
-* #include "dummy3"
 
 **Project Include Files**
 
-* #include "dummy5"
+* #include "AnansiMolecularDynamicsFactory.h"
+* #include "Pointer.hpp"
 
-============================
-__Class__.h Global Variables
-============================
+=================================================
+AnansiMolecularDynamicsFactory.h Global Variables
+=================================================
 
-=============================
-__Class__ Class Documentation
-=============================
+==================================================
+AnansiMolecularDynamicsFactory Class Documentation
+==================================================
 
-.. class:: __Class__
+    .. class:: AnansiMolecularDynamicsFactory final : MolecularDynamicsFactory
 
 --------------
 Public Members
@@ -61,19 +55,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: __Class__()
+    .. function:: AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory()
 
        The default constructor.
 
-    .. function:: __Class__( const __Class__ &other )
+    .. function:: AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory( const AnansiMolecularDynamicsFactory &other )=delete
 
         The copy constructor.
 
-    .. function:: __Class__(__Class__ && other) 
+    .. function:: AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory(AnansiMolecularDynamicsFactory && other)=delete
 
         The copy-move constructor.
 
-    .. function:: ~__Class__()=0
+    .. function:: AnansiMolecularDynamicsFactory::~AnansiMolecularDynamicsFactory()
 
         The destructor.
 
@@ -87,11 +81,11 @@ Accessors
 Operators
 ^^^^^^^^^
 
-    .. function:: __Class__& operator=( __Class__ const & other)
+    .. function:: AnansiMolecularDynamicsFactory& AnansiMolecularDynamicsFactory::operator=( AnansiMolecularDynamicsFactory const & other)=delete
 
         The assignment operator.
 
-    .. function:: __Class__& operator=( __Class__ && other)
+    .. function:: AnansiMolecularDynamicsFactory& AnansiMolecularDynamicsFactory::operator=( AnansiMolecularDynamicsFactory && other)=delete
 
         The assignment-move operator.
 
@@ -99,56 +93,26 @@ Operators
 Mutators
 ^^^^^^^^
 
+    No public mutators
+
 -----------------
 Protected Members
 -----------------
 
-    No protected members
-
-.. Commented out. 
-.. ^^^^^^^^^
-.. Lifecycle
-.. ^^^^^^^^^
-..
-.. ^^^^^^^^^
-.. Accessors
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Operators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Mutators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^^^^
-.. Data Members
-.. ^^^^^^^^^^^^
+    No public protected members
 
 ---------------
 Private Members
 ---------------
 
-    No private members
+^^^^^^^^^
+Accessors
+^^^^^^^^^
 
-.. Commented out. 
-.. ^^^^^^^^^
-.. Lifecycle
-.. ^^^^^^^^^
-..
-.. ^^^^^^^^^
-.. Accessors
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Operators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Mutators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^^^^
-.. Data Members
-.. ^^^^^^^^^^^^
+    .. function:: MolecularDynamics* AnansiMolecularDynamicsFactory::_create() final override
+
+        Creates a AnansiMolecularDynamics object.
+
+        :return: Returns a AnansiMolecularDynamics object 
+        :rtype: MolecularDynamics*
+

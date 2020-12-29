@@ -85,7 +85,7 @@ Lifecycle
 
         The copy-move constructor.
 
-    .. function:: AnansiMDState::~AnansiMDState()=0
+    .. function:: virtual AnansiMDState::~AnansiMDState()=0
 
         The destructor.
 

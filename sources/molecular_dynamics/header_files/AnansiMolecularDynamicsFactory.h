@@ -1,25 +1,19 @@
-/*
- * =====================================================================================
- *
- *       Filename:  AnansiMolecularDynamicsFactory.h
- *
- *    Description:  
- *
- *         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
- *   Organization:  ORNL-National Center of Computational Sciences
- *
- * =====================================================================================
- */
-
 #ifndef  AnansiMolecularDynamicsFactory_INC
 #define  AnansiMolecularDynamicsFactory_INC
 
-// System includes
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
 
-// Local includes
-#include "Pointer.hpp"
-#include "MolecularDynamicsFactory.h"
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 #include "AnansiMolecularDynamics.h"
+#include "MolecularDynamicsFactory.h"
 
 namespace ANANSI
 {
@@ -29,12 +23,16 @@ namespace ANANSI
      *  Description:  
      * =====================================================================================
      */
-    class AnansiMolecularDynamicsFactory : public MolecularDynamicsFactory 
+    class AnansiMolecularDynamicsFactory final : public MolecularDynamicsFactory 
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
             AnansiMolecularDynamicsFactory(); /* constructor      */
-            AnansiMolecularDynamicsFactory(const AnansiMolecularDynamicsFactory &other )=delete;   /* copy constructor */
+
+            AnansiMolecularDynamicsFactory(const AnansiMolecularDynamicsFactory &other )=delete;
+
+            AnansiMolecularDynamicsFactory(AnansiMolecularDynamicsFactory && other )=delete;
+
             ~AnansiMolecularDynamicsFactory(); /* destructor       */
 
             /* ====================  ACCESSORS     ======================================= */
@@ -44,7 +42,10 @@ namespace ANANSI
             /* ====================  OPERATORS     ======================================= */
 
             AnansiMolecularDynamicsFactory&
-            operator=( const AnansiMolecularDynamicsFactory &other )=delete; /* assignment operator */
+            operator=( const AnansiMolecularDynamicsFactory &other )=delete;
+
+            AnansiMolecularDynamicsFactory&
+            operator=( AnansiMolecularDynamicsFactory && other )=delete;
 
         protected:
             /* ====================  METHODS       ======================================= */

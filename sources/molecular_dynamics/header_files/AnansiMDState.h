@@ -27,7 +27,7 @@ namespace ANANSI
 
             AnansiMDState (AnansiMDState && other);   /* copy-move constructor */
 
-            virtual ~AnansiMDState ();  /* destructor */
+            virtual ~AnansiMDState ()=0;  /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
 

@@ -1,3 +1,5 @@
+.. _MolecularDynamics class target:
+
 .. default-domain:: cpp
 
 .. namespace:: ANANSI
@@ -8,11 +10,11 @@ MolecularDynamics Documentation
 
 The base class for the MolecularDynamics classes. This
 class is an abstract base class, and it is not copyable
-or assignable.
+assignable, copy movebale, or assignment moveable. 
 
-====================
-Include Header Files
-====================
+======================
+Interface Header Files
+======================
 
 **C++ Include Files**
 
@@ -26,6 +28,19 @@ Include Header Files
 **Project Include Files**
 
 * #include "AnansiMDState.h"
+
+==========================
+Implementaion Header Files
+==========================
+
+**C++ Include Files**
+
+**External Library Files**
+
+**Project Include Files**
+
+* #include "MolecularDynamics.h"
+
 
 ====================================
 MolecularDynamics.h Global Variables
@@ -55,7 +70,13 @@ Lifecycle
 
         :param MolecularDynamics const & other: The other object to be copied.
 
-    .. function:: MolecularDynamics::~MolecularDynamics()=0
+    .. function:: MolecularDynamics::MolecularDynamics( MolecularDynamics &&other )=delete
+
+        The copy move constructor. This function is deleted.
+
+        :param MolecularDynamics const & other: The other object to be copied.
+
+    .. function:: virtual MolecularDynamics::~MolecularDynamics()=0
 
         The destructor. This is a pure virtual destructor.
 
@@ -72,6 +93,10 @@ Operators
     .. function:: MolecularDynamics& MolecularDynamics::operator=(MolecularDynamics const & other) = delete 
 
         The assingment operator. This function is deleted.
+
+    .. function:: MolecularDynamics& MolecularDynamics::operator=(MolecularDynamics && other) = delete 
+
+        The assingment move operator. This function is deleted.
 
 ^^^^^^^^
 Mutators

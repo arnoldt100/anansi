@@ -24,12 +24,13 @@ class MolecularDynamics
 
     public:
         /* ====================  LIFECYCLE     ======================================= */
-        MolecularDynamics(); /* constructor */
+        MolecularDynamics();
 
-        virtual ~MolecularDynamics()=0; /* destructor */ 
+        virtual ~MolecularDynamics()=0;
 
-        MolecularDynamics(MolecularDynamics const & other) = delete; // Avoid implicit of copying the
-        // MolecularDynamics class.
+        MolecularDynamics(MolecularDynamics const & other) = delete;
+
+        MolecularDynamics(MolecularDynamics && other) = delete;
 
         /* ====================  ACCESSORS     ======================================= */
 
@@ -52,12 +53,15 @@ class MolecularDynamics
         /* ====================  OPERATORS     ======================================= */
 
         MolecularDynamics&                                                 
-        operator=(MolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
-                                                             // MolecularDynamics class.
-    protected:
-        /* ====================  METHODS       ======================================= */
+        operator=(MolecularDynamics const & other) = delete;
 
-        /* ====================  DATA MEMBERS  ======================================= */
+        MolecularDynamics&                                                 
+        operator=(MolecularDynamics && other) = delete; 
+
+    protected:
+        /* ====================  ACCESSORS     ======================================= */
+
+        /* ====================  MUTATORS      ======================================= */
 
     private:
         /* ====================  MUTATORS      ======================================= */
