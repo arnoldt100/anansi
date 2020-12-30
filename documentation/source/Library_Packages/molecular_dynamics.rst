@@ -16,7 +16,7 @@ Header files
     * :ref:`AnansiMolecularDynamics.h <AnansiMolecularDynamics class target>`
     * :ref:`AnansiMolecularDynamicsFactory.h <AnansiMolecularDynamicsFactory class target>`
     * :ref:`MolecularDynamics.h <MolecularDynamics class target>`
-    * MolecularDynamicsFactory.h
+    * :ref:`MolecularDynamicsFactory.h <MolecularDynamicsFactory class target>`
 
 Implemenation files
 -------------------

@@ -63,7 +63,7 @@ MolecularDynamics::disableCommunication()
 
 void MolecularDynamics::initializeSimulationEnvironment( int const argc, char const *const *const & argv )
 {
-
+	this->_initializeSimulationEnvironment(argc,argv);
     return;
 }
 
@@ -75,6 +75,12 @@ MolecularDynamics::initializeSimulation(int const argc, char const *const *const
     return;
 }       /* -----  end of method MolecularDynamics::initializeSimulation  ----- */
 
+void
+MolecularDynamics::setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
+{
+	this->_setMDState(std::move(a_AnansiMDState));
+	return;
+}
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

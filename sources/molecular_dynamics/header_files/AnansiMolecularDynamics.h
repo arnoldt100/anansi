@@ -49,7 +49,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
-        /* ====================  METHODS       ======================================= */
+        /* ====================  MUTATORS      ======================================= */
 
         void 
         _doSimulation() final override;

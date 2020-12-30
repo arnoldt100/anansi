@@ -1,3 +1,5 @@
+.. _MolecularDynamicsFactory class target:
+
 .. default-domain:: cpp
 
 ######################################

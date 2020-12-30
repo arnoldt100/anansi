@@ -4,28 +4,6 @@ int main( int argc, char** argv )
 {
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // Initialize the the sumulation execution environment.            @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    COMMUNICATOR::MPIEnvironment* mpi_environment_ptr = nullptr;
-    try
-    {
-        mpi_environment_ptr = new COMMUNICATOR::MPIEnvironment(argc,argv);
-    }
-    catch (std::exception const & my_exception)
-    {
-        std::cout << my_exception.what();
-    }
-
-    // If the mpi environment did not intialize, then exit program with 
-    // failure.
-    if ( mpi_environment_ptr == nullptr)
-    {
-        return EXIT_FAILURE;
-    }
-
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
     // Create an AnansiMolecularDynamicsFactory and instantiate a      @
     // MD object.                                                      @
     //                                                                 @

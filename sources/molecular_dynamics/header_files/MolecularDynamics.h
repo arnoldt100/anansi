@@ -45,10 +45,7 @@ class MolecularDynamics
 
         void initializeSimulationEnvironment( int const argc, char const *const *const & argv );
 
-        void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
-        {
-            this->_setMDState(std::move(a_AnansiMDState));
-        }
+        void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState);
 
         /* ====================  OPERATORS     ======================================= */
 
