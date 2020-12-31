@@ -39,6 +39,11 @@ MolecularDynamics::~MolecularDynamics()
 
 //============================= ACCESSORS ====================================
 
+void MolecularDynamics::stud_function() const
+{
+    std::cout << "Doing stud function";
+}
+
 //============================= MUTATORS =====================================
 
 void MolecularDynamics::doSimulation()
@@ -67,6 +72,12 @@ void MolecularDynamics::initializeSimulationEnvironment( int const argc, char co
     return;
 }
 
+void MolecularDynamics::initializeMpiEnvironment(int const argc, char const *const *const & argv)
+{
+    this->_initializeMpiEnvironment(argc,argv);
+    return;
+}
+
 void
 MolecularDynamics::initializeSimulation(int const argc, char const *const *const & argv )
 {
@@ -78,7 +89,7 @@ MolecularDynamics::initializeSimulation(int const argc, char const *const *const
 void
 MolecularDynamics::setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
 {
-	this->_setMDState(std::move(a_AnansiMDState));
+    this->_setMDState(std::move(a_AnansiMDState));
 	return;
 }
 //============================= OPERATORS ====================================

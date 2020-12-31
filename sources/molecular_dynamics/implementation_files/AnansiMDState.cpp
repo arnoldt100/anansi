@@ -40,9 +40,9 @@ AnansiMDState::~AnansiMDState()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMDState::initializeSimulationEnvironment(int const argc, char const *const *const & argv )
+void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const argc, char const *const *const & argv )
 {
-    this->_initializeSimulationEnvironment(argc,argv);
+    this->_initializeSimulationEnvironment(aMD,argc,argv);
 }
 
 //============================= OPERATORS ====================================
@@ -86,7 +86,7 @@ AnansiMDState& AnansiMDState::operator=( AnansiMDState && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMDState::_initializeSimulationEnvironment(int const argc, char const *const *const & argv)
+void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics* aMD,int const argc, char const *const *const & argv)
 {
     std::cout << "Error: This state can't initialize the simulation Environment.";
     return;

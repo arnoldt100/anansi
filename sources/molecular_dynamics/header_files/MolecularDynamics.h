@@ -34,6 +34,8 @@ class MolecularDynamics
 
         /* ====================  ACCESSORS     ======================================= */
 
+        void stud_function() const;
+
         /* ====================  MUTATORS      ======================================= */
         void doSimulation();
 
@@ -44,6 +46,8 @@ class MolecularDynamics
         void initializeSimulation( int const argc, char const *const *const & argv );
 
         void initializeSimulationEnvironment( int const argc, char const *const *const & argv );
+
+        void initializeMpiEnvironment(int const argc, char const *const *const & argv);
 
         void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState);
 
@@ -73,6 +77,8 @@ class MolecularDynamics
         virtual void _initializeSimulation( int const argc, char const *const *const & argv )=0;
 
         virtual void _initializeSimulationEnvironment( int const argc, char const *const *const & argv )=0;
+
+        virtual void _initializeMpiEnvironment( int const argc, char const *const *const & argv )=0;
 
         virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
 

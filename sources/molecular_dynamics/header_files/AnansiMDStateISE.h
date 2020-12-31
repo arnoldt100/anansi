@@ -48,7 +48,7 @@ namespace ANANSI
         private:
 
             /* ====================  MUTATORS      ======================================= */
-            virtual void _initializeSimulationEnvironment(int const argc, char const *const *const & argv) final override;
+            void _initializeSimulationEnvironment(MolecularDynamics* aMD,int const argc, char const *const *const & argv) final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

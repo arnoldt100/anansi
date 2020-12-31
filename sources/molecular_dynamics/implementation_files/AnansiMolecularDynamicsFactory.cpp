@@ -82,9 +82,6 @@ MolecularDynamics* AnansiMolecularDynamicsFactory::_create()
     MEMORY_MANAGEMENT::Pointer<AnansiMolecularDynamics> md_pointer_factory;
     AnansiMolecularDynamics* my_md = md_pointer_factory.createPointer();
 
-    // Enable core functionality of the AnansiMolecularDynamics object.
-    my_md->enableCommunication();
-
     return my_md;
 }
 

@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiMolecularDynamics.h"
 #include "AnansiMDStateISE.h"
 
 namespace ANANSI {
@@ -98,8 +99,14 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMDStateISE::_initializeSimulationEnvironment(int const argc, char const *const *const & argv)
+void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* aMD,int const argc, char const *const *const & argv)
 {
+    // Initialize the MPI environment.
+    aMD->initializeMpiEnvironment(argc,argv);
+
+    // Enable MPI Communication for the aMD object.
+    aMD->enableCommunication();
+
     std::cout << "This state initialized the simulation Environment.";
     return;
 }

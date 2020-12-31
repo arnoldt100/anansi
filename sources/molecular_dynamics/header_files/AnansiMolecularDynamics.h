@@ -60,11 +60,16 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void 
         _disableCommunication() final override;
 
+
         void 
         _initializeSimulation(int const argc, char const *const *const & argv ) final override;
 
         void 
         _initializeSimulationEnvironment(int const argc, char const *const *const & argv ) final override;
+
+        void 
+        _initializeMpiEnvironment(int const argc, char const *const *const & argv) final override;
+
 
         void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
 
