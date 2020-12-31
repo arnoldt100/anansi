@@ -19,6 +19,7 @@ Welcome to Anansi's documentation!
    anansi_main_md.cpp.rst
    Library Packages <library_packages.rst>
    Enumerations <enumerations.rst>
+   Functions <functions.rst>
    Classes <classes.rst>
    
 

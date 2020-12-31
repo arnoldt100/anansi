@@ -11,6 +11,6 @@ Header files
 Implemenation files
 -------------------
 
-    * copy_2d_char_array.h
+    * copy_2d_char_array.cpp
 
 

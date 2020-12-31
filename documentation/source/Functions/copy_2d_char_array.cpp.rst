@@ -1,4 +1,4 @@
-.. _copy_2d_char_array source target:
+.. _copy_2d_char_array function target:
 
 .. default-domain:: cpp
 
@@ -9,7 +9,7 @@ copy_2d_char_array Documentation
 ################################
 
 This function copies a 2d char const * const * array
-to a 2d char** array.
+to a 2d char * * array.
 
 ======================
 Interface Header Files
@@ -17,15 +17,12 @@ Interface Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
 
 **External Library Files**
 
-* #include "dummy3"
 
 **Project Include Files**
 
-* #include "dummy5"
 
 ==========================
 Implementaion Header Files
@@ -33,15 +30,13 @@ Implementaion Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
 
 **External Library Files**
 
-* #include "dummy3"
 
 **Project Include Files**
 
-* #include "dummy5"
+* #include "copy_2d_char_array.h"
 
 =====================================
 copy_2d_char_array.h Global Variables
@@ -51,7 +46,7 @@ copy_2d_char_array.h Global Variables
 copy_2d_char_array Function Documentation
 =========================================
 
-.. function:: copy_2d_char_array
+.. function:: copy_2d_char_array()
 
     :param <param_type> <param_name>: Param Description 
     :return: Return description
