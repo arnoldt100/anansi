@@ -111,8 +111,9 @@ AnansiMolecularDynamics::_initializeSimulationEnvironment(int const argc, char c
     
     // Initialize the MPI environment.
     int tmp_argc = argc;
+    char** tmp_argv = nullptr;
 
-    this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(argc,argv);
+    this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(tmp_argc,tmp_argv);
 
     // After successfully initializing the environment, we change the MD state to
     // AnansiMDStateIIC.

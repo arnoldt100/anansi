@@ -50,12 +50,5 @@ int main( int argc, char** argv )
         my_md_factory_ptr=nullptr;
     }
 
-    // Finalize the MPI environment.
-    if (mpi_environment_ptr != nullptr)
-    {
-        delete mpi_environment_ptr;
-        mpi_environment_ptr = nullptr;
-    }
-
     return EXIT_SUCCESS;
 }

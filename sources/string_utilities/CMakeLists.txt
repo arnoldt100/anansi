@@ -82,6 +82,7 @@
         header_files/convert_commandline_to_vector_string_array.h
         header_files/convert_vector_to_a_string.h 
         header_files/convert_string_to_char_array.h
+        header_files/copy_2d_char_array.h
         header_files/convert_sequence_of_chars_to_vector_string.h
         header_files/get_maximum_width_of_vector_string.h
         header_files/under_line_string.h )
@@ -96,6 +97,7 @@
         implementation_files/convert_commandline_to_vector_string_array.cpp
         implementation_files/convert_vector_to_a_string.cpp
         implementation_files/convert_string_to_char_array.cpp
+        implementation_files/copy_2d_char_array.cpp
         implementation_files/convert_sequence_of_chars_to_vector_string.cpp 
         implementation_files/get_maximum_width_of_vector_string.cpp
         implementation_files/under_line_string.cpp )
