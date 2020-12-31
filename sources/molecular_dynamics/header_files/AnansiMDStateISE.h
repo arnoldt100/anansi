@@ -48,7 +48,7 @@ namespace ANANSI
         private:
 
             /* ====================  MUTATORS      ======================================= */
-            void _initializeSimulationEnvironment() final override;
+            virtual void _initializeSimulationEnvironment(int const argc, char const *const *const & argv) final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

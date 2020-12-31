@@ -35,6 +35,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _MpiEnvironment(),
     _mdState()
 {
+    std::unique_ptr<AnansiMDState> new_simulation_state = std::make_unique<AnansiMDStateISE>(); 
+    this->setMDState(std::move(new_simulation_state));
     return;
 }
 
@@ -108,7 +110,8 @@ AnansiMolecularDynamics::_initializeSimulation(int const argc, char const *const
 void
 AnansiMolecularDynamics::_initializeSimulationEnvironment(int const argc, char const *const *const & argv )
 {
-    
+    this->_mdState->initializeSimulationEnvironment(argc,argv);
+
     // Initialize the MPI environment.
     int tmp_argc = argc;
     char** tmp_argv = nullptr;
@@ -117,8 +120,9 @@ AnansiMolecularDynamics::_initializeSimulationEnvironment(int const argc, char c
 
     // After successfully initializing the environment, we change the MD state to
     // AnansiMDStateIIC.
-    std::unique_ptr<AnansiMDState> new_simulation_state = std::make_unique<AnansiMDStateIIC>(); 
-    this->setMDState(std::move(new_simulation_state));
+    // std::unique_ptr<AnansiMDState> new_simulation_state = std::make_unique<AnansiMDStateIIC>(); 
+
+    // this->setMDState(std::move(new_simulation_state));
 
     return;
 }

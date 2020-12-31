@@ -98,7 +98,7 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMDStateISE::_initializeSimulationEnvironment()
+void AnansiMDStateISE::_initializeSimulationEnvironment(int const argc, char const *const *const & argv)
 {
     std::cout << "This state initialized the simulation Environment.";
     return;

@@ -32,10 +32,7 @@ namespace ANANSI
             /* ====================  ACCESSORS     ======================================= */
 
             /* ====================  MUTATORS      ======================================= */
-            void initializeSimulationEnvironment()
-            {
-                this->_initializeSimulationEnvironment();
-            }
+            void initializeSimulationEnvironment(int const argc, char const *const *const & argv );
 
             /* ====================  OPERATORS     ======================================= */
 
@@ -50,11 +47,7 @@ namespace ANANSI
 
         private:
             /* ====================  METHODS       ======================================= */
-            virtual void _initializeSimulationEnvironment()
-            {
-                std::cout << "Error: This state can't initialize the simulation Environment.";
-                return;
-            }
+            virtual void _initializeSimulationEnvironment(int const argc, char const *const *const & argv);
 
             /* ====================  DATA MEMBERS  ======================================= */
 
