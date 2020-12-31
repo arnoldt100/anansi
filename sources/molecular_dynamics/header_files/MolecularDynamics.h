@@ -46,12 +46,11 @@ class MolecularDynamics
         // This group of functions initializes the simulation.
         void initializeSimulationEnvironment( int const & argc, char const *const *const & argv );
 
-
         void initializeMpiEnvironment(int const & argc, char const *const *const & argv);
 
         // This group of functions processes the comamand line and sets the
         // simulation parameters.
-        void processCommandLine( int const argc, char const *const *const & argv ); 
+        void processCommandLine( int const & argc, char const *const *const & argv ); 
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
@@ -87,7 +86,7 @@ class MolecularDynamics
 
         virtual void _initializeMpiEnvironment( int const & argc, char const *const *const & argv )=0;
 
-        virtual void _processCommandLine( int const argc, char const *const *const & argv )=0; 
+        virtual void _processCommandLine( int const & argc, char const *const *const & argv )=0; 
 
         virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
 

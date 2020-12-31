@@ -45,6 +45,10 @@ void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int 
     this->_initializeSimulationEnvironment(aMD,argc,argv);
 }
 
+void AnansiMDState::processCommandLine(MolecularDynamics* aMD, int const & argc, char const *const *const & argv )
+{
+    this->_processCommandLine(aMD,argc,argv);
+}
 //============================= OPERATORS ====================================
 
 AnansiMDState& AnansiMDState::operator=( const AnansiMDState &other )
@@ -92,6 +96,11 @@ void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const a
     return;
 }
 
+void AnansiMDState::_processCommandLine(MolecularDynamics * const aMD,int const & argc, char const *const *const & argv)
+{
+    std::cout << "Error: This state can't process the command line environment.";
+    return;
+}
 //============================= OPERATORS ====================================
 
 

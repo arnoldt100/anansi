@@ -125,8 +125,9 @@ void AnansiMolecularDynamics::_initializeMpiEnvironment(int const & argc, char c
     return;
 }
 
-void AnansiMolecularDynamics::_processCommandLine( int const argc, char const *const *const & argv )
+void AnansiMolecularDynamics::_processCommandLine( int const & argc, char const *const *const & argv )
 {
+    this->_mdState->processCommandLine(this,argc,argv);
     return;
 }
 
