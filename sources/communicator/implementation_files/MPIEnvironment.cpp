@@ -1,4 +1,6 @@
 #include "MPIEnvironment.h"
+#include "Pointer2d.hpp"
+#include "copy_2d_char_array.h"
 
 namespace COMMUNICATOR {
 
@@ -8,7 +10,7 @@ namespace COMMUNICATOR {
 
 //============================= LIFECYCLE ====================================
 
-MPIEnvironment::MPIEnvironment(int argc, char** argv) :
+MPIEnvironment::MPIEnvironment(int const & argc, char const * const * const & argv) :
     COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>()
 {
     // Verify that the MPI environment is not already initialized. If
@@ -22,7 +24,15 @@ MPIEnvironment::MPIEnvironment(int argc, char** argv) :
             throw COMMUNICATOR::MPIInitializedException();       
         }
     
-        mpi_return_code = MPI_Init(&argc,&argv);
+        // 
+        std::unique_ptr<MEMORY_MANAGEMENT::Pointer2d<char> >a_pointer_factory(new MEMORY_MANAGEMENT::Pointer2d<char>()); 
+
+        int tmp_argc = argc;
+        char** tmp_argv = nullptr;
+
+        STRING_UTILITIES::copy_2d_char_array(tmp_argc,argv,tmp_argv);
+        mpi_return_code = MPI_Init(&tmp_argc,&tmp_argv);
+
         if (mpi_return_code != MPI_SUCCESS)
         {
             throw COMMUNICATOR::MPIInitException();       

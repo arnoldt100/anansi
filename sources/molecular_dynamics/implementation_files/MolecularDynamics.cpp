@@ -66,25 +66,32 @@ MolecularDynamics::disableCommunication()
     return ;
 }		/* -----  end of method MolecularDynamics::disableCommunication  ----- */
 
-void MolecularDynamics::initializeSimulationEnvironment( int const argc, char const *const *const & argv )
-{
-	this->_initializeSimulationEnvironment(argc,argv);
-    return;
-}
-
-void MolecularDynamics::initializeMpiEnvironment(int const argc, char const *const *const & argv)
-{
-    this->_initializeMpiEnvironment(argc,argv);
-    return;
-}
-
 void
-MolecularDynamics::initializeSimulation(int const argc, char const *const *const & argv )
+MolecularDynamics::initializeSimulation(int const & argc, char const *const *const & argv )
 {
     // Store command line arguments in class CommandLineArguments.
     this->_initializeSimulation(argc, argv);
     return;
 }       /* -----  end of method MolecularDynamics::initializeSimulation  ----- */
+
+void MolecularDynamics::initializeSimulationEnvironment( int const & argc, char const *const *const & argv )
+{
+	this->_initializeSimulationEnvironment(argc,argv);
+    return;
+}
+
+void MolecularDynamics::initializeMpiEnvironment(int const & argc, char const *const *const & argv)
+{
+    this->_initializeMpiEnvironment(argc,argv);
+    return;
+}
+
+
+void MolecularDynamics::processCommandLine( int const argc, char const *const *const & argv ) 
+{
+    this->_processCommandLine(argc,argv);
+    return;
+}
 
 void
 MolecularDynamics::setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)

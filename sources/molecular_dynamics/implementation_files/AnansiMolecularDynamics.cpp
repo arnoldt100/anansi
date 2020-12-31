@@ -18,7 +18,6 @@
 #include "Pointer.hpp"
 #include "SimulationParametersFactory.h"
 #include "MPICommunicatorFactory.h"
-
 namespace ANANSI {
 
 
@@ -36,7 +35,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _MpiEnvironment(),
     _mdState()
 {
-    this->_mdState = std::make_unique<AnansiMDStateISE>();
+    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateISE>();
+    this->setMDState(std::move(new_md_state));
     return;
 }
 
@@ -99,7 +99,7 @@ AnansiMolecularDynamics::_disableCommunication()
 }       /* -----  end of method AnansiMolecularDynamics::_disableCommunication  ----- */
 
 void
-AnansiMolecularDynamics::_initializeSimulation(int const argc, char const *const *const & argv )
+AnansiMolecularDynamics::_initializeSimulation(int const & argc, char const *const *const & argv )
 {
     this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
@@ -108,20 +108,25 @@ AnansiMolecularDynamics::_initializeSimulation(int const argc, char const *const
 
 
 void
-AnansiMolecularDynamics::_initializeSimulationEnvironment(int const argc, char const *const *const & argv )
+AnansiMolecularDynamics::_initializeSimulationEnvironment(int const & argc, char const *const *const & argv )
 {
     this->_mdState->initializeSimulationEnvironment(this,argc,argv);
+
+    // Change the MD state to AnansiMDStatePCL.
+    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStatePCL>();
+    this->setMDState(std::move(new_md_state));
+
     return;
 }
 
-void AnansiMolecularDynamics::_initializeMpiEnvironment(int const argc, char const *const *const & argv)
+void AnansiMolecularDynamics::_initializeMpiEnvironment(int const & argc, char const * const * const & argv)
 {
-    // Initialize the MPI environment.
-    int tmp_argc = argc;
-    char** tmp_argv = nullptr;
+    this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(argc,argv);
+    return;
+}
 
-    this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(tmp_argc,tmp_argv);
-
+void AnansiMolecularDynamics::_processCommandLine( int const argc, char const *const *const & argv )
+{
     return;
 }
 

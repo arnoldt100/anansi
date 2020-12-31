@@ -21,14 +21,14 @@ int main( int argc, char** argv )
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // Process the command line.                                       @
+    // Process the command line and set the simulation parameters.     @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // md_ptr->processCommandLine(argc,argv);
+    md_ptr->processCommandLine(argc,argv);
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // Initialize the simulation.                                      @
+    // Initialize the initial condtions of the simulation.             @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // md_ptr->initializeSimulation(argc,argv);

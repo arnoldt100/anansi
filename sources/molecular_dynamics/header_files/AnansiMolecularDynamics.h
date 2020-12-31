@@ -62,14 +62,15 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
 
         void 
-        _initializeSimulation(int const argc, char const *const *const & argv ) final override;
+        _initializeSimulation(int const & argc, char const *const *const & argv ) final override;
 
         void 
-        _initializeSimulationEnvironment(int const argc, char const *const *const & argv ) final override;
+        _initializeSimulationEnvironment(int const & argc, char const *const *const & argv ) final override;
 
         void 
-        _initializeMpiEnvironment(int const argc, char const *const *const & argv) final override;
+        _initializeMpiEnvironment(int const & argc, char const *const *const & argv) final override;
 
+        void _processCommandLine( int const argc, char const *const *const & argv ) final override; 
 
         void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
 

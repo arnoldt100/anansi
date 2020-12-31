@@ -16,7 +16,7 @@
 namespace STRING_UTILITIES
 {
 
-void copy_2d_char_array ( std::size_t const dim1, char * const * const source_ptr, char** & destination_ptr)
+void copy_2d_char_array ( std::size_t const dim1, char const * const * const source_ptr, char** & destination_ptr)
 {
     // Allocate a char** array and fill with the command line arguments.
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;

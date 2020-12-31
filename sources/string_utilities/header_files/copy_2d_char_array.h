@@ -17,7 +17,7 @@
 namespace STRING_UTILITIES
 {
 
-void copy_2d_char_array ( const std::size_t dim1, char * const * const in_ptr, char** & out_ptr);
+void copy_2d_char_array ( const std::size_t dim1, char const * const * const in_ptr, char** & out_ptr);
 
 }; /* namespace STRING_UTILITIES */
 

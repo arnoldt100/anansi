@@ -27,7 +27,7 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
-        MPIEnvironment(int argc, char** argv); /* constructor */
+        MPIEnvironment(int const & argc, char const * const * const & argv); /* constructor */
 
         MPIEnvironment(const MPIEnvironment &other)=delete; /* copy constructor */
 
