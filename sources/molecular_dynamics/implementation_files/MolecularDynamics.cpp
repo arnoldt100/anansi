@@ -66,13 +66,6 @@ MolecularDynamics::disableCommunication()
     return ;
 }		/* -----  end of method MolecularDynamics::disableCommunication  ----- */
 
-void
-MolecularDynamics::initializeSimulation(int const & argc, char const *const *const & argv )
-{
-    // Store command line arguments in class CommandLineArguments.
-    this->_initializeSimulation(argc, argv);
-    return;
-}       /* -----  end of method MolecularDynamics::initializeSimulation  ----- */
 
 void MolecularDynamics::initializeSimulationEnvironment( int const & argc, char const *const *const & argv )
 {
