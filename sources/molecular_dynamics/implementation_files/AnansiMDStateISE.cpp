@@ -99,7 +99,7 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* aMD,int const argc, char const *const *const & argv)
+void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const aMD,int const & argc, char const *const *const & argv)
 {
     // Initialize the MPI environment.
     aMD->initializeMpiEnvironment(argc,argv);

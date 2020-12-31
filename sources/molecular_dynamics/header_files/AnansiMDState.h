@@ -34,7 +34,7 @@ namespace ANANSI
             /* ====================  ACCESSORS     ======================================= */
 
             /* ====================  MUTATORS      ======================================= */
-            void initializeSimulationEnvironment(MolecularDynamics* aMD, int const argc, char const *const *const & argv );
+            void initializeSimulationEnvironment(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv );
 
             /* ====================  OPERATORS     ======================================= */
 
@@ -49,7 +49,7 @@ namespace ANANSI
 
         private:
             /* ====================  METHODS       ======================================= */
-            virtual void _initializeSimulationEnvironment(MolecularDynamics* aMD,int const argc, char const *const *const & argv);
+            virtual void _initializeSimulationEnvironment(MolecularDynamics* aMD,int const & argc, char const *const *const & argv);
 
             /* ====================  DATA MEMBERS  ======================================= */
 
