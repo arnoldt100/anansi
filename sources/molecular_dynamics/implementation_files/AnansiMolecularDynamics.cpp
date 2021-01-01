@@ -10,9 +10,9 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiMolecularDynamics.h"
-#include "AnansiMDStateIIC.h"
 #include "AnansiMDStateISE.h"
 #include "AnansiMDStatePCL.h"
+#include "AnansiMDStateIIC.h"
 #include "AnansiMDStatePS.h"
 #include "AnansiMDStateTSE.h"
 #include "Pointer.hpp"
@@ -103,7 +103,8 @@ AnansiMolecularDynamics::_initializeSimulationEnvironment(int const & argc, char
 {
     this->_mdState->initializeSimulationEnvironment(this,argc,argv);
 
-    // Change the MD state to AnansiMDStatePCL.
+    // If successful initialization of simulation environment, then change state to AnansiMDStatePCL.
+    // Otherwise change state to AnansiMDStateTSE.
     std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStatePCL>();
     this->setMDState(std::move(new_md_state));
 
@@ -119,6 +120,11 @@ void AnansiMolecularDynamics::_initializeMpiEnvironment(int const & argc, char c
 void AnansiMolecularDynamics::_processCommandLine( int const & argc, char const *const *const & argv )
 {
     this->_mdState->processCommandLine(this,argc,argv);
+
+    // If successful processing of command line options, then change state to AnansiMDStateIIC.
+    // Otherwise change state to AnansiMDStateTSE.
+    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateIIC>();
+    this->setMDState(std::move(new_md_state));
     return;
 }
 

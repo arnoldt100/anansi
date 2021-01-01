@@ -85,6 +85,7 @@ AnansiMDStatePCL& AnansiMDStatePCL::operator= ( AnansiMDStatePCL && other )
 //============================= ACCESSORS ====================================
 void AnansiMDStatePCL::_processCommandLine(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const
 {
+
     return;
 }
 
