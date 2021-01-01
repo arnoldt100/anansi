@@ -47,7 +47,9 @@ namespace ANANSI
             /* ====================  DATA MEMBERS  ======================================= */
 
         private:
-            /* ====================  METHODS       ======================================= */
+            /*=====================  ACCESSORS     ======================================= */
+
+            void _processCommandLine(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

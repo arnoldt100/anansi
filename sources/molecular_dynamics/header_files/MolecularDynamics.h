@@ -43,7 +43,7 @@ class MolecularDynamics
 
         void disableCommunication();
 
-        // This group of functions initializes the simulation.
+        // This group of functions initializes the simulation environment.
         void initializeSimulationEnvironment( int const & argc, char const *const *const & argv );
 
         void initializeMpiEnvironment(int const & argc, char const *const *const & argv);
@@ -80,13 +80,18 @@ class MolecularDynamics
 
         virtual void _disableCommunication()=0;
 
-        virtual void _initializeSimulation( int const & argc, char const *const *const & argv )=0;
-
+        // This group of functions initializes the simulation environment.
         virtual void _initializeSimulationEnvironment( int const & argc, char const *const *const & argv )=0;
 
         virtual void _initializeMpiEnvironment( int const & argc, char const *const *const & argv )=0;
 
+        // This group of functions processes the comamand line and sets the
+        // simulation parameters.
         virtual void _processCommandLine( int const & argc, char const *const *const & argv )=0; 
+
+        // This group of functions initializes the initial conditions of the 
+        // simulation.
+        virtual void _initializeSimulation( int const & argc, char const *const *const & argv )=0;
 
         virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
 

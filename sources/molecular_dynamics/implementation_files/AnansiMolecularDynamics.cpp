@@ -99,15 +99,6 @@ AnansiMolecularDynamics::_disableCommunication()
 }       /* -----  end of method AnansiMolecularDynamics::_disableCommunication  ----- */
 
 void
-AnansiMolecularDynamics::_initializeSimulation(int const & argc, char const *const *const & argv )
-{
-    this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
-    this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
-    return;
-}
-
-
-void
 AnansiMolecularDynamics::_initializeSimulationEnvironment(int const & argc, char const *const *const & argv )
 {
     this->_mdState->initializeSimulationEnvironment(this,argc,argv);
@@ -128,6 +119,14 @@ void AnansiMolecularDynamics::_initializeMpiEnvironment(int const & argc, char c
 void AnansiMolecularDynamics::_processCommandLine( int const & argc, char const *const *const & argv )
 {
     this->_mdState->processCommandLine(this,argc,argv);
+    return;
+}
+
+void
+AnansiMolecularDynamics::_initializeSimulation(int const & argc, char const *const *const & argv )
+{
+    this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
+    this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
     return;
 }
 
