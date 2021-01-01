@@ -49,7 +49,7 @@ namespace ANANSI
         private:
             /*=====================  ACCESSORS     ======================================= */
 
-            void _processCommandLine(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const;
+            void _processCommandLine(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

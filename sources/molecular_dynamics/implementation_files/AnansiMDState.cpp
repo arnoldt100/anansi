@@ -39,16 +39,18 @@ AnansiMDState::~AnansiMDState()
 
 //============================= ACCESSORS ====================================
 
-//============================= MUTATORS =====================================
-void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv )
+void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
     this->_initializeSimulationEnvironment(aMD,argc,argv);
 }
 
-void AnansiMDState::processCommandLine(MolecularDynamics* aMD, int const & argc, char const *const *const & argv )
+void AnansiMDState::processCommandLine(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
     this->_processCommandLine(aMD,argc,argv);
 }
+
+//============================= MUTATORS =====================================
+
 //============================= OPERATORS ====================================
 
 AnansiMDState& AnansiMDState::operator=( const AnansiMDState &other )
@@ -90,15 +92,15 @@ AnansiMDState& AnansiMDState::operator=( AnansiMDState && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD,int const & argc, char const *const *const & argv)
+void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD,int const & argc, char const *const *const & argv) const
 {
-    std::cout << "Error: This state can't initialize the simulation Environment.";
+    std::cout << "Error: This state can't 'initialize the simulation environment'.";
     return;
 }
 
-void AnansiMDState::_processCommandLine(MolecularDynamics * const aMD,int const & argc, char const *const *const & argv)
+void AnansiMDState::_processCommandLine(MolecularDynamics * const aMD,int const & argc, char const *const *const & argv) const
 {
-    std::cout << "Error: This state can't process the command line environment.";
+    std::cout << "Error: This state can't 'process the command line environment'.";
     return;
 }
 //============================= OPERATORS ====================================
