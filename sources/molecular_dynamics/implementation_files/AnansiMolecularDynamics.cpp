@@ -147,8 +147,10 @@ void AnansiMolecularDynamics::_performSimulation()
 
     this->_mdState->performSimulation(this);
 
-    // :TODO:01/02/2021 11:21:21 AM:: Implement here code for switching md state to
-    // AnansiMDStateTSE
+    // If successful performing the simulation, then change state to AnansiMDStateTSE.
+    // Otherwise change state to AnansiMDStateTSE.
+    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateTSE>();
+    this->setMDState(std::move(new_md_state));
     return;
 }        // -----  end of method AnansiMolecularDynamics::_performSimulation  -----
 
