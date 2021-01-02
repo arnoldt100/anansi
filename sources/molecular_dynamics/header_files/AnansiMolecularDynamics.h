@@ -80,6 +80,9 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void
         _performSimulation() final override;
 
+        // This group of functions terminates the simulation environment.
+        void _terminateSimulationEnvironment() final override;
+        
         void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
 
         /* ====================  DATA MEMBERS  ======================================= */

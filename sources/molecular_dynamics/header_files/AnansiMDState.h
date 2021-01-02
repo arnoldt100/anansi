@@ -40,6 +40,8 @@ namespace ANANSI
 
             void performSimulation(MolecularDynamics * const aMD) const ;
 
+            void terminateSimulationEnvironment(MolecularDynamics * const aMD) const ;
+
             /* ====================  MUTATORS      ======================================= */
 
             /* ====================  OPERATORS     ======================================= */
@@ -62,6 +64,8 @@ namespace ANANSI
             virtual void _initializeInitialConditions(MolecularDynamics * const aMD) const;
 
             virtual void _performSimulation(MolecularDynamics * const aMD) const;
+
+            virtual void _terminateSimulationEnvironment(MolecularDynamics * const aMD) const;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

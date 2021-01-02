@@ -144,7 +144,6 @@ AnansiMolecularDynamics::_initializeInitialConditions()
 
 void AnansiMolecularDynamics::_performSimulation()
 {
-
     this->_mdState->performSimulation(this);
 
     // If successful performing the simulation, then change state to AnansiMDStateTSE.
@@ -153,6 +152,12 @@ void AnansiMolecularDynamics::_performSimulation()
     this->setMDState(std::move(new_md_state));
     return;
 }        // -----  end of method AnansiMolecularDynamics::_performSimulation  -----
+
+void AnansiMolecularDynamics::_terminateSimulationEnvironment()
+{
+    this->_mdState->terminateSimulationEnvironment(this);
+    return;
+}		// -----  end of method AnansiMolecularDynamics::_terminateSimulationEnvironment  -----
 
 void
 AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)

@@ -34,7 +34,7 @@ class MolecularDynamics
 
         /* ====================  ACCESSORS     ======================================= */
 
-        void stud_function() const;
+        void stud_function(std::string const & message) const;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -55,8 +55,11 @@ class MolecularDynamics
         // simulation.
         void initializeInitialConditions();
 
-        // This group of functios performs the MD simulation.
+        // This group of functions performs the MD simulation.
         void performSimulation();
+
+        // This group of functions terminates the simulation environment.
+        void terminateSimulationEnvironment();
 
         void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState);
 
@@ -98,6 +101,9 @@ class MolecularDynamics
 
         // This group of functions performs the MD simulation.
         virtual void _performSimulation()=0;
+
+        // This group of functions terminates the simulation environment.
+        virtual void _terminateSimulationEnvironment()=0;
 
         virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
 

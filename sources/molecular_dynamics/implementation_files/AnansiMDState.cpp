@@ -75,6 +75,12 @@ void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
     return;
 }        // -----  end of method AnansiMDState::performSimulation  -----
 
+void AnansiMDState::terminateSimulationEnvironment(MolecularDynamics * const aMD) const
+{
+    this->_terminateSimulationEnvironment(aMD);
+    return;
+}		// -----  end of method AnansiMDState::terminateSimulationEnvironment  -----
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -142,6 +148,13 @@ AnansiMDState::_performSimulation(MolecularDynamics * const aMD) const
     std::cout << "Error: This state can't 'perform the simulation environment'.";
     return ;
 }        // -----  end of method AnansiMDState::_performSimulation  -----
+
+void
+AnansiMDState::_terminateSimulationEnvironment(MolecularDynamics * const aMD) const
+{
+    std::cout << "Error: This state can't 'terminate the simulation environment'.";
+    return;
+}		// -----  end of method AnansiMDState::_terminateSimulationEnvironment  -----
 
 //============================= MUTATORS =====================================
 
