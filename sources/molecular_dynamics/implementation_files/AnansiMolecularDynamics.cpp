@@ -74,22 +74,6 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMolecularDynamics::_doSimulation()
-{
-    std::cout << "Doing AnansiMolecularDynamics simulation" << std::endl;
-    return;
-}
-
-void
-AnansiMolecularDynamics::_enableCommunication()
-{
-    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
-
-    this->_MpiWorldCommunicator = a_communicator_factory.createCommunicator();
-    std::cout << "Enabling AnansiMolecularDynamics communication." << std::endl;
-    return;
-}       /* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */
-
 void
 AnansiMolecularDynamics::_disableCommunication()
 {
@@ -117,6 +101,16 @@ void AnansiMolecularDynamics::_initializeMpiEnvironment(int const & argc, char c
     return;
 }
 
+void
+AnansiMolecularDynamics::_enableCommunication()
+{
+    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+
+    this->_MpiWorldCommunicator = a_communicator_factory.createCommunicator();
+    std::cout << "Enabling AnansiMolecularDynamics communication." << std::endl;
+    return;
+}       /* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */
+
 void AnansiMolecularDynamics::_processCommandLine( int const & argc, char const *const *const & argv )
 {
     this->_mdState->processCommandLine(this,argc,argv);
@@ -135,6 +129,28 @@ AnansiMolecularDynamics::_initializeSimulation(int const & argc, char const *con
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
     return;
 }
+
+void
+AnansiMolecularDynamics::_initializeInitialConditions()
+{
+    this->_mdState->initializeInitialConditions(this);
+
+    // If successful initializing the initial conditions, then change state to AnansiMDStatePS.
+    // Otherwise change state to AnansiMDStateTSE.
+    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStatePS>();
+    this->setMDState(std::move(new_md_state));
+    return;
+}        // -----  end of method AnansiMolecularDynamics::_initializeInitialConditions  -----
+
+void AnansiMolecularDynamics::_performSimulation()
+{
+
+    this->_mdState->performSimulation(this);
+
+    // :TODO:01/02/2021 11:21:21 AM:: Implement here code for switching md state to
+    // AnansiMDStateTSE
+    return;
+}        // -----  end of method AnansiMolecularDynamics::_performSimulation  -----
 
 void
 AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)

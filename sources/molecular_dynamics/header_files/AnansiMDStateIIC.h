@@ -48,6 +48,8 @@ namespace ANANSI
         private:
             /* ====================  METHODS       ======================================= */
 
+            void _initializeInitialConditions (MolecularDynamics * const aMD) const final override;
+
             /* ====================  DATA MEMBERS  ======================================= */
 
     }; /* -----  end of class AnansiMDStateIIC  ----- */

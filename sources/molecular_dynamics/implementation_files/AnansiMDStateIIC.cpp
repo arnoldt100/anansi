@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 #include <utility>
 
 //--------------------------------------------------------//
@@ -10,6 +11,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiMolecularDynamics.h"
 #include "AnansiMDStateIIC.h"
 
 namespace ANANSI {
@@ -53,6 +55,13 @@ AnansiMDStateIIC::~AnansiMDStateIIC()
 }
 
 //============================= ACCESSORS ====================================
+
+void
+AnansiMDStateIIC::_initializeInitialConditions (MolecularDynamics * const aMD) const
+{
+    std::cout << "This state initialized the simulation initial conditions environment.";
+    return;
+}		// -----  end of method AnansiMDStateIIC::_initializeInitialConditions  -----
 
 //============================= MUTATORS =====================================
 

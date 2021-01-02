@@ -32,13 +32,14 @@ int main( int argc, char** argv )
     // Initialize the initial condtions of the simulation.             @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    md_ptr->initializeInitialConditions();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // Do simulation.                                                  @
+    // Perform the simulation.                                         @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // md_ptr->doSimulation();
+    md_ptr->performSimulation();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @

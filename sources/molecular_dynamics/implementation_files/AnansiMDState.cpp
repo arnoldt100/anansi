@@ -1,3 +1,15 @@
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+#include <iostream>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 #include "AnansiMDState.h"
 
 namespace ANANSI {
@@ -42,12 +54,26 @@ AnansiMDState::~AnansiMDState()
 void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
     this->_initializeSimulationEnvironment(aMD,argc,argv);
+    return;
 }
 
 void AnansiMDState::processCommandLine(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
     this->_processCommandLine(aMD,argc,argv);
+    return;
 }
+
+void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) const
+{
+    this->_initializeInitialConditions(aMD);
+    return;
+}        // -----  end of method AnansiMDState::initializeInitialConditions  -----
+
+void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
+{
+    this->_performSimulation(aMD);
+    return;
+}        // -----  end of method AnansiMDState::performSimulation  -----
 
 //============================= MUTATORS =====================================
 
@@ -91,7 +117,6 @@ AnansiMDState& AnansiMDState::operator=( AnansiMDState && other )
 
 //============================= ACCESSORS ====================================
 
-//============================= MUTATORS =====================================
 void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD,int const & argc, char const *const *const & argv) const
 {
     std::cout << "Error: This state can't 'initialize the simulation environment'.";
@@ -103,6 +128,23 @@ void AnansiMDState::_processCommandLine(MolecularDynamics * const aMD,int const 
     std::cout << "Error: This state can't 'process the command line environment'.";
     return;
 }
+
+void
+AnansiMDState::_initializeInitialConditions(MolecularDynamics * const aMD) const
+{
+    std::cout << "Error: This state can't 'initialize the initial conditions environment'.";
+    return ;
+}        // -----  end of method AnansiMDState::_initializeInitialConditions  -----
+
+void
+AnansiMDState::_performSimulation(MolecularDynamics * const aMD) const
+{
+    std::cout << "Error: This state can't 'perform the simulation environment'.";
+    return ;
+}        // -----  end of method AnansiMDState::_performSimulation  -----
+
+//============================= MUTATORS =====================================
+
 //============================= OPERATORS ====================================
 
 

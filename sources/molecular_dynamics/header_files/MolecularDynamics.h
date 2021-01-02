@@ -37,9 +37,6 @@ class MolecularDynamics
         void stud_function() const;
 
         /* ====================  MUTATORS      ======================================= */
-        void doSimulation();
-
-        void enableCommunication();
 
         void disableCommunication();
 
@@ -48,12 +45,18 @@ class MolecularDynamics
 
         void initializeMpiEnvironment(int const & argc, char const *const *const & argv);
 
+        void enableCommunication();
+
         // This group of functions processes the comamand line and sets the
         // simulation parameters.
         void processCommandLine( int const & argc, char const *const *const & argv ); 
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
+        void initializeInitialConditions();
+
+        // This group of functios performs the MD simulation.
+        void performSimulation();
 
         void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState);
 
@@ -72,11 +75,7 @@ class MolecularDynamics
 
     private:
         /* ====================  MUTATORS      ======================================= */
-        virtual void 
-        _doSimulation()=0;
 
-        virtual void 
-        _enableCommunication()=0;
 
         virtual void _disableCommunication()=0;
 
@@ -85,13 +84,20 @@ class MolecularDynamics
 
         virtual void _initializeMpiEnvironment( int const & argc, char const *const *const & argv )=0;
 
+        virtual void _enableCommunication()=0;
+
         // This group of functions processes the comamand line and sets the
         // simulation parameters.
         virtual void _processCommandLine( int const & argc, char const *const *const & argv )=0; 
 
+        virtual void _initializeSimulation( int const & argc, char const *const *const & argv )=0;
+
         // This group of functions initializes the initial conditions of the 
         // simulation.
-        virtual void _initializeSimulation( int const & argc, char const *const *const & argv )=0;
+        virtual void _initializeInitialConditions()=0;
+
+        // This group of functions performs the MD simulation.
+        virtual void _performSimulation()=0;
 
         virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
 

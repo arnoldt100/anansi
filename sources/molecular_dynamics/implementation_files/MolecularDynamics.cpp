@@ -46,12 +46,6 @@ void MolecularDynamics::stud_function() const
 
 //============================= MUTATORS =====================================
 
-void MolecularDynamics::doSimulation()
-{
-    this->_doSimulation();
-    return;
-}       /* -----  end of method MolecularDynamics::doSimulation  ----- */
-
 void
 MolecularDynamics::enableCommunication ()
 {
@@ -71,27 +65,44 @@ void MolecularDynamics::initializeSimulationEnvironment( int const & argc, char 
 {
 	this->_initializeSimulationEnvironment(argc,argv);
     return;
-}
+}       /* -----  end of method MolecularDynamics::initializeSimulationEnvironment  ----- */
+
 
 void MolecularDynamics::initializeMpiEnvironment(int const & argc, char const *const *const & argv)
 {
     this->_initializeMpiEnvironment(argc,argv);
     return;
-}
+}       /* -----  end of method MolecularDynamics::initializeMpiEnvironment  ----- */
+
 
 
 void MolecularDynamics::processCommandLine( int const & argc, char const *const *const & argv ) 
 {
     this->_processCommandLine(argc,argv);
     return;
-}
+}        /* -----  end of method MolecularDynamics::processCommandLine  ----- */
+
+
+void
+MolecularDynamics::initializeInitialConditions ()
+{
+    this->_initializeInitialConditions();
+    return ;
+}		/* -----  end of method MolecularDynamics::initializeInitialConditions  ----- */
+
+void MolecularDynamics::performSimulation()
+{
+    this->_performSimulation();
+    return;
+}       /* -----  end of method MolecularDynamics::performSimulation  ----- */
 
 void
 MolecularDynamics::setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
 {
     this->_setMDState(std::move(a_AnansiMDState));
 	return;
-}
+}       /* -----  end of method MolecularDynamics::setMDState  ----- */
+
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

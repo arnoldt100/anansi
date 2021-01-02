@@ -52,25 +52,33 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         /* ====================  MUTATORS      ======================================= */
 
         void 
-        _doSimulation() final override;
-
-        void 
-        _enableCommunication() final override;
-
-        void 
         _disableCommunication() final override;
 
 
-        void 
-        _initializeSimulation(int const & argc, char const *const *const & argv ) final override;
-
+        // This group of functions initializes the simulation environment.
         void 
         _initializeSimulationEnvironment(int const & argc, char const *const *const & argv ) final override;
 
         void 
         _initializeMpiEnvironment(int const & argc, char const *const *const & argv) final override;
 
+        void 
+        _enableCommunication() final override;
+
+        // This group of functions processes the comamand line and sets the
+        // simulation parameters.
         void _processCommandLine( int const & argc, char const *const *const & argv ) final override; 
+
+        void 
+        _initializeSimulation(int const & argc, char const *const *const & argv ) final override;
+
+        // This group of functions initializes the initial conditions of the 
+        // simulation.
+        void _initializeInitialConditions () final override;
+
+        // This group of functions performs the MD simulation.
+        void
+        _performSimulation() final override;
 
         void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
 

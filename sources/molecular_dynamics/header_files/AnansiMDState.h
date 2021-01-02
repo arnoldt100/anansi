@@ -4,7 +4,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -37,6 +36,10 @@ namespace ANANSI
 
             void processCommandLine(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const;
 
+            void initializeInitialConditions(MolecularDynamics * const aMD) const;
+
+            void performSimulation(MolecularDynamics * const aMD) const ;
+
             /* ====================  MUTATORS      ======================================= */
 
             /* ====================  OPERATORS     ======================================= */
@@ -51,10 +54,14 @@ namespace ANANSI
             /* ====================  DATA MEMBERS  ======================================= */
 
         private:
-            /* ====================  METHODS       ======================================= */
+            /* ====================  ACCESSORS     ======================================= */
             virtual void _initializeSimulationEnvironment(MolecularDynamics* const aMD, int const & argc, char const *const *const & argv) const;
 
             virtual void _processCommandLine(MolecularDynamics* const aMD,int const & argc, char const *const *const & argv) const;
+
+            virtual void _initializeInitialConditions(MolecularDynamics * const aMD) const;
+
+            virtual void _performSimulation(MolecularDynamics * const aMD) const;
 
             /* ====================  DATA MEMBERS  ======================================= */
 
