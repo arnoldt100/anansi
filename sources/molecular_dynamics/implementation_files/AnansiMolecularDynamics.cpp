@@ -91,9 +91,14 @@ AnansiMolecularDynamics::_initializeSimulationEnvironment(int const & argc, char
     // Otherwise change state to AnansiMDStateTSE.
     std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStatePCL>();
     this->setMDState(std::move(new_md_state));
-
     return;
 }
+
+void AnansiMolecularDynamics::_saveCommandLineArguments(int const & argc, char const *const *const & argv)
+{
+    this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
+    return ;
+}		/* -----  end of method AnansiMolecularDynamics::_saveCommandLineArguments  ----- */
 
 void AnansiMolecularDynamics::_initializeMpiEnvironment(int const & argc, char const * const * const & argv)
 {
@@ -125,7 +130,6 @@ void AnansiMolecularDynamics::_processCommandLine( int const & argc, char const 
 void
 AnansiMolecularDynamics::_initializeSimulation(int const & argc, char const *const *const & argv )
 {
-    this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
     return;
 }

@@ -43,6 +43,8 @@ class MolecularDynamics
         // This group of functions initializes the simulation environment.
         void initializeSimulationEnvironment( int const & argc, char const *const *const & argv );
 
+        void saveCommandLineArguments (int const & argc, char const *const *const & argv);
+
         void initializeMpiEnvironment(int const & argc, char const *const *const & argv);
 
         void enableCommunication();
@@ -84,6 +86,8 @@ class MolecularDynamics
 
         // This group of functions initializes the simulation environment.
         virtual void _initializeSimulationEnvironment( int const & argc, char const *const *const & argv )=0;
+
+        virtual void _saveCommandLineArguments( int const & argc, char const *const *const & argv)=0;
 
         virtual void _initializeMpiEnvironment( int const & argc, char const *const *const & argv )=0;
 

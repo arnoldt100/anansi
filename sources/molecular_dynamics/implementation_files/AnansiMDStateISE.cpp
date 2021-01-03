@@ -101,13 +101,16 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 //============================= MUTATORS =====================================
 void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const aMD,int const & argc, char const *const *const & argv) const
 {
+    // Save the command line arguments.
+    aMD->saveCommandLineArguments(argc,argv);
+
     // Initialize the MPI environment.
     aMD->initializeMpiEnvironment(argc,argv);
 
-    // Enable MPI Communication for the aMD object.
+    // Enable MPI communication for the aMD object.
     aMD->enableCommunication();
 
-    std::cout << "The prgram has succesfully initialized the simulation environment." << std::endl;
+    std::cout << "The program has succesfully initialized the simulation environment." << std::endl;
     return;
 }
 

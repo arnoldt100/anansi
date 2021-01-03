@@ -60,6 +60,9 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         _initializeSimulationEnvironment(int const & argc, char const *const *const & argv ) final override;
 
         void 
+        _saveCommandLineArguments( int const & argc, char const *const *const & argv) final override;
+
+        void 
         _initializeMpiEnvironment(int const & argc, char const *const *const & argv) final override;
 
         void 

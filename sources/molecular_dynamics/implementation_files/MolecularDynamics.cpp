@@ -68,6 +68,12 @@ void MolecularDynamics::initializeSimulationEnvironment( int const & argc, char 
 }       /* -----  end of method MolecularDynamics::initializeSimulationEnvironment  ----- */
 
 
+void MolecularDynamics::saveCommandLineArguments ( int const & argc, char const *const *const & argv)
+{
+    this->_saveCommandLineArguments(argc,argv);
+    return;
+}		/* -----  end of method MolecularDynamics::saveCommandLineArguments  ----- */
+
 void MolecularDynamics::initializeMpiEnvironment(int const & argc, char const *const *const & argv)
 {
     this->_initializeMpiEnvironment(argc,argv);
