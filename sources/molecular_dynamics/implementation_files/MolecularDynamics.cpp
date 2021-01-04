@@ -89,6 +89,14 @@ void MolecularDynamics::processCommandLine( int const & argc, char const *const 
 
 
 void
+MolecularDynamics::saveSimulationParameters()
+{
+    this->_saveSimulationParameters();
+    return ;
+}		/* -----  end of method MolecularDynamics::saveSimulationParameters  ----- */
+
+
+void
 MolecularDynamics::initializeInitialConditions ()
 {
     this->_initializeInitialConditions();

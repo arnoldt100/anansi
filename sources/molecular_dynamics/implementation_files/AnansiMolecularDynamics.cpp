@@ -127,12 +127,14 @@ void AnansiMolecularDynamics::_processCommandLine( int const & argc, char const 
     return;
 }
 
+
 void
-AnansiMolecularDynamics::_initializeSimulation(int const & argc, char const *const *const & argv )
+AnansiMolecularDynamics::_saveSimulationParameters()
 {
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
-    return;
-}
+    return ;
+}		/* -----  end of method AnansiMolecularDynamics::_saveSimulationParameters  ----- */
+
 
 void
 AnansiMolecularDynamics::_initializeInitialConditions()

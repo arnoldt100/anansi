@@ -1,3 +1,16 @@
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+#include <utility>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "AnansiMolecularDynamics.h"
 #include "AnansiMDStatePCL.h"
 
 namespace ANANSI {
@@ -85,13 +98,8 @@ AnansiMDStatePCL& AnansiMDStatePCL::operator= ( AnansiMDStatePCL && other )
 //============================= ACCESSORS ====================================
 void AnansiMDStatePCL::_processCommandLine(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const
 {
-    // Execute commands to process command line arguments, and store the
-    // simulation parameters.
-
-    // :TODO:01/02/2021 01:43:01 PM:: Store the command line arguments.
-
-    // :TODO:01/02/2021 01:43:58 PM:: Store the simulation parameters.
-
+    // Execute commands to store the simulation parameters.
+    aMD->saveSimulationParameters();
     return;
 }
 

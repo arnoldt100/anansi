@@ -72,8 +72,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         // simulation parameters.
         void _processCommandLine( int const & argc, char const *const *const & argv ) final override; 
 
-        void 
-        _initializeSimulation(int const & argc, char const *const *const & argv ) final override;
+        void _saveSimulationParameters() final override;
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
