@@ -70,7 +70,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         // This group of functions processes the comamand line and sets the
         // simulation parameters.
-        void _processCommandLine( int const & argc, char const *const *const & argv ) final override; 
+        void _processCommandLine() final override; 
 
         void _saveSimulationParameters() final override;
 

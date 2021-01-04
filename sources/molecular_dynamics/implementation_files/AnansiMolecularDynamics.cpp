@@ -116,9 +116,9 @@ AnansiMolecularDynamics::_enableCommunication()
     return;
 }       /* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */
 
-void AnansiMolecularDynamics::_processCommandLine( int const & argc, char const *const *const & argv )
+void AnansiMolecularDynamics::_processCommandLine()
 {
-    this->_mdState->processCommandLine(this,argc,argv);
+    this->_mdState->processCommandLine(this);
 
     // If successful processing of command line options, then change state to AnansiMDStateIIC.
     // Otherwise change state to AnansiMDStateTSE.

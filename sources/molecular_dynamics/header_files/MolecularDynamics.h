@@ -51,7 +51,7 @@ class MolecularDynamics
 
         // This group of functions processes the comamand line and sets the
         // simulation parameters.
-        void processCommandLine( int const & argc, char const *const *const & argv ); 
+        void processCommandLine(); 
 
         void saveSimulationParameters();
 
@@ -97,7 +97,7 @@ class MolecularDynamics
 
         // This group of functions processes the command line and sets the
         // simulation parameters.
-        virtual void _processCommandLine( int const & argc, char const *const *const & argv )=0; 
+        virtual void _processCommandLine()=0; 
 
         virtual void _saveSimulationParameters()=0;
 

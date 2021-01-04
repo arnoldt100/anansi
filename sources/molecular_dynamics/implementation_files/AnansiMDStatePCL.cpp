@@ -96,7 +96,7 @@ AnansiMDStatePCL& AnansiMDStatePCL::operator= ( AnansiMDStatePCL && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void AnansiMDStatePCL::_processCommandLine(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const
+void AnansiMDStatePCL::_processCommandLine(MolecularDynamics * const aMD) const
 {
     // Execute commands to store the simulation parameters.
     aMD->saveSimulationParameters();

@@ -81,9 +81,9 @@ void MolecularDynamics::initializeMpiEnvironment(int const & argc, char const *c
 }       /* -----  end of method MolecularDynamics::initializeMpiEnvironment  ----- */
 
 
-void MolecularDynamics::processCommandLine( int const & argc, char const *const *const & argv ) 
+void MolecularDynamics::processCommandLine() 
 {
-    this->_processCommandLine(argc,argv);
+    this->_processCommandLine();
     return;
 }        /* -----  end of method MolecularDynamics::processCommandLine  ----- */
 

@@ -34,7 +34,7 @@ namespace ANANSI
 
             void initializeSimulationEnvironment(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const;
 
-            void processCommandLine(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const;
+            void processCommandLine(MolecularDynamics * const aMD) const;
 
             void initializeInitialConditions(MolecularDynamics * const aMD) const;
 
@@ -59,7 +59,7 @@ namespace ANANSI
             /* ====================  ACCESSORS     ======================================= */
             virtual void _initializeSimulationEnvironment(MolecularDynamics* const aMD, int const & argc, char const *const *const & argv) const;
 
-            virtual void _processCommandLine(MolecularDynamics* const aMD,int const & argc, char const *const *const & argv) const;
+            virtual void _processCommandLine(MolecularDynamics* const aMD) const;
 
             virtual void _initializeInitialConditions(MolecularDynamics * const aMD) const;
 

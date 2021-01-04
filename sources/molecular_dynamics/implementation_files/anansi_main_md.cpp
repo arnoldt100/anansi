@@ -25,7 +25,7 @@ int main( int argc, char** argv )
     // Process the command line and set the simulation parameters.     @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->processCommandLine(argc,argv);
+    md_ptr->processCommandLine();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
