@@ -85,6 +85,11 @@ MolecularDynamics* AnansiMolecularDynamicsFactory::_create()
     return my_md;
 }
 
+std::shared_ptr<MolecularDynamics> AnansiMolecularDynamicsFactory::_create_shared_ptr()
+{
+    std::shared_ptr<MolecularDynamics> aMD = std::make_shared<AnansiMolecularDynamics>();
+    return aMD;
+}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

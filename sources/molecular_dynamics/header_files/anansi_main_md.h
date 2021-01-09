@@ -13,15 +13,6 @@
 //
 // =====================================================================================
 
-// System includes
-#include <iostream>
-
-// Local includes
-#include "MPIEnvironment.h"
-#include "AnansiMolecularDynamics.h"
-#include "AnansiMolecularDynamicsFactory.h"
-#include "Pointer.hpp"
-#include "CommandLineArguments.h"
 
 // ===  FUNCTION  ======================================================================
 //         Name:  main

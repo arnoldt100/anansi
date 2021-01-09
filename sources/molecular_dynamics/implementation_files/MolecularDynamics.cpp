@@ -1,7 +1,3 @@
-/*
- * MolecularDynamics.cpp
- */
-
 #include "MolecularDynamics.h"
 
 namespace ANANSI {
@@ -52,6 +48,7 @@ MolecularDynamics::enableCommunication ()
     this->_enableCommunication();
     return ;
 }		/* -----  end of method MolecularDynamics::enableCommunication  ----- */
+
 
 void
 MolecularDynamics::disableCommunication()

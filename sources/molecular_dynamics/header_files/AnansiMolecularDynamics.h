@@ -54,7 +54,6 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void 
         _disableCommunication() final override;
 
-
         // This group of functions initializes the simulation environment.
         void 
         _initializeSimulationEnvironment(int const & argc, char const *const *const & argv ) final override;

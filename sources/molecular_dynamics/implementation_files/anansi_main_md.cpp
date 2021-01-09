@@ -1,4 +1,22 @@
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+#include <iostream>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 #include "anansi_main_md.h"
+#include "MPIEnvironment.h"
+#include "AnansiMolecularDynamics.h"
+#include "AnansiMolecularDynamicsFactory.h"
+#include "Pointer.hpp"
+#include "CommandLineArguments.h"
+
 
 int main( int argc, char** argv )
 {
@@ -8,10 +26,8 @@ int main( int argc, char** argv )
     // MD object.                                                      @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    ANANSI::MolecularDynamicsFactory* my_md_factory_ptr = 
-        new ANANSI::AnansiMolecularDynamicsFactory;
-
-    ANANSI::MolecularDynamics* md_ptr = my_md_factory_ptr->create();
+    std::shared_ptr<ANANSI::MolecularDynamicsFactory> my_md_factory(new ANANSI::AnansiMolecularDynamicsFactory);
+    std::shared_ptr<ANANSI::MolecularDynamics> md_ptr = my_md_factory->create_shared_ptr();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
@@ -47,23 +63,6 @@ int main( int argc, char** argv )
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     md_ptr->terminateSimulationEnvironment();
-
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Free the resources used by the simulation.                      @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    if (md_ptr != nullptr)
-    {
-        delete md_ptr;
-        md_ptr=nullptr;
-    }
-
-    if (my_md_factory_ptr != nullptr)
-    {
-        delete my_md_factory_ptr;
-        my_md_factory_ptr=nullptr;
-    }
 
     return EXIT_SUCCESS;
 }

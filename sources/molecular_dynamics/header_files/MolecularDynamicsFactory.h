@@ -40,6 +40,8 @@ namespace ANANSI
                 return this->_create();
             }
 
+            std::shared_ptr<MolecularDynamics> create_shared_ptr();
+
             /* ====================  MUTATORS      ======================================= */
 
             /* ====================  OPERATORS     ======================================= */
@@ -55,6 +57,8 @@ namespace ANANSI
         private:
             /* ====================  ACCESSORS     ======================================= */
             virtual MolecularDynamics* _create()=0; 
+
+            virtual std::shared_ptr<MolecularDynamics> _create_shared_ptr()=0;
 
             /* ====================  MUTATORS      ======================================= */
 

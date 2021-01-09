@@ -12,9 +12,9 @@ The base class for the MolecularDynamics classes. This
 class is an abstract base class, and it is not copyable
 assignable, copy movebale, or assignment moveable. 
 
-======================
-Interface Header Files
-======================
+==============================
+Interface Header File Includes
+==============================
 
 **C++ Include Files**
 
@@ -29,9 +29,9 @@ Interface Header Files
 
 * #include "AnansiMDState.h"
 
-==========================
-Implementaion Header Files
-==========================
+==================================
+Implementaion Header File Includes
+==================================
 
 **C++ Include Files**
 
