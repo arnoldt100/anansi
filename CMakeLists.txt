@@ -118,4 +118,4 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 # dynamics program.                                  -
 #                                                    -
 #-----------------------------------------------------
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_dynamics)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_dynamics)
