@@ -69,50 +69,6 @@ set(ENV{MOUSEION_BOOST_TOP_LEVEL} $ENV{ANANSI_BOOST_TOP_LEVEL})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
-# to install the memory_management libraries,        -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-# set(memory_management_install_lib_directory ${anansi_install_lib_directory})
-# set(memory_management_install_include_directory ${anansi_install_include_directory})
-# set(memory_management_install_bin_directory ${anansi_install_bin_directory} )
-# set(memory_management_cxx_standard ${anansi_cxx_standard} )
-
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
-# to install the mpi_communicator libraries,         -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-# set(mpi_communicator_install_lib_directory ${anansi_install_lib_directory})
-# set(mpi_communicator_install_include_directory ${anansi_install_include_directory})
-# set(mpi_communicator_install_bin_directory ${anansi_install_bin_directory} )
-# set(mpi_communicator_cxx_standard ${anansi_cxx_standard} )
-
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
-# to install the mpi_communicator libraries,         -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-# set(string_utilities_install_lib_directory ${anansi_install_lib_directory})
-# set(string_utilities_install_include_directory ${anansi_install_include_directory})
-# set(string_utilities_install_bin_directory ${anansi_install_bin_directory} )
-# set(string_utilities_cxx_standard ${anansi_cxx_standard} )
-
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
-# to install the counterclass libraries,             -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-# set(counterclass_install_lib_directory ${anansi_install_lib_directory})
-# set(counterclass_install_include_directory ${anansi_install_include_directory})
-# set(counterclass_install_bin_directory ${anansi_install_bin_directory} )
-# set(counterclass_cxx_standard ${anansi_cxx_standard} )
-
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
 # to install the command_line_arguments libraries,   -
 # header files, and associated binaries.             -
 #                                                    -
