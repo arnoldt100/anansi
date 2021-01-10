@@ -9,9 +9,9 @@ AnansiMDState Documentation
 ###########################
 
 This is the State class for the AnansiMolecularDynamics. We are using the
-State design pattern to implement different behavoirs of AnansiMolecularDynamics.
+State design pattern to implement different behaviors of AnansiMolecularDynamics.
 
-AnansiMolecularDynamics has 5 states or beahvoirs:
+AnansiMolecularDynamics has 5 states or behaviors:
 
 * InitializingSimulationEnvironment
 
@@ -93,7 +93,42 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    No public accessors
+    .. function:: void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics * const aMD, int const & argc, char const * const * const & argv ) const
+
+        Implements the interface for intializing the simulation environment.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+                                              This MD object is to have its simulation environment
+                                              initialized.
+
+        :param int const & argc: The number of command line arguments.
+        :param char const * const * const & argv: The command line arguments.
+        :rtype: void
+
+    .. function:: void AnansiMDState::processCommandLine(MolecularDynamics * const aMD) const
+
+        Implements the interface for processing the command line arguments.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+
+    .. function:: void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) const 
+
+        Implements the interface for initializing the initial condtions.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+
+
+    .. function:: void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
+
+        Implements the interface for performing the molecular dynamics simulation.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+
+    .. function:: void AnansiMDState::terminateSimulationEnvironment(MolecularDynamics * const aMD) const
+
+        Implements the interface for terminating the simulation environment.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
 
 ^^^^^^^^^
 Operators
@@ -113,7 +148,6 @@ Mutators
 
     .. function:: void AnansiMDState::initializeSimulationEnvironment()
 
-        Initializes the simulation environment.
 
 -----------------
 Protected Members
@@ -146,16 +180,81 @@ Protected Members
 Private Members
 ---------------
 
-    No private members
-
-.. Commented out. 
 .. ^^^^^^^^^
 .. Lifecycle
 .. ^^^^^^^^^
-..
-.. ^^^^^^^^^
-.. Accessors
-.. ^^^^^^^^^
+
+^^^^^^^^^
+Accessors
+^^^^^^^^^
+
+    .. function:: void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD, int const & argc, char const * const * const & argv ) const
+
+        Implements the Non-Virtual Interface private virtual extension point
+        for intializing the simulation environment.
+
+        This function should be overriden for by all valid MD states.
+        Currently only the MD state AnansiMDStateISE should override this
+        method.  If the function is not overriden in the derived class, the
+        function simply does nothing.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+                                              This MD object is to have its simulation environment
+                                              initialized.
+
+        :param int const & argc: The number of command line arguments.
+        :param char const * const * const & argv: The command line arguments.
+        :rtype: void
+
+
+    .. function:: void AnansiMDState::_processCommandLine(MolecularDynamics * const aMD) const
+
+        Implements the Non-Virtual Interface private virtual extension point
+        for processing the command line arguments.
+
+        This function should be overriden for by all valid MD states.
+        Currently only the MD state AnansiMDStatePCL should override this
+        method.  If the function is not overriden in the derived class, the
+        function simply does nothing.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+
+    .. function:: void AnansiMDState::_initializeInitialConditions(MolecularDynamics * const aMD) const 
+
+        Implements the Non-Virtual Interface private virtual extension point
+        for initializing the initial conditions.
+
+        This function should be overriden for by all valid MD states.
+        Currently only the MD state AnansiMDStateIIC should override this
+        method.  If the function is not overriden in the derived class, the
+        function simply does nothing.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+
+    .. function:: void AnansiMDState::_performSimulation(MolecularDynamics * const aMD) const
+
+        Implements the Non-Virtual Interface private virtual extension point
+        for performing the MD simulation.
+
+        This function should be overriden for by all valid MD states.
+        Currently only the MD state AnansiMDStatePS should override this
+        method.  If the function is not overriden in the derived class, the
+        function simply does nothing.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+
+    .. function:: void AnansiMDState::_terminateSimulationEnvironment(MolecularDynamics * const aMD) const
+
+        Implements the Non-Virtual Interface private virtual extension point
+        for terminating the simulation environment.
+
+        This function should be overriden for by all valid MD states.
+        Currently only the MD state AnansiMDStateTS should override this
+        method.  If the function is not overriden in the derived class, the
+        function simply does nothing.
+
+        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+
 .. 
 .. ^^^^^^^^^
 .. Operators
@@ -165,12 +264,6 @@ Private Members
 Mutators
 ^^^^^^^^
 
-    .. function virtual void _initializeSimulationEnvironment()
-
-        This function should be overriden for by all valid MD states. If not
-        overriden, then this base method is called and a error is thrown.
-        Curremtly only the MD state AnansiMDStateISE should override this
-        method.
 
 .. ^^^^^^^^^^^^
 .. Data Members

@@ -38,7 +38,7 @@ namespace ANANSI
 
             void initializeInitialConditions(MolecularDynamics * const aMD) const;
 
-            void performSimulation(MolecularDynamics * const aMD) const ;
+            void performSimulation(MolecularDynamics * const aMD) const;
 
             void terminateSimulationEnvironment(MolecularDynamics * const aMD) const ;
 
