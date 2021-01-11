@@ -51,11 +51,14 @@ AnansiMDState::~AnansiMDState()
 
 //============================= ACCESSORS ====================================
 
+
+
 void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
     this->_initializeSimulationEnvironment(aMD,argc,argv);
     return;
 }
+
 
 void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
 {
