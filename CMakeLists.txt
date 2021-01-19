@@ -1,35 +1,58 @@
-#-----------------------------------------------------
-# Check that the cmake minimum version is            -
-# satisfied.                                         -
-#                                                    -
-#-----------------------------------------------------
-cmake_minimum_required(VERSION $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# CMake preamble section.                                         @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    #-----------------------------------------------------
+    # Check that the cmake minimum version is            -
+    # satisfied.                                         -
+    #                                                    -
+    #-----------------------------------------------------
+    cmake_minimum_required(VERSION $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
 
-#-----------------------------------------------------
-# Define the project.                                -
-#                                                    -
-#-----------------------------------------------------
-project(anansi)
+    #-----------------------------------------------------
+    # Define the project.                                -
+    #                                                    -
+    #-----------------------------------------------------
+    project(anansi)
 
-#-----------------------------------------------------
-# Turn on verbose debugging.                         -
-#                                                    -
-#-----------------------------------------------------
-set(CMAKE_VERBOSE_MAKEFILE ON)
+    #-----------------------------------------------------
+    # Make available the project cmake modules.          -
+    #                                                    -
+    #-----------------------------------------------------
+    include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
+    include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_boost.cmake )
+    include( $ENV{ANANSI_CMAKE_MODULE_PATH}/enable_compile_warnings.cmake )
 
-#-----------------------------------------------------
-# Make available the project cmake modules.          -
-#                                                    -
-#-----------------------------------------------------
-include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
-include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_boost.cmake )
-include( $ENV{ANANSI_CMAKE_MODULE_PATH}/enable_compile_warnings.cmake )
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of CMake preamble section.                                  @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-#-----------------------------------------------------
-# Check that key environmental variables are set.    -
-#                                                    -
-#-----------------------------------------------------
-verify_key_environmental_are_set()
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# Start of C++ build and release section                          @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    #-----------------------------------------------------
+    # Turn on verbose debugging.                         -
+    #                                                    -
+    #-----------------------------------------------------
+    set(CMAKE_VERBOSE_MAKEFILE ON)
+
+    #-----------------------------------------------------
+    # Check that key environmental variables are set.    -
+    #                                                    -
+    #-----------------------------------------------------
+    verify_key_environmental_are_set()
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of C++ build and release section                            @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #-----------------------------------------------------
 # Here we define some variables.                     -
