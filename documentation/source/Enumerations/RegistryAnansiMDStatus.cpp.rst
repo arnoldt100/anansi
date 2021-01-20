@@ -13,7 +13,7 @@ This scoped enum enumerates the status of the Anansi MD instance.
 * InitializingSimulationEnvironmentFail
 * ProcessingCommandLineInProgress
 * ProcessingCommandLineSuccessful
-* ProcessingCommandLinFailed
+* ProcessingCommandLineFailed
 * InitializingInitialConditionInProgress
 * InitializingInitialConditionSuccessful
 * InitializingInitialConditionFailed
