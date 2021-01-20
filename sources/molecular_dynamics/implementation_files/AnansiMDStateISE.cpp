@@ -110,7 +110,7 @@ void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const
     // Enable MPI communication for the aMD object.
     aMD->enableCommunication();
 
-    std::cout << "The program has succesfully initialized the simulation environment." << std::endl;
+    std::cout << "The program has successfully initialized the simulation environment." << std::endl;
     return;
 }
 

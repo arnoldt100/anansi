@@ -9,7 +9,7 @@
 #include <iostream>
 #include <memory>
 
-// Local incudes
+// Local includes
 #include "AnansiMDState.h"
 
 

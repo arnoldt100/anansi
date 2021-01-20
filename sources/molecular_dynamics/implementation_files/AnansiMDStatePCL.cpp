@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -100,6 +101,7 @@ void AnansiMDStatePCL::_processCommandLine(MolecularDynamics * const aMD) const
 {
     // Execute commands to store the simulation parameters.
     aMD->saveSimulationParameters();
+    std::cout << "The program has successfully processed the commadline environment." << std::endl;
     return;
 }
 

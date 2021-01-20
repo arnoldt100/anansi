@@ -7,4 +7,4 @@ Welcome to Anansi's Enum documentation!
    :titlesonly:
 
 
-   Enumerations/RegistryAnansiMDStates.cpp.rst
+   Enumerations/RegistryAnansiMDStatus.cpp.rst

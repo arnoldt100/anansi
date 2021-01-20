@@ -85,12 +85,7 @@ AnansiMolecularDynamics::_disableCommunication()
 void
 AnansiMolecularDynamics::_initializeSimulationEnvironment(int const & argc, char const *const *const & argv )
 {
-    this->_mdState->initializeSimulationEnvironment(this,argc,argv);
-
-    // If successful initialization of simulation environment, then change state to AnansiMDStatePCL.
-    // Otherwise change state to AnansiMDStateTSE.
-    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStatePCL>();
-    this->setMDState(std::move(new_md_state));
+	this->_mdState->initializeSimulationEnvironment(this,argc,argv);
     return;
 }
 

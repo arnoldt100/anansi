@@ -59,7 +59,7 @@ AnansiMDStateIIC::~AnansiMDStateIIC()
 void
 AnansiMDStateIIC::_initializeInitialConditions (MolecularDynamics * const aMD) const
 {
-    std::cout << "This state initialized the simulation initial conditions environment.";
+    std::cout << "This state initialized the simulation initial conditions environment." << std::endl;
     return;
 }		// -----  end of method AnansiMDStateIIC::_initializeInitialConditions  -----
 

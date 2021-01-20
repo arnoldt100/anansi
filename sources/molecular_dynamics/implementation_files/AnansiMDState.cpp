@@ -56,6 +56,24 @@ AnansiMDState::~AnansiMDState()
 void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
     this->_initializeSimulationEnvironment(aMD,argc,argv);
+
+    // Depending upon the status of intializing the simulation environment,
+    // the current state is changed to an appropiate value.
+    // switch ( this->_mdState->status(aMD) )
+    // {
+    //     // Case for successful completion of initializing the simulation environment.
+    //     case  :
+    //         std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStatePCL>();
+    //         this->setMDState(std::move(new_md_state));
+    //         break;
+
+    //     // Case for unsuccessful completion of  initializing the simulation environment.
+    //     case  :
+    //         std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateTSE>();
+    //         this->setMDState(std::move(new_md_state));
+    //         break;
+    // }
+
     return;
 }
 
@@ -65,6 +83,7 @@ void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
     this->_processCommandLine(aMD);
     return;
 }
+
 
 void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) const
 {

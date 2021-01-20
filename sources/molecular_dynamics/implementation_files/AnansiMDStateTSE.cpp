@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -101,6 +102,7 @@ AnansiMDStateTSE& AnansiMDStateTSE::operator= ( AnansiMDStateTSE && other )
 void
 AnansiMDStateTSE::_terminateSimulationEnvironment (MolecularDynamics * const aMD) const
 {
+    std::cout << "The program has successfully terminated the simulation environment." << std::endl;
     return ;
 }		/* -----  end of method AnansiMDStateTSE::_terminateSimulationEnvironment  ----- */
 

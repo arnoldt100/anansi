@@ -87,7 +87,8 @@
         header_files/AnansiMDStateTSE.h
         header_files/MolecularDynamics.h 
         header_files/MolecularDynamicsFactory.h 
-        header_files/AnansiMolecularDynamicsFactory.h)
+        header_files/AnansiMolecularDynamicsFactory.h
+        header_files/RegistryAnansiMDStatus.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -105,7 +106,8 @@
         implementation_files/AnansiMDStateTSE.cpp
         implementation_files/MolecularDynamics.cpp
         implementation_files/MolecularDynamicsFactory.cpp
-        implementation_files/AnansiMolecularDynamicsFactory.cpp)
+        implementation_files/AnansiMolecularDynamicsFactory.cpp
+        implementation_files/RegistryAnansiMDStatus.cpp)
 
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
