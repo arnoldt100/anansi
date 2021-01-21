@@ -23,6 +23,7 @@ namespace ANANSI
     // =====================================================================================
     enum class RegistryAnansiMDStatus : int
     {
+        Undefined,
         InitializingSimulationEnvironmentInProgess,
         InitializingSimulationEnvironmentSucessful,
         InitializingSimulationEnvironmentFail,

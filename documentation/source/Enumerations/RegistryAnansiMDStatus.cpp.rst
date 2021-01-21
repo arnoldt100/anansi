@@ -8,6 +8,7 @@ RegistryAnansiMDStatus Documentation
 
 This scoped enum enumerates the status of the Anansi MD instance.
 
+* Undefined
 * InitializingSimulationEnvironmentInProgess
 * InitializingSimulationEnvironmentSucessful
 * InitializingSimulationEnvironmentFail
@@ -32,6 +33,10 @@ RegistryAnansiMDStates Class Documentation
 .. enum:: RegistryAnansiMDStatus : int
 
     A scoped enum that enumerates the states of the Anansi MD simulation.
+
+    .. member:: int Undefined
+
+        The status is undefined.
 
     .. member:: int InitializingSimulationEnvironmentInProgess
 

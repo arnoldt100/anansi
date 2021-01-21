@@ -11,6 +11,7 @@
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
+#include "RegistryAnansiMDStatus.h"
 
 namespace ANANSI {
 
@@ -49,6 +50,10 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
+        /* ====================  ACCESSORS     ======================================= */
+
+        ANANSI::RegistryAnansiMDStatus _status() const;
+
         /* ====================  MUTATORS      ======================================= */
 
         void 
@@ -84,7 +89,10 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         // This group of functions terminates the simulation environment.
         void _terminateSimulationEnvironment() final override;
         
+        // This group of functions changes the state of the MD object.
         void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
+        void _changeMDStateToPCL() final override;
+        void _changeMDStateToTSE() final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;
@@ -92,6 +100,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
         std::unique_ptr<COMMUNICATOR::MPIEnvironment> _MpiEnvironment;
         std::unique_ptr<ANANSI::AnansiMDState> _mdState;
+        ANANSI::RegistryAnansiMDStatus _mdStatus;
 
         /* ====================  STATIC        ======================================= */
 

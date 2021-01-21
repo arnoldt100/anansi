@@ -40,6 +40,11 @@ void MolecularDynamics::stud_function(std::string const & message) const
     std::cout << "Stud function: " << message << std::endl;
 }
 
+ANANSI::RegistryAnansiMDStatus MolecularDynamics::status() const
+{   
+    return this->_status();
+}
+
 //============================= MUTATORS =====================================
 
 void
@@ -119,6 +124,16 @@ MolecularDynamics::setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
 	return;
 }       /* -----  end of method MolecularDynamics::setMDState  ----- */
 
+void MolecularDynamics::changeMDStateToPCL()
+{
+    this->_changeMDStateToPCL();
+}
+
+void MolecularDynamics::changeMDStateToTSE()
+{
+    this->_changeMDStateToTSE();
+}
+
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////
@@ -140,6 +155,11 @@ MolecularDynamics::setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+
+ANANSI::RegistryAnansiMDStatus MolecularDynamics::_status() const
+{
+    return RegistryAnansiMDStatus::Undefined;
+}
 
 //============================= MUTATORS =====================================
 

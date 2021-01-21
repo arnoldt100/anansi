@@ -11,7 +11,7 @@
 
 // Local includes
 #include "AnansiMDState.h"
-
+#include "RegistryAnansiMDStatus.h"
 
 #ifndef  MolecularDynamics_INC
 #define  MolecularDynamics_INC
@@ -35,6 +35,8 @@ class MolecularDynamics
         /* ====================  ACCESSORS     ======================================= */
 
         void stud_function(std::string const & message) const;
+
+        ANANSI::RegistryAnansiMDStatus status() const;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -65,7 +67,10 @@ class MolecularDynamics
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment();
 
+        // This group of functions changes the state of the MD object.
         void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState);
+        void changeMDStateToPCL();
+        void changeMDStateToTSE();
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -81,8 +86,10 @@ class MolecularDynamics
         /* ====================  MUTATORS      ======================================= */
 
     private:
-        /* ====================  MUTATORS      ======================================= */
+        /* ====================  ACCESSORS     ======================================= */
+        virtual ANANSI::RegistryAnansiMDStatus _status() const;
 
+        /* ====================  MUTATORS      ======================================= */
 
         virtual void _disableCommunication()=0;
 
@@ -111,7 +118,12 @@ class MolecularDynamics
         // This group of functions terminates the simulation environment.
         virtual void _terminateSimulationEnvironment()=0;
 
+        // This group of functions changes the state of the MD object.
         virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
+
+        virtual void _changeMDStateToPCL()=0;
+
+        virtual void _changeMDStateToTSE()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

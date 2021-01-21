@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -11,8 +12,13 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiMDState.h"
+#include "RegistryAnansiMDStatus.h"
+#include "MolecularDynamics.h"
 
 namespace ANANSI {
+
+class AnansiMDStatePCL;
+class AnansiMDStateTSE;
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -52,28 +58,40 @@ AnansiMDState::~AnansiMDState()
 //============================= ACCESSORS ====================================
 
 
-
 void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
+    // Here we create aliases simply for coding format convenience.
+    constexpr auto success =
+        ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
+    constexpr auto fail =
+        ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFail;
+
+    // Initialize the simualtion environment.
     this->_initializeSimulationEnvironment(aMD,argc,argv);
 
-    // Depending upon the status of intializing the simulation environment,
-    // the current state is changed to an appropiate value.
-    // switch ( this->_mdState->status(aMD) )
-    // {
-    //     // Case for successful completion of initializing the simulation environment.
-    //     case  :
-    //         std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStatePCL>();
-    //         this->setMDState(std::move(new_md_state));
-    //         break;
+    // We now query the status of initializing the simulation environment,
+    // We use a switch statement controlled by the status to appropiately
+    // change the MD object state.
+    const auto md_status = aMD->status();
+    switch ( md_status )
+    {
+        // Case for successful completion of initializing the simulation environment.
+        // case ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful :
+        case success :
+            aMD->changeMDStateToPCL();
+            break;
 
-    //     // Case for unsuccessful completion of  initializing the simulation environment.
-    //     case  :
-    //         std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateTSE>();
-    //         this->setMDState(std::move(new_md_state));
-    //         break;
-    // }
+        // Case for unsuccessful completion of initializing the simulation environment.
+        // We change the state to terminating the simulation environment.
+        case fail :
+            aMD->changeMDStateToTSE();
+            break;
 
+        // Case for undefined behavoir of initializing the simulation environment.
+        // We change the state to terminating the simulation environment.
+            aMD->changeMDStateToTSE();
+            break;
+    }
     return;
 }
 

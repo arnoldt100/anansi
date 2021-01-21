@@ -32,6 +32,7 @@ Include Header Files
 * #include "CommandLineArguments.h"
 * #include "SimulationParameters.h"
 * #include "Communicator.h"
+* #include "RegistryAnansiMDStatus.h"
   
 **Implementation Include Files**
 
@@ -156,6 +157,10 @@ Data Members
 
     .. member:: ANANSI::SimulationParameters _simulationParameters
 
-    .. member:: std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
+    .. member:: std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator
 
-    .. member:: std::unique_ptr<AnansiMDState> _mdState;
+    .. member:: std::unique_ptr<AnansiMDState> _mdState
+
+    .. member:: ANANSI::RegistryAnansiMDStatus _mdStatus
+    
+        Stores the status of the AnansiMolecularDynamics object.

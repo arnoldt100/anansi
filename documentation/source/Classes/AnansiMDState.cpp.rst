@@ -54,6 +54,7 @@ Include Header Files
 **External Library Files**
 
 **Project Include Files**
+* #include "RegistryAnansiMDStatus.h"
 
 ================================
 AnansiMDState.h Global Variables

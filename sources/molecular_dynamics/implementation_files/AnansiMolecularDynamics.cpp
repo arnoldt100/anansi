@@ -33,7 +33,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _simulationParameters(),
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
-    _mdState()
+    _mdState(),
+    _mdStatus(RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
 {
     std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateISE>();
     this->setMDState(std::move(new_md_state));
@@ -72,6 +73,10 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+ANANSI::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
+{
+    return this->_mdStatus;
+}
 
 //============================= MUTATORS =====================================
 void
@@ -122,14 +127,12 @@ void AnansiMolecularDynamics::_processCommandLine()
     return;
 }
 
-
 void
 AnansiMolecularDynamics::_saveSimulationParameters()
 {
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
     return ;
 }		/* -----  end of method AnansiMolecularDynamics::_saveSimulationParameters  ----- */
-
 
 void
 AnansiMolecularDynamics::_initializeInitialConditions()
@@ -159,6 +162,21 @@ void AnansiMolecularDynamics::_terminateSimulationEnvironment()
     this->_mdState->terminateSimulationEnvironment(this);
     return;
 }		// -----  end of method AnansiMolecularDynamics::_terminateSimulationEnvironment  -----
+
+
+void AnansiMolecularDynamics::_changeMDStateToPCL()
+{
+   std::unique_ptr<ANANSI::AnansiMDState> pcl_state = std::make_unique<ANANSI::AnansiMDStatePCL>(); 
+   this->_setMDState(std::move(pcl_state));
+   return;
+}
+
+void AnansiMolecularDynamics::_changeMDStateToTSE()
+{
+   std::unique_ptr<ANANSI::AnansiMDState> tse_state = std::make_unique<ANANSI::AnansiMDStateTSE>(); 
+   this->_setMDState(std::move(tse_state));
+   return;
+}
 
 void
 AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
