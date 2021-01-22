@@ -34,10 +34,9 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
     _mdState(),
-    _mdStatus(RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
+    _mdStatus(RegistryAnansiMDStatus::Undefined)
 {
-    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateISE>();
-    this->setMDState(std::move(new_md_state));
+    this->changeMDStateToISE();
     return;
 }
 
@@ -78,6 +77,11 @@ ANANSI::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
     return this->_mdStatus;
 }
 
+bool AnansiMolecularDynamics::_isHelpOnCommandLine() const
+{
+    return true;
+}
+
 //============================= MUTATORS =====================================
 void
 AnansiMolecularDynamics::_disableCommunication()
@@ -90,19 +94,21 @@ AnansiMolecularDynamics::_disableCommunication()
 void
 AnansiMolecularDynamics::_initializeSimulationEnvironment(int const & argc, char const *const *const & argv )
 {
-	this->_mdState->initializeSimulationEnvironment(this,argc,argv);
+   this->_mdState->initializeSimulationEnvironment(this,argc,argv);
     return;
 }
 
 void AnansiMolecularDynamics::_saveCommandLineArguments(int const & argc, char const *const *const & argv)
 {
     this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
+    std::cout << "Saved the command line arguments." << std::endl;
     return ;
-}		/* -----  end of method AnansiMolecularDynamics::_saveCommandLineArguments  ----- */
+}      /* -----  end of method AnansiMolecularDynamics::_saveCommandLineArguments  ----- */
 
 void AnansiMolecularDynamics::_initializeMpiEnvironment(int const & argc, char const * const * const & argv)
 {
     this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(argc,argv);
+    std::cout << "Initialized the MPI environment." << std::endl;
     return;
 }
 
@@ -119,11 +125,6 @@ AnansiMolecularDynamics::_enableCommunication()
 void AnansiMolecularDynamics::_processCommandLine()
 {
     this->_mdState->processCommandLine(this);
-
-    // If successful processing of command line options, then change state to AnansiMDStateIIC.
-    // Otherwise change state to AnansiMDStateTSE.
-    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateIIC>();
-    this->setMDState(std::move(new_md_state));
     return;
 }
 
@@ -132,28 +133,18 @@ AnansiMolecularDynamics::_saveSimulationParameters()
 {
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
     return ;
-}		/* -----  end of method AnansiMolecularDynamics::_saveSimulationParameters  ----- */
+}      /* -----  end of method AnansiMolecularDynamics::_saveSimulationParameters  ----- */
 
 void
 AnansiMolecularDynamics::_initializeInitialConditions()
 {
     this->_mdState->initializeInitialConditions(this);
-
-    // If successful initializing the initial conditions, then change state to AnansiMDStatePS.
-    // Otherwise change state to AnansiMDStateTSE.
-    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStatePS>();
-    this->setMDState(std::move(new_md_state));
     return;
 }        // -----  end of method AnansiMolecularDynamics::_initializeInitialConditions  -----
 
 void AnansiMolecularDynamics::_performSimulation()
 {
     this->_mdState->performSimulation(this);
-
-    // If successful performing the simulation, then change state to AnansiMDStateTSE.
-    // Otherwise change state to AnansiMDStateTSE.
-    std::unique_ptr<ANANSI::AnansiMDState> new_md_state = std::make_unique<AnansiMDStateTSE>();
-    this->setMDState(std::move(new_md_state));
     return;
 }        // -----  end of method AnansiMolecularDynamics::_performSimulation  -----
 
@@ -161,27 +152,59 @@ void AnansiMolecularDynamics::_terminateSimulationEnvironment()
 {
     this->_mdState->terminateSimulationEnvironment(this);
     return;
-}		// -----  end of method AnansiMolecularDynamics::_terminateSimulationEnvironment  -----
+}      // -----  end of method AnansiMolecularDynamics::_terminateSimulationEnvironment  -----
 
+void
+AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
+{
+    this->_mdState = std::move(a_AnansiMDState);
+    return;
+}      // -----  end of method AnansiMolecularDynamics::_setMDState  -----
 
-void AnansiMolecularDynamics::_changeMDStateToPCL()
+void
+AnansiMolecularDynamics::_changeMDStateToISE()
+{
+    std::unique_ptr<ANANSI::AnansiMDState> ise_state = std::make_unique<ANANSI::AnansiMDStateISE>(); 
+    this->_setMDState(std::move(ise_state));
+    return ;
+}      // -----  end of method AnansiMolecularDynamics::_changeMDStateToISE  ----- 
+
+void
+AnansiMolecularDynamics::_changeMDStateToPCL()
 {
    std::unique_ptr<ANANSI::AnansiMDState> pcl_state = std::make_unique<ANANSI::AnansiMDStatePCL>(); 
    this->_setMDState(std::move(pcl_state));
    return;
-}
+}       // -----  end of method AnansiMolecularDynamics::_changeMDStateToPCL  ----- 
 
-void AnansiMolecularDynamics::_changeMDStateToTSE()
+void
+AnansiMolecularDynamics::_changeMDStateToIIC()
+{
+    std::unique_ptr<ANANSI::AnansiMDState> iic_state = std::make_unique<ANANSI::AnansiMDStateIIC>(); 
+    this->_setMDState(std::move(iic_state));
+    return;
+}       // -----  end of method AnansiMolecularDynamics::_changeMDStateToIIC  ----- 
+
+void
+AnansiMolecularDynamics::_changeMDStateToPS()
+{
+    std::unique_ptr<ANANSI::AnansiMDState> ps_state = std::make_unique<ANANSI::AnansiMDStatePS>(); 
+    this->_setMDState(std::move(ps_state));
+    return ;
+}       // -----  end of method AnansiMolecularDynamics::_changeMDStateToPS  ----- 
+
+void
+AnansiMolecularDynamics::_changeMDStateToTSE()
 {
    std::unique_ptr<ANANSI::AnansiMDState> tse_state = std::make_unique<ANANSI::AnansiMDStateTSE>(); 
    this->_setMDState(std::move(tse_state));
    return;
 }
 
-void
-AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
+void 
+AnansiMolecularDynamics::_setStatus(const RegistryAnansiMDStatus & aStatus)
 {
-    this->_mdState = std::move(a_AnansiMDState);
+    this->_mdStatus = aStatus;
     return;
 }
 

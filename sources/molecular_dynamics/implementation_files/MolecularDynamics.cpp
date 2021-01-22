@@ -45,6 +45,11 @@ ANANSI::RegistryAnansiMDStatus MolecularDynamics::status() const
     return this->_status();
 }
 
+bool MolecularDynamics::isHelpOnCommandLine() const
+{
+    return this->_isHelpOnCommandLine();
+}
+
 //============================= MUTATORS =====================================
 
 void
@@ -124,14 +129,34 @@ MolecularDynamics::setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
 	return;
 }       /* -----  end of method MolecularDynamics::setMDState  ----- */
 
+void MolecularDynamics::changeMDStateToISE()
+{
+    this->_changeMDStateToISE();
+}
+
 void MolecularDynamics::changeMDStateToPCL()
 {
     this->_changeMDStateToPCL();
 }
 
+void MolecularDynamics::changeMDStateToIIC()
+{
+    this->_changeMDStateToIIC();
+}
+
+void MolecularDynamics::changeMDStateToPS()
+{
+    this->_changeMDStateToPS();
+}
+
 void MolecularDynamics::changeMDStateToTSE()
 {
     this->_changeMDStateToTSE();
+}
+
+void MolecularDynamics::setStatus(const RegistryAnansiMDStatus & aStatus)
+{
+    this->_setStatus(aStatus);
 }
 
 //============================= OPERATORS ====================================

@@ -2,7 +2,6 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
-#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -101,7 +100,20 @@ void AnansiMDStatePCL::_processCommandLine(MolecularDynamics * const aMD) const
 {
     // Execute commands to store the simulation parameters.
     aMD->saveSimulationParameters();
-    std::cout << "The program has successfully processed the commadline environment." << std::endl;
+
+    // If help was processed on the command line, then change state to terminate
+    // simulation environment so as to not do any more of the MD algorithm. One
+    // simply wants to orderly terminate the simulation.
+    auto my_status = RegistryAnansiMDStatus::Undefined;
+    if (aMD->isHelpOnCommandLine())
+    {
+        my_status = RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+    }
+    else
+    {
+        my_status = RegistryAnansiMDStatus::ProcessingCommandLineSuccessful;
+    }
+    aMD->setStatus(my_status);
     return;
 }
 

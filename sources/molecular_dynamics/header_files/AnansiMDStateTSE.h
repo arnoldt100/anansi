@@ -36,9 +36,9 @@ namespace ANANSI
 
             /* ====================  OPERATORS     ======================================= */
 
-            AnansiMDStateTSE& operator= ( const AnansiMDStateTSE &other ); /* assignment operator */
+            AnansiMDStateTSE& operator=( const AnansiMDStateTSE &other ); /* assignment operator */
 
-            AnansiMDStateTSE& operator= ( AnansiMDStateTSE && other ); /* assignment-move operator */
+            AnansiMDStateTSE& operator=( AnansiMDStateTSE && other ); /* assignment-move operator */
 
         protected:
             /* ====================  METHODS       ======================================= */

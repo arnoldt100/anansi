@@ -37,6 +37,8 @@ class MolecularDynamics
         void stud_function(std::string const & message) const;
 
         ANANSI::RegistryAnansiMDStatus status() const;
+        
+        bool isHelpOnCommandLine() const;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -69,8 +71,14 @@ class MolecularDynamics
 
         // This group of functions changes the state of the MD object.
         void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState);
+        void changeMDStateToISE();
         void changeMDStateToPCL();
+        void changeMDStateToIIC();
+        void changeMDStateToPS();
         void changeMDStateToTSE();
+
+        // This group of functions changes the state of the MD object.
+        void setStatus(const RegistryAnansiMDStatus & aStatus);
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -88,6 +96,8 @@ class MolecularDynamics
     private:
         /* ====================  ACCESSORS     ======================================= */
         virtual ANANSI::RegistryAnansiMDStatus _status() const;
+
+        virtual bool _isHelpOnCommandLine() const=0;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -121,9 +131,18 @@ class MolecularDynamics
         // This group of functions changes the state of the MD object.
         virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
 
+        virtual void _changeMDStateToISE()=0;
+
         virtual void _changeMDStateToPCL()=0;
 
+        virtual void _changeMDStateToIIC()=0;
+        
+        virtual void _changeMDStateToPS()=0;
+
         virtual void _changeMDStateToTSE()=0;
+
+        // Set the status of the MD object.
+        virtual void _setStatus(const RegistryAnansiMDStatus & aStatus)=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

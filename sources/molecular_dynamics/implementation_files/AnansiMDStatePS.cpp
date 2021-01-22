@@ -1,7 +1,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
 #include <utility>
 
 //--------------------------------------------------------//
@@ -103,7 +102,6 @@ AnansiMDStatePS& AnansiMDStatePS::operator= ( AnansiMDStatePS && other )
 
 void AnansiMDStatePS::_performSimulation (MolecularDynamics * const aMD) const
 {
-    std::cout << "This state performed the simulation environment." << std::endl;
     return;
 }		/* -----  end of method AnansiMDStatePS::_performSimulation  ----- */
 

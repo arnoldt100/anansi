@@ -1,7 +1,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
 #include <utility>
 
 //--------------------------------------------------------//
@@ -98,7 +97,6 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 
 //============================= ACCESSORS ====================================
 
-//============================= MUTATORS =====================================
 void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const aMD,int const & argc, char const *const *const & argv) const
 {
     // Save the command line arguments.
@@ -110,9 +108,13 @@ void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const
     // Enable MPI communication for the aMD object.
     aMD->enableCommunication();
 
-    std::cout << "The program has successfully initialized the simulation environment." << std::endl;
+    constexpr auto my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
+    aMD->setStatus(my_status);
+
     return;
 }
+
+//============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 

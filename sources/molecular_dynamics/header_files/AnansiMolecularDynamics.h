@@ -52,7 +52,9 @@ class AnansiMolecularDynamics final : public MolecularDynamics
     private:
         /* ====================  ACCESSORS     ======================================= */
 
-        ANANSI::RegistryAnansiMDStatus _status() const;
+        ANANSI::RegistryAnansiMDStatus _status() const final override;
+
+        bool _isHelpOnCommandLine() const final override;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -91,8 +93,13 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         
         // This group of functions changes the state of the MD object.
         void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
+        void _changeMDStateToISE() final override;
         void _changeMDStateToPCL() final override;
+        void _changeMDStateToIIC() final override;
+        void _changeMDStateToPS() final override;
         void _changeMDStateToTSE() final override;
+
+        void _setStatus(const RegistryAnansiMDStatus & aStatus) final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;
