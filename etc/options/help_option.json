@@ -1,0 +1,6 @@
+{
+    "key":"help",
+    "description" : "Produces help message",
+    "is_required":"false"
+}
+
