@@ -133,14 +133,14 @@ void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
         case tse :
             aMD->changeMDStateToTSE();
             std::cout << "The program has successfully processed the commandline environment" << std::endl;
-            std::cout << "but the command line has errors." << std::endl;
+            std::cout << "but the command line has errors or the help option is present." << std::endl;
             break;
 
         // Case for undefined behavoir of processing the command line arguments.
         // We change the state to terminating the simulation environment.
         default :
             aMD->changeMDStateToTSE();
-            std::cout << "The program has undertermined behavoir in processing the commandline environment" << std::endl;
+            std::cout << "The program has undetermined behavior in processing the commandline environment" << std::endl;
             break;
     }
 
