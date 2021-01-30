@@ -1,0 +1,6 @@
+{
+    "key":"controlfile",
+    "description" : "The file name of the control file.",
+    "is_required":"true"
+}
+
