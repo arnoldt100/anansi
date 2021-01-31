@@ -19,9 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-CommandLineOptions::CommandLineOptions()
+CommandLineOptions::CommandLineOptions() : 
+    _key(""),
+    _description(""),
+    _value(""),
+    _isRequired(false)
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
@@ -38,6 +41,29 @@ CommandLineOptions::~CommandLineOptions()
 }
 
 //============================= ACCESSORS ====================================
+
+
+std::string CommandLineOptions::getDescription (  ) const
+{
+    return this->_description;
+}		// -----  end of method CommandLineOptions::get__description  ----- 
+
+std::string CommandLineOptions::getKey () const
+{
+    return this->_key;
+}		// -----  end of method CommandLineOptions::getKey  ----- 
+
+
+std::string CommandLineOptions::getOptionValue () const
+{
+    return this->_value;
+}		// -----  end of method CommandLineOptions::getOptionValue  ----- 
+
+
+bool CommandLineOptions::isRequired () const
+{
+    return this->_isRequired;
+}		// -----  end of method CommandLineOptions::isRequired  ----- 
 
 //============================= MUTATORS =====================================
 
