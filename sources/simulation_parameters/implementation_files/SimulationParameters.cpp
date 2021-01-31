@@ -22,6 +22,7 @@ SimulationParameters::SimulationParameters()
 
 SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
+
     // Use the Boost program options library to parse the command line.
     SimulationParameters::_parseProgramOptionsFromCommandLine(aCommandLine);
 
@@ -81,6 +82,13 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
 //============================= OPERATORS ====================================
 
 //============================= STATIC    ====================================
+
+std::vector<CommandLineOptions> SimulationParameters::_parseOptionsClasses()
+{
+    std::vector<CommandLineOptions> my_options;
+    return my_options;
+}
+
 void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
     namespace po = boost::program_options;

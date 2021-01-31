@@ -5,6 +5,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <string>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -35,6 +36,11 @@ namespace ANANSI
             //
             //--------------------------------------------------------------------------------------
             CommandLineOptions ();   // constructor
+
+            CommandLineOptions (std::string const key,
+                                std::string const description,
+                                std::string const value,
+                                bool const is_required);   // constructor
 
             CommandLineOptions (const CommandLineOptions & other);   // copy constructor
 

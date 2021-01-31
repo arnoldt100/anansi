@@ -19,13 +19,16 @@
 //--------------------------------------------------------//
 #include <iostream>
 #include "mpi.h"
+#include <vector>
 #include "boost/optional.hpp"
 #include "boost/program_options.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AllOptions.h"
 #include "CommandLineArguments.h"
+#include "CommandLineOptions.h"
 
 namespace ANANSI
 {
@@ -77,9 +80,13 @@ class SimulationParameters
 
         /* ====================  STATIC        ======================================= */
 
+        static std::vector<CommandLineOptions> _parseOptionsClasses();
+
         static void _parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine);
 
+
         /* ====================  DATA MEMBERS  ======================================= */
+        std::vector<CommandLineOptions> _options;
 
 }; /* -----  end of class SimulationParameters  ----- */
 
