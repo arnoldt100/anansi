@@ -20,7 +20,8 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 CommandLineOptions::CommandLineOptions() : 
-    _key(""),
+    _keyShort(""),
+    _keyLong(""),
     _description(""),
     _value(""),
     _isRequired(false)
@@ -28,39 +29,51 @@ CommandLineOptions::CommandLineOptions() :
     return;
 }
 
-CommandLineOptions::CommandLineOptions (std::string const key,
-                                        std::string const description,
-                                        std::string const value,
-                                        bool const is_required) :
-    _key(key),
-    _description(description),
-    _value(value),
-    _isRequired(is_required)
+CommandLineOptions::CommandLineOptions( const CommandLineOptionsParameter & command_line_parameter) :
+    _keyShort(""),
+    _keyLong(""),
+    _description(""),
+    _value(""),
+    _isRequired(false)
 {
+    this->_keyShort = command_line_parameter.key_short;
+    this->_keyLong = command_line_parameter.key_long;
+    this->_description = command_line_parameter.description;
+    this->_value = command_line_parameter.description;
+    this->_isRequired = command_line_parameter.isRequired;
     return;
 }
 
 CommandLineOptions::CommandLineOptions( CommandLineOptions const & other) :
-    _key(""),
+    _keyShort(""),
+    _keyLong(""),
     _description(""),
     _value(""),
     _isRequired(false)
 {
-    this->_key = other._key;
+    this->_keyShort = other._keyShort;
+    this->_keyLong = other._keyLong;
     this->_description = other._description;
     this->_value = other._value;
     this->_isRequired = other._isRequired;
     return;
 }		/* -----  end of method CommandLineOptions::CommandLineOptions  ----- */
 
-CommandLineOptions::CommandLineOptions( CommandLineOptions && other)
+CommandLineOptions::CommandLineOptions ( CommandLineOptions && other) :
+    _keyShort(""),
+    _keyLong(""),
+    _description(""),
+    _value(""),
+    _isRequired(false)
 {
-    this->_key = std::move(other._key);
+    this->_keyShort = std::move(other._keyShort);
+    this->_keyLong = std::move(other._keyLong);
     this->_description = std::move(other._description);
     this->_value = std::move(other._value);
     this->_isRequired = std::move(other._isRequired);
     return;
-}		/* -----  end of method CommandLineOptions::CommandLineOptions  ----- */
+}
+
 
 
 CommandLineOptions::~CommandLineOptions()
@@ -77,11 +90,15 @@ std::string CommandLineOptions::getDescription (  ) const
     return this->_description;
 }		// -----  end of method CommandLineOptions::get__description  ----- 
 
-std::string CommandLineOptions::getKey () const
+std::string CommandLineOptions::getKeyLong () const
 {
-    return this->_key;
-}		// -----  end of method CommandLineOptions::getKey  ----- 
+    return this->_keyLong;
+}		// -----  end of method CommandLineOptions::getKeyLong  ----- 
 
+std::string CommandLineOptions::getKeyShort () const
+{
+    return this->_keyShort;
+}		// -----  end of method CommandLineOptions::getKeyShort  ----- 
 
 std::string CommandLineOptions::getOptionValue () const
 {
@@ -102,7 +119,8 @@ CommandLineOptions& CommandLineOptions::operator= ( const CommandLineOptions &ot
 {
     if (this != &other)
     {
-        this->_key = other._key;
+        this->_keyShort = other._keyShort;
+        this->_keyLong = other._keyLong;
         this->_description = other._description;
         this->_value = other._value;
         this->_isRequired = other._isRequired;
@@ -114,7 +132,8 @@ CommandLineOptions& CommandLineOptions::operator= ( CommandLineOptions && other 
 {
     if (this != &other)
     {
-        this->_key = std::move(other._key);
+        this->_keyShort = std::move(other._keyShort);
+        this->_keyLong = std::move(other._keyLong);
         this->_description = std::move(other._description);
         this->_value = std::move(other._value);
         this->_isRequired = std::move(other._isRequired);

@@ -14,12 +14,22 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include <CommandLineOptionsParameter.h>
 
 namespace ANANSI
 {
     // =====================================================================================
     //        Class:  CommandLineOptions
-    //  Description:  
+    //  Description: Encapsulates the information of a command line option
+    //               The option has the general form of  
+    //               --<key_long_form> <value_1> <value_2> ... <value_N>
+    //               or 
+    //               --<key> 
+    //               or 
+    //               -<key_short_form> <value_1> <value_2> ... <value_N>
+    //               or 
+    //               -<key_short_form> 
+    // 
     // =====================================================================================
     class CommandLineOptions
     {
@@ -29,7 +39,7 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
             //      Method:  CommandLineOptions :: CommandLineOptions
-            // Description:  Constructor
+            // Description:  The default constructor.
             //
             //  Parameters: None
             //
@@ -37,10 +47,17 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             CommandLineOptions ();   // constructor
 
-            CommandLineOptions (std::string const key,
-                                std::string const description,
-                                std::string const value,
-                                bool const is_required);   // constructor
+
+            //--------------------------------------------------------------------------------------
+            //       Class:  CommandLineOptions
+            //      Method:  CommandLineOptions :: CommandLineOptions
+            // Description:  A constructor.             //               
+            //
+            //  Parameters: The monadic argument for initializing this class.
+            //
+            //
+            //--------------------------------------------------------------------------------------
+            CommandLineOptions ( const CommandLineOptionsParameter & command_line_parameter);   // constructor
 
             CommandLineOptions (const CommandLineOptions & other);   // copy constructor
 
@@ -63,14 +80,25 @@ namespace ANANSI
 
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
-            //      Method:  CommandLineOptions :: getKey
-            // Description:  Returns the key of the option.
+            //      Method:  CommandLineOptions :: getKeyShort
+            // Description:  Returns the short key of the option.
             // 
             //  Parameters: 
             //
             //      Return:
             //--------------------------------------------------------------------------------------
-            std::string getKey() const;
+            std::string getKeyShort() const;
+
+            //--------------------------------------------------------------------------------------
+            //       Class:  CommandLineOptions
+            //      Method:  CommandLineOptions :: getKeyLong
+            // Description:  Returns the long key of the option.
+            // 
+            //  Parameters: 
+            //
+            //      Return:
+            //--------------------------------------------------------------------------------------
+            std::string getKeyLong() const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
@@ -113,7 +141,8 @@ namespace ANANSI
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
-            std::string _key;
+            std::string _keyShort;
+            std::string _keyLong;
             std::string _description;
             std::string _value;
             bool _isRequired;
