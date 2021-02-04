@@ -79,6 +79,7 @@ ANANSI::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
 
 bool AnansiMolecularDynamics::_isHelpOnCommandLine() const
 {
+    // :TODO:02/03/2021 11:03:17 PM:ant: Use the simulation parameter member to check for help.
     return true;
 }
 

@@ -5,7 +5,20 @@
  *   Organization:  ORNL-National Center of Computational Sciences
  */
 
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+#include "boost/program_options.hpp"
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 #include "SimulationParameters.h"
+
 
 namespace ANANSI {
 
@@ -99,6 +112,13 @@ void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::Comm
     aCommandLine.reformCommandLineArguments(argc,argv);
 
     po::options_description description;
+    
+    // Loop over all options and add to the boost program options.
+    for (const auto & a_option : Alloptions)
+    {
+    	a_option.addBoostOption(description);
+    }
+
     description.add_options()("help", "Produce the help message.");
 
     boost::optional<std::string> controlfile;

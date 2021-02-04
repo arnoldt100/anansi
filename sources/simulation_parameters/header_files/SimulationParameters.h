@@ -21,7 +21,6 @@
 #include "mpi.h"
 #include <vector>
 #include "boost/optional.hpp"
-#include "boost/program_options.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//

@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include "boost/program_options.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -66,6 +67,18 @@ namespace ANANSI
             virtual ~CommandLineOptions ();  // destructor
 
             // ====================  ACCESSORS     =======================================
+
+            //--------------------------------------------------------------------------------------
+            //       Class:  CommandLineOptions
+            //      Method:  CommandLineOptions :: addBoostOption
+            // Description:  Adds this option to description.
+            // 
+            //  Parameters: (boost::program_options::options_description) description - The Boost
+            //              options_description which will get added this command line option.
+            //
+            //      Return: void
+            //--------------------------------------------------------------------------------------
+            void addBoostOption( boost::program_options::options_description & description ) const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions

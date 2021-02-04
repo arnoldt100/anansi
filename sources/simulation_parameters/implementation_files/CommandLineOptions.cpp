@@ -10,6 +10,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommandLineOptions.h"
+#include "ErrorNoShortName.h"
+#include "ErrorNoLongName.h"
 
 namespace ANANSI {
 
@@ -84,6 +86,51 @@ CommandLineOptions::~CommandLineOptions()
 
 //============================= ACCESSORS ====================================
 
+
+void CommandLineOptions::addBoostOption(boost::program_options::options_description & description) const
+{
+    // Form option name. We assume that all options have a long and
+    // short name.
+
+    // :TODO:02/03/2021 10:52:10 PM:ant: Implement check that long and short option is not empty.
+    auto my_option_name = this->_keyLong + "," + this->_keyShort;
+    
+    // Form option decription. 
+
+    // :TODO:02/03/2021 10:53:48 PM:ant: Implement check that option description is not empty.
+    auto my_option_description = this->getDescription(); 
+
+    // Get option default value
+    auto my_default_value = this->getOptionValue();
+
+    // 
+    auto my_option_required = this->isRequired();
+
+
+    if ( my_option_required && ( ! my_default_value.empty() ) )
+    {
+
+    }
+    else if (my_option_required && my_default_value.empty() )
+    {
+
+    } 
+    else if ( (! my_option_required ) && ( ! my_default_value.empty() ) )
+    {
+
+    } 
+    else if ( (! my_option_required ) && ( my_default_value.empty() ) )
+    {
+
+    }
+    else
+    {
+
+    } 
+
+    
+    return ;
+}		// -----  end of method CommandLineOptions::addBoostOption  -----
 
 std::string CommandLineOptions::getDescription (  ) const
 {
