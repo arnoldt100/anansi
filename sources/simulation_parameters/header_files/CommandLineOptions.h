@@ -6,6 +6,7 @@
 //--------------------------------------------------------//
 #include <string>
 #include <utility>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -16,6 +17,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include <CommandLineOptionsParameter.h>
+
+const std::vector<std::string> option_keys = {"short_name","long_name","description","default_value"}; 
 
 namespace ANANSI
 {
@@ -154,6 +157,7 @@ namespace ANANSI
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
+            std::map<std::string,std::string> _optionValues;
             std::string _keyShort;
             std::string _keyLong;
             std::string _description;
