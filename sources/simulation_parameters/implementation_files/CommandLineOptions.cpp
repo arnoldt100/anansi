@@ -23,59 +23,43 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 CommandLineOptions::CommandLineOptions() : 
-    _optionValues{{"short_name",""}, {"long_name",""}, {"description",""}, {"default_value",""}},
-    _keyShort(""),
-    _keyLong(""),
-    _description(""),
-    _value(""),
     _isRequired(false)
 {
+    for ( const auto & it : option_keys )
+    {
+        this->_optionValues[it] = "";
+    }
     return;
 }
 
 CommandLineOptions::CommandLineOptions( const CommandLineOptionsParameter & command_line_parameter) :
-    _keyShort(""),
-    _keyLong(""),
-    _description(""),
-    _value(""),
     _isRequired(false)
 {
-    this->_keyShort = command_line_parameter.key_short;
-    this->_keyLong = command_line_parameter.key_long;
-    this->_description = command_line_parameter.description;
-    this->_value = command_line_parameter.description;
+    for ( const auto & it : option_keys )
+    {
+        this->_optionValues[it] = "";
+    }
+
+    this->_optionValues["short_name"] = command_line_parameter.short_name;
+    this->_optionValues["long_name"] = command_line_parameter.long_name;
+    this->_optionValues["description"] = command_line_parameter.description;
+    this->_optionValues["default_value"] = command_line_parameter.default_value;
     this->_isRequired = command_line_parameter.isRequired;
     return;
 }
 
 CommandLineOptions::CommandLineOptions( CommandLineOptions const & other) :
-    _keyShort(""),
-    _keyLong(""),
-    _description(""),
-    _value(""),
     _isRequired(false)
 {
     this->_optionValues = other._optionValues;
-    this->_keyShort = other._keyShort;
-    this->_keyLong = other._keyLong;
-    this->_description = other._description;
-    this->_value = other._value;
     this->_isRequired = other._isRequired;
     return;
 }		/* -----  end of method CommandLineOptions::CommandLineOptions  ----- */
 
 CommandLineOptions::CommandLineOptions ( CommandLineOptions && other) :
-    _keyShort(""),
-    _keyLong(""),
-    _description(""),
-    _value(""),
     _isRequired(false)
 {
     this->_optionValues = std::move(other._optionValues);
-    this->_keyShort = std::move(other._keyShort);
-    this->_keyLong = std::move(other._keyLong);
-    this->_description = std::move(other._description);
-    this->_value = std::move(other._value);
     this->_isRequired = std::move(other._isRequired);
     return;
 }
@@ -84,7 +68,6 @@ CommandLineOptions::CommandLineOptions ( CommandLineOptions && other) :
 
 CommandLineOptions::~CommandLineOptions()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 
@@ -93,6 +76,11 @@ CommandLineOptions::~CommandLineOptions()
 
 void CommandLineOptions::addBoostOption(boost::program_options::options_description & description) const
 {
+    const auto my_short_name = this->_optionValues.at("short_name");
+    const auto my_long_name = this->_optionValues.at("long_name");
+    const auto my_option_description = this->_optionValues.at("description"); 
+    const auto my_option_required = this->isRequired();
+
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
     // This lambda converts a bool to 0 or 1.                          @
@@ -119,21 +107,21 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // Form option name from the long and short optiona names.         @
+    // Form option name from the long and short option names.          @
     // - check if the short and long option names are                  @
     // defined.                                                        @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    if (this->_keyLong.empty())
+    if ( my_long_name.empty() )
     {
         throw ErrorNoLongName();
     }
 
-    if (this->_keyShort.empty())
+    if ( my_short_name.empty() )
     {
         throw ErrorNoShortName();
     }
-    const auto my_option_name = this->_keyLong + "," + this->_keyShort;
+    const auto my_option_name = my_long_name + "," + my_short_name;
 
     
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -141,9 +129,8 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     // Form option decription.  The option description is mandatory.   @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+    
     // :TODO:02/03/2021 10:53:48 PM:ant: Implement check that option description is not empty.
-    const auto my_option_description = this->getDescription(); 
     
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -155,11 +142,8 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     // {}                                                                
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    const auto my_default_value = this->getOptionValue();
+    const auto my_default_value = this->getDefaultValue();
    
-    // Get the bool value associated with if this is a required option. 
-    const auto my_option_required = this->isRequired();
-
 
     std::vector<bool> my_options = {my_option_required, 
                                     my_default_value.empty()};
@@ -224,23 +208,23 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
 
 std::string CommandLineOptions::getDescription (  ) const
 {
-    return this->_description;
+    return this->_optionValues.at("description");
 }		// -----  end of method CommandLineOptions::get__description  ----- 
 
-std::string CommandLineOptions::getKeyLong () const
+std::string CommandLineOptions::getLongName () const
 {
-    return this->_keyLong;
-}		// -----  end of method CommandLineOptions::getKeyLong  ----- 
+    return this->_optionValues.at("long_name");
+}		// -----  end of method CommandLineOptions::getLongName  ----- 
 
-std::string CommandLineOptions::getKeyShort () const
+std::string CommandLineOptions::getShortName () const
 {
-    return this->_keyShort;
-}		// -----  end of method CommandLineOptions::getKeyShort  ----- 
+    return this->_optionValues.at("short_name");
+}		// -----  end of method CommandLineOptions::getShortName  ----- 
 
-std::string CommandLineOptions::getOptionValue () const
+std::string CommandLineOptions::getDefaultValue () const
 {
-    return this->_value;
-}		// -----  end of method CommandLineOptions::getOptionValue  ----- 
+    return this->_optionValues.at("default_value");
+}		// -----  end of method CommandLineOptions::getDefaultValue  ----- 
 
 
 bool CommandLineOptions::isRequired () const
@@ -257,10 +241,6 @@ CommandLineOptions& CommandLineOptions::operator= ( const CommandLineOptions &ot
     if (this != &other)
     {
         this->_optionValues = other._optionValues;
-        this->_keyShort = other._keyShort;
-        this->_keyLong = other._keyLong;
-        this->_description = other._description;
-        this->_value = other._value;
         this->_isRequired = other._isRequired;
     }
     return *this;
@@ -271,10 +251,6 @@ CommandLineOptions& CommandLineOptions::operator= ( CommandLineOptions && other 
     if (this != &other)
     {
         this->_optionValues = std::move(other._optionValues);
-        this->_keyShort = std::move(other._keyShort);
-        this->_keyLong = std::move(other._keyLong);
-        this->_description = std::move(other._description);
-        this->_value = std::move(other._value);
         this->_isRequired = std::move(other._isRequired);
     }
     return *this;

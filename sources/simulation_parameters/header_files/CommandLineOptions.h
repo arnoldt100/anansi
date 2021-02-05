@@ -18,7 +18,8 @@
 //--------------------------------------------------------//
 #include <CommandLineOptionsParameter.h>
 
-const std::vector<std::string> option_keys = {"short_name","long_name","description","default_value"}; 
+const std::vector<std::string> option_keys = 
+{"short_name","long_name","description","default_value"}; 
 
 namespace ANANSI
 {
@@ -28,7 +29,7 @@ namespace ANANSI
     //               The option has the general form of  
     //               --<key_long_form> <value_1> <value_2> ... <value_N>
     //               or 
-    //               --<key> 
+    //               --<key_long_form> 
     //               or 
     //               -<key_short_form> <value_1> <value_2> ... <value_N>
     //               or 
@@ -96,38 +97,38 @@ namespace ANANSI
 
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
-            //      Method:  CommandLineOptions :: getKeyShort
+            //      Method:  CommandLineOptions :: getShortName
             // Description:  Returns the short key of the option.
             // 
             //  Parameters: 
             //
             //      Return:
             //--------------------------------------------------------------------------------------
-            std::string getKeyShort() const;
+            std::string getShortName() const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
-            //      Method:  CommandLineOptions :: getKeyLong
+            //      Method:  CommandLineOptions :: getLongName
             // Description:  Returns the long key of the option.
             // 
             //  Parameters: 
             //
             //      Return:
             //--------------------------------------------------------------------------------------
-            std::string getKeyLong() const;
+            std::string getLongName() const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
-            //      Method:  CommandLineOptions :: getOptionValue
-            // Description: Returns the Options value as a string. If the option has more than
-            //              one value separated by spaces, then the entiirity is retirned as a
+            //      Method:  CommandLineOptions :: getDefaultValue
+            // Description: Returns the Options default value as a string. If the option has more than
+            //              one value separated by spaces, then the entirity is returned as a
             //              string. 
             // 
             //  Parameters: None
             //
             //      Return: std::string
             //--------------------------------------------------------------------------------------
-            std::string getOptionValue() const;
+            std::string getDefaultValue() const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
@@ -158,10 +159,6 @@ namespace ANANSI
 
             // ====================  DATA MEMBERS  =======================================
             std::map<std::string,std::string> _optionValues;
-            std::string _keyShort;
-            std::string _keyLong;
-            std::string _description;
-            std::string _value;
             bool _isRequired;
 
     }; // -----  end of class CommandLineOptions  -----

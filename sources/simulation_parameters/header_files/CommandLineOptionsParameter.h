@@ -27,10 +27,10 @@ namespace ANANSI
     struct CommandLineOptionsParameter
     {
         public:
-            std::string key_short;
-            std::string key_long;
+            std::string short_name;
+            std::string long_name;
             std::string description;
-            std::string value;
+            std::string default_value;
             bool isRequired;
     }; /* -----  end of struct CommandLineOptionsParameter  ----- */
 

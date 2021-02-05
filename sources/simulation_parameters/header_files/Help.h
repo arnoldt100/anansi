@@ -6,16 +6,16 @@
 
 namespace ANANSI
 {
-    const std::string help_key_long="help";
-    const std::string help_key_short="h";
+    const std::string help_long_name="help";
+    const std::string help_short_name="h";
     const std::string help_description="Produces the help message.";
     const bool help_isRequired=false;
-    const std::string help_value="";
+    const std::string help_default_value="";
 
-    const struct CommandLineOptionsParameter HelpParameter = {.key_short = help_key_short,
-                                                              .key_long = help_key_long,
+    const struct CommandLineOptionsParameter HelpParameter = {.short_name = help_short_name,
+                                                              .long_name = help_long_name,
                                                               .description = help_description,
-                                                              .value = help_value,
+                                                              .default_value = help_default_value,
                                                               .isRequired = help_isRequired};
 
     static const CommandLineOptions HelpOption(HelpParameter);
