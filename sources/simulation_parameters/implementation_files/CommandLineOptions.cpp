@@ -11,8 +11,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommandLineOptions.h"
-#include "ErrorNoShortName.h"
 #include "ErrorNoLongName.h"
+#include "ErrorNoOptionDescription.h"
 
 namespace ANANSI {
 
@@ -79,6 +79,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     const auto my_short_name = this->_optionValues.at("short_name");
     const auto my_long_name = this->_optionValues.at("long_name");
     const auto my_option_description = this->_optionValues.at("description"); 
+    const auto my_default_value = this->_optionValues.at("default_value");
     const auto my_option_required = this->isRequired();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -107,46 +108,52 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // Form option name from the long and short option names.          @
-    // - check if the short and long option names are                  @
-    // defined.                                                        @
+    // The boost option_description call needs a string that describes @
+    // the option form. The form of this string is                     @
+    // <long_name>,<short_name>.                                       @
     //                                                                 @
+    // We requires all options to have a long and optionally a short   @
+    // form.                                                           @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     if ( my_long_name.empty() )
     {
         throw ErrorNoLongName();
     }
 
-    if ( my_short_name.empty() )
+    auto option_name = my_long_name;
+    if ( ! my_short_name.empty())
     {
-        throw ErrorNoShortName();
+        option_name += ",";
+        option_name += my_short_name;
     }
-    const auto my_option_name = my_long_name + "," + my_short_name;
-
-    
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Form option decription.  The option description is mandatory.   @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    
-    // :TODO:02/03/2021 10:53:48 PM:ant: Implement check that option description is not empty.
-    
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // We form a unique integer based on the option values. This       @
-    // number is used to call the appropiate add_options form.         @
-    //                                                                 @
-    // A bool vector is formed as follows:                             @
-    // {}                                                                
+    // The boost option_description call needs a string that describes @
+    // the option intent.                                              @
+    // The option description is mandatory. Check that description is  @
+    // not empty.                                                      @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    const auto my_default_value = this->getDefaultValue();
-   
-
-    std::vector<bool> my_options = {my_option_required, 
-                                    my_default_value.empty()};
+    if ( my_option_description.empty()  )
+    {
+        throw ErrorNoOptionDescription();
+    }
+    
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //                                                                 @
+    // We form a unique integer, func_id, based on the option          @
+    // values. This number is used to call the appropiate add_options  @
+    // function form.                                                  @
+    //                                                                 @
+    // We form a bool vector, v_b, where                               @
+    // v_b[0] = logical value of requiring the option.                 @
+    // v_b[1] = logical value of is there a default value              @
+    //                                                                 @
+    // This bool vector will be used to form the unique number         @
+    // and the order of the elements must be consistent with           @
+    // the ???                                                         @
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     // This lambda generates the bool vector of the extant 
     // command line program options.
@@ -159,27 +166,49 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
         return v1;
     };
 
-    // c1 :
-    //      option is required
-    //      has default value 
-    bool req=true;
-    bool defval=true;
-    const std::vector<bool> c1{req,defval};
-    const int required_and_default_value = compute_number(c1);
+    std::vector<bool> v_b = generate_bool_vector(); 
+    const unsigned int func_id = compute_number(v_b);
+
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    //
+    // We now compute the uniqued id for various cases
+    // of default values and required options.
+    // 
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    bool req;
+    bool defval;
 
     // c2 :
     //      option not required
     //      no default value 
     req=false;
     defval=false;
-    const std::vector<bool> c2{req,defval};
+    const std::vector<bool> c2 = {req,defval};
     const int not_required_and_no_default_value = compute_number(c2);
 
+    // c4 :
+    //      option not required
+    //      option has default value 
+    req=false;
+    defval=true;
+    const std::vector<bool> c4 = {req,defval};
+    const int not_required_and_default_value = compute_number(c4);
 
-    // Compute the number for the command line options.
-    const std::vector<bool> m1 = generate_bool_vector();
-    const int n1 = compute_number(m1);
+    // c3 :
+    //      option is required
+    //      no default value 
+    req=true;
+    defval=false;
+    const std::vector<bool> c3 = {req,defval};
+    const int required_and_no_default_value = compute_number(c3);
 
+    // c1 :
+    //      option is required
+    //      option has default value 
+    req=true;
+    defval=true;
+    const std::vector<bool> c1 = {req,defval};
+    const int required_and_default_value = compute_number(c1);
 
     // if ( n1 == c1 )
     // {
