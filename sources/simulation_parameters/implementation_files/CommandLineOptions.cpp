@@ -76,6 +76,7 @@ CommandLineOptions::~CommandLineOptions()
 
 void CommandLineOptions::addBoostOption(boost::program_options::options_description & description) const
 {
+    namespace po = boost::program_options;
     const auto my_short_name = this->_optionValues.at("short_name");
     const auto my_long_name = this->_optionValues.at("long_name");
     const auto my_option_description = this->_optionValues.at("description"); 
@@ -184,7 +185,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     req=false;
     defval=false;
     const std::vector<bool> c2 = {req,defval};
-    const int not_required_and_no_default_value = compute_number(c2);
+    const unsigned int not_required_and_no_default_value = compute_number(c2);
 
     // c4 :
     //      option not required
@@ -192,7 +193,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     req=false;
     defval=true;
     const std::vector<bool> c4 = {req,defval};
-    const int not_required_and_default_value = compute_number(c4);
+    const unsigned int not_required_and_default_value = compute_number(c4);
 
     // c3 :
     //      option is required
@@ -200,7 +201,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     req=true;
     defval=false;
     const std::vector<bool> c3 = {req,defval};
-    const int required_and_no_default_value = compute_number(c3);
+    const unsigned int required_and_no_default_value = compute_number(c3);
 
     // c1 :
     //      option is required
@@ -208,28 +209,36 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     req=true;
     defval=true;
     const std::vector<bool> c1 = {req,defval};
-    const int required_and_default_value = compute_number(c1);
+    const unsigned int required_and_default_value = compute_number(c1);
 
-    // if ( n1 == c1 )
-    // {
+    if ( func_id == not_required_and_no_default_value )
+    {
+        description.add_options()(option_name.c_str(), 
+                                  po::value<std::string>(),
+                                  my_option_description.c_str());
+    }
+    else if ( func_id == not_required_and_default_value )
+    {
+        description.add_options()(option_name.c_str(),
+                                  po::value<std::string>()->default_value(my_default_value.c_str()),
+                                  my_option_description.c_str());
+    } 
+    else if ( func_id == required_and_no_default_value )
+    {
+        description.add_options()(option_name.c_str(),
+                                  po::value<std::string>()->required(),
+                                  my_option_description.c_str());
+    } 
+    else if ( func_id == required_and_default_value )
+    {
+        description.add_options()(option_name.c_str(),
+                                  po::value<std::string>()->required()->default_value(my_default_value.c_str()),
+                                  my_option_description.c_str());
+    }
+    else
+    {
 
-    // }
-    // else if ()
-    // {
-
-    // } 
-    // else if ( )
-    // {
-
-    // } 
-    // else if ( )
-    // {
-
-    // }
-    // else
-    // {
-
-    // } 
+    } 
 
     
     return ;
