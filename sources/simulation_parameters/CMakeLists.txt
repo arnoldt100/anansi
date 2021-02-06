@@ -87,6 +87,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoShortName.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoLongName.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoOptionDescription.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoOptionAdded.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/AllOptions.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Help.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandLineOptionsParameter.h
@@ -105,6 +106,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoShortName.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoLongName.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionDescription.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionAdded.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/AllOptions.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Help.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptionsParameter.cpp
