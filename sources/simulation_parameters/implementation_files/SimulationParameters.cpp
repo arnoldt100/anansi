@@ -119,11 +119,6 @@ void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::Comm
     	a_option.addBoostOption(description);
     }
 
-    description.add_options()("help", "Produce the help message.");
-
-    boost::optional<std::string> controlfile;
-    description.add_options()("control-file", po::value(&controlfile), "The name of the control file.");
-
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, description), vm);
     po::notify(vm);    

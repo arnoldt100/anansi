@@ -90,6 +90,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoOptionAdded.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/AllOptions.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Help.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileOption.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandLineOptionsParameter.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandLineOptions.h )
 
@@ -109,6 +110,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionAdded.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/AllOptions.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Help.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileOption.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptionsParameter.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptions.cpp )
 

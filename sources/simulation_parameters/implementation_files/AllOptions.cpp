@@ -1,6 +1,7 @@
 #include "AllOptions.h"
 
 #include "Help.h"
+#include "ControlFileOption.h"
 
 namespace ANANSI
 {
@@ -8,7 +9,8 @@ namespace ANANSI
 
 std::vector<CommandLineOptions> AllOptions = 
 {
-        HelpOption
+        HelpOption,
+        ControlFileOption
 };
 
 };
