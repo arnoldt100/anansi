@@ -1,6 +1,6 @@
 #include "AllOptions.h"
 
-#include "Help.h"
+#include "HelpOption.h"
 #include "ControlFileOption.h"
 
 namespace ANANSI
