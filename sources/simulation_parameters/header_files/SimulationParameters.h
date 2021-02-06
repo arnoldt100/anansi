@@ -17,15 +17,11 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
-#include "mpi.h"
 #include <vector>
-#include "boost/optional.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "AllOptions.h"
 #include "CommandLineArguments.h"
 #include "CommandLineOptions.h"
 

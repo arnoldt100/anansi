@@ -103,7 +103,15 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
         unsigned int num = 0;
         for (auto it = x.begin(); it != x.end(); ++it)
         {
-            num = num << bool_to_int(*it); 
+            if ( it == x.begin() ) 
+            {
+                num += *it;
+            }
+            else
+            {
+                num <<= 1; 
+                num += *it;
+            } 
         }
         return num;
     };

@@ -15,12 +15,14 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommandLineOptions.h"
+#include "HelpOption.h"
+#include "ControlFileOption.h"
 
 
 namespace ANANSI
 {
 
-    static std::vector<CommandLineOptions> Alloptions;
+    const std::vector<CommandLineOptions> Alloptions { HelpOption };
 
 }; /* namespace ANANSI */
 

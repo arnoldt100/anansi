@@ -8,16 +8,19 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include "mpi.h"
 #include "boost/program_options.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SimulationParameters.h"
+#include "AllOptions.h"
 
 
 namespace ANANSI {
@@ -118,6 +121,8 @@ void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::Comm
     {
     	a_option.addBoostOption(description);
     }
+
+    std::cout << description << std::endl;
 
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, description), vm);
