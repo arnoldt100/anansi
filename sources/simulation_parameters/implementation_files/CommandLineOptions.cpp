@@ -13,6 +13,7 @@
 #include "CommandLineOptions.h"
 #include "ErrorNoLongName.h"
 #include "ErrorNoOptionDescription.h"
+#include "ErrorNoOptionAdded.h"
 
 namespace ANANSI {
 
@@ -237,7 +238,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     }
     else
     {
-
+        throw ErrorNoOptionAdded();
     } 
 
     
