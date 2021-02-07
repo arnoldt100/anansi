@@ -10,13 +10,15 @@ namespace ANANSI
     const std::string help_short_name="h";
     const std::string help_description="Produces the help message.";
     const bool help_isRequired=false;
+    const bool help_isRequiredOptionValues=false;
     const std::string help_default_value="";
 
     const struct CommandLineOptionsParameter HelpParameter = {.short_name = help_short_name,
                                                               .long_name = help_long_name,
                                                               .description = help_description,
                                                               .default_value = help_default_value,
-                                                              .isRequired = help_isRequired};
+                                                              .isRequired = help_isRequired,
+                                                              .isRequiredOptionValues = help_isRequiredOptionValues};
 
     static const CommandLineOptions HelpOption(HelpParameter);
 };

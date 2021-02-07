@@ -46,14 +46,17 @@ CommandLineOptions::CommandLineOptions( const CommandLineOptionsParameter & comm
     this->_optionValues["description"] = command_line_parameter.description;
     this->_optionValues["default_value"] = command_line_parameter.default_value;
     this->_isRequired = command_line_parameter.isRequired;
+    this->_isRequiredOptionValues = command_line_parameter.isRequiredOptionValues;
     return;
 }
 
 CommandLineOptions::CommandLineOptions( CommandLineOptions const & other) :
-    _isRequired(false)
+    _isRequired(false),
+    _isRequiredOptionValues(false)
 {
     this->_optionValues = other._optionValues;
     this->_isRequired = other._isRequired;
+    this->_isRequiredOptionValues = other._isRequiredOptionValues;
     return;
 }		/* -----  end of method CommandLineOptions::CommandLineOptions  ----- */
 
@@ -62,6 +65,7 @@ CommandLineOptions::CommandLineOptions ( CommandLineOptions && other) :
 {
     this->_optionValues = std::move(other._optionValues);
     this->_isRequired = std::move(other._isRequired);
+    this->_isRequiredOptionValues = std::move(other._isRequiredOptionValues);
     return;
 }
 
@@ -83,6 +87,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     const auto my_option_description = this->_optionValues.at("description"); 
     const auto my_default_value = this->_optionValues.at("default_value");
     const auto my_option_required = this->isRequired();
+    const auto my_option_requires_values = this->isRequiredOptionValues();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
@@ -103,14 +108,15 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
         unsigned int num = 0;
         for (auto it = x.begin(); it != x.end(); ++it)
         {
+            const auto n1 = bool_to_int(*it);
             if ( it == x.begin() ) 
             {
-                num += *it;
+                num += n1;
             }
             else
             {
                 num <<= 1; 
-                num += *it;
+                num += n1;
             } 
         }
         return num;
@@ -171,8 +177,24 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
         std::vector<bool> v1;
 
         // The order of appending to form the vector must be consistent.
+        // in this order:
+        //      [<status of requiring an option>,
+        //       <staus of requiring option_parameters>,
+        //       <status of requiring a default value>]
         v1.push_back(my_option_required);
-        v1.push_back(my_default_value.empty());
+        
+        v1.push_back(my_option_requires_values);
+
+        bool has_default_value;
+        if (my_default_value.empty())
+        {
+            has_default_value = false;
+        }
+        else
+        {
+            has_default_value = true;
+        }
+        v1.push_back(has_default_value);
         return v1;
     };
 
@@ -185,64 +207,138 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     // of default values and required options.
     // 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    bool req;
-    bool defval;
-
-    // c2 :
-    //      option not required
-    //      no default value 
-    req=false;
-    defval=false;
-    const std::vector<bool> c2 = {req,defval};
-    const unsigned int not_required_and_no_default_value = compute_number(c2);
-
-    // c4 :
-    //      option not required
-    //      option has default value 
-    req=false;
-    defval=true;
-    const std::vector<bool> c4 = {req,defval};
-    const unsigned int not_required_and_default_value = compute_number(c4);
-
-    // c3 :
-    //      option is required
-    //      no default value 
-    req=true;
-    defval=false;
-    const std::vector<bool> c3 = {req,defval};
-    const unsigned int required_and_no_default_value = compute_number(c3);
+    bool is_option_required;
+    bool is_option_required_values;
+    bool has_default_value;
 
     // c1 :
-    //      option is required
-    //      option has default value 
-    req=true;
-    defval=true;
-    const std::vector<bool> c1 = {req,defval};
-    const unsigned int required_and_default_value = compute_number(c1);
+    //      is option required : false
+    //      option requires values : false
+    //      has default value  : false
+    is_option_required=false;
+    is_option_required_values=false;
+    has_default_value=false;
+    const std::vector<bool> c1 = {is_option_required,is_option_required_values,has_default_value};
+    const unsigned int nr_nrv_ndv = compute_number(c1);
 
-    if ( func_id == not_required_and_no_default_value )
+    // c2 :
+    //      is option required : false
+    //      option requires values : false
+    //      has default value  : true
+    //      This case is contradictory and will throw an error.
+    //      It is soley here for completeness.
+    is_option_required=false;
+    is_option_required_values=false;
+    has_default_value=true;
+    const std::vector<bool> c2 = {is_option_required,is_option_required_values,has_default_value};
+    const unsigned int nr_nrv_dv = compute_number(c2);
+
+    // c3 :
+    //      is option required : false
+    //      option requires values : true
+    //      has default value  : false
+    is_option_required=false;
+    is_option_required_values=true;
+    has_default_value=false;
+    const std::vector<bool> c3 = {is_option_required,is_option_required_values,has_default_value};
+    const unsigned int nr_rv_ndv = compute_number(c3);
+
+    // c4 :
+    //      is option required : false
+    //      option requires values : true
+    //      has default value  : true
+    is_option_required=false;
+    is_option_required_values=true;
+    has_default_value=true;
+    const std::vector<bool> c4 = {is_option_required,is_option_required_values,has_default_value};
+    const unsigned int nr_rv_dv = compute_number(c4);
+
+    // c5 :
+    //      is option required : true
+    //      option requires values : false
+    //      has default value  : false
+    //      This case is contradictory and will throw an error.
+    //      It is soley here for completeness.
+    is_option_required=true;
+    is_option_required_values=false;
+    has_default_value=false;
+    const std::vector<bool> c5 ={is_option_required,is_option_required_values,has_default_value};
+    const unsigned int r_nrv_ndv = compute_number(c5);
+
+    // c6 :
+    //      is option required : true
+    //      option requires values : false
+    //      has default value  : true
+    //      This case is contradictory and will throw an error.
+    //      It is soley here for completeness.
+    is_option_required=true;
+    is_option_required_values=false;
+    has_default_value=true;
+    const std::vector<bool> c6 ={is_option_required,is_option_required_values,has_default_value};
+    const unsigned int r_nrv_dv = compute_number(c6);
+
+    // c7 :
+    //      is option required : true
+    //      option requires values : true
+    //      has default value  : false
+    is_option_required=true;
+    is_option_required_values=true;
+    has_default_value=false;
+    const std::vector<bool> c7 ={is_option_required,is_option_required_values,has_default_value};
+    const unsigned int r_rv_ndv = compute_number(c7);
+
+    // c8 :
+    //      is option required : true
+    //      option requires values : true
+    //      has default value  : true
+    //      This case is contradictory and will throw an error.
+    //      It is soley here for completeness.
+    is_option_required=true;
+    is_option_required_values=true;
+    has_default_value=true;
+    const std::vector<bool> c8 ={is_option_required,is_option_required_values,has_default_value};
+    const unsigned int r_rv_dv = compute_number(c8);
+
+
+    if ( func_id == nr_nrv_ndv )
     {
-        description.add_options()(option_name.c_str(), 
-                                  po::value<std::string>(),
-                                  my_option_description.c_str());
+        //description.add_options()(option_name.c_str(), 
+        //                          po::value<std::string>(),
+        //                          my_option_description.c_str());
     }
-    else if ( func_id == not_required_and_default_value )
+    else if ( func_id == nr_nrv_dv)
     {
-        description.add_options()(option_name.c_str(),
-                                  po::value<std::string>()->default_value(my_default_value.c_str()),
-                                  my_option_description.c_str());
+        //description.add_options()(option_name.c_str(),
+        //                          po::value<std::string>()->default_value(my_default_value.c_str()),
+        //                          my_option_description.c_str());
     } 
-    else if ( func_id == required_and_no_default_value )
+    else if ( func_id == nr_rv_ndv )
     {
-        description.add_options()(option_name.c_str(),
-                                  po::value<std::string>()->required(),
-                                  my_option_description.c_str());
+        //description.add_options()(option_name.c_str(),
+        //                          po::value<std::string>()->required(),
+        //                          my_option_description.c_str());
     } 
-    else if ( func_id == required_and_default_value )
+    else if ( func_id == nr_rv_dv )
     {
-        description.add_options()(option_name.c_str(),
-                                  po::value<std::string>()->required()->default_value(my_default_value.c_str()),
-                                  my_option_description.c_str());
+        //description.add_options()(option_name.c_str(),
+        //                          po::value<std::string>()->required()->default_value(my_default_value.c_str()),
+        //                          my_option_description.c_str());
+    }
+    else if ( func_id == r_nrv_ndv )
+    {
+
+    }
+    else if ( func_id == r_nrv_dv)
+    {
+
+    }
+    else if ( func_id == r_rv_ndv )
+    {
+
+    }
+    else if ( func_id == r_rv_dv )
+    {
+
     }
     else
     {
@@ -279,6 +375,11 @@ bool CommandLineOptions::isRequired () const
     return this->_isRequired;
 }		// -----  end of method CommandLineOptions::isRequired  ----- 
 
+bool CommandLineOptions::isRequiredOptionValues () const
+{
+    return this->_isRequiredOptionValues;
+}		// -----  end of method CommandLineOptions::isRequiredOptionValues  ----- 
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -289,6 +390,7 @@ CommandLineOptions& CommandLineOptions::operator= ( const CommandLineOptions &ot
     {
         this->_optionValues = other._optionValues;
         this->_isRequired = other._isRequired;
+        this->_isRequiredOptionValues = other._isRequiredOptionValues;
     }
     return *this;
 } // assignment operator
@@ -299,6 +401,7 @@ CommandLineOptions& CommandLineOptions::operator= ( CommandLineOptions && other 
     {
         this->_optionValues = std::move(other._optionValues);
         this->_isRequired = std::move(other._isRequired);
+        this->_isRequiredOptionValues = std::move(other._isRequiredOptionValues);
     }
     return *this;
 } // assignment-move operator

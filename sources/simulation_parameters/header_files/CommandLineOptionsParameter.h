@@ -32,6 +32,7 @@ namespace ANANSI
             std::string description;
             std::string default_value;
             bool isRequired;
+            bool isRequiredOptionValues;
     }; /* -----  end of struct CommandLineOptionsParameter  ----- */
 
 

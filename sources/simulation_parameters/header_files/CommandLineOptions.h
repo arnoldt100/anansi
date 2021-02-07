@@ -141,6 +141,17 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             bool isRequired() const;
 
+            //--------------------------------------------------------------------------------------
+            //       Class:  CommandLineOptions
+            //      Method:  CommandLineOptions :: isRequiredOptionValues
+            // Description: Returns true if the option requires values.
+            //
+            //  Parameters: None
+            //
+            //      Return: boolean
+            //--------------------------------------------------------------------------------------
+            bool isRequiredOptionValues() const;
+
             // ====================  MUTATORS      =======================================
 
             // ====================  OPERATORS     =======================================
@@ -160,6 +171,7 @@ namespace ANANSI
             // ====================  DATA MEMBERS  =======================================
             std::map<std::string,std::string> _optionValues;
             bool _isRequired;
+            bool _isRequiredOptionValues;
 
     }; // -----  end of class CommandLineOptions  -----
 
