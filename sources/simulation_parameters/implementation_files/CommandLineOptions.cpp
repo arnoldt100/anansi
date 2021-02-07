@@ -346,8 +346,6 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     {
         throw ErrorNoOptionAdded();
     } 
-
-    
     return ;
 }		// -----  end of method CommandLineOptions::addBoostOption  -----
 
