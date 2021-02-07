@@ -22,7 +22,8 @@
 namespace ANANSI
 {
 
-    const std::vector<CommandLineOptions> Alloptions { HelpOption };
+    const std::vector<CommandLineOptions> Alloptions { HelpOption,
+                                                       ControlFileOption };
 
 }; /* namespace ANANSI */
 

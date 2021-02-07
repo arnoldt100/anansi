@@ -300,45 +300,47 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     const unsigned int r_rv_dv = compute_number(c8);
 
 
-    if ( func_id == nr_nrv_ndv )
+    if ( func_id == nr_nrv_ndv ) // case of compute number c1
     {
-        //description.add_options()(option_name.c_str(), 
-        //                          po::value<std::string>(),
-        //                          my_option_description.c_str());
+        description.add_options()(option_name.c_str(), 
+                                  my_option_description.c_str());
     }
-    else if ( func_id == nr_nrv_dv)
+    else if ( func_id == nr_nrv_dv) // case of compute number c2
     {
-        //description.add_options()(option_name.c_str(),
-        //                          po::value<std::string>()->default_value(my_default_value.c_str()),
-        //                          my_option_description.c_str());
+        description.add_options()(option_name.c_str(),
+                                  po::value<std::string>()->default_value(my_default_value.c_str()),
+                                  my_option_description.c_str());
     } 
-    else if ( func_id == nr_rv_ndv )
+    else if ( func_id == nr_rv_ndv ) // case of compute number c3
     {
-        //description.add_options()(option_name.c_str(),
-        //                          po::value<std::string>()->required(),
-        //                          my_option_description.c_str());
+        description.add_options()(option_name.c_str(),
+                                  po::value<std::string>()->required(),
+                                  my_option_description.c_str());
     } 
-    else if ( func_id == nr_rv_dv )
+    else if ( func_id == nr_rv_dv ) // case of compute number c4
     {
-        //description.add_options()(option_name.c_str(),
-        //                          po::value<std::string>()->required()->default_value(my_default_value.c_str()),
-        //                          my_option_description.c_str());
+        description.add_options()(option_name.c_str(),
+                                  po::value<std::string>()->default_value(my_default_value.c_str()),
+                                  my_option_description.c_str());
     }
-    else if ( func_id == r_nrv_ndv )
+    else if ( func_id == r_nrv_ndv ) // case of compute number c5.
     {
+         // :TODO:02/06/2021 07:35:34 PM:: Throw error for contrdictory arguments. 
+    }
+    else if ( func_id == r_nrv_dv) // case of compute number c6.
+    {
+         // :TODO:02/06/2021 07:35:40 PM:: Throw error for contrdictory arguments. 
+    }
+    else if ( func_id == r_rv_ndv ) // case of compute number c7.
+    {
+        description.add_options()(option_name.c_str(),
+                                  po::value<std::string>()->required(),
+                                  my_option_description.c_str());
 
     }
-    else if ( func_id == r_nrv_dv)
+    else if ( func_id == r_rv_dv ) // case of compute number c8.
     {
-
-    }
-    else if ( func_id == r_rv_ndv )
-    {
-
-    }
-    else if ( func_id == r_rv_dv )
-    {
-
+         // :TODO:02/06/2021 07:35:45 PM:: Throw error for contradictory arguments. 
     }
     else
     {
