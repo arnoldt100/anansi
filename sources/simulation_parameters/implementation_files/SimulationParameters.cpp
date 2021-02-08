@@ -114,14 +114,16 @@ void SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::Comm
     char** argv=nullptr;
     aCommandLine.reformCommandLineArguments(argc,argv);
 
-    po::options_description description;
     
-    // Loop over all options and add to the boost program options.
+
+    // Loop over all options and add to the boost program optionss
+    po::options_description description;
     for (const auto & a_option : Alloptions)
     {
     	a_option.addBoostOption(description);
     }
 
+    // Parse and store the option values.
     std::cout << description << std::endl;
 
     po::variables_map vm;

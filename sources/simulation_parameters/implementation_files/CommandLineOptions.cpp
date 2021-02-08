@@ -14,6 +14,7 @@
 #include "ErrorNoLongName.h"
 #include "ErrorNoOptionDescription.h"
 #include "ErrorNoOptionAdded.h"
+#include "ErrorIllFormedOption.h"
 
 namespace ANANSI {
 
@@ -24,7 +25,8 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 CommandLineOptions::CommandLineOptions() : 
-    _isRequired(false)
+    _isRequired(false),
+	_isRequiredOptionValues(false)
 {
     for ( const auto & it : option_keys )
     {
@@ -34,7 +36,8 @@ CommandLineOptions::CommandLineOptions() :
 }
 
 CommandLineOptions::CommandLineOptions( const CommandLineOptionsParameter & command_line_parameter) :
-    _isRequired(false)
+    _isRequired(false),
+	_isRequiredOptionValues(false)
 {
     for ( const auto & it : option_keys )
     {
@@ -61,7 +64,8 @@ CommandLineOptions::CommandLineOptions( CommandLineOptions const & other) :
 }		/* -----  end of method CommandLineOptions::CommandLineOptions  ----- */
 
 CommandLineOptions::CommandLineOptions ( CommandLineOptions && other) :
-    _isRequired(false)
+    _isRequired(false),
+	_isRequiredOptionValues(false)
 {
     this->_optionValues = std::move(other._optionValues);
     this->_isRequired = std::move(other._isRequired);
@@ -182,19 +186,8 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
         //       <staus of requiring option_parameters>,
         //       <status of requiring a default value>]
         v1.push_back(my_option_required);
-        
         v1.push_back(my_option_requires_values);
-
-        bool has_default_value;
-        if (my_default_value.empty())
-        {
-            has_default_value = false;
-        }
-        else
-        {
-            has_default_value = true;
-        }
-        v1.push_back(has_default_value);
+        v1.push_back(my_default_value.empty());
         return v1;
     };
 
@@ -325,11 +318,11 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     }
     else if ( func_id == r_nrv_ndv ) // case of compute number c5.
     {
-         // :TODO:02/06/2021 07:35:34 PM:: Throw error for contrdictory arguments. 
+         throw ErrorIllFormedOption();
     }
     else if ( func_id == r_nrv_dv) // case of compute number c6.
     {
-         // :TODO:02/06/2021 07:35:40 PM:: Throw error for contrdictory arguments. 
+         throw ErrorIllFormedOption();
     }
     else if ( func_id == r_rv_ndv ) // case of compute number c7.
     {
@@ -340,7 +333,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     }
     else if ( func_id == r_rv_dv ) // case of compute number c8.
     {
-         // :TODO:02/06/2021 07:35:45 PM:: Throw error for contradictory arguments. 
+         throw ErrorIllFormedOption();
     }
     else
     {

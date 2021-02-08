@@ -21,7 +21,6 @@ namespace ANANSI {
 
 ErrorNoOptionDescription::ErrorNoOptionDescription()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
@@ -33,7 +32,6 @@ ErrorNoOptionDescription::ErrorNoOptionDescription( ErrorNoOptionDescription && 
 
 ErrorNoOptionDescription::~ErrorNoOptionDescription()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 

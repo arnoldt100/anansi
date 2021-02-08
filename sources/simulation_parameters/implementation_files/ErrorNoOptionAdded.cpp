@@ -21,7 +21,6 @@ namespace ANANSI {
 
 ErrorNoOptionAdded::ErrorNoOptionAdded()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
@@ -33,7 +32,6 @@ ErrorNoOptionAdded::ErrorNoOptionAdded( ErrorNoOptionAdded && other)
 
 ErrorNoOptionAdded::~ErrorNoOptionAdded()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 

@@ -88,6 +88,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoLongName.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoOptionDescription.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoOptionAdded.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorIllFormedOption.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/AllOptions.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/HelpOption.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileOption.h
@@ -108,6 +109,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoLongName.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionDescription.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionAdded.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorIllFormedOption.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/AllOptions.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/HelpOption.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileOption.cpp

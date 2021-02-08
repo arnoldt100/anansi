@@ -1,4 +1,3 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -10,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ErrorNoLongName.h"
+#include "ErrorIllFormedOption.h"
 
 namespace ANANSI {
 
@@ -20,49 +19,49 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ErrorNoLongName::ErrorNoLongName()
+ErrorIllFormedOption::ErrorIllFormedOption()
 {
     return;
 }
 
-ErrorNoLongName::ErrorNoLongName( ErrorNoLongName && other)
+ErrorIllFormedOption::ErrorIllFormedOption( ErrorIllFormedOption && other)
 {
     return;
-}		/* -----  end of method ErrorNoLongName::ErrorNoLongName  ----- */
+}		/* -----  end of method ErrorIllFormedOption::ErrorIllFormedOption  ----- */
 
 
-ErrorNoLongName::~ErrorNoLongName()
+ErrorIllFormedOption::~ErrorIllFormedOption()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-const char* ErrorNoLongName::what() const noexcept
+const char* ErrorIllFormedOption::what() const noexcept
 {
-    return "The option has no long name.";
+    return "The option is Illformed.";
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-ErrorNoLongName& ErrorNoLongName::operator= ( const ErrorNoLongName &other )
+ErrorIllFormedOption& ErrorIllFormedOption::operator= ( const ErrorIllFormedOption &other )
 {
     if (this != &other)
     {
 
     }
     return *this;
-} /* assignment operator */
+} // assignment operator
 
-ErrorNoLongName& ErrorNoLongName::operator=( ErrorNoLongName && other )
+ErrorIllFormedOption& ErrorIllFormedOption::operator= ( ErrorIllFormedOption && other )
 {
     if (this != &other)
     {
 
     }
     return *this;
-} /* assignment-move operator */
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

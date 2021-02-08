@@ -22,7 +22,6 @@ namespace ANANSI {
 
 ErrorNoShortName::ErrorNoShortName()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
@@ -34,7 +33,6 @@ ErrorNoShortName::ErrorNoShortName( ErrorNoShortName && other)
 
 ErrorNoShortName::~ErrorNoShortName()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 
