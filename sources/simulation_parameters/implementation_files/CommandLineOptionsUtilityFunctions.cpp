@@ -14,13 +14,6 @@
 namespace ANANSI
 {
 
-std::string get_option_value ()
-{
-    std::string my_option_value;
-
-    return my_option_value;
-}   /* -----  end of function get_option_value  ----- */
-
 
 }; /* namespace ANANSI */
 

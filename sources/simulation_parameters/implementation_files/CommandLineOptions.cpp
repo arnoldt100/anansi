@@ -351,7 +351,9 @@ std::string CommandLineOptions::getDescription (  ) const
 std::string CommandLineOptions::getLongName () const
 {
     std::string my_long_name;
-    my_long_name = get_option_value();
+    const std::string default_value = "";
+    const std::string key = "long_name";
+    my_long_name = get_option_value(key,this->_optionValues,default_value);
 
     auto search =  this->_optionValues.find("long_name");
     if (search != this->_optionValues.end())
