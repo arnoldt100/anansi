@@ -18,6 +18,12 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <vector>
+#include <map>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+#include "boost/program_options.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -77,11 +83,10 @@ class SimulationParameters
 
         static std::vector<CommandLineOptions> _parseOptionsClasses();
 
-        static void _parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine);
-
+        static std::map<std::string,std::string> _parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine);
 
         /* ====================  DATA MEMBERS  ======================================= */
-        std::vector<CommandLineOptions> _options;
+        std::map<std::string,std::string> _optionsMap;
 
 }; /* -----  end of class SimulationParameters  ----- */
 

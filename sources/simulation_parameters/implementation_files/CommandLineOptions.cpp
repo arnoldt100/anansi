@@ -349,7 +349,17 @@ std::string CommandLineOptions::getDescription (  ) const
 
 std::string CommandLineOptions::getLongName () const
 {
-    return this->_optionValues.at("long_name");
+    std::string my_long_name;
+    auto search =  this->_optionValues.find("long_name");
+    if (search != this->_optionValues.end())
+    {
+        my_long_name = search->second;
+    }
+    else
+    {
+        my_long_name = "";
+    }
+    return my_long_name;
 }		// -----  end of method CommandLineOptions::getLongName  ----- 
 
 std::string CommandLineOptions::getShortName () const
@@ -362,6 +372,11 @@ std::string CommandLineOptions::getDefaultValue () const
     return this->_optionValues.at("default_value");
 }		// -----  end of method CommandLineOptions::getDefaultValue  ----- 
 
+void CommandLineOptions::getOptionsValue (std::map<std::string, std::string> & options_map) const
+{
+    // Get the long or short name of the option 
+    return;
+}       // -----  end of method CommandLineOptions::getOptionsValue  ----- 
 
 bool CommandLineOptions::isRequired () const
 {

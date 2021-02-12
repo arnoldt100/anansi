@@ -56,7 +56,7 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
             //      Method:  CommandLineOptions :: CommandLineOptions
-            // Description:  A constructor.             //               
+            // Description:  A constructor.
             //
             //  Parameters: The monadic argument for initializing this class.
             //
@@ -83,6 +83,18 @@ namespace ANANSI
             //      Return: void
             //--------------------------------------------------------------------------------------
             void addBoostOption( boost::program_options::options_description & description ) const;
+
+
+            //--------------------------------------------------------------------------------------
+            //       Class:  CommandLineOptions
+            //      Method:  CommandLineOptions :: getOptionsValue
+            // Description:  
+            // 
+            //  Parameters: options_map - Stores the options values.
+            //
+            //      Return:
+            //--------------------------------------------------------------------------------------
+            void getOptionsValue(std::map<std::string, std::string> & options_map) const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
@@ -167,7 +179,7 @@ namespace ANANSI
 
         private:
             // ====================  METHODS       =======================================
-
+            
             // ====================  DATA MEMBERS  =======================================
             std::map<std::string,std::string> _optionValues;
             bool _isRequired;

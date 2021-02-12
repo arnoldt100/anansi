@@ -93,6 +93,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/HelpOption.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileOption.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandLineOptionsParameter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandLineOptionsUtilityFunctions.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandLineOptions.h )
 
     #-----------------------------------------------------
@@ -114,6 +115,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/HelpOption.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileOption.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptionsParameter.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptionsUtilityFunctions.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptions.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
