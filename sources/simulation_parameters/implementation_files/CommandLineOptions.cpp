@@ -15,6 +15,7 @@
 #include "ErrorNoOptionDescription.h"
 #include "ErrorNoOptionAdded.h"
 #include "ErrorIllFormedOption.h"
+#include "CommandLineOptionsUtilityFunctions.h"
 
 namespace ANANSI {
 
@@ -350,6 +351,8 @@ std::string CommandLineOptions::getDescription (  ) const
 std::string CommandLineOptions::getLongName () const
 {
     std::string my_long_name;
+    my_long_name = get_option_value();
+
     auto search =  this->_optionValues.find("long_name");
     if (search != this->_optionValues.end())
     {
