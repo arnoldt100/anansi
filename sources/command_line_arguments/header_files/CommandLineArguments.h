@@ -73,6 +73,18 @@ class CommandLineArguments
         /* ====================  ACCESSORS     ======================================= */
         void reformCommandLineArguments(int & argc, char** & argv) const;
 
+
+        //--------------------------------------------------------------------------------------
+        //       Class:  CommandLineArguments
+        //      Method:  CommandLineArguments :: findArgument
+        // Description:  Returns true if string "str" is found, otherwise return false. 
+        // 
+        //  Parameters: str - The string to be searched for.
+        //
+        //      Return: bool
+        //--------------------------------------------------------------------------------------
+        bool findArgument( const std::string & str ) const;
+
         /* ====================  MUTATORS      ======================================= */
 
         /* ====================  OPERATORS     ======================================= */

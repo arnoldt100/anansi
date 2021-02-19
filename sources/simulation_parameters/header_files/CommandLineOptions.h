@@ -17,6 +17,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include <CommandLineOptionsParameter.h>
+#include "CommandLineOptionsUtilityFunctions.h"
 
 const std::vector<std::string> option_keys = 
 {"short_name","long_name","description","default_value"}; 
@@ -88,14 +89,39 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
             //      Method:  CommandLineOptions :: getOptionsValue
-            // Description:  
+            // Description:  Ths function transfers all the options values stored in the
+            //               boost variable map, bvm, to options_map. This is done so as to
+            //               minimize boost use throuhgout the program.
             // 
             //  Parameters: options_map - Stores the options values.
+            //              bvm - The boost variable map which stores
+            //                    the option values.
             //
-            //      Return:
+            //      Return: void
             //--------------------------------------------------------------------------------------
-            void getOptionsValue(std::map<std::string, std::string> & options_map) const;
+            void getOptionsValue(std::map<std::string, std::string> & options_map,
+                                 const boost::program_options::variables_map & bvm) const;
 
+
+            //--------------------------------------------------------------------------------------
+            //       Class:  CommandLineOptions
+            //      Method:  CommandLineOptions ::getSelectOptionsValue
+            // Description:  Ths function transfers selected the options values stored in the
+            //               boost variable map, bvm, to options_map. This is done so as to
+            //               minimize boost use throuhgout the program. Only the options in the 
+            //               list "options_to_process" are transferred.
+            //
+            //  Parameters: options_map - Stores the options values.
+            //              bvm - The boost variable map which stores
+            //                    the option values.
+            //              options_to_process - The list of options to process.      
+            //
+            //      Return: void
+            // =====================================================================================
+            void getSelectOptionsValue (std::map<std::string, std::string> & options_map,
+                                        const boost::program_options::variables_map & bvm,
+                                        const std::vector<std::string> & options_to_process) const;
+            
             //--------------------------------------------------------------------------------------
             //       Class:  CommandLineOptions
             //      Method:  CommandLineOptions :: getDescrtiption

@@ -85,6 +85,29 @@ class SimulationParameters
 
         static std::map<std::string,std::string> _parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine);
 
+        //--------------------------------------------------------------------------------------
+        //       Class:  SimulationParameters
+        //      Method:  SimulationParameters :: _createBoostVariableMap
+        // Description:  
+        // 
+        //  Parameters: 
+        //
+        //      Return: void
+        //--------------------------------------------------------------------------------------
+        static boost::program_options::variables_map _createBoostVariableMap(COMMANDLINE::CommandLineArguments const & aCommandLine);
+
+
+        //--------------------------------------------------------------------------------------
+        //       Class:  SimulationParameters
+        //      Method:  SimulationParameters :: _transferBoostVariableMap
+        // Description:  
+        // 
+        //  Parameters: 
+        //
+        //      Return: void
+        //--------------------------------------------------------------------------------------
+        static std::map<std::string,std::string> _transferBoostVariableMap(boost::program_options::variables_map const & vm);
+
         /* ====================  DATA MEMBERS  ======================================= */
         std::map<std::string,std::string> _optionsMap;
 

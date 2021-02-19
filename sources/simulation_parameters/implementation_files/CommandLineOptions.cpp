@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <vector>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -15,7 +16,6 @@
 #include "ErrorNoOptionDescription.h"
 #include "ErrorNoOptionAdded.h"
 #include "ErrorIllFormedOption.h"
-#include "CommandLineOptionsUtilityFunctions.h"
 
 namespace ANANSI {
 
@@ -74,8 +74,6 @@ CommandLineOptions::CommandLineOptions ( CommandLineOptions && other) :
     return;
 }
 
-
-
 CommandLineOptions::~CommandLineOptions()
 {
     return;
@@ -93,39 +91,6 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     const auto my_default_value = this->_optionValues.at("default_value");
     const auto my_option_required = this->isRequired();
     const auto my_option_requires_values = this->isRequiredOptionValues();
-
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // This lambda converts a bool to 0 or 1.                          @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    auto bool_to_int = [&](bool x) {
-         unsigned int y =  x ? 1 : 0; 
-         return y;
-    }; 
-
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // This lambda computes a unique number for a given bool vector.   @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    auto compute_number = [&](std::vector<bool> x) {
-        unsigned int num = 0;
-        for (auto it = x.begin(); it != x.end(); ++it)
-        {
-            const auto n1 = bool_to_int(*it);
-            if ( it == x.begin() ) 
-            {
-                num += n1;
-            }
-            else
-            {
-                num <<= 1; 
-                num += n1;
-            } 
-        }
-        return num;
-    };
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
@@ -188,11 +153,11 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
         //       <status of requiring a default value>]
         v1.push_back(my_option_required);
         v1.push_back(my_option_requires_values);
-        v1.push_back(my_default_value.empty());
+        v1.push_back(not my_default_value.empty());
         return v1;
     };
 
-    std::vector<bool> v_b = generate_bool_vector(); 
+    const std::vector<bool> v_b = generate_bool_vector(); 
     const unsigned int func_id = compute_number(v_b);
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -343,52 +308,82 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     return ;
 }		// -----  end of method CommandLineOptions::addBoostOption  -----
 
-std::string CommandLineOptions::getDescription (  ) const
+std::string CommandLineOptions::getDescription( ) const
 {
-    return this->_optionValues.at("description");
+    const std::string default_value = "";
+    const std::string key = "description";
+    auto my_value = get_option_value(key,this->_optionValues,default_value);
+    return my_value;
 }		// -----  end of method CommandLineOptions::get__description  ----- 
 
-std::string CommandLineOptions::getLongName () const
+std::string CommandLineOptions::getLongName( ) const
 {
-    std::string my_long_name;
     const std::string default_value = "";
     const std::string key = "long_name";
-    my_long_name = get_option_value(key,this->_optionValues,default_value);
-
-    auto search =  this->_optionValues.find("long_name");
-    if (search != this->_optionValues.end())
-    {
-        my_long_name = search->second;
-    }
-    else
-    {
-        my_long_name = "";
-    }
-    return my_long_name;
+    auto my_value = get_option_value(key,this->_optionValues,default_value);
+    return my_value;
 }		// -----  end of method CommandLineOptions::getLongName  ----- 
 
-std::string CommandLineOptions::getShortName () const
+std::string CommandLineOptions::getShortName( ) const
 {
-    return this->_optionValues.at("short_name");
+    const std::string default_value = "";
+    const std::string key = "short_name";
+    auto my_value = get_option_value(key,this->_optionValues,default_value);
+    return my_value;
 }		// -----  end of method CommandLineOptions::getShortName  ----- 
 
-std::string CommandLineOptions::getDefaultValue () const
+std::string CommandLineOptions::getDefaultValue( ) const
 {
-    return this->_optionValues.at("default_value");
+    const std::string default_value = "";
+    const std::string key = "default_value";
+    auto my_value = get_option_value(key,this->_optionValues,default_value);
+    return my_value;
 }		// -----  end of method CommandLineOptions::getDefaultValue  ----- 
 
-void CommandLineOptions::getOptionsValue (std::map<std::string, std::string> & options_map) const
+void CommandLineOptions::getOptionsValue(std::map<std::string,std::string> & options_map,
+                                         const boost::program_options::variables_map & bvm) const
 {
-    // Get the long or short name of the option 
+    // Get the long name of the option. Use this long name as a key 
+    // to get the option value from the boost variable map.
+    const auto key = this->getLongName();
+
+    // If the option is present then store in options_map.
+    if ( bvm.count(key) )
+    {
+        options_map[key] = bvm[key].as<std::string>();
+    }
+
     return;
 }       // -----  end of method CommandLineOptions::getOptionsValue  ----- 
 
-bool CommandLineOptions::isRequired () const
+void CommandLineOptions::getSelectOptionsValue (std::map<std::string, std::string> & options_map,
+                                                const boost::program_options::variables_map & bvm,
+                                                const std::vector<std::string> & options_to_process) const
+{
+    // Get the long name of the option. Use this long name as a key 
+    // to get the option value from the boost variable map.
+    const auto key = this->getLongName();
+
+    // If the list "options_to_process" has a value of "key"
+    // the process the boost variables map and transfer the
+    // values to "options_map". 
+    const auto search = std::find(std::begin(options_to_process),std::begin(options_to_process),key);
+    if ( search != std::end(options_to_process) )
+    {
+        if ( bvm.count(key) )
+        {
+            options_map[key] = bvm[key].as<std::string>();
+        }
+    }
+    return;
+}		// -----  end of method CommandLineOptions::getSelectOptionsValue  -----
+
+bool CommandLineOptions::isRequired() const
 {
     return this->_isRequired;
 }		// -----  end of method CommandLineOptions::isRequired  ----- 
 
-bool CommandLineOptions::isRequiredOptionValues () const
+bool CommandLineOptions::isRequiredOptionValues() const
 {
     return this->_isRequiredOptionValues;
 }		// -----  end of method CommandLineOptions::isRequiredOptionValues  ----- 

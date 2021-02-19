@@ -9,6 +9,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <algorithm>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -98,14 +99,7 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
 //============================= OPERATORS ====================================
 
 //============================= STATIC    ====================================
-
-std::vector<CommandLineOptions> SimulationParameters::_parseOptionsClasses()
-{
-    std::vector<CommandLineOptions> my_options;
-    return my_options;
-}
-
-std::map<std::string,std::string> SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine)
+boost::program_options::variables_map SimulationParameters::_createBoostVariableMap(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
     namespace po = boost::program_options;
 
@@ -115,11 +109,21 @@ std::map<std::string,std::string> SimulationParameters::_parseProgramOptionsFrom
     aCommandLine.reformCommandLineArguments(argc,argv);
 
     // Loop over all options and add to the boost program 
-    // options_description.
+    // options_description. If the help option is present in
+    // the command line arguments, then only add to the help description.
+    const std::string help_long_opt("--help");
+    const std::string help_short_opt("-h");
     po::options_description description;
-    for (const auto & a_option : Alloptions)
+    if (aCommandLine.findArgument(help_long_opt) || aCommandLine.findArgument(help_short_opt))
     {
-        a_option.addBoostOption(description);
+        HelpOption.addBoostOption(description);
+    }
+    else
+    {
+        for (const auto & a_option : Alloptions)
+        {
+            a_option.addBoostOption(description);
+        }
     }
 
     // Parse and store the option values in the boost variable map.
@@ -127,31 +131,56 @@ std::map<std::string,std::string> SimulationParameters::_parseProgramOptionsFrom
     po::store(po::parse_command_line(argc, argv, description), vm);
     po::notify(vm);    
 
-
-    // If the help option is present, then print help message and return.
-    // Only the the "world parent process" should print the help message.
-    // :TODO:02/12/2021 11:36:08 AM:: Move this outside this function. 
-    // Printing the help message is not the responsibilty of this function. 
-    if ( vm.count("help") )
-    {
-        std::cout << description << std::endl;
-    }
-
-    // Loop over all option values and transfer from the boost variable map to options_map. The
-    // options_map variable is to store the option values instead of the boost variable_map to
-    // modularize the option parsing functionality - we don't want to use boost's variable map
-    // throughout the program.
-    std::map<std::string,std::string> options_map;
-    for (const auto & a_option : Alloptions)
-    {
-        a_option.getOptionsValue(options_map);
-    }
-
-    // Delete the nonuniform 2d char array.
     if (argv != nullptr)
     {
         MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(argc,argv);
     }
+    return vm;
+}
+
+std::map<std::string,std::string> SimulationParameters::_transferBoostVariableMap(boost::program_options::variables_map const & vm)
+{
+    std::map<std::string,std::string> options_map;
+
+    // The options_map variable is  used to store the option values instead of the boost
+    // variable_map so as to modularize the option parsing functionality - we don't want to use
+    // boost's variable map throughout the program.
+    if ( vm.count("help") )
+    {
+        // Process only the help option value and transfer from the boost variable map to
+        // options_map. 
+        const std::vector<std::string> options_to_process = {"help"};
+        for (const auto & a_option : Alloptions)
+        {
+            a_option.getSelectOptionsValue(options_map,vm,options_to_process);
+        }
+    }
+    else
+    {
+        // Loop over all option values and transfer from the boost variable map to options_map.
+        for (const auto & a_option : Alloptions)
+        {
+            a_option.getOptionsValue(options_map,vm);
+        }
+    }
+
+    return options_map;
+}
+
+std::vector<CommandLineOptions> SimulationParameters::_parseOptionsClasses()
+{
+    std::vector<CommandLineOptions> my_options;
+    return my_options;
+}
+
+std::map<std::string,std::string> SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine)
+{
+    // Create the Boost variabler map.
+    const auto vm = SimulationParameters::_createBoostVariableMap(aCommandLine);
+
+    // Transfer the Boost variabler map to options map.
+    const auto options_map = SimulationParameters::_transferBoostVariableMap(vm);
+
 
     return options_map;
 }

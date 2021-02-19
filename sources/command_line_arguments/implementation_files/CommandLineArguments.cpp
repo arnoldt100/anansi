@@ -3,6 +3,7 @@
  *
  *      Authors: Arnold N. Tharrington
  */
+#include <algorithm>
 
 #include "CommandLineArguments.h"
 
@@ -55,6 +56,16 @@ void CommandLineArguments::reformCommandLineArguments(int & argc, char** & argv)
         strcpy(argv[ip],this->_commandLineArguments[ip].c_str());
     }
     return;
+}
+
+bool CommandLineArguments::findArgument( const std::string & str ) const
+{
+    const auto search = std::find(std::begin(this->_commandLineArguments),
+                             std::end(this->_commandLineArguments),
+                             str);
+    const auto v1 = (search != std::end(this->_commandLineArguments)) ? true : false;
+
+    return v1;
 }
 
 //============================= MUTATORS =====================================
