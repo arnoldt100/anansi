@@ -9,6 +9,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <utility>
 #include <algorithm>
 
 //--------------------------------------------------------//
@@ -43,16 +44,20 @@ SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments con
     this->_optionsMap =
         SimulationParameters::_parseProgramOptionsFromCommandLine(aCommandLine);
 
-    // :TODO:01/02/2021 11:44:10 PM:: Store the values of the program options.
-
-
     return;
 }
 
-SimulationParameters::SimulationParameters(const SimulationParameters &other )
+SimulationParameters::SimulationParameters(const SimulationParameters &other ) :
+    _optionsMap(other._optionsMap)
 {
     return;
 }
+
+SimulationParameters::SimulationParameters( SimulationParameters && other)
+{
+    this->_optionsMap = std::move(other._optionsMap);
+    return;
+}		/* -----  end of method SimulationParameters::SimulationParameters  ----- */
 
 SimulationParameters::~SimulationParameters()
 {
@@ -69,10 +74,19 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
 {
     if (this != &other)
     {
-
+        this->_optionsMap = other._optionsMap;
     }
     return *this;
 }
+
+SimulationParameters& SimulationParameters::operator= ( SimulationParameters && other )
+{
+    if (this != &other)
+    {
+            this->_optionsMap = std::move(other._optionsMap);
+    }
+    return *this;
+} /* assignment-move operator */
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

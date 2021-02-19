@@ -57,9 +57,11 @@ class SimulationParameters
          */
         SimulationParameters (); /* constructor */
         
-        SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine); /* constructor */
+        SimulationParameters( SimulationParameters && other);
 
-        SimulationParameters( const SimulationParameters &other ); /* copy constructor */
+        SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine); // constructor
+
+        SimulationParameters( const SimulationParameters &other ); // copy constructor
 
         ~SimulationParameters(); /* destructor */
 
@@ -69,7 +71,9 @@ class SimulationParameters
 
         /* ====================  OPERATORS     ======================================= */
 
-        SimulationParameters& operator=( const SimulationParameters &other ); /* assignment operator */
+        SimulationParameters& operator=( const SimulationParameters &other ); // assignment operator
+
+        SimulationParameters& operator=( SimulationParameters && other ); // assignment move operator
 
     protected:
         /* ====================  METHODS       ======================================= */

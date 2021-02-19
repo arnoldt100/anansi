@@ -9,7 +9,7 @@ namespace ANANSI
     const std::string controlfile_long_name="controlfile";
     const std::string controlfile_short_name="c";
     const std::string controlfile_description="The name of the simulation control file.";
-    const bool controlfile_isRequired=true;
+    const bool controlfile_isRequired=false;
     const bool controlfile_isRequiredOptionValues=true;
     const std::string controlfile_default_value="";
 
