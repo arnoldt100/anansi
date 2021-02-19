@@ -19,6 +19,7 @@
 //--------------------------------------------------------//
 #include <vector>
 #include <map>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -61,11 +62,36 @@ class SimulationParameters
 
         SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine); // constructor
 
-        SimulationParameters( const SimulationParameters &other ); // copy constructor
+        SimulationParameters( SimulationParameters const & other ); // copy constructor
 
         ~SimulationParameters(); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
+
+         
+
+        //--------------------------------------------------------------------------------------
+        //       Class:  SimulationParameters
+        //      Method:  SimulationParameters :: isOptionPresent
+        // Description:  Inquires if an option, designated by key, is present. If the option is present
+        //               then true is returned, otherwise false is returned.
+        // 
+        //  Parameters: key - The name of the option being inquired about.
+        //
+        //      Return: bool
+        //--------------------------------------------------------------------------------------
+        bool isOptionPresent ( std::string const & key) const;
+
+        //--------------------------------------------------------------------------------------
+        //       Class:  SimulationParameters
+        //      Method:  SimulationParameters :: getOptionValues
+        // Description:  Returns the command line option value for the corresponding key.
+        // 
+        //  Parameters:  key - The name of the key.
+        //
+        //      Return: std::string
+        //--------------------------------------------------------------------------------------
+        std::string getOptionValues(std::string const & key) const;
 
         /* ====================  MUTATORS      ======================================= */
 

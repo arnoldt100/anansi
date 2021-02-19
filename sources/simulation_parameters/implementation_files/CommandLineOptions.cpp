@@ -134,11 +134,9 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     //                                                                 @
     // We form a bool vector, v_b, where                               @
     // v_b[0] = logical value of requiring the option.                 @
-    // v_b[1] = logical value of is there a default value              @
+    // v_b[1] = logical value of if option requies a value.            @
+    // v_b[2] = logical value of is there a default value              @
     //                                                                 @
-    // This bool vector will be used to form the unique number         @
-    // and the order of the elements must be consistent with           @
-    // the ???                                                         @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     // This lambda generates the bool vector of the extant 
@@ -266,40 +264,33 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     }
     else if ( func_id == nr_nrv_dv) // case of compute number c2
     {
-        description.add_options()(option_name.c_str(),
-                                  po::value<std::string>()->default_value(my_default_value.c_str()),
-                                  my_option_description.c_str());
+        throw ErrorIllFormedOption();
     } 
     else if ( func_id == nr_rv_ndv ) // case of compute number c3
     {
         description.add_options()(option_name.c_str(),
-                                  po::value<std::string>()->required(),
+                                  po::value<std::string>(),
                                   my_option_description.c_str());
     } 
     else if ( func_id == nr_rv_dv ) // case of compute number c4
     {
-        description.add_options()(option_name.c_str(),
-                                  po::value<std::string>()->default_value(my_default_value.c_str()),
-                                  my_option_description.c_str());
+        throw ErrorIllFormedOption();
     }
     else if ( func_id == r_nrv_ndv ) // case of compute number c5.
     {
-         throw ErrorIllFormedOption();
+        throw ErrorIllFormedOption();
     }
     else if ( func_id == r_nrv_dv) // case of compute number c6.
     {
-         throw ErrorIllFormedOption();
+        throw ErrorIllFormedOption();
     }
     else if ( func_id == r_rv_ndv ) // case of compute number c7.
     {
-        description.add_options()(option_name.c_str(),
-                                  po::value<std::string>()->required(),
-                                  my_option_description.c_str());
-
+        throw ErrorIllFormedOption();
     }
     else if ( func_id == r_rv_dv ) // case of compute number c8.
     {
-         throw ErrorIllFormedOption();
+        throw ErrorIllFormedOption();
     }
     else
     {

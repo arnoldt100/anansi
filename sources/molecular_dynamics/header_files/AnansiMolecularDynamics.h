@@ -74,7 +74,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void 
         _enableCommunication() final override;
 
-        // This group of functions processes the comamand line and sets the
+        // This group of functions processes the command line and sets the
         // simulation parameters.
         void _processCommandLine() final override; 
 
