@@ -41,21 +41,21 @@ SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments con
 {
 
     // Use the Boost program options library to parse the command line.
-    this->_optionsMap =
+    this->_commandLineOptionsMap =
         SimulationParameters::_parseProgramOptionsFromCommandLine(aCommandLine);
 
     return;
 }
 
 SimulationParameters::SimulationParameters(const SimulationParameters &other ) :
-    _optionsMap(other._optionsMap)
+    _commandLineOptionsMap(other._commandLineOptionsMap)
 {
     return;
 }
 
 SimulationParameters::SimulationParameters( SimulationParameters && other)
 {
-    this->_optionsMap = std::move(other._optionsMap);
+    this->_commandLineOptionsMap = std::move(other._commandLineOptionsMap);
     return;
 }		// -----  end of method SimulationParameters::SimulationParameters  -----
 
@@ -66,20 +66,20 @@ SimulationParameters::~SimulationParameters()
 
 //============================= ACCESSORS ====================================
 
-bool SimulationParameters::isOptionPresent ( std::string const & key) const
+bool SimulationParameters::isCommandLineOptionPresent ( std::string const & key) const
 {
     // We count the number of elements with key "key". If the 
     // count is > 0, then the option is present. Otherwise the option
     // is not present.
-    const auto count = this->_optionsMap.count(key);
+    const auto count = this->_commandLineOptionsMap.count(key);
     const auto found_option = (count > 0) ? true : false;
     return found_option;
-}		// -----  end of method SimulationParameters::isOptionPresent  ----- 
+}		// -----  end of method SimulationParameters::isCommandLineOptionPresent  ----- 
 
-std::string SimulationParameters::getOptionValues (std::string const & key) const
+std::string SimulationParameters::getCommandLineOptionValues (std::string const & key) const
 {
-    return this->_optionsMap.at(key);
-}		// -----  end of method SimulationParameters::getOptionValues  ----- 
+    return this->_commandLineOptionsMap.at(key);
+}		// -----  end of method SimulationParameters::getCommandLineOptionValues  ----- 
 
 
 //============================= MUTATORS =====================================
@@ -90,7 +90,7 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
 {
     if (this != &other)
     {
-        this->_optionsMap = other._optionsMap;
+        this->_commandLineOptionsMap = other._commandLineOptionsMap;
     }
     return *this;
 }
@@ -99,7 +99,7 @@ SimulationParameters& SimulationParameters::operator= ( SimulationParameters && 
 {
     if (this != &other)
     {
-            this->_optionsMap = std::move(other._optionsMap);
+            this->_commandLineOptionsMap = std::move(other._commandLineOptionsMap);
     }
     return *this;
 }       // ----- end of assignment-move operator -----

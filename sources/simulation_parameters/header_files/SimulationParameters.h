@@ -72,7 +72,7 @@ class SimulationParameters
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationParameters
-        //      Method:  SimulationParameters :: isOptionPresent
+        //      Method:  SimulationParameters :: isCommandLineOptionPresent
         // Description:  Inquires if an option, designated by key, is present. If the option is present
         //               then true is returned, otherwise false is returned.
         // 
@@ -80,18 +80,18 @@ class SimulationParameters
         //
         //      Return: bool
         //--------------------------------------------------------------------------------------
-        bool isOptionPresent ( std::string const & key) const;
+        bool isCommandLineOptionPresent ( std::string const & key) const;
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationParameters
-        //      Method:  SimulationParameters :: getOptionValues
+        //      Method:  SimulationParameters :: getCommandLineOptionValues
         // Description:  Returns the command line option value for the corresponding key.
         // 
         //  Parameters:  key - The name of the key.
         //
         //      Return: std::string
         //--------------------------------------------------------------------------------------
-        std::string getOptionValues(std::string const & key) const;
+        std::string getCommandLineOptionValues(std::string const & key) const;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -139,7 +139,7 @@ class SimulationParameters
         static std::map<std::string,std::string> _transferBoostVariableMap(boost::program_options::variables_map const & vm);
 
         /* ====================  DATA MEMBERS  ======================================= */
-        std::map<std::string,std::string> _optionsMap;
+        std::map<std::string,std::string> _commandLineOptionsMap;
 
 }; /* -----  end of class SimulationParameters  ----- */
 

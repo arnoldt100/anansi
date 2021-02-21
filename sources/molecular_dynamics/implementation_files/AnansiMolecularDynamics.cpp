@@ -79,7 +79,7 @@ ANANSI::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
 
 bool AnansiMolecularDynamics::_isHelpOnCommandLine() const
 {
-    const bool help_found = this->_simulationParameters.isOptionPresent("help");
+    const bool help_found = this->_simulationParameters.isCommandLineOptionPresent("help");
     return help_found;
 }
 
