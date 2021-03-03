@@ -72,7 +72,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FileParsers.h )
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FileParsers.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileParser.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -82,7 +83,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FileParsers.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FileParsers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileParser.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -112,6 +114,14 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 target_sources(${target}
                PRIVATE ${file_parsers_header_files} ${file_parsers_implementation_files} )
+
+#-----------------------------------------------------
+# Add the directory header_files to search for       -
+# header files.                                      -
+#                                                    -
+#-----------------------------------------------------
+target_include_directories(${target} 
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

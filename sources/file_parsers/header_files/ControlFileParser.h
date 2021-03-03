@@ -1,58 +1,50 @@
-/*
- * =====================================================================================
- *
- *       Filename:  FileParsers.h
- *
- *    Description:  
- *
- *         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
- *   Organization:  ORNL-National Center of Computational Sciences
- *
- * =====================================================================================
- */
-
-#ifndef  FileParsers_INC
-#define  FileParsers_INC
+#ifndef  ControlFileParser_INC
+#define  ControlFileParser_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 
 //--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "FileParsers.h"
 
 namespace ANANSI
 {
 
     /*
      * =====================================================================================
-     *        Class:  FileParsers
+     *        Class:  ControlFileParser
      *  Description:  
      * =====================================================================================
      */
-    class FileParsers
+    class ControlFileParser : FileParsers
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
 
             /*
              *--------------------------------------------------------------------------------------
-             *       Class:  FileParsers
-             *      Method:  FileParsers :: FileParsers
+             *       Class:  ControlFileParser
+             *      Method:  ControlFileParser :: ControlFileParser
              * Description:  Constructor
              *
              * Arguments: 
              *
              *--------------------------------------------------------------------------------------
              */
-            FileParsers (); // constructor
+            ControlFileParser ();   /* constructor      */
 
-            FileParsers ( const FileParsers &other ); // copy constructor
+            ControlFileParser (const ControlFileParser & other);   /* copy constructor */
 
-            FileParsers (FileParsers && other); // copy-move constructor
+            ControlFileParser (ControlFileParser && other);   /* copy-move constructor */
 
-            virtual ~FileParsers ()=0; // destructor
+            virtual ~ControlFileParser ();  /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
 
@@ -60,9 +52,10 @@ namespace ANANSI
 
             /* ====================  OPERATORS     ======================================= */
 
-            FileParsers& operator= ( const FileParsers &other ); /* assignment operator */
+            ControlFileParser& operator= ( const ControlFileParser &other ); /* assignment operator */
 
-            FileParsers& operator= ( FileParsers && other ); // assignment-move operator
+            ControlFileParser& operator= ( ControlFileParser && other ); /* assignment-move operator */
+
         protected:
             /* ====================  METHODS       ======================================= */
 
@@ -73,9 +66,9 @@ namespace ANANSI
 
             /* ====================  DATA MEMBERS  ======================================= */
 
-    }; /* -----  end of class FileParsers  ----- */
+    }; /* -----  end of class ControlFileParser  ----- */
 
 
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef FileParsers_INC  ----- */
+#endif   // ----- #ifndef ControlFileParser_INC  ----- 
