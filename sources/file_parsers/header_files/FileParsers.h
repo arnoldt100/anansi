@@ -1,50 +1,58 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+/*
+ * =====================================================================================
+ *
+ *       Filename:  FileParsers.h
+ *
+ *    Description:  
+ *
+ *         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
+ *   Organization:  ORNL-National Center of Computational Sciences
+ *
+ * =====================================================================================
+ */
+
+#ifndef  FileParsers_INC
+#define  FileParsers_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 
 //--------------------------------------------------------//
-//-------------------- External Library Files ------------//
-//--------------------------------------------------------//
-
-//--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
     /*
      * =====================================================================================
-     *        Class:  __classname__
+     *        Class:  FileParsers
      *  Description:  
      * =====================================================================================
      */
-    class __classname__
+    class FileParsers
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
 
             /*
              *--------------------------------------------------------------------------------------
-             *       Class:  __classname__
-             *      Method:  __classname__ :: __classname__
+             *       Class:  FileParsers
+             *      Method:  FileParsers :: FileParsers
              * Description:  Constructor
              *
              * Arguments: 
              *
              *--------------------------------------------------------------------------------------
              */
-            __classname__ ();   /* constructor      */
+            FileParsers (); // constructor
 
+            FileParsers ( const FileParsers &other ); // copy constructor
 
-            __classname__ (const __classname__ & other);   /* copy constructor */
+            FileParsers (FileParsers && other); // copy-move constructor
 
-            __classname__ (__classname__ && other);   /* copy-move constructor */
-
-            virtual ~__classname__ ();  /* destructor */
+            virtual ~FileParsers (); // destructor
 
             /* ====================  ACCESSORS     ======================================= */
 
@@ -52,10 +60,9 @@ namespace __NAMESPACE__
 
             /* ====================  OPERATORS     ======================================= */
 
-            __classname__& operator= ( const __classname__ &other ); /* assignment operator */
+            FileParsers& operator = ( const FileParsers &other ); /* assignment operator */
 
-            __classname__& operator= ( __classname__ && other ); /* assignment-move operator */
-
+            FileParsers& operator= ( FileParsers && other ); // assignment-move operator
         protected:
             /* ====================  METHODS       ======================================= */
 
@@ -66,9 +73,9 @@ namespace __NAMESPACE__
 
             /* ====================  DATA MEMBERS  ======================================= */
 
-    }; /* -----  end of class __classname__  ----- */
+    }; /* -----  end of class FileParsers  ----- */
 
 
-}; /* namespace __NAMESPACE__ */
+}; // namespace ANANSI
 
-#endif /* __filepreprocessordefine__ */
+#endif   /* ----- #ifndef FileParsers_INC  ----- */

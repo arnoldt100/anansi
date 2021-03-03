@@ -99,7 +99,7 @@ AnansiMDStatePCL& AnansiMDStatePCL::operator= ( AnansiMDStatePCL && other )
 void AnansiMDStatePCL::_processCommandLine(MolecularDynamics * const aMD) const
 {
     // Execute commands to store the simulation parameters.
-    aMD->saveSimulationParameters();
+    aMD->saveCommandLineOptionsValues();
 
     // If help was processed on the command line, then change state to terminate
     // simulation environment so as to not do any more of the MD algorithm. One

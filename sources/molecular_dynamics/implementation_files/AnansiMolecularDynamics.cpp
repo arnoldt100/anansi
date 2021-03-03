@@ -123,6 +123,27 @@ AnansiMolecularDynamics::_enableCommunication()
     return;
 }       /* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */
 
+
+void
+AnansiMolecularDynamics::_inputSimulationControlFile ()
+{
+    // Only the main mpi rank, process 0, of the world communicator reads the control file.
+    // The information is then broadcasted to the subordinate processes.
+    const auto my_world_rank = this->_MpiWorldCommunicator->getWorldCommunicatorRank();
+    const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
+    switch ( my_world_rank )
+    {
+        case COMMUNICATOR::MASTER_TASK_ID :	
+            std::cout << "Task " << my_world_rank << " : Reading control file " << file_name << std::endl;
+            break;
+
+        default:	
+            std::cout << "Task " << my_world_rank << " : Not reading control file " << file_name << std::endl;
+            break;
+    }				/* -----  end switch  ----- */
+    return ;
+}		/* -----  end of method AnansiMolecularDynamics::_inputSimulationControlFile  ----- */
+
 void AnansiMolecularDynamics::_processCommandLine()
 {
     this->_mdState->processCommandLine(this);
@@ -130,11 +151,14 @@ void AnansiMolecularDynamics::_processCommandLine()
 }
 
 void
-AnansiMolecularDynamics::_saveSimulationParameters()
+AnansiMolecularDynamics::_saveCommandLineOptionParameters()
 {
     this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
     return ;
-}      /* -----  end of method AnansiMolecularDynamics::_saveSimulationParameters  ----- */
+}      /* -----  end of method AnansiMolecularDynamics::_saveCommandLineOptionParameters  ----- */
+
+
+// Functions that call state methods.
 
 void
 AnansiMolecularDynamics::_initializeInitialConditions()

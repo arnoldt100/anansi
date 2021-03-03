@@ -1,7 +1,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -10,8 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "AnansiMolecularDynamics.h"
-#include "AnansiMDStateIIC.h"
+#include "FileParsers.h"
 
 namespace ANANSI {
 
@@ -21,68 +19,26 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-AnansiMDStateIIC::AnansiMDStateIIC() :
-    AnansiMDState()
+FileParsers::FileParsers()
 {
     return;
 }
 
-AnansiMDStateIIC::AnansiMDStateIIC( AnansiMDStateIIC const & other) :
-    AnansiMDState(other)
+FileParsers::FileParsers( FileParsers && other)
 {
-    if (this != &other)
-    {
-
-    }
     return;
-}		/* -----  end of method AnansiMDStateIIC::AnansiMDStateIIC  ----- */
+} 
 
-AnansiMDStateIIC::AnansiMDStateIIC( AnansiMDStateIIC && other) :
-    AnansiMDState(std::move(other))
-{
-    if (this != &other)
-    {
-
-    }
-    return;
-}		/* -----  end of method AnansiMDStateIIC::AnansiMDStateIIC  ----- */
-
-
-AnansiMDStateIIC::~AnansiMDStateIIC()
+FileParsers::~FileParsers()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-void
-AnansiMDStateIIC::_initializeInitialConditions (MolecularDynamics * const aMD) const
-{
-	aMD->inputSimulationControlFile();
-    return;
-}		// -----  end of method AnansiMDStateIIC::_initializeInitialConditions  -----
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-AnansiMDStateIIC& AnansiMDStateIIC::operator=( const AnansiMDStateIIC & other )
-{
-    if (this != &other)
-    {
-        AnansiMDState::operator=(other);
-    }
-    return *this;
-} /* assignment operator */
-
-AnansiMDStateIIC& AnansiMDStateIIC::operator= ( AnansiMDStateIIC && other )
-{
-    if (this != &other)
-    {
-        AnansiMDState::operator=(std::move(other));
-    }
-    return *this;
-} /* assignment-move operator */
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -95,6 +51,24 @@ AnansiMDStateIIC& AnansiMDStateIIC::operator= ( AnansiMDStateIIC && other )
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
+
+FileParsers& FileParsers::operator=( const FileParsers &other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment operator
+
+FileParsers& FileParsers::operator=( FileParsers && other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
@@ -109,4 +83,4 @@ AnansiMDStateIIC& AnansiMDStateIIC::operator= ( AnansiMDStateIIC && other )
 //============================= OPERATORS ====================================
 
 
-} /* namespace ANANSI */
+} // namespace ANANSI

@@ -1,8 +1,133 @@
+# This CMakeLists.txt file creates the library libfile_parsers.a
+# and its unit tests. To add source files, simply append the appropiate variable
+# file_parsers_header_files or file_parsers_implementation_files.
+#
+# The target for the library is simulationparameters.
+#
+# The following properties are set for the target simulationparameters.
+#
+#   Property                            Value                                               Description
+#----------------------------------------------------------------------------------------------------------------------------
+#
+# file_parsers_include         ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+# PUBLIC_HEADER                ${file_parsers_header_files}                        The list of headers files associated with this librarry.
+#
+# The build will abort unless the following variables are defined to
+# install the library archive, header files, and unit tests:
+#   file_parsers_install_lib_directory
+#   file_parsers_install_include_directory
+#   file_parsers_install_bin_directory
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# CMake preamble section.                                         @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    #-----------------------------------------------------
+    # Define the project.                                -
+    #                                                    -
+    #-----------------------------------------------------
+    set(my_project_name "file_parsers")
+    project(${my_project_name})
+
+    #-----------------------------------------------------
+    # Define the target name.                            -
+    #                                                    -
+    #-----------------------------------------------------
+    set(target ${my_project_name})
+
+    #-----------------------------------------------------
+    # Include various functions and macros.              -
+    #                                                    -
+    #-----------------------------------------------------
+    include(cmake_macros_and_functions/file_parsers_build_prerequisites.cmake)
+
+    #-----------------------------------------------------
+    # Verify key variables are set.                      -
+    #                                                    -
+    #-----------------------------------------------------
+    verify_key_variables_are_set()
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of CMake preamble section.                                  @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# Here we define the sources and header files associated          @
+# with the various targets.                                       @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    
+    #-----------------------------------------------------
+    # Here we define the variable                        -
+    # file_parsers_header_files.                         -
+    # A list of header files is stored in                -
+    # this variable.                                     -
+    #                                                    -
+    #-----------------------------------------------------
+    set (file_parsers_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FileParsers.h )
+
+    #-----------------------------------------------------
+    # Here we define the variable                        -
+    # file_parsers_implementation_files.                 -
+    # A list of implementation files is stored in this   -
+    # variable.                                          -
+    #                                                    -
+    #-----------------------------------------------------
+    set (file_parsers_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FileParsers.cpp )
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of defining the sources and header files associated         @
+# with the file_parsers target.                                   @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 #-----------------------------------------------------
-# Define the project.                                -
+# Add the library associated with target             -
+# file_parsers.                                      -
 #                                                    -
 #-----------------------------------------------------
-set(my_project_name "file_parsers")
-project(anansi_${my_project_name})
+add_library( ${target} STATIC 
+             "")
 
+#-----------------------------------------------------
+# Enable compile warnings.                           -
+#                                                    -
+#-----------------------------------------------------
+enable_compile_warnings(${target})
 
+#-----------------------------------------------------
+#                                                    -
+# We associate the source files with the target.     -
+#                                                    -
+#-----------------------------------------------------
+target_sources(${target}
+               PRIVATE ${file_parsers_header_files} ${file_parsers_implementation_files} )
+
+#-----------------------------------------------------
+# Here we set the properties on target               -
+#                                                    -
+#-----------------------------------------------------
+set_target_properties(${target} PROPERTIES
+                      file_parsers_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD ${file_parsers_cxx_standard}
+                      PUBLIC_HEADER "${file_parsers_header_files}" )
+
+install( TARGETS ${target}
+         ARCHIVE DESTINATION ${file_parsers_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${file_parsers_install_include_directory} )
+
+#-----------------------------------------------------
+# Add the subdirectory for creating the unit tests.  -
+#                                                    -
+#-----------------------------------------------------
+# add_subdirectory(unit_tests)

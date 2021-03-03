@@ -113,6 +113,17 @@ set(simulation_parameters_install_bin_directory ${anansi_install_bin_directory} 
 set(simulation_parameters_cxx_standard ${anansi_cxx_standard} )
 
 #-----------------------------------------------------
+# Here we define variables which indicate where      -
+# to install the file_parsers libraries,             -
+# header files, and associated binaries.             -
+#                                                    -
+#-----------------------------------------------------
+set(file_parsers_install_lib_directory ${anansi_install_lib_directory})
+set(file_parsers_install_include_directory ${anansi_install_include_directory})
+set(file_parsers_install_bin_directory ${anansi_install_bin_directory} )
+set(file_parsers_cxx_standard ${anansi_cxx_standard} )
+
+#-----------------------------------------------------
 # This section permits use to find the header files  -
 # and link against the BOOST library.                -
 #                                                    -
@@ -129,7 +140,8 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/mouseion)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/boundary_conditions)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
+
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/force_fields)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/integrators)

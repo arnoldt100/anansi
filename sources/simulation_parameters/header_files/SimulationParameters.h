@@ -140,6 +140,7 @@ class SimulationParameters
 
         /* ====================  DATA MEMBERS  ======================================= */
         std::map<std::string,std::string> _commandLineOptionsMap;
+        std::map<std::string,std::string> _simulationParametersMap;
 
 }; /* -----  end of class SimulationParameters  ----- */
 

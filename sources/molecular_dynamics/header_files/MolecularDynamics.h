@@ -53,15 +53,17 @@ class MolecularDynamics
 
         void enableCommunication();
 
-        // This group of functions processes the comamand line and sets the
+        // This group of functions processes the command line and sets the
         // simulation parameters.
         void processCommandLine(); 
 
-        void saveSimulationParameters();
+        void saveCommandLineOptionsValues();
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
         void initializeInitialConditions();
+
+        void inputSimulationControlFile();
 
         // This group of functions performs the MD simulation.
         void performSimulation();
@@ -116,11 +118,13 @@ class MolecularDynamics
         // simulation parameters.
         virtual void _processCommandLine()=0; 
 
-        virtual void _saveSimulationParameters()=0;
+        virtual void _saveCommandLineOptionParameters()=0;
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
         virtual void _initializeInitialConditions()=0;
+
+        virtual void _inputSimulationControlFile()=0;
 
         // This group of functions performs the MD simulation.
         virtual void _performSimulation()=0;

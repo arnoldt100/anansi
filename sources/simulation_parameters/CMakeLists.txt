@@ -54,6 +54,7 @@
     # files:                                             -
     #                                                    -
     #   command_line_arguments target header files       -
+    #   memory_management target header files            -
     #                                                    -
     # We get the path to the above header files.         -
     #-----------------------------------------------------
@@ -175,8 +176,8 @@ set_target_properties(${target} PROPERTIES
                       PUBLIC_HEADER "${simulation_parameters_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${anansi_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
+         ARCHIVE DESTINATION ${simulation_parameters_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${simulation_parameters_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

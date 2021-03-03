@@ -48,7 +48,8 @@ SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments con
 }
 
 SimulationParameters::SimulationParameters(const SimulationParameters &other ) :
-    _commandLineOptionsMap(other._commandLineOptionsMap)
+    _commandLineOptionsMap(other._commandLineOptionsMap),
+    _simulationParametersMap(other._simulationParametersMap)
 {
     return;
 }
@@ -56,6 +57,7 @@ SimulationParameters::SimulationParameters(const SimulationParameters &other ) :
 SimulationParameters::SimulationParameters( SimulationParameters && other)
 {
     this->_commandLineOptionsMap = std::move(other._commandLineOptionsMap);
+    this->_simulationParametersMap = std::move(other._simulationParametersMap);
     return;
 }		// -----  end of method SimulationParameters::SimulationParameters  -----
 
@@ -99,7 +101,9 @@ SimulationParameters& SimulationParameters::operator= ( SimulationParameters && 
 {
     if (this != &other)
     {
-            this->_commandLineOptionsMap = std::move(other._commandLineOptionsMap);
+        this->_commandLineOptionsMap = std::move(other._commandLineOptionsMap);
+        this->_simulationParametersMap = std::move(other._simulationParametersMap);
+
     }
     return *this;
 }       // ----- end of assignment-move operator -----

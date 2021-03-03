@@ -78,11 +78,13 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         // simulation parameters.
         void _processCommandLine() final override; 
 
-        void _saveSimulationParameters() final override;
+        void _saveCommandLineOptionParameters() final override;
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
         void _initializeInitialConditions () final override;
+
+        void _inputSimulationControlFile () final override;
 
         // This group of functions performs the MD simulation.
         void
