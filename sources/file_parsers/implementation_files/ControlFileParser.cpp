@@ -3,6 +3,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -72,7 +73,19 @@ ControlFileParser& ControlFileParser::operator= ( ControlFileParser && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void ControlFileParser::_readFile()
+{
+    std::cout << "Reading control file." << std::endl;
+    return;
+}   // -----  end of method ControlFileParser::readFile  ----- 
 
+
+
+void ControlFileParser::_shareData()
+{
+    std::cout << "Sharing control file data." << std::endl;
+    return ;
+}		// -----  end of method FileParsers::shareData  ----- 
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

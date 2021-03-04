@@ -58,6 +58,30 @@ namespace ANANSI
 
             /* ====================  MUTATORS      ======================================= */
 
+
+            //--------------------------------------------------------------------------------------
+            //       Class:  FileParsers
+            //      Method:  FileParsers :: readFile
+            // Description:  Reads the input file.  
+            // 
+            //  Parameters: 
+            //
+            //      Return:
+            //--------------------------------------------------------------------------------------
+            void readFile();
+       
+             
+            //--------------------------------------------------------------------------------------
+            //       Class:  FileParsers
+            //      Method:  FileParsers :: shareData
+            // Description:  Shares the data of file with others in communicator group.
+            // 
+            //  Parameters: 
+            //
+            //      Return:
+            //--------------------------------------------------------------------------------------
+            void shareData();
+
             /* ====================  OPERATORS     ======================================= */
 
             FileParsers& operator= ( const FileParsers &other ); /* assignment operator */
@@ -69,6 +93,21 @@ namespace ANANSI
             /* ====================  DATA MEMBERS  ======================================= */
 
         private:
+            // ====================  MUTATORS      =======================================
+
+            //--------------------------------------------------------------------------------------
+            //       Class:  FileParsers
+            //      Method:  FileParsers :: readFile
+            // Description:  Reads the input file.  
+            // 
+            //  Parameters: 
+            //
+            //      Return:
+            //--------------------------------------------------------------------------------------
+            virtual void _readFile()=0;
+
+            virtual void _shareData()=0;
+
             /* ====================  METHODS       ======================================= */
 
             /* ====================  DATA MEMBERS  ======================================= */

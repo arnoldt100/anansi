@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,6 +19,8 @@
 #include "Pointer.hpp"
 #include "SimulationParametersFactory.h"
 #include "MPICommunicatorFactory.h"
+#include "ControlFileParser.h"
+
 namespace ANANSI {
 
 
@@ -131,16 +134,20 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     // The information is then broadcasted to the subordinate processes.
     const auto my_world_rank = this->_MpiWorldCommunicator->getWorldCommunicatorRank();
     const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
+    std::shared_ptr<FileParsers> control_file = std::make_shared<ControlFileParser>();
+
     switch ( my_world_rank )
     {
         case COMMUNICATOR::MASTER_TASK_ID :	
             std::cout << "Task " << my_world_rank << " : Reading control file " << file_name << std::endl;
+            control_file->readFile();
             break;
 
         default:	
             std::cout << "Task " << my_world_rank << " : Not reading control file " << file_name << std::endl;
             break;
     }				/* -----  end switch  ----- */
+    control_file->shareData();
     return ;
 }		/* -----  end of method AnansiMolecularDynamics::_inputSimulationControlFile  ----- */
 

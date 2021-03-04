@@ -37,6 +37,18 @@ FileParsers::~FileParsers()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void FileParsers::readFile()
+{
+    this->_readFile();
+    return;
+}   // -----  end of method FileParsers::readFile  ----- 
+
+
+void FileParsers::shareData ()
+{
+    this->_shareData();
+    return ;
+}		// -----  end of method FileParsers::shareData  ----- 
 
 //============================= OPERATORS ====================================
 

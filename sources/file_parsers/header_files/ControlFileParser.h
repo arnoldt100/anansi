@@ -23,7 +23,7 @@ namespace ANANSI
      *  Description:  
      * =====================================================================================
      */
-    class ControlFileParser : FileParsers
+    class ControlFileParser : public FileParsers
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
@@ -62,6 +62,12 @@ namespace ANANSI
             /* ====================  DATA MEMBERS  ======================================= */
 
         private:
+            /* ====================  MUTATORS      ======================================= */
+            void _readFile() override;
+
+            void _shareData () override;
+    // -----  end of method FileParsers::readFile  ----- 
+
             /* ====================  METHODS       ======================================= */
 
             /* ====================  DATA MEMBERS  ======================================= */
