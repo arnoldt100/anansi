@@ -26,7 +26,7 @@ namespace ANANSI
         Undefined,
         InitializingSimulationEnvironmentInProgess,
         InitializingSimulationEnvironmentSucessful,
-        InitializingSimulationEnvironmentFail,
+        InitializingSimulationEnvironmentFailed,
         ProcessingCommandLineInProgress,
         ProcessingCommandLineSuccessful,
         ProcessingCommandLineFailed,

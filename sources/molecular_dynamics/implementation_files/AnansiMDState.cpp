@@ -63,7 +63,7 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
 {
     // Here we create aliases simply for coding format convenience.
     constexpr auto success = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
-    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFail;
+    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
     constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
 
     // Initialize the simulation environment.
@@ -173,11 +173,11 @@ void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) c
             std::cout << "This state has unsuccessfully initialized the simulation initial conditions environment." << std::endl;
             break;
 
-        // Case for undefined behavoir of initialization of the initial conditions.
+        // Case for undefined behavior of initialization of the initial conditions.
         // We change the state to terminating the simulation environment.
         default :
             aMD->changeMDStateToTSE();
-            std::cout << "This state has undefined behavoir in initialization the simulation initial conditions environment." << std::endl;
+            std::cout << "This state has undefined behavior in initialization the simulation initial conditions environment." << std::endl;
             break;
     }
     return;

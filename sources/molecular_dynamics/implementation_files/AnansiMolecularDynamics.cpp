@@ -130,7 +130,7 @@ AnansiMolecularDynamics::_enableCommunication()
 void
 AnansiMolecularDynamics::_inputSimulationControlFile ()
 {
-    // Only the main mpi rank, process 0, of the world communicator reads the control file.
+    // Only the main MPI rank, process 0, of the world communicator reads the control file.
     // The information is then broadcasted to the subordinate processes.
     const auto my_world_rank = this->_MpiWorldCommunicator->getWorldCommunicatorRank();
     const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
@@ -148,7 +148,13 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
             break;
     }				/* -----  end switch  ----- */
     control_file->shareData();
-    return ;
+
+    // This current function is not completed and doesn't read the control file. Therefore the
+    // MD status is set to fail.
+    constexpr auto my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+    this->setStatus(my_status);
+
+    return;
 }		/* -----  end of method AnansiMolecularDynamics::_inputSimulationControlFile  ----- */
 
 void AnansiMolecularDynamics::_processCommandLine()
