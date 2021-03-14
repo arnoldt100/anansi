@@ -73,7 +73,9 @@
     #-----------------------------------------------------
     set (file_parsers_header_files
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FileParser.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileParser.h )
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileParser.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFileParser.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderFileParser.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -84,7 +86,9 @@
     #-----------------------------------------------------
     set (file_parsers_implementation_files
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FileParser.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileParser.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileParser.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderControlFileParser.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderFileParser.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
