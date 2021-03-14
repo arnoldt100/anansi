@@ -16,59 +16,56 @@
 namespace __NAMESPACE__
 {
 
-    /*
-     * =====================================================================================
-     *        Class:  __classname__
-     *  Description:  
-     * =====================================================================================
-     */
+     // =====================================================================================
+     //        Class:  __classname__
+     //  Description:  
+     //  =====================================================================================
     class __classname__
     {
         public:
-            /* ====================  LIFECYCLE     ======================================= */
+            // ====================  LIFECYCLE     =======================================
 
-            /*
-             *--------------------------------------------------------------------------------------
-             *       Class:  __classname__
-             *      Method:  __classname__ :: __classname__
-             * Description:  Constructor
-             *
-             * Arguments: 
-             *
-             *--------------------------------------------------------------------------------------
-             */
-            __classname__ ();   /* constructor      */
+            //--------------------------------------------------------------------------------------
+            //       Class:  __classname__
+            //      Method:  __classname__ :: __classname__
+            // Description:  
+            // 
+            //  Parameters: 
+            //
+            //      Return:
+            //--------------------------------------------------------------------------------------
+            __classname__ ();   // constructor
 
 
-            __classname__ (const __classname__ & other);   /* copy constructor */
+            __classname__ (const __classname__ & other);   // copy constructor
 
-            __classname__ (__classname__ && other);   /* copy-move constructor */
+            __classname__ (__classname__ && other);   // copy-move constructor
 
-            virtual ~__classname__ ();  /* destructor */
+            virtual ~__classname__ ();  // destructor
 
-            /* ====================  ACCESSORS     ======================================= */
+            // ====================  ACCESSORS     =======================================
 
-            /* ====================  MUTATORS      ======================================= */
+            // ====================  MUTATORS      =======================================
 
-            /* ====================  OPERATORS     ======================================= */
+            // ====================  OPERATORS     =======================================
 
-            __classname__& operator= ( const __classname__ &other ); /* assignment operator */
+            __classname__& operator= ( const __classname__ &other ); // assignment operator
 
-            __classname__& operator= ( __classname__ && other ); /* assignment-move operator */
+            __classname__& operator= ( __classname__ && other ); // assignment-move operator
 
         protected:
-            /* ====================  METHODS       ======================================= */
+            // ====================  METHODS       =======================================
 
-            /* ====================  DATA MEMBERS  ======================================= */
+            // ====================  DATA MEMBERS  =======================================
 
         private:
-            /* ====================  METHODS       ======================================= */
+            // ====================  METHODS       =======================================
 
-            /* ====================  DATA MEMBERS  ======================================= */
+            // ====================  DATA MEMBERS  =======================================
 
-    }; /* -----  end of class __classname__  ----- */
+    }; // -----  end of class __classname__  -----
 
 
-}; /* namespace __NAMESPACE__ */
+}; // namespace __NAMESPACE__
 
-#endif /* __filepreprocessordefine__ */
+#endif // __filepreprocessordefine__

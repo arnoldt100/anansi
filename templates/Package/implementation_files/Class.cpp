@@ -29,7 +29,7 @@ __classname__::__classname__()
 __classname__::__classname__( __classname__ && other)
 {
     return;
-}		/* -----  end of method __classname__::__classname__  ----- */
+}		// -----  end of method __classname__::__classname__  -----
 
 
 __classname__::~__classname__()
@@ -51,7 +51,7 @@ __classname__& __classname__::operator= ( const __classname__ &other )
 
     }
     return *this;
-} /* assignment operator */
+} // assignment operator
 
 __classname__& __classname__::operator= ( __classname__ && other )
 {
@@ -60,7 +60,7 @@ __classname__& __classname__::operator= ( __classname__ && other )
 
     }
     return *this;
-} /* assignment-move operator */
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -87,4 +87,4 @@ __classname__& __classname__::operator= ( __classname__ && other )
 //============================= OPERATORS ====================================
 
 
-} /* namespace __NAMESPACE__ */
+} // namespace __NAMESPACE__
