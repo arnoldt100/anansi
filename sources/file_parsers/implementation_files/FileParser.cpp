@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "FileParsers.h"
+#include "FileParser.h"
 
 namespace ANANSI {
 
@@ -19,17 +19,17 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-FileParsers::FileParsers()
+FileParser::FileParser()
 {
     return;
 }
 
-FileParsers::FileParsers( FileParsers && other)
+FileParser::FileParser( FileParser && other)
 {
     return;
 } 
 
-FileParsers::~FileParsers()
+FileParser::~FileParser()
 {
     return;
 }
@@ -37,18 +37,18 @@ FileParsers::~FileParsers()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void FileParsers::readFile()
+void FileParser::readFile()
 {
     this->_readFile();
     return;
-}   // -----  end of method FileParsers::readFile  ----- 
+}   // -----  end of method FileParser::readFile  ----- 
 
 
-void FileParsers::shareData ()
+void FileParser::shareData ()
 {
     this->_shareData();
     return ;
-}		// -----  end of method FileParsers::shareData  ----- 
+}		// -----  end of method FileParser::shareData  ----- 
 
 //============================= OPERATORS ====================================
 
@@ -64,7 +64,7 @@ void FileParsers::shareData ()
 
 //============================= OPERATORS ====================================
 
-FileParsers& FileParsers::operator=( const FileParsers &other )
+FileParser& FileParser::operator=( const FileParser &other )
 {
     if (this != &other)
     {
@@ -73,11 +73,10 @@ FileParsers& FileParsers::operator=( const FileParsers &other )
     return *this;
 } // assignment operator
 
-FileParsers& FileParsers::operator=( FileParsers && other )
+FileParser& FileParser::operator=( FileParser && other )
 {
     if (this != &other)
     {
-
     }
     return *this;
 } // assignment-move operator

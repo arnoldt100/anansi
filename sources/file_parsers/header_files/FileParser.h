@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  FileParsers.h
+ *       Filename:  FileParser.h
  *
  *    Description:  
  *
@@ -11,8 +11,8 @@
  * =====================================================================================
  */
 
-#ifndef  FileParsers_INC
-#define  FileParsers_INC
+#ifndef  FileParser_INC
+#define  FileParser_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -27,32 +27,32 @@ namespace ANANSI
 
     /*
      * =====================================================================================
-     *        Class:  FileParsers
+     *        Class:  FileParser
      *  Description:  
      * =====================================================================================
      */
-    class FileParsers
+    class FileParser
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
 
             /*
              *--------------------------------------------------------------------------------------
-             *       Class:  FileParsers
-             *      Method:  FileParsers :: FileParsers
+             *       Class:  FileParser
+             *      Method:  FileParser :: FileParser
              * Description:  Constructor
              *
              * Arguments: 
              *
              *--------------------------------------------------------------------------------------
              */
-            FileParsers (); // constructor
+            FileParser (); // constructor
 
-            FileParsers ( const FileParsers &other ); // copy constructor
+            FileParser ( const FileParser &other ); // copy constructor
 
-            FileParsers (FileParsers && other); // copy-move constructor
+            FileParser (FileParser && other); // copy-move constructor
 
-            virtual ~FileParsers ()=0; // destructor
+            virtual ~FileParser ()=0; // destructor
 
             /* ====================  ACCESSORS     ======================================= */
 
@@ -60,8 +60,8 @@ namespace ANANSI
 
 
             //--------------------------------------------------------------------------------------
-            //       Class:  FileParsers
-            //      Method:  FileParsers :: readFile
+            //       Class:  FileParser
+            //      Method:  FileParser :: readFile
             // Description:  Reads the input file.  
             // 
             //  Parameters: 
@@ -72,8 +72,8 @@ namespace ANANSI
        
              
             //--------------------------------------------------------------------------------------
-            //       Class:  FileParsers
-            //      Method:  FileParsers :: shareData
+            //       Class:  FileParser
+            //      Method:  FileParser :: shareData
             // Description:  Shares the data of file with others in communicator group.
             // 
             //  Parameters: 
@@ -84,9 +84,9 @@ namespace ANANSI
 
             /* ====================  OPERATORS     ======================================= */
 
-            FileParsers& operator= ( const FileParsers &other ); /* assignment operator */
+            FileParser& operator= ( const FileParser &other ); /* assignment operator */
 
-            FileParsers& operator= ( FileParsers && other ); // assignment-move operator
+            FileParser& operator= ( FileParser && other ); // assignment-move operator
         protected:
             /* ====================  METHODS       ======================================= */
 
@@ -96,8 +96,8 @@ namespace ANANSI
             // ====================  MUTATORS      =======================================
 
             //--------------------------------------------------------------------------------------
-            //       Class:  FileParsers
-            //      Method:  FileParsers :: readFile
+            //       Class:  FileParser
+            //      Method:  FileParser :: readFile
             // Description:  Reads the input file.  
             // 
             //  Parameters: 
@@ -112,9 +112,9 @@ namespace ANANSI
 
             /* ====================  DATA MEMBERS  ======================================= */
 
-    }; /* -----  end of class FileParsers  ----- */
+    }; /* -----  end of class FileParser  ----- */
 
 
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef FileParsers_INC  ----- */
+#endif   /* ----- #ifndef FileParser_INC  ----- */

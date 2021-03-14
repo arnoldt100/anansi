@@ -12,7 +12,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "FileParsers.h"
+#include "FileParser.h"
 
 namespace ANANSI
 {
@@ -23,7 +23,7 @@ namespace ANANSI
      *  Description:  
      * =====================================================================================
      */
-    class ControlFileParser : public FileParsers
+    class ControlFileParser : public FileParser
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
@@ -66,7 +66,7 @@ namespace ANANSI
             void _readFile() override;
 
             void _shareData () override;
-    // -----  end of method FileParsers::readFile  ----- 
+    // -----  end of method ControlFileParser::readFile  ----- 
 
             /* ====================  METHODS       ======================================= */
 

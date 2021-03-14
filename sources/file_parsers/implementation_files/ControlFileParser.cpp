@@ -23,13 +23,13 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFileParser::ControlFileParser() :
-    FileParsers()
+    FileParser()
 {
     return;
 }
 
 ControlFileParser::ControlFileParser( ControlFileParser && other) :
-    FileParsers(std::move(other))
+    FileParser(std::move(other))
 {
     return;
 } // -----  end of method ControlFileParser::ControlFileParser  -----
@@ -59,7 +59,7 @@ ControlFileParser& ControlFileParser::operator= ( ControlFileParser && other )
 {
     if (this != &other)
     {
-        FileParsers::operator=(std::move(other));
+        FileParser::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
@@ -85,7 +85,7 @@ void ControlFileParser::_shareData()
 {
     std::cout << "Sharing control file data." << std::endl;
     return ;
-}		// -----  end of method FileParsers::shareData  ----- 
+}		// -----  end of method FileParser::shareData  ----- 
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

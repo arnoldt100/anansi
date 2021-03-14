@@ -134,7 +134,7 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     // The information is then broadcasted to the subordinate processes.
     const auto my_world_rank = this->_MpiWorldCommunicator->getWorldCommunicatorRank();
     const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
-    std::shared_ptr<FileParsers> control_file = std::make_shared<ControlFileParser>();
+    std::shared_ptr<FileParser> control_file = std::make_shared<ControlFileParser>();
 
     switch ( my_world_rank )
     {
