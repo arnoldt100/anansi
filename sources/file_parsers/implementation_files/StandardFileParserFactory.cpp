@@ -10,6 +10,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "StandardFileParserFactory.h"
+#include "ControlFileParser.h"
 
 namespace ANANSI {
 
@@ -21,7 +22,6 @@ namespace ANANSI {
 
 StandardFileParserFactory::StandardFileParserFactory()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
@@ -33,17 +33,21 @@ StandardFileParserFactory::StandardFileParserFactory( StandardFileParserFactory 
 
 StandardFileParserFactory::~StandardFileParserFactory()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 
 //============================= ACCESSORS ====================================
+std::shared_ptr<FileParser> create( std::shared_ptr<BuilderFileParser>& builder )
+{
+    std::shared_ptr<FileParser> a_parser = std::make_shared<ControlFileParser>();
+    return a_parser;
+}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-StandardFileParserFactory& StandardFileParserFactory::operator= ( const StandardFileParserFactory &other )
+StandardFileParserFactory& StandardFileParserFactory::operator=( const StandardFileParserFactory &other )
 {
     if (this != &other)
     {
@@ -52,7 +56,7 @@ StandardFileParserFactory& StandardFileParserFactory::operator= ( const Standard
     return *this;
 } // assignment operator
 
-StandardFileParserFactory& StandardFileParserFactory::operator= ( StandardFileParserFactory && other )
+StandardFileParserFactory& StandardFileParserFactory::operator=( StandardFileParserFactory && other )
 {
     if (this != &other)
     {

@@ -14,6 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "BuilderFileParser.h"
+#include "ControlFileParser.h"
 
 namespace ANANSI
 {
