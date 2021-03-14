@@ -37,7 +37,7 @@ StandardFileParserFactory::~StandardFileParserFactory()
 }
 
 //============================= ACCESSORS ====================================
-std::shared_ptr<FileParser> create( std::shared_ptr<BuilderFileParser>& builder )
+std::shared_ptr<FileParser> StandardFileParserFactory::create( std::shared_ptr<BuilderFileParser>& builder )
 {
     std::shared_ptr<FileParser> a_parser = std::make_shared<ControlFileParser>();
     return a_parser;

@@ -19,7 +19,8 @@
 #include "Pointer.hpp"
 #include "SimulationParametersFactory.h"
 #include "MPICommunicatorFactory.h"
-#include "ControlFileParser.h"
+#include "BuilderControlFileParser.h"
+#include "StandardFileParserFactory.h"
 
 namespace ANANSI {
 
@@ -134,7 +135,10 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     // The information is then broadcasted to the subordinate processes.
     const auto my_world_rank = this->_MpiWorldCommunicator->getWorldCommunicatorRank();
     const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
-    std::shared_ptr<FileParser> control_file = std::make_shared<ControlFileParser>();
+
+    StandardFileParserFactory file_parser_factory;
+    std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
+    std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder);
 
     switch ( my_world_rank )
     {
