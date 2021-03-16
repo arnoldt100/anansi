@@ -21,13 +21,15 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 BuilderControlFileParser::BuilderControlFileParser() :
-    BuilderFileParser()
+    BuilderFileParser(),
+	_myParser()
 {
     return;
 }
 
 BuilderControlFileParser::BuilderControlFileParser( BuilderControlFileParser && other) :
-    BuilderFileParser(std::move(other))
+    BuilderFileParser(std::move(other)),
+	_myParser(std::move(other._myParser))
 {
     return;
 }		// -----  end of method BuilderControlFileParser::BuilderControlFileParser  -----
@@ -48,7 +50,7 @@ BuilderControlFileParser& BuilderControlFileParser::operator= ( const BuilderCon
 {
     if (this != &other)
     {
-
+    	this->_myParser = other._myParser;
     }
     return *this;
 } // assignment operator
@@ -58,6 +60,7 @@ BuilderControlFileParser& BuilderControlFileParser::operator=( BuilderControlFil
     if (this != &other)
     {
         BuilderFileParser::operator=(std::move(other));
+        this->_myParser = std::move(other._myParser);
     }
     return *this;
 } // assignment-move operator
@@ -83,7 +86,27 @@ BuilderControlFileParser& BuilderControlFileParser::operator=( BuilderControlFil
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void BuilderControlFileParser::_addFileName()
+{
+	return;
+}
 
+void BuilderControlFileParser::_addCommunicator()
+{
+	return;
+}
+
+std::shared_ptr<FileParser> BuilderControlFileParser::_getParser()
+{
+	std::shared_ptr<ControlFileParser> a_parser;
+	this->_resetBuilder();
+	return a_parser;
+}
+
+void BuilderControlFileParser::_resetBuilder()
+{
+	return;
+}
 //============================= OPERATORS ====================================
 
 

@@ -38,6 +38,22 @@ BuilderFileParser::~BuilderFileParser()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void BuilderFileParser::addCommunicator()
+{
+	this->_addCommunicator();
+	return;
+}
+
+void BuilderFileParser::addFileName()
+{
+	this->_addFileName();
+	return;
+}
+
+std::shared_ptr<FileParser> BuilderFileParser::getParser()
+{
+	return this->_getParser();
+}
 
 //============================= OPERATORS ====================================
 
@@ -80,6 +96,15 @@ BuilderFileParser& BuilderFileParser::operator= ( BuilderFileParser && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void BuilderFileParser::_addFileName()
+{
+	return;
+}
+
+void BuilderFileParser::_addCommunicator()
+{
+	return;
+}
 
 //============================= OPERATORS ====================================
 

@@ -136,22 +136,29 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     const auto my_world_rank = this->_MpiWorldCommunicator->getWorldCommunicatorRank();
     const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
 
+    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+    std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->_MpiWorldCommunicator);
+
     StandardFileParserFactory file_parser_factory;
     std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
-    std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder);
+    std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
+                                                                          file_name,
+                                                                          std::move(a_communicator));
 
-    switch ( my_world_rank )
-    {
-        case COMMUNICATOR::MASTER_TASK_ID :	
-            std::cout << "Task " << my_world_rank << " : Reading control file " << file_name << std::endl;
-            control_file->readFile();
-            break;
+    // Start  of temporary commenting out this code.
+    // switch ( my_world_rank )
+    // {
+    //     case COMMUNICATOR::MASTER_TASK_ID :	
+    //         std::cout << "Task " << my_world_rank << " : Reading control file " << file_name << std::endl;
+    //         control_file->readFile();
+    //         break;
 
-        default:	
-            std::cout << "Task " << my_world_rank << " : Not reading control file " << file_name << std::endl;
-            break;
-    }				/* -----  end switch  ----- */
-    control_file->shareData();
+    //     default:	
+    //         std::cout << "Task " << my_world_rank << " : Not reading control file " << file_name << std::endl;
+    //         break;
+    // }				/* -----  end switch  ----- */
+    // control_file->shareData();
+    // End of temporary commenting out this code.
 
     // This current function is not completed and doesn't read the control file. Therefore the
     // MD status is set to fail.

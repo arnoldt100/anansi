@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,6 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "FileParser.h"
+#include "Communicator.h"
 
 namespace ANANSI
 {
@@ -43,6 +45,7 @@ namespace ANANSI
             ControlFileParser (const ControlFileParser & other);   /* copy constructor */
 
             ControlFileParser (ControlFileParser && other);   /* copy-move constructor */
+
 
             virtual ~ControlFileParser ();  /* destructor */
 

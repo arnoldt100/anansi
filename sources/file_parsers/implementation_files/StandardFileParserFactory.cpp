@@ -37,9 +37,13 @@ StandardFileParserFactory::~StandardFileParserFactory()
 }
 
 //============================= ACCESSORS ====================================
-std::shared_ptr<FileParser> StandardFileParserFactory::create( std::shared_ptr<BuilderFileParser>& builder )
+std::shared_ptr<FileParser> StandardFileParserFactory::create( std::shared_ptr<BuilderFileParser>& builder,
+                                                               const std::string file_name, 
+                                                               std::unique_ptr<COMMUNICATOR::Communicator> a_communicator)
 {
-    std::shared_ptr<FileParser> a_parser = std::make_shared<ControlFileParser>();
+	builder->addCommunicator();
+	builder->addFileName();
+	std::shared_ptr<FileParser> a_parser = builder->getParser();
     return a_parser;
 }
 

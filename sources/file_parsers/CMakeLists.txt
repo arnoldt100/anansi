@@ -2,9 +2,9 @@
 # and its unit tests. To add source files, simply append the appropiate variable
 # file_parsers_header_files or file_parsers_implementation_files.
 #
-# The target for the library is simulationparameters.
+# The target for the library is file_parsers.
 #
-# The following properties are set for the target simulationparameters.
+# The following properties are set for the target file_parsers.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
@@ -48,6 +48,16 @@
     #                                                    -
     #-----------------------------------------------------
     verify_key_variables_are_set()
+
+    #-----------------------------------------------------
+    # This library needs access to the following header  -
+    # files:                                             -
+    #                                                    -
+    #   mpi_communicator target header files            -
+    #                                                    -
+    # We get the path to the above header files.         -
+    #-----------------------------------------------------
+    get_target_property(my_mm_include memory_management memory_management_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -128,6 +138,9 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files)
+
+target_link_libraries(${target}
+                      mpi_communicator)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -47,7 +48,11 @@ namespace ANANSI
             // ====================  ACCESSORS     =======================================
 
             // ====================  MUTATORS      =======================================
+            void addCommunicator();
 
+            void addFileName();
+
+            std::shared_ptr<FileParser> getParser();
             // ====================  OPERATORS     =======================================
 
             BuilderFileParser& operator= ( const BuilderFileParser &other ); // assignment operator
@@ -60,7 +65,12 @@ namespace ANANSI
             // ====================  DATA MEMBERS  =======================================
 
         private:
-            // ====================  METHODS       =======================================
+            // ====================  MUTATORS      =======================================
+            virtual void _addFileName();
+
+            virtual void _addCommunicator();
+
+            virtual std::shared_ptr<FileParser> _getParser()=0;
 
             // ====================  DATA MEMBERS  =======================================
 

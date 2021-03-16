@@ -61,9 +61,17 @@ namespace ANANSI
             // ====================  DATA MEMBERS  =======================================
 
         private:
-            // ====================  METHODS       =======================================
+            // ====================  MUTATORS      =======================================
+            void _addFileName() override;
+
+            void _addCommunicator() override;
+
+            std::shared_ptr<FileParser> _getParser() override;
+
+            void _resetBuilder();
 
             // ====================  DATA MEMBERS  =======================================
+            std::shared_ptr<ControlFileParser> _myParser;
 
     }; // -----  end of class BuilderControlFileParser  -----
 
