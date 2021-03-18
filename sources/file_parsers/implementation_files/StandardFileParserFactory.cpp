@@ -41,8 +41,8 @@ std::shared_ptr<FileParser> StandardFileParserFactory::create( std::shared_ptr<B
                                                                const std::string file_name, 
                                                                std::unique_ptr<COMMUNICATOR::Communicator> a_communicator)
 {
-	builder->addCommunicator();
-	builder->addFileName();
+	builder->setCommunicator(std::move(a_communicator));
+	builder->setFileName(file_name);
 	std::shared_ptr<FileParser> a_parser = builder->getParser();
     return a_parser;
 }

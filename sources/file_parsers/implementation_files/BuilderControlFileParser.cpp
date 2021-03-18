@@ -86,25 +86,28 @@ BuilderControlFileParser& BuilderControlFileParser::operator=( BuilderControlFil
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void BuilderControlFileParser::_addFileName()
+void BuilderControlFileParser::_setFileName(const std::string file_name)
 {
+	this->_myParser->setFileName(file_name);
 	return;
 }
 
-void BuilderControlFileParser::_addCommunicator()
+void BuilderControlFileParser::_setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
 {
+    this->_myParser->setCommunicator(std::move(a_communicator));
 	return;
 }
 
 std::shared_ptr<FileParser> BuilderControlFileParser::_getParser()
 {
-	std::shared_ptr<ControlFileParser> a_parser;
+	std::shared_ptr<ControlFileParser> a_parser = std::move(this->_myParser);
 	this->_resetBuilder();
 	return a_parser;
 }
 
 void BuilderControlFileParser::_resetBuilder()
 {
+	this->_myParser = std::make_shared<ControlFileParser>();
 	return;
 }
 //============================= OPERATORS ====================================

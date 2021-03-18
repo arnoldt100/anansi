@@ -15,6 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "FileParser.h"
+#include "Communicator.h"
 
 namespace ANANSI
 {
@@ -48,16 +49,16 @@ namespace ANANSI
             // ====================  ACCESSORS     =======================================
 
             // ====================  MUTATORS      =======================================
-            void addCommunicator();
+            void setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator);
 
-            void addFileName();
+            void setFileName(const std::string filename);
 
             std::shared_ptr<FileParser> getParser();
             // ====================  OPERATORS     =======================================
 
-            BuilderFileParser& operator= ( const BuilderFileParser &other ); // assignment operator
+            BuilderFileParser& operator=( const BuilderFileParser &other ); // assignment operator
 
-            BuilderFileParser& operator= ( BuilderFileParser && other ); // assignment-move operator
+            BuilderFileParser& operator=( BuilderFileParser && other ); // assignment-move operator
 
         protected:
             // ====================  METHODS       =======================================
@@ -66,9 +67,9 @@ namespace ANANSI
 
         private:
             // ====================  MUTATORS      =======================================
-            virtual void _addFileName();
+            virtual void _setFileName(const std::string file_name);
 
-            virtual void _addCommunicator();
+            virtual void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator);
 
             virtual std::shared_ptr<FileParser> _getParser()=0;
 

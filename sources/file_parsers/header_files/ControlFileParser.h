@@ -42,10 +42,9 @@ namespace ANANSI
              */
             ControlFileParser ();   /* constructor      */
 
-            ControlFileParser (const ControlFileParser & other);   /* copy constructor */
+            ControlFileParser (const ControlFileParser & other)=delete;   /* copy constructor */
 
             ControlFileParser (ControlFileParser && other);   /* copy-move constructor */
-
 
             virtual ~ControlFileParser ();  /* destructor */
 
@@ -55,9 +54,9 @@ namespace ANANSI
 
             /* ====================  OPERATORS     ======================================= */
 
-            ControlFileParser& operator= ( const ControlFileParser &other ); /* assignment operator */
+            ControlFileParser& operator=( const ControlFileParser &other )=delete; /* assignment operator */
 
-            ControlFileParser& operator= ( ControlFileParser && other ); /* assignment-move operator */
+            ControlFileParser& operator=( ControlFileParser && other ); /* assignment-move operator */
 
         protected:
             /* ====================  METHODS       ======================================= */
@@ -69,11 +68,18 @@ namespace ANANSI
             void _readFile() override;
 
             void _shareData () override;
+
+            void _setFileName(const std::string file_name) override;
+
+            void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator) override;
+
     // -----  end of method ControlFileParser::readFile  ----- 
 
             /* ====================  METHODS       ======================================= */
 
             /* ====================  DATA MEMBERS  ======================================= */
+            std::string _fileName;
+            std::unique_ptr<COMMUNICATOR::Communicator> _myCommunicator;
 
     }; /* -----  end of class ControlFileParser  ----- */
 

@@ -23,13 +23,17 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFileParser::ControlFileParser() :
-    FileParser()
+    FileParser(),
+    _fileName(),
+    _myCommunicator()
 {
     return;
 }
 
 ControlFileParser::ControlFileParser( ControlFileParser && other) :
-    FileParser(std::move(other))
+    FileParser(std::move(other)),
+    _fileName(std::move(other._fileName)),
+    _myCommunicator(std::move(other._myCommunicator))
 {
     return;
 } // -----  end of method ControlFileParser::ControlFileParser  -----
@@ -46,20 +50,14 @@ ControlFileParser::~ControlFileParser()
 
 //============================= OPERATORS ====================================
 
-ControlFileParser& ControlFileParser::operator= ( const ControlFileParser &other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment operator
 
 ControlFileParser& ControlFileParser::operator= ( ControlFileParser && other )
 {
     if (this != &other)
     {
         FileParser::operator=(std::move(other));
+        this->_fileName = std::move(other._fileName);
+        this->_myCommunicator = std::move(other._myCommunicator);
     }
     return *this;
 } // assignment-move operator
@@ -86,6 +84,20 @@ void ControlFileParser::_shareData()
     std::cout << "Sharing control file data." << std::endl;
     return ;
 }		// -----  end of method FileParser::shareData  ----- 
+
+
+void ControlFileParser::_setFileName(const std::string file_name) 
+{
+    this->_fileName = file_name;
+    return;
+}
+
+void ControlFileParser::_setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
+{
+    this->_myCommunicator = std::move(a_communicator);
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

@@ -62,9 +62,9 @@ namespace ANANSI
 
         private:
             // ====================  MUTATORS      =======================================
-            void _addFileName() override;
+            void _setFileName(const std::string file_name) override;
 
-            void _addCommunicator() override;
+            void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator) override;
 
             std::shared_ptr<FileParser> _getParser() override;
 

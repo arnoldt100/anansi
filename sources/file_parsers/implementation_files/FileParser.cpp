@@ -50,6 +50,16 @@ void FileParser::shareData ()
     return ;
 }		// -----  end of method FileParser::shareData  ----- 
 
+void FileParser::setFileName(const std::string file_name)
+{
+    this->_setFileName(file_name);
+}
+
+void FileParser::setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
+{
+	this->_setCommunicator(std::move(a_communicator));
+	return;
+}
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

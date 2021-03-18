@@ -17,10 +17,12 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Communicator.h"
 
 namespace ANANSI
 {
@@ -34,7 +36,7 @@ namespace ANANSI
     class FileParser
     {
         public:
-            /* ====================  LIFECYCLE     ======================================= */
+            // ====================  LIFECYCLE     =======================================
 
             /*
              *--------------------------------------------------------------------------------------
@@ -82,6 +84,28 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             void shareData();
 
+            //--------------------------------------------------------------------------------------
+            //       Class:  FileParser
+            //      Method:  FileParser :: setFileName
+            // Description:  Sets the file name of the parser.
+            // 
+            //  Parameters: 
+            //
+            //      Return:
+            //--------------------------------------------------------------------------------------
+            void setFileName(const std::string file_name);
+
+            //--------------------------------------------------------------------------------------
+            //       Class:  FileParser
+            //      Method:  FileParser :: setCommunicator
+            // Description:  Sets the communicator of the FileParser.
+            // 
+            //  Parameters: 
+            //
+            //      Return:
+            //--------------------------------------------------------------------------------------
+            void setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator);
+
             /* ====================  OPERATORS     ======================================= */
 
             FileParser& operator= ( const FileParser &other ); /* assignment operator */
@@ -107,6 +131,10 @@ namespace ANANSI
             virtual void _readFile()=0;
 
             virtual void _shareData()=0;
+
+            virtual void _setFileName(const std::string file_name)=0;
+
+            virtual void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)=0;
 
             /* ====================  METHODS       ======================================= */
 

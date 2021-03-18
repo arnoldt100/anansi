@@ -38,15 +38,15 @@ BuilderFileParser::~BuilderFileParser()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void BuilderFileParser::addCommunicator()
+void BuilderFileParser::setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
 {
-	this->_addCommunicator();
+	this->_setCommunicator(std::move(a_communicator));
 	return;
 }
 
-void BuilderFileParser::addFileName()
+void BuilderFileParser::setFileName(const std::string file_name)
 {
-	this->_addFileName();
+	this->_setFileName(file_name);
 	return;
 }
 
@@ -96,12 +96,12 @@ BuilderFileParser& BuilderFileParser::operator= ( BuilderFileParser && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void BuilderFileParser::_addFileName()
+void BuilderFileParser::_setFileName(const std::string)
 {
 	return;
 }
 
-void BuilderFileParser::_addCommunicator()
+void BuilderFileParser::_setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
 {
 	return;
 }
