@@ -131,38 +131,31 @@ AnansiMolecularDynamics::_enableCommunication()
 void
 AnansiMolecularDynamics::_inputSimulationControlFile ()
 {
-    // Only the main MPI rank, process 0, of the world communicator reads the control file.
-    // The information is then broadcasted to the subordinate processes.
-    const auto my_world_rank = this->_MpiWorldCommunicator->getWorldCommunicatorRank();
+    auto my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+    // The control file option is mandatory. If the option is not present, then
+    // we set the MD status as "RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed".
+    // Otherwise we process/parse the control file.
     const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
+    if (file_name == SimulationParameters::OPTION_NOT_FOUND )
+    {
+        COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+        std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->_MpiWorldCommunicator);
 
-    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
-    std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->_MpiWorldCommunicator);
+        StandardFileParserFactory file_parser_factory;
+        std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
+        std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
+                                                                              file_name,
+                                                                              std::move(a_communicator));
 
-    StandardFileParserFactory file_parser_factory;
-    std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
-    std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
-                                                                          file_name,
-                                                                          std::move(a_communicator));
-
-    // Start  of temporary commenting out this code.
-    // switch ( my_world_rank )
-    // {
-    //     case COMMUNICATOR::MASTER_TASK_ID :	
-    //         std::cout << "Task " << my_world_rank << " : Reading control file " << file_name << std::endl;
-    //         control_file->readFile();
-    //         break;
-
-    //     default:	
-    //         std::cout << "Task " << my_world_rank << " : Not reading control file " << file_name << std::endl;
-    //         break;
-    // }				/* -----  end switch  ----- */
-    // control_file->shareData();
-    // End of temporary commenting out this code.
+        control_file->readFile();
+    }
+    else
+    {
+        my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+    }
 
     // This current function is not completed and doesn't read the control file. Therefore the
     // MD status is set to fail.
-    constexpr auto my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
     this->setStatus(my_status);
 
     return;

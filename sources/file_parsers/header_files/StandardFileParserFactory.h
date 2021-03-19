@@ -58,9 +58,9 @@ namespace ANANSI
             //
             //      Return:
             //--------------------------------------------------------------------------------------
-            std::shared_ptr<FileParser> create( std::shared_ptr<BuilderFileParser>& builder,
+            std::shared_ptr<FileParser> create( std::shared_ptr<BuilderFileParser> builder,
                                                 const std::string file_name,
-                                                std::unique_ptr<COMMUNICATOR::Communicator> a_communicator );
+                                                std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator );
 
             // ====================  MUTATORS      =======================================
             

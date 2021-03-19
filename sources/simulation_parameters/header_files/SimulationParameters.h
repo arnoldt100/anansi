@@ -101,6 +101,9 @@ class SimulationParameters
 
         SimulationParameters& operator=( SimulationParameters && other ); // assignment move operator
 
+        /* ====================  STATIC        ======================================= */
+        static const std::string OPTION_NOT_FOUND;
+
     protected:
         /* ====================  METHODS       ======================================= */
 

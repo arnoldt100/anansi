@@ -98,7 +98,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     // the option form. The form of this string is                     @
     // <long_name>,<short_name>.                                       @
     //                                                                 @
-    // We requires all options to have a long and optionally a short   @
+    // We require all options to have a long and optionally a short    @
     // form.                                                           @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     if ( my_long_name.empty() )
@@ -227,7 +227,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     //      option requires values : false
     //      has default value  : true
     //      This case is contradictory and will throw an error.
-    //      It is soley here for completeness.
+    //      It is solely here for completeness.
     is_option_required=true;
     is_option_required_values=false;
     has_default_value=true;
@@ -249,7 +249,7 @@ void CommandLineOptions::addBoostOption(boost::program_options::options_descript
     //      option requires values : true
     //      has default value  : true
     //      This case is contradictory and will throw an error.
-    //      It is soley here for completeness.
+    //      It is solely here for completeness.
     is_option_required=true;
     is_option_required_values=true;
     has_default_value=true;

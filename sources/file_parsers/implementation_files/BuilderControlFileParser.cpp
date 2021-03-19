@@ -22,7 +22,7 @@ namespace ANANSI {
 
 BuilderControlFileParser::BuilderControlFileParser() :
     BuilderFileParser(),
-	_myParser()
+	_myParser(std::make_shared<ControlFileParser>())
 {
     return;
 }

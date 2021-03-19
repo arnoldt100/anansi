@@ -73,6 +73,8 @@ namespace ANANSI
 
             void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator) override;
 
+            void _parseFile();
+
     // -----  end of method ControlFileParser::readFile  ----- 
 
             /* ====================  METHODS       ======================================= */

@@ -80,7 +80,9 @@ bool SimulationParameters::isCommandLineOptionPresent ( std::string const & key)
 
 std::string SimulationParameters::getCommandLineOptionValues (std::string const & key) const
 {
-    return this->_commandLineOptionsMap.at(key);
+    const auto search = this->_commandLineOptionsMap.find(key);
+    const auto my_value = ( search != this->_commandLineOptionsMap.end()) ? this->_commandLineOptionsMap.at(key) : SimulationParameters::OPTION_NOT_FOUND;
+    return my_value;
 }		// -----  end of method SimulationParameters::getCommandLineOptionValues  ----- 
 
 
@@ -107,6 +109,10 @@ SimulationParameters& SimulationParameters::operator= ( SimulationParameters && 
     }
     return *this;
 }       // ----- end of assignment-move operator -----
+
+// ============================  STATIC        ===============================
+
+const std::string SimulationParameters::OPTION_NOT_FOUND="option_not_found";
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

@@ -73,7 +73,18 @@ ControlFileParser& ControlFileParser::operator= ( ControlFileParser && other )
 //============================= MUTATORS =====================================
 void ControlFileParser::_readFile()
 {
-    std::cout << "Reading control file." << std::endl;
+    const auto world_rank = this->_myCommunicator->getWorldCommunicatorRank();
+    switch ( world_rank )
+    {
+        case COMMUNICATOR::MASTER_TASK_ID :	
+            this->_parseFile();
+            break;
+
+        default:	
+            break;
+    }				/* -----  end switch  ----- */
+    this->shareData();
+
     return;
 }   // -----  end of method ControlFileParser::readFile  ----- 
 
@@ -95,6 +106,12 @@ void ControlFileParser::_setFileName(const std::string file_name)
 void ControlFileParser::_setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
 {
     this->_myCommunicator = std::move(a_communicator);
+    return;
+}
+
+void ControlFileParser::_parseFile()
+{
+    std::cout << "Parsing control file data." << std::endl;
     return;
 }
 
