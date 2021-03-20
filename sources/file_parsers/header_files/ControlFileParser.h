@@ -82,6 +82,11 @@ namespace ANANSI
             /* ====================  DATA MEMBERS  ======================================= */
             std::string _fileName;
             std::unique_ptr<COMMUNICATOR::Communicator> _myCommunicator;
+            ANANSI::RegistryControlFileParserStatus _myControlFileParserStatus;
+            std::string _units;
+            std::string _initialConfiguration;
+            std::string _timestepValue;
+            std::string _timestepUnits;
 
     }; /* -----  end of class ControlFileParser  ----- */
 

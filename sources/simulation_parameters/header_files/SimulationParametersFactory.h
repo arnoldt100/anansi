@@ -64,6 +64,7 @@ class SimulationParametersFactory
         SimulationParametersFactory& operator=( const SimulationParametersFactory &other ); /* assignment operator */
 
         /* ====================  STATIC        ======================================= */
+
         static SimulationParameters create(COMMANDLINE::CommandLineArguments const & aCommandLine );
 
     protected:

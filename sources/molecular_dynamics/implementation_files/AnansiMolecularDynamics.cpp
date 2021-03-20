@@ -131,31 +131,42 @@ AnansiMolecularDynamics::_enableCommunication()
 void
 AnansiMolecularDynamics::_inputSimulationControlFile ()
 {
+    // Initialize the variable "my_status" to failed. The variable will track the status of reading
+    // in the simulation control file. At the end of this method, we will set the status of the md
+    // simulation to "my_status".
     auto my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-    // The control file option is mandatory. If the option is not present, then
-    // we set the MD status as "RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed".
+
+    // The control file option is mandatory. If the option is not present, then we set the MD status
+    // as "RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
     // Otherwise we process/parse the control file.
     const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
     if (file_name == SimulationParameters::OPTION_NOT_FOUND )
     {
-        COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
-        std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->_MpiWorldCommunicator);
-
-        StandardFileParserFactory file_parser_factory;
-        std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
-        std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
-                                                                              file_name,
-                                                                              std::move(a_communicator));
-
-        control_file->readFile();
+        my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+        this->setStatus(my_status);
+        return;
     }
-    else
+
+    // Create the control file parser and process the control file.
+    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+    std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->_MpiWorldCommunicator);
+    StandardFileParserFactory file_parser_factory;
+    std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
+    std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
+                                                                          file_name,
+                                                                          std::move(a_communicator));
+
+    // Read the control file.
+    try 
+    {
+        control_file->readFile();
+        my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
+    }
+    catch ( const std::exception & my_error ) 
     {
         my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
     }
 
-    // This current function is not completed and doesn't read the control file. Therefore the
-    // MD status is set to fail.
     this->setStatus(my_status);
 
     return;
