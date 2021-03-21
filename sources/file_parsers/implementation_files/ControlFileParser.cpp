@@ -18,7 +18,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ControlFileParser.h"
-#include "RegistryControlFileParserStatus.h"
 
 namespace ANANSI {
 
@@ -32,7 +31,7 @@ ControlFileParser::ControlFileParser() :
     FileParser(),
     _fileName(),
     _myCommunicator(),
-    _myControlFileParserStatus(),
+    _myControlFileParserStatus(ANANSI::RegistryControlFileParserStatus::Undefined),
     _units(),
     _initialConfiguration(),
     _timestepValue(),
@@ -114,7 +113,12 @@ void ControlFileParser::_readFile()
 
 void ControlFileParser::_shareData()
 {
-    std::cout << "Sharing control file data." << std::endl;
+    // First share the status of parsing the simulation control file.
+    std::vector<bool> invec {convertRCPS<bool>(this->_myControlFileParserStatus)};
+
+    ANANSI::RegistryControlFileParserStatus status = 
+        COMMUNICATOR::transformDataToScaler(invec,
+                                            *(this->_myCommunicator));
     return ;
 }		// -----  end of method FileParser::shareData  ----- 
 
@@ -150,6 +154,11 @@ void ControlFileParser::_parseFile()
             ANANSI::RegistryControlFileParserStatus::FailedToParseXMLFileToPropertyTree;
     }
 
+    if (this->_myControlFileParserStatus == ANANSI::RegistryControlFileParserStatus::FailedToParseXMLFileToPropertyTree)
+    {
+        return;
+    }
+
     // Use the throwing version of get to find the values for the control file.
     // If the path cannot be resolved, an exception is thrown.
     try
@@ -158,6 +167,8 @@ void ControlFileParser::_parseFile()
         this->_initialConfiguration = tree.get<std::string>("initial_configuration.filename");
         this->_timestepValue = tree.get<std::string>("timestep.value");
         this->_timestepUnits = tree.get<std::string>("timestep.units");
+        this->_myControlFileParserStatus = 
+            ANANSI::RegistryControlFileParserStatus::Successful;
     }
     catch (const std::exception & my_error )
     {

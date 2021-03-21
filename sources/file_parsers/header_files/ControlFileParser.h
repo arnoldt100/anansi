@@ -15,6 +15,7 @@
 //--------------------------------------------------------//
 #include "FileParser.h"
 #include "Communicator.h"
+#include "RegistryControlFileParserStatus.h"
 
 namespace ANANSI
 {

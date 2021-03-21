@@ -30,7 +30,12 @@ namespace ANANSI
 
     }; /* -----  end of enum class RegistryControlFileParserStatus  ----- */
 
+    template<typename T> 
+    T convertRCPS( const RegistryControlFileParserStatus & );
 
+    template<> 
+    bool convertRCPS( const RegistryControlFileParserStatus & );
+    
 }; /* namespace ANANSI */
 
 #endif   /* ----- #ifndef RegistryControlFileParserStatus_INC  ----- */
