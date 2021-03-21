@@ -13,13 +13,20 @@
 
 namespace ANANSI {
 
-template<> 
 bool convertRCPS( const RegistryControlFileParserStatus & status )
 {
     const bool rval = (status == RegistryControlFileParserStatus::Successful) ? true : false; 
     return rval;
 }
 
+RegistryControlFileParserStatus unconvertRCPS( const bool & val1)
+{
+    const RegistryControlFileParserStatus out = 
+        (val1 == true) ? RegistryControlFileParserStatus::Successful : RegistryControlFileParserStatus::GeneralFailure; 
+
+    return out;
+
+}
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////

@@ -23,19 +23,17 @@ namespace ANANSI
     // =====================================================================================
     enum class RegistryControlFileParserStatus : int
     {
-        Undefined,
         Successful,
+        Undefined,
+        GeneralFailure,
         FailedToParseXMLFileToPropertyTree,
         FailedToResolveXMLPath
 
     }; /* -----  end of enum class RegistryControlFileParserStatus  ----- */
 
-    template<typename T> 
-    T convertRCPS( const RegistryControlFileParserStatus & );
+    bool convertRCPS( const RegistryControlFileParserStatus & status);
 
-    template<> 
-    bool convertRCPS( const RegistryControlFileParserStatus & );
-    
+    RegistryControlFileParserStatus unconvertRCPS( const bool & val1);
 }; /* namespace ANANSI */
 
 #endif   /* ----- #ifndef RegistryControlFileParserStatus_INC  ----- */

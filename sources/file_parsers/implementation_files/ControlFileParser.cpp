@@ -110,15 +110,14 @@ void ControlFileParser::_readFile()
 }   // -----  end of method ControlFileParser::readFile  ----- 
 
 
-
 void ControlFileParser::_shareData()
 {
     // First share the status of parsing the simulation control file.
-    std::vector<bool> invec {convertRCPS<bool>(this->_myControlFileParserStatus)};
+    const auto my_status = convertRCPS(this->_myControlFileParserStatus);
 
-    ANANSI::RegistryControlFileParserStatus status = 
-        COMMUNICATOR::transformDataToScaler(invec,
-                                            *(this->_myCommunicator));
+    const bool global_status = 
+        COMMUNICATOR::getGlobalStatus(my_status,
+                                      *(this->_myCommunicator));
     return ;
 }		// -----  end of method FileParser::shareData  ----- 
 
