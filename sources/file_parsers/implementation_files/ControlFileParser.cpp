@@ -94,6 +94,7 @@ ControlFileParser& ControlFileParser::operator= ( ControlFileParser && other )
 //============================= MUTATORS =====================================
 void ControlFileParser::_readFile()
 {
+    this->_myControlFileParserStatus = RegistryControlFileParserStatus::Successful;
     const auto world_rank = this->_myCommunicator->getWorldCommunicatorRank();
     switch ( world_rank )
     {
