@@ -59,7 +59,7 @@ ControlFileParser.h Global Variables
 ControlFileParser Class Documentation
 =====================================
 
-.. class:: ControlFileParser :: public FileParser
+.. class:: ControlFileParser : public FileParser
 
 --------------
 Public Members
@@ -69,19 +69,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: ControlFileParser()
+    .. function:: ControlFileParser::ControlFileParser()
 
        The default constructor.
 
-    .. function:: ControlFileParser( const ControlFileParser &other ) = 0
+    .. function:: ControlFileParser::ControlFileParser( const ControlFileParser &other ) = 0
 
         The copy constructor is deleted.
 
-    .. function:: ControlFileParser(ControlFileParser && other) 
+    .. function:: ControlFileParser::ControlFileParser(ControlFileParser && other) 
 
         The copy-move constructor.
 
-    .. function:: ~ControlFileParser()=0
+    .. function:: ControlFileParser::~ControlFileParser()=0
 
         The destructor.
 
@@ -155,6 +155,7 @@ Private Members
 .. Mutators
 .. ^^^^^^^^^
 .. 
+
 ^^^^^^^^^^^^
 Data Members
 ^^^^^^^^^^^^
@@ -165,8 +166,6 @@ Data Members
         ========    ============================
         key         Description of stored value
         ========    ============================
-
         "units"     The units of the simulation
-
         ========    ============================
 
