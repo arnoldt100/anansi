@@ -5,6 +5,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <string>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -41,7 +42,7 @@ namespace ANANSI
              *
              *--------------------------------------------------------------------------------------
              */
-            ControlFileParser ();   /* constructor      */
+            ControlFileParser();   /* constructor      */
 
             ControlFileParser (const ControlFileParser & other)=delete;   /* copy constructor */
 
@@ -88,6 +89,9 @@ namespace ANANSI
             std::string _initialConfiguration;
             std::string _timestepValue;
             std::string _timestepUnits;
+
+            
+            std::map<std::string,std::string> _values;
 
     }; /* -----  end of class ControlFileParser  ----- */
 

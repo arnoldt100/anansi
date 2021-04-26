@@ -15,6 +15,7 @@ Welcome to Anansi's class documentation!
    Classes/AnansiMolecularDynamics.cpp.rst
    Classes/AnansiMolecularDynamicsFactory.cpp.rst
    Classes/CommandLineArguments.cpp.rst
+   Classes/ControlFileParser.cpp.rst
    Classes/SimulationParameters.cpp.rst
    Classes/SimulationParametersFactory.cpp.rst
    Classes/MolecularDynamics.cpp.rst

@@ -32,10 +32,10 @@ ControlFileParser::ControlFileParser() :
     _fileName(),
     _myCommunicator(),
     _myControlFileParserStatus(ANANSI::RegistryControlFileParserStatus::Undefined),
-    _units(),
     _initialConfiguration(),
     _timestepValue(),
-    _timestepUnits()
+    _timestepUnits(),
+    _values({ {"units",""} })
 
 {
     return;
@@ -46,10 +46,10 @@ ControlFileParser::ControlFileParser( ControlFileParser && other) :
     _fileName(std::move(other._fileName)),
     _myCommunicator(std::move(other._myCommunicator)),
     _myControlFileParserStatus(std::move(other._myControlFileParserStatus)),
-    _units(std::move(other._units)),
     _initialConfiguration(std::move(other._initialConfiguration)),
     _timestepValue(std::move(other._timestepValue)),
-    _timestepUnits(std::move(other._timestepUnits))
+    _timestepUnits(std::move(other._timestepUnits)),
+    _values(std::move(other._values))
 {
     return;
 } // -----  end of method ControlFileParser::ControlFileParser  -----
@@ -75,10 +75,10 @@ ControlFileParser& ControlFileParser::operator= ( ControlFileParser && other )
         this->_fileName = std::move(other._fileName);
         this->_myCommunicator = std::move(other._myCommunicator);
         this->_myControlFileParserStatus = std::move(other._myControlFileParserStatus);
-        this->_units = std::move(other._units);
         this->_initialConfiguration = std::move(other._initialConfiguration);
         this->_timestepValue = std::move(other._timestepValue);
         this->_timestepUnits = std::move(other._timestepUnits);
+        this->_values = std::move(other._values);
     }
     return *this;
 } // assignment-move operator
@@ -173,7 +173,7 @@ void ControlFileParser::_parseFile()
     // If the path cannot be resolved, an exception is thrown.
     try
     {
-        this->_units = tree.get<std::string>("units");
+        this->_values["units"] = tree.get<std::string>("units");
         this->_initialConfiguration = tree.get<std::string>("initial_configuration.filename");
         this->_timestepValue = tree.get<std::string>("timestep.value");
         this->_timestepUnits = tree.get<std::string>("timestep.units");
