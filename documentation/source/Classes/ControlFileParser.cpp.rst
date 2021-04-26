@@ -73,7 +73,7 @@ Lifecycle
 
        The default constructor.
 
-    .. function:: ControlFileParser::ControlFileParser( const ControlFileParser &other ) = 0
+    .. function:: ControlFileParser::ControlFileParser( const ControlFileParser &other )=delete 
 
         The copy constructor is deleted.
 
@@ -81,7 +81,7 @@ Lifecycle
 
         The copy-move constructor.
 
-    .. function:: ControlFileParser::~ControlFileParser()=0
+    .. function:: ControlFileParser::~ControlFileParser()=delete
 
         The destructor.
 
