@@ -113,13 +113,23 @@ void ControlFileParser::_readFile()
 
 void ControlFileParser::_shareData()
 {
-    // First share the status of parsing the simulation control file.
+    // First share the status of parsing the simulation control file. If parsing
+    // of simulation control file is a failure, then set the control
+    // file parser status to failed and return.
     const auto my_status = convertRCPS(this->_myControlFileParserStatus);
 
     const bool global_status = 
         COMMUNICATOR::getGlobalStatus(my_status,
                                       *(this->_myCommunicator));
-    return ;
+    if (! global_status)
+    {
+        this->_myControlFileParserStatus = RegistryControlFileParserStatus::GeneralFailure; 
+        return;
+    }
+
+    // Share the control file data.
+    
+    return;
 }		// -----  end of method FileParser::shareData  ----- 
 
 
