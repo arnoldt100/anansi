@@ -161,11 +161,14 @@ Data Members
 ^^^^^^^^^^^^
 .. member:: std::map<std::string,std::string> ControlFileParser::_values
 
-    Stores the values of the ControlFileParser. The values stored are the following:
+    Stores the values of the simulation control file. The values stored are the following:
 
-        ========    ============================
-        key         Description of stored value
-        ========    ============================
-        "units"     The units of the simulation
-        ========    ============================
+    =================================================        =================================================
+    key                                                      Description of stored value
+    =================================================        =================================================
+    "units"                                                  The units of the simulation
+    "initial_configuration_filename"                         The file name of the initial configuration
+    "timestep_value"                                         The numerical size of the time step
+    "timestep_units"                                         The units of the time step
+    =================================================        =================================================
 

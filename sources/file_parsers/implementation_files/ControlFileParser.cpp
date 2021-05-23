@@ -32,10 +32,10 @@ ControlFileParser::ControlFileParser() :
     _fileName(),
     _myCommunicator(),
     _myControlFileParserStatus(ANANSI::RegistryControlFileParserStatus::Undefined),
-    _initialConfiguration(),
-    _timestepValue(),
-    _timestepUnits(),
-    _values({ {"units",""} })
+    _values({ {"units", ""},
+              {"initial_configuration_filename", ""},
+              {"timestep_value", ""},
+              {"timestep_units", ""} } )
 
 {
     return;
@@ -46,9 +46,6 @@ ControlFileParser::ControlFileParser( ControlFileParser && other) :
     _fileName(std::move(other._fileName)),
     _myCommunicator(std::move(other._myCommunicator)),
     _myControlFileParserStatus(std::move(other._myControlFileParserStatus)),
-    _initialConfiguration(std::move(other._initialConfiguration)),
-    _timestepValue(std::move(other._timestepValue)),
-    _timestepUnits(std::move(other._timestepUnits)),
     _values(std::move(other._values))
 {
     return;
@@ -75,9 +72,6 @@ ControlFileParser& ControlFileParser::operator= ( ControlFileParser && other )
         this->_fileName = std::move(other._fileName);
         this->_myCommunicator = std::move(other._myCommunicator);
         this->_myControlFileParserStatus = std::move(other._myControlFileParserStatus);
-        this->_initialConfiguration = std::move(other._initialConfiguration);
-        this->_timestepValue = std::move(other._timestepValue);
-        this->_timestepUnits = std::move(other._timestepUnits);
         this->_values = std::move(other._values);
     }
     return *this;
@@ -128,7 +122,11 @@ void ControlFileParser::_shareData()
     }
 
     // Share the control file data.
-    
+    for (auto it = this->_values.begin(); it != this->_values.end(); ++it)
+    {
+        it->second = COMMUNICATOR::broadcast(it->second,
+                                             *(this->_myCommunicator)); 
+    }
     return;
 }		// -----  end of method FileParser::shareData  ----- 
 
@@ -174,9 +172,9 @@ void ControlFileParser::_parseFile()
     try
     {
         this->_values["units"] = tree.get<std::string>("units");
-        this->_initialConfiguration = tree.get<std::string>("initial_configuration.filename");
-        this->_timestepValue = tree.get<std::string>("timestep.value");
-        this->_timestepUnits = tree.get<std::string>("timestep.units");
+        this->_values["initial_configuration_filename"] = tree.get<std::string>("initial_configuration.filename");
+        this->_values["timestep_value"] = tree.get<std::string>("timestep.value");
+        this->_values["timestep_units"] = tree.get<std::string>("timestep.units");
         this->_myControlFileParserStatus = 
             ANANSI::RegistryControlFileParserStatus::Successful;
     }

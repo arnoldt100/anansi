@@ -30,7 +30,7 @@ namespace ANANSI
     class ControlFileParser : public FileParser
     {
         public:
-            /* ====================  LIFECYCLE     ======================================= */
+            // ====================  LIFECYCLE     =======================================
 
             /*
              *--------------------------------------------------------------------------------------
@@ -42,31 +42,31 @@ namespace ANANSI
              *
              *--------------------------------------------------------------------------------------
              */
-            ControlFileParser();   /* constructor      */
+            ControlFileParser();   // constructor
 
-            ControlFileParser (const ControlFileParser & other)=delete;   /* copy constructor */
+            ControlFileParser (const ControlFileParser & other)=delete;   // copy constructor
 
-            ControlFileParser (ControlFileParser && other);   /* copy-move constructor */
+            ControlFileParser (ControlFileParser && other);   // copy-move constructor
 
-            virtual ~ControlFileParser ();  /* destructor */
+            virtual ~ControlFileParser ();  // destructor
 
-            /* ====================  ACCESSORS     ======================================= */
+            // ====================  ACCESSORS     =======================================
 
-            /* ====================  MUTATORS      ======================================= */
+            // ====================  MUTATORS      =======================================
 
-            /* ====================  OPERATORS     ======================================= */
+            // ====================  OPERATORS     =======================================
 
-            ControlFileParser& operator=( const ControlFileParser &other )=delete; /* assignment operator */
+            ControlFileParser& operator=( const ControlFileParser &other )=delete; // assignment operator
 
-            ControlFileParser& operator=( ControlFileParser && other ); /* assignment-move operator */
+            ControlFileParser& operator=( ControlFileParser && other ); // assignment-move operator
 
         protected:
-            /* ====================  METHODS       ======================================= */
+            // ====================  METHODS       =======================================
 
-            /* ====================  DATA MEMBERS  ======================================= */
+            // ====================  DATA MEMBERS  =======================================
 
         private:
-            /* ====================  MUTATORS      ======================================= */
+            // ====================  MUTATORS      =======================================
             void _readFile() override;
 
             void _shareData () override;
@@ -77,23 +77,20 @@ namespace ANANSI
 
             void _parseFile();
 
-    // -----  end of method ControlFileParser::readFile  ----- 
 
-            /* ====================  METHODS       ======================================= */
+            // ====================  METHODS       =======================================
 
-            /* ====================  DATA MEMBERS  ======================================= */
+            // ====================  DATA MEMBERS  =======================================
             std::string _fileName;
             std::unique_ptr<COMMUNICATOR::Communicator> _myCommunicator;
             ANANSI::RegistryControlFileParserStatus _myControlFileParserStatus;
-            std::string _units;
-            std::string _initialConfiguration;
             std::string _timestepValue;
             std::string _timestepUnits;
 
             
             std::map<std::string,std::string> _values;
 
-    }; /* -----  end of class ControlFileParser  ----- */
+    }; // -----  end of class ControlFileParser  -----
 
 
 }; // namespace ANANSI
