@@ -39,7 +39,7 @@ AnansiMolecularDynamics has 5 states or behaviors:
 
 * TerminatingSimulationEnvironmnet
 
-    This state controls terminates various execution environments such as MPI,
+    This state terminates the various execution environments such as MPI,
     GPU accelerators, etc.
 
 ====================
