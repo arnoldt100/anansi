@@ -122,7 +122,7 @@ AnansiMolecularDynamics::_enableCommunication()
 {
     COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
 
-    this->_MpiWorldCommunicator = a_communicator_factory.createCommunicator();
+    this->_MpiWorldCommunicator = a_communicator_factory.createWorldCommunicator();
     std::cout << "Enabling AnansiMolecularDynamics communication." << std::endl;
     return;
 }       /* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */

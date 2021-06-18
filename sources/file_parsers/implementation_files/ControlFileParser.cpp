@@ -89,7 +89,7 @@ ControlFileParser& ControlFileParser::operator= ( ControlFileParser && other )
 void ControlFileParser::_readFile()
 {
     this->_myControlFileParserStatus = RegistryControlFileParserStatus::Successful;
-    const auto world_rank = this->_myCommunicator->getWorldCommunicatorRank();
+    const auto world_rank = this->_myCommunicator->getCommunicatorRank();
     switch ( world_rank )
     {
         case COMMUNICATOR::MASTER_TASK_ID :	
