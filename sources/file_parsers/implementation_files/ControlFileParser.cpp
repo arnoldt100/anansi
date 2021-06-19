@@ -125,7 +125,8 @@ void ControlFileParser::_shareData()
     for (auto it = this->_values.begin(); it != this->_values.end(); ++it)
     {
         it->second = COMMUNICATOR::broadcast(it->second,
-                                             *(this->_myCommunicator)); 
+                                             *(this->_myCommunicator),
+											 COMMUNICATOR::MASTER_TASK_ID);
     }
     return;
 }		// -----  end of method FileParser::shareData  ----- 
