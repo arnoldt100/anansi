@@ -87,6 +87,20 @@ bool AnansiMolecularDynamics::_isHelpOnCommandLine() const
     return help_found;
 }
 
+bool AnansiMolecularDynamics::_isIICStatusOkay() const
+{
+	bool ret_value=false;
+	if ( this->status() == RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
+    {
+		ret_value = true;
+	}
+	else if (this->status() == RegistryAnansiMDStatus::InitializingInitialConditionInProgress )
+	{
+		ret_value = true;
+	}
+	return ret_value;
+}
+
 //============================= MUTATORS =====================================
 void
 AnansiMolecularDynamics::_disableCommunication()

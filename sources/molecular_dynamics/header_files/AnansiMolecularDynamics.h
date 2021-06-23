@@ -56,6 +56,8 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         bool _isHelpOnCommandLine() const final override;
 
+        bool _isIICStatusOkay() const final override;
+
         /* ====================  MUTATORS      ======================================= */
 
         void 

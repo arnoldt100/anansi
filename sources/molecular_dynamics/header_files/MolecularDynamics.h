@@ -36,6 +36,8 @@ class MolecularDynamics
 
         void stud_function(std::string const & message) const;
 
+        bool isIICStatusOkay() const;
+
         ANANSI::RegistryAnansiMDStatus status() const;
         
         bool isHelpOnCommandLine() const;
@@ -100,6 +102,8 @@ class MolecularDynamics
         virtual ANANSI::RegistryAnansiMDStatus _status() const;
 
         virtual bool _isHelpOnCommandLine() const=0;
+
+        virtual bool _isIICStatusOkay() const=0;
 
         /* ====================  MUTATORS      ======================================= */
 

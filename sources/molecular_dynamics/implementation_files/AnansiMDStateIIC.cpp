@@ -59,6 +59,14 @@ void
 AnansiMDStateIIC::_initializeInitialConditions (MolecularDynamics * const aMD) const
 {
 	aMD->inputSimulationControlFile();
+
+	// If the status of the molecular dynamics simulation is good, then proceed
+	// to the next step of reading in the atomic coordinates of the simulation.
+	if (aMD->isIICStatusOkay())
+	{
+
+	}
+
     return;
 }		// -----  end of method AnansiMDStateIIC::_initializeInitialConditions  -----
 

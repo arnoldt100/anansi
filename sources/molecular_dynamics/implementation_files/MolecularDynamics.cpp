@@ -45,6 +45,11 @@ ANANSI::RegistryAnansiMDStatus MolecularDynamics::status() const
     return this->_status();
 }
 
+bool MolecularDynamics::isIICStatusOkay() const
+{
+	return this->_isIICStatusOkay();
+}
+
 bool MolecularDynamics::isHelpOnCommandLine() const
 {
     return this->_isHelpOnCommandLine();
