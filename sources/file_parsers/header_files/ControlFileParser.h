@@ -27,7 +27,7 @@ namespace ANANSI
      *  Description:  
      * =====================================================================================
      */
-    class ControlFileParser : public FileParser
+    class ControlFileParser final : public  FileParser
     {
         public:
             // ====================  LIFECYCLE     =======================================
@@ -84,10 +84,6 @@ namespace ANANSI
             std::string _fileName;
             std::unique_ptr<COMMUNICATOR::Communicator> _myCommunicator;
             ANANSI::RegistryControlFileParserStatus _myControlFileParserStatus;
-            std::string _timestepValue;
-            std::string _timestepUnits;
-
-            
             std::map<std::string,std::string> _values;
 
     }; // -----  end of class ControlFileParser  -----

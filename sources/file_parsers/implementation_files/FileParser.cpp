@@ -60,6 +60,7 @@ void FileParser::setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && 
 	this->_setCommunicator(std::move(a_communicator));
 	return;
 }
+
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////
