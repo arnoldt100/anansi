@@ -80,11 +80,17 @@ Lifecycle
 
         The destructor. This is a pure virtual destructor.
 
-.. ^^^^^^^^^
-.. Accessors
-.. ^^^^^^^^^
-.. 
-..     No public accessors
+^^^^^^^^^
+Accessors
+^^^^^^^^^
+
+	.. function:: bool isIICStatusOkay() const;
+	
+		Implements the interface for checking if the cuurent MD state is
+		in an satisfactory status. If the MD state is ina satisfactory status then
+		true is returned, otherwise false is returned.
+		
+		:return: bool
 
 ^^^^^^^^^
 Operators

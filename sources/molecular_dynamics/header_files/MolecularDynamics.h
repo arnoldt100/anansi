@@ -67,6 +67,8 @@ class MolecularDynamics
 
         void inputSimulationControlFile();
 
+        void readInitialConfiguration();
+
         // This group of functions performs the MD simulation.
         void performSimulation();
 
@@ -129,6 +131,8 @@ class MolecularDynamics
         virtual void _initializeInitialConditions()=0;
 
         virtual void _inputSimulationControlFile()=0;
+
+        virtual void _readInitialConfiguration()=0;
 
         // This group of functions performs the MD simulation.
         virtual void _performSimulation()=0;

@@ -147,7 +147,6 @@ Operators
 Mutators
 ^^^^^^^^
 
-    .. function:: void AnansiMDState::initializeSimulationEnvironment()
 
 
 -----------------

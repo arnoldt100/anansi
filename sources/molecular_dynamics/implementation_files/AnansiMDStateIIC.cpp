@@ -64,7 +64,7 @@ AnansiMDStateIIC::_initializeInitialConditions (MolecularDynamics * const aMD) c
 	// to the next step of reading in the atomic coordinates of the simulation.
 	if (aMD->isIICStatusOkay())
 	{
-
+		aMD->readInitialConfiguration();
 	}
 
     return;

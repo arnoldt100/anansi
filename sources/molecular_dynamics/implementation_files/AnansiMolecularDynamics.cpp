@@ -186,6 +186,11 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     return;
 }		/* -----  end of method AnansiMolecularDynamics::_inputSimulationControlFile  ----- */
 
+void AnansiMolecularDynamics::_readInitialConfiguration()
+{
+	std::cout << "Reading initial configuration" << std::endl;
+}
+
 void AnansiMolecularDynamics::_processCommandLine()
 {
     this->_mdState->processCommandLine(this);

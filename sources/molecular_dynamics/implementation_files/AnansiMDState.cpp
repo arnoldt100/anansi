@@ -70,7 +70,7 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
     this->_initializeSimulationEnvironment(aMD,argc,argv);
 
     // We now query the status of initializing the simulation environment,
-    // We use a switch statement controlled by the status to appropiately
+    // We use a switch statement controlled by the status to appropriately
     // change the MD object state.
     const auto md_status = aMD->status();
     switch ( md_status )
@@ -89,11 +89,11 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
             std::cout << "The program has unsuccessfully initialized the simulation environment." << std::endl;
             break;
 
-        // Case for undefined behavoir of initializing the simulation environment.
+        // Case for undefined behavior of initializing the simulation environment.
         // We change the state to terminating the simulation environment.
         default :
             aMD->changeMDStateToTSE();
-            std::cout << "The program has undefined behavoir in initializing the simulation environment." << std::endl;
+            std::cout << "The program has undefined behavior in initializing the simulation environment." << std::endl;
             break;
     }
     return;
@@ -136,7 +136,7 @@ void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
             std::cout << "but the command line has errors or the help option is present." << std::endl;
             break;
 
-        // Case for undefined behavoir of processing the command line arguments.
+        // Case for undefined behavior of processing the command line arguments.
         // We change the state to terminating the simulation environment.
         default :
             aMD->changeMDStateToTSE();
@@ -163,7 +163,7 @@ void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) c
         // Case for successful initialization of the initial conditions.
         case success :
             aMD->changeMDStateToPS();
-            std::cout << "This state  has successfully initialized the simulation initial conditions environment." << std::endl;
+            std::cout << "This state has successfully initialized the simulation initial conditions environment." << std::endl;
             break;
 
         // Case for unsuccessful initialization of the initial conditions.

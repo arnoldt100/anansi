@@ -88,6 +88,8 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         void _inputSimulationControlFile () final override;
 
+        void _readInitialConfiguration () final override;
+
         // This group of functions performs the MD simulation.
         void
         _performSimulation() final override;

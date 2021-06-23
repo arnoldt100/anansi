@@ -104,7 +104,7 @@ void
 MolecularDynamics::saveCommandLineOptionsValues()
 {
     this->_saveCommandLineOptionParameters();
-    return ;
+    return;
 }		/* -----  end of method MolecularDynamics::saveCommandLineOptionsValues  ----- */
 
 
@@ -112,9 +112,14 @@ void
 MolecularDynamics::initializeInitialConditions ()
 {
     this->_initializeInitialConditions();
-    return ;
+    return;
 }		/* -----  end of method MolecularDynamics::initializeInitialConditions  ----- */
 
+void MolecularDynamics::readInitialConfiguration ()
+{
+	this->_readInitialConfiguration();
+	return;
+}
 
 void MolecularDynamics::inputSimulationControlFile()
 {
