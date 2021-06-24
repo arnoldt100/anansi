@@ -28,7 +28,7 @@ namespace ANANSI
 
             AnansiMDStatePCL (AnansiMDStatePCL && other);   /* copy-move constructor */
 
-            virtual ~AnansiMDStatePCL ();  /* destructor */
+            ~AnansiMDStatePCL ();  /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
 

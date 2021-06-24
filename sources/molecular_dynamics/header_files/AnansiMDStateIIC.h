@@ -28,7 +28,7 @@ namespace ANANSI
 
             AnansiMDStateIIC (AnansiMDStateIIC && other);   /* copy-move constructor */
 
-            virtual ~AnansiMDStateIIC ();  /* destructor */
+            ~AnansiMDStateIIC ();  /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
 
