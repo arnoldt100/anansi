@@ -75,8 +75,7 @@ class MolecularDynamics
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment();
 
-        // This group of functions changes the state of the MD object.
-        void setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState);
+        // These group of functions change the state of the MD object.
         void changeMDStateToISE();
         void changeMDStateToPCL();
         void changeMDStateToIIC();
@@ -84,7 +83,7 @@ class MolecularDynamics
         void changeMDStateToTSE();
 
         // This group of functions changes the state of the MD object.
-        void setStatus(const RegistryAnansiMDStatus & aStatus);
+        void setStatus(const RegistryAnansiMDStatus aStatus);
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -154,7 +153,7 @@ class MolecularDynamics
         virtual void _changeMDStateToTSE()=0;
 
         // Set the status of the MD object.
-        virtual void _setStatus(const RegistryAnansiMDStatus & aStatus)=0;
+        virtual void _setStatus(const RegistryAnansiMDStatus aStatus)=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

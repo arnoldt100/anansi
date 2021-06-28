@@ -62,9 +62,14 @@ void
 AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
     // Here we create aliases simply for coding format convenience.
+    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
     constexpr auto success = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
     constexpr auto fail = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
     constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+
+    // Set the status of the MD object to "in_progress" for initializing the
+    // simulation environment.
+    aMD->setStatus(in_progress);
 
     // Initialize the simulation environment.
     this->_initializeSimulationEnvironment(aMD,argc,argv);

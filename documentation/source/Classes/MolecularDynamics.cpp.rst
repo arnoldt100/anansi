@@ -84,13 +84,26 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-	.. function:: bool isIICStatusOkay() const;
-	
-		Implements the interface for checking if the cuurent MD state is
-		in an satisfactory status. If the MD state is ina satisfactory status then
-		true is returned, otherwise false is returned.
-		
-		:return: bool
+    .. function:: bool isIICStatusOkay() const;
+
+        Implements the interface for checking if the IICState of the MD object is
+        in a satisfactory status. If the MD state is ina satisfactory status then
+        true is returned, otherwise false is returned.
+        
+        :rtype: bool
+
+    .. function:: ANANSI::RegistryAnansiMDStatus status() const
+
+        Returns the status of the MD object
+
+        :rtype: ANANSI::RegistryAnansiMDStatus
+
+    .. function:: bool isHelpOnCommandLine() const
+
+        If the help option in ont the command line, then true is returned. Otherwise
+        false is returned.
+
+        :rtype: bool
 
 ^^^^^^^^^
 Operators
@@ -108,45 +121,161 @@ Operators
 Mutators
 ^^^^^^^^
 
+**Only** :cpp:any:`main <main>` **calls these functions.**
+
+
+    .. function:: void MolecularDynamics::initializeSimulationEnvironment( int const argc, char const * const * const & argv )
+
+        Initializes the simulation execution environmnet. This function is the public
+        interface of the template design pattern for intializing the simulation. The
+        derived class is to provide the implementation. The main program creates a MD object
+        which makes this call. The MD object then uses is state object to call the state object's 
+        member function initializeSimulationEnvironment.
+
+        :param int const & argc: The number of command line arguments
+        :param char const * const * const &argv: Contains the command line arguments.
+        :rtype: void
+
+    .. function:: void processCommandLine() 
+
+        This function is invoked only by the main program, it stores the command line arguments in
+        the MD object.
+
+        :rtype: void
+
+    .. function:: void initializeInitialConditions()
+
+        This function is invoked only by the main program, and it initiates initializing the
+        initial conditions of the MD object.
+
+        :rtype: void
+
+    .. function:: void performSimulation()
+
+        This function is invoked only by the main program, and it initiates the
+        actual MD simulation steps.
+
+        :rtype: void
+
+
+    .. function void terminateSimulationEnvironment()
+
+        This function is invoked only by the main program, and it initiates the
+        termination of the simulation.
+
+        :rtype: void
+
+
+**Only** :cpp:class:`AnansiMDStateISE <AnansiMDStateISE>` **calls these functions.**
+
+    .. function:: void saveCommandLineArguments (int const & argc, char const *const *const & argv)
+
+        This function stores the command line arguments in the MD object. If called multiple times,
+        the previous stored command line information will be overwriten and lost.
+
+        :param int const & argc: The number of command line arguments
+        :param char const * const * const &argv: Contains the command line arguments.
+        :rtype: void
+
     .. function:: void MolecularDynamics::doSimulation() 
 
         Performs the simulation. The function is final and serves as the public
         interface of the template design pattern. The derived class is to provide 
         its implementation for performaing the simulation.
 
-    .. function:: void MolecularDynamics::enableCommunication()
-
-        Enables MPI execution environment. This function is the public
-        interface of the template design pattern for enabling the MPI  environment. The
-        derived class is to provide the implementation.
 
     .. function:: void MolecularDynamics::disableCommunication()
 
         Disables MPI execution environment. This function is the public
-        interface of the template design pattern for enabling the MPI  environment. The
+        interface of the template design pattern for disabling the communication. The
         derived class is to provide the implementation.
 
-    .. function:: void MolecularDynamics::initializeSimulationEnvironmnet( int const argc, char const * const * const & argv ) final
+    Only the :cpp:class:`AnansiMDStateISE <AnansiMDStateISE>` object calls these functions to initialize the simulation environment.
 
-        Initializes the simulation execution environmnet. This function is the public
-        interface of the template design pattern for performing the simulation. The
-        derived class is to provide the implementation.
+    .. function:: void MolecularDynamics::saveCommandLineArguments (int const & argc, char const *const *const & argv)
 
-    .. function:: void MolecularDynamics::initializeSimulation( int const argc, char const * const * const & argv ) final
+        This function is the interface for saving the command line argc and argv to the MD object. If
+        this functions fails to store argc and argv in the MD object, then the program will have
+        undefined behavior and must be aborted. 
 
-        Initializes the simulation. This function is the public
-        interface of the template design pattern for performing the simulation. The
-        derived class is to provide the implementation for initializing the simulation.
+        :param int const & argc: The number of command line arguments
+        :param char const * const * const &argv: Contains the command line arguments.
+        :rtype: void
 
-        :param int const argc: The size of the array argv.
-        :param char const * const * const &argv: Contains the command line options.
+    .. function:: void MolecularDynamics::initializeMpiEnvironment(int const & argc, char const *const *const & argv)
 
-    .. function:: void MolecularDynamics::setMDState(std::unique_ptr && a_AnansiMDState)
+        Initializes the MPI enviroment. This is function is the public interface for initializing the
+        MPI environment. All processes are to make this call, and after it's successful completion
+        the MPI runtime environment is enabled.
 
-        Changes the state of the MD simulation. The derived class is to provide the implementation
-        for initializing the simulation.
+        :param int const & argc: The number of command line arguments
+        :param char const * const * const &argv: Contains the command line arguments.
+        :rtype: void
 
-        :param std::unique_ptr && a_AnansiMDState: The new state to set the simulation to.
+    .. function:: void MolecularDynamics::enableCommunication()
+
+        Enables MPI execution environment. This function is the public interface of the template
+        design pattern for enabling the MPI communication among all processs. In other words,
+        MPI_COMM_WORLD is duplicated and the stored in the MD object. The derived class
+        provides the implementation. 
+
+        :rtype: void
+
+    Only the :cpp:class:`AnansiMDStateIIC <AnansiMDStateIIC>` object calls these functions to
+    initialize the simulation initial conditions.
+
+    .. function:: void readInitialConfiguration()
+
+        This functions reads the initial configuration of the MD sumulation. This function is the
+        public interface. The initial configuration is read and stored in the MD object. 
+
+        :rtype: void
+
+    **These group of functions change the state of the MD object.**
+
+    .. function:: void changeMDStateToISE()
+
+        This function changes the MD object state to :cpp:class:`AnansiMDStateISE`.
+        This function is a public interface and the derived class provides the implementation.
+
+        :rtype: void
+
+    .. function:: void changeMDStateToPCL()
+
+        This function changes the MD object state to :cpp:class:`AnansiMDStatePCL`.
+        This function is a public interface and the derived class provides the implementation.
+
+        :rtype: void
+
+    .. function:: void changeMDStateToIIC()
+
+        This function changes the MD object state to :cpp:class:`AnansiMDStateIIC`.
+        This function is a public interface and the derived class provides the implementation.
+
+        :rtype: void
+
+    .. function:: void changeMDStateToPS()
+
+        This function changes the MD object state to :cpp:class:`AnansiMDStatePS`.
+        This function is a public interface and the derived class provides the implementation.
+
+        :rtype: void
+
+
+    .. function:: void changeMDStateToTSE()
+
+        This function changes the MD object state to :cpp:class:`AnansiMDStateTSE`.
+        This function is a public interface and the derived class provides the implementation.
+
+        :rtype: void
+
+    **This function changes the status of the MD object.**
+
+    .. function:: void MolecularDynamics::setStatus(const RegistryAnansiMDStatus aStatus)
+
+        Changes the status of the MD simulation. The derived class provides the implementation.
+
+        :param const RegistryAnansiMDStatus & aStatus: The new status to set the simulation to.
 
 .. -----------------
 .. Protected Members

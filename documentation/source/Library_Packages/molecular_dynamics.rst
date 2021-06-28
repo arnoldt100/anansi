@@ -40,8 +40,10 @@ Class Relationships
 AnansiMolecularDynamics
 -----------------------
 
-The AnansiMolecularDynamics class is the top level class and is derived from
-interface class MolecularDynamics.
+The AnansiMolecularDynamics class is the subclass and is derived from interface
+superclass MolecularDynamics. The MD objects are of type
+AnansiMolecularDynamics. The behavior of the MD object is controlled by the
+member attribute :cpp:member:`_mdState<AnansiMolecularDynamics::_mdState>`.
 
 .. image:: ../Diagrams/AnansiMolecularDynamics.jpeg
 
@@ -51,15 +53,15 @@ AnansiMolecularDynamics Behaviors
 The AnansiMolecularDynamics object behaviors are encapsulated by state clasess as
 shown in the table below:
 
-    ==============================================    =================
-    Behavoirs                                         State Classes
-    ==============================================    =================
-    Initializing the simulation environment           AnansiMDStateISE
-    Processing the command line options               AnansiMDStatePCL
-    Initializing the initial conditions               AnansiMDStateIIC
-    Performing the simulation                         AnansiMDStatePS
-    Terminating the simulation environment            AnansiMDStateTSE
-    ==============================================    =================
+    ================= ==============================================    
+    State Classes     Behavoirs                                         
+    ================= ==============================================    
+    AnansiMDStateISE  Initializing the simulation environment           
+    AnansiMDStatePCL  Processing the command line options               
+    AnansiMDStateIIC  Initializing the initial conditions               
+    AnansiMDStatePS   Performing the simulation                         
+    AnansiMDStateTSE  Terminating the simulation environment            
+    ================= ==============================================    
 
 
 .. image:: ../Diagrams/AnansiMDStates.jpeg

@@ -105,7 +105,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void _changeMDStateToPS() final override;
         void _changeMDStateToTSE() final override;
 
-        void _setStatus(const RegistryAnansiMDStatus & aStatus) final override;
+        void _setStatus(const RegistryAnansiMDStatus aStatus) final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;

@@ -274,7 +274,7 @@ AnansiMolecularDynamics::_changeMDStateToTSE()
 }
 
 void 
-AnansiMolecularDynamics::_setStatus(const RegistryAnansiMDStatus & aStatus)
+AnansiMolecularDynamics::_setStatus(const RegistryAnansiMDStatus aStatus)
 {
     this->_mdStatus = aStatus;
     return;

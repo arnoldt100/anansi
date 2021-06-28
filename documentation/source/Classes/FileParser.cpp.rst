@@ -61,7 +61,7 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: FileParser()
+    .. function:: FileParser::FileParser()
 
        The default constructor.
 

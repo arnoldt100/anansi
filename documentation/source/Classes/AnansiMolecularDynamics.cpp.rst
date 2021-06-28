@@ -159,7 +159,7 @@ Data Members
 
     .. member:: std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator
 
-    .. member:: std::unique_ptr<AnansiMDState> _mdState
+    .. member:: std::unique_ptr<ANANSI::AnansiMDState> _mdState
 
     .. member:: ANANSI::RegistryAnansiMDStatus _mdStatus
     

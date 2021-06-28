@@ -139,13 +139,6 @@ void MolecularDynamics::terminateSimulationEnvironment(  )
     return;
 }		// -----  end of method MolecularDynamics::terminateSimulationEnvironment  -----
 
-void
-MolecularDynamics::setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
-{
-    this->_setMDState(std::move(a_AnansiMDState));
-	return;
-}       /* -----  end of method MolecularDynamics::setMDState  ----- */
-
 void MolecularDynamics::changeMDStateToISE()
 {
     this->_changeMDStateToISE();
@@ -171,7 +164,7 @@ void MolecularDynamics::changeMDStateToTSE()
     this->_changeMDStateToTSE();
 }
 
-void MolecularDynamics::setStatus(const RegistryAnansiMDStatus & aStatus)
+void MolecularDynamics::setStatus(const RegistryAnansiMDStatus aStatus)
 {
     this->_setStatus(aStatus);
 }
