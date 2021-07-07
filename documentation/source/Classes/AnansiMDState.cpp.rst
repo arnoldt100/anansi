@@ -88,6 +88,8 @@ Lifecycle
 
         The copy-move constructor.
 
+        :param const AnansiMDState &other: The other MD state to copy-move construct from.
+
     .. function:: virtual AnansiMDState::~AnansiMDState()=0
 
         The destructor.
