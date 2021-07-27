@@ -101,6 +101,11 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
             std::cout << "The program has undefined behavior in initializing the simulation environment." << std::endl;
             break;
     }
+
+    // TO BE IMPLEMENTED
+    // Query the status of the other processes. If any other processes have failed, then
+    // set this process to fail and change state the terminate simulation environment.
+
     return;
 }
 
@@ -156,9 +161,14 @@ void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
 void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) const
 {
     // Here we create aliases simply for coding format convenience.
+    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
     constexpr auto success = ANANSI::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful;
     constexpr auto fail = ANANSI::RegistryAnansiMDStatus::InitializingInitialConditionFailed;
     constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+
+    // Set the status of the MD object to "in_progress" for initializing the
+    // simulation environment.
+    aMD->setStatus(in_progress);
 
     this->_initializeInitialConditions(aMD);
 
@@ -185,15 +195,25 @@ void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) c
             std::cout << "This state has undefined behavior in initialization the simulation initial conditions environment." << std::endl;
             break;
     }
+    
+    // TO BE IMPLEMENTED
+    // Query the status of the other processes. If any other processes have failed, then
+    // set this process to fail and change state the terminate simulation environment.
+
     return;
 }        // -----  end of method AnansiMDState::initializeInitialConditions  -----
 
 void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
 {
     // Here we create aliases simply for coding format convenience.
+    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
     constexpr auto success = ANANSI::RegistryAnansiMDStatus::PerfomingSimulationSuccessful;
     constexpr auto fail = ANANSI::RegistryAnansiMDStatus::PerfomingSimulationFailed;
     constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+
+    // Set the status of the MD object to "in_progress" for initializing the
+    // simulation environment.
+    aMD->setStatus(in_progress);
 
     this->_performSimulation(aMD);
     
