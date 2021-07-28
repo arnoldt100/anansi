@@ -113,6 +113,7 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
 void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
+    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
     constexpr auto success = ANANSI::RegistryAnansiMDStatus::ProcessingCommandLineSuccessful;
     constexpr auto fail = ANANSI::RegistryAnansiMDStatus::ProcessingCommandLineFailed;
     constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
@@ -153,6 +154,10 @@ void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
             std::cout << "The program has undetermined behavior in processing the commandline environment" << std::endl;
             break;
     }
+
+    // TO BE IMPLEMENTED
+    // Query the status of the other processes. If any other processes have failed, then
+    // set this process to fail and change state the terminate simulation environment.
 
     return;
 }
@@ -240,6 +245,11 @@ void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
             std::cout << "This state has undefined behavoir in performed the simulation environment." << std::endl;
             break;
     }
+    
+    // TO BE IMPLEMENTED
+    // Query the status of the other processes. If any other processes have failed, then
+    // set this process to fail and change state the terminate simulation environment.
+
     return;
 }        // -----  end of method AnansiMDState::performSimulation  -----
 
