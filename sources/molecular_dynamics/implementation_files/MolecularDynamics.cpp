@@ -45,6 +45,21 @@ ANANSI::RegistryAnansiMDStatus MolecularDynamics::status() const
     return this->_status();
 }
 
+ANANSI::RegistryAnansiMDStatus MolecularDynamics::globalStatus() const
+{   
+    return ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+}
+
+bool MolecularDynamics::isISEStatusOkay() const
+{
+	return this->_isISEStatusOkay();
+}
+
+bool MolecularDynamics::isISEGlobalStatusOkay() const
+{   
+    return this->_isISEGlobalStatusOkay();
+}
+
 bool MolecularDynamics::isIICStatusOkay() const
 {
 	return this->_isIICStatusOkay();
@@ -169,6 +184,10 @@ void MolecularDynamics::setStatus(const RegistryAnansiMDStatus aStatus)
     this->_setStatus(aStatus);
 }
 
+void MolecularDynamics::setGlobalISEStatus()
+{
+    this->_setGlobalISEStatus();
+}
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

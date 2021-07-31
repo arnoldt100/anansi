@@ -63,9 +63,6 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
 {
     // Here we create aliases simply for coding format convenience.
     constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
-    constexpr auto success = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
-    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-    constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
 
     // Set the status of the MD object to "in_progress" for initializing the
     // simulation environment.
@@ -74,38 +71,28 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
     // Initialize the simulation environment.
     this->_initializeSimulationEnvironment(aMD,argc,argv);
 
-    // We now query the status of initializing the simulation environment,
-    // We use a switch statement controlled by the status to appropriately
-    // change the MD object state.
-    const auto md_status = aMD->status();
-    switch ( md_status )
+    // We now query the status of initializing the simulation environment.
+    // If the status if initialized simulation environment is okay then change the MD object state
+    // to process command line, otherwise change state to terminating simulation environment.
+    if ( aMD->isISEStatusOkay() )
     {
-        // Case for successful completion of initializing the simulation environment.
-        case success :
-            aMD->changeMDStateToPCL();
-            std::cout << "The program has successfully initialized the simulation environment." << std::endl;
-            break;
-
-        // Case for unsuccessful completion of initializing the simulation
-        // environment.  We change the state to terminating the simulation
-        // environment.
-        case fail :
-            aMD->changeMDStateToTSE();
-            std::cout << "The program has unsuccessfully initialized the simulation environment." << std::endl;
-            break;
-
-        // Case for undefined behavior of initializing the simulation environment.
-        // We change the state to terminating the simulation environment.
-        default :
-            aMD->changeMDStateToTSE();
-            std::cout << "The program has undefined behavior in initializing the simulation environment." << std::endl;
-            break;
+        aMD->changeMDStateToPCL();
+        std::cout << "The program has successfully initialized the simulation environment." << std::endl;
+    }
+    else
+    {
+        aMD->changeMDStateToTSE();
+        std::cout << "The program has unsuccessfully initialized the simulation environment." << std::endl;
     }
 
-    // TO BE IMPLEMENTED
-    // Query the status of the other processes. If any other processes have failed, then
-    // set this process to fail and change state the terminate simulation environment.
-
+    // We now query the global status of initializing the simulation environment,
+    // If the status if initialized simulation environment is not okay then change the MD object state
+    // change state to terminating simulation environment.
+    if ( ! aMD->isISEGlobalStatusOkay() )
+    {
+        aMD->changeMDStateToTSE();
+        std::cout << "Some of the other processes aren't in a satisfactory state." << std::endl;
+    }
     return;
 }
 

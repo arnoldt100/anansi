@@ -36,9 +36,15 @@ class MolecularDynamics
 
         void stud_function(std::string const & message) const;
 
+        bool isISEStatusOkay() const;
+
+        bool isISEGlobalStatusOkay() const;
+
         bool isIICStatusOkay() const;
 
         ANANSI::RegistryAnansiMDStatus status() const;
+
+        ANANSI::RegistryAnansiMDStatus globalStatus() const;
         
         bool isHelpOnCommandLine() const;
 
@@ -54,6 +60,7 @@ class MolecularDynamics
         void initializeMpiEnvironment(int const & argc, char const *const *const & argv);
 
         void enableCommunication();
+
 
         // This group of functions processes the command line and sets the
         // simulation parameters.
@@ -82,8 +89,9 @@ class MolecularDynamics
         void changeMDStateToPS();
         void changeMDStateToTSE();
 
-        // This group of functions changes the state of the MD object.
+        // This group of functions changes the status of the MD object.
         void setStatus(const RegistryAnansiMDStatus aStatus);
+        void setGlobalISEStatus();
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -103,6 +111,10 @@ class MolecularDynamics
         virtual ANANSI::RegistryAnansiMDStatus _status() const;
 
         virtual bool _isHelpOnCommandLine() const=0;
+
+        virtual bool _isISEStatusOkay() const=0;
+
+        virtual bool _isISEGlobalStatusOkay() const=0;
 
         virtual bool _isIICStatusOkay() const=0;
 
@@ -154,6 +166,7 @@ class MolecularDynamics
 
         // Set the status of the MD object.
         virtual void _setStatus(const RegistryAnansiMDStatus aStatus)=0;
+        virtual void _setGlobalISEStatus()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 

@@ -164,3 +164,8 @@ Data Members
     .. member:: ANANSI::RegistryAnansiMDStatus _mdStatus
     
         Stores the status of the AnansiMolecularDynamics object.
+
+    .. member:: ANANSI::RegistryAnansiMDStatus _mdGlobalStatus
+    
+        Stores the global status of the AnansiMolecularDynamics object. The global MD status
+        is a the global reduction of the status of all MD objects in the communicator group.

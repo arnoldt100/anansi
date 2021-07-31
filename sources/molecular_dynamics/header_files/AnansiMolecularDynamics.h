@@ -56,6 +56,10 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         bool _isHelpOnCommandLine() const final override;
 
+        bool _isISEStatusOkay() const final override;
+
+        bool _isISEGlobalStatusOkay() const final override;
+
         bool _isIICStatusOkay() const final override;
 
         /* ====================  MUTATORS      ======================================= */
@@ -106,6 +110,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void _changeMDStateToTSE() final override;
 
         void _setStatus(const RegistryAnansiMDStatus aStatus) final override;
+        void _setGlobalISEStatus() final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments _commandLineArguments;
@@ -114,6 +119,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         std::unique_ptr<COMMUNICATOR::MPIEnvironment> _MpiEnvironment;
         std::unique_ptr<ANANSI::AnansiMDState> _mdState;
         ANANSI::RegistryAnansiMDStatus _mdStatus;
+        ANANSI::RegistryAnansiMDStatus _mdGlobalStatus;
 
         /* ====================  STATIC        ======================================= */
 

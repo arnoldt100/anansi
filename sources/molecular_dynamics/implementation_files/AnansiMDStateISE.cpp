@@ -108,8 +108,12 @@ void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const
     // Enable MPI communication for the aMD object.
     aMD->enableCommunication();
 
+    // Set the ISE status of this process.
     constexpr auto my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
     aMD->setStatus(my_status);
+
+    // Set the ISE global status for all processes.
+    aMD->setGlobalISEStatus();
 
     return;
 }

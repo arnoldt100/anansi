@@ -42,6 +42,16 @@ namespace ANANSI
     }; /* -----  end of enum class RegistryAnansiMDStatus  ----- */
 
 
+    class ISEReductionFunctor
+    {
+        public:
+           ISEReductionFunctor() {};
+
+
+           RegistryAnansiMDStatus operator()(void* invec, void* inoutvec, int* len ){
+               return RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+           };
+    };
 }; /* namespace ANANSI */
 
 #endif   // ----- #ifndef RegistryAnansiMDStatus_INC  ----- 

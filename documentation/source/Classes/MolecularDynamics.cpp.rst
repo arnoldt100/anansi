@@ -84,7 +84,23 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    .. function:: bool isIICStatusOkay() const;
+    .. function:: bool isISEStatusOkay() const
+
+        Implements the interface for checking if the ISEState of the MD object is
+        in a satisfactory status. If the MD state is in a satisfactory status then
+        true is returned, otherwise false is returned.
+        
+        :rtype: bool
+
+    ..function:: bool isISEGloalStatusOkay() const
+
+        Implements the interface for checking if the global status of the ISEState of the MD object
+        is in a satisfactory status. If the MD state is in a satisfactory status then true is
+        returned, otherwise false is returned.
+        
+        :rtype: bool
+
+    .. function:: bool isIICStatusOkay() const
 
         Implements the interface for checking if the IICState of the MD object is
         in a satisfactory status. If the MD state is ina satisfactory status then
@@ -95,6 +111,12 @@ Accessors
     .. function:: ANANSI::RegistryAnansiMDStatus status() const
 
         Returns the status of the MD object
+
+        :rtype: ANANSI::RegistryAnansiMDStatus
+
+    .. function:: ANANSI::RegistryAnansiMDStatus globalStatus() const
+
+        Returns the global status of the MD objects in the communicator group.
 
         :rtype: ANANSI::RegistryAnansiMDStatus
 
@@ -269,13 +291,21 @@ Mutators
 
         :rtype: void
 
-    **This function changes the status of the MD object.**
+    **These function change the status of the MD object.**
 
     .. function:: void MolecularDynamics::setStatus(const RegistryAnansiMDStatus aStatus)
 
         Changes the status of the MD simulation. The derived class provides the implementation.
 
         :param const RegistryAnansiMDStatus & aStatus: The new status to set the simulation to.
+        :rtype: void
+
+    .. function:: void MolecularDynamics::setGlobalISEStatus()
+
+        Changes the global status of the MD simulation. All processes in the communication group
+        must call this method. The status of each MD object is globally reduced, and the result of
+        the reduction is distributed to all processes. If any MD object has an ISE status of failed,
+        then all objects are set to a global status of ISE fail.  
 
 .. -----------------
 .. Protected Members
