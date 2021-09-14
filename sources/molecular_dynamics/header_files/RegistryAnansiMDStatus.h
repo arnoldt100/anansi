@@ -47,7 +47,6 @@ namespace ANANSI
         public:
            ISEReductionFunctor() {};
 
-
            RegistryAnansiMDStatus operator()(void* invec, void* inoutvec, int* len ){
                return RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
            };
