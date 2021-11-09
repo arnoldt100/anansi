@@ -29,8 +29,8 @@
     # the build type.                                    -
     #                                                    -
     #-----------------------------------------------------
-    set_target_properties(anansi,
-                          PROPERTIES target_build ${ANANSI_MD})
+    # set_target_properties(anansi,
+    #                       PROPERTIES target_build ${ANANSI_MD})
 
     #-----------------------------------------------------
     # Make available the project cmake modules.          -
@@ -97,17 +97,29 @@ set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 # target.                                            -
 #                                                    -
 #-----------------------------------------------------
-enable_building_mouseion("${anansi_top_level}",
-                         "${anansi_minimum_cmake_version}" , 
-                         "${anansi_cxx_standard}",  
-                         "${anansi_cmake_c_compiler}", 
-                         "${anansi_cmake_cxx_compiler}", 
-                         "${anansi_install_prefix}",
-                         "${anansi_install_bin_directory}",
+enable_building_mouseion("${anansi_top_level}"
+                         "${anansi_minimum_cmake_version}" 
+                         "${anansi_cxx_standard}"  
+                         "${anansi_cmake_c_compiler}" 
+                         "${anansi_cmake_cxx_compiler}" 
+                         "${anansi_install_prefix}"
+                         "${anansi_install_bin_directory}"
                          "${anansi_install_include_directory}"
-                         "${anansi_install_lib_directory}",
-                         "${CURRENT_LIST_DIR}/sources/moiseion",
+                         "${anansi_install_lib_directory}"
+                         "${anansi_top_level}/sources/mouseion"
                          "$ENV{ANANSI_BOOST_TOP_LEVEL}")
+
+                     #    set(ENV{MOUSEION_MINIMUM_CMAKE_VERSION} ${anansi_minimum_cmake_version}) 
+                     #    set(ENV{MOUSEION_CXX_STANDARD} ${anansi_cxx_standard})
+                     #    set(ENV{MOUSEION_CMAKE_C_COMPILER} ${anansi_cmake_c_compiler})
+                     #    set(ENV{MOUSEION_CMAKE_CXX_COMPILER} ${anansi_cmake_cxx_compiler})
+                     #    set(ENV{MOUSEION_INSTALL_PREFIX} ${anansi_install_prefix})
+                     #    set(ENV{MOUSEION_INSTALL_BIN_DIRECTORY} ${anansi_install_bin_directory}) 
+                     #    set(ENV{MOUSEION_INSTALL_INCLUDE_DIRECTORY} ${anansi_install_include_directory})
+                     #    set(ENV{MOUSEION_INSTALL_LIB_DIRECTORY} ${anansi_install_lib_directory})
+                     #    set(ENV{MOUSEION_LOG_FILE} "mouseion_log.txt")
+                     #    set(ENV{MOUSEION_TOP_LEVEL} "${anansi_top_level}/sources/mouseion")
+                     #    set(ENV{MOUSEION_BOOST_TOP_LEVEL} $ENV{ANANSI_BOOST_TOP_LEVEL})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
