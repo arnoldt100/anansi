@@ -131,10 +131,10 @@ enable_building_simulation_parameters_library( "${anansi_install_lib_directory}"
 # header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
-set(file_parsers_install_lib_directory ${anansi_install_lib_directory})
-set(file_parsers_install_include_directory ${anansi_install_include_directory})
-set(file_parsers_install_bin_directory ${anansi_install_bin_directory} )
-set(file_parsers_cxx_standard ${anansi_cxx_standard} )
+enable_building_file_parsers_library( "${anansi_install_lib_directory}"
+                                      "${anansi_install_include_directory}"
+                                      "${anansi_install_bin_directory}" 
+                                      "${anansi_cxx_standard}" )
 
 #-----------------------------------------------------
 # This section permits use to find the header files  -
@@ -154,12 +154,6 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/mouseion)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
-
-# TODO 
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/force_fields)
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/integrators)
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -
