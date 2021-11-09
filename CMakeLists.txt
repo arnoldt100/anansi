@@ -25,21 +25,15 @@
     project(anansi)
 
     #-----------------------------------------------------
-    # Set for the target anansi the target property      -
-    # the build type.                                    -
-    #                                                    -
-    #-----------------------------------------------------
-    # set_target_properties(anansi,
-    #                       PROPERTIES target_build ${ANANSI_MD})
-
-    #-----------------------------------------------------
     # Make available the project cmake modules.          -
     #                                                    -
     #-----------------------------------------------------
     include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
     include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_boost.cmake )
     include( $ENV{ANANSI_CMAKE_MODULE_PATH}/enable_compile_warnings.cmake )
-    include( ${CMAKE_CURRENT_LIST_DIR}/sources/mouseion/cmake_macros_and_functions/mouseion_library.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/mouseion/cmake_macros_and_functions/mouseion_library.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments/cmake_macros_and_functions/command_line_arguments.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters/cmake_macros_and_functions/simulation_parameters.cmake)
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -110,15 +104,15 @@ enable_building_mouseion("${anansi_top_level}"
                          "$ENV{ANANSI_BOOST_TOP_LEVEL}")
 
 #-----------------------------------------------------
-# Here we define variables which indicate where      -
-# to install the command_line_arguments libraries,   -
-# header files, and associated binaries.             -
+# Call the macro that enables building of command    -
+# line arguments target.                             -
 #                                                    -
 #-----------------------------------------------------
-set(command_line_arguments_install_lib_directory ${anansi_install_lib_directory})
-set(command_line_arguments_install_include_directory ${anansi_install_include_directory})
-set(command_line_arguments_install_bin_directory ${anansi_install_bin_directory} )
-set(command_line_arguments_cxx_standard ${anansi_cxx_standard} )
+enable_building_command_line_arguments_library( "${anansi_install_lib_directory}"
+                                                "${anansi_install_include_directory}"
+                                                "${anansi_install_bin_directory}" 
+                                                "${anansi_cxx_standard}")
+
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -126,10 +120,10 @@ set(command_line_arguments_cxx_standard ${anansi_cxx_standard} )
 # header files, and associated binaries.             -
 #                                                    -
 #-----------------------------------------------------
-set(simulation_parameters_install_lib_directory ${anansi_install_lib_directory})
-set(simulation_parameters_install_include_directory ${anansi_install_include_directory})
-set(simulation_parameters_install_bin_directory ${anansi_install_bin_directory} )
-set(simulation_parameters_cxx_standard ${anansi_cxx_standard} )
+enable_building_simulation_parameters_library( "${anansi_install_lib_directory}"
+                                               "${anansi_install_include_directory}"
+                                               "${anansi_install_bin_directory}" 
+                                               "${anansi_cxx_standard}" )
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -161,10 +155,10 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
 
+# TODO 
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/force_fields)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/neighbor_lists)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/integrators)
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_topologies)
 
 #-----------------------------------------------------

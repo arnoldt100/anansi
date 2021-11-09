@@ -17,7 +17,14 @@
 # 
 #  Arguments: top_level - The top level of the main CmakeLists.txt file.
 #             minimum_cmake_version - The minumum cmake version for building mouseion
-#             
+#             cmake_c_compiler - The C compiler for building c sources
+#             cmake_cxx_compiler - The C++ compiler for building C++ sources
+#             install_prefix - The root location to install the library.
+#             install_bin_directory - The location to install binaraies
+#             install_include_directory - The location to install header files
+#             install_lib_directory - The location to install the actual library
+#             mouseion_top_level - The top level of the mouseion package
+#             boost_top_level - The top level of the boost package
 # =====================================================================================
 macro (enable_building_mouseion top_level
        minimum_cmake_version
