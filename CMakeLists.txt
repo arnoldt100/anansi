@@ -39,7 +39,7 @@
     include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
     include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_boost.cmake )
     include( $ENV{ANANSI_CMAKE_MODULE_PATH}/enable_compile_warnings.cmake )
-    include( $ENV{ANANSI_CMAKE_MODULE_PATH}/mouseion_library.cmake )
+    include( ${CMAKE_CURRENT_LIST_DIR}/sources/mouseion/cmake_macros_and_functions/mouseion_library.cmake )
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -106,20 +106,8 @@ enable_building_mouseion("${anansi_top_level}"
                          "${anansi_install_bin_directory}"
                          "${anansi_install_include_directory}"
                          "${anansi_install_lib_directory}"
-                         "${anansi_top_level}/sources/mouseion"
+                         "${CMAKE_CURRENT_LIST_DIR}/sources/mouseion"
                          "$ENV{ANANSI_BOOST_TOP_LEVEL}")
-
-                     #    set(ENV{MOUSEION_MINIMUM_CMAKE_VERSION} ${anansi_minimum_cmake_version}) 
-                     #    set(ENV{MOUSEION_CXX_STANDARD} ${anansi_cxx_standard})
-                     #    set(ENV{MOUSEION_CMAKE_C_COMPILER} ${anansi_cmake_c_compiler})
-                     #    set(ENV{MOUSEION_CMAKE_CXX_COMPILER} ${anansi_cmake_cxx_compiler})
-                     #    set(ENV{MOUSEION_INSTALL_PREFIX} ${anansi_install_prefix})
-                     #    set(ENV{MOUSEION_INSTALL_BIN_DIRECTORY} ${anansi_install_bin_directory}) 
-                     #    set(ENV{MOUSEION_INSTALL_INCLUDE_DIRECTORY} ${anansi_install_include_directory})
-                     #    set(ENV{MOUSEION_INSTALL_LIB_DIRECTORY} ${anansi_install_lib_directory})
-                     #    set(ENV{MOUSEION_LOG_FILE} "mouseion_log.txt")
-                     #    set(ENV{MOUSEION_TOP_LEVEL} "${anansi_top_level}/sources/mouseion")
-                     #    set(ENV{MOUSEION_BOOST_TOP_LEVEL} $ENV{ANANSI_BOOST_TOP_LEVEL})
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
