@@ -34,6 +34,7 @@
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/mouseion/cmake_macros_and_functions/mouseion_library.cmake )
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments/cmake_macros_and_functions/command_line_arguments.cmake)
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters/cmake_macros_and_functions/simulation_parameters.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers/cmake_macros_and_functions/file_parsers.cmake)
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
