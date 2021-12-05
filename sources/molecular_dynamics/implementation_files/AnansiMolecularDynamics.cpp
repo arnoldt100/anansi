@@ -322,8 +322,7 @@ AnansiMolecularDynamics::_setGlobalISEStatus()
     ISEReductionFunctor my_reduction_functor;
 
     this->_mdGlobalStatus = 
-        COMMUNICATOR::getGlobalStatusCustomReduction<RegistryAnansiMDStatus,ISEReductionFunctor>(my_status,
-                                                              my_reduction_functor,
+        COMMUNICATOR::getGlobalStatusCustomReduction<RegistryAnansiMDStatus>(my_status,
                                                               *(this->_MpiWorldCommunicator));
     return;
 }
