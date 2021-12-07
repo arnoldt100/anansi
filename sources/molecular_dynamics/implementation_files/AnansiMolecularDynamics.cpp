@@ -38,8 +38,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
     _mdState(),
-    _mdStatus(RegistryAnansiMDStatus::Undefined),
-    _mdGlobalStatus(RegistryAnansiMDStatus::Undefined)
+    _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
+    _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     this->changeMDStateToISE();
     return;
@@ -77,7 +77,7 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-ANANSI::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
+COMMUNICATOR::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
 {
     return this->_mdStatus;
 }
@@ -91,11 +91,11 @@ bool AnansiMolecularDynamics::_isHelpOnCommandLine() const
 bool AnansiMolecularDynamics::_isISEStatusOkay() const
 {
 	bool ret_value=false;
-	if (this->status() == RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
+	if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
 	{
 		ret_value = true;
 	}
-    else if ( this->status() == RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
+    else if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
     {
 		ret_value = true;
 	}
@@ -105,11 +105,11 @@ bool AnansiMolecularDynamics::_isISEStatusOkay() const
 bool AnansiMolecularDynamics::_isISEGlobalStatusOkay() const
 {
 	bool ret_value=false;
-    if (this->_mdGlobalStatus == RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
+    if (this->_mdGlobalStatus == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
 	{
 		ret_value = true;
 	}
-    else if ( this->_mdGlobalStatus == RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
+    else if ( this->_mdGlobalStatus == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
     {
 		ret_value = true;
 	}
@@ -119,15 +119,15 @@ bool AnansiMolecularDynamics::_isISEGlobalStatusOkay() const
 bool AnansiMolecularDynamics::_isIICStatusOkay() const
 {
 	bool ret_value=false;
-	if ( this->status() == RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
+	if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
     {
 		ret_value = true;
 	}
-	else if (this->status() == RegistryAnansiMDStatus::InitializingInitialConditionInProgress )
+	else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionInProgress )
 	{
 		ret_value = true;
 	}
-    else if (this->status() == RegistryAnansiMDStatus::InitializingInitialConditionSuccessful)
+    else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful)
     {
 		ret_value = true;
     }
@@ -181,15 +181,15 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     // Initialize the variable "my_status" to failed. The variable will track the status of reading
     // in the simulation control file. At the end of this method, we will set the status of the md
     // simulation to "my_status".
-    auto my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+    auto my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
 
     // The control file option is mandatory. If the option is not present, then we set the MD status
-    // as "RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
+    // as "COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
     // Otherwise we process/parse the control file.
     const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
     if (file_name == SimulationParameters::OPTION_NOT_FOUND )
     {
-        my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
         this->setStatus(my_status);
         return;
     }
@@ -207,11 +207,11 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     try 
     {
         control_file->readFile();
-        my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
+        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
     }
     catch ( const std::exception & my_error ) 
     {
-        my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
     }
 
     this->setStatus(my_status);
@@ -307,7 +307,7 @@ AnansiMolecularDynamics::_changeMDStateToTSE()
 }
 
 void 
-AnansiMolecularDynamics::_setStatus(const RegistryAnansiMDStatus aStatus)
+AnansiMolecularDynamics::_setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
 {
     this->_mdStatus = aStatus;
     return;
@@ -322,8 +322,8 @@ AnansiMolecularDynamics::_setGlobalISEStatus()
     ISEReductionFunctor my_reduction_functor;
 
     this->_mdGlobalStatus = 
-        COMMUNICATOR::getGlobalStatusCustomReduction<RegistryAnansiMDStatus>(my_status,
-                                                              *(this->_MpiWorldCommunicator));
+        COMMUNICATOR::getGlobalStatusCustomReduction<COMMUNICATOR::RegistryAnansiMDStatus>(my_status,
+                                                     *(this->_MpiWorldCommunicator));
     return;
 }
 

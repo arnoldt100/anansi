@@ -62,7 +62,7 @@ void
 AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
 {
     // Here we create aliases simply for coding format convenience.
-    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
+    constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
 
     // Set the status of the MD object to "in_progress" for initializing the
     // simulation environment.
@@ -100,10 +100,10 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
 void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
-    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
-    constexpr auto success = ANANSI::RegistryAnansiMDStatus::ProcessingCommandLineSuccessful;
-    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::ProcessingCommandLineFailed;
-    constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+    constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
+    constexpr auto success = COMMUNICATOR::RegistryAnansiMDStatus::ProcessingCommandLineSuccessful;
+    constexpr auto fail = COMMUNICATOR::RegistryAnansiMDStatus::ProcessingCommandLineFailed;
+    constexpr auto tse = COMMUNICATOR::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
 
     this->_processCommandLine(aMD);
 
@@ -153,10 +153,10 @@ void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
 void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) const
 {
     // Here we create aliases simply for coding format convenience.
-    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
-    constexpr auto success = ANANSI::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful;
-    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::InitializingInitialConditionFailed;
-    constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+    constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
+    constexpr auto success = COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful;
+    constexpr auto fail = COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionFailed;
+    constexpr auto tse = COMMUNICATOR::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
 
     // Set the status of the MD object to "in_progress" for initializing the
     // simulation environment.
@@ -198,10 +198,10 @@ void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) c
 void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
 {
     // Here we create aliases simply for coding format convenience.
-    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
-    constexpr auto success = ANANSI::RegistryAnansiMDStatus::PerfomingSimulationSuccessful;
-    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::PerfomingSimulationFailed;
-    constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+    constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
+    constexpr auto success = COMMUNICATOR::RegistryAnansiMDStatus::PerfomingSimulationSuccessful;
+    constexpr auto fail = COMMUNICATOR::RegistryAnansiMDStatus::PerfomingSimulationFailed;
+    constexpr auto tse = COMMUNICATOR::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
 
     // Set the status of the MD object to "in_progress" for initializing the
     // simulation environment.

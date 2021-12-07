@@ -40,14 +40,14 @@ void MolecularDynamics::stud_function(std::string const & message) const
     std::cout << "Stud function: " << message << std::endl;
 }
 
-ANANSI::RegistryAnansiMDStatus MolecularDynamics::status() const
+COMMUNICATOR::RegistryAnansiMDStatus MolecularDynamics::status() const
 {   
     return this->_status();
 }
 
-ANANSI::RegistryAnansiMDStatus MolecularDynamics::globalStatus() const
+COMMUNICATOR::RegistryAnansiMDStatus MolecularDynamics::globalStatus() const
 {   
-    return ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+    return COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
 }
 
 bool MolecularDynamics::isISEStatusOkay() const
@@ -210,7 +210,7 @@ void MolecularDynamics::setGlobalISEStatus()
 
 //============================= ACCESSORS ====================================
 
-ANANSI::RegistryAnansiMDStatus MolecularDynamics::_status() const
+COMMUNICATOR::RegistryAnansiMDStatus MolecularDynamics::_status() const
 {
     return RegistryAnansiMDStatus::Undefined;
 }

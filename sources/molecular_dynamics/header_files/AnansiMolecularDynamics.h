@@ -52,7 +52,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
     private:
         /* ====================  ACCESSORS     ======================================= */
 
-        ANANSI::RegistryAnansiMDStatus _status() const final override;
+        COMMUNICATOR::RegistryAnansiMDStatus _status() const final override;
 
         bool _isHelpOnCommandLine() const final override;
 
@@ -109,7 +109,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void _changeMDStateToPS() final override;
         void _changeMDStateToTSE() final override;
 
-        void _setStatus(const RegistryAnansiMDStatus aStatus) final override;
+        void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
         void _setGlobalISEStatus() final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
@@ -118,8 +118,8 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
         std::unique_ptr<COMMUNICATOR::MPIEnvironment> _MpiEnvironment;
         std::unique_ptr<ANANSI::AnansiMDState> _mdState;
-        ANANSI::RegistryAnansiMDStatus _mdStatus;
-        ANANSI::RegistryAnansiMDStatus _mdGlobalStatus;
+        COMMUNICATOR::RegistryAnansiMDStatus _mdStatus;
+        COMMUNICATOR::RegistryAnansiMDStatus _mdGlobalStatus;
 
         /* ====================  STATIC        ======================================= */
 

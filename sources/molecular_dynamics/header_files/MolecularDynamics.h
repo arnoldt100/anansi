@@ -42,9 +42,9 @@ class MolecularDynamics
 
         bool isIICStatusOkay() const;
 
-        ANANSI::RegistryAnansiMDStatus status() const;
+        COMMUNICATOR::RegistryAnansiMDStatus status() const;
 
-        ANANSI::RegistryAnansiMDStatus globalStatus() const;
+        COMMUNICATOR::RegistryAnansiMDStatus globalStatus() const;
         
         bool isHelpOnCommandLine() const;
 
@@ -90,7 +90,7 @@ class MolecularDynamics
         void changeMDStateToTSE();
 
         // This group of functions changes the status of the MD object.
-        void setStatus(const RegistryAnansiMDStatus aStatus);
+        void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
         void setGlobalISEStatus();
 
         /* ====================  OPERATORS     ======================================= */
@@ -108,7 +108,7 @@ class MolecularDynamics
 
     private:
         /* ====================  ACCESSORS     ======================================= */
-        virtual ANANSI::RegistryAnansiMDStatus _status() const;
+        virtual COMMUNICATOR::RegistryAnansiMDStatus _status() const;
 
         virtual bool _isHelpOnCommandLine() const=0;
 
@@ -165,7 +165,7 @@ class MolecularDynamics
         virtual void _changeMDStateToTSE()=0;
 
         // Set the status of the MD object.
-        virtual void _setStatus(const RegistryAnansiMDStatus aStatus)=0;
+        virtual void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;
         virtual void _setGlobalISEStatus()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
