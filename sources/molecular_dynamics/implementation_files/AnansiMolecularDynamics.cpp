@@ -319,7 +319,7 @@ AnansiMolecularDynamics::_setGlobalISEStatus()
     // We do a custom all reduction of the ISE status to get the
     // global ISE status. 
     const auto my_status = this->_mdStatus;
-    ISEReductionFunctor my_reduction_functor;
+    COMMUNICATOR::ISEReductionFunctor my_reduction_functor;
 
     this->_mdGlobalStatus = 
         COMMUNICATOR::getGlobalStatusCustomReduction<COMMUNICATOR::RegistryAnansiMDStatus>(my_status,

@@ -179,7 +179,7 @@ void MolecularDynamics::changeMDStateToTSE()
     this->_changeMDStateToTSE();
 }
 
-void MolecularDynamics::setStatus(const RegistryAnansiMDStatus aStatus)
+void MolecularDynamics::setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
 {
     this->_setStatus(aStatus);
 }
@@ -212,7 +212,7 @@ void MolecularDynamics::setGlobalISEStatus()
 
 COMMUNICATOR::RegistryAnansiMDStatus MolecularDynamics::_status() const
 {
-    return RegistryAnansiMDStatus::Undefined;
+    return COMMUNICATOR::RegistryAnansiMDStatus::Undefined;
 }
 
 //============================= MUTATORS =====================================

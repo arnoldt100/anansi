@@ -104,14 +104,14 @@ void AnansiMDStatePCL::_processCommandLine(MolecularDynamics * const aMD) const
     // If help was processed on the command line, then change state to terminate
     // simulation environment so as to not do any more of the MD algorithm. One
     // simply wants to orderly terminate the simulation.
-    auto my_status = RegistryAnansiMDStatus::Undefined;
+    auto my_status = COMMUNICATOR::RegistryAnansiMDStatus::Undefined;
     if (aMD->isHelpOnCommandLine())
     {
-        my_status = RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+        my_status = COMMUNICATOR::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
     }
     else
     {
-        my_status = RegistryAnansiMDStatus::ProcessingCommandLineSuccessful;
+        my_status = COMMUNICATOR::RegistryAnansiMDStatus::ProcessingCommandLineSuccessful;
     }
     aMD->setStatus(my_status);
     return;

@@ -109,7 +109,7 @@ void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const
     aMD->enableCommunication();
 
     // Set the ISE status of this process.
-    constexpr auto my_status = RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
+    constexpr auto my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
     aMD->setStatus(my_status);
 
     // Set the ISE global status for all processes.
