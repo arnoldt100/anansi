@@ -86,6 +86,7 @@
         header_files/AnansiMDStateIIC.h
         header_files/AnansiMDStatePS.h
         header_files/AnansiMDStateTSE.h
+        header_files/ISEStatus.h
         header_files/MolecularDynamics.h 
         header_files/MolecularDynamicsFactory.h 
         header_files/AnansiMolecularDynamicsFactory.h)
@@ -104,6 +105,7 @@
         implementation_files/AnansiMDStateIIC.cpp
         implementation_files/AnansiMDStatePS.cpp
         implementation_files/AnansiMDStateTSE.cpp
+        implementation_files/ISEStatus.cpp
         implementation_files/MolecularDynamics.cpp
         implementation_files/MolecularDynamicsFactory.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp)
