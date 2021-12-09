@@ -1,6 +1,6 @@
 .. default-domain:: cpp
 
-.. namespace:: ANANSI
+.. namespace:: COMMUNICATOR
 
 ####################################
 RegistryAnansiMDStatus Documentation

@@ -99,7 +99,7 @@ Operators
 
         The copy assignment operator is deleted.
 
-    .. function:: MPIEnvironment& MPIEnvironment::operator=(MPIEnvironment &&other)=delete;
+    .. function:: MPIEnvironment& MPIEnvironment::operator=(MPIEnvironment &&other)=delete
 
         The assignment-move operator is deleted.
 
