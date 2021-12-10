@@ -29,6 +29,8 @@ namespace ANANSI
             /* ====================  LIFECYCLE     ======================================= */
             AnansiMolecularDynamicsFactory(); /* constructor      */
 
+            AnansiMolecularDynamicsFactory(int const argc, char const * const * const & argv ); /* constructor      */
+
             AnansiMolecularDynamicsFactory(const AnansiMolecularDynamicsFactory &other )=delete;
 
             AnansiMolecularDynamicsFactory(AnansiMolecularDynamicsFactory && other )=delete;
@@ -59,6 +61,8 @@ namespace ANANSI
             std::shared_ptr<MolecularDynamics> _create_shared_ptr() final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
+            int argc_;
+            char** argv_ptr_;
 
     }; /* -----  end of class AnansiMolecularDynamicsFactory  ----- */
 };		/* -----  end of namespace ANANSI  ----- */
