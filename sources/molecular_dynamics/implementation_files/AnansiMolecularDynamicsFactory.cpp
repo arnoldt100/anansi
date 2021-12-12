@@ -46,7 +46,7 @@ AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory(int const argc, c
 {
     if (argv != nullptr )
     {
-        STRING_UTILITIES::copy_2d_char_array(argc,argv,this->_argv_ptr_);
+        STRING_UTILITIES::copy_2d_char_array(argc,argv,this->argv_ptr_);
     }
     return; 
 }
@@ -96,18 +96,9 @@ AnansiMolecularDynamicsFactory::~AnansiMolecularDynamicsFactory ()
 
 //============================= ACCESSORS ====================================
 
-MolecularDynamics* AnansiMolecularDynamicsFactory::_create() 
-{
-    // Instantiate a pointer to the AnansiMolecularDynamics.
-    MEMORY_MANAGEMENT::Pointer<AnansiMolecularDynamics> md_pointer_factory;
-    AnansiMolecularDynamics* my_md = md_pointer_factory.createPointer();
-
-    return my_md;
-}
-
 std::shared_ptr<MolecularDynamics> AnansiMolecularDynamicsFactory::_create_shared_ptr()
 {
-    std::shared_ptr<MolecularDynamics> aMD = std::make_shared<AnansiMolecularDynamics>();
+    std::shared_ptr<MolecularDynamics> aMD = std::make_shared<AnansiMolecularDynamics>(this->argc_,this->argv_ptr_);
     return aMD;
 }
 //============================= MUTATORS =====================================

@@ -22,6 +22,8 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         AnansiMolecularDynamics ();  /* constructor */
 
+        AnansiMolecularDynamics (int const & argc, char const *const *const & argv);  /* constructor */
+
         ~AnansiMolecularDynamics (); /* destructor */
 
         AnansiMolecularDynamics(AnansiMolecularDynamics const & other) = delete; // Avoid implicit of copying the

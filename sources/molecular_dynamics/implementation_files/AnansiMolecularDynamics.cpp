@@ -45,6 +45,21 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     return;
 }
 
+AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *const *const & argv) :
+    MolecularDynamics(),
+    _commandLineArguments(),
+    _simulationParameters(),
+    _MpiWorldCommunicator(),
+    _MpiEnvironment(),
+    _mdState(),
+    _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
+    _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+{
+    return;
+}
+
+
+
 AnansiMolecularDynamics::~AnansiMolecularDynamics()
 {
     // Disable the communication.

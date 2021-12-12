@@ -56,8 +56,6 @@ namespace ANANSI
 
         private:
             /* ====================  METHODS       ======================================= */
-            MolecularDynamics* _create() final override;
-
             std::shared_ptr<MolecularDynamics> _create_shared_ptr() final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
