@@ -51,7 +51,7 @@ MolecularDynamicsFactory::~MolecularDynamicsFactory()
 //============================= ACCESSORS ====================================
 std::shared_ptr<MolecularDynamics> MolecularDynamicsFactory::create_shared_ptr()
 {
-    return this->_create_shared_ptr();
+    return this->create_shared_ptr_();
 }
 
 //============================= MUTATORS =====================================

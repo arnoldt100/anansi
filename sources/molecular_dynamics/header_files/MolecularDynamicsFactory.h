@@ -52,7 +52,7 @@ namespace ANANSI
 
         private:
             /* ====================  ACCESSORS     ======================================= */
-            virtual std::shared_ptr<MolecularDynamics> _create_shared_ptr()=0;
+            virtual std::shared_ptr<MolecularDynamics> create_shared_ptr_()=0;
 
             /* ====================  MUTATORS      ======================================= */
 
