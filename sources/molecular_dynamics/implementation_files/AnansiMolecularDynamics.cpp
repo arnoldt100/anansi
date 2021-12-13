@@ -171,6 +171,7 @@ void AnansiMolecularDynamics::_initializeMpiEnvironment()
 {
     int my_argc=0;
     char** my_argv_ptr=nullptr;
+
     this->_commandLineArguments.reformCommandLineArguments(my_argc,my_argv_ptr);
 
 	this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(my_argc,my_argv_ptr);
