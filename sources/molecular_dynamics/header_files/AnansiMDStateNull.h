@@ -1,5 +1,5 @@
-#ifndef  AnansiMDStateNull
-#define  AnansiMDStateNull
+#ifndef  AnansiMDStateNull_INC
+#define  AnansiMDStateNull_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -56,4 +56,4 @@ namespace ANANSI
 
 }; /* namespace ANANSI */
 
-#endif   /* ----- #ifndef AnansiMDStateNull  ----- */
+#endif   /* ----- #ifndef AnansiMDStateNull_INC  ----- */
