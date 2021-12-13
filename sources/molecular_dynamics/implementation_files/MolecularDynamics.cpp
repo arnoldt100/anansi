@@ -88,22 +88,16 @@ MolecularDynamics::disableCommunication()
 }		/* -----  end of method MolecularDynamics::disableCommunication  ----- */
 
 
-void MolecularDynamics::initializeSimulationEnvironment( int const & argc, char const *const *const & argv )
+void MolecularDynamics::initializeSimulationEnvironment()
 {
-	this->_initializeSimulationEnvironment(argc,argv);
+	this->_initializeSimulationEnvironment();
     return;
 }       /* -----  end of method MolecularDynamics::initializeSimulationEnvironment  ----- */
 
 
-void MolecularDynamics::saveCommandLineArguments ( int const & argc, char const *const *const & argv)
+void MolecularDynamics::initializeMpiEnvironment()
 {
-    this->_saveCommandLineArguments(argc,argv);
-    return;
-}		/* -----  end of method MolecularDynamics::saveCommandLineArguments  ----- */
-
-void MolecularDynamics::initializeMpiEnvironment(int const & argc, char const *const *const & argv)
-{
-    this->_initializeMpiEnvironment(argc,argv);
+    this->_initializeMpiEnvironment();
     return;
 }       /* -----  end of method MolecularDynamics::initializeMpiEnvironment  ----- */
 

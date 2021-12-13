@@ -59,7 +59,7 @@ AnansiMDState::~AnansiMDState()
 
 
 void 
-AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
+AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
     constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
@@ -69,7 +69,7 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
     aMD->setStatus(in_progress);
 
     // Initialize the simulation environment.
-    this->_initializeSimulationEnvironment(aMD,argc,argv);
+    this->_initializeSimulationEnvironment(aMD);
 
     // We now query the status of initializing the simulation environment.
     // If the status if initialized simulation environment is okay then change the MD object state
@@ -289,7 +289,7 @@ AnansiMDState& AnansiMDState::operator=( AnansiMDState && other )
 
 //============================= ACCESSORS ====================================
 
-void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD,int const & argc, char const *const *const & argv) const
+void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD) const
 {
     std::cout << "Error: This state can't 'initialize the simulation environment'." << std::endl;
     return;

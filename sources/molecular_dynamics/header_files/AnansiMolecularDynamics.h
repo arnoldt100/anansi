@@ -71,13 +71,10 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         // This group of functions initializes the simulation environment.
         void 
-        _initializeSimulationEnvironment(int const & argc, char const *const *const & argv ) final override;
+        _initializeSimulationEnvironment() final override;
 
         void 
-        _saveCommandLineArguments( int const & argc, char const *const *const & argv) final override;
-
-        void 
-        _initializeMpiEnvironment(int const & argc, char const *const *const & argv) final override;
+        _initializeMpiEnvironment() final override;
 
         void 
         _enableCommunication() final override;

@@ -34,7 +34,7 @@ int main( int argc, char** argv )
     // Initialize the the simulation execution environment.            @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->initializeSimulationEnvironment(argc,argv);
+    md_ptr->initializeSimulationEnvironment();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @

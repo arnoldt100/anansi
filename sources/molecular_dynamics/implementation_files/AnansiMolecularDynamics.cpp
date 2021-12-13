@@ -6,6 +6,10 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include "copy_2d_char_array.h"
+#include "Pointer.hpp"
+#include "Pointer2d.hpp"
+#include "MPICommunicatorFactory.h"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -16,9 +20,7 @@
 #include "AnansiMDStateIIC.h"
 #include "AnansiMDStatePS.h"
 #include "AnansiMDStateTSE.h"
-#include "Pointer.hpp"
 #include "SimulationParametersFactory.h"
-#include "MPICommunicatorFactory.h"
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 
@@ -41,13 +43,12 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
-    this->changeMDStateToISE();
     return;
 }
 
 AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *const *const & argv) :
     MolecularDynamics(),
-    _commandLineArguments(),
+    _commandLineArguments(COMMANDLINE::CommandLineArguments(argc,argv)),
     _simulationParameters(),
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
@@ -55,6 +56,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
+    this->changeMDStateToISE();
     return;
 }
 
@@ -159,22 +161,25 @@ AnansiMolecularDynamics::_disableCommunication()
 }       /* -----  end of method AnansiMolecularDynamics::_disableCommunication  ----- */
 
 void
-AnansiMolecularDynamics::_initializeSimulationEnvironment(int const & argc, char const *const *const & argv )
+AnansiMolecularDynamics::_initializeSimulationEnvironment()
 {
-    this->_mdState->initializeSimulationEnvironment(this,argc,argv);
+    this->_mdState->initializeSimulationEnvironment(this);
     return;
 }
 
-void AnansiMolecularDynamics::_saveCommandLineArguments(int const & argc, char const *const *const & argv)
+void AnansiMolecularDynamics::_initializeMpiEnvironment()
 {
-    this->_commandLineArguments = COMMANDLINE::CommandLineArguments(argc,argv);
-    std::cout << "Saved the command line arguments." << std::endl;
-    return ;
-}      /* -----  end of method AnansiMolecularDynamics::_saveCommandLineArguments  ----- */
+    int my_argc=0;
+    char** my_argv_ptr=nullptr;
+    this->_commandLineArguments.reformCommandLineArguments(my_argc,my_argv_ptr);
 
-void AnansiMolecularDynamics::_initializeMpiEnvironment(int const & argc, char const * const * const & argv)
-{
-    this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(argc,argv);
+	this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(my_argc,my_argv_ptr);
+
+    if (my_argv_ptr != nullptr)
+    {
+        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(my_argc,my_argv_ptr);
+    }
+
     std::cout << "Initialized the MPI environment." << std::endl;
     return;
 }

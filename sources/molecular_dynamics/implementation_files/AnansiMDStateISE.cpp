@@ -97,13 +97,10 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 
 //============================= ACCESSORS ====================================
 
-void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const aMD,int const & argc, char const *const *const & argv) const
+void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const aMD) const
 {
-    // Save the command line arguments.
-    aMD->saveCommandLineArguments(argc,argv);
-
     // Initialize the MPI environment.
-    aMD->initializeMpiEnvironment(argc,argv);
+    aMD->initializeMpiEnvironment();
 
     // Enable MPI communication for the aMD object.
     aMD->enableCommunication();

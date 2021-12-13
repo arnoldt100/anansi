@@ -72,11 +72,9 @@ namespace ANANSI
             //
             //  Parameters:
             //        aMD : The object the request is made to.
-            //       argc : The number of command line arguments.
-            //       argv : The 2d char pointer array of the command line arguments.
             //
             //--------------------------------------------------------------------------------------
-            void initializeSimulationEnvironment(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const;
+            void initializeSimulationEnvironment(MolecularDynamics * const aMD ) const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  AnansiMDState
@@ -155,7 +153,7 @@ namespace ANANSI
 
         private:
             /* ====================  ACCESSORS     ======================================= */
-            virtual void _initializeSimulationEnvironment(MolecularDynamics* const aMD, int const & argc, char const *const *const & argv) const;
+            virtual void _initializeSimulationEnvironment(MolecularDynamics* const aMD) const;
 
             virtual void _processCommandLine(MolecularDynamics* const aMD) const;
 
