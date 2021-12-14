@@ -148,6 +148,12 @@ void MolecularDynamics::terminateSimulationEnvironment(  )
     return;
 }		// -----  end of method MolecularDynamics::terminateSimulationEnvironment  -----
 
+
+void MolecularDynamics::changeMDStateToNull()
+{
+    this->_changeMDStateToNull();
+}
+
 void MolecularDynamics::changeMDStateToISE()
 {
     this->_changeMDStateToISE();

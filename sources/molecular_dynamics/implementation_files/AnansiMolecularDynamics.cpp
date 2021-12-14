@@ -20,6 +20,7 @@
 #include "AnansiMDStateIIC.h"
 #include "AnansiMDStatePS.h"
 #include "AnansiMDStateTSE.h"
+#include "AnansiMDStateNull.h"
 #include "SimulationParametersFactory.h"
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
@@ -286,6 +287,14 @@ AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiM
     this->_mdState = std::move(a_AnansiMDState);
     return;
 }      // -----  end of method AnansiMolecularDynamics::_setMDState  -----
+
+void
+AnansiMolecularDynamics::_changeMDStateToNull()
+{
+    std::unique_ptr<ANANSI::AnansiMDState> null_state = std::make_unique<ANANSI::AnansiMDStateNull>(); 
+    this->_setMDState(std::move(null_state));
+    return ;
+}      // -----  end of method AnansiMolecularDynamics::_changeMDStateToISE  ----- 
 
 void
 AnansiMolecularDynamics::_changeMDStateToISE()

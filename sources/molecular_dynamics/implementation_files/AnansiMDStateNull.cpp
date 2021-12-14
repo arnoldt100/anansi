@@ -27,7 +27,7 @@ AnansiMDStateNull::AnansiMDStateNull() :
     return;
 }
 
-AnansiMDStateNull::AnansiMDStateNull( AnansiMDStateNull const & other) :
+AnansiMDStateNull::AnansiMDStateNull(AnansiMDStateNull const & other) :
     AnansiMDState(other)
 {
     if (this != &other)
@@ -37,7 +37,7 @@ AnansiMDStateNull::AnansiMDStateNull( AnansiMDStateNull const & other) :
     return;
 }		/* -----  end of method AnansiMDStateNull::AnansiMDStateNull  ----- */
 
-AnansiMDStateNull::AnansiMDStateNull( AnansiMDStateNull && other) :
+AnansiMDStateNull::AnansiMDStateNull(AnansiMDStateNull && other) :
     AnansiMDState(std::move(other))
 {
     if (this != &other)
@@ -59,7 +59,7 @@ AnansiMDStateNull::~AnansiMDStateNull()
 
 //============================= OPERATORS ====================================
 
-AnansiMDStateNull& AnansiMDStateNull::operator=( const AnansiMDStateNull & other )
+AnansiMDStateNull& AnansiMDStateNull::operator=( AnansiMDStateNull const & other )
 {
     if (this != &other)
     {
