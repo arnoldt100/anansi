@@ -88,7 +88,15 @@ class MolecularDynamics
         void changeMDStateToPS();
         void changeMDStateToTSE();
 
+        template <class T>
+        void testChangeMDState()
+        {
+            auto type_size = sizeof(T);
+            std::cout << "The type size is " << type_size << std::endl;
+        }
+        
         // This group of functions changes the status of the MD object.
+        
         void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
         void setGlobalISEStatus();
 

@@ -57,7 +57,6 @@ AnansiMDState::~AnansiMDState()
 
 //============================= ACCESSORS ====================================
 
-
 void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
