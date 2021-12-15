@@ -8,6 +8,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include "TaskStatus.h"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -51,6 +52,8 @@ namespace ANANSI
             void _initializeSimulationEnvironment(MolecularDynamics* const aMD) const final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
+            COMMUNICATOR::TaskStatus taskStatus_;
+
 
     }; /* -----  end of class AnansiMDStateISE  ----- */
 

@@ -22,13 +22,15 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 AnansiMDStateISE::AnansiMDStateISE() :
-    AnansiMDState()
+    AnansiMDState(),
+    taskStatus_()
 {
     return;
 }
 
 AnansiMDStateISE::AnansiMDStateISE( AnansiMDStateISE const & other) :
-    AnansiMDState(other)
+    AnansiMDState(other),
+    taskStatus_(other.taskStatus_)
 {
     if (this != &other)
     {
@@ -38,7 +40,8 @@ AnansiMDStateISE::AnansiMDStateISE( AnansiMDStateISE const & other) :
 }		/* -----  end of method AnansiMDStateISE::AnansiMDStateISE  ----- */
 
 AnansiMDStateISE::AnansiMDStateISE( AnansiMDStateISE && other) :
-    AnansiMDState(std::move(other))
+    AnansiMDState(std::move(other)),
+    taskStatus_(std::move(other.taskStatus_))
 {
     if (this != &other)
     {
@@ -64,6 +67,7 @@ AnansiMDStateISE& AnansiMDStateISE::operator=( const AnansiMDStateISE & other )
     if (this != &other)
     {
         AnansiMDState::operator=(other);
+        this->taskStatus_ = other.taskStatus_;
     }
     return *this;
 } /* assignment operator */
@@ -73,6 +77,7 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
     if (this != &other)
     {
         AnansiMDState::operator=(std::move(other));
+        this->taskStatus_ = std::move(other.taskStatus_);
     }
     return *this;
 } /* assignment-move operator */

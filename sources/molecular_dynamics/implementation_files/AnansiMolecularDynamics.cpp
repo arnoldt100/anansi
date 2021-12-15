@@ -44,6 +44,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
+    this->changeMDStateToNull();
     return;
 }
 
