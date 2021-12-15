@@ -1,0 +1,12 @@
+# The foundational style.
+--style=allman
+
+# Force an indentation 0f 4 spaces.
+--indent=spaces=4
+
+# Indent 'switch' blocks so that the 'case X:' statements are indented in the switch block.
+# The entire case block is indented.
+--indent-switches
+
+
+--indent-preproc-block

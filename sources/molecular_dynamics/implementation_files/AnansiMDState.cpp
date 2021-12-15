@@ -58,8 +58,7 @@ AnansiMDState::~AnansiMDState()
 //============================= ACCESSORS ====================================
 
 
-void 
-AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) const
+void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
     constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
