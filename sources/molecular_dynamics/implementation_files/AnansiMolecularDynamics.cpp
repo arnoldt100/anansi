@@ -59,7 +59,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     this->changeMDStateToISE();
-    this->testChangeMDState<AnansiMDStateISE>();
+    this->testChangeMDState(1);
     return;
 }
 

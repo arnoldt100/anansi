@@ -88,11 +88,10 @@ class MolecularDynamics
         void changeMDStateToPS();
         void changeMDStateToTSE();
 
-        template <class T>
-        void testChangeMDState()
+        void testChangeMDState(int const val)
         {
-            auto type_size = sizeof(T);
-            std::cout << "The type size is " << type_size << std::endl;
+            auto type_size = sizeof(val);
+            std::cout << "The type size of val is " << type_size << std::endl;
         }
         
         // This group of functions changes the status of the MD object.
