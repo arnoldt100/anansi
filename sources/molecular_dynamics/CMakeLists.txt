@@ -36,6 +36,7 @@
     get_target_property(simulation_parameters_include_dir simulation_parameters simulation_parameters_include)
     get_target_property(my_cc_include counterclass counterclass_include)
     get_target_property(my_cf_include  file_parsers file_parsers_include)
+    get_target_property(my_mpl_include  mpl mpl_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -90,7 +91,8 @@
         header_files/ISEStatus.h
         header_files/MolecularDynamics.h 
         header_files/MolecularDynamicsFactory.h 
-        header_files/AnansiMolecularDynamicsFactory.h)
+        header_files/AnansiMolecularDynamicsFactory.h 
+        header_files/AnansiMDStateInt2Type.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -110,7 +112,8 @@
         implementation_files/ISEStatus.cpp
         implementation_files/MolecularDynamics.cpp
         implementation_files/MolecularDynamicsFactory.cpp
-        implementation_files/AnansiMolecularDynamicsFactory.cpp)
+        implementation_files/AnansiMolecularDynamicsFactory.cpp 
+        implementation_files/AnansiMDStateInt2Type.cpp)
 
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -147,7 +150,8 @@ target_include_directories( ${my_anansi_md_library}
                             PUBLIC header_files
                             PRIVATE ${Boost_INCLUDE_DIR}
                             PRIVATE ${my_cc_include}
-                            PRIVATE ${my_cf_include} )
+                            PRIVATE ${my_cf_include}
+                            PRIVARE ${my_mpl_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -160,6 +164,7 @@ target_link_libraries(${my_anansi_md_library}
                       command_line_arguments
                       counterclass
                       file_parsers
+                      mpl
                       ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
@@ -199,6 +204,7 @@ target_link_libraries(${my_main_target_binary}
                       simulation_parameters
                       mpi_communicator
                       counterclass
+                      mpl
                       ${Boost_LIBRARIES} )
 
                   
