@@ -48,7 +48,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     // Register only AnansiMDStateNull.
     this->_mdStateFactory->registerFactory(AnansiMDStateNull::id,AnansiMDStateNull::createAnansiMDState);
 
-    this->testChangeMDState(AnansiMDStateNull::id);
+    this->changeMDState(AnansiMDStateNull::id);
     return;
 }
 
@@ -72,7 +72,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->_mdStateFactory->registerFactory(AnansiMDStateTSE::id,AnansiMDStateTSE::createAnansiMDState);
 
     // Change the state to AnansiMDStateISE.
-    this->testChangeMDState(AnansiMDStateISE::id);
+    this->changeMDState(AnansiMDStateISE::id);
 
     return;
 }
@@ -352,7 +352,7 @@ AnansiMolecularDynamics::_changeMDStateToTSE()
    return;
 }
 
-void AnansiMolecularDynamics::_testChangeMDState(int const id)
+void AnansiMolecularDynamics::_changeMDState(int const id)
 {
    std::unique_ptr<ANANSI::AnansiMDState> my_new_state(this->_mdStateFactory->createObject(id));
    this->_setMDState(std::move(my_new_state));

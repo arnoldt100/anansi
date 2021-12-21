@@ -88,7 +88,7 @@ class MolecularDynamics
         void changeMDStateToPS();
         void changeMDStateToTSE();
 
-        void testChangeMDState(int const id);
+        void changeMDState(int const id);
         
         // This group of functions changes the status of the MD object.
         
@@ -166,7 +166,7 @@ class MolecularDynamics
 
         virtual void _changeMDStateToTSE()=0;
 
-        virtual void _testChangeMDState(int const id)=0;
+        virtual void _changeMDState(int const id)=0;
 
         // Set the status of the MD object.
         virtual void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;

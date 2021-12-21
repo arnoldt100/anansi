@@ -179,9 +179,9 @@ void MolecularDynamics::changeMDStateToTSE()
     this->_changeMDStateToTSE();
 }
 
-void MolecularDynamics::testChangeMDState(int const id)
+void MolecularDynamics::changeMDState(int const id)
 {
-    this->_testChangeMDState(id);
+    this->_changeMDState(id);
 }
 
 void MolecularDynamics::setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
