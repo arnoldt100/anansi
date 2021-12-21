@@ -15,12 +15,12 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiMolecularDynamics.h"
+#include "AnansiMDStateNull.h"
 #include "AnansiMDStateISE.h"
 #include "AnansiMDStatePCL.h"
 #include "AnansiMDStateIIC.h"
 #include "AnansiMDStatePS.h"
 #include "AnansiMDStateTSE.h"
-#include "AnansiMDStateNull.h"
 #include "SimulationParametersFactory.h"
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
@@ -45,9 +45,14 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Register all AnansiMDState's
+    this->_mdStateFactory->registerFactory(AnansiMDStateNull::id,AnansiMDStateNull::createAnansiMDState);
     this->_mdStateFactory->registerFactory(AnansiMDStateISE::id,AnansiMDStateISE::createAnansiMDState);
+    this->_mdStateFactory->registerFactory(AnansiMDStatePCL::id,AnansiMDStatePCL::createAnansiMDState);
+    this->_mdStateFactory->registerFactory(AnansiMDStateIIC::id,AnansiMDStateIIC::createAnansiMDState);
+    this->_mdStateFactory->registerFactory(AnansiMDStatePS::id,AnansiMDStatePS::createAnansiMDState);
+    this->_mdStateFactory->registerFactory(AnansiMDStateTSE::id,AnansiMDStateTSE::createAnansiMDState);
 
-    this->changeMDStateToNull();
+    this->testChangeMDState(AnansiMDStateNull::id);
     return;
 }
 
