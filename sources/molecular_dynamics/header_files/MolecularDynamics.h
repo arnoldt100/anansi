@@ -88,11 +88,7 @@ class MolecularDynamics
         void changeMDStateToPS();
         void changeMDStateToTSE();
 
-        void testChangeMDState(int const val)
-        {
-            auto type_size = sizeof(val);
-            std::cout << "The type size of val is " << type_size << std::endl;
-        }
+        void testChangeMDState(int const id);
         
         // This group of functions changes the status of the MD object.
         
@@ -169,6 +165,8 @@ class MolecularDynamics
         virtual void _changeMDStateToPS()=0;
 
         virtual void _changeMDStateToTSE()=0;
+
+        virtual void _testChangeMDState(int const id)=0;
 
         // Set the status of the MD object.
         virtual void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;

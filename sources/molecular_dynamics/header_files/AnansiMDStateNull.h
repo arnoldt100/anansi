@@ -40,6 +40,15 @@ namespace ANANSI
 
             AnansiMDStateNull& operator= ( AnansiMDStateNull && other ); /* assignment-move operator */
 
+            // ====================  STATIC DATA MEMBERS  =======================================
+            constexpr static int id = 0;
+
+            // ====================  STATIC METHOD  =======================================
+            static AnansiMDState* createAnansiMDState()
+            {
+                return new AnansiMDStateNull;
+            }
+
         protected:
             /* ====================  METHODS       ======================================= */
 

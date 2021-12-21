@@ -109,6 +109,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void _changeMDStateToIIC() final override;
         void _changeMDStateToPS() final override;
         void _changeMDStateToTSE() final override;
+        void _testChangeMDState(int const id) final override;
 
         void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
         void _setGlobalISEStatus() final override;

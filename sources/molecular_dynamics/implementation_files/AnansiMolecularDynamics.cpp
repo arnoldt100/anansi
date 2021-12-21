@@ -341,6 +341,12 @@ AnansiMolecularDynamics::_changeMDStateToTSE()
    return;
 }
 
+void AnansiMolecularDynamics::_testChangeMDState(int const id)
+{
+   std::unique_ptr<ANANSI::AnansiMDState> my_new_state(this->_mdStateFactory->createObject(id));
+   this->_setMDState(std::move(my_new_state));
+}
+
 void 
 AnansiMolecularDynamics::_setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
 {

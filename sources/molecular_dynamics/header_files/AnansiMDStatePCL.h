@@ -39,6 +39,15 @@ namespace ANANSI
             AnansiMDStatePCL& operator= ( const AnansiMDStatePCL &other ); /* assignment operator */
 
             AnansiMDStatePCL& operator= ( AnansiMDStatePCL && other ); /* assignment-move operator */
+            
+            // ====================  STATIC DATA MEMBERS  =======================================
+            constexpr static int id = 2;
+
+            // ====================  STATIC METHOD  =======================================
+            static AnansiMDState* createAnansiMDState()
+            {
+                return new AnansiMDStatePCL;
+            }
 
         protected:
             /* ====================  METHODS       ======================================= */
