@@ -12,6 +12,7 @@
 #include "SimulationParameters.h"
 #include "Communicator.h"
 #include "RegistryAnansiMDStatus.h"
+#include "Factory.hpp"
 
 namespace ANANSI {
 
@@ -117,6 +118,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         ANANSI::SimulationParameters _simulationParameters;
         std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
         std::unique_ptr<COMMUNICATOR::MPIEnvironment> _MpiEnvironment;
+        std::unique_ptr<MPL::Factory<ANANSI::AnansiMDState,int>> _mdStateFactory;
         std::unique_ptr<ANANSI::AnansiMDState> _mdState;
         COMMUNICATOR::RegistryAnansiMDStatus _mdStatus;
         COMMUNICATOR::RegistryAnansiMDStatus _mdGlobalStatus;

@@ -44,6 +44,9 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
+    // Register all AnansiMDState's
+    this->_mdStateFactory->registerFactory(AnansiMDStateISE::id,AnansiMDStateISE::createAnansiMDState);
+
     this->changeMDStateToNull();
     return;
 }
@@ -301,7 +304,7 @@ AnansiMolecularDynamics::_changeMDStateToNull()
 void
 AnansiMolecularDynamics::_changeMDStateToISE()
 {
-    std::unique_ptr<ANANSI::AnansiMDState> ise_state = std::make_unique<ANANSI::AnansiMDStateISE>(); 
+    std::unique_ptr<ANANSI::AnansiMDState> ise_state(this->_mdStateFactory->createObject(AnansiMDStateISE::id));
     this->_setMDState(std::move(ise_state));
     return ;
 }      // -----  end of method AnansiMolecularDynamics::_changeMDStateToISE  ----- 

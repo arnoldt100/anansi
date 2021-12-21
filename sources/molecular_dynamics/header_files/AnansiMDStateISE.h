@@ -20,41 +20,50 @@ namespace ANANSI
     class AnansiMDStateISE final : public AnansiMDState 
     {
         public:
-            /* ====================  LIFECYCLE     ======================================= */
+            // ====================  LIFECYCLE     =======================================
 
-            AnansiMDStateISE ();  /* constructor      */
+            AnansiMDStateISE ();  // constructor
 
-            AnansiMDStateISE (AnansiMDStateISE const & other);   /* copy constructor */
+            AnansiMDStateISE (AnansiMDStateISE const & other);   // copy constructor
 
-            AnansiMDStateISE (AnansiMDStateISE && other);   /* copy-move constructor */
+            AnansiMDStateISE (AnansiMDStateISE && other);   // copy-move constructor
 
             ~AnansiMDStateISE ();  /* destructor */
 
-            /* ====================  ACCESSORS     ======================================= */
+            // ====================  ACCESSORS     =======================================
 
-            /* ====================  MUTATORS      ======================================= */
+            // ====================  MUTATORS      =======================================
 
-            /* ====================  OPERATORS     ======================================= */
+            // ====================  OPERATORS     =======================================
 
-            AnansiMDStateISE& operator= ( const AnansiMDStateISE &other ); /* assignment operator */
+            AnansiMDStateISE& operator= ( const AnansiMDStateISE &other ); // assignment operator
 
-            AnansiMDStateISE& operator= ( AnansiMDStateISE && other ); /* assignment-move operator */
+            AnansiMDStateISE& operator= ( AnansiMDStateISE && other ); // assignment-move operator
+
+            // ====================  STATIC DATA MEMBERS  =======================================
+            constexpr static int id = 1;
+
+            // ====================  STATIC METHOD  =======================================
+            static AnansiMDState* createAnansiMDState()
+            {
+                return new AnansiMDStateISE;
+            }
 
         protected:
-            /* ====================  METHODS       ======================================= */
+            // ====================  METHODS       =======================================
 
-            /* ====================  DATA MEMBERS  ======================================= */
+            // ====================  DATA MEMBERS  =======================================
 
         private:
 
-            /* ====================  MUTATORS      ======================================= */
+            // ====================  MUTATORS      =======================================
             void _initializeSimulationEnvironment(MolecularDynamics* const aMD) const final override;
 
-            /* ====================  DATA MEMBERS  ======================================= */
+            // ====================  DATA MEMBERS  =======================================
 
-    }; /* -----  end of class AnansiMDStateISE  ----- */
+    }; // -----  end of class AnansiMDStateISE  -----
 
 
-}; /* namespace ANANSI */
+}; // namespace ANANSI
 
-#endif   /* ----- #ifndef AnansiMDStateISE_INC  ----- */
+#endif   // ----- #ifndef AnansiMDStateISE_INC  -----
