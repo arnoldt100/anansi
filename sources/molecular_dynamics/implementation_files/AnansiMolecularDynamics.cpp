@@ -40,6 +40,25 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _simulationParameters(),
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
+    _mdStateFactory(std::make_unique<MPL::Factory<AnansiMDState,int>>()),
+    _mdState(),
+    _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
+    _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+{
+    // Register only AnansiMDStateNull.
+    this->_mdStateFactory->registerFactory(AnansiMDStateNull::id,AnansiMDStateNull::createAnansiMDState);
+
+    this->testChangeMDState(AnansiMDStateNull::id);
+    return;
+}
+
+AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *const *const & argv) :
+    MolecularDynamics(),
+    _commandLineArguments(COMMANDLINE::CommandLineArguments(argc,argv)),
+    _simulationParameters(),
+    _MpiWorldCommunicator(),
+    _MpiEnvironment(),
+    _mdStateFactory(std::make_unique<MPL::Factory<AnansiMDState,int>>()),
     _mdState(),
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
@@ -52,22 +71,9 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     this->_mdStateFactory->registerFactory(AnansiMDStatePS::id,AnansiMDStatePS::createAnansiMDState);
     this->_mdStateFactory->registerFactory(AnansiMDStateTSE::id,AnansiMDStateTSE::createAnansiMDState);
 
-    this->testChangeMDState(AnansiMDStateNull::id);
-    return;
-}
+    // Change the state to AnansiMDStateISE.
+    this->testChangeMDState(AnansiMDStateISE::id);
 
-AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *const *const & argv) :
-    MolecularDynamics(),
-    _commandLineArguments(COMMANDLINE::CommandLineArguments(argc,argv)),
-    _simulationParameters(),
-    _MpiWorldCommunicator(),
-    _MpiEnvironment(),
-    _mdState(),
-    _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
-{
-    this->changeMDStateToISE();
-    this->testChangeMDState(1);
     return;
 }
 
