@@ -103,8 +103,6 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         
         // This group of functions changes the state of the MD object.
         void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
-        void _changeMDStateToNull() final override;
-        void _changeMDStateToISE() final override;
         void _changeMDStateToPCL() final override;
         void _changeMDStateToIIC() final override;
         void _changeMDStateToPS() final override;

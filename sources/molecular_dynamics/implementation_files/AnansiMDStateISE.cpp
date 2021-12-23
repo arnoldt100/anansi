@@ -96,6 +96,23 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void AnansiMDStateISE::_execute(MolecularDynamics* const aMD) const
+{
+    // Initialize the MPI environment.
+    aMD->initializeMpiEnvironment();
+
+    // Enable MPI communication for the aMD object.
+    aMD->enableCommunication();
+
+    // Set the ISE status of this process.
+    constexpr auto my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
+    aMD->setStatus(my_status);
+
+    // Set the ISE global status for all processes.
+    aMD->setGlobalISEStatus();
+
+    return;
+}
 
 void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const aMD) const
 {

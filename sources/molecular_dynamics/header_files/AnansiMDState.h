@@ -123,6 +123,17 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             void terminateSimulationEnvironment(MolecularDynamics * const aMD) const ;
 
+            //--------------------------------------------------------------------------------------
+            //       Class:  AnansiMDState
+            //      Method:  AnansiMDState :: execute
+            // Description:  This function makes a request to the aMD 
+            //
+            //  Parameters:
+            //        aMD : The object the request is made to.
+            //
+            //--------------------------------------------------------------------------------------
+            void execute(MolecularDynamics * const aMD ) const;
+
             /* ====================  MUTATORS      ======================================= */
 
             /* ====================  OPERATORS     ======================================= */
@@ -154,6 +165,8 @@ namespace ANANSI
 
         private:
             /* ====================  ACCESSORS     ======================================= */
+            virtual void _execute(MolecularDynamics* const aMD) const;
+
             virtual void _initializeSimulationEnvironment(MolecularDynamics* const aMD) const;
 
             virtual void _processCommandLine(MolecularDynamics* const aMD) const;

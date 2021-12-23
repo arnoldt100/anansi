@@ -56,6 +56,10 @@ AnansiMDState::~AnansiMDState()
 } /* -----  end of method AnansiMDState::~AnansiMDState  ----- */
 
 //============================= ACCESSORS ====================================
+void AnansiMDState::execute(MolecularDynamics * const aMD ) const
+{
+    return;
+}
 
 void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) const
 {
@@ -74,12 +78,12 @@ void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) cons
     // to process command line, otherwise change state to terminating simulation environment.
     if ( aMD->isISEStatusOkay() )
     {
-        aMD->changeMDStateToPCL();
+        aMD->changeMDState(AnansiMDStatePCL::id);
         std::cout << "The program has successfully initialized the simulation environment." << std::endl;
     }
     else
     {
-        aMD->changeMDStateToTSE();
+        aMD->changeMDState(AnansiMDStateTSE::id);
         std::cout << "The program has unsuccessfully initialized the simulation environment." << std::endl;
     }
 
@@ -88,7 +92,7 @@ void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) cons
     // change state to terminating simulation environment.
     if ( ! aMD->isISEGlobalStatusOkay() )
     {
-        aMD->changeMDStateToTSE();
+        aMD->changeMDState(AnansiMDStateTSE::id);
         std::cout << "Some of the other processes aren't in a satisfactory state." << std::endl;
     }
     return;
@@ -286,6 +290,12 @@ AnansiMDState& AnansiMDState::operator=( AnansiMDState && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+
+void AnansiMDState::_execute(MolecularDynamics * const aMD) const
+{
+    std::cout << "Error: This state can't execute the command." << std::endl;
+    return;
+}
 
 void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD) const
 {

@@ -180,6 +180,7 @@ AnansiMolecularDynamics::_disableCommunication()
 void
 AnansiMolecularDynamics::_initializeSimulationEnvironment()
 {
+    //
     this->_mdState->initializeSimulationEnvironment(this);
     return;
 }
@@ -303,22 +304,6 @@ AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiM
     this->_mdState = std::move(a_AnansiMDState);
     return;
 }      // -----  end of method AnansiMolecularDynamics::_setMDState  -----
-
-void
-AnansiMolecularDynamics::_changeMDStateToNull()
-{
-    std::unique_ptr<ANANSI::AnansiMDState> null_state = std::make_unique<ANANSI::AnansiMDStateNull>(); 
-    this->_setMDState(std::move(null_state));
-    return ;
-}      // -----  end of method AnansiMolecularDynamics::_changeMDStateToISE  ----- 
-
-void
-AnansiMolecularDynamics::_changeMDStateToISE()
-{
-    std::unique_ptr<ANANSI::AnansiMDState> ise_state(this->_mdStateFactory->createObject(AnansiMDStateISE::id));
-    this->_setMDState(std::move(ise_state));
-    return ;
-}      // -----  end of method AnansiMolecularDynamics::_changeMDStateToISE  ----- 
 
 void
 AnansiMolecularDynamics::_changeMDStateToPCL()

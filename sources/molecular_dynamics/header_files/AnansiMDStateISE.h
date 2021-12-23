@@ -57,6 +57,8 @@ namespace ANANSI
         private:
 
             // ====================  MUTATORS      =======================================
+            void _execute(MolecularDynamics* const aMD) const final override;
+
             void _initializeSimulationEnvironment(MolecularDynamics* const aMD) const final override;
 
             // ====================  DATA MEMBERS  =======================================
