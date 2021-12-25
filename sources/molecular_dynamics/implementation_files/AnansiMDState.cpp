@@ -78,13 +78,15 @@ void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) cons
     // to process command line, otherwise change state to terminating simulation environment.
     if ( aMD->isISEStatusOkay() )
     {
-        aMD->changeMDState(AnansiMDStatePCL::id);
-        std::cout << "The program has successfully initialized the simulation environment." << std::endl;
+        // :TODO:12/23/2021 10:11:05 AM:: Fix the incomplete type ‘ANANSI::AnansiMDStatePCL::id 
+        // aMD->changeMDState(AnansiMDStatePCL::id);
+        // std::cout << "The program has successfully initialized the simulation environment." << std::endl;
     }
     else
     {
-        aMD->changeMDState(AnansiMDStateTSE::id);
-        std::cout << "The program has unsuccessfully initialized the simulation environment." << std::endl;
+        // :TODO:12/23/2021 10:11:05 AM:: Fix the incomplete type ‘ANANSI::AnansiMDStateTSE::id 
+        // aMD->changeMDState(AnansiMDStateTSE::id);
+        // std::cout << "The program has unsuccessfully initialized the simulation environment." << std::endl;
     }
 
     // We now query the global status of initializing the simulation environment,
@@ -92,8 +94,9 @@ void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) cons
     // change state to terminating simulation environment.
     if ( ! aMD->isISEGlobalStatusOkay() )
     {
-        aMD->changeMDState(AnansiMDStateTSE::id);
-        std::cout << "Some of the other processes aren't in a satisfactory state." << std::endl;
+        // :TODO:12/23/2021 10:11:05 AM:: Fix the incomplete type ‘ANANSI::AnansiMDStateTSE::id 
+        // aMD->changeMDState(AnansiMDStateTSE::id);
+        // std::cout << "Some of the other processes aren't in a satisfactory state." << std::endl;
     }
     return;
 }
