@@ -51,5 +51,5 @@ else
     #                                                    -
     #                                                    -
     #-----------------------------------------------------
-    export PATH="${ANANSI_TOP_LEVEL}/anansi/bin":"$PATH"
+    export PATH="${ANANSI_TOP_LEVEL}/bin":"$PATH"
 fi
