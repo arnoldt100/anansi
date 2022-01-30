@@ -13,7 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPLAliases.h"
+#include "MPLAliases.hpp"
 #include "AnansiMolecularDynamics.h" 
 
 namespace ANANSI
