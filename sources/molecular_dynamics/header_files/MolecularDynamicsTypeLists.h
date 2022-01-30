@@ -1,5 +1,6 @@
-#ifndef  ANANSI_ISEStatus_INC
-#define  ANANSI_ISEStatus_INC
+#ifndef  ANANSI_MolecularDynamicsTypeLists_INC
+#define  ANANSI_MolecularDynamicsTypeLists_INC
+
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -8,40 +9,41 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include "TaskStatus.h"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.h"
+#include "AnansiMolecularDynamics.h" 
 
 namespace ANANSI
 {
 
      // =====================================================================================
-     //        Class:  ISEStatus
+     //        Class:  MolecularDynamicsTypeLists
      //  Description:  
-     //  =====================================================================================
-    class ISEStatus final :public COMMUNICATOR::TaskStatus
+     // =====================================================================================
+    class MolecularDynamicsTypeLists
     {
         public:
             // ====================  LIFECYCLE     =======================================
 
             //--------------------------------------------------------------------------------------
-            //       Class:  ISEStatus
-            //      Method:  ISEStatus :: ISEStatus
+            //       Class:  MolecularDynamicsTypeLists
+            //      Method:  MolecularDynamicsTypeLists :: MolecularDynamicsTypeLists
             // Description:  
             // 
             //  Parameters: 
             //
             //      Return:
             //--------------------------------------------------------------------------------------
-            ISEStatus ();   // constructor
+            MolecularDynamicsTypeLists ();   // constructor
 
-            ISEStatus (const ISEStatus & other);   // copy constructor
+            MolecularDynamicsTypeLists (const MolecularDynamicsTypeLists & other);   // copy constructor
 
-            ISEStatus (ISEStatus && other);   // copy-move constructor
+            MolecularDynamicsTypeLists (MolecularDynamicsTypeLists && other);   // copy-move constructor
 
-            ~ISEStatus (); // destructor
+            virtual ~MolecularDynamicsTypeLists ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 
@@ -49,9 +51,12 @@ namespace ANANSI
 
             // ====================  OPERATORS     =======================================
 
-            ISEStatus& operator= ( const ISEStatus &other ); // assignment operator
+            MolecularDynamicsTypeLists& operator= ( const MolecularDynamicsTypeLists &other ); // assignment operator
 
-            ISEStatus& operator= ( ISEStatus && other ); // assignment-move operator
+            MolecularDynamicsTypeLists& operator= ( MolecularDynamicsTypeLists && other ); // assignment-move operator
+
+            // ====================  ALIASES       =======================================
+            using TypeList = MPL::mpl_typelist<AnansiMolecularDynamics>;
 
         protected:
             // ====================  METHODS       =======================================
@@ -63,9 +68,9 @@ namespace ANANSI
 
             // ====================  DATA MEMBERS  =======================================
 
-    }; // -----  end of class ISEStatus  -----
+    }; // -----  end of class MolecularDynamicsTypeLists  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_ISEStatus_INC  ----- 
+#endif   // ----- #ifndef ANANSI_MolecularDynamicsTypeLists_INC  ----- 

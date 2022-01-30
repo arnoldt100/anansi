@@ -1,7 +1,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -10,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ISEStatus.h"
+#include "MolecularDynamicsTypeLists.h"
 
 namespace ANANSI {
 
@@ -20,27 +19,18 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ISEStatus::ISEStatus() :
-    TaskStatus()
+MolecularDynamicsTypeLists::MolecularDynamicsTypeLists()
 {
     return;
 }
 
-ISEStatus::ISEStatus( ISEStatus const & other) :
-    TaskStatus(other)
+MolecularDynamicsTypeLists::MolecularDynamicsTypeLists( MolecularDynamicsTypeLists && other)
 {
     return;
-}		// -----  end of method ISEStatus::ISEStatus  -----
-
-ISEStatus::ISEStatus( ISEStatus && other) :
-    TaskStatus(std::move(other))
-
-{
-    return;
-}		// -----  end of method ISEStatus::ISEStatus  -----
+}		// -----  end of method MolecularDynamicsTypeLists::MolecularDynamicsTypeLists  -----
 
 
-ISEStatus::~ISEStatus()
+MolecularDynamicsTypeLists::~MolecularDynamicsTypeLists()
 {
     return;
 }
@@ -51,20 +41,20 @@ ISEStatus::~ISEStatus()
 
 //============================= OPERATORS ====================================
 
-ISEStatus& ISEStatus::operator= ( const ISEStatus &other )
+MolecularDynamicsTypeLists& MolecularDynamicsTypeLists::operator= ( const MolecularDynamicsTypeLists &other )
 {
     if (this != &other)
     {
-        TaskStatus::operator=(other);
+
     }
     return *this;
 } // assignment operator
 
-ISEStatus& ISEStatus::operator= ( ISEStatus && other )
+MolecularDynamicsTypeLists& MolecularDynamicsTypeLists::operator= ( MolecularDynamicsTypeLists && other )
 {
     if (this != &other)
     {
-        TaskStatus::operator=(std::move(other));
+
     }
     return *this;
 } // assignment-move operator
@@ -84,7 +74,7 @@ ISEStatus& ISEStatus::operator= ( ISEStatus && other )
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-
+    
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
