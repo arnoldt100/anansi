@@ -77,8 +77,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     return;
 }
 
-
-
 AnansiMolecularDynamics::~AnansiMolecularDynamics()
 {
     // Disable the communication.
