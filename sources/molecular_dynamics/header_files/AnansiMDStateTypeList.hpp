@@ -65,12 +65,12 @@ class AnansiMDStateTypeList
         AnansiMDStateTypeList& operator= ( AnansiMDStateTypeList && other ); // assignment-move operator
 
         // ====================  ALIASES       =======================================
-        using TypeList = boost::mp11::mp_list<AnansiMDStateNull,
-                                              AnansiMDStateISE,
-                                              AnansiMDStatePCL,
-                                              AnansiMDStateIIC,
-                                              AnansiMDStatePS,
-                                              AnansiMDStateTSE>;
+        using TypeList = MPL::mpl_typelist<AnansiMDStateNull,
+                                           AnansiMDStateISE,
+                                           AnansiMDStatePCL,
+                                           AnansiMDStateIIC,
+                                           AnansiMDStatePS,
+                                           AnansiMDStateTSE>;
 
     protected:
         // ====================  METHODS       =======================================
