@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# Python byte compiled files.
+*.pyc
+
 # Temporary vim swp file.
 *.sw?
 
@@ -40,3 +43,7 @@ documentation/build
 # Ignore the CMake build directory.
 anansi_cmake_build_dir/*
 /anansi_log.txt
+
+# Ignore the stderr and stdout files.
+*stdout.txt
+*stderr.txt

@@ -56,33 +56,37 @@ AnansiMDState::~AnansiMDState()
 } /* -----  end of method AnansiMDState::~AnansiMDState  ----- */
 
 //============================= ACCESSORS ====================================
+void AnansiMDState::execute(MolecularDynamics * const aMD ) const
+{
+    return;
+}
 
-
-void 
-AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const & argc, char const *const *const & argv ) const
+void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
-    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
+    constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
 
     // Set the status of the MD object to "in_progress" for initializing the
     // simulation environment.
     aMD->setStatus(in_progress);
 
     // Initialize the simulation environment.
-    this->_initializeSimulationEnvironment(aMD,argc,argv);
+    this->_initializeSimulationEnvironment(aMD);
 
     // We now query the status of initializing the simulation environment.
     // If the status if initialized simulation environment is okay then change the MD object state
     // to process command line, otherwise change state to terminating simulation environment.
     if ( aMD->isISEStatusOkay() )
     {
-        aMD->changeMDStateToPCL();
-        std::cout << "The program has successfully initialized the simulation environment." << std::endl;
+        // :TODO:12/23/2021 10:11:05 AM:: Fix the incomplete type ‘ANANSI::AnansiMDStatePCL::id 
+        // aMD->changeMDState(AnansiMDStatePCL::id);
+        // std::cout << "The program has successfully initialized the simulation environment." << std::endl;
     }
     else
     {
-        aMD->changeMDStateToTSE();
-        std::cout << "The program has unsuccessfully initialized the simulation environment." << std::endl;
+        // :TODO:12/23/2021 10:11:05 AM:: Fix the incomplete type ‘ANANSI::AnansiMDStateTSE::id 
+        // aMD->changeMDState(AnansiMDStateTSE::id);
+        // std::cout << "The program has unsuccessfully initialized the simulation environment." << std::endl;
     }
 
     // We now query the global status of initializing the simulation environment,
@@ -90,8 +94,9 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
     // change state to terminating simulation environment.
     if ( ! aMD->isISEGlobalStatusOkay() )
     {
-        aMD->changeMDStateToTSE();
-        std::cout << "Some of the other processes aren't in a satisfactory state." << std::endl;
+        // :TODO:12/23/2021 10:11:05 AM:: Fix the incomplete type ‘ANANSI::AnansiMDStateTSE::id 
+        // aMD->changeMDState(AnansiMDStateTSE::id);
+        // std::cout << "Some of the other processes aren't in a satisfactory state." << std::endl;
     }
     return;
 }
@@ -100,10 +105,10 @@ AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD, int const
 void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
-    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
-    constexpr auto success = ANANSI::RegistryAnansiMDStatus::ProcessingCommandLineSuccessful;
-    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::ProcessingCommandLineFailed;
-    constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+    constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
+    constexpr auto success = COMMUNICATOR::RegistryAnansiMDStatus::ProcessingCommandLineSuccessful;
+    constexpr auto fail = COMMUNICATOR::RegistryAnansiMDStatus::ProcessingCommandLineFailed;
+    constexpr auto tse = COMMUNICATOR::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
 
     this->_processCommandLine(aMD);
 
@@ -153,10 +158,10 @@ void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
 void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) const
 {
     // Here we create aliases simply for coding format convenience.
-    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
-    constexpr auto success = ANANSI::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful;
-    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::InitializingInitialConditionFailed;
-    constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+    constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
+    constexpr auto success = COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful;
+    constexpr auto fail = COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionFailed;
+    constexpr auto tse = COMMUNICATOR::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
 
     // Set the status of the MD object to "in_progress" for initializing the
     // simulation environment.
@@ -198,10 +203,10 @@ void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) c
 void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
 {
     // Here we create aliases simply for coding format convenience.
-    constexpr auto in_progress = ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
-    constexpr auto success = ANANSI::RegistryAnansiMDStatus::PerfomingSimulationSuccessful;
-    constexpr auto fail = ANANSI::RegistryAnansiMDStatus::PerfomingSimulationFailed;
-    constexpr auto tse = ANANSI::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
+    constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
+    constexpr auto success = COMMUNICATOR::RegistryAnansiMDStatus::PerfomingSimulationSuccessful;
+    constexpr auto fail = COMMUNICATOR::RegistryAnansiMDStatus::PerfomingSimulationFailed;
+    constexpr auto tse = COMMUNICATOR::RegistryAnansiMDStatus::TerminatingSimulationEnvironmentInProgress;
 
     // Set the status of the MD object to "in_progress" for initializing the
     // simulation environment.
@@ -289,7 +294,13 @@ AnansiMDState& AnansiMDState::operator=( AnansiMDState && other )
 
 //============================= ACCESSORS ====================================
 
-void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD,int const & argc, char const *const *const & argv) const
+void AnansiMDState::_execute(MolecularDynamics * const aMD) const
+{
+    std::cout << "Error: This state can't execute the command." << std::endl;
+    return;
+}
+
+void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD) const
 {
     std::cout << "Error: This state can't 'initialize the simulation environment'." << std::endl;
     return;

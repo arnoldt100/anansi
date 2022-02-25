@@ -42,9 +42,9 @@ class MolecularDynamics
 
         bool isIICStatusOkay() const;
 
-        ANANSI::RegistryAnansiMDStatus status() const;
+        COMMUNICATOR::RegistryAnansiMDStatus status() const;
 
-        ANANSI::RegistryAnansiMDStatus globalStatus() const;
+        COMMUNICATOR::RegistryAnansiMDStatus globalStatus() const;
         
         bool isHelpOnCommandLine() const;
 
@@ -53,11 +53,9 @@ class MolecularDynamics
         void disableCommunication();
 
         // This group of functions initializes the simulation environment.
-        void initializeSimulationEnvironment( int const & argc, char const *const *const & argv );
+        void initializeSimulationEnvironment();
 
-        void saveCommandLineArguments (int const & argc, char const *const *const & argv);
-
-        void initializeMpiEnvironment(int const & argc, char const *const *const & argv);
+        void initializeMpiEnvironment();
 
         void enableCommunication();
 
@@ -83,14 +81,16 @@ class MolecularDynamics
         void terminateSimulationEnvironment();
 
         // These group of functions change the state of the MD object.
-        void changeMDStateToISE();
         void changeMDStateToPCL();
         void changeMDStateToIIC();
         void changeMDStateToPS();
         void changeMDStateToTSE();
 
+        void changeMDState(int const id);
+        
         // This group of functions changes the status of the MD object.
-        void setStatus(const RegistryAnansiMDStatus aStatus);
+        
+        void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
         void setGlobalISEStatus();
 
         /* ====================  OPERATORS     ======================================= */
@@ -108,7 +108,7 @@ class MolecularDynamics
 
     private:
         /* ====================  ACCESSORS     ======================================= */
-        virtual ANANSI::RegistryAnansiMDStatus _status() const;
+        virtual COMMUNICATOR::RegistryAnansiMDStatus _status() const;
 
         virtual bool _isHelpOnCommandLine() const=0;
 
@@ -123,11 +123,9 @@ class MolecularDynamics
         virtual void _disableCommunication()=0;
 
         // This group of functions initializes the simulation environment.
-        virtual void _initializeSimulationEnvironment( int const & argc, char const *const *const & argv )=0;
+        virtual void _initializeSimulationEnvironment()=0;
 
-        virtual void _saveCommandLineArguments( int const & argc, char const *const *const & argv)=0;
-
-        virtual void _initializeMpiEnvironment( int const & argc, char const *const *const & argv )=0;
+        virtual void _initializeMpiEnvironment()=0;
 
         virtual void _enableCommunication()=0;
 
@@ -154,8 +152,6 @@ class MolecularDynamics
         // This group of functions changes the state of the MD object.
         virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
 
-        virtual void _changeMDStateToISE()=0;
-
         virtual void _changeMDStateToPCL()=0;
 
         virtual void _changeMDStateToIIC()=0;
@@ -164,8 +160,10 @@ class MolecularDynamics
 
         virtual void _changeMDStateToTSE()=0;
 
+        virtual void _changeMDState(int const id)=0;
+
         // Set the status of the MD object.
-        virtual void _setStatus(const RegistryAnansiMDStatus aStatus)=0;
+        virtual void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;
         virtual void _setGlobalISEStatus()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */

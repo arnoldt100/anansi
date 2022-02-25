@@ -46,4 +46,10 @@ else
     # This variable is mandatory.                        -
     #-----------------------------------------------------
     export ANANSI_CMAKE_MODULE_PATH=${ANANSI_TOP_LEVEL}/cmake_macros_and_functions
+
+    #-----------------------------------------------------
+    #                                                    -
+    #                                                    -
+    #-----------------------------------------------------
+    export PATH="${ANANSI_TOP_LEVEL}/bin":"$PATH"
 fi

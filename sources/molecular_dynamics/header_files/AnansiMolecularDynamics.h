@@ -12,6 +12,7 @@
 #include "SimulationParameters.h"
 #include "Communicator.h"
 #include "RegistryAnansiMDStatus.h"
+#include "Factory.hpp"
 
 namespace ANANSI {
 
@@ -21,6 +22,8 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         /* ====================  LIFECYCLE     ======================================= */
 
         AnansiMolecularDynamics ();  /* constructor */
+
+        AnansiMolecularDynamics (int const & argc, char const *const *const & argv);  /* constructor */
 
         ~AnansiMolecularDynamics (); /* destructor */
 
@@ -32,7 +35,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
-
+        
         /* ====================  OPERATORS     ======================================= */
 
         AnansiMolecularDynamics&                                                 
@@ -52,7 +55,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
     private:
         /* ====================  ACCESSORS     ======================================= */
 
-        ANANSI::RegistryAnansiMDStatus _status() const final override;
+        COMMUNICATOR::RegistryAnansiMDStatus _status() const final override;
 
         bool _isHelpOnCommandLine() const final override;
 
@@ -69,13 +72,10 @@ class AnansiMolecularDynamics final : public MolecularDynamics
 
         // This group of functions initializes the simulation environment.
         void 
-        _initializeSimulationEnvironment(int const & argc, char const *const *const & argv ) final override;
+        _initializeSimulationEnvironment() final override;
 
         void 
-        _saveCommandLineArguments( int const & argc, char const *const *const & argv) final override;
-
-        void 
-        _initializeMpiEnvironment(int const & argc, char const *const *const & argv) final override;
+        _initializeMpiEnvironment() final override;
 
         void 
         _enableCommunication() final override;
@@ -103,13 +103,13 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         
         // This group of functions changes the state of the MD object.
         void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
-        void _changeMDStateToISE() final override;
         void _changeMDStateToPCL() final override;
         void _changeMDStateToIIC() final override;
         void _changeMDStateToPS() final override;
         void _changeMDStateToTSE() final override;
+        void _changeMDState(int const id) final override;
 
-        void _setStatus(const RegistryAnansiMDStatus aStatus) final override;
+        void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
         void _setGlobalISEStatus() final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
@@ -117,9 +117,10 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         ANANSI::SimulationParameters _simulationParameters;
         std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
         std::unique_ptr<COMMUNICATOR::MPIEnvironment> _MpiEnvironment;
+        std::unique_ptr<MPL::Factory<ANANSI::AnansiMDState,int>> _mdStateFactory;
         std::unique_ptr<ANANSI::AnansiMDState> _mdState;
-        ANANSI::RegistryAnansiMDStatus _mdStatus;
-        ANANSI::RegistryAnansiMDStatus _mdGlobalStatus;
+        COMMUNICATOR::RegistryAnansiMDStatus _mdStatus;
+        COMMUNICATOR::RegistryAnansiMDStatus _mdGlobalStatus;
 
         /* ====================  STATIC        ======================================= */
 

@@ -40,14 +40,14 @@ void MolecularDynamics::stud_function(std::string const & message) const
     std::cout << "Stud function: " << message << std::endl;
 }
 
-ANANSI::RegistryAnansiMDStatus MolecularDynamics::status() const
+COMMUNICATOR::RegistryAnansiMDStatus MolecularDynamics::status() const
 {   
     return this->_status();
 }
 
-ANANSI::RegistryAnansiMDStatus MolecularDynamics::globalStatus() const
+COMMUNICATOR::RegistryAnansiMDStatus MolecularDynamics::globalStatus() const
 {   
-    return ANANSI::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
+    return COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
 }
 
 bool MolecularDynamics::isISEStatusOkay() const
@@ -88,22 +88,16 @@ MolecularDynamics::disableCommunication()
 }		/* -----  end of method MolecularDynamics::disableCommunication  ----- */
 
 
-void MolecularDynamics::initializeSimulationEnvironment( int const & argc, char const *const *const & argv )
+void MolecularDynamics::initializeSimulationEnvironment()
 {
-	this->_initializeSimulationEnvironment(argc,argv);
+	this->_initializeSimulationEnvironment();
     return;
 }       /* -----  end of method MolecularDynamics::initializeSimulationEnvironment  ----- */
 
 
-void MolecularDynamics::saveCommandLineArguments ( int const & argc, char const *const *const & argv)
+void MolecularDynamics::initializeMpiEnvironment()
 {
-    this->_saveCommandLineArguments(argc,argv);
-    return;
-}		/* -----  end of method MolecularDynamics::saveCommandLineArguments  ----- */
-
-void MolecularDynamics::initializeMpiEnvironment(int const & argc, char const *const *const & argv)
-{
-    this->_initializeMpiEnvironment(argc,argv);
+    this->_initializeMpiEnvironment();
     return;
 }       /* -----  end of method MolecularDynamics::initializeMpiEnvironment  ----- */
 
@@ -154,10 +148,6 @@ void MolecularDynamics::terminateSimulationEnvironment(  )
     return;
 }		// -----  end of method MolecularDynamics::terminateSimulationEnvironment  -----
 
-void MolecularDynamics::changeMDStateToISE()
-{
-    this->_changeMDStateToISE();
-}
 
 void MolecularDynamics::changeMDStateToPCL()
 {
@@ -179,7 +169,12 @@ void MolecularDynamics::changeMDStateToTSE()
     this->_changeMDStateToTSE();
 }
 
-void MolecularDynamics::setStatus(const RegistryAnansiMDStatus aStatus)
+void MolecularDynamics::changeMDState(int const id)
+{
+    this->_changeMDState(id);
+}
+
+void MolecularDynamics::setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
 {
     this->_setStatus(aStatus);
 }
@@ -210,9 +205,9 @@ void MolecularDynamics::setGlobalISEStatus()
 
 //============================= ACCESSORS ====================================
 
-ANANSI::RegistryAnansiMDStatus MolecularDynamics::_status() const
+COMMUNICATOR::RegistryAnansiMDStatus MolecularDynamics::_status() const
 {
-    return RegistryAnansiMDStatus::Undefined;
+    return COMMUNICATOR::RegistryAnansiMDStatus::Undefined;
 }
 
 //============================= MUTATORS =====================================

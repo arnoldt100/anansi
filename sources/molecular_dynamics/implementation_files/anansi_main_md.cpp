@@ -26,7 +26,7 @@ int main( int argc, char** argv )
     // MD object.                                                      @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    std::shared_ptr<ANANSI::MolecularDynamicsFactory> my_md_factory(new ANANSI::AnansiMolecularDynamicsFactory);
+    std::shared_ptr<ANANSI::MolecularDynamicsFactory> my_md_factory(new ANANSI::AnansiMolecularDynamicsFactory(argc,argv));
     std::shared_ptr<ANANSI::MolecularDynamics> md_ptr = my_md_factory->create_shared_ptr();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -34,7 +34,7 @@ int main( int argc, char** argv )
     // Initialize the the simulation execution environment.            @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->initializeSimulationEnvironment(argc,argv);
+    md_ptr->initializeSimulationEnvironment();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @

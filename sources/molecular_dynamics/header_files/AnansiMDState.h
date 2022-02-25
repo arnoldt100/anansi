@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -72,11 +73,9 @@ namespace ANANSI
             //
             //  Parameters:
             //        aMD : The object the request is made to.
-            //       argc : The number of command line arguments.
-            //       argv : The 2d char pointer array of the command line arguments.
             //
             //--------------------------------------------------------------------------------------
-            void initializeSimulationEnvironment(MolecularDynamics * const aMD, int const & argc, char const *const *const & argv ) const;
+            void initializeSimulationEnvironment(MolecularDynamics * const aMD ) const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  AnansiMDState
@@ -124,6 +123,17 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             void terminateSimulationEnvironment(MolecularDynamics * const aMD) const ;
 
+            //--------------------------------------------------------------------------------------
+            //       Class:  AnansiMDState
+            //      Method:  AnansiMDState :: execute
+            // Description:  This function makes a request to the aMD 
+            //
+            //  Parameters:
+            //        aMD : The object the request is made to.
+            //
+            //--------------------------------------------------------------------------------------
+            void execute(MolecularDynamics * const aMD ) const;
+
             /* ====================  MUTATORS      ======================================= */
 
             /* ====================  OPERATORS     ======================================= */
@@ -155,7 +165,9 @@ namespace ANANSI
 
         private:
             /* ====================  ACCESSORS     ======================================= */
-            virtual void _initializeSimulationEnvironment(MolecularDynamics* const aMD, int const & argc, char const *const *const & argv) const;
+            virtual void _execute(MolecularDynamics* const aMD) const;
+
+            virtual void _initializeSimulationEnvironment(MolecularDynamics* const aMD) const;
 
             virtual void _processCommandLine(MolecularDynamics* const aMD) const;
 

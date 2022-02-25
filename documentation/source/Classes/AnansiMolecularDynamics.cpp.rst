@@ -143,7 +143,7 @@ Mutators
 
     .. function:: void AnansiMolecularDynamics::_enableCommunication() final override
         
-    .. function:: void AnansiMolecularDynamics::_setMDState(std::unique_ptr && a_AnansiMDState) final override;
+    .. function:: void AnansiMolecularDynamics::_setMDState(std::unique_ptr && a_AnansiMDState) final override
 
         Changes the state of the MD simulation. 
 

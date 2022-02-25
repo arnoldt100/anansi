@@ -1,5 +1,7 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+
+#ifndef  AnansiMDStateTypeList_INC
+#define  AnansiMDStateTypeList_INC
+
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -12,36 +14,45 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
+#include "AnansiMDStateNull.h"
+#include "AnansiMDStateISE.h"
+#include "AnansiMDStatePCL.h"
+#include "AnansiMDStateIIC.h"
+#include "AnansiMDStatePS.h" 
+#include "AnansiMDStateTSE.h"
 
-namespace __NAMESPACE__
+
+
+namespace ANANSI
 {
 
+
 // =====================================================================================
-//        Class:  __classname__
+//        Class:  AnansiMDStateTypeList
 //  Description:  
 //  =====================================================================================
-class __classname__
+class AnansiMDStateTypeList
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
-        //       Class:  __classname__
-        //      Method:  __classname__ :: __classname__
+        //       Class:  AnansiMDStateTypeList
+        //      Method:  AnansiMDStateTypeList :: AnansiMDStateTypeList
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        __classname__ ();   // constructor
+        AnansiMDStateTypeList ();   // constructor
 
+        AnansiMDStateTypeList (const AnansiMDStateTypeList & other);   // copy constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        AnansiMDStateTypeList (AnansiMDStateTypeList && other);   // copy-move constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
-
-        virtual ~__classname__ ();  // destructor
+        ~AnansiMDStateTypeList ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -49,9 +60,17 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        AnansiMDStateTypeList& operator= ( const AnansiMDStateTypeList &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        AnansiMDStateTypeList& operator= ( AnansiMDStateTypeList && other ); // assignment-move operator
+
+        // ====================  ALIASES       =======================================
+        using TypeList = MPL::mpl_typelist<AnansiMDStateNull,
+                                           AnansiMDStateISE,
+                                           AnansiMDStatePCL,
+                                           AnansiMDStateIIC,
+                                           AnansiMDStatePS,
+                                           AnansiMDStateTSE>;
 
     protected:
         // ====================  METHODS       =======================================
@@ -63,9 +82,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class AnansiMDStateTypeList  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif   // ----- #ifndef AnansiMDStateTypeList_INC  ----- 

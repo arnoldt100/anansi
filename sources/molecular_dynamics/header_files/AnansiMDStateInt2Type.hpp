@@ -1,5 +1,6 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef  AnansiMDStateInt2Type_INC
+#define  AnansiMDStateInt2Type_INC
+
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -13,35 +14,47 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  __classname__
+//        Class:  AnansiMDStateInt2Type
 //  Description:  
 //  =====================================================================================
-class __classname__
+template <int T>
+class AnansiMDStateInt2Type
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
-        //       Class:  __classname__
-        //      Method:  __classname__ :: __classname__
+        //       Class:  AnansiMDStateInt2Type
+        //      Method:  AnansiMDStateInt2Type :: AnansiMDStateInt2Type
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        __classname__ ();   // constructor
+        AnansiMDStateInt2Type ()
+        {
+            return;
+        };   // constructor
 
+        AnansiMDStateInt2Type (const AnansiMDStateInt2Type & other)
+        {
+            return;
+        }   // copy constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        AnansiMDStateInt2Type (AnansiMDStateInt2Type && other)
+        {
+            return;
+        }   // copy-move constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
-
-        virtual ~__classname__ ();  // destructor
+        ~AnansiMDStateInt2Type ()
+        {
+            return;
+        }  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -49,9 +62,26 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        AnansiMDStateInt2Type& operator= ( const AnansiMDStateInt2Type &other )
+        {
+            if (this != &other)
+            {
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+            }
+            return *this;
+        } // assignment operator
+
+        AnansiMDStateInt2Type& operator= ( AnansiMDStateInt2Type && other )
+        {
+            if (this != &other)
+            {
+
+            }
+            return *this;
+        } // assignment-move operator
+
+        // ====================  DATA MEMBERS  =======================================
+        enum { value = T };
 
     protected:
         // ====================  METHODS       =======================================
@@ -63,9 +93,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class AnansiMDStateInt2Type  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif   // ----- #ifndef AnansiMDStateInt2Type_INC  ----- 

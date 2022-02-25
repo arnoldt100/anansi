@@ -1,21 +1,18 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include "Pointer.hpp"
-#include "Pointer2d.hpp"
-#include "copy_2d_char_array.h"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "AnansiMolecularDynamicsFactory.h"
+#include "ISEStatus.h"
 
-namespace ANANSI
-{
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -23,58 +20,54 @@ namespace ANANSI
 
 //============================= LIFECYCLE ====================================
 
-/*
- *--------------------------------------------------------------------------------------
- *       Class:  AnansiMolecularDynamicsFactory
- *      Method:  AnansiMolecularDynamicsFactory
- * Description:  constructor
- *--------------------------------------------------------------------------------------
- */
-AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory() :
-    MolecularDynamicsFactory(),
-    argc_(0),
-    argv_ptr_(nullptr)
+ISEStatus::ISEStatus() :
+    TaskStatus()
 {
     return;
-}  /* -----  end of method AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory  (constructor)  ----- */
-
-
-AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory(int const argc, char const * const * const & argv ) :
-    MolecularDynamicsFactory(),
-    argc_(argc),
-    argv_ptr_(nullptr)
-{
-    if (argv != nullptr )
-    {
-        STRING_UTILITIES::copy_2d_char_array(argc,argv,this->argv_ptr_);
-    }
-    return; 
 }
-/*
- *--------------------------------------------------------------------------------------
- *       Class:  AnansiMolecularDynamicsFactory
- *      Method:  ~AnansiMolecularDynamicsFactory
- * Description:  destructor
- *--------------------------------------------------------------------------------------
- */
-AnansiMolecularDynamicsFactory::~AnansiMolecularDynamicsFactory ()
+
+ISEStatus::ISEStatus( ISEStatus const & other) :
+    TaskStatus(other)
 {
-    if (this->argv_ptr_ != nullptr)
-    {
-        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(this->argc_,this->argv_ptr_);
-    }
     return;
+}		// -----  end of method ISEStatus::ISEStatus  -----
 
-}  /* -----  end of method AnansiMolecularDynamicsFactory::~AnansiMolecularDynamicsFactory  (destructor)  ----- */
+ISEStatus::ISEStatus( ISEStatus && other) :
+    TaskStatus(std::move(other))
 
+{
+    return;
+}		// -----  end of method ISEStatus::ISEStatus  -----
+
+
+ISEStatus::~ISEStatus()
+{
+    return;
+}
 
 //============================= ACCESSORS ====================================
-
-
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
+
+ISEStatus& ISEStatus::operator= ( const ISEStatus &other )
+{
+    if (this != &other)
+    {
+        TaskStatus::operator=(other);
+    }
+    return *this;
+} // assignment operator
+
+ISEStatus& ISEStatus::operator= ( ISEStatus && other )
+{
+    if (this != &other)
+    {
+        TaskStatus::operator=(std::move(other));
+    }
+    return *this;
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -91,19 +84,14 @@ AnansiMolecularDynamicsFactory::~AnansiMolecularDynamicsFactory ()
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-    
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
 
-std::shared_ptr<MolecularDynamics> AnansiMolecularDynamicsFactory::create_shared_ptr_()
-{
-    std::shared_ptr<MolecularDynamics> aMD = std::make_shared<AnansiMolecularDynamics>(this->argc_,this->argv_ptr_);
-    return aMD;
-}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
 
-}; /* -----  end of namespace ANANSI  ----- */
+} // namespace ANANSI
