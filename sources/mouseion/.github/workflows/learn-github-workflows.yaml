@@ -1,0 +1,65 @@
+name: learn-github-actions
+on: [push]
+jobs:
+    build-library:
+        runs-on: [self-hosted, Linux, X64]
+        # Set critical github action environmental variables for CMake
+        # configuring. We append the variable names with _ENV
+        # to distinguish from bash shell variable names.
+        env:
+            MOUSEION_TOP_LEVEL_ENV: ${GITHUB_WORKSPACE}
+            MOUSEION_CMAKE_CXX_COMPILER_ENV: mpiCC
+            MOUSEION_CMAKE_C_COMPILER_ENV: mpicc
+            MOUSEION_INSTALL_PREFIX_ENV: ${GITHUB_WORKSPACE}/sw
+            MOUSEION_INSTALL_BIN_DIRECTORY_ENV: ${GITHUB_WORKSPACE}/sw/bin
+            MOUSEION_INSTALL_INCLUDE_DIRECTORY_ENV: ${GITHUB_WORKSPACE}/sw/include
+            MOUSEION_INSTALL_LIB_DIRECTORY_ENV: ${GITHUB_WORKSPACE}/sw/lib
+            MOUSEION_MINIMUM_CMAKE_VERSION_ENV: 3.16
+            MOUSEION_CXX_STANDARD_ENV: 17
+        # We always default to the bash shell. 
+        defaults: 
+            run:
+                shell: bash
+        steps:
+            - name: Clone source
+              id: clone_mouseion_source
+              uses: actions/checkout@v2
+            - name: Build Mouseion library
+              id: build_mouseion_library
+              run: |
+                module load openmpi/4.0.3
+                module load boost/1.72
+                # Define bash shell environmental variables needed
+                # by CMake.
+                export MOUSEION_BOOST_TOP_LEVEL=${BOOST_TOP_LEVEL} 
+                export MOUSEION_TOP_LEVEL=${{ env.MOUSEION_TOP_LEVEL_ENV }}
+                export MOUSEION_CMAKE_CXX_COMPILER=${{ env.MOUSEION_CMAKE_CXX_COMPILER_ENV }}
+                export MOUSEION_CMAKE_C_COMPILER=${{ env.MOUSEION_CMAKE_C_COMPILER_ENV }}
+                export MOUSEION_INSTALL_PREFIX=${{ env.MOUSEION_INSTALL_PREFIX_ENV }}
+                export MOUSEION_INSTALL_BIN_DIRECTORY=${{ env.MOUSEION_INSTALL_BIN_DIRECTORY_ENV }}
+                export MOUSEION_INSTALL_INCLUDE_DIRECTORY=${{ env.MOUSEION_INSTALL_INCLUDE_DIRECTORY_ENV }}
+                export MOUSEION_INSTALL_LIB_DIRECTORY=${{ env.MOUSEION_INSTALL_LIB_DIRECTORY_ENV }}
+                export MOUSEION_MINIMUM_CMAKE_VERSION=${{ env.MOUSEION_MINIMUM_CMAKE_VERSION_ENV }}
+                export MOUSEION_CXX_STANDARD=${{ env.MOUSEION_CXX_STANDARD_ENV }}
+                echo "GITHUB_WORKSPACE = ${GITHUB_WORKSPACE}"
+                echo "MOUSEION_TOP_LEVEL = " ${MOUSEION_TOP_LEVEL}
+                echo "MOUSEION_CMAKE_CXX_COMPILER = " ${MOUSEION_CMAKE_CXX_COMPILER}
+                echo "MOUSEION_CMAKE_C_COMPILER = " ${MOUSEION_CMAKE_C_COMPILER}
+                echo "MOUSEION_INSTALL_PREFIX = " ${MOUSEION_INSTALL_PREFIX}
+                echo "MOUSEION_INSTALL_BIN_DIRECTORY = " ${MOUSEION_INSTALL_BIN_DIRECTORY}
+                echo "MOUSEION_INSTALL_INCLUDE_DIRECTORY = " ${MOUSEION_INSTALL_INCLUDE_DIRECTORY}
+                echo "MOUSEION_INSTALL_LIB_DIRECTORY = " ${MOUSEION_INSTALL_LIB_DIRECTORY}
+                echo "MOUSEION_BOOST_TOP_LEVEL (1) = " ${MOUSEION_BOOST_TOP_LEVEL}
+                echo "MOUSEION_BOOST_TOP_LEVEL (2) = " ${BOOST_TOP_LEVEL}
+                mkdir mouseion_cmake_build
+                cd mouseion_cmake_build
+                cmake -S ${GITHUB_WORKSPACE} -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_CXX_COMPILER=${MOUSEION_CMAKE_CXX_COMPILER} -DCMAKE_C_COMPILER=${MOUSEION_CMAKE_C_COMPILER}
+
+                make 
+                make install 
+            - name: Test communicator library
+              id: test_commnunicator_library
+              run: |
+                module load openmpi/4.0.3
+                module load boost/1.72
+                mpirun -n 1 ./sw/bin/mpi_communicator_unit_tests

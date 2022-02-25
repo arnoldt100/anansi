@@ -1,0 +1,44 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Temporary vim swp file.
+*.sw?
+
+# Ignore the documentation build directory.
+documentation/build
+
+# Ignore the CMake build directory.
+mouseion_cmake_build_dir/*
+mouseion_log.txt
+/stderr.txt
+/stdout.txt
