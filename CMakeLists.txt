@@ -152,6 +152,7 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/mouseion)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_states)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
