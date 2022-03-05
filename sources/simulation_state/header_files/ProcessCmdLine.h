@@ -41,7 +41,7 @@ namespace ANANSI
 
             ProcessCmdLine (ProcessCmdLine && other);   // copy-move constructor
 
-            virtual ~ProcessCmdLine ();  // destructor
+            virtual ~ProcessCmdLine () = 0;  // destructor
 
             // ====================  ACCESSORS     =======================================
 

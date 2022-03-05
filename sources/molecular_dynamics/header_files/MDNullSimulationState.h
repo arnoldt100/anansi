@@ -1,5 +1,5 @@
-#ifndef ANANSI_TerminateSimulation_INC
-#define ANANSI_TerminateSimulation_INC
+#ifndef ANANSI_MDNullSimulationState_INC
+#define ANANSI_MDNullSimulationState_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -12,36 +12,36 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "SimulationState.h"
+#include "NullSimulationState.h"
 
 namespace ANANSI
 {
 
      // =====================================================================================
-     //        Class:  TerminateSimulation
+     //        Class:  MDNullSimulationState
      //  Description:  
      //  =====================================================================================
-    class TerminateSimulation : public SimulationState
+    class MDNullSimulationState : public NullSimulationState
     {
         public:
             // ====================  LIFECYCLE     =======================================
 
             //--------------------------------------------------------------------------------------
-            //       Class:  TerminateSimulation
-            //      Method:  TerminateSimulation :: TerminateSimulation
+            //       Class:  MDNullSimulationState
+            //      Method:  MDNullSimulationState :: MDNullSimulationState
             // Description:  
             // 
             //  Parameters: 
             //
             //      Return:
             //--------------------------------------------------------------------------------------
-            TerminateSimulation ();   // constructor
+            MDNullSimulationState ();   // constructor
 
-            TerminateSimulation (TerminateSimulation const & other);   // copy constructor
+            MDNullSimulationState (MDNullSimulationState const & other);   // copy constructor
 
-            TerminateSimulation (TerminateSimulation && other);   // copy-move constructor
+            MDNullSimulationState (MDNullSimulationState && other);   // copy-move constructor
 
-            virtual ~TerminateSimulation () = 0;  // destructor
+            ~MDNullSimulationState ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 
@@ -49,9 +49,9 @@ namespace ANANSI
 
             // ====================  OPERATORS     =======================================
 
-            TerminateSimulation& operator= ( TerminateSimulation const & other ); // assignment operator
+            MDNullSimulationState& operator= ( MDNullSimulationState const & other ); // assignment operator
 
-            TerminateSimulation& operator= ( TerminateSimulation && other ); // assignment-move operator
+            MDNullSimulationState& operator= ( MDNullSimulationState && other ); // assignment-move operator
 
         protected:
             // ====================  METHODS       =======================================
@@ -63,9 +63,9 @@ namespace ANANSI
 
             // ====================  DATA MEMBERS  =======================================
 
-    }; // -----  end of class TerminateSimulation  -----
+    }; // -----  end of class MDNullSimulationState  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_TerminateSimulation_INC
+#endif // ANANSI_MDNullSimulationState_INC
