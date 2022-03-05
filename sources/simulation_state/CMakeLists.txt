@@ -58,7 +58,8 @@
          header_files/NullSimulationState.h
          header_files/InitSimEnv.h  
          header_files/ProcessCmdLine.h
-         header_files/InitInitialConditions.h )
+         header_files/InitInitialConditions.h
+         header_files/PerformSimulation.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -72,7 +73,8 @@
          implementation_files/NullSimulationState.cpp 
          implementation_files/InitSimEnv.cpp
          implementation_files/ProcessCmdLine.cpp
-         implementation_files/InitInitialConditions.cpp )
+         implementation_files/InitInitialConditions.cpp
+         implementation_files/PerformSimulation.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
