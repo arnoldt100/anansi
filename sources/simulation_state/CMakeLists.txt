@@ -55,7 +55,8 @@
     #-----------------------------------------------------
     set (simulation_state_header_files
          header_files/SimulationState.h
-         header_files/NullSimulationState.h )
+         header_files/NullSimulationState.h
+         header_files/InitSimEnv.h  )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -66,7 +67,8 @@
     #-----------------------------------------------------
     set (simulation_state_implementation_files
          implementation_files/SimulationState.cpp
-         implementation_files/NullSimulationState.cpp )
+         implementation_files/NullSimulationState.cpp 
+         implementation_files/InitSimEnv.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
