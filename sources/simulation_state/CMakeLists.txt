@@ -1,10 +1,10 @@
 # This CMakeLists.txt file creates the library lib__library__.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# __target___header_files or __target___implementation_files.
+# simulation_state_header_files or simulation_state_implementation_files.
 #
-# The target for the library is __target__.
+# The target for the library is simulation_state.
 #
-# The following properties are set for the target __target__.
+# The following properties are set for the target simulation_state.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "__target__")
+    set(my_project_name "simulation_state")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -53,7 +53,7 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___header_files
+    set (simulation_state_header_files
          <list of header files> )
 
     #-----------------------------------------------------
@@ -63,7 +63,7 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___implementation_files
+    set (simulation_state_implementation_files
          <list of implementation files> )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -87,7 +87,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${__target___header_files} ${__target___implementation_files} )
+    PRIVATE ${simulation_state_header_files} ${simulation_state_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -108,15 +108,16 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      __target___include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${__target___header_files}" )
+                      simulation_state_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD ${simulation_state_cxx_standard}
+                      PUBLIC_HEADER "${simulation_state_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION <where to install library> 
-         PUBLIC_HEADER DESTINATION <where to install headers> )
+         ARCHIVE DESTINATION ${simulation_state_install_lib_directory}
+         PUBLIC_HEADER DESTINATION ${simulation_state_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(unit_tests)
+# add_subdirectory(unit_tests)

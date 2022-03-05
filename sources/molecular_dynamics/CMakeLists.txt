@@ -37,6 +37,7 @@
     get_target_property(my_cc_include counterclass counterclass_include)
     get_target_property(my_cf_include  file_parsers file_parsers_include)
     get_target_property(my_mpl_include  mpl mpl_include)
+    get_target_property(my_ss_include  simulation_state simulation_state_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -155,7 +156,8 @@ target_include_directories( ${my_anansi_md_library}
                             PRIVATE ${Boost_INCLUDE_DIR}
                             PRIVATE ${my_cc_include}
                             PRIVATE ${my_cf_include}
-                            PRIVARE ${my_mpl_include} )
+                            PRIVATE ${my_ss_include}
+                            PRIVATE ${my_mpl_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -168,6 +170,7 @@ target_link_libraries(${my_anansi_md_library}
                       command_line_arguments
                       counterclass
                       file_parsers
+                      simulation_state
                       mpl
                       ${Boost_LIBRARIES} )
 
@@ -209,6 +212,7 @@ target_link_libraries(${my_main_target_binary}
                       mpi_communicator
                       counterclass
                       mpl
+                      simulation_state
                       ${Boost_LIBRARIES} )
 
                   
