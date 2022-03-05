@@ -59,7 +59,8 @@
          header_files/InitSimEnv.h  
          header_files/ProcessCmdLine.h
          header_files/InitInitialConditions.h
-         header_files/PerformSimulation.h )
+         header_files/PerformSimulation.h 
+         header_files/TerminateSimulation.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -74,7 +75,8 @@
          implementation_files/InitSimEnv.cpp
          implementation_files/ProcessCmdLine.cpp
          implementation_files/InitInitialConditions.cpp
-         implementation_files/PerformSimulation.cpp )
+         implementation_files/PerformSimulation.cpp
+         implementation_files/TerminateSimulation.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
