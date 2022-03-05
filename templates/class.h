@@ -36,7 +36,6 @@ namespace __NAMESPACE__
             //--------------------------------------------------------------------------------------
             __classname__ ();   // constructor
 
-
             __classname__ (const __classname__ & other);   // copy constructor
 
             __classname__ (__classname__ && other);   // copy-move constructor
