@@ -1,5 +1,5 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef ANANSI_SimulationState_INC
+#define ANANSI_SimulationState_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -13,35 +13,34 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  __classname__
+//        Class:  SimulationState
 //  Description:  
 //  =====================================================================================
-class __classname__
+class SimulationState
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
-        //       Class:  __classname__
-        //      Method:  __classname__ :: __classname__
+        //       Class:  SimulationState
+        //      Method:  SimulationState :: SimulationState
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        __classname__ ();   // constructor
+        SimulationState ();   // constructor
 
+        SimulationState (const SimulationState & other);   // copy constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        SimulationState (SimulationState && other);   // copy-move constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
-
-        virtual ~__classname__ ();  // destructor
+        virtual ~SimulationState ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -49,9 +48,9 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        SimulationState& operator= ( const SimulationState &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        SimulationState& operator= ( SimulationState && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -63,9 +62,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class SimulationState  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif // ANANSI_SimulationState_INC

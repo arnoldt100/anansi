@@ -10,9 +10,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "__filename__.h"
+#include "SimulationState.h"
 
-namespace __NAMESPACE__ {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -20,21 +20,24 @@ namespace __NAMESPACE__ {
 
 //============================= LIFECYCLE ====================================
 
-__classname__::__classname__()
+SimulationState::SimulationState()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
-__classname__::__classname__( __classname__ && other)
+SimulationState::SimulationState( SimulationState const & other)
 {
     return;
-}		// -----  end of method __classname__::__classname__  -----
+}		// -----  end of method SimulationState::SimulationState  -----
 
-
-__classname__::~__classname__()
+SimulationState::SimulationState( SimulationState && other)
 {
-	// TODO Auto-generated destructor stub
+    return;
+}		// -----  end of method SimulationState::SimulationState  -----
+
+
+SimulationState::~SimulationState()
+{
     return;
 }
 
@@ -44,7 +47,7 @@ __classname__::~__classname__()
 
 //============================= OPERATORS ====================================
 
-__classname__& __classname__::operator= ( const __classname__ &other )
+SimulationState& SimulationState::operator= ( const SimulationState &other )
 {
     if (this != &other)
     {
@@ -53,7 +56,7 @@ __classname__& __classname__::operator= ( const __classname__ &other )
     return *this;
 } // assignment operator
 
-__classname__& __classname__::operator= ( __classname__ && other )
+SimulationState& SimulationState::operator= ( SimulationState && other )
 {
     if (this != &other)
     {
@@ -87,4 +90,4 @@ __classname__& __classname__::operator= ( __classname__ && other )
 //============================= OPERATORS ====================================
 
 
-} // namespace __NAMESPACE__
+} // namespace ANANSI

@@ -54,7 +54,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (simulation_state_header_files
-         <list of header files> )
+        header_files/SimulationState.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -64,7 +64,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (simulation_state_implementation_files
-         <list of implementation files> )
+        implementation_files/SimulationState.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
