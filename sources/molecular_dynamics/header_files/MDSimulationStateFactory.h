@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,6 +20,8 @@
 #include "MDPerformSimulation.h"
 #include "MDTerminateSimulation.h"
 #include "MPLAliases.hpp"
+#include "AbstractFactory.hpp"
+#include "ConcreteFactory.hpp"
 
 namespace ANANSI
 {
@@ -43,7 +46,7 @@ namespace ANANSI
             //--------------------------------------------------------------------------------------
             MDSimulationStateFactory ();   // constructor
 
-            MDSimulationStateFactory (const MDSimulationStateFactory & other);   // copy constructor
+            MDSimulationStateFactory (const MDSimulationStateFactory & other);   // deleted copy constructor
 
             MDSimulationStateFactory (MDSimulationStateFactory && other);   // copy-move constructor
 
@@ -83,9 +86,15 @@ namespace ANANSI
                                                           MDPerformSimulation,
                                                           MDTerminateSimulation
                                                         > ;
+
+            using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
+
+            using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_products_>;
+
             // ====================  METHODS       =======================================
             
             // ====================  DATA MEMBERS  =======================================
+            std::unique_ptr<concrete_factory_> mdSimStateFactory_;
 
     }; // -----  end of class MDSimulationStateFactory  -----
 

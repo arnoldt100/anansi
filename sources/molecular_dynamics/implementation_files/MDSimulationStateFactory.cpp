@@ -19,17 +19,20 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDSimulationStateFactory::MDSimulationStateFactory()
+MDSimulationStateFactory::MDSimulationStateFactory() :
+    mdSimStateFactory_()
 {
     return;
 }
 
-MDSimulationStateFactory::MDSimulationStateFactory( MDSimulationStateFactory const & other)
+MDSimulationStateFactory::MDSimulationStateFactory( MDSimulationStateFactory const & other) :
+    mdSimStateFactory_()
 {
     return;
-}
+}		// -----  end of method MDSimulationStateFactory::MDSimulationStateFactory  -----
 
-MDSimulationStateFactory::MDSimulationStateFactory( MDSimulationStateFactory && other)
+MDSimulationStateFactory::MDSimulationStateFactory( MDSimulationStateFactory && other) :
+    mdSimStateFactory_(std::move(mdSimStateFactory_))
 {
     return;
 }		// -----  end of method MDSimulationStateFactory::MDSimulationStateFactory  -----
@@ -46,20 +49,19 @@ MDSimulationStateFactory::~MDSimulationStateFactory()
 
 //============================= OPERATORS ====================================
 
-MDSimulationStateFactory& MDSimulationStateFactory::operator= ( const MDSimulationStateFactory &other )
+MDSimulationStateFactory& MDSimulationStateFactory::operator= ( MDSimulationStateFactory const & other )
 {
     if (this != &other)
     {
-
     }
     return *this;
-} // assignment operator
+} // assignment-move operator
 
 MDSimulationStateFactory& MDSimulationStateFactory::operator= ( MDSimulationStateFactory && other )
 {
     if (this != &other)
     {
-
+        mdSimStateFactory_ = std::move(other.mdSimStateFactory_);
     }
     return *this;
 } // assignment-move operator

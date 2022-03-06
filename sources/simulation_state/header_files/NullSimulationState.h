@@ -41,7 +41,7 @@ namespace ANANSI
 
             NullSimulationState (NullSimulationState && other);   // copy-move constructor
 
-            virtual ~NullSimulationState ()= 0;  // destructor
+            virtual ~NullSimulationState () = 0;  // destructor
 
             // ====================  ACCESSORS     =======================================
 

@@ -41,7 +41,7 @@ namespace ANANSI
 
             InitInitialConditions (InitInitialConditions && other);   // copy-move constructor
 
-            virtual ~InitInitialConditions ()=0;  // destructor
+            virtual ~InitInitialConditions () = 0;  // destructor
 
             // ====================  ACCESSORS     =======================================
 
