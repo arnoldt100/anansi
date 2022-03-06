@@ -27,7 +27,7 @@ MDNullSimulationState::MDNullSimulationState() :
 }
 
 MDNullSimulationState::MDNullSimulationState( MDNullSimulationState const & other) :
-    NullSimulationState()
+    NullSimulationState(other)
 {
     return;
 }

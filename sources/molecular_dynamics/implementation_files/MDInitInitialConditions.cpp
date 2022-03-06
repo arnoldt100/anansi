@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 MDInitInitialConditions::MDInitInitialConditions() :
-    InitInitialConditions(other)
+    InitInitialConditions()
 {
     return;
 }

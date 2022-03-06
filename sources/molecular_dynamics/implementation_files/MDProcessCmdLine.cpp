@@ -27,7 +27,7 @@ MDProcessCmdLine::MDProcessCmdLine() :
 }
 
 MDProcessCmdLine::MDProcessCmdLine( MDProcessCmdLine const & other) :
-    ProcessCmdLine()
+    ProcessCmdLine(other)
 {
     return;
 }

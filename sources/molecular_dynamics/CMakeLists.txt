@@ -88,6 +88,9 @@
         header_files/MDNullSimulationState.h
         header_files/MDInitSimEnv.h
         header_files/MDProcessCmdLine.h
+        header_files/MDInitInitialConditions.h
+        header_files/MDPerformSimulation.h
+        header_files/MDTerminateSimulation.h
         header_files/AnansiMDStateISE.h
         header_files/AnansiMDStatePCL.h
         header_files/AnansiMDStateIIC.h
@@ -114,6 +117,9 @@
         implementation_files/MDNullSimulationState.cpp
         implementation_files/MDInitSimEnv.cpp
         implementation_files/MDProcessCmdLine.cpp
+        implementation_files/MDInitInitialConditions.cpp
+        implementation_files/MDPerformSimulation.cpp
+        implementation_files/MDTerminateSimulation.cpp
         implementation_files/AnansiMDStateISE.cpp
         implementation_files/AnansiMDStatePCL.cpp
         implementation_files/AnansiMDStateIIC.cpp

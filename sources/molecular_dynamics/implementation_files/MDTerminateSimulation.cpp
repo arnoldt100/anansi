@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDInitSimEnv.h"
+#include "MDTerminateSimulation.h"
 
 namespace ANANSI {
 
@@ -20,26 +20,26 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDInitSimEnv::MDInitSimEnv() :
-    InitSimEnv()
+MDTerminateSimulation::MDTerminateSimulation() : 
+    TerminateSimulation ()
 {
     return;
 }
 
-MDInitSimEnv::MDInitSimEnv( MDInitSimEnv const & other) :
-    InitSimEnv(other)
+MDTerminateSimulation::MDTerminateSimulation( MDTerminateSimulation const & other) :
+    TerminateSimulation(other)
 {
     return;
 }
 
-MDInitSimEnv::MDInitSimEnv( MDInitSimEnv && other) :
-    InitSimEnv(std::move(other))
+MDTerminateSimulation::MDTerminateSimulation( MDTerminateSimulation && other) :
+    TerminateSimulation(std::move(other))
 {
     return;
-}		// -----  end of method MDInitSimEnv::MDInitSimEnv  -----
+}		// -----  end of method MDTerminateSimulation::MDTerminateSimulation  -----
 
 
-MDInitSimEnv::~MDInitSimEnv()
+MDTerminateSimulation::~MDTerminateSimulation()
 {
     return;
 }
@@ -50,20 +50,20 @@ MDInitSimEnv::~MDInitSimEnv()
 
 //============================= OPERATORS ====================================
 
-MDInitSimEnv& MDInitSimEnv::operator= ( MDInitSimEnv const & other ) 
+MDTerminateSimulation& MDTerminateSimulation::operator= ( const MDTerminateSimulation &other )
 {
     if (this != &other)
     {
-        InitSimEnv::operator=(other);
+        TerminateSimulation::operator=(other);
     }
     return *this;
 } // assignment operator
 
-MDInitSimEnv& MDInitSimEnv::operator= ( MDInitSimEnv && other )
+MDTerminateSimulation& MDTerminateSimulation::operator= ( MDTerminateSimulation && other )
 {
     if (this != &other)
     {
-        InitSimEnv::operator=(std::move(other));
+        TerminateSimulation::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
