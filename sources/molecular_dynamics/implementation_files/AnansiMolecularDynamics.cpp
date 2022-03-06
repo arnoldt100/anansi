@@ -41,6 +41,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
     _mdStateFactory(std::make_unique<MPL::Factory<AnansiMDState,int>>()),
+    mdStateFactory_(),
     _mdState(),
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
@@ -59,6 +60,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
     _mdStateFactory(std::make_unique<MPL::Factory<AnansiMDState,int>>()),
+    mdStateFactory_(),
     _mdState(),
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)

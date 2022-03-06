@@ -12,6 +12,13 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MDNullSimulationState.h"
+#include "MDInitSimEnv.h"
+#include "MDProcessCmdLine.h"
+#include "MDInitInitialConditions.h"
+#include "MDPerformSimulation.h"
+#include "MDTerminateSimulation.h"
+#include "MPLAliases.hpp"
 
 namespace ANANSI
 {
@@ -58,8 +65,26 @@ namespace ANANSI
             // ====================  DATA MEMBERS  =======================================
 
         private:
-            // ====================  METHODS       =======================================
+            // TYPE ALIASES
+            using abstract_products_ = MPL::mpl_typelist<
+                                                          NullSimulationState,
+                                                          InitSimEnv,
+                                                          ProcessCmdLine,
+                                                          InitInitialConditions,
+                                                          PerformSimulation,
+                                                          TerminateSimulation
+                                                        > ;
 
+            using concrete_products_ = MPL::mpl_typelist<
+                                                          MDNullSimulationState,
+                                                          MDInitSimEnv,
+                                                          MDProcessCmdLine,
+                                                          MDInitInitialConditions,
+                                                          MDPerformSimulation,
+                                                          MDTerminateSimulation
+                                                        > ;
+            // ====================  METHODS       =======================================
+            
             // ====================  DATA MEMBERS  =======================================
 
     }; // -----  end of class MDSimulationStateFactory  -----
