@@ -5,6 +5,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -53,6 +54,18 @@ namespace ANANSI
             ~MDSimulationStateFactory ();  // destructor
 
             // ====================  ACCESSORS     =======================================
+            template <typename T>
+            T* create() const
+            {
+                // Loop over abstact prodict list. If type can be 
+                // can be cast to product list type, then create pointer.
+                // Else throw error and stop.
+                // MPL::Q_mpl_is_base_of<NullSimulationState,NullSimulationState> x;
+                std::cout << "x is " << std::is_base_of<NullSimulationState,NullSimulationState>() << std::endl;
+
+                T* product_ptr = this->mdSimStateFactory_->Create<NullSimulationState>();
+                return product_ptr;
+            }
 
             // ====================  MUTATORS      =======================================
 
@@ -76,7 +89,7 @@ namespace ANANSI
                                                           InitInitialConditions,
                                                           PerformSimulation,
                                                           TerminateSimulation
-                                                        > ;
+                                                        >;
 
             using concrete_products_ = MPL::mpl_typelist<
                                                           MDNullSimulationState,
@@ -85,7 +98,7 @@ namespace ANANSI
                                                           MDInitInitialConditions,
                                                           MDPerformSimulation,
                                                           MDTerminateSimulation
-                                                        > ;
+                                                        >;
 
             using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
 

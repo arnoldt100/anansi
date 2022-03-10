@@ -41,7 +41,7 @@ namespace ANANSI
 
             InitSimEnv (InitSimEnv && other);   // copy-move constructor
 
-            virtual ~InitSimEnv () = 0;  // destructor
+            virtual ~InitSimEnv ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 

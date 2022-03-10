@@ -11,6 +11,7 @@
 
 // Local includes
 #include "AnansiMDState.h"
+#include "SimulationState.h"
 #include "RegistryAnansiMDStatus.h"
 
 #ifndef  MolecularDynamics_INC
@@ -81,13 +82,24 @@ class MolecularDynamics
         void terminateSimulationEnvironment();
 
         // These group of functions change the state of the MD object.
+        // TO DO: This method will be depracted. 
         void changeMDStateToPCL();
+        // TO DO: This method will be depracted. 
         void changeMDStateToIIC();
+        // TO DO: This method will be depracted. 
         void changeMDStateToPS();
+        // TO DO: This method will be depracted. 
         void changeMDStateToTSE();
-
+        // TO DO: This method will be depracted. 
         void changeMDState(int const id);
         
+        // These group of functions change the state of the MD object.
+        void changeSimulationState( SimulationState const & sim_state)
+        {
+            this->changeSimulationState_(sim_state);
+            return;
+        }
+
         // This group of functions changes the status of the MD object.
         
         void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
@@ -161,6 +173,8 @@ class MolecularDynamics
         virtual void _changeMDStateToTSE()=0;
 
         virtual void _changeMDState(int const id)=0;
+
+        virtual void changeSimulationState_( SimulationState const & sim_state)=0;
 
         // Set the status of the MD object.
         virtual void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;

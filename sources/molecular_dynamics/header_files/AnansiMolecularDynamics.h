@@ -109,6 +109,7 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         void _changeMDStateToPS() final override;
         void _changeMDStateToTSE() final override;
         void _changeMDState(int const id) final override;
+        void changeSimulationState_( SimulationState const & sim_state) final override;
 
         void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
         void _setGlobalISEStatus() final override;
@@ -118,9 +119,13 @@ class AnansiMolecularDynamics final : public MolecularDynamics
         ANANSI::SimulationParameters _simulationParameters;
         std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
         std::unique_ptr<COMMUNICATOR::MPIEnvironment> _MpiEnvironment;
+
         std::unique_ptr<MPL::Factory<ANANSI::AnansiMDState,int>> _mdStateFactory;
         std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_;
+
         std::unique_ptr<ANANSI::AnansiMDState> _mdState;
+        std::unique_ptr<ANANSI::AnansiMDState> mdState_;
+
         COMMUNICATOR::RegistryAnansiMDStatus _mdStatus;
         COMMUNICATOR::RegistryAnansiMDStatus _mdGlobalStatus;
 

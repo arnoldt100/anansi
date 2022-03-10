@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
+#include <type_traits>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -50,6 +51,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     this->_mdStateFactory->registerFactory(AnansiMDStateNull::id,AnansiMDStateNull::createAnansiMDState);
 
     this->changeMDState(AnansiMDStateNull::id);
+    this->changeSimulationState(NullSimulationState());
     return;
 }
 
@@ -341,6 +343,13 @@ void AnansiMolecularDynamics::_changeMDState(int const id)
 {
    std::unique_ptr<ANANSI::AnansiMDState> my_new_state(this->_mdStateFactory->createObject(id));
    this->_setMDState(std::move(my_new_state));
+}
+
+void AnansiMolecularDynamics::changeSimulationState_(SimulationState const & sim_state)
+{
+    using type1 = std::decay<decltype(sim_state)>::type;
+    this->mdStateFactory_->create<type1>();
+    return;
 }
 
 void 

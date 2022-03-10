@@ -40,7 +40,7 @@ class SimulationState
 
         SimulationState (SimulationState && other);   // copy-move constructor
 
-        virtual ~SimulationState ()=0;  // destructor
+        virtual ~SimulationState ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 

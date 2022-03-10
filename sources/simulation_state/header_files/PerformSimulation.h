@@ -41,7 +41,7 @@ namespace ANANSI
 
             PerformSimulation (PerformSimulation && other);   // copy-move constructor
 
-            virtual ~PerformSimulation () = 0;  // destructor
+            virtual ~PerformSimulation ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 
