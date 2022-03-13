@@ -20,13 +20,13 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 MDSimulationStateFactory::MDSimulationStateFactory() :
-    mdSimStateFactory_()
+    mdSimStateFactory_(std::make_unique<concrete_factory_>())
 {
     return;
 }
 
 MDSimulationStateFactory::MDSimulationStateFactory( MDSimulationStateFactory const & other) :
-    mdSimStateFactory_()
+    mdSimStateFactory_(std::make_unique<concrete_factory_>())
 {
     return;
 }		// -----  end of method MDSimulationStateFactory::MDSimulationStateFactory  -----

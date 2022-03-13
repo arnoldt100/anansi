@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -40,9 +41,13 @@ class SimulationState
 
         SimulationState (SimulationState && other);   // copy-move constructor
 
-        virtual ~SimulationState ();  // destructor
+        virtual ~SimulationState ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
+        void who_am_i() const
+        {
+            std::cout << "I'm SimulationState" << std::endl;
+        }
 
         // ====================  MUTATORS      =======================================
 
