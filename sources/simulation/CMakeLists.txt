@@ -103,6 +103,13 @@ target_include_directories(${target}
                            ${my_ss_include})
 
 #-----------------------------------------------------
+# Set the list of libraries to link against.         -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries(${target}
+                      mpi_communicator )
+
+#-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -
 #-----------------------------------------------------
