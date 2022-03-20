@@ -99,7 +99,7 @@ AnansiMDStateTSE& AnansiMDStateTSE::operator= ( AnansiMDStateTSE && other )
 //============================= MUTATORS =====================================
 
 void
-AnansiMDStateTSE::_terminateSimulationEnvironment (MolecularDynamics * const aMD) const
+AnansiMDStateTSE::_terminateSimulationEnvironment (Simulation * const aMD) const
 {
     return ;
 }		/* -----  end of method AnansiMDStateTSE::_terminateSimulationEnvironment  ----- */

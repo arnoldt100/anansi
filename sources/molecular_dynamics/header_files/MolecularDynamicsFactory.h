@@ -14,7 +14,7 @@
 #ifndef  MolecularDynamicsFactory_INC
 #define  MolecularDynamicsFactory_INC
 
-#include "MolecularDynamics.h"
+#include "Simulation.h"
 
 namespace ANANSI
 {
@@ -36,7 +36,7 @@ namespace ANANSI
 
             /* ====================  ACCESSORS     ======================================= */
 
-            std::shared_ptr<MolecularDynamics> create_shared_ptr();
+            std::shared_ptr<Simulation> create_shared_ptr();
 
             /* ====================  MUTATORS      ======================================= */
 
@@ -52,7 +52,7 @@ namespace ANANSI
 
         private:
             /* ====================  ACCESSORS     ======================================= */
-            virtual std::shared_ptr<MolecularDynamics> create_shared_ptr_()=0;
+            virtual std::shared_ptr<Simulation> create_shared_ptr_()=0;
 
             /* ====================  MUTATORS      ======================================= */
 

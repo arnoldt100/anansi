@@ -96,7 +96,7 @@ AnansiMDStateISE& AnansiMDStateISE::operator= ( AnansiMDStateISE && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void AnansiMDStateISE::_execute(MolecularDynamics* const aMD) const
+void AnansiMDStateISE::_execute(Simulation* const aMD) const
 {
     // Initialize the MPI environment.
     aMD->initializeMpiEnvironment();
@@ -114,7 +114,7 @@ void AnansiMDStateISE::_execute(MolecularDynamics* const aMD) const
     return;
 }
 
-void AnansiMDStateISE::_initializeSimulationEnvironment(MolecularDynamics* const aMD) const
+void AnansiMDStateISE::_initializeSimulationEnvironment(Simulation* const aMD) const
 {
     // Initialize the MPI environment.
     aMD->initializeMpiEnvironment();

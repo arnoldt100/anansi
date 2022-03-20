@@ -96,9 +96,9 @@ AnansiMolecularDynamicsFactory::~AnansiMolecularDynamicsFactory ()
 
 //============================= ACCESSORS ====================================
 
-std::shared_ptr<MolecularDynamics> AnansiMolecularDynamicsFactory::create_shared_ptr_()
+std::shared_ptr<Simulation> AnansiMolecularDynamicsFactory::create_shared_ptr_()
 {
-    std::shared_ptr<MolecularDynamics> aMD = std::make_shared<AnansiMolecularDynamics>(this->argc_,this->argv_ptr_);
+    std::shared_ptr<Simulation> aMD = std::make_shared<AnansiMolecularDynamics>(this->argc_,this->argv_ptr_);
     return aMD;
 }
 //============================= MUTATORS =====================================

@@ -13,7 +13,7 @@
 //--------------------------------------------------------//
 #include "AnansiMDState.h"
 #include "RegistryAnansiMDStatus.h"
-#include "MolecularDynamics.h"
+#include "Simulation.h"
 
 namespace ANANSI {
 
@@ -56,12 +56,12 @@ AnansiMDState::~AnansiMDState()
 } /* -----  end of method AnansiMDState::~AnansiMDState  ----- */
 
 //============================= ACCESSORS ====================================
-void AnansiMDState::execute(MolecularDynamics * const aMD ) const
+void AnansiMDState::execute(Simulation * const aMD ) const
 {
     return;
 }
 
-void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) const
+void AnansiMDState::initializeSimulationEnvironment(Simulation* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
     constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
@@ -102,7 +102,7 @@ void AnansiMDState::initializeSimulationEnvironment(MolecularDynamics* aMD) cons
 }
 
 
-void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
+void AnansiMDState::processCommandLine(Simulation* aMD) const
 {
     // Here we create aliases simply for coding format convenience.
     constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
@@ -155,7 +155,7 @@ void AnansiMDState::processCommandLine(MolecularDynamics* aMD) const
 }
 
 
-void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) const
+void AnansiMDState::initializeInitialConditions(Simulation * const aMD) const
 {
     // Here we create aliases simply for coding format convenience.
     constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
@@ -200,7 +200,7 @@ void AnansiMDState::initializeInitialConditions(MolecularDynamics * const aMD) c
     return;
 }        // -----  end of method AnansiMDState::initializeInitialConditions  -----
 
-void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
+void AnansiMDState::performSimulation(Simulation * const aMD) const
 {
     // Here we create aliases simply for coding format convenience.
     constexpr auto in_progress = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess;
@@ -245,7 +245,7 @@ void AnansiMDState::performSimulation(MolecularDynamics * const aMD) const
     return;
 }        // -----  end of method AnansiMDState::performSimulation  -----
 
-void AnansiMDState::terminateSimulationEnvironment(MolecularDynamics * const aMD) const
+void AnansiMDState::terminateSimulationEnvironment(Simulation * const aMD) const
 {
     this->_terminateSimulationEnvironment(aMD);
     std::cout << "The program has successfully terminated the simulation environment." << std::endl;
@@ -294,40 +294,40 @@ AnansiMDState& AnansiMDState::operator=( AnansiMDState && other )
 
 //============================= ACCESSORS ====================================
 
-void AnansiMDState::_execute(MolecularDynamics * const aMD) const
+void AnansiMDState::_execute(Simulation * const aMD) const
 {
     std::cout << "Error: This state can't execute the command." << std::endl;
     return;
 }
 
-void AnansiMDState::_initializeSimulationEnvironment(MolecularDynamics * const aMD) const
+void AnansiMDState::_initializeSimulationEnvironment(Simulation * const aMD) const
 {
     std::cout << "Error: This state can't 'initialize the simulation environment'." << std::endl;
     return;
 }
 
-void AnansiMDState::_processCommandLine(MolecularDynamics * const aMD) const
+void AnansiMDState::_processCommandLine(Simulation * const aMD) const
 {
     std::cout << "Error: This state can't 'process the command line environment'." << std::endl;
     return;
 }
 
 void
-AnansiMDState::_initializeInitialConditions(MolecularDynamics * const aMD) const
+AnansiMDState::_initializeInitialConditions(Simulation * const aMD) const
 {
     std::cout << "Error: This state can't 'initialize the initial conditions environment'." << std::endl;
     return ;
 }        // -----  end of method AnansiMDState::_initializeInitialConditions  -----
 
 void
-AnansiMDState::_performSimulation(MolecularDynamics * const aMD) const
+AnansiMDState::_performSimulation(Simulation * const aMD) const
 {
     std::cout << "Error: This state can't 'perform the simulation environment'." << std::endl;
     return ;
 }        // -----  end of method AnansiMDState::_performSimulation  -----
 
 void
-AnansiMDState::_terminateSimulationEnvironment(MolecularDynamics * const aMD) const
+AnansiMDState::_terminateSimulationEnvironment(Simulation * const aMD) const
 {
     std::cout << "Error: This state can't 'terminate the simulation environment'." << std::endl;
     return;

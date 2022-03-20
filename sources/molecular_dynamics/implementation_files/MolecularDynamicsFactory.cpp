@@ -49,7 +49,7 @@ MolecularDynamicsFactory::~MolecularDynamicsFactory()
 }  /* -----  end of method MolecularDynamicsFactory::~MolecularDynamicsFactory (destructor)  ----- */
 
 //============================= ACCESSORS ====================================
-std::shared_ptr<MolecularDynamics> MolecularDynamicsFactory::create_shared_ptr()
+std::shared_ptr<Simulation> MolecularDynamicsFactory::create_shared_ptr()
 {
     return this->create_shared_ptr_();
 }

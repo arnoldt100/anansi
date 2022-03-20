@@ -56,7 +56,7 @@ namespace ANANSI
         private:
             /* ====================  METHODS       ======================================= */
 
-            void _performSimulation(MolecularDynamics * const aMD) const final override;
+            void _performSimulation(Simulation * const aMD) const final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

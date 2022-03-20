@@ -54,7 +54,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (simulation_header_files
-         <list of header files> )
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Simulation.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -64,7 +64,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (simulation_implementation_files
-         <list of implementation files> )
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Simulation.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

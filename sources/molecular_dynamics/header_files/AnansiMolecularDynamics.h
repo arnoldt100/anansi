@@ -7,7 +7,7 @@
 
 // Package includes
 #include "MPIEnvironment.h"
-#include "MolecularDynamics.h"
+#include "Simulation.h"
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
@@ -17,7 +17,7 @@
 
 namespace ANANSI {
 
-class AnansiMolecularDynamics final : public MolecularDynamics
+class AnansiMolecularDynamics final : public Simulation
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */

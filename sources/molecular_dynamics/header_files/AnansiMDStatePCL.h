@@ -57,7 +57,7 @@ namespace ANANSI
         private:
             /*=====================  ACCESSORS     ======================================= */
 
-            void _processCommandLine(MolecularDynamics * const aMD) const final override;
+            void _processCommandLine(Simulation * const aMD) const final override;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

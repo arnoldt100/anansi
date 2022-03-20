@@ -56,7 +56,7 @@ namespace ANANSI
 
         private:
             /* ====================  ACCESSORS     ======================================= */
-            void _terminateSimulationEnvironment(MolecularDynamics * const aMD) const final override ;
+            void _terminateSimulationEnvironment(Simulation * const aMD) const final override ;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

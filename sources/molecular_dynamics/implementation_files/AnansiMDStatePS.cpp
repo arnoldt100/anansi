@@ -100,7 +100,7 @@ AnansiMDStatePS& AnansiMDStatePS::operator= ( AnansiMDStatePS && other )
 
 //============================= MUTATORS =====================================
 
-void AnansiMDStatePS::_performSimulation (MolecularDynamics * const aMD) const
+void AnansiMDStatePS::_performSimulation (Simulation * const aMD) const
 {
     return;
 }		/* -----  end of method AnansiMDStatePS::_performSimulation  ----- */

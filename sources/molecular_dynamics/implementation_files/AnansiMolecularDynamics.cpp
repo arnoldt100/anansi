@@ -36,7 +36,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 AnansiMolecularDynamics::AnansiMolecularDynamics() : 
-    MolecularDynamics(),
+    Simulation(),
     _commandLineArguments(),
     _simulationParameters(),
     _MpiWorldCommunicator(),
@@ -57,7 +57,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
 }
 
 AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *const *const & argv) :
-    MolecularDynamics(),
+    Simulation(),
     _commandLineArguments(COMMANDLINE::CommandLineArguments(argc,argv)),
     _simulationParameters(),
     _MpiWorldCommunicator(),

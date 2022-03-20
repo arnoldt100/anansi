@@ -18,7 +18,7 @@ namespace ANANSI
 {
 
     // Forward declaration
-    class MolecularDynamics;
+    class Simulation;
 
     class AnansiMDState
     {
@@ -75,7 +75,7 @@ namespace ANANSI
             //        aMD : The object the request is made to.
             //
             //--------------------------------------------------------------------------------------
-            void initializeSimulationEnvironment(MolecularDynamics * const aMD ) const;
+            void initializeSimulationEnvironment(Simulation * const aMD ) const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  AnansiMDState
@@ -87,7 +87,7 @@ namespace ANANSI
             //       aMD : The object the request is made to.
             //
             //--------------------------------------------------------------------------------------
-            void processCommandLine(MolecularDynamics * const aMD) const;
+            void processCommandLine(Simulation * const aMD) const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  AnansiMDState
@@ -99,7 +99,7 @@ namespace ANANSI
             //       aMD : The object the request is made to.
             //
             //--------------------------------------------------------------------------------------
-            void initializeInitialConditions(MolecularDynamics * const aMD) const;
+            void initializeInitialConditions(Simulation * const aMD) const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  AnansiMDState
@@ -109,7 +109,7 @@ namespace ANANSI
             //  Parameters: 
             //        aMD : The object the request is made to.
             //--------------------------------------------------------------------------------------
-            void performSimulation(MolecularDynamics * const aMD) const;
+            void performSimulation(Simulation * const aMD) const;
 
             //--------------------------------------------------------------------------------------
             //       Class:  AnansiMDState
@@ -121,7 +121,7 @@ namespace ANANSI
             //        aMD : The object the request is made to.
             //
             //--------------------------------------------------------------------------------------
-            void terminateSimulationEnvironment(MolecularDynamics * const aMD) const ;
+            void terminateSimulationEnvironment(Simulation * const aMD) const ;
 
             //--------------------------------------------------------------------------------------
             //       Class:  AnansiMDState
@@ -132,7 +132,7 @@ namespace ANANSI
             //        aMD : The object the request is made to.
             //
             //--------------------------------------------------------------------------------------
-            void execute(MolecularDynamics * const aMD ) const;
+            void execute(Simulation * const aMD ) const;
 
             /* ====================  MUTATORS      ======================================= */
 
@@ -165,17 +165,17 @@ namespace ANANSI
 
         private:
             /* ====================  ACCESSORS     ======================================= */
-            virtual void _execute(MolecularDynamics* const aMD) const;
+            virtual void _execute(Simulation* const aMD) const;
 
-            virtual void _initializeSimulationEnvironment(MolecularDynamics* const aMD) const;
+            virtual void _initializeSimulationEnvironment(Simulation* const aMD) const;
 
-            virtual void _processCommandLine(MolecularDynamics* const aMD) const;
+            virtual void _processCommandLine(Simulation* const aMD) const;
 
-            virtual void _initializeInitialConditions(MolecularDynamics * const aMD) const;
+            virtual void _initializeInitialConditions(Simulation * const aMD) const;
 
-            virtual void _performSimulation(MolecularDynamics * const aMD) const;
+            virtual void _performSimulation(Simulation * const aMD) const;
 
-            virtual void _terminateSimulationEnvironment(MolecularDynamics * const aMD) const;
+            virtual void _terminateSimulationEnvironment(Simulation * const aMD) const;
 
             /* ====================  DATA MEMBERS  ======================================= */
 

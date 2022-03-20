@@ -56,7 +56,7 @@ AnansiMDStateIIC::~AnansiMDStateIIC()
 //============================= ACCESSORS ====================================
 
 void
-AnansiMDStateIIC::_initializeInitialConditions (MolecularDynamics * const aMD) const
+AnansiMDStateIIC::_initializeInitialConditions (Simulation * const aMD) const
 {
 	aMD->inputSimulationControlFile();
 

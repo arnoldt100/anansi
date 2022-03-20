@@ -27,7 +27,7 @@ int main( int argc, char** argv )
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     std::shared_ptr<ANANSI::MolecularDynamicsFactory> my_md_factory(new ANANSI::AnansiMolecularDynamicsFactory(argc,argv));
-    std::shared_ptr<ANANSI::MolecularDynamics> md_ptr = my_md_factory->create_shared_ptr();
+    std::shared_ptr<ANANSI::Simulation> md_ptr = my_md_factory->create_shared_ptr();
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
