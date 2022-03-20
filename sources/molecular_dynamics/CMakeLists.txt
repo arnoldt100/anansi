@@ -98,7 +98,6 @@
         header_files/AnansiMDStatePS.h
         header_files/AnansiMDStateTSE.h
         header_files/ISEStatus.h
-        header_files/MolecularDynamicsFactory.h 
         header_files/AnansiMolecularDynamicsFactory.h 
         header_files/AnansiMDStateTypeList.hpp
         header_files/AnansiMDStateInt2Type.hpp )
@@ -126,7 +125,6 @@
         implementation_files/AnansiMDStatePS.cpp
         implementation_files/AnansiMDStateTSE.cpp
         implementation_files/ISEStatus.cpp
-        implementation_files/MolecularDynamicsFactory.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp 
         implementation_files/AnansiMDStateInt2Type.cpp
         implementation_files/AnansiMDStateTypeList.cpp)

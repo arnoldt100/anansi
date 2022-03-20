@@ -57,6 +57,7 @@
     #-----------------------------------------------------
     set (simulation_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Simulation.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationFactory.h 
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/AnansiMDState.h )
 
     #-----------------------------------------------------
@@ -68,6 +69,7 @@
     #-----------------------------------------------------
     set (simulation_implementation_files
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Simulation.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationFactory.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/AnansiMDState.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

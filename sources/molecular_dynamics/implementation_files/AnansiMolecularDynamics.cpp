@@ -185,8 +185,8 @@ AnansiMolecularDynamics::_disableCommunication()
 void
 AnansiMolecularDynamics::_initializeSimulationEnvironment()
 {
-    //
-    this->_mdState->initializeSimulationEnvironment(this);
+    /* :TODO:03/20/2022 03:57:19 PM:: State refactoring */
+    // this->_mdState->initializeSimulationEnvironment(this);
     return;
 }
 
@@ -270,7 +270,8 @@ void AnansiMolecularDynamics::_readInitialConfiguration()
 
 void AnansiMolecularDynamics::_processCommandLine()
 {
-    this->_mdState->processCommandLine(this);
+    /* :TODO:03/20/2022 03:59:10 PM::  State refactoring */
+    // this->_mdState->processCommandLine(this);
     return;
 }
 
@@ -287,19 +288,22 @@ AnansiMolecularDynamics::_saveCommandLineOptionParameters()
 void
 AnansiMolecularDynamics::_initializeInitialConditions()
 {
-    this->_mdState->initializeInitialConditions(this);
+    /* :TODO:03/20/2022 04:00:20 PM:: State refactoring */
+    // this->_mdState->initializeInitialConditions(this);
     return;
 }        // -----  end of method AnansiMolecularDynamics::_initializeInitialConditions  -----
 
 void AnansiMolecularDynamics::_performSimulation()
 {
-    this->_mdState->performSimulation(this);
+    /* :TODO:03/20/2022 04:01:18 PM:: State refatoring */
+    // this->_mdState->performSimulation(this);
     return;
 }        // -----  end of method AnansiMolecularDynamics::_performSimulation  -----
 
 void AnansiMolecularDynamics::_terminateSimulationEnvironment()
 {
-    this->_mdState->terminateSimulationEnvironment(this);
+    /* :TODO:03/20/2022 04:01:59 PM:: State refactoring */
+    // this->_mdState->terminateSimulationEnvironment(this);
     return;
 }      // -----  end of method AnansiMolecularDynamics::_terminateSimulationEnvironment  -----
 

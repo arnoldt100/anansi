@@ -11,11 +11,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "anansi_main_md.h"
-#include "MPIEnvironment.h"
 #include "AnansiMolecularDynamics.h"
 #include "AnansiMolecularDynamicsFactory.h"
-#include "Pointer.hpp"
-#include "CommandLineArguments.h"
 
 
 int main( int argc, char** argv )
