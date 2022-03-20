@@ -1,10 +1,10 @@
-# This CMakeLists.txt file creates the library libsimulation_state.a
+# This CMakeLists.txt file creates the library libsimulation.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# simulation_state_header_files or simulation_state_implementation_files.
+# simulation_header_files or simulation_implementation_files.
 #
-# The target for the library is simulation_state.
+# The target for the library is simulation.
 #
-# The following properties are set for the target simulation_state.
+# The following properties are set for the target simulation.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "simulation_state")
+    set(my_project_name "simulation")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -53,14 +53,8 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (simulation_state_header_files
-         header_files/SimulationState.h
-         header_files/NullSimulationState.h
-         header_files/InitSimEnv.h  
-         header_files/ProcessCmdLine.h
-         header_files/InitInitialConditions.h
-         header_files/PerformSimulation.h 
-         header_files/TerminateSimulation.h )
+    set (simulation_header_files
+         <list of header files> )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -69,14 +63,8 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (simulation_state_implementation_files
-         implementation_files/SimulationState.cpp
-         implementation_files/NullSimulationState.cpp 
-         implementation_files/InitSimEnv.cpp
-         implementation_files/ProcessCmdLine.cpp
-         implementation_files/InitInitialConditions.cpp
-         implementation_files/PerformSimulation.cpp
-         implementation_files/TerminateSimulation.cpp )
+    set (simulation_implementation_files
+         <list of implementation files> )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -99,7 +87,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${simulation_state_header_files} ${simulation_state_implementation_files} )
+    PRIVATE ${simulation_header_files} ${simulation_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -120,13 +108,12 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      simulation_state_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD ${simulation_state_cxx_standard}
-                      PUBLIC_HEADER "${simulation_state_header_files}" )
+                      simulation_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      PUBLIC_HEADER "${simulation_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${simulation_state_install_lib_directory}
-         PUBLIC_HEADER DESTINATION ${simulation_state_install_include_directory} )
+         ARCHIVE DESTINATION ${simulation_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION "${simulation_install_lib_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
