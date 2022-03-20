@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,7 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiMolecularDynamics.h"
-#include "MolecularDynamicsFactory.h"
+#include "SimulationFactory.h"
 
 namespace ANANSI
 {
@@ -23,7 +24,7 @@ namespace ANANSI
      *  Description:  
      * =====================================================================================
      */
-    class AnansiMolecularDynamicsFactory final : public MolecularDynamicsFactory 
+    class AnansiMolecularDynamicsFactory final : public SimulationFactory 
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */

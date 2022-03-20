@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  MolecularDynamicsFactory.h
+ *       Filename:  SimulationFactory.h
  *
  *    Description:  
  *
@@ -32,19 +32,19 @@ namespace ANANSI
 {
     /*
      * =====================================================================================
-     *        Class:  MolecularDynamicsFactory
+     *        Class:  SimulationFactory
      *  Description:  
      * =====================================================================================
      */
-    class MolecularDynamicsFactory
+    class SimulationFactory
     {
         public:
             /* ====================  LIFECYCLE     ======================================= */
-            MolecularDynamicsFactory(); /* constructor      */
+            SimulationFactory(); /* constructor      */
 
-            MolecularDynamicsFactory( const MolecularDynamicsFactory &other )=delete;  /* copy constructor */
+            SimulationFactory( const SimulationFactory &other )=delete;  /* copy constructor */
 
-            virtual ~MolecularDynamicsFactory()=0; /* destructor */
+            virtual ~SimulationFactory()=0; /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
 
@@ -54,8 +54,8 @@ namespace ANANSI
 
             /* ====================  OPERATORS     ======================================= */
 
-            MolecularDynamicsFactory& 
-                operator=( const MolecularDynamicsFactory &other )=delete; /* assignment operator */
+            SimulationFactory& 
+                operator=( const SimulationFactory &other )=delete; /* assignment operator */
 
         protected:
             /* ====================  METHODS       ======================================= */
@@ -72,7 +72,7 @@ namespace ANANSI
 
             /* ====================  DATA MEMBERS  ======================================= */
 
-    }; /* -----  end of class MolecularDynamicsFactory  ----- */
+    }; /* -----  end of class SimulationFactory  ----- */
 }; /* -----  end of namespace MEMORY_MANAGEMENT  ----- */
 
 #endif   /* ----- #ifndef MolecularDynamicsFactory_INC  ----- */

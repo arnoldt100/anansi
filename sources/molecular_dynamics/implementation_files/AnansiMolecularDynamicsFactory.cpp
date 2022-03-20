@@ -31,7 +31,7 @@ namespace ANANSI
  *--------------------------------------------------------------------------------------
  */
 AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory() :
-    MolecularDynamicsFactory(),
+		SimulationFactory(),
     argc_(0),
     argv_ptr_(nullptr)
 {
@@ -40,7 +40,7 @@ AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory() :
 
 
 AnansiMolecularDynamicsFactory::AnansiMolecularDynamicsFactory(int const argc, char const * const * const & argv ) :
-    MolecularDynamicsFactory(),
+		SimulationFactory(),
     argc_(argc),
     argv_ptr_(nullptr)
 {

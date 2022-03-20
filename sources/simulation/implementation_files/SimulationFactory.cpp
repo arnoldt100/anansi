@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  MolecularDynamicsFactory.cpp
+ *       Filename:  SimulationFactory.cpp
  *
  *    Description:  
  *
@@ -12,7 +12,7 @@
  */
 
 
-#include "MolecularDynamicsFactory.h"
+#include "SimulationFactory.h"
 
 namespace ANANSI
 {
@@ -25,31 +25,31 @@ namespace ANANSI
 
 /*
  *--------------------------------------------------------------------------------------
- *       Class:  MolecularDynamicsFactory
- *      Method:  MolecularDynamicsFactory
+ *       Class:  SimulationFactory
+ *      Method:  SimulationFactory
  * Description:  constructor
  *--------------------------------------------------------------------------------------
  */
-MolecularDynamicsFactory::MolecularDynamicsFactory()
+SimulationFactory::SimulationFactory()
 {
     return;
-}  /* -----  end of method MolecularDynamicsFactory::MolecularDynamicsFactory (constructor)  ----- */
+}  /* -----  end of method SimulationFactory::SimulationFactory (constructor)  ----- */
 
 
 /*
  *--------------------------------------------------------------------------------------
- *       Class:  MolecularDynamicsFactory
- *      Method:  MolecularDynamicsFactory :: ~MolecularDynamicsFactory
+ *       Class:  SimulationFactory
+ *      Method:  SimulationFactory :: ~SimulationFactory
  * Description:  destructor
  *--------------------------------------------------------------------------------------
  */
-MolecularDynamicsFactory::~MolecularDynamicsFactory()
+SimulationFactory::~SimulationFactory()
 {
     return;
-}  /* -----  end of method MolecularDynamicsFactory::~MolecularDynamicsFactory (destructor)  ----- */
+}  /* -----  end of method SimulationFactory::~SimulationFactory (destructor)  ----- */
 
 //============================= ACCESSORS ====================================
-std::shared_ptr<Simulation> MolecularDynamicsFactory::create_shared_ptr()
+std::shared_ptr<Simulation> SimulationFactory::create_shared_ptr()
 {
     return this->create_shared_ptr_();
 }
