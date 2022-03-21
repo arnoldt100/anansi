@@ -41,16 +41,14 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     _simulationParameters(),
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
-    _mdStateFactory(std::make_unique<MPL::Factory<AnansiMDState,int>>()),
     mdStateFactory_(),
     _mdState(),
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Register only AnansiMDStateNull.
-    this->_mdStateFactory->registerFactory(AnansiMDStateNull::id,AnansiMDStateNull::createAnansiMDState);
 
-    this->changeMDState(AnansiMDStateNull::id);
+    this->changeMDState();
     this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
 
     return;
@@ -62,22 +60,13 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     _simulationParameters(),
     _MpiWorldCommunicator(),
     _MpiEnvironment(),
-    _mdStateFactory(std::make_unique<MPL::Factory<AnansiMDState,int>>()),
     mdStateFactory_(std::make_unique<MDSimulationStateFactory>()),
     _mdState(),
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
-    // Register all AnansiMDState's
-    this->_mdStateFactory->registerFactory(AnansiMDStateNull::id,AnansiMDStateNull::createAnansiMDState);
-    this->_mdStateFactory->registerFactory(AnansiMDStateISE::id,AnansiMDStateISE::createAnansiMDState);
-    this->_mdStateFactory->registerFactory(AnansiMDStatePCL::id,AnansiMDStatePCL::createAnansiMDState);
-    this->_mdStateFactory->registerFactory(AnansiMDStateIIC::id,AnansiMDStateIIC::createAnansiMDState);
-    this->_mdStateFactory->registerFactory(AnansiMDStatePS::id,AnansiMDStatePS::createAnansiMDState);
-    this->_mdStateFactory->registerFactory(AnansiMDStateTSE::id,AnansiMDStateTSE::createAnansiMDState);
-
     // Change the state to AnansiMDStateISE.
-    this->changeMDState(AnansiMDStateISE::id);
+    this->changeMDState();
     this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
     this->mdState_->who_am_i();
 
@@ -346,10 +335,9 @@ AnansiMolecularDynamics::_changeMDStateToTSE()
    return;
 }
 
-void AnansiMolecularDynamics::_changeMDState(int const id)
+void AnansiMolecularDynamics::_changeMDState()
 {
-   std::unique_ptr<ANANSI::AnansiMDState> my_new_state(this->_mdStateFactory->createObject(id));
-   this->_setMDState(std::move(my_new_state));
+   /* :TODO:03/21/2022 11:52:54 AM:: Refactor with respect to new States. */
 }
 
 void 

@@ -42,6 +42,10 @@ SimulationState::~SimulationState()
 }
 
 //============================= ACCESSORS ====================================
+void AnansiMDState::initializeSimulationEnvironment(Simulation* aMD) const
+{
+
+}
 
 //============================= MUTATORS =====================================
 
@@ -84,6 +88,11 @@ SimulationState& SimulationState::operator= ( SimulationState && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void SimulationState::_initializeSimulationEnvironment(Simulation * const aSimulation) const
+{
+    std::cout << "Error: This state can't 'initialize the simulation environment'." << std::endl;
+    return;
+}
 
 //============================= MUTATORS =====================================
 

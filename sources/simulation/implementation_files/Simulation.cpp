@@ -177,9 +177,9 @@ void Simulation::changeMDStateToTSE()
     this->_changeMDStateToTSE();
 }
 
-void Simulation::changeMDState(int const id)
+void Simulation::changeMDState()
 {
-    this->_changeMDState(id);
+    this->_changeMDState();
 }
 
 void Simulation::setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)

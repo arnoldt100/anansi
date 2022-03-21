@@ -14,6 +14,11 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
+//--------------------------------------------------------//
+//--------------------- Forward declarations -------------//
+//--------------------------------------------------------//
+class Simulation;
+
 namespace ANANSI
 {
 
@@ -49,6 +54,18 @@ class SimulationState
             std::cout << "I'm SimulationState" << std::endl;
         }
 
+        //--------------------------------------------------------------------------------------
+        //       Class:  SimulationState
+        //      Method:  AnansiMDState :: initializeSimulationEnvironment
+        // Description:  This function makes a request to the simulation object
+        // to initialize the simulation environment.
+        //
+        //  Parameters:
+        //        aSimulation : The object the request is made to.
+        //
+        //--------------------------------------------------------------------------------------
+        void initializeSimulationEnvironment(Simulation * const aSimulation ) const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -64,6 +81,9 @@ class SimulationState
 
     private:
         // ====================  METHODS       =======================================
+
+        // ====================  ACCESSORS     =======================================
+        virtual void _initializeSimulationEnvironment(Simulation* const aSimulation) const;
 
         // ====================  DATA MEMBERS  =======================================
 

@@ -6,6 +6,7 @@ Welcome to Anansi's class documentation!
    :caption: Contents:
    :titlesonly:
    
+   Classes/Simulation.cpp
    Classes/AnansiMDState.cpp.rst
    Classes/AnansiMDStateISE.cpp.rst
    Classes/AnansiMDStateIIC.cpp.rst

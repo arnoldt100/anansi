@@ -97,7 +97,7 @@ class Simulation
         // TO DO: This method will be depracted. 
         void changeMDStateToTSE();
         // TO DO: This method will be depracted. 
-        void changeMDState(int const id);
+        void changeMDState();
         
         // This group of functions changes the status of the MD object.
         
@@ -171,7 +171,7 @@ class Simulation
 
         virtual void _changeMDStateToTSE()=0;
 
-        virtual void _changeMDState(int const id)=0;
+        virtual void _changeMDState()=0;
 
         // Set the status of the MD object.
         virtual void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;

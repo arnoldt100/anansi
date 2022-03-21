@@ -18,57 +18,62 @@
 namespace ANANSI
 {
 
-     // =====================================================================================
-     //        Class:  NullSimulationState
-     //  Description:  
-     //  =====================================================================================
-    class NullSimulationState : public SimulationState
-    {
-        public:
-            // ====================  LIFECYCLE     =======================================
+// =====================================================================================
+//        Class:  NullSimulationState
+//  Description:  
+//  =====================================================================================
+class NullSimulationState : public SimulationState
+{
+    public:
+        // ====================  LIFECYCLE     =======================================
 
-            //--------------------------------------------------------------------------------------
-            //       Class:  NullSimulationState
-            //      Method:  NullSimulationState :: NullSimulationState
-            // Description:  
-            // 
-            //  Parameters: 
-            //
-            //      Return:
-            //--------------------------------------------------------------------------------------
-            NullSimulationState ();   // constructor
+        //--------------------------------------------------------------------------------------
+        //       Class:  NullSimulationState
+        //      Method:  NullSimulationState :: NullSimulationState
+        // Description:  
+        // 
+        //  Parameters: 
+        //
+        //      Return:
+        //--------------------------------------------------------------------------------------
+        NullSimulationState ();   // constructor
 
-            NullSimulationState (NullSimulationState const & other);   // copy constructor
+        NullSimulationState (NullSimulationState const & other);   // copy constructor
 
-            NullSimulationState (NullSimulationState && other);   // copy-move constructor
+        NullSimulationState (NullSimulationState && other);   // copy-move constructor
 
-            virtual ~NullSimulationState ();  // destructor
+        virtual ~NullSimulationState ();  // destructor
 
-            // ====================  ACCESSORS     =======================================
-            virtual void who_am_i() const
-            {
-                std::cout << "I'm NullSimulationState" << std::endl;
-            }
+        // ====================  ACCESSORS     =======================================
+        virtual void who_am_i() const
+        {
+            std::cout << "I'm NullSimulationState" << std::endl;
+        }
 
-            // ====================  MUTATORS      =======================================
+        // ====================  MUTATORS      =======================================
 
-            // ====================  OPERATORS     =======================================
+        // ====================  OPERATORS     =======================================
 
-            NullSimulationState& operator= ( NullSimulationState const & other ); // assignment operator
+        NullSimulationState& operator= ( NullSimulationState const & other ); // assignment operator
 
-            NullSimulationState& operator= ( NullSimulationState && other ); // assignment-move operator
+        NullSimulationState& operator= ( NullSimulationState && other ); // assignment-move operator
 
-        protected:
-            // ====================  METHODS       =======================================
+    protected:
+        // ====================  ACCESSORS     =======================================
+        
+        // ====================  MUTATORS      =======================================
 
-            // ====================  DATA MEMBERS  =======================================
+        // ====================  DATA MEMBERS  =======================================
 
-        private:
-            // ====================  METHODS       =======================================
+    private:
 
-            // ====================  DATA MEMBERS  =======================================
+        // ====================  ACCESSORS     =======================================
+        
+        // ====================  MUTATORS      =======================================
 
-    }; // -----  end of class NullSimulationState  -----
+        // ====================  DATA MEMBERS  =======================================
+
+}; // -----  end of class NullSimulationState  -----
 
 
 }; // namespace ANANSI
