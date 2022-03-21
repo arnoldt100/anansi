@@ -1,4 +1,4 @@
-.. _Simulation class target:
+.. _SimulationState class target:
 
 .. default-domain:: cpp
 
@@ -11,16 +11,16 @@ Simulation Documentation
 This is an interface class for the various simulation states. We are using the
 State design pattern to implement concrete simulation behavoirs,
 
-AnansiMolecularDynamics has 5 states or behaviors:
+All simulations have 5 states or behaviors:
 
 * InitSimEnv
 
-    This state controls the behavoir for initialzing various execution
+    This state controls the behavoir for initializing various execution
     environments such as MPI, GPU accelerators, etc.
 
 * ProcessCmdLine
 
-    This states controls the behavior processing the command line options. This
+    This state controls the behavior processing the command line options. This
     state can't be performed unless the InitSimEnv is
     successfully completed.
     
@@ -35,13 +35,14 @@ AnansiMolecularDynamics has 5 states or behaviors:
 
 * PerformSimulation
 
-    This state controls the behavior of the actual simulation. This state can't
-    be performed unless the InitSimEnv is successfully completed.
+    This state controls the behavior of the performing simulation. This state
+    can't be performed unless the InitInitialConditions is successfully
+    completed.
 
-* TerminatingSimulation
+* TerminateSimulation
 
-    This state controls the termination of various execution environments such as MPI,
-    GPU accelerators, etc. This state can be performed at any time.
+    This state controls the termination of various execution environments such
+    as MPI, GPU accelerators, etc. This state can be performed at any time.
 
 ====================
 Include Header Files
@@ -56,15 +57,15 @@ Include Header Files
 
 **Project Include Files**
 
-================================
-Simulation.h Global Variables
-================================
+==================================
+SimulationState.h Global Variables
+==================================
 
-=================================
-Simulation Class Documentation
-=================================
+===================================
+SimulationState Class Documentation
+===================================
 
-.. class:: Simulation
+.. class:: SimulationState
 
 --------------
 Public Members
@@ -82,13 +83,13 @@ Lifecycle
 
         The copy constructor.
 
-        :param const Simulation &other: The other MD state to copy construct from.
+        :param const Simulation &other: The other simulation state to copy construct from.
 
     .. function:: Simulation::Simulation(Simulation && other) 
 
         The copy-move constructor.
 
-        :param const Simulation &other: The other MD state to copy-move construct from.
+        :param const Simulation &other: The other simulation state to copy-move construct from.
 
     .. function:: virtual Simulation::~Simulation()=0
 
@@ -98,42 +99,36 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    .. function:: void Simulation::initializeSimulationEnvironment(MolecularDynamics * const aMD, int const & argc, char const * const * const & argv ) const
+    .. function:: void SimulationState::initializeSimulationEnvironment(Simulation * const aSimulation) const
 
         Implements the interface for intializing the simulation environment.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
-                                              This MD object is to have its simulation environment
-                                              initialized.
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
 
-        :param int const & argc: The number of command line arguments.
-        :param char const * const * const & argv: The command line arguments.
-        :rtype: void
-
-    .. function:: void Simulation::processCommandLine(MolecularDynamics * const aMD) const
+    .. function:: void Simulation::processCommandLine(Simulation * const aSimulation) const
 
         Implements the interface for processing the command line arguments.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
 
-    .. function:: void Simulation::initializeInitialConditions(MolecularDynamics * const aMD) const 
+    .. function:: void Simulation::initializeInitialConditions(Simulation * const aSimulation) const 
 
         Implements the interface for initializing the initial condtions.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
 
 
-    .. function:: void Simulation::performSimulation(MolecularDynamics * const aMD) const
+    .. function:: void Simulation::performSimulation(Simulation * const aSimulation) const
 
-        Implements the interface for performing the molecular dynamics simulation.
+        Implements the interface for performing the simulation simulation.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
 
-    .. function:: void Simulation::terminateSimulationEnvironment(MolecularDynamics * const aMD) const
+    .. function:: void Simulation::terminateSimulationEnvironment(Simulation * const aSimulation) const
 
         Implements the interface for terminating the simulation environment.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
 
 ^^^^^^^^^
 Operators
@@ -192,72 +187,75 @@ Private Members
 Accessors
 ^^^^^^^^^
 
-    .. function:: void Simulation::_initializeSimulationEnvironment(MolecularDynamics * const aMD, int const & argc, char const * const * const & argv ) const
+    .. function:: void Simulation::_initializeSimulationEnvironment(Simulation * const aSimulation) const
 
-        Implements the Non-Virtual Interface private virtual extension point
+        Implements the non-virtual interface private virtual extension point
         for intializing the simulation environment.
 
-        This function should be overriden for by all valid MD states.
-        Currently only the MD state SimulationISE should override this
-        method.  If the function is not overriden in the derived class, the
-        function simply does nothing.
+        This function should be overriden for by all valid Simulation states.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
-                                              This MD object is to have its simulation environment
-                                              initialized.
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
+                                                      This simulation object is to have its simulation environment
+                                                      initialized.
 
-        :param int const & argc: The number of command line arguments.
-        :param char const * const * const & argv: The command line arguments.
         :rtype: void
 
 
-    .. function:: void Simulation::_processCommandLine(MolecularDynamics * const aMD) const
+    .. function:: void Simulation::_processCommandLine(Simulation * const aSimulation) const
 
         Implements the Non-Virtual Interface private virtual extension point
         for processing the command line arguments.
 
-        This function should be overriden for by all valid MD states.
-        Currently only the MD state SimulationPCL should override this
+        This function should be overriden for by all valid simulation states.
+        Currently only the simulation state PerformSimulation should override this
         method.  If the function is not overriden in the derived class, the
         function simply does nothing.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
 
-    .. function:: void Simulation::_initializeInitialConditions(MolecularDynamics * const aMD) const 
+        :rtype: void
 
-        Implements the Non-Virtual Interface private virtual extension point
+    .. function:: void Simulation::_initializeInitialConditions(Simulation * const aSimulation) const 
+
+        Implements the non-virtual interface private virtual 
         for initializing the initial conditions.
 
-        This function should be overriden for by all valid MD states.
-        Currently only the MD state SimulationIIC should override this
+        This function should be overriden for by all valid simulation states.
+        Currently only the simulation  state InitInitialConditions should override this
         method.  If the function is not overriden in the derived class, the
         function simply does nothing.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
 
-    .. function:: void Simulation::_performSimulation(MolecularDynamics * const aMD) const
+        :rtype: void
 
-        Implements the Non-Virtual Interface private virtual extension point
-        for performing the MD simulation.
+    .. function:: void Simulation::_performSimulation(Simulation * const aSimulation) const
 
-        This function should be overriden for by all valid MD states.
-        Currently only the MD state SimulationPS should override this
+        Implements the non-virtual interface private virtual extension
+        for performing the simulation.
+
+        This function should be overriden for by all valid simulation  states.
+        Currently only the simulation  state PerformSimulation should override this
         method.  If the function is not overriden in the derived class, the
         function simply does nothing.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
 
-    .. function:: void Simulation::_terminateSimulationEnvironment(MolecularDynamics * const aMD) const
+        :rtype: void
+
+    .. function:: void Simulation::_terminateSimulationEnvironment(Simulation * const aSimulation) const
 
         Implements the Non-Virtual Interface private virtual extension point
         for terminating the simulation environment.
 
-        This function should be overriden for by all valid MD states.
-        Currently only the MD state SimulationTS should override this
+        This function should be overriden for by all valid simulation  states.
+        Currently only the simulation state TerminateSimulation should override this
         method.  If the function is not overriden in the derived class, the
         function simply does nothing.
 
-        :param MolecularDynamics * const aMD: A pointer to a molecular dynamics object. 
+        :param Simulation * const aSimulation: A pointer to a simulation object. 
+
+        :rtype: void
 
 .. 
 .. ^^^^^^^^^
