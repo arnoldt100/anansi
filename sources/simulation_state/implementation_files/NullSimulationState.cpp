@@ -87,6 +87,11 @@ NullSimulationState& NullSimulationState::operator= ( NullSimulationState && oth
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void NullSimulationState::_initializeSimulationEnvironment(Simulation * const aSimulation) const
+{
+    std::cout << "Error: The NullSimulationState state can't 'initialize the simulation environment'." << std::endl;
+    return;
+}
 
 //============================= MUTATORS =====================================
 

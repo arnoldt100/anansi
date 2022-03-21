@@ -2,6 +2,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -90,7 +91,7 @@ SimulationState& SimulationState::operator= ( SimulationState && other )
 //============================= ACCESSORS ====================================
 void SimulationState::_initializeSimulationEnvironment(Simulation * const aSimulation) const
 {
-    std::cout << "Error: This state can't 'initialize the simulation environment'." << std::endl;
+    std::cout << "Error: The SimulationState state can't 'initialize the simulation environment'." << std::endl;
     return;
 }
 

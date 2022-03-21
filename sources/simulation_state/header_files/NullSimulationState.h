@@ -13,6 +13,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Forward declarations -------------//
+//--------------------------------------------------------//
+class Simulation;
+
 #include "SimulationState.h"
 
 namespace ANANSI
@@ -68,6 +74,7 @@ class NullSimulationState : public SimulationState
     private:
 
         // ====================  ACCESSORS     =======================================
+        virtual void _initializeSimulationEnvironment(Simulation* const aSimulation) const;
         
         // ====================  MUTATORS      =======================================
 
