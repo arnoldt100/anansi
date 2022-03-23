@@ -4,6 +4,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <unordered_map>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -28,6 +30,7 @@ namespace ANANSI
 class SimulationState
 {
     public:
+
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
@@ -48,10 +51,7 @@ class SimulationState
         virtual ~SimulationState ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
-        void who_am_i() const
-        {
-            std::cout << "I'm SimulationState" << std::endl;
-        }
+        virtual void who_am_i() const;
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationState
@@ -60,10 +60,10 @@ class SimulationState
         // to initialize the simulation environment.
         //
         //  Parameters:
-        //        aSimulation : The object the request is made to.
+        //        a_simulation : The object the request is made to.
         //
         //--------------------------------------------------------------------------------------
-        void initializeSimulationEnvironment(Simulation * const aSimulation ) const;
+        void initializeSimulationEnvironment(Simulation * const a_simulation ) const;
 
         // ====================  MUTATORS      =======================================
 
@@ -74,15 +74,29 @@ class SimulationState
         SimulationState& operator= ( SimulationState && other ); // assignment-move operator
 
     protected:
+        // ====================  Type Aliases  =======================================
+        
+        using state_misbehavior_info = std::unordered_map<std::string, std::string>;
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+
+        // ====================  ACCESSORS     =======================================
+        virtual std::string misbehviorErrorMessage_(state_misbehavior_info const & error_info) const;
+
 
     private:
         // ====================  METHODS       =======================================
 
         // ====================  ACCESSORS     =======================================
-        virtual void _initializeSimulationEnvironment(Simulation* const aSimulation) const;
+
+        virtual void processCommandLine_(Simulation* const a_simulation) const=0;
+
+        virtual void initializeSimulationEnvironment_(Simulation* const a_simulation) const=0;
+
+
+
 
         // ====================  DATA MEMBERS  =======================================
 

@@ -4,7 +4,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -51,10 +50,7 @@ class NullSimulationState : public SimulationState
         virtual ~NullSimulationState ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        virtual void who_am_i() const
-        {
-            std::cout << "I'm NullSimulationState" << std::endl;
-        }
+        virtual void who_am_i() const override;
 
         // ====================  MUTATORS      =======================================
 
@@ -74,8 +70,10 @@ class NullSimulationState : public SimulationState
     private:
 
         // ====================  ACCESSORS     =======================================
-        virtual void _initializeSimulationEnvironment(Simulation* const aSimulation) const;
+        virtual void initializeSimulationEnvironment_(Simulation* const aSimulation) const override;
         
+        virtual void processCommandLine_(Simulation * const aSimulation) const override;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  DATA MEMBERS  =======================================

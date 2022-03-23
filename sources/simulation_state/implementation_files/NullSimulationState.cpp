@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 #include <utility>
 
 //--------------------------------------------------------//
@@ -45,6 +46,10 @@ NullSimulationState::~NullSimulationState()
 }
 
 //============================= ACCESSORS ====================================
+void NullSimulationState::who_am_i() const
+{
+    std::cout << "I'm a NullSimulationState" << std::endl;
+}
 
 //============================= MUTATORS =====================================
 
@@ -87,9 +92,27 @@ NullSimulationState& NullSimulationState::operator= ( NullSimulationState && oth
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void NullSimulationState::_initializeSimulationEnvironment(Simulation * const aSimulation) const
+void NullSimulationState::initializeSimulationEnvironment_(Simulation * const aSimulation) const
 {
-    std::cout << "Error: The NullSimulationState state can't 'initialize the simulation environment'." << std::endl;
+    SimulationState::state_misbehavior_info error_info = 
+        { 
+            {"simulation_state","NullSimulationState"},
+            {"inappropiate_behavior","Initializing simulation environment"}
+        };
+    std::string error_message = this->misbehviorErrorMessage_(error_info);
+    std::cout << error_message.c_str();
+    return;
+}
+
+void NullSimulationState::processCommandLine_(Simulation * const aSimulation) const
+{
+    SimulationState::state_misbehavior_info error_info = 
+        { 
+            {"simulation_state","NullSimulationState"},
+            {"inappropiate_behavior","Processing command line"}
+        };
+    std::string error_message = this->misbehviorErrorMessage_(error_info);
+    std::cout << error_message.c_str();
     return;
 }
 
