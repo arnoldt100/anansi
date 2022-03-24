@@ -50,7 +50,7 @@ void Simulation::stud_function(std::string const & message) const
 
 COMMUNICATOR::RegistryAnansiMDStatus Simulation::status() const
 {   
-    return this->_status();
+    return this->status_();
 }
 
 COMMUNICATOR::RegistryAnansiMDStatus Simulation::globalStatus() const
@@ -60,22 +60,22 @@ COMMUNICATOR::RegistryAnansiMDStatus Simulation::globalStatus() const
 
 bool Simulation::isISEStatusOkay() const
 {
-	return this->_isISEStatusOkay();
+	return this->isISEStatusOkay_();
 }
 
 bool Simulation::isISEGlobalStatusOkay() const
 {   
-    return this->_isISEGlobalStatusOkay();
+    return this->isISEGlobalStatusOkay_();
 }
 
 bool Simulation::isIICStatusOkay() const
 {
-	return this->_isIICStatusOkay();
+	return this->isIICStatusOkay_();
 }
 
 bool Simulation::isHelpOnCommandLine() const
 {
-    return this->_isHelpOnCommandLine();
+    return this->isHelpOnCommandLine_();
 }
 
 //============================= MUTATORS =====================================
@@ -83,7 +83,7 @@ bool Simulation::isHelpOnCommandLine() const
 void
 Simulation::enableCommunication ()
 {
-    this->_enableCommunication();
+    this->enableCommunication_();
     return ;
 }		/* -----  end of method Simulation::enableCommunication  ----- */
 
@@ -91,28 +91,28 @@ Simulation::enableCommunication ()
 void
 Simulation::disableCommunication()
 {
-    this->_disableCommunication();
+    this->disableCommunication_();
     return ;
 }		/* -----  end of method Simulation::disableCommunication  ----- */
 
 
 void Simulation::initializeSimulationEnvironment()
 {
-	this->_initializeSimulationEnvironment();
+	this->initializeSimulationEnvironment_();
     return;
 }       /* -----  end of method Simulation::initializeSimulationEnvironment  ----- */
 
 
 void Simulation::initializeMpiEnvironment()
 {
-    this->_initializeMpiEnvironment();
+    this->initializeMpiEnvironment_();
     return;
 }       /* -----  end of method Simulation::initializeMpiEnvironment  ----- */
 
 
 void Simulation::processCommandLine() 
 {
-    this->_processCommandLine();
+    this->processCommandLine_();
     return;
 }        /* -----  end of method Simulation::processCommandLine  ----- */
 
@@ -120,7 +120,7 @@ void Simulation::processCommandLine()
 void
 Simulation::saveCommandLineOptionsValues()
 {
-    this->_saveCommandLineOptionParameters();
+    this->saveCommandLineOptionParameters_();
     return;
 }		/* -----  end of method Simulation::saveCommandLineOptionsValues  ----- */
 
@@ -128,68 +128,68 @@ Simulation::saveCommandLineOptionsValues()
 void
 Simulation::initializeInitialConditions ()
 {
-    this->_initializeInitialConditions();
+    this->initializeInitialConditions_();
     return;
 }		/* -----  end of method Simulation::initializeInitialConditions  ----- */
 
 void Simulation::readInitialConfiguration ()
 {
-	this->_readInitialConfiguration();
+	this->readInitialConfiguration_();
 	return;
 }
 
 void Simulation::inputSimulationControlFile()
 {
-    this->_inputSimulationControlFile();
+    this->inputSimulationControlFile_();
     return;
 }   /* -----  end of method Simulation::inputSimulationControlFile  ----- */
 
 void Simulation::performSimulation()
 {
-    this->_performSimulation();
+    this->performSimulation_();
     return;
 }       /* -----  end of method Simulation::performSimulation  ----- */
 
 void Simulation::terminateSimulationEnvironment(  )
 {
-    this->_terminateSimulationEnvironment();
+    this->terminateSimulationEnvironment_();
     return;
 }		// -----  end of method Simulation::terminateSimulationEnvironment  -----
 
 
 void Simulation::changeMDStateToPCL()
 {
-    this->_changeMDStateToPCL();
+    this->changeMDStateToPCL_();
 }
 
 void Simulation::changeMDStateToIIC()
 {
-    this->_changeMDStateToIIC();
+    this->changeMDStateToIIC_();
 }
 
 void Simulation::changeMDStateToPS()
 {
-    this->_changeMDStateToPS();
+    this->changeMDStateToPS_();
 }
 
 void Simulation::changeMDStateToTSE()
 {
-    this->_changeMDStateToTSE();
+    this->changeMDStateToTSE_();
 }
 
 void Simulation::changeMDState()
 {
-    this->_changeMDState();
+    this->changeMDState_();
 }
 
 void Simulation::setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
 {
-    this->_setStatus(aStatus);
+    this->setStatus_(aStatus);
 }
 
 void Simulation::setGlobalISEStatus()
 {
-    this->_setGlobalISEStatus();
+    this->setGlobalISEStatus_();
 }
 //============================= OPERATORS ====================================
 
@@ -213,7 +213,7 @@ void Simulation::setGlobalISEStatus()
 
 //============================= ACCESSORS ====================================
 
-COMMUNICATOR::RegistryAnansiMDStatus Simulation::_status() const
+COMMUNICATOR::RegistryAnansiMDStatus Simulation::status_() const
 {
     return COMMUNICATOR::RegistryAnansiMDStatus::Undefined;
 }

@@ -96,18 +96,18 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-COMMUNICATOR::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
+COMMUNICATOR::RegistryAnansiMDStatus AnansiMolecularDynamics::status_() const
 {
     return this->mdStatus_;
 }
 
-bool AnansiMolecularDynamics::_isHelpOnCommandLine() const
+bool AnansiMolecularDynamics::isHelpOnCommandLine_() const
 {
     const bool help_found = this->simulationParameters_.isCommandLineOptionPresent("help");
     return help_found;
 }
 
-bool AnansiMolecularDynamics::_isISEStatusOkay() const
+bool AnansiMolecularDynamics::isISEStatusOkay_() const
 {
 	bool ret_value=false;
 	if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
@@ -121,7 +121,7 @@ bool AnansiMolecularDynamics::_isISEStatusOkay() const
 	return ret_value;
 }
 
-bool AnansiMolecularDynamics::_isISEGlobalStatusOkay() const
+bool AnansiMolecularDynamics::isISEGlobalStatusOkay_() const
 {
 	bool ret_value=false;
     if (this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
@@ -135,7 +135,7 @@ bool AnansiMolecularDynamics::_isISEGlobalStatusOkay() const
 	return ret_value;
 }
 
-bool AnansiMolecularDynamics::_isIICStatusOkay() const
+bool AnansiMolecularDynamics::isIICStatusOkay_() const
 {
 	bool ret_value=false;
 	if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
@@ -155,20 +155,20 @@ bool AnansiMolecularDynamics::_isIICStatusOkay() const
 
 //============================= MUTATORS =====================================
 void
-AnansiMolecularDynamics::_disableCommunication()
+AnansiMolecularDynamics::disableCommunication_()
 {
     this->MpiWorldCommunicator_->freeCommunicator();
     std::cout << "Disabling AnansiMolecularDynamics communication." << std::endl;
     return;
-}       /* -----  end of method AnansiMolecularDynamics::_disableCommunication  ----- */
+}       /* -----  end of method AnansiMolecularDynamics::disableCommunication_  ----- */
 
 void
-AnansiMolecularDynamics::_initializeSimulationEnvironment()
+AnansiMolecularDynamics::initializeSimulationEnvironment_()
 {
     return;
 }
 
-void AnansiMolecularDynamics::_initializeMpiEnvironment()
+void AnansiMolecularDynamics::initializeMpiEnvironment_()
 {
     int my_argc=0;
     char** my_argv_ptr=nullptr;
@@ -187,18 +187,18 @@ void AnansiMolecularDynamics::_initializeMpiEnvironment()
 }
 
 void
-AnansiMolecularDynamics::_enableCommunication()
+AnansiMolecularDynamics::enableCommunication_()
 {
     COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
 
     this->MpiWorldCommunicator_ = a_communicator_factory.createWorldCommunicator();
     std::cout << "Enabling AnansiMolecularDynamics communication." << std::endl;
     return;
-}       /* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */
+}       /* -----  end of method AnansiMolecularDynamics::enableCommunication_  ----- */
 
 
 void
-AnansiMolecularDynamics::_inputSimulationControlFile ()
+AnansiMolecularDynamics::inputSimulationControlFile_ ()
 {
     // Initialize the variable "my_status" to failed. The variable will track the status of reading
     // in the simulation control file. At the end of this method, we will set the status of the md
@@ -239,83 +239,83 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     this->setStatus(my_status);
 
     return;
-}		/* -----  end of method AnansiMolecularDynamics::_inputSimulationControlFile  ----- */
+}		/* -----  end of method AnansiMolecularDynamics::inputSimulationControlFile_  ----- */
 
-void AnansiMolecularDynamics::_readInitialConfiguration()
+void AnansiMolecularDynamics::readInitialConfiguration_()
 {
 	std::cout << "Reading initial configuration" << std::endl;
 }
 
-void AnansiMolecularDynamics::_processCommandLine()
+void AnansiMolecularDynamics::processCommandLine_()
 {
     return;
 }
 
 void
-AnansiMolecularDynamics::_saveCommandLineOptionParameters()
+AnansiMolecularDynamics::saveCommandLineOptionParameters_()
 {
     this->simulationParameters_ = SimulationParametersFactory::create(this->commandLineArguments_);
     return ;
-}      /* -----  end of method AnansiMolecularDynamics::_saveCommandLineOptionParameters  ----- */
+}      /* -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters_  ----- */
 
 
 // Functions that call state methods.
 
 void
-AnansiMolecularDynamics::_initializeInitialConditions()
+AnansiMolecularDynamics::initializeInitialConditions_()
 {
     return;
-}        // -----  end of method AnansiMolecularDynamics::_initializeInitialConditions  -----
+}        // -----  end of method AnansiMolecularDynamics::initializeInitialConditions_  -----
 
-void AnansiMolecularDynamics::_performSimulation()
+void AnansiMolecularDynamics::performSimulation_()
 {
     return;
-}        // -----  end of method AnansiMolecularDynamics::_performSimulation  -----
+}        // -----  end of method AnansiMolecularDynamics::performSimulation_  -----
 
-void AnansiMolecularDynamics::_terminateSimulationEnvironment()
+void AnansiMolecularDynamics::terminateSimulationEnvironment_()
 {
     return;
-}      // -----  end of method AnansiMolecularDynamics::_terminateSimulationEnvironment  -----
+}      // -----  end of method AnansiMolecularDynamics::terminateSimulationEnvironment_  -----
 
 void
-AnansiMolecularDynamics::_changeMDStateToPCL()
+AnansiMolecularDynamics::changeMDStateToPCL_()
 {
    return;
-}       // -----  end of method AnansiMolecularDynamics::_changeMDStateToPCL  ----- 
+}       // -----  end of method AnansiMolecularDynamics::changeMDStateToPCL_  ----- 
 
 void
-AnansiMolecularDynamics::_changeMDStateToIIC()
+AnansiMolecularDynamics::changeMDStateToIIC_()
 {
     return;
-}       // -----  end of method AnansiMolecularDynamics::_changeMDStateToIIC  ----- 
+}       // -----  end of method AnansiMolecularDynamics::changeMDStateToIIC_  ----- 
 
 void
-AnansiMolecularDynamics::_changeMDStateToPS()
+AnansiMolecularDynamics::changeMDStateToPS_()
 {
     return ;
-}       // -----  end of method AnansiMolecularDynamics::_changeMDStateToPS  ----- 
+}       // -----  end of method AnansiMolecularDynamics::changeMDStateToPS_  ----- 
 
 void
-AnansiMolecularDynamics::_changeMDStateToTSE()
+AnansiMolecularDynamics::changeMDStateToTSE_()
 {
    return;
 }
 
-void AnansiMolecularDynamics::_changeMDState()
+void AnansiMolecularDynamics::changeMDState_()
 {
    /* :TODO:03/21/2022 11:52:54 AM:: Refactor with respect to new States. */
    return;
 }
 
 void 
-AnansiMolecularDynamics::_setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
+AnansiMolecularDynamics::setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
 {
     this->mdStatus_ = aStatus;
     return;
 }
 
 void 
-AnansiMolecularDynamics::_setGlobalISEStatus()
+AnansiMolecularDynamics::setGlobalISEStatus_()
 {
     // We do a custom all reduction of the ISE status to get the
     // global ISE status. 

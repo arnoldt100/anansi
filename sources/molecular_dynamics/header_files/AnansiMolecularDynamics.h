@@ -56,61 +56,61 @@ class AnansiMolecularDynamics final : public Simulation
     private:
         /* ====================  ACCESSORS     ======================================= */
 
-        COMMUNICATOR::RegistryAnansiMDStatus _status() const final override;
+        COMMUNICATOR::RegistryAnansiMDStatus status_() const final override;
 
-        bool _isHelpOnCommandLine() const final override;
+        bool isHelpOnCommandLine_() const final override;
 
-        bool _isISEStatusOkay() const final override;
+        bool isISEStatusOkay_() const final override;
 
-        bool _isISEGlobalStatusOkay() const final override;
+        bool isISEGlobalStatusOkay_() const final override;
 
-        bool _isIICStatusOkay() const final override;
+        bool isIICStatusOkay_() const final override;
 
         /* ====================  MUTATORS      ======================================= */
 
         void 
-        _disableCommunication() final override;
+        disableCommunication_() final override;
 
         // This group of functions initializes the simulation environment.
         void 
-        _initializeSimulationEnvironment() final override;
+        initializeSimulationEnvironment_() final override;
 
         void 
-        _initializeMpiEnvironment() final override;
+        initializeMpiEnvironment_() final override;
 
         void 
-        _enableCommunication() final override;
+        enableCommunication_() final override;
 
         // This group of functions processes the command line and sets the
         // simulation parameters.
-        void _processCommandLine() final override; 
+        void processCommandLine_() final override; 
 
-        void _saveCommandLineOptionParameters() final override;
+        void saveCommandLineOptionParameters_() final override;
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
-        void _initializeInitialConditions () final override;
+        void initializeInitialConditions_ () final override;
 
-        void _inputSimulationControlFile () final override;
+        void inputSimulationControlFile_ () final override;
 
-        void _readInitialConfiguration () final override;
+        void readInitialConfiguration_ () final override;
 
         // This group of functions performs the MD simulation.
         void
-        _performSimulation() final override;
+        performSimulation_() final override;
 
         // This group of functions terminates the simulation environment.
-        void _terminateSimulationEnvironment() final override;
+        void terminateSimulationEnvironment_() final override;
         
         // This group of functions changes the state of the MD object.
-        void _changeMDStateToPCL() final override;
-        void _changeMDStateToIIC() final override;
-        void _changeMDStateToPS() final override;
-        void _changeMDStateToTSE() final override;
-        void _changeMDState() final override;
+        void changeMDStateToPCL_() final override;
+        void changeMDStateToIIC_() final override;
+        void changeMDStateToPS_() final override;
+        void changeMDStateToTSE_() final override;
+        void changeMDState_() final override;
 
-        void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
-        void _setGlobalISEStatus() final override;
+        void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
+        void setGlobalISEStatus_() final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments commandLineArguments_;

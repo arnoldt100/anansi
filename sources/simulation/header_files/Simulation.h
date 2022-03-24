@@ -118,61 +118,61 @@ class Simulation
 
     private:
         /* ====================  ACCESSORS     ======================================= */
-        virtual COMMUNICATOR::RegistryAnansiMDStatus _status() const;
+        virtual COMMUNICATOR::RegistryAnansiMDStatus status_() const;
 
-        virtual bool _isHelpOnCommandLine() const=0;
+        virtual bool isHelpOnCommandLine_() const=0;
 
-        virtual bool _isISEStatusOkay() const=0;
+        virtual bool isISEStatusOkay_() const=0;
 
-        virtual bool _isISEGlobalStatusOkay() const=0;
+        virtual bool isISEGlobalStatusOkay_() const=0;
 
-        virtual bool _isIICStatusOkay() const=0;
+        virtual bool isIICStatusOkay_() const=0;
 
         /* ====================  MUTATORS      ======================================= */
 
-        virtual void _disableCommunication()=0;
+        virtual void disableCommunication_()=0;
 
         // This group of functions initializes the simulation environment.
-        virtual void _initializeSimulationEnvironment()=0;
+        virtual void initializeSimulationEnvironment_()=0;
 
-        virtual void _initializeMpiEnvironment()=0;
+        virtual void initializeMpiEnvironment_()=0;
 
-        virtual void _enableCommunication()=0;
+        virtual void enableCommunication_()=0;
 
         // This group of functions processes the command line and sets the
         // simulation parameters.
-        virtual void _processCommandLine()=0; 
+        virtual void processCommandLine_()=0; 
 
-        virtual void _saveCommandLineOptionParameters()=0;
+        virtual void saveCommandLineOptionParameters_()=0;
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
-        virtual void _initializeInitialConditions()=0;
+        virtual void initializeInitialConditions_()=0;
 
-        virtual void _inputSimulationControlFile()=0;
+        virtual void inputSimulationControlFile_()=0;
 
-        virtual void _readInitialConfiguration()=0;
+        virtual void readInitialConfiguration_()=0;
 
         // This group of functions performs the MD simulation.
-        virtual void _performSimulation()=0;
+        virtual void performSimulation_()=0;
 
         // This group of functions terminates the simulation environment.
-        virtual void _terminateSimulationEnvironment()=0;
+        virtual void terminateSimulationEnvironment_()=0;
 
         // This group of functions changes the state of the MD object.
-        virtual void _changeMDStateToPCL()=0;
+        virtual void changeMDStateToPCL_()=0;
 
-        virtual void _changeMDStateToIIC()=0;
+        virtual void changeMDStateToIIC_()=0;
         
-        virtual void _changeMDStateToPS()=0;
+        virtual void changeMDStateToPS_()=0;
 
-        virtual void _changeMDStateToTSE()=0;
+        virtual void changeMDStateToTSE_()=0;
 
-        virtual void _changeMDState()=0;
+        virtual void changeMDState_()=0;
 
         // Set the status of the MD object.
-        virtual void _setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;
-        virtual void _setGlobalISEStatus()=0;
+        virtual void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;
+        virtual void setGlobalISEStatus_()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 
