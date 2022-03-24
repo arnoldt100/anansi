@@ -93,7 +93,6 @@
         header_files/MDSimulationStateFactory.h
         header_files/ISEStatus.h
         header_files/AnansiMolecularDynamicsFactory.h 
-        header_files/AnansiMDStateTypeList.hpp
         header_files/AnansiMDStateInt2Type.hpp )
 
     #-----------------------------------------------------
@@ -114,8 +113,7 @@
         implementation_files/MDSimulationStateFactory.cpp
         implementation_files/ISEStatus.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp 
-        implementation_files/AnansiMDStateInt2Type.cpp
-        implementation_files/AnansiMDStateTypeList.cpp)
+        implementation_files/AnansiMDStateInt2Type.cpp)
 
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
