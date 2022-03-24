@@ -36,8 +36,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     mdStateFactory_(),
-    _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+    mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
+    mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Change the state to Null.
     this->changeMDState();
@@ -53,8 +53,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     mdStateFactory_(std::make_unique<MDSimulationStateFactory>()),
-    _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+    mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
+    mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Change the state to AnansiMDStateISE.
     this->changeMDState();
@@ -98,7 +98,7 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= ACCESSORS ====================================
 COMMUNICATOR::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
 {
-    return this->_mdStatus;
+    return this->mdStatus_;
 }
 
 bool AnansiMolecularDynamics::_isHelpOnCommandLine() const
@@ -124,11 +124,11 @@ bool AnansiMolecularDynamics::_isISEStatusOkay() const
 bool AnansiMolecularDynamics::_isISEGlobalStatusOkay() const
 {
 	bool ret_value=false;
-    if (this->_mdGlobalStatus == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
+    if (this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
 	{
 		ret_value = true;
 	}
-    else if ( this->_mdGlobalStatus == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
+    else if ( this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
     {
 		ret_value = true;
 	}
@@ -310,7 +310,7 @@ void AnansiMolecularDynamics::_changeMDState()
 void 
 AnansiMolecularDynamics::_setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
 {
-    this->_mdStatus = aStatus;
+    this->mdStatus_ = aStatus;
     return;
 }
 
@@ -319,10 +319,10 @@ AnansiMolecularDynamics::_setGlobalISEStatus()
 {
     // We do a custom all reduction of the ISE status to get the
     // global ISE status. 
-    const auto my_status = this->_mdStatus;
+    const auto my_status = this->mdStatus_;
     COMMUNICATOR::ISEReductionFunctor my_reduction_functor;
 
-    this->_mdGlobalStatus = 
+    this->mdGlobalStatus_ = 
         COMMUNICATOR::getGlobalStatusCustomReduction<COMMUNICATOR::RegistryAnansiMDStatus>(my_status,
                                                      *(this->MpiWorldCommunicator_));
     return;

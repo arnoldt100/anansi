@@ -121,8 +121,8 @@ class AnansiMolecularDynamics final : public Simulation
 
         std::unique_ptr<ANANSI::SimulationState> mdState_;
 
-        COMMUNICATOR::RegistryAnansiMDStatus _mdStatus;
-        COMMUNICATOR::RegistryAnansiMDStatus _mdGlobalStatus;
+        COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
+        COMMUNICATOR::RegistryAnansiMDStatus mdGlobalStatus_;
 
         /* ====================  STATIC        ======================================= */
 
