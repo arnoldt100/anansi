@@ -304,6 +304,7 @@ AnansiMolecularDynamics::_changeMDStateToTSE()
 void AnansiMolecularDynamics::_changeMDState()
 {
    /* :TODO:03/21/2022 11:52:54 AM:: Refactor with respect to new States. */
+   return;
 }
 
 void 
