@@ -18,10 +18,14 @@
 //--------------------------------------------------------//
 //--------------------- Forward declarations -------------//
 //--------------------------------------------------------//
-class Simulation;
+namespace ANANSI
+{
+    class Simulation;
+};
 
 namespace ANANSI
 {
+
 
 // =====================================================================================
 //        Class:  SimulationState
@@ -65,6 +69,14 @@ class SimulationState
         //--------------------------------------------------------------------------------------
         void initializeSimulationEnvironment(Simulation * const a_simulation ) const;
 
+        void processCommandLine(Simulation * const a_simulation ) const;
+
+        void initializeInitialCondition (Simulation * const a_simulation ) const;
+
+        void performSimulation (Simulation * const a_simulation ) const;
+
+        void terminateSmulation (Simulation * const a_simulation ) const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -85,15 +97,20 @@ class SimulationState
         // ====================  ACCESSORS     =======================================
         virtual std::string misbehviorErrorMessage_(state_misbehavior_info const & error_info) const;
 
+        virtual void initializeSimulationEnvironment_(Simulation* const a_simulation) const;
+
+        virtual void processCommandLine_(Simulation* const a_simulation) const;
+
+        virtual void initializeInitialCondition_(Simulation * const a_simulation) const;
+
+        virtual void performSimulation_(Simulation * const a_simulation) const;
+
+        virtual void terminateSmulation_ (Simulation * const a_simulation ) const;
 
     private:
         // ====================  METHODS       =======================================
 
         // ====================  ACCESSORS     =======================================
-
-        virtual void processCommandLine_(Simulation* const a_simulation) const=0;
-
-        virtual void initializeSimulationEnvironment_(Simulation* const a_simulation) const=0;
 
 
 

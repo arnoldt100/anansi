@@ -15,7 +15,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "AnansiMDState.h"
 #include "SimulationState.h"
 #include "RegistryAnansiMDStatus.h"
 
@@ -161,8 +160,6 @@ class Simulation
         virtual void _terminateSimulationEnvironment()=0;
 
         // This group of functions changes the state of the MD object.
-        virtual void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)=0;
-
         virtual void _changeMDStateToPCL()=0;
 
         virtual void _changeMDStateToIIC()=0;

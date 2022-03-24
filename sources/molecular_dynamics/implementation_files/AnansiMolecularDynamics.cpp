@@ -16,12 +16,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiMolecularDynamics.h"
-#include "AnansiMDStateNull.h"
-#include "AnansiMDStateISE.h"
-#include "AnansiMDStatePCL.h"
-#include "AnansiMDStateIIC.h"
-#include "AnansiMDStatePS.h"
-#include "AnansiMDStateTSE.h"
 #include "SimulationParametersFactory.h"
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
@@ -37,17 +31,15 @@ namespace ANANSI {
 
 AnansiMolecularDynamics::AnansiMolecularDynamics() : 
     Simulation(),
-    _commandLineArguments(),
-    _simulationParameters(),
-    _MpiWorldCommunicator(),
-    _MpiEnvironment(),
+    commandLineArguments_(),
+    simulationParameters_(),
+    MpiWorldCommunicator_(),
+    MpiEnvironment_(),
     mdStateFactory_(),
-    _mdState(),
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
-    // Register only AnansiMDStateNull.
-
+    // Change the state to Null.
     this->changeMDState();
     this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
 
@@ -56,12 +48,11 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
 
 AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *const *const & argv) :
     Simulation(),
-    _commandLineArguments(COMMANDLINE::CommandLineArguments(argc,argv)),
-    _simulationParameters(),
-    _MpiWorldCommunicator(),
-    _MpiEnvironment(),
+    commandLineArguments_(COMMANDLINE::CommandLineArguments(argc,argv)),
+    simulationParameters_(),
+    MpiWorldCommunicator_(),
+    MpiEnvironment_(),
     mdStateFactory_(std::make_unique<MDSimulationStateFactory>()),
-    _mdState(),
     _mdStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     _mdGlobalStatus(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -112,7 +103,7 @@ COMMUNICATOR::RegistryAnansiMDStatus AnansiMolecularDynamics::_status() const
 
 bool AnansiMolecularDynamics::_isHelpOnCommandLine() const
 {
-    const bool help_found = this->_simulationParameters.isCommandLineOptionPresent("help");
+    const bool help_found = this->simulationParameters_.isCommandLineOptionPresent("help");
     return help_found;
 }
 
@@ -166,7 +157,7 @@ bool AnansiMolecularDynamics::_isIICStatusOkay() const
 void
 AnansiMolecularDynamics::_disableCommunication()
 {
-    this->_MpiWorldCommunicator->freeCommunicator();
+    this->MpiWorldCommunicator_->freeCommunicator();
     std::cout << "Disabling AnansiMolecularDynamics communication." << std::endl;
     return;
 }       /* -----  end of method AnansiMolecularDynamics::_disableCommunication  ----- */
@@ -174,8 +165,6 @@ AnansiMolecularDynamics::_disableCommunication()
 void
 AnansiMolecularDynamics::_initializeSimulationEnvironment()
 {
-    /* :TODO:03/20/2022 03:57:19 PM:: State refactoring */
-    // this->_mdState->initializeSimulationEnvironment(this);
     return;
 }
 
@@ -184,9 +173,9 @@ void AnansiMolecularDynamics::_initializeMpiEnvironment()
     int my_argc=0;
     char** my_argv_ptr=nullptr;
 
-    this->_commandLineArguments.reformCommandLineArguments(my_argc,my_argv_ptr);
+    this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
 
-	this->_MpiEnvironment = std::make_unique<COMMUNICATOR::MPIEnvironment>(my_argc,my_argv_ptr);
+	this->MpiEnvironment_ = std::make_unique<COMMUNICATOR::MPIEnvironment>(my_argc,my_argv_ptr);
 
     if (my_argv_ptr != nullptr)
     {
@@ -202,7 +191,7 @@ AnansiMolecularDynamics::_enableCommunication()
 {
     COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
 
-    this->_MpiWorldCommunicator = a_communicator_factory.createWorldCommunicator();
+    this->MpiWorldCommunicator_ = a_communicator_factory.createWorldCommunicator();
     std::cout << "Enabling AnansiMolecularDynamics communication." << std::endl;
     return;
 }       /* -----  end of method AnansiMolecularDynamics::_enableCommunication  ----- */
@@ -219,7 +208,7 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
     // The control file option is mandatory. If the option is not present, then we set the MD status
     // as "COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
     // Otherwise we process/parse the control file.
-    const auto file_name =  this->_simulationParameters.getCommandLineOptionValues("controlfile");
+    const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
     if (file_name == SimulationParameters::OPTION_NOT_FOUND )
     {
         my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
@@ -229,7 +218,7 @@ AnansiMolecularDynamics::_inputSimulationControlFile ()
 
     // Create the control file parser and process the control file.
     COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
-    std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->_MpiWorldCommunicator);
+    std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
     StandardFileParserFactory file_parser_factory;
     std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
     std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
@@ -259,15 +248,13 @@ void AnansiMolecularDynamics::_readInitialConfiguration()
 
 void AnansiMolecularDynamics::_processCommandLine()
 {
-    /* :TODO:03/20/2022 03:59:10 PM::  State refactoring */
-    // this->_mdState->processCommandLine(this);
     return;
 }
 
 void
 AnansiMolecularDynamics::_saveCommandLineOptionParameters()
 {
-    this->_simulationParameters = SimulationParametersFactory::create(this->_commandLineArguments);
+    this->simulationParameters_ = SimulationParametersFactory::create(this->commandLineArguments_);
     return ;
 }      /* -----  end of method AnansiMolecularDynamics::_saveCommandLineOptionParameters  ----- */
 
@@ -277,61 +264,40 @@ AnansiMolecularDynamics::_saveCommandLineOptionParameters()
 void
 AnansiMolecularDynamics::_initializeInitialConditions()
 {
-    /* :TODO:03/20/2022 04:00:20 PM:: State refactoring */
-    // this->_mdState->initializeInitialConditions(this);
     return;
 }        // -----  end of method AnansiMolecularDynamics::_initializeInitialConditions  -----
 
 void AnansiMolecularDynamics::_performSimulation()
 {
-    /* :TODO:03/20/2022 04:01:18 PM:: State refatoring */
-    // this->_mdState->performSimulation(this);
     return;
 }        // -----  end of method AnansiMolecularDynamics::_performSimulation  -----
 
 void AnansiMolecularDynamics::_terminateSimulationEnvironment()
 {
-    /* :TODO:03/20/2022 04:01:59 PM:: State refactoring */
-    // this->_mdState->terminateSimulationEnvironment(this);
     return;
 }      // -----  end of method AnansiMolecularDynamics::_terminateSimulationEnvironment  -----
 
 void
-AnansiMolecularDynamics::_setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState)
-{
-    this->_mdState = std::move(a_AnansiMDState);
-    return;
-}      // -----  end of method AnansiMolecularDynamics::_setMDState  -----
-
-void
 AnansiMolecularDynamics::_changeMDStateToPCL()
 {
-   std::unique_ptr<ANANSI::AnansiMDState> pcl_state = std::make_unique<ANANSI::AnansiMDStatePCL>(); 
-   this->_setMDState(std::move(pcl_state));
    return;
 }       // -----  end of method AnansiMolecularDynamics::_changeMDStateToPCL  ----- 
 
 void
 AnansiMolecularDynamics::_changeMDStateToIIC()
 {
-    std::unique_ptr<ANANSI::AnansiMDState> iic_state = std::make_unique<ANANSI::AnansiMDStateIIC>(); 
-    this->_setMDState(std::move(iic_state));
     return;
 }       // -----  end of method AnansiMolecularDynamics::_changeMDStateToIIC  ----- 
 
 void
 AnansiMolecularDynamics::_changeMDStateToPS()
 {
-    std::unique_ptr<ANANSI::AnansiMDState> ps_state = std::make_unique<ANANSI::AnansiMDStatePS>(); 
-    this->_setMDState(std::move(ps_state));
     return ;
 }       // -----  end of method AnansiMolecularDynamics::_changeMDStateToPS  ----- 
 
 void
 AnansiMolecularDynamics::_changeMDStateToTSE()
 {
-   std::unique_ptr<ANANSI::AnansiMDState> tse_state = std::make_unique<ANANSI::AnansiMDStateTSE>(); 
-   this->_setMDState(std::move(tse_state));
    return;
 }
 
@@ -357,7 +323,7 @@ AnansiMolecularDynamics::_setGlobalISEStatus()
 
     this->_mdGlobalStatus = 
         COMMUNICATOR::getGlobalStatusCustomReduction<COMMUNICATOR::RegistryAnansiMDStatus>(my_status,
-                                                     *(this->_MpiWorldCommunicator));
+                                                     *(this->MpiWorldCommunicator_));
     return;
 }
 

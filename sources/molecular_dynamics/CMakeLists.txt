@@ -84,7 +84,6 @@
     set (anansi_md_library_headers  
         header_files/MolecularDynamicsTypeLists.h
         header_files/AnansiMolecularDynamics.h
-        header_files/AnansiMDStateNull.h
         header_files/MDNullSimulationState.h
         header_files/MDInitSimEnv.h
         header_files/MDProcessCmdLine.h
@@ -92,11 +91,6 @@
         header_files/MDPerformSimulation.h
         header_files/MDTerminateSimulation.h
         header_files/MDSimulationStateFactory.h
-        header_files/AnansiMDStateISE.h
-        header_files/AnansiMDStatePCL.h
-        header_files/AnansiMDStateIIC.h
-        header_files/AnansiMDStatePS.h
-        header_files/AnansiMDStateTSE.h
         header_files/ISEStatus.h
         header_files/AnansiMolecularDynamicsFactory.h 
         header_files/AnansiMDStateTypeList.hpp
@@ -111,7 +105,6 @@
     set (anansi_md_library_implementation  
         implementation_files/MolecularDynamicsTypeLists.cpp
         implementation_files/AnansiMolecularDynamics.cpp
-        implementation_files/AnansiMDStateNull.cpp
         implementation_files/MDNullSimulationState.cpp
         implementation_files/MDInitSimEnv.cpp
         implementation_files/MDProcessCmdLine.cpp
@@ -119,11 +112,6 @@
         implementation_files/MDPerformSimulation.cpp
         implementation_files/MDTerminateSimulation.cpp
         implementation_files/MDSimulationStateFactory.cpp
-        implementation_files/AnansiMDStateISE.cpp
-        implementation_files/AnansiMDStatePCL.cpp
-        implementation_files/AnansiMDStateIIC.cpp
-        implementation_files/AnansiMDStatePS.cpp
-        implementation_files/AnansiMDStateTSE.cpp
         implementation_files/ISEStatus.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp 
         implementation_files/AnansiMDStateInt2Type.cpp

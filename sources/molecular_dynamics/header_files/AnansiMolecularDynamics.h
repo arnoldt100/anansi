@@ -103,7 +103,6 @@ class AnansiMolecularDynamics final : public Simulation
         void _terminateSimulationEnvironment() final override;
         
         // This group of functions changes the state of the MD object.
-        void _setMDState(std::unique_ptr<AnansiMDState> && a_AnansiMDState) final override;
         void _changeMDStateToPCL() final override;
         void _changeMDStateToIIC() final override;
         void _changeMDStateToPS() final override;
@@ -114,15 +113,12 @@ class AnansiMolecularDynamics final : public Simulation
         void _setGlobalISEStatus() final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
-        COMMANDLINE::CommandLineArguments _commandLineArguments;
-        ANANSI::SimulationParameters _simulationParameters;
-        std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator;
-        std::unique_ptr<COMMUNICATOR::MPIEnvironment> _MpiEnvironment;
-
-        std::unique_ptr<MPL::Factory<ANANSI::AnansiMDState,int>> _mdStateFactory;
+        COMMANDLINE::CommandLineArguments commandLineArguments_;
+        ANANSI::SimulationParameters simulationParameters_;
+        std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
+        std::unique_ptr<COMMUNICATOR::MPIEnvironment> MpiEnvironment_;
         std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_;
 
-        std::unique_ptr<ANANSI::AnansiMDState> _mdState;
         std::unique_ptr<ANANSI::SimulationState> mdState_;
 
         COMMUNICATOR::RegistryAnansiMDStatus _mdStatus;
