@@ -59,13 +59,10 @@ namespace ANANSI
             template <typename T>
             std::unique_ptr<SimulationState> create() const
             {
-                // Loop over abstact prodict list. If type can be 
-                // can be cast to product list type, then create pointer.
-                // Else throw error and stop.
+                constexpr auto index = MDSimulationStateFactory::findIndex_<T>();
 
-                this->findIndex_<T>();
-
-                std::unique_ptr<NullSimulationState> product_ptr(this->mdSimStateFactory_->Create<NullSimulationState>());
+                // std::unique_ptr<NullSimulationState> product_ptr(this->mdSimStateFactory_->Create<NullSimulationState>());
+                 std::unique_ptr<abstract_product_at<index> > product_ptr(this->mdSimStateFactory_->Create<abstract_product_at<index>>());
 
                 return product_ptr;
             }
@@ -103,16 +100,21 @@ namespace ANANSI
                                                           MDTerminateSimulation
                                                         >;
 
+            template<std::size_t T>
+            using abstract_product_at = boost::mp11::mp_at_c<abstract_products_,T>;
+
             using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
 
             using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_products_>;
 
             template<class Base,class Derived>
             using my_is_base_of = boost::mp11::mp_bool< std::is_base_of_v<Base,Derived> >;
-            // std::is_base_of<Base,Derived>
+
+            using my_true_type = boost::mp11::mp_bool<true>;
+
             // ====================  METHODS       =======================================
             template <typename T>
-            void findIndex_() const
+            static constexpr std::size_t findIndex_()
             {
                 using nm_elements = MPL::mpl_size<abstract_products_>; 
 
@@ -120,28 +122,10 @@ namespace ANANSI
                                                            MPL::mpl_size<abstract_products_>::value >;
 
                 using R = boost::mp11::mp_transform<my_is_base_of,abstract_products_,list_base>;
+                
+                using my_index = boost::mp11::mp_find<R,my_true_type>;
 
-                using R0 = boost::mp11::mp_at_c<R,0>;
-                using R1 = boost::mp11::mp_at_c<R,1>;
-                using R2 = boost::mp11::mp_at_c<R,2>;
-
-                std::cout << "nm_elements : " << nm_elements::value << std::endl;
-
-                std::cout << "list_base size: " << MPL::mpl_size<list_base>::value << std::endl;
-
-                std::cout << "R size: " << MPL::mpl_size<R>::value << std::endl;
-
-                std::cout << "R[0] is: " <<  typeid(R0).name() << std::endl;
-                std::cout << "R[0] is: " <<  R0::value << std::endl;
-
-
-                std::cout << "R[1] is: " <<  typeid(R1).name() << std::endl;
-                std::cout << "R[1] is: " <<  R1::value << std::endl;
-
-                std::cout << "R[2] is: " <<  typeid(R2).name() << std::endl;
-                std::cout << "R[2] is: " <<  R2::value << std::endl;
-
-                return;
+                return my_index::value;
             } 
 
             // ====================  DATA MEMBERS  =======================================
