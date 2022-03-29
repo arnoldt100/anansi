@@ -156,32 +156,6 @@ void Simulation::terminateSimulationEnvironment(  )
     return;
 }		// -----  end of method Simulation::terminateSimulationEnvironment  -----
 
-
-void Simulation::changeMDStateToPCL()
-{
-    this->changeMDStateToPCL_();
-}
-
-void Simulation::changeMDStateToIIC()
-{
-    this->changeMDStateToIIC_();
-}
-
-void Simulation::changeMDStateToPS()
-{
-    this->changeMDStateToPS_();
-}
-
-void Simulation::changeMDStateToTSE()
-{
-    this->changeMDStateToTSE_();
-}
-
-void Simulation::changeMDState()
-{
-    this->changeMDState_();
-}
-
 void Simulation::setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
 {
     this->setStatus_(aStatus);

@@ -40,7 +40,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Change the state to Null.
-    this->changeMDState();
     this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
 
     return;
@@ -57,10 +56,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Change the state to AnansiMDStateISE.
-    this->changeMDState();
     this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
     this->mdState_->who_am_i();
-
     return;
 }
 
@@ -276,36 +273,6 @@ void AnansiMolecularDynamics::terminateSimulationEnvironment_()
 {
     return;
 }      // -----  end of method AnansiMolecularDynamics::terminateSimulationEnvironment_  -----
-
-void
-AnansiMolecularDynamics::changeMDStateToPCL_()
-{
-   return;
-}       // -----  end of method AnansiMolecularDynamics::changeMDStateToPCL_  ----- 
-
-void
-AnansiMolecularDynamics::changeMDStateToIIC_()
-{
-    return;
-}       // -----  end of method AnansiMolecularDynamics::changeMDStateToIIC_  ----- 
-
-void
-AnansiMolecularDynamics::changeMDStateToPS_()
-{
-    return ;
-}       // -----  end of method AnansiMolecularDynamics::changeMDStateToPS_  ----- 
-
-void
-AnansiMolecularDynamics::changeMDStateToTSE_()
-{
-   return;
-}
-
-void AnansiMolecularDynamics::changeMDState_()
-{
-   /* :TODO:03/21/2022 11:52:54 AM:: Refactor with respect to new States. */
-   return;
-}
 
 void 
 AnansiMolecularDynamics::setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)

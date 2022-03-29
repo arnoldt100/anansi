@@ -102,13 +102,6 @@ class AnansiMolecularDynamics final : public Simulation
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment_() final override;
         
-        // This group of functions changes the state of the MD object.
-        void changeMDStateToPCL_() final override;
-        void changeMDStateToIIC_() final override;
-        void changeMDStateToPS_() final override;
-        void changeMDStateToTSE_() final override;
-        void changeMDState_() final override;
-
         void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
         void setGlobalISEStatus_() final override;
 

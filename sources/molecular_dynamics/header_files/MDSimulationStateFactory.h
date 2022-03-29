@@ -61,7 +61,6 @@ namespace ANANSI
             {
                 constexpr auto index = MDSimulationStateFactory::findIndex_<T>();
 
-                // std::unique_ptr<NullSimulationState> product_ptr(this->mdSimStateFactory_->Create<NullSimulationState>());
                  std::unique_ptr<abstract_product_at<index> > product_ptr(this->mdSimStateFactory_->Create<abstract_product_at<index>>());
 
                 return product_ptr;
@@ -101,16 +100,14 @@ namespace ANANSI
                                                         >;
 
             template<std::size_t T>
-            using abstract_product_at = boost::mp11::mp_at_c<abstract_products_,T>;
+            using abstract_product_at = MPL::mpl_at_c<abstract_products_,T>;
 
             using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
 
             using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_products_>;
 
             template<class Base,class Derived>
-            using my_is_base_of = boost::mp11::mp_bool< std::is_base_of_v<Base,Derived> >;
-
-            using my_true_type = boost::mp11::mp_bool<true>;
+            using my_is_base_of = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
 
             // ====================  METHODS       =======================================
             template <typename T>
@@ -118,12 +115,12 @@ namespace ANANSI
             {
                 using nm_elements = MPL::mpl_size<abstract_products_>; 
 
-                using list_base = boost::mp11::mp_repeat_c<MPL::mpl_typelist<T>, 
-                                                           MPL::mpl_size<abstract_products_>::value >;
+                using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
+                                                    MPL::mpl_size<abstract_products_>::value >;
 
-                using R = boost::mp11::mp_transform<my_is_base_of,abstract_products_,list_base>;
+                using R = MPL::mpl_transform<my_is_base_of,abstract_products_,list_base>;
                 
-                using my_index = boost::mp11::mp_find<R,my_true_type>;
+                using my_index = MPL::mpl_find<R,MPL::mpl_true_type>;
 
                 return my_index::value;
             } 

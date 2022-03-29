@@ -86,18 +86,6 @@ class Simulation
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment();
 
-        // These group of functions change the state of the MD object.
-        // TO DO: This method will be depracted. 
-        void changeMDStateToPCL();
-        // TO DO: This method will be depracted. 
-        void changeMDStateToIIC();
-        // TO DO: This method will be depracted. 
-        void changeMDStateToPS();
-        // TO DO: This method will be depracted. 
-        void changeMDStateToTSE();
-        // TO DO: This method will be depracted. 
-        void changeMDState();
-        
         // This group of functions changes the status of the MD object.
         
         void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
@@ -158,17 +146,6 @@ class Simulation
 
         // This group of functions terminates the simulation environment.
         virtual void terminateSimulationEnvironment_()=0;
-
-        // This group of functions changes the state of the MD object.
-        virtual void changeMDStateToPCL_()=0;
-
-        virtual void changeMDStateToIIC_()=0;
-        
-        virtual void changeMDStateToPS_()=0;
-
-        virtual void changeMDStateToTSE_()=0;
-
-        virtual void changeMDState_()=0;
 
         // Set the status of the MD object.
         virtual void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;
