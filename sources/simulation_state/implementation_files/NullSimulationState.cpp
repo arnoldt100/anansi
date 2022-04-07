@@ -80,18 +80,6 @@ NullSimulationState& NullSimulationState::operator= ( NullSimulationState && oth
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void NullSimulationState::initializeSimulationEnvironment_(Simulation* const a_simulation) const
-{
-    SimulationState::state_misbehavior_info error_info = 
-        { 
-            {"simulation_state","NullSimulationState"},
-            {"inappropiate_behavior","Initializing simulation environment"}
-        };
-    std::string error_message = this->misbehviorErrorMessage_(error_info);
-    std::cout << error_message.c_str();
-    return;
-}
-
 void NullSimulationState::processCommandLine_(Simulation * const aSimulation) const
 {
     SimulationState::state_misbehavior_info error_info = 

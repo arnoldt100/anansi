@@ -75,11 +75,15 @@ MDInitSimEnv& MDInitSimEnv::operator= ( MDInitSimEnv && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void MDInitSimEnv::initialize_simulation_environment_(Simulation * const a_simulation) const 
+void MDInitSimEnv::Execute_(Simulation * const a_simulation) const 
 {
     return;
-}
+};
 
+void MDInitSimEnv::AddCommand_() const 
+{
+    return;
+};
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

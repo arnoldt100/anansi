@@ -57,10 +57,14 @@ namespace ANANSI
             // ====================  METHODS       =======================================
 
             // ====================  ACCESSORS     =======================================
-            void initializeSimulationEnvironment_(Simulation * const a_simulation) const override;
+            void execute_(Simulation * const a_simulation) const override;
 
+            virtual void Execute_(Simulation * const a_simulation) const = 0;
 
-            virtual void initialize_simulation_environment_(Simulation * const a_simulation) const = 0;
+            void addCommand_() const override;
+
+            virtual void AddCommand_() const=0;
+
 
             // ====================  DATA MEMBERS  =======================================
 

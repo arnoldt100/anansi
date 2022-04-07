@@ -39,6 +39,17 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
+    // Initialize all state objects for this MD simulation.
+    this->mdNullSimulationState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
+    this->mdInitSimEnv_ = std::move(this->mdStateFactory_->create<InitSimEnv>());
+    this->mdProcessCmdLine_ = std::move(this->mdStateFactory_->create<ProcessCmdLine>());
+    this->mdInitInitialConditions_ = std::move(this->mdStateFactory_->create<InitInitialConditions>());
+    this->mdPerformSimulation_ = std::move(this->mdStateFactory_->create<PerformSimulation>());
+    this->mdTerminateSimulation_ = std::move(this->mdStateFactory_->create<TerminateSimulation>());
+
+    // Set all commands for state objects
+    this->mdInitSimEnv_->addCommand();
+
     // Change the state to Null.
     this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
 
@@ -166,11 +177,12 @@ AnansiMolecularDynamics::initializeSimulationEnvironment_()
     // state MDInitInitialConditions.
     this->mdState_ = std::move(this->mdStateFactory_->create<MDInitSimEnv>());
 
-    // Make request to mdState_ to initialize the simulation envoronment.
-    this->mdState_->initializeSimulationEnvironment(this);
+    // Make request to mdState_ to initialize the simulation environment by
+    // doing the execute method. 
+    this->mdState_->execute(this);
 
     // Change the state of "this", a AnansiMolecularDynamics object, to 
-    // state MDNullSimulationState..
+    // state MDNullSimulationState.
     this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
 
     return;

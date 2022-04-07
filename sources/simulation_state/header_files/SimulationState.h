@@ -67,8 +67,6 @@ class SimulationState
         //        a_simulation : The object the request is made to.
         //
         //--------------------------------------------------------------------------------------
-        void initializeSimulationEnvironment(Simulation * const a_simulation ) const;
-
         void processCommandLine(Simulation * const a_simulation ) const;
 
         void initializeInitialCondition (Simulation * const a_simulation ) const;
@@ -76,6 +74,11 @@ class SimulationState
         void performSimulation (Simulation * const a_simulation ) const;
 
         void terminateSimulation (Simulation * const a_simulation ) const;
+
+        void execute (Simulation * const a_simulation ) const;
+
+        void addCommand() const;
+
 
         // ====================  MUTATORS      =======================================
 
@@ -95,9 +98,11 @@ class SimulationState
         // ====================  DATA MEMBERS  =======================================
 
         // ====================  ACCESSORS     =======================================
-        virtual std::string misbehviorErrorMessage_(state_misbehavior_info const & error_info) const;
+        virtual void execute_(Simulation* const a_simulation) const;
 
-        virtual void initializeSimulationEnvironment_(Simulation* const a_simulation) const;
+        virtual void addCommand_() const;
+
+        virtual std::string misbehviorErrorMessage_(state_misbehavior_info const & error_info) const;
 
         virtual void processCommandLine_(Simulation* const a_simulation) const;
 

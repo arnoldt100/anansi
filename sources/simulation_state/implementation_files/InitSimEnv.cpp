@@ -75,12 +75,15 @@ InitSimEnv& InitSimEnv::operator= ( InitSimEnv && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void InitSimEnv::initializeSimulationEnvironment_(Simulation * const a_simulation) const
+void InitSimEnv::execute_(Simulation * const a_simulation) const
 {
-    // Enable communication environment
+    this->Execute_(a_simulation);
+    return;
+}
 
-    this->initialize_simulation_environment_(a_simulation);
-
+void InitSimEnv::addCommand_() const
+{
+    this->AddCommand_();
     return;
 }
 

@@ -45,10 +45,6 @@ namespace ANANSI
             ~MDNullSimulationState ();  // destructor
 
             // ====================  ACCESSORS     =======================================
-            // virtual void who_am_i() const
-            // {
-            //     std::cout << "I'm MDNullSimulationState" << std::endl;
-            // }
 
             // ====================  MUTATORS      =======================================
 

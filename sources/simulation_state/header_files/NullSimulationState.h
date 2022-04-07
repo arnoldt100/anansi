@@ -61,8 +61,6 @@ class NullSimulationState : public SimulationState
 
     protected:
         // ====================  ACCESSORS     =======================================
-        void initializeSimulationEnvironment_(Simulation* const a_simulation) const override;
-        
         void processCommandLine_(Simulation * const aSimulation) const override;
         
         // ====================  MUTATORS      =======================================

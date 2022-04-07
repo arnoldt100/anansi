@@ -112,7 +112,14 @@ class AnansiMolecularDynamics final : public Simulation
         std::unique_ptr<COMMUNICATOR::MPIEnvironment> MpiEnvironment_;
         std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_;
 
-        std::unique_ptr<ANANSI::SimulationState> mdState_;
+        // These are the state objects for the MD simulation.
+        std::shared_ptr<ANANSI::SimulationState> mdState_;
+        std::shared_ptr<ANANSI::SimulationState> mdNullSimulationState_;
+        std::shared_ptr<ANANSI::SimulationState> mdInitSimEnv_;
+        std::shared_ptr<ANANSI::SimulationState> mdProcessCmdLine_;
+        std::shared_ptr<ANANSI::SimulationState> mdInitInitialConditions_;
+        std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
+        std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
         COMMUNICATOR::RegistryAnansiMDStatus mdGlobalStatus_;

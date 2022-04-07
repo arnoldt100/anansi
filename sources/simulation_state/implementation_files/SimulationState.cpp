@@ -43,9 +43,15 @@ SimulationState::~SimulationState()
 }
 
 //============================= ACCESSORS ====================================
-void SimulationState::initializeSimulationEnvironment(Simulation* const a_simulation) const
+
+void SimulationState::execute(Simulation* const a_simulation) const
 {
-    this->initializeSimulationEnvironment_(a_simulation);
+    this->execute_(a_simulation);
+}
+
+void SimulationState::addCommand() const
+{
+    this->addCommand_();
 }
 
 void SimulationState::processCommandLine(Simulation* const a_simulation) const
@@ -67,7 +73,7 @@ void SimulationState::performSimulation (Simulation * const a_simulation ) const
 
 void SimulationState::terminateSimulation (Simulation * const a_simulation ) const
 {
-    this->terminateSmulation_(a_simulation);
+    this->terminateSimulation_(a_simulation);
     return ;
 }		/* -----  end of method SimulationState::terminateSmulation  ----- */
 
@@ -105,6 +111,19 @@ SimulationState& SimulationState::operator= ( SimulationState && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void SimulationState::execute_(Simulation* const a_simulation) const
+{
+    std::string message("This simulation state executes a stud command!");
+    std::cout << message.c_str() << std::endl;
+    return;
+}
+
+void SimulationState::addCommand_() const
+{
+    std::string message("This simulation state is adding a stud command!");
+    std::cout << message.c_str() << std::endl;
+    return;
+}
 
 std::string SimulationState::misbehviorErrorMessage_(state_misbehavior_info const & error_info) const
 {
@@ -116,13 +135,6 @@ std::string SimulationState::misbehviorErrorMessage_(state_misbehavior_info cons
     error_message += "\n";
     return error_message;
 }
-
-void SimulationState::initializeSimulationEnvironment_(Simulation* const a_simulation) const
-{
-    std::string message("This simulation state can't initialize the simulation environment.");
-    std::cout << message.c_str() << std::endl;
-    return;
-}		/* -----  end of method SimulationState::initializeSimulationEnvironment_  ----- */
 
 void SimulationState::processCommandLine_( Simulation* const a_simulation ) const 
 {
