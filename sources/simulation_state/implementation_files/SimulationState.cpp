@@ -65,7 +65,7 @@ void SimulationState::performSimulation (Simulation * const a_simulation ) const
     return ;
 }		/* -----  end of method SimulationState::performSimulation  ----- */
 
-void SimulationState::terminateSmulation (Simulation * const a_simulation ) const
+void SimulationState::terminateSimulation (Simulation * const a_simulation ) const
 {
     this->terminateSmulation_(a_simulation);
     return ;
@@ -145,7 +145,7 @@ void SimulationState::performSimulation_ (Simulation * const a_simulation ) cons
     return ;
 }		/* -----  end of method SimulationState::performSimulation_  ----- */
 
-void SimulationState::terminateSmulation_ (Simulation * const a_simulation ) const
+void SimulationState::terminateSimulation_ (Simulation * const a_simulation ) const
 {
     std::string message("This simulation state can't terminate the simulation.");
     std::cout << message.c_str() << std::endl;

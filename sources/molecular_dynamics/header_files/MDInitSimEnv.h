@@ -58,6 +58,9 @@ namespace ANANSI
 
             // ====================  DATA MEMBERS  =======================================
 
+            // ====================  ACCESSORS     =======================================
+            void initialize_simulation_environment_(Simulation * const a_simulation) const final;
+
         private:
             // ====================  METHODS       =======================================
 

@@ -75,7 +75,7 @@ class SimulationState
 
         void performSimulation (Simulation * const a_simulation ) const;
 
-        void terminateSmulation (Simulation * const a_simulation ) const;
+        void terminateSimulation (Simulation * const a_simulation ) const;
 
         // ====================  MUTATORS      =======================================
 
@@ -105,7 +105,7 @@ class SimulationState
 
         virtual void performSimulation_(Simulation * const a_simulation) const;
 
-        virtual void terminateSmulation_ (Simulation * const a_simulation ) const;
+        virtual void terminateSimulation_ (Simulation * const a_simulation ) const;
 
     private:
         // ====================  METHODS       =======================================

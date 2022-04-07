@@ -162,6 +162,17 @@ AnansiMolecularDynamics::disableCommunication_()
 void
 AnansiMolecularDynamics::initializeSimulationEnvironment_()
 {
+    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // state MDInitInitialConditions.
+    this->mdState_ = std::move(this->mdStateFactory_->create<MDInitSimEnv>());
+
+    // Make request to mdState_ to initialize the simulation envoronment.
+    this->mdState_->initializeSimulationEnvironment(this);
+
+    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // state MDNullSimulationState..
+    this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
+
     return;
 }
 

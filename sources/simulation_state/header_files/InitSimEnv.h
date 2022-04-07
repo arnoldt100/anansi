@@ -56,6 +56,12 @@ namespace ANANSI
         protected:
             // ====================  METHODS       =======================================
 
+            // ====================  ACCESSORS     =======================================
+            void initializeSimulationEnvironment_(Simulation * const a_simulation) const override;
+
+
+            virtual void initialize_simulation_environment_(Simulation * const a_simulation) const = 0;
+
             // ====================  DATA MEMBERS  =======================================
 
         private:
