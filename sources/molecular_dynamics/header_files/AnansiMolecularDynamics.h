@@ -16,6 +16,7 @@
 #include "RegistryAnansiMDStatus.h"
 #include "Factory.hpp"
 #include "MDSimulationStateFactory.h"
+#include "SimulationStateInvoker.hpp"
 
 namespace ANANSI {
 
@@ -119,6 +120,7 @@ class AnansiMolecularDynamics final : public Simulation
         std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_;
 
         // These are the state objects for the MD simulation.
+        ANANSI::SimulationStateInvoker<AnansiMolecularDynamics> mdStateInvoker_;
         std::shared_ptr<ANANSI::SimulationState> mdState_;
         std::shared_ptr<ANANSI::SimulationState> mdNullSimulationState_;
         std::shared_ptr<ANANSI::SimulationState> mdInitSimEnv_;

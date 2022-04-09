@@ -36,6 +36,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     mdStateFactory_(),
+    mdStateInvoker_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -46,6 +47,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     this->mdInitInitialConditions_ = std::move(this->mdStateFactory_->create<InitInitialConditions>());
     this->mdPerformSimulation_ = std::move(this->mdStateFactory_->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(this->mdStateFactory_->create<TerminateSimulation>());
+
 
     // Set all commands for state objects
     this->init_commands_mdInitSimEnv_();
@@ -63,12 +65,26 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     mdStateFactory_(std::make_unique<MDSimulationStateFactory>()),
+    mdStateInvoker_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
-    // Change the state to AnansiMDStateISE.
+    // Initialize all state objects for this MD simulation.
+    this->mdNullSimulationState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
+    this->mdInitSimEnv_ = std::move(this->mdStateFactory_->create<InitSimEnv>());
+    this->mdProcessCmdLine_ = std::move(this->mdStateFactory_->create<ProcessCmdLine>());
+    this->mdInitInitialConditions_ = std::move(this->mdStateFactory_->create<InitInitialConditions>());
+    this->mdPerformSimulation_ = std::move(this->mdStateFactory_->create<PerformSimulation>());
+    this->mdTerminateSimulation_ = std::move(this->mdStateFactory_->create<TerminateSimulation>());
+
+
+    // Set all commands for state objects
+    this->init_commands_mdInitSimEnv_();
+
+    // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
     this->mdState_->who_am_i();
+
     return;
 }
 
@@ -168,6 +184,8 @@ void AnansiMolecularDynamics::init_commands_mdInitSimEnv_()
     std::string key("initialize_mpi_environment");
     std::function<void(AnansiMolecularDynamics&)> cmd = &AnansiMolecularDynamics::initializeMpiEnvironment_;
     this->commands_.insert({key,cmd});
+
+    this->mdStateInvoker_.setCommand("initialize_simulation_environment",mdInitSimEnv_);
 }
 
 void
@@ -187,6 +205,8 @@ AnansiMolecularDynamics::initializeSimulationEnvironment_()
 
     // Make request to mdState_ to initialize the simulation environment by
     // doing the execute method. 
+    this->mdStateInvoker_.executeCommand("initialize_simulation_environment");
+
     this->mdState_->execute(this);
 
     // Change the state of "this", a AnansiMolecularDynamics object, to 

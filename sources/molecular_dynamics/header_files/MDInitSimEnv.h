@@ -76,6 +76,8 @@ namespace ANANSI
             // ====================  ACCESSORS     =======================================
             void Execute_(Simulation * const a_simulation) const final;
 
+            void Execute_() const final;
+
             void AddCommand_() const final;
 
         private:

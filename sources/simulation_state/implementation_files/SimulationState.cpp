@@ -49,6 +49,11 @@ void SimulationState::execute(Simulation* const a_simulation) const
     this->execute_(a_simulation);
 }
 
+void SimulationState::execute() const
+{
+    this->execute_();
+}
+
 void SimulationState::addCommand(std::function<void(Simulation&)>) const
 {
     this->addCommand_();
@@ -112,6 +117,13 @@ SimulationState& SimulationState::operator= ( SimulationState && other )
 
 //============================= ACCESSORS ====================================
 void SimulationState::execute_(Simulation* const a_simulation) const
+{
+    std::string message("This simulation state executes a stud command!");
+    std::cout << message.c_str() << std::endl;
+    return;
+}
+
+void SimulationState::execute_() const
 {
     std::string message("This simulation state executes a stud command!");
     std::cout << message.c_str() << std::endl;

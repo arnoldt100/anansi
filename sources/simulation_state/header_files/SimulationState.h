@@ -78,6 +78,8 @@ class SimulationState
 
         void execute (Simulation * const a_simulation ) const;
 
+        void execute () const;
+
         void addCommand(std::function<void(Simulation&)>) const;
 
 
@@ -100,6 +102,8 @@ class SimulationState
 
         // ====================  ACCESSORS     =======================================
         virtual void execute_(Simulation* const a_simulation) const;
+
+        virtual void execute_() const;
 
         virtual void addCommand_() const;
 

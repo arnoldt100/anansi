@@ -80,6 +80,11 @@ void MDInitSimEnv::Execute_(Simulation * const a_simulation) const
     return;
 };
 
+void MDInitSimEnv::Execute_() const 
+{
+    return;
+};
+
 void MDInitSimEnv::AddCommand_() const 
 {
     return;
