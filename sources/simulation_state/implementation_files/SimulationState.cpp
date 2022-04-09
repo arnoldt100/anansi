@@ -49,7 +49,7 @@ void SimulationState::execute(Simulation* const a_simulation) const
     this->execute_(a_simulation);
 }
 
-void SimulationState::addCommand() const
+void SimulationState::addCommand(std::function<void(Simulation&)>) const
 {
     this->addCommand_();
 }

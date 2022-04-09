@@ -4,6 +4,8 @@
 // System includes
 #include <boost/program_options.hpp>
 #include <memory>
+#include <functional>
+#include <map>
 
 // Package includes
 #include "MPIEnvironment.h"
@@ -48,6 +50,9 @@ class AnansiMolecularDynamics final : public Simulation
 
         /* ====================  STATIC        ======================================= */
 
+        // ====================  USING ALIASES =======================================
+        using COMMAND_MAP = std::map<std::string, std::function<void(AnansiMolecularDynamics&)>>;
+
     protected:
         /* ====================  METHODS       ======================================= */
 
@@ -67,6 +72,7 @@ class AnansiMolecularDynamics final : public Simulation
         bool isIICStatusOkay_() const final override;
 
         /* ====================  MUTATORS      ======================================= */
+        void init_commands_mdInitSimEnv_();
 
         void 
         disableCommunication_() final override;
@@ -120,6 +126,9 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdInitInitialConditions_;
         std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
+
+        // These objects store the AnansiMolecularDynamics command objects.
+        std::map<std::string, std::function<void(AnansiMolecularDynamics&)>> commands_;
 
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
         COMMUNICATOR::RegistryAnansiMDStatus mdGlobalStatus_;

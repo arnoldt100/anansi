@@ -93,7 +93,7 @@
         header_files/MDSimulationStateFactory.h
         header_files/ISEStatus.h
         header_files/AnansiMolecularDynamicsFactory.h 
-        header_files/AnansiMDStateInt2Type.hpp )
+        header_files/AnansiMDStateInt2Type.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -

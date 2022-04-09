@@ -6,6 +6,7 @@
 //--------------------------------------------------------//
 #include <unordered_map>
 #include <string>
+#include <functional>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -77,7 +78,7 @@ class SimulationState
 
         void execute (Simulation * const a_simulation ) const;
 
-        void addCommand() const;
+        void addCommand(std::function<void(Simulation&)>) const;
 
 
         // ====================  MUTATORS      =======================================

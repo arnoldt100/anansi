@@ -48,8 +48,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     this->mdTerminateSimulation_ = std::move(this->mdStateFactory_->create<TerminateSimulation>());
 
     // Set all commands for state objects
-    //
-    this->mdInitSimEnv_->addCommand(); // Add command to initialize the MPI environment.
+    this->init_commands_mdInitSimEnv_();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -163,6 +162,14 @@ bool AnansiMolecularDynamics::isIICStatusOkay_() const
 }
 
 //============================= MUTATORS =====================================
+void AnansiMolecularDynamics::init_commands_mdInitSimEnv_()
+{
+    // Add command to initialize the MPI environment.
+    std::string key("initialize_mpi_environment");
+    std::function<void(AnansiMolecularDynamics&)> cmd = &AnansiMolecularDynamics::initializeMpiEnvironment_;
+    this->commands_.insert({key,cmd});
+}
+
 void
 AnansiMolecularDynamics::disableCommunication_()
 {

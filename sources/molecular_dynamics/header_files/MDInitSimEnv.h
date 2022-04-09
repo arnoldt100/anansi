@@ -4,6 +4,9 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
+#include <functional>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -12,10 +15,16 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+
 #include "InitSimEnv.h"
 
 namespace ANANSI
+
 {
+    //--------------------------------------------------------//
+    //--------------------- Forwdard Declarations ------------//
+    //--------------------------------------------------------//
+    class AnansiMolecularDynamics;
 
      // =====================================================================================
      //        Class:  MDInitSimEnv
@@ -46,12 +55,18 @@ namespace ANANSI
             // ====================  ACCESSORS     =======================================
 
             // ====================  MUTATORS      =======================================
-
+            static void genericAddCommand(std::shared_ptr<ANANSI::SimulationState> & cmd)
+            {
+                return;
+            } 
             // ====================  OPERATORS     =======================================
 
             MDInitSimEnv& operator= ( MDInitSimEnv const & other ); // assignment operator
 
             MDInitSimEnv& operator= ( MDInitSimEnv && other ); // assignment-move operator
+
+            // ===================  DATA MEMBERS  =======================================
+            std::map<std::string, std::function<void(AnansiMolecularDynamics&)>> commands_;
 
         protected:
             // ====================  METHODS       =======================================
