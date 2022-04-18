@@ -26,6 +26,11 @@ __classname__::__classname__()
     return;
 }
 
+__classname__::__classname__( __classname__ const & other)
+{
+    return;
+}
+
 __classname__::__classname__( __classname__ && other)
 {
     return;

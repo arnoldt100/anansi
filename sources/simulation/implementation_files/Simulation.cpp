@@ -102,14 +102,6 @@ void Simulation::initializeSimulationEnvironment()
     return;
 }       /* -----  end of method Simulation::initializeSimulationEnvironment  ----- */
 
-
-void Simulation::initializeMpiEnvironment()
-{
-    this->initializeMpiEnvironment_();
-    return;
-}       /* -----  end of method Simulation::initializeMpiEnvironment  ----- */
-
-
 void Simulation::processCommandLine() 
 {
     this->processCommandLine_();
