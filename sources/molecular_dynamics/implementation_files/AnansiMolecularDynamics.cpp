@@ -48,10 +48,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     this->mdPerformSimulation_ = std::move(this->mdStateFactory_->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(this->mdStateFactory_->create<TerminateSimulation>());
 
-
-    // Set all commands for state objects
-    this->init_commands_mdInitSimEnv_();
-
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
 
@@ -77,9 +73,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdPerformSimulation_ = std::move(this->mdStateFactory_->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(this->mdStateFactory_->create<TerminateSimulation>());
 
-
-    // Set all commands for state objects
-    this->init_commands_mdInitSimEnv_();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -202,10 +195,6 @@ AnansiMolecularDynamics::initializeSimulationEnvironment_()
     // Change the state of "this", a AnansiMolecularDynamics object, to 
     // state MDInitInitialConditions.
     this->mdState_ = this->mdInitSimEnv_;
-
-    // Make request to mdState_ to initialize the simulation environment by
-    // doing the execute method. 
-    this->mdStateInvoker_.executeCommand("initialize_simulation_environment");
 
     this->mdState_->execute(this);
 
