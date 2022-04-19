@@ -15,6 +15,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "DefineVisitableMacro.h"
+#include "BaseVisitable.hpp"
 #include "RegistryAnansiMDStatus.h"
 
 namespace ANANSI
@@ -24,7 +26,7 @@ namespace ANANSI
 //        Class:  Simulation
 //  Description:  
 //  =====================================================================================
-class Simulation
+class Simulation : public MPL::BaseVisitable<>
 {
 
     public:
@@ -38,6 +40,8 @@ class Simulation
         Simulation(Simulation && other) = delete;
 
         /* ====================  ACCESSORS     ======================================= */
+
+        DEFINE_VISITABLE()
 
         void stud_function(std::string const & message) const;
 

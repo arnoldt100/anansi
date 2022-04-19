@@ -30,6 +30,12 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_mpl_include  mpl mpl_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -97,14 +103,16 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files)
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_mpl_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      mpi_communicator )
+                      mpi_communicator 
+                      mpl )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
