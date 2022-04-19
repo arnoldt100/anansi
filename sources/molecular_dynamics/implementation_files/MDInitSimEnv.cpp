@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MDInitSimEnvVisitor.h"
 #include "MDInitSimEnv.h"
 
 namespace ANANSI {
@@ -77,6 +78,8 @@ MDInitSimEnv& MDInitSimEnv::operator= ( MDInitSimEnv && other )
 //============================= ACCESSORS ====================================
 void MDInitSimEnv::Execute_(Simulation * const a_simulation) const 
 {
+    MDInitSimEnvVisitor a_visitor;
+    a_simulation->Accept(a_visitor);
     return;
 };
 
