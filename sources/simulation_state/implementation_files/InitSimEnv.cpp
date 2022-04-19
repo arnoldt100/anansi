@@ -87,12 +87,6 @@ void InitSimEnv::execute_() const
     return;
 }
 
-void InitSimEnv::addCommand_() const
-{
-    this->AddCommand_();
-    return;
-}
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

@@ -78,8 +78,6 @@ namespace ANANSI
 
             void Execute_() const final;
 
-            void AddCommand_() const final;
-
         private:
             // ====================  METHODS       =======================================
 

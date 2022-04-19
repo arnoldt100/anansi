@@ -80,9 +80,6 @@ class SimulationState
 
         void execute () const;
 
-        void addCommand(std::function<void(Simulation&)>) const;
-
-
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -104,8 +101,6 @@ class SimulationState
         virtual void execute_(Simulation* const a_simulation) const;
 
         virtual void execute_() const;
-
-        virtual void addCommand_() const;
 
         virtual std::string misbehviorErrorMessage_(state_misbehavior_info const & error_info) const;
 

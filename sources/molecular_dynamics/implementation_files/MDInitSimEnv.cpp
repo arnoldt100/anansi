@@ -85,10 +85,6 @@ void MDInitSimEnv::Execute_() const
     return;
 };
 
-void MDInitSimEnv::AddCommand_() const 
-{
-    return;
-};
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

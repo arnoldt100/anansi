@@ -65,10 +65,6 @@ namespace ANANSI
 
             virtual void Execute_() const = 0;
 
-            void addCommand_() const override;
-
-            virtual void AddCommand_() const=0;
-
 
             // ====================  DATA MEMBERS  =======================================
 
