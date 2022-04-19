@@ -15,7 +15,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "SimulationState.h"
 #include "RegistryAnansiMDStatus.h"
 
 namespace ANANSI

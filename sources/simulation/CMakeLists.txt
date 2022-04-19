@@ -30,8 +30,6 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
-    get_target_property(my_ss_include simulation_state simulation_state_include)
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -99,8 +97,7 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           ${my_ss_include})
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files)
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
