@@ -8,8 +8,14 @@
 #include <map>
 
 // Package includes
-#include "MPIEnvironment.h"
+
+// This include is for deriving from the Simulation class.
 #include "Simulation.h"
+
+// This include is for making the AnansiMolecularDynamics a visitable class.
+#include "BaseVisitable.hpp"
+
+#include "MPIEnvironment.h"
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
@@ -37,6 +43,7 @@ class AnansiMolecularDynamics final : public Simulation
         AnansiMolecularDynamics(AnansiMolecularDynamics && other) = delete;
 
         /* ====================  ACCESSORS     ======================================= */
+        DEFINE_VISITABLE()
 
         /* ====================  MUTATORS      ======================================= */
         
