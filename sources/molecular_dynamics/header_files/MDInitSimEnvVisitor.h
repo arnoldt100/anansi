@@ -13,6 +13,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "BaseVisitor.h"
+#include "Visitor.hpp"
+#include "AnansiMolecularDynamics.h"
 
 namespace ANANSI
 {
@@ -21,7 +24,8 @@ namespace ANANSI
 //        Class:  MDInitSimEnvVisitor
 //  Description:  
 //  =====================================================================================
-class MDInitSimEnvVisitor
+class MDInitSimEnvVisitor : public MPL::BaseVisitor, 
+                            public MPL::Visitor<AnansiMolecularDynamics>
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -44,6 +48,8 @@ class MDInitSimEnvVisitor
         virtual ~MDInitSimEnvVisitor ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+
+        void visit(AnansiMolecularDynamics& a_sim) const;
 
         // ====================  MUTATORS      =======================================
 

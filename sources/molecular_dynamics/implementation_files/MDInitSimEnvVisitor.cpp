@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -41,6 +42,11 @@ MDInitSimEnvVisitor::~MDInitSimEnvVisitor()
 }
 
 //============================= ACCESSORS ====================================
+void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
+{
+    std::cout << "Visit(AnansiMolecularDynamics&)" << std::endl;
+    return;
+}
 
 //============================= MUTATORS =====================================
 
