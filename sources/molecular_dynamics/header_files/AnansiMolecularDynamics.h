@@ -43,9 +43,12 @@ class AnansiMolecularDynamics final : public Simulation
         AnansiMolecularDynamics(AnansiMolecularDynamics && other) = delete;
 
         /* ====================  ACCESSORS     ======================================= */
+
+        // This macro defines the Accept member function.
         DEFINE_VISITABLE()
 
         /* ====================  MUTATORS      ======================================= */
+        void initializeMpiEnvironment();
         
         /* ====================  OPERATORS     ======================================= */
 
@@ -88,9 +91,6 @@ class AnansiMolecularDynamics final : public Simulation
         // This group of functions initializes the simulation environment.
         void 
         initializeSimulationEnvironment_() final override;
-
-        void 
-        initializeMpiEnvironment_() final override;
 
         void 
         enableCommunication_() final override;

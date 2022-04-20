@@ -91,6 +91,23 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void AnansiMolecularDynamics::initializeMpiEnvironment()
+{
+    int my_argc=0;
+    char** my_argv_ptr=nullptr;
+
+    this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
+
+	this->MpiEnvironment_ = std::make_unique<COMMUNICATOR::MPIEnvironment>(my_argc,my_argv_ptr);
+
+    if (my_argv_ptr != nullptr)
+    {
+        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(my_argc,my_argv_ptr);
+    }
+
+    std::cout << "Initialized the MPI environment." << std::endl;
+    return;
+}
 
 //============================= OPERATORS ====================================
 
@@ -175,7 +192,7 @@ void AnansiMolecularDynamics::init_commands_mdInitSimEnv_()
 {
     // Add command to initialize the MPI environment.
     std::string key("initialize_mpi_environment");
-    std::function<void(AnansiMolecularDynamics&)> cmd = &AnansiMolecularDynamics::initializeMpiEnvironment_;
+    std::function<void(AnansiMolecularDynamics&)> cmd = &AnansiMolecularDynamics::initializeMpiEnvironment;
     this->commands_.insert({key,cmd});
 
     this->mdStateInvoker_.setCommand("initialize_simulation_environment",mdInitSimEnv_);
@@ -202,24 +219,6 @@ AnansiMolecularDynamics::initializeSimulationEnvironment_()
     // state MDNullSimulationState.
     this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
 
-    return;
-}
-
-void AnansiMolecularDynamics::initializeMpiEnvironment_()
-{
-    int my_argc=0;
-    char** my_argv_ptr=nullptr;
-
-    this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
-
-	this->MpiEnvironment_ = std::make_unique<COMMUNICATOR::MPIEnvironment>(my_argc,my_argv_ptr);
-
-    if (my_argv_ptr != nullptr)
-    {
-        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(my_argc,my_argv_ptr);
-    }
-
-    std::cout << "Initialized the MPI environment." << std::endl;
     return;
 }
 

@@ -59,38 +59,37 @@ class Simulation : public MPL::BaseVisitable<>
 
         /* ====================  MUTATORS      ======================================= */
 
-        void disableCommunication();
 
-        // This group of functions initializes the simulation environment.
+        // This function initializes the simulation environment.
         void initializeSimulationEnvironment();
 
-        void initializeMpiEnvironment();
-
-        void enableCommunication();
-
-
-        // This group of functions processes the command line and sets the
+        // This function processes the command line and sets the
         // simulation parameters.
         void processCommandLine(); 
 
-        void saveCommandLineOptionsValues();
-
-        // This group of functions initializes the initial conditions of the 
+        // This function initializes the initial conditions of the 
         // simulation.
         void initializeInitialConditions();
+
+        // This function performs the simulation.
+        void performSimulation();
+
+        // This function terminates the simulation environment.
+        void terminateSimulationEnvironment();
+
+
+        // The functions below are to be refactored to  a visitor class.
+        void disableCommunication();
+
+        void enableCommunication();
+
+        void saveCommandLineOptionsValues();
 
         void inputSimulationControlFile();
 
         void readInitialConfiguration();
 
-        // This group of functions performs the MD simulation.
-        void performSimulation();
-
-        // This group of functions terminates the simulation environment.
-        void terminateSimulationEnvironment();
-
         // This group of functions changes the status of the MD object.
-        
         void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
         void setGlobalISEStatus();
 
@@ -125,8 +124,6 @@ class Simulation : public MPL::BaseVisitable<>
 
         // This group of functions initializes the simulation environment.
         virtual void initializeSimulationEnvironment_()=0;
-
-        virtual void initializeMpiEnvironment_()=0;
 
         virtual void enableCommunication_()=0;
 

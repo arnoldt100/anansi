@@ -45,6 +45,10 @@ MDInitSimEnvVisitor::~MDInitSimEnvVisitor()
 void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     std::cout << "Visit(AnansiMolecularDynamics&)" << std::endl;
+
+    // Initializing the MPI environment.
+    a_sim.initializeMpiEnvironment();
+
     return;
 }
 
