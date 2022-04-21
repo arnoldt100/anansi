@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "TerminateSimulationVisitor.h"
+#include "MDTerminateSimulationVisitor.h"
 #include "MDTerminateSimulation.h"
 
 namespace ANANSI {
@@ -78,7 +78,7 @@ MDTerminateSimulation& MDTerminateSimulation::operator= ( MDTerminateSimulation 
 //============================= ACCESSORS ====================================
 void MDTerminateSimulation::Execute_(Simulation * const a_simulation) const 
 {
-    TerminateSimulationVisitor a_visitor;
+    MDTerminateSimulationVisitor a_visitor;
     a_simulation->Accept(a_visitor);
     return;
 };
