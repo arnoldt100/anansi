@@ -217,7 +217,7 @@ AnansiMolecularDynamics::initializeSimulationEnvironment_()
 
     // Change the state of "this", a AnansiMolecularDynamics object, to 
     // state MDNullSimulationState.
-    this->mdState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
+    this->mdState_ = this->mdNullSimulationState_;
 
     return;
 }
@@ -310,6 +310,16 @@ void AnansiMolecularDynamics::performSimulation_()
 
 void AnansiMolecularDynamics::terminateSimulationEnvironment_()
 {
+    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // state MDTerminateSimulation.
+    this->mdState_ = this->mdTerminateSimulation_;
+
+    this->mdState_->execute(this);
+
+    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // state MDNullSimulationState.
+    this->mdState_ = this->mdNullSimulationState_;
+
     return;
 }      // -----  end of method AnansiMolecularDynamics::terminateSimulationEnvironment_  -----
 
