@@ -1,5 +1,5 @@
-#ifndef  ANANSI_TerminateSimulationVisitor_INC
-#define  ANANSI_TerminateSimulationVisitor_INC
+#ifndef  ANANSI_MDTerminateSimulationVisitor_INC
+#define  ANANSI_MDTerminateSimulationVisitor_INC
 
 
 //--------------------------------------------------------//
@@ -21,31 +21,31 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  TerminateSimulationVisitor
+//        Class:  MDTerminateSimulationVisitor
 //  Description:  
 //  =====================================================================================
-class TerminateSimulationVisitor : public MPL::BaseVisitor,
-                                   public MPL::Visitor<AnansiMolecularDynamics>
+class MDTerminateSimulationVisitor : public MPL::BaseVisitor,
+                                     public MPL::Visitor<AnansiMolecularDynamics>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
-        //       Class:  TerminateSimulationVisitor
-        //      Method:  TerminateSimulationVisitor :: TerminateSimulationVisitor
+        //       Class:  MDTerminateSimulationVisitor
+        //      Method:  MDTerminateSimulationVisitor :: MDTerminateSimulationVisitor
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        TerminateSimulationVisitor ();   // constructor
+        MDTerminateSimulationVisitor ();   // constructor
 
-        TerminateSimulationVisitor (const TerminateSimulationVisitor & other);   // copy constructor
+        MDTerminateSimulationVisitor (const MDTerminateSimulationVisitor & other);   // copy constructor
 
-        TerminateSimulationVisitor (TerminateSimulationVisitor && other);   // copy-move constructor
+        MDTerminateSimulationVisitor (MDTerminateSimulationVisitor && other);   // copy-move constructor
 
-        virtual ~TerminateSimulationVisitor ();  // destructor
+        virtual ~MDTerminateSimulationVisitor ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         void visit(AnansiMolecularDynamics& a_sim) const;
@@ -54,9 +54,9 @@ class TerminateSimulationVisitor : public MPL::BaseVisitor,
 
         // ====================  OPERATORS     =======================================
 
-        TerminateSimulationVisitor& operator= ( const TerminateSimulationVisitor &other ); // assignment operator
+        MDTerminateSimulationVisitor& operator= ( const MDTerminateSimulationVisitor &other ); // assignment operator
 
-        TerminateSimulationVisitor& operator= ( TerminateSimulationVisitor && other ); // assignment-move operator
+        MDTerminateSimulationVisitor& operator= ( MDTerminateSimulationVisitor && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -70,9 +70,9 @@ class TerminateSimulationVisitor : public MPL::BaseVisitor,
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class TerminateSimulationVisitor  -----
+}; // -----  end of class MDTerminateSimulationVisitor  -----
 
 
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef ANANSI_TerminateSimulationVisitor_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_MDTerminateSimulationVisitor_INC  ----- */

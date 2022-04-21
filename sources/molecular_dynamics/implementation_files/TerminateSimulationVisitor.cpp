@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "TerminateSimulationVisitor.h"
+#include "MDTerminateSimulationVisitor.h"
 
 namespace ANANSI {
 
@@ -20,31 +20,31 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-TerminateSimulationVisitor::TerminateSimulationVisitor()
+MDTerminateSimulationVisitor::MDTerminateSimulationVisitor()
 {
     return;
 }
 
-TerminateSimulationVisitor::TerminateSimulationVisitor( TerminateSimulationVisitor const & other)
+MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulationVisitor const & other)
 {
     return;
 }
 
-TerminateSimulationVisitor::TerminateSimulationVisitor( TerminateSimulationVisitor && other)
+MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulationVisitor && other)
 {
     return;
-}		// -----  end of method TerminateSimulationVisitor::TerminateSimulationVisitor  -----
+}		// -----  end of method MDTerminateSimulationVisitor::MDTerminateSimulationVisitor  -----
 
 
-TerminateSimulationVisitor::~TerminateSimulationVisitor()
+MDTerminateSimulationVisitor::~MDTerminateSimulationVisitor()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-void TerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
+void MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
-    std::cout << "TerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
+    std::cout << "MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
     return;
 }
 
@@ -52,7 +52,7 @@ void TerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
 
 //============================= OPERATORS ====================================
 
-TerminateSimulationVisitor& TerminateSimulationVisitor::operator= ( const TerminateSimulationVisitor &other )
+MDTerminateSimulationVisitor& MDTerminateSimulationVisitor::operator= ( const MDTerminateSimulationVisitor &other )
 {
     if (this != &other)
     {
@@ -61,7 +61,7 @@ TerminateSimulationVisitor& TerminateSimulationVisitor::operator= ( const Termin
     return *this;
 } // assignment operator
 
-TerminateSimulationVisitor& TerminateSimulationVisitor::operator= ( TerminateSimulationVisitor && other )
+MDTerminateSimulationVisitor& MDTerminateSimulationVisitor::operator= ( MDTerminateSimulationVisitor && other )
 {
     if (this != &other)
     {

@@ -87,7 +87,7 @@
         header_files/MDNullSimulationState.h
         header_files/MDInitSimEnv.h
         header_files/MDInitSimEnvVisitor.h
-        header_files/TerminateSimulationVisitor.h
+        header_files/MDTerminateSimulationVisitor.h
         header_files/MDProcessCmdLine.h
         header_files/MDProcessCmdLineVisitor.h
         header_files/MDInitInitialConditions.h
@@ -110,7 +110,7 @@
         implementation_files/MDNullSimulationState.cpp
         implementation_files/MDInitSimEnv.cpp
         implementation_files/MDInitSimEnvVisitor.cpp
-        implementation_files/TerminateSimulationVisitor.cpp
+        implementation_files/MDTerminateSimulationVisitor.cpp
         implementation_files/MDProcessCmdLine.cpp
         implementation_files/MDProcessCmdLineVisitor.cpp
         implementation_files/MDInitInitialConditions.cpp
