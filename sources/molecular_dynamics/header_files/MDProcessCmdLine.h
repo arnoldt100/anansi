@@ -12,6 +12,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MDProcessCmdLineVisitor.h"
 #include "ProcessCmdLine.h"
 
 namespace ANANSI
@@ -57,6 +58,11 @@ namespace ANANSI
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
+
+            // ====================  ACCESSORS     =======================================
+            void Execute_(Simulation * const a_simulation) const final;
+
+            void Execute_() const final;
 
         private:
             // ====================  METHODS       =======================================

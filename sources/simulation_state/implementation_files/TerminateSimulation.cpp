@@ -87,6 +87,17 @@ void TerminateSimulation::execute_() const
     return;
 }
 
+void TerminateSimulation::Execute_(Simulation * const a_simulation) const 
+{
+    return;
+};
+
+void TerminateSimulation::Execute_() const 
+{
+    return;
+};
+
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

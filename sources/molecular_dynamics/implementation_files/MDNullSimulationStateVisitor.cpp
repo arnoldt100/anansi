@@ -1,7 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitSimEnv.h"
+#include "MDNullSimulationStateVisitor.h"
 
 namespace ANANSI {
 
@@ -20,50 +20,52 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-InitSimEnv::InitSimEnv() :
-    SimulationState()
+MDNullSimulationStateVisitor::MDNullSimulationStateVisitor()
 {
     return;
 }
 
-InitSimEnv::InitSimEnv( InitSimEnv const & other) :
-    SimulationState()
+MDNullSimulationStateVisitor::MDNullSimulationStateVisitor( MDNullSimulationStateVisitor const & other)
 {
     return;
 }
 
-InitSimEnv::InitSimEnv( InitSimEnv && other) :
-    SimulationState(std::move(other))
+MDNullSimulationStateVisitor::MDNullSimulationStateVisitor( MDNullSimulationStateVisitor && other)
 {
     return;
-}		// -----  end of method InitSimEnv::InitSimEnv  -----
+}		// -----  end of method MDNullSimulationStateVisitor::MDNullSimulationStateVisitor  -----
 
 
-InitSimEnv::~InitSimEnv()
+MDNullSimulationStateVisitor::~MDNullSimulationStateVisitor()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
+void MDNullSimulationStateVisitor::visit(AnansiMolecularDynamics& a_sim) const
+{
+    std::cout << "MDNullSimulationStateVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
+    return;
+}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-InitSimEnv& InitSimEnv::operator= ( InitSimEnv const & other ) 
+MDNullSimulationStateVisitor& MDNullSimulationStateVisitor::operator= ( const MDNullSimulationStateVisitor &other )
 {
     if (this != &other)
     {
-        SimulationState::operator=(other);
+
     }
     return *this;
 } // assignment operator
 
-InitSimEnv& InitSimEnv::operator= ( InitSimEnv && other )
+MDNullSimulationStateVisitor& MDNullSimulationStateVisitor::operator= ( MDNullSimulationStateVisitor && other )
 {
     if (this != &other)
     {
-        SimulationState::operator=(std::move(other));
+
     }
     return *this;
 } // assignment-move operator
@@ -75,27 +77,6 @@ InitSimEnv& InitSimEnv::operator= ( InitSimEnv && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void InitSimEnv::execute_(Simulation * const a_simulation) const
-{
-    this->Execute_(a_simulation);
-    return;
-}
-
-void InitSimEnv::execute_() const
-{
-    this->Execute_();
-    return;
-}
-
-void InitSimEnv::Execute_(Simulation * const a_simulation) const 
-{
-    return;
-};
-
-void InitSimEnv::Execute_() const 
-{
-    return;
-};
 
 //============================= MUTATORS =====================================
 

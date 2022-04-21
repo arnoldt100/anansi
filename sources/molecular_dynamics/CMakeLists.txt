@@ -91,6 +91,7 @@
         header_files/MDProcessCmdLine.h
         header_files/MDProcessCmdLineVisitor.h
         header_files/MDInitInitialConditions.h
+        header_files/MDInitInitialConditionsVisitor.h
         header_files/MDPerformSimulation.h
         header_files/MDTerminateSimulation.h
         header_files/MDSimulationStateFactory.h
@@ -114,6 +115,7 @@
         implementation_files/MDProcessCmdLine.cpp
         implementation_files/MDProcessCmdLineVisitor.cpp
         implementation_files/MDInitInitialConditions.cpp
+        implementation_files/MDInitInitialConditionsVisitor.cpp
         implementation_files/MDPerformSimulation.cpp
         implementation_files/MDTerminateSimulation.cpp
         implementation_files/MDSimulationStateFactory.cpp

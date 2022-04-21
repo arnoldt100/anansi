@@ -61,9 +61,9 @@ namespace ANANSI
 
             void execute_() const override;
 
-            virtual void Execute_(Simulation * const a_simulation) const = 0;
+            virtual void Execute_(Simulation * const a_simulation) const ;
 
-            virtual void Execute_() const = 0;
+            virtual void Execute_() const;
 
 
             // ====================  DATA MEMBERS  =======================================

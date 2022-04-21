@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MDInitInitialConditionsVisitor.h"
 #include "MDInitInitialConditions.h"
 
 namespace ANANSI {
@@ -75,6 +76,17 @@ MDInitInitialConditions& MDInitInitialConditions::operator= ( MDInitInitialCondi
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void MDInitInitialConditions::Execute_(Simulation * const a_simulation) const 
+{
+    MDInitInitialConditionsVisitor a_visitor;
+    a_simulation->Accept(a_visitor);
+    return;
+};
+
+void MDInitInitialConditions::Execute_() const 
+{
+    return;
+};
 
 //============================= MUTATORS =====================================
 

@@ -58,6 +58,15 @@ namespace ANANSI
 
             // ====================  DATA MEMBERS  =======================================
 
+            // ====================  ACCESSORS     =======================================
+            void execute_(Simulation * const a_simulation) const override;
+
+            void execute_() const override;
+
+            virtual void Execute_(Simulation * const a_simulation) const ;
+
+            virtual void Execute_() const ;
+
         private:
             // ====================  METHODS       =======================================
 

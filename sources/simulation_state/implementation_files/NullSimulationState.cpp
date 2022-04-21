@@ -92,6 +92,28 @@ void NullSimulationState::processCommandLine_(Simulation * const aSimulation) co
     return;
 }
 
+void NullSimulationState::execute_(Simulation * const a_simulation) const
+{
+    this->Execute_(a_simulation);
+    return;
+}
+
+void NullSimulationState::execute_() const
+{
+    this->Execute_();
+    return;
+}
+
+void NullSimulationState::Execute_(Simulation * const a_simulation) const 
+{
+    return;
+};
+
+void NullSimulationState::Execute_() const 
+{
+    return;
+};
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

@@ -75,6 +75,27 @@ InitInitialConditions& InitInitialConditions::operator= ( InitInitialConditions 
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void InitInitialConditions::execute_(Simulation * const a_simulation) const
+{
+    this->Execute_(a_simulation);
+    return;
+}
+
+void InitInitialConditions::execute_() const
+{
+    this->Execute_();
+    return;
+}
+
+void InitInitialConditions::Execute_(Simulation * const a_simulation) const 
+{
+    return;
+};
+
+void InitInitialConditions::Execute_() const 
+{
+    return;
+};
 
 //============================= MUTATORS =====================================
 

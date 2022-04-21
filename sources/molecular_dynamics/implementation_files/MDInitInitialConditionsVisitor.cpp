@@ -1,7 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -10,7 +10,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitSimEnv.h"
+#include <iostream>
+#include "MDInitInitialConditionsVisitor.h"
 
 namespace ANANSI {
 
@@ -20,50 +21,52 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-InitSimEnv::InitSimEnv() :
-    SimulationState()
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor()
 {
     return;
 }
 
-InitSimEnv::InitSimEnv( InitSimEnv const & other) :
-    SimulationState()
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor const & other)
 {
     return;
 }
 
-InitSimEnv::InitSimEnv( InitSimEnv && other) :
-    SimulationState(std::move(other))
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor && other)
 {
     return;
-}		// -----  end of method InitSimEnv::InitSimEnv  -----
+}		// -----  end of method MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor  -----
 
 
-InitSimEnv::~InitSimEnv()
+MDInitInitialConditionsVisitor::~MDInitInitialConditionsVisitor()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
+void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
+{
+    std::cout << "MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
+    return;
+}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-InitSimEnv& InitSimEnv::operator= ( InitSimEnv const & other ) 
+MDInitInitialConditionsVisitor& MDInitInitialConditionsVisitor::operator= ( const MDInitInitialConditionsVisitor &other )
 {
     if (this != &other)
     {
-        SimulationState::operator=(other);
+
     }
     return *this;
 } // assignment operator
 
-InitSimEnv& InitSimEnv::operator= ( InitSimEnv && other )
+MDInitInitialConditionsVisitor& MDInitInitialConditionsVisitor::operator= ( MDInitInitialConditionsVisitor && other )
 {
     if (this != &other)
     {
-        SimulationState::operator=(std::move(other));
+
     }
     return *this;
 } // assignment-move operator
@@ -75,27 +78,6 @@ InitSimEnv& InitSimEnv::operator= ( InitSimEnv && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void InitSimEnv::execute_(Simulation * const a_simulation) const
-{
-    this->Execute_(a_simulation);
-    return;
-}
-
-void InitSimEnv::execute_() const
-{
-    this->Execute_();
-    return;
-}
-
-void InitSimEnv::Execute_(Simulation * const a_simulation) const 
-{
-    return;
-};
-
-void InitSimEnv::Execute_() const 
-{
-    return;
-};
 
 //============================= MUTATORS =====================================
 

@@ -34,7 +34,7 @@ namespace ANANSI
             // 
             //  Parameters: 
             //
-            //      Return:
+             //      Return:
             //--------------------------------------------------------------------------------------
             MDNullSimulationState ();   // constructor
 
@@ -56,6 +56,11 @@ namespace ANANSI
 
         protected:
             // ====================  METHODS       =======================================
+            
+            // ====================  ACCESSORS     =======================================
+            void Execute_(Simulation * const a_simulation) const final;
+
+            void Execute_() const final;
 
             // ====================  DATA MEMBERS  =======================================
 

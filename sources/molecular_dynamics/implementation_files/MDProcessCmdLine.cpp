@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MDProcessCmdLineVisitor.h"
 #include "MDProcessCmdLine.h"
 
 namespace ANANSI {
@@ -74,6 +75,17 @@ MDProcessCmdLine& MDProcessCmdLine::operator= ( MDProcessCmdLine && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void MDProcessCmdLine::Execute_(Simulation * const a_simulation) const 
+{
+    MDProcessCmdLineVisitor a_visitor;
+    a_simulation->Accept(a_visitor);
+    return;
+};
+
+void MDProcessCmdLine::Execute_() const 
+{
+    return;
+};
 
 //============================= MUTATORS =====================================
 

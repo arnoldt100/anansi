@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MDNullSimulationStateVisitor.h"
 #include "MDNullSimulationState.h"
 
 namespace ANANSI {
@@ -75,6 +76,17 @@ MDNullSimulationState& MDNullSimulationState::operator= ( MDNullSimulationState 
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void MDNullSimulationState::Execute_(Simulation * const a_simulation) const 
+{
+    MDNullSimulationStateVisitor a_visitor;
+    a_simulation->Accept(a_visitor);
+    return;
+};
+
+void MDNullSimulationState::Execute_() const 
+{
+    return;
+};
 
 //============================= MUTATORS =====================================
 

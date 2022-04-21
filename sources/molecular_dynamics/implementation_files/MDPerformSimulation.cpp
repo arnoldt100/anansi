@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MDPerformSimulationVisitor.h"
 #include "MDPerformSimulation.h"
 
 namespace ANANSI {
@@ -76,6 +77,17 @@ MDPerformSimulation& MDPerformSimulation::operator= ( MDPerformSimulation && oth
 
 //============================= ACCESSORS ====================================
 
+void MDPerformSimulation::Execute_(Simulation * const a_simulation) const 
+{
+    MDPerformSimulationVisitor a_visitor;
+    a_simulation->Accept(a_visitor);
+    return;
+};
+
+void MDPerformSimulation::Execute_() const 
+{
+    return;
+};
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
