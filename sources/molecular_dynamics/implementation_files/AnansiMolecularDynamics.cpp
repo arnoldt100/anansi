@@ -284,6 +284,15 @@ void AnansiMolecularDynamics::readInitialConfiguration_()
 
 void AnansiMolecularDynamics::processCommandLine_()
 {
+    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // state MDprocessCmmdLine.
+    this->mdState_ = this->mdProcessCmdLine_;
+
+    this->mdState_->execute(this);
+
+    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // state MDNullSimulationState.
+    this->mdState_ = this->mdNullSimulationState_;
     return;
 }
 
