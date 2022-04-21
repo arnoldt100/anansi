@@ -75,6 +75,17 @@ TerminateSimulation& TerminateSimulation::operator= ( TerminateSimulation && oth
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void TerminateSimulation::execute_(Simulation * const a_simulation) const
+{
+    this->Execute_(a_simulation);
+    return;
+}
+
+void TerminateSimulation::execute_() const
+{
+    this->Execute_();
+    return;
+}
 
 //============================= MUTATORS =====================================
 
