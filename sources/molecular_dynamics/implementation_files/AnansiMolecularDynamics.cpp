@@ -19,6 +19,7 @@
 #include "SimulationParametersFactory.h"
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
+#include "MDSimulationStateFactory.h"
 
 namespace ANANSI {
 
@@ -35,18 +36,18 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     simulationParameters_(),
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
-    mdStateFactory_(),
     mdStateInvoker_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Initialize all state objects for this MD simulation.
-    this->mdNullSimulationState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
-    this->mdInitSimEnv_ = std::move(this->mdStateFactory_->create<InitSimEnv>());
-    this->mdProcessCmdLine_ = std::move(this->mdStateFactory_->create<ProcessCmdLine>());
-    this->mdInitInitialConditions_ = std::move(this->mdStateFactory_->create<InitInitialConditions>());
-    this->mdPerformSimulation_ = std::move(this->mdStateFactory_->create<PerformSimulation>());
-    this->mdTerminateSimulation_ = std::move(this->mdStateFactory_->create<TerminateSimulation>());
+    std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_ = std::make_unique<MDSimulationStateFactory>();
+    this->mdNullSimulationState_ = std::move(mdStateFactory_->create<NullSimulationState>());
+    this->mdInitSimEnv_ = std::move(mdStateFactory_->create<InitSimEnv>());
+    this->mdProcessCmdLine_ = std::move(mdStateFactory_->create<ProcessCmdLine>());
+    this->mdInitInitialConditions_ = std::move(mdStateFactory_->create<InitInitialConditions>());
+    this->mdPerformSimulation_ = std::move(mdStateFactory_->create<PerformSimulation>());
+    this->mdTerminateSimulation_ = std::move(mdStateFactory_->create<TerminateSimulation>());
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -60,18 +61,18 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     simulationParameters_(),
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
-    mdStateFactory_(std::make_unique<MDSimulationStateFactory>()),
     mdStateInvoker_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Initialize all state objects for this MD simulation.
-    this->mdNullSimulationState_ = std::move(this->mdStateFactory_->create<NullSimulationState>());
-    this->mdInitSimEnv_ = std::move(this->mdStateFactory_->create<InitSimEnv>());
-    this->mdProcessCmdLine_ = std::move(this->mdStateFactory_->create<ProcessCmdLine>());
-    this->mdInitInitialConditions_ = std::move(this->mdStateFactory_->create<InitInitialConditions>());
-    this->mdPerformSimulation_ = std::move(this->mdStateFactory_->create<PerformSimulation>());
-    this->mdTerminateSimulation_ = std::move(this->mdStateFactory_->create<TerminateSimulation>());
+    std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_ = std::make_unique<MDSimulationStateFactory>();
+    this->mdNullSimulationState_ = std::move(mdStateFactory_->create<NullSimulationState>());
+    this->mdInitSimEnv_ = std::move(mdStateFactory_->create<InitSimEnv>());
+    this->mdProcessCmdLine_ = std::move(mdStateFactory_->create<ProcessCmdLine>());
+    this->mdInitInitialConditions_ = std::move(mdStateFactory_->create<InitInitialConditions>());
+    this->mdPerformSimulation_ = std::move(mdStateFactory_->create<PerformSimulation>());
+    this->mdTerminateSimulation_ = std::move(mdStateFactory_->create<TerminateSimulation>());
 
 
     // Change the state to Null.

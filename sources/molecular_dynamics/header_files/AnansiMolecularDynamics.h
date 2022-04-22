@@ -21,7 +21,6 @@
 #include "Communicator.h"
 #include "RegistryAnansiMDStatus.h"
 #include "Factory.hpp"
-#include "MDSimulationStateFactory.h"
 #include "SimulationStateInvoker.hpp"
 
 namespace ANANSI {
@@ -124,7 +123,6 @@ class AnansiMolecularDynamics final : public Simulation
         ANANSI::SimulationParameters simulationParameters_;
         std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
         std::unique_ptr<COMMUNICATOR::MPIEnvironment> MpiEnvironment_;
-        std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_;
 
         // These are the state objects for the MD simulation.
         ANANSI::SimulationStateInvoker<AnansiMolecularDynamics> mdStateInvoker_;
