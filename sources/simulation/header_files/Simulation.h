@@ -77,7 +77,6 @@ class Simulation : public MPL::BaseVisitable<>
         // This function terminates the simulation environment.
         void terminateSimulationEnvironment();
 
-
         // The functions below are to be refactored to  a visitor class.
         void disableCommunication();
 
