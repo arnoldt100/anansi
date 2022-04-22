@@ -49,6 +49,14 @@ class AnansiMolecularDynamics final : public Simulation
         /* ====================  MUTATORS      ======================================= */
         void initializeMpiEnvironment();
         
+        void saveCommandLineOptionParameters();
+
+        void inputSimulationControlFile();
+
+        void readInitialConfiguration();
+
+        void disableCommunication();
+
         /* ====================  OPERATORS     ======================================= */
 
         AnansiMolecularDynamics&                                                 
@@ -82,31 +90,24 @@ class AnansiMolecularDynamics final : public Simulation
         bool isIICStatusOkay_() const final override;
 
         /* ====================  MUTATORS      ======================================= */
-        void init_commands_mdInitSimEnv_();
-
-        void 
-        disableCommunication_() final override;
 
         // This group of functions initializes the simulation environment.
         void 
         initializeSimulationEnvironment_() final override;
 
-        void 
-        enableCommunication_() final override;
-
         // This group of functions processes the command line and sets the
         // simulation parameters.
         void processCommandLine_() final override; 
 
-        void saveCommandLineOptionParameters_() final override;
+        void init_commands_mdInitSimEnv_();
+
+
+        void enableCommunication_() final override;
+
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
         void initializeInitialConditions_ () final override;
-
-        void inputSimulationControlFile_ () final override;
-
-        void readInitialConfiguration_ () final override;
 
         // This group of functions performs the MD simulation.
         void

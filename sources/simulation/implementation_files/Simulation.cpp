@@ -88,14 +88,6 @@ Simulation::enableCommunication ()
 }		/* -----  end of method Simulation::enableCommunication  ----- */
 
 
-void
-Simulation::disableCommunication()
-{
-    this->disableCommunication_();
-    return ;
-}		/* -----  end of method Simulation::disableCommunication  ----- */
-
-
 void Simulation::initializeSimulationEnvironment()
 {
 	this->initializeSimulationEnvironment_();
@@ -110,31 +102,11 @@ void Simulation::processCommandLine()
 
 
 void
-Simulation::saveCommandLineOptionsValues()
-{
-    this->saveCommandLineOptionParameters_();
-    return;
-}		/* -----  end of method Simulation::saveCommandLineOptionsValues  ----- */
-
-
-void
 Simulation::initializeInitialConditions ()
 {
     this->initializeInitialConditions_();
     return;
 }		/* -----  end of method Simulation::initializeInitialConditions  ----- */
-
-void Simulation::readInitialConfiguration ()
-{
-	this->readInitialConfiguration_();
-	return;
-}
-
-void Simulation::inputSimulationControlFile()
-{
-    this->inputSimulationControlFile_();
-    return;
-}   /* -----  end of method Simulation::inputSimulationControlFile  ----- */
 
 void Simulation::performSimulation()
 {

@@ -44,7 +44,7 @@ MDProcessCmdLineVisitor::~MDProcessCmdLineVisitor()
 //============================= ACCESSORS ====================================
 void MDProcessCmdLineVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
-    std::cout << "MDProcessCmdLineVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
+    a_sim.saveCommandLineOptionParameters();
     return;
 }
 

@@ -77,16 +77,7 @@ class Simulation : public MPL::BaseVisitable<>
         // This function terminates the simulation environment.
         void terminateSimulationEnvironment();
 
-        // The functions below are to be refactored to  a visitor class.
-        void disableCommunication();
-
         void enableCommunication();
-
-        void saveCommandLineOptionsValues();
-
-        void inputSimulationControlFile();
-
-        void readInitialConfiguration();
 
         // This group of functions changes the status of the MD object.
         void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
@@ -119,8 +110,6 @@ class Simulation : public MPL::BaseVisitable<>
 
         /* ====================  MUTATORS      ======================================= */
 
-        virtual void disableCommunication_()=0;
-
         // This group of functions initializes the simulation environment.
         virtual void initializeSimulationEnvironment_()=0;
 
@@ -130,15 +119,9 @@ class Simulation : public MPL::BaseVisitable<>
         // simulation parameters.
         virtual void processCommandLine_()=0; 
 
-        virtual void saveCommandLineOptionParameters_()=0;
-
         // This group of functions initializes the initial conditions of the 
         // simulation.
         virtual void initializeInitialConditions_()=0;
-
-        virtual void inputSimulationControlFile_()=0;
-
-        virtual void readInitialConfiguration_()=0;
 
         // This group of functions performs the MD simulation.
         virtual void performSimulation_()=0;

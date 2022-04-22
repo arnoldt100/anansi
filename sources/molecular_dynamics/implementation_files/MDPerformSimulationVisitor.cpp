@@ -45,6 +45,7 @@ MDPerformSimulationVisitor::~MDPerformSimulationVisitor()
 void MDPerformSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     std::cout << "MDPerformSimulationVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
+    a_sim.stud_function("Perform simulation");
     return;
 }
 
