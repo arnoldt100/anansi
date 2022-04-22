@@ -17,8 +17,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MDNullSimulationState.h"
-#include "MDInitSimEnv.h"
 #include "MDProcessCmdLine.h"
+#include "MDInitSimEnv.h"
 #include "MDInitInitialConditions.h"
 #include "MDPerformSimulation.h"
 #include "MDTerminateSimulation.h"
@@ -59,11 +59,12 @@ namespace ANANSI
             template <typename T>
             std::unique_ptr<SimulationState> create() const
             {
-                constexpr auto index = MDSimulationStateFactory::findIndex_<T>();
+                // constexpr auto index = MDSimulationStateFactory::findIndex_<T>();
+                // std::unique_ptr<abstract_product_at<index> > product_ptr(this->mdSimStateFactory_->Create<abstract_product_at<index>>());
+                // return product_ptr;
 
-                 std::unique_ptr<abstract_product_at<index> > product_ptr(this->mdSimStateFactory_->Create<abstract_product_at<index>>());
-
-                return product_ptr;
+                std::unique_ptr<NullSimulationState> product_ptr(new MDNullSimulationState);
+                return product_ptr ;
             }
 
             // ====================  MUTATORS      =======================================

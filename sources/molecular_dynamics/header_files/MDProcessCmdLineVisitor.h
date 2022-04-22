@@ -25,7 +25,7 @@ namespace ANANSI
 //  Description:  
 //  =====================================================================================
 class MDProcessCmdLineVisitor : public MPL::BaseVisitor,
-                                public MPL::Visitor<AnansiMolecularDynamics>
+                                public MPL::Visitor<ANANSI::AnansiMolecularDynamics>
 {
     public:
         // ====================  LIFECYCLE     =======================================

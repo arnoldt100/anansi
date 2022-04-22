@@ -82,7 +82,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (anansi_md_library_headers  
-        header_files/MolecularDynamicsTypeLists.h
         header_files/AnansiMolecularDynamics.h
         header_files/MDNullSimulationState.h
         header_files/MDInitSimEnv.h
@@ -106,7 +105,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (anansi_md_library_implementation  
-        implementation_files/MolecularDynamicsTypeLists.cpp
         implementation_files/AnansiMolecularDynamics.cpp
         implementation_files/MDNullSimulationState.cpp
         implementation_files/MDInitSimEnv.cpp
