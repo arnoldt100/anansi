@@ -47,7 +47,7 @@ class AnansiMolecularDynamics final : public Simulation
         DEFINE_VISITABLE()
 
         /* ====================  MUTATORS      ======================================= */
-        void initializeMpiEnvironment();
+        void enableCommunicationEnvironment();
         
         void saveCommandLineOptionParameters();
 
@@ -98,9 +98,6 @@ class AnansiMolecularDynamics final : public Simulation
         // This group of functions processes the command line and sets the
         // simulation parameters.
         void processCommandLine_() final override; 
-
-        void init_commands_mdInitSimEnv_();
-
 
         void enableCommunication_() final override;
 

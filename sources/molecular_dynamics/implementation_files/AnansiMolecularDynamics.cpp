@@ -92,7 +92,7 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMolecularDynamics::initializeMpiEnvironment()
+void AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
     int my_argc=0;
     char** my_argv_ptr=nullptr;
@@ -255,16 +255,6 @@ bool AnansiMolecularDynamics::isIICStatusOkay_() const
 }
 
 //============================= MUTATORS =====================================
-void AnansiMolecularDynamics::init_commands_mdInitSimEnv_()
-{
-    // Add command to initialize the MPI environment.
-    std::string key("initialize_mpi_environment");
-    std::function<void(AnansiMolecularDynamics&)> cmd = &AnansiMolecularDynamics::initializeMpiEnvironment;
-    this->commands_.insert({key,cmd});
-
-    this->mdStateInvoker_.setCommand("initialize_simulation_environment",mdInitSimEnv_);
-}
-
 void
 AnansiMolecularDynamics::initializeSimulationEnvironment_()
 {
