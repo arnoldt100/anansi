@@ -4,10 +4,10 @@ How to Build Anansi
 
 We first provide an overview of building Anansi. 
 
-Building Anansi can be broadly separted into 3 stages. The first stage is to
+Building Anansi can be broadly separated into 3 stages. The first stage is to
 satisfy the library prerequisites.  The second stage is to set the build
 runtime environment which consists of setting critical environmental variables.
-The last stage to run the Anansi build commands.
+The last stage to run the Anansi build command.
 
 The mandatory library prerequisites 
 
@@ -16,7 +16,11 @@ The mandatory library prerequisites
     * C++ and C compiler 
     * Python
 
-are needed to build Anansi. Sphinx is only needed for building documentation.
+are needed to build Anansi. The optional prerequisite
+
+    * Sphinx 
+
+is only needed for building documentation.
 
 ###########################
 Library Prerequisites Stage
@@ -28,7 +32,7 @@ We now provide more details library prerequisites for building Anansi.
 CMake
 -----
 
-Anansi uses CMake as its' build tool. A version greater than 3.16 is required.
+Anansi uses CMake as its build tool. A version greater than 3.16 is required.
 Most Linux distros provide CMake, or it can be installed via a package manager. One can
 also download CMake from *cmake.org* and build from source.
 
@@ -36,7 +40,7 @@ also download CMake from *cmake.org* and build from source.
 MPI
 ---
 
-An implementation that supports MPI standard > 3.0.
+An implementation that supports MPI standard 3.0
 
 ------------------
 C++ and C compiler
@@ -48,7 +52,7 @@ The following compilers are supported:
 -----
 Boost
 -----
-Boost can be obtained from *www.boost.org*. and a 
+Boost can be obtained from *www.boost.org* and a 
 version greater than 1.79 is required. The following Boost library components are
 required
 
@@ -86,10 +90,11 @@ Setting the Build Runtime Environment Stage
 Step 1
 ------
 
-The first step is to set the environmental variable **ANANSI_TOP_LEVEL**,
-modify your **PATH** environmental variable to include Anansi's software
-package bin directory, and modify your **PYTHONPATH** environmental
-variable to include Anansi's python packages directory. 
+The first step is to 
+
+    * set the environmental variable **ANANSI_TOP_LEVEL**
+    * modify your **PATH** environmental variable to include Anansi's software package bin directory,
+    * modify your **PYTHONPATH** environmental variable to include Anansi's python packages directory 
 
 **ANANSI_TOP_LEVEL** is the fully qualified path to  Anansi's software package
 top directory level. A utility Bash script, *set_env_var_anansi.sh*, is
@@ -124,7 +129,7 @@ variables:
 
 Sample bash scripts are provided in the *configurations* directory that
 are to be sourced to set these primary critical environmental variables.
-Copy a configuration to an appropiate name, modify to suit your needs,
+Copy a configuration to an appropriate name, modify to suit your needs,
 then source. Once the file is sourced, other secondary critical
 environmental variables are defined.
 
