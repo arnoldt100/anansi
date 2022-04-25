@@ -16,10 +16,10 @@ We shall adopt the following notational convention :
 
     -  ``Constant width`` font is used for file content.
 
-The following text demonstrates some of the conventions.
+The following text demonstrates some of the conventions:
 
-We shall create a Bash program called *helloWold.sh*. Create program file with the
-following text using the *vi* editor:
+We shall create a Bash program called *helloWold.sh*. First, create a 
+file with the following text using the *vi* editor:
 
 ::
 
@@ -29,7 +29,7 @@ following text using the *vi* editor:
     printf "%s\n" "${message}" 
 
 It will be necessary to set executable permission on *helloWorld.sh* by typing 
-**chmod +x ./helloWorld.sh** . After setting executable permission, run as follows:
+**chmod +x ./helloWorld.sh**. After setting executable permission, run as follows:
 
     **./helloWorld.sh**
 

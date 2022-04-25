@@ -2,30 +2,40 @@
 How to Build Anansi
 ===================
 
-We first provide an overview of building Anansi. Building Anansi can be
-broadly separted into 3 stages. The first stage is to satisfy the
-library prerequisites.
+We first provide an overview of building Anansi. 
 
-The second stage is to set the build runtime environment which consists
-of setting critical environmental variables.
-
+Building Anansi can be broadly separted into 3 stages. The first stage is to
+satisfy the library prerequisites.  The second stage is to set the build
+runtime environment which consists of setting critical environmental variables.
 The last stage to run the Anansi build commands.
+
+The mandatory library prerequisites 
+
+    * CMake
+    * MPI
+    * C++ and C compiler 
+    * Python
+
+are needed to build Anansi. Sphinx is only needed for building documentation.
 
 ###########################
 Library Prerequisites Stage
 ###########################
 
-The following are the library prerequisites for building Anansi.
+We now provide more details library prerequisites for building Anansi.
 
 -----
 CMake
 -----
 
-An implementation > 3.16
+Anansi uses CMake as its' build tool. A version greater than 3.16 is required.
+Most Linux distros provide CMake, or it can be installed via a package manager. One can
+also download CMake from *cmake.org* and build from source.
 
 ---
 MPI
 ---
+
 An implementation that supports MPI standard > 3.0.
 
 ------------------
@@ -35,26 +45,38 @@ The following compilers are supported:
 
     * GCC > 9.0
 
-
 -----
 Boost
 -----
-An implementation > 1.72. The following Boost library components are
+Boost can be obtained from *www.boost.org*. and a 
+version greater than 1.79 is required. The following Boost library components are
 required
 
-    * Boost Unit Tests
-    * Program Options
+    * Algorithm - header only
+    * Boost Unit Tests - requires compilation
+    * Foreach - header only
+    * Mp11 - header only
+    * Program Options - requires compilation
+    * Property Tree - header only
+
+In general, Boost libraries are header only and a few 
+need separate compilations. Please read the Boost documentation
+for installing Boost.
 
 ------
 Sphinx
 ------
-An implementation > 3.1.0
 
+Anansi documentation is written in Sphinx. Most Linux distros can install
+Sphinx via a package manager, but one can also install the package with pip.  A
+version  greater than 3.1.0 is required. Please read the Sphinx documentation,
+*www.sphinx-doc.org*, for installation details. 
 
 ------
 Python
 ------
-An implementation > 3.6
+
+A version greater than 3.6 is required.
 
 ###########################################
 Setting the Build Runtime Environment Stage
@@ -65,15 +87,14 @@ Step 1
 ------
 
 The first step is to set the environmental variable **ANANSI_TOP_LEVEL**,
-modify your PATH environmental variable to include Anansi's software
-package bin dire3ctory, and modify your PYTHONPATH environmental
+modify your **PATH** environmental variable to include Anansi's software
+package bin directory, and modify your **PYTHONPATH** environmental
 variable to include Anansi's python packages directory. 
 
-**ANANSI_TOP_LEVEL** is the fully qualified path
-the Anansi software package. A utility Bash script,
-*set_env_var_anansi.sh*, is provided to perform these tasks.
-The script must be sourced while the current working directory is the
-Anansi software package top level.
+**ANANSI_TOP_LEVEL** is the fully qualified path to  Anansi's software package
+top directory level. A utility Bash script, *set_env_var_anansi.sh*, is
+provided to perform these tasks.  The script must be sourced while the current
+working directory is the Anansi software package top level.
 
 **source ./bin/set_env_var_anansi.sh**
 
