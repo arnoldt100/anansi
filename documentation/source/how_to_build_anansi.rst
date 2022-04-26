@@ -97,9 +97,12 @@ The first step is to
     * modify your **PYTHONPATH** environmental variable to include Anansi's python packages directory 
 
 **ANANSI_TOP_LEVEL** is the fully qualified path to  Anansi's software package
-top directory level. A utility Bash script, *set_env_var_anansi.sh*, is
+top directory level. 
+
+A utility Bash script, *set_env_var_anansi.sh*, is
 provided to perform these tasks.  The script must be sourced while the current
-working directory is the Anansi software package top level.
+working directory is the Anansi software package top level. The command to
+source the helper script is
 
 **source ./bin/set_env_var_anansi.sh**
 
@@ -114,7 +117,7 @@ variables:
   binary should be in your bin PATH and is used to compile C++
   MPI programs.
 
-* **ANANSI_CMAKE_CXX_COMPILER** - The binary name of the C compiler. The 
+* **ANANSI_CMAKE_C_COMPILER** - The binary name of the C compiler. The 
   binary should be in your bin PATH and is used to compile C
   MPI programs.
 
@@ -122,18 +125,30 @@ variables:
   directory to where to install the Anansi software package. This path
   must be writable by the user building and installing Anansi.
 
+* **ANANSI_INSTALL_BIN_DIRECTORY** - The fully qualified path where the 
+  Anansi binaries are installed.
+
+* **ANANSI_INSTALL_INCLUDE_DIRECTORY** - The fully qualified path where the
+ Anansi header files are installed. 
+
+* **ANANSI_INSTALL_LIB_DIRECTORY** - The fully qualified where the Anansi libraries
+  are installed.
+
 * **ANANSI_BOOST_TOP_LEVEL** - The fully qualified path to the boost
   software package. For example, the fully qualified path to the boost
   header file *program_options.hpp* is
   *${ANANSI_BOOST_TOP_LEVEL}/include/boost/program_options.hpp*
 
-Sample bash scripts are provided in the *configurations* directory that
-are to be sourced to set these primary critical environmental variables.
-Copy a configuration to an appropriate name, modify to suit your needs,
-then source. Once the file is sourced, other secondary critical
-environmental variables are defined.
+Once the primary variables are defined, other secondary critical
+environmental variables can be defined by sourcing 
+*${ANANSI_TOP_LEVEL}/configurations/anansi_core_configurations.sh.*
 
-To check that primary critical environmental variables are defined,
+Sample bash scripts are provided in the *configurations* directory that can be
+sourced to set these primary and secondary critical environmental variables,
+and Copy a configuration to an appropriate name, modify to suit your needs,
+then source. 
+
+To check that primary and secondary critical environmental variables are defined,
 execute the python program named *check_environment_variables.py*.
 
 **check_environment_variables.py \--env-config-file ${ANANSI_TOP_LEVEL}/etc/mandatory_environmental_variables.ini**
