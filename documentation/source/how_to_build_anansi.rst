@@ -151,7 +151,7 @@ then source.
 To check that primary and secondary critical environmental variables are defined,
 execute the python program named *check_environment_variables.py*.
 
-**check_environment_variables.py \--env-config-file ${ANANSI_TOP_LEVEL}/etc/mandatory_environmental_variables.ini**
+**check_environment_variables.py \--env-config-file ${ANANSI_TOP_LEVEL}/etc/mandatory_environmental_variables.ini** 
 
 The program will print the critical environmental variables and their values.
 
@@ -162,4 +162,4 @@ The last step is to run the command to build Anansi:
 
 **build_anansi_md.sh**
 
-Anansi will be install under the directory *${ANANSI_INSTALL_PREFIX}*.
+Anansi will be installed under the directory *${ANANSI_INSTALL_PREFIX}*. The 
