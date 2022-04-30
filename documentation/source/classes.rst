@@ -6,9 +6,12 @@ Welcome to Anansi's class documentation!
    :caption: Contents:
    :titlesonly:
    
+   Classes/Simulation.cpp.rst
+
+   Classes/InitSimEnv.cpp.rst
+
    Classes/SimulationState.cpp.rst
    Classes/NullSimulationState.cpp.rst
-   Classes/InitSimEnv.cpp.rst
    Classes/ProcessCmdLine.cpp.rst
    Classes/InitInitialConditions.cpp.rst
    Classes/PerformSimulation.cpp.rst
@@ -20,7 +23,6 @@ Welcome to Anansi's class documentation!
    Classes/FileParser.cpp.rst
    Classes/SimulationParameters.cpp.rst
    Classes/SimulationParametersFactory.cpp.rst
-   Classes/Simulation.cpp.rst
    Classes/MolecularDynamicsFactory.cpp.rst
    Classes/MPIEnvironment.cpp.rst
    Classes/Pointer2d.hpp.rst
