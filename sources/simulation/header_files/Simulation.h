@@ -75,8 +75,6 @@ class Simulation : public MPL::BaseVisitable<>
         // This function terminates the simulation environment.
         void terminateSimulationEnvironment();
 
-        void enableCommunication();
-
         // This group of functions changes the status of the MD object.
         void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
         void setGlobalISEStatus();
@@ -125,8 +123,6 @@ class Simulation : public MPL::BaseVisitable<>
         // This group of functions terminates the simulation environment.
         virtual void terminateSimulationEnvironment_()=0;
 
-
-        virtual void enableCommunication_()=0;
         // Set the status of the MD object.
         virtual void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;
         virtual void setGlobalISEStatus_()=0;

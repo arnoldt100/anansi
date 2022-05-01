@@ -82,14 +82,6 @@ bool Simulation::isHelpOnCommandLine() const
 
 //============================= MUTATORS =====================================
 
-void
-Simulation::enableCommunication ()
-{
-    this->enableCommunication_();
-    return ;
-}		/* -----  end of method Simulation::enableCommunication  ----- */
-
-
 void Simulation::initializeSimulationEnvironment()
 {
 	this->initializeSimulationEnvironment_();

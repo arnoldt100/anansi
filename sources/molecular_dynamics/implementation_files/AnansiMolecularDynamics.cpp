@@ -271,16 +271,6 @@ AnansiMolecularDynamics::initializeSimulationEnvironment_()
     return;
 }
 
-void
-AnansiMolecularDynamics::enableCommunication_()
-{
-    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
-
-    this->MpiWorldCommunicator_ = a_communicator_factory.createWorldCommunicator();
-    std::cout << "Enabling AnansiMolecularDynamics communication." << std::endl;
-    return;
-}       /* -----  end of method AnansiMolecularDynamics::enableCommunication_  ----- */
-
 void AnansiMolecularDynamics::processCommandLine_()
 {
     // Change the state of "this", a AnansiMolecularDynamics object, to 

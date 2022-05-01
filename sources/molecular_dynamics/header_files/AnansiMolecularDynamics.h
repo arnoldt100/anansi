@@ -99,9 +99,6 @@ class AnansiMolecularDynamics final : public Simulation
         // simulation parameters.
         void processCommandLine_() final override; 
 
-        void enableCommunication_() final override;
-
-
         // This group of functions initializes the initial conditions of the 
         // simulation.
         void initializeInitialConditions_ () final override;
