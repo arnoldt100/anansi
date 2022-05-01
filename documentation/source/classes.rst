@@ -7,6 +7,7 @@ Welcome to Anansi's class documentation!
    :titlesonly:
    
    Classes/Simulation.cpp.rst
+   Classse/MDInitSimEnvVisitor.cpp.rst
 
    Classes/NullSimulationState.cpp.rst
    Classes/ProcessCmdLine.cpp.rst
