@@ -55,10 +55,7 @@ namespace ANANSI
             // ====================  ACCESSORS     =======================================
 
             // ====================  MUTATORS      =======================================
-            static void genericAddCommand(std::shared_ptr<ANANSI::SimulationState> & cmd)
-            {
-                return;
-            } 
+            
             // ====================  OPERATORS     =======================================
 
             MDInitSimEnv& operator= ( MDInitSimEnv const & other ); // assignment operator
@@ -66,7 +63,7 @@ namespace ANANSI
             MDInitSimEnv& operator= ( MDInitSimEnv && other ); // assignment-move operator
 
             // ===================  DATA MEMBERS  =======================================
-            std::map<std::string, std::function<void(AnansiMolecularDynamics&)>> commands_;
+
 
         protected:
             // ====================  METHODS       =======================================

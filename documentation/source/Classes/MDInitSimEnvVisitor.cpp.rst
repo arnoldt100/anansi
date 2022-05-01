@@ -8,8 +8,12 @@
 MDInitSimEnvVisitor Documentation
 #################################
 
-The base class for the molecular dynamics factory classes. This
-class is an abstract base class. 
+This is the MDInitSimEnv visitor class that visits
+the AnansiMolecularDynamics class. The resposibilities
+of this class is to initialize the AnansiMolecularDynamics simulation
+environment by
+
+* Enabling MPI
 
 ======================
 Interface Header Files
@@ -17,12 +21,18 @@ Interface Header Files
 
 **C++ Include Files**
 
+* #include <memory>
+* #include <functional>
+* #include <map>
+
 
 **External Library Files**
 
-
 **Project Include Files**
 
+* #include "BaseVisitor.h"
+* #include "Visitor.hpp"
+* #include "AnansiMolecularDynamics.h"
 
 ==========================
 Implementaion Header Files
@@ -30,11 +40,16 @@ Implementaion Header Files
 
 **C++ Include Files**
 
+* #include <iostream>
+
 
 **External Library Files**
 
 
 **Project Include Files**
+
+* #include "MDInitSimEnvVisitor.h"
+* #include "MDInitSimEnv.h"
 
 
 ======================================
@@ -45,7 +60,7 @@ MDInitSimEnvVisitor.h Global Variables
 MDInitSimEnvVisitor Class Documentation
 =======================================
 
-.. class:: MDInitSimEnvVisitor
+.. class:: MDInitSimEnvVisitor : public MPL::BaseVisitor, public MPL::Visitor<AnansiMolecularDynamics>
 
 --------------
 Public Members
@@ -57,7 +72,7 @@ Lifecycle
 
     .. function:: MDInitSimEnvVisitor()
 
-       The default constructor.
+        The default constructor.
 
     .. function:: MDInitSimEnvVisitor( const MDInitSimEnvVisitor &other )
 
@@ -67,7 +82,7 @@ Lifecycle
 
         The copy-move constructor.
 
-    .. function:: ~MDInitSimEnvVisitor()=0
+    .. function:: virtual ~MDInitSimEnvVisitor()
 
         The destructor.
 
@@ -75,7 +90,14 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    No public accessors
+    .. function:: void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
+
+        Invoking visit will enable the simulation environment for thr AnansiMolecularDynamics object a_sim.
+        This means the MPI environment will be initiated.  
+
+        :param a_sim: A simulation object.
+
+        :rtype: void 
 
 ^^^^^^^^^
 Operators

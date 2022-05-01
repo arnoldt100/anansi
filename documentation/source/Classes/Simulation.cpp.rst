@@ -100,6 +100,7 @@ Operators
 ^^^^^^^^
 Mutators
 ^^^^^^^^
+
     .. function:: void Simulation::initializeSimulationEnvironment()
 
         The method defines the interface for initializing the simulation

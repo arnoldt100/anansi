@@ -8,16 +8,6 @@ Header files
 ============
 
     * :ref:`anansi_main_md.h <anansi_main_md function target>`
-    * :ref:`AnansiMDState.h <AnansiMDState class target>`
-    * :ref:`AnansiMDStateIIC.h <AnansiMDStateIIC class target>`
-    * :ref:`AnansiMDStateISE.h <AnansiMDStateISE class target>`
-    * :ref:`AnansiMDStatePCL.h <AnansiMDStatePCL class target>`
-    * :ref:`AnansiMDStatePS.h <AnansiMDStatePS class target>`
-    * :ref:`AnansiMDStateTSE.h <AnansiMDStateTSE class target>`
-    * :ref:`AnansiMolecularDynamics.h <AnansiMolecularDynamics class target>`
-    * :ref:`AnansiMolecularDynamicsFactory.h <AnansiMolecularDynamicsFactory class target>`
-    * :ref:`MolecularDynamics.h <MolecularDynamics class target>`
-    * :ref:`MolecularDynamicsFactory.h <MolecularDynamicsFactory class target>`
 
 Implementation files
 ====================
