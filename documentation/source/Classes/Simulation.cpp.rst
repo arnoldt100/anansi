@@ -8,7 +8,9 @@
 Simulation Documentation
 ########################
 
-An abstract base class that functions as the interface for simulations.
+An abstract base class that functions as the interface for all derived
+simulations, e.g. MolecularDynamics. This abstact base class is visitable all
+classes in the derived hierarchy must insert DEFINE_VISITABLE to be visitable.
 
 ======================
 Interface Header Files
@@ -16,15 +18,13 @@ Interface Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
-
 **External Library Files**
-
-* #include "dummy3"
 
 **Project Include Files**
 
-* #include "dummy5"
+* #include "DefineVisitableMacro.h"
+* #include "BaseVisitable.hpp"
+
 
 ==========================
 Implementaion Header Files
@@ -32,15 +32,13 @@ Implementaion Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
+* #include <iostream>
+* #include <memory>
 
 **External Library Files**
 
-* #include "dummy3"
-
 **Project Include Files**
 
-* #include "dummy5"
 
 =============================
 Simulation.h Global Variables
@@ -50,7 +48,7 @@ Simulation.h Global Variables
 Simulation Class Documentation
 ==============================
 
-.. class:: Simulation
+.. class:: Simulation : public MPL::BaseVisitable<>
 
 --------------
 Public Members
@@ -60,21 +58,25 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: Simulation()
+    .. function:: Simulation::Simulation()
 
        The default constructor.
 
-    .. function:: Simulation( const Simulation &other )
+    .. function:: Simulation::Simulation( const Simulation &other ) = delete
 
         The copy constructor.
 
-    .. function:: Simulation(Simulation && other) 
+    .. function:: Simulation::Simulation(Simulation && other) = delete
 
         The copy-move constructor.
 
-    .. function:: ~Simulation()=0
+    .. function:: virtual Simulation::~Simulation()=0
 
         The destructor.
+
+    ..  function:: Simulation::DEFINE_VISITABLE()
+
+        Gives the class vistor propereties. 
 
 ^^^^^^^^^
 Accessors
@@ -86,17 +88,62 @@ Accessors
 Operators
 ^^^^^^^^^
 
-    .. function:: Simulation& operator=( Simulation const & other)
+    .. function:: Simulation& Simulation::operator=( Simulation const & other)
 
         The assignment operator.
 
-    .. function:: Simulation& operator=( Simulation && other)
+    .. function:: Simulation& Simulation::operator=( Simulation && other)
 
         The assignment-move operator.
 
 ^^^^^^^^
 Mutators
 ^^^^^^^^
+    .. function:: void Simulation::initializeSimulationEnvironment()
+
+        The method defines the interface for initializing the simulation
+        environment. As described by template design pattern, the method
+        provides the skeleton from which all derived simulation classes are to
+        extend the implementation.
+
+        :rtype: void
+
+    .. function:: void Simulation::processCommandLine() 
+
+        The method defines the interface for processing the command line. As
+        described by template design pattern, the method provides the skeleton
+        from which  all derived simulation classes are to extend the
+        implementation.
+    
+        :rtype: void
+
+    .. function:: void Simulation::initializeInitialConditions()
+
+        The method defines the interface for initializing the initial
+        conditions of the simulation. As described by template design pattern,
+        the method provides the skeleton from which all derived simulation
+        classes are to extend the implementation.
+    
+        :rtype: void
+
+    .. function:: void Simulation::performSimulation()
+
+        The method defines the interface for performing the simulation.  As
+        described by template design pattern, the method provides the skeleton
+        from which all derived simulation classes are to extend the
+        implementation.
+
+        :rtype: void
+
+    .. function:: void Simulation::terminateSimulationEnvironment()
+        
+        The method defines the interface for termintaing the simulation. As
+        described by template design pattern, the method provides the skeleton
+        from which all derived simulation classes are to extend the
+        implementation.
+
+        :rtype: void
+
 
 -----------------
 Protected Members
@@ -129,8 +176,6 @@ Protected Members
 Private Members
 ---------------
 
-    No private members
-
 .. Commented out. 
 .. ^^^^^^^^^
 .. Lifecycle
@@ -144,10 +189,38 @@ Private Members
 .. Operators
 .. ^^^^^^^^^
 .. 
-.. ^^^^^^^^^
-.. Mutators
-.. ^^^^^^^^^
+
+^^^^^^^^^
+Mutators
+^^^^^^^^^
+
+The private methods below delegate customizable work to the derived classes. Please read
+Herb Sutter's article on virtuality [#fsuttervirtuality]_.
+
+    .. function:: virtual void Simulation::initializeSimulationEnvironment_()=0
+
+        :rtype: void
+
+    .. function:: virtual void Simulation::processCommandLine_()=0 
+
+        :rtype: void
+
+    .. function:: virtual void Simulation::initializeInitialConditions_()=0
+
+        :rtype: void
+
+    .. function:: virtual void Simulation::performSimulation_()=0
+
+        :rtype: void
+
+    .. function:: virtual void Simulation::terminateSimulationEnvironment_()=0
+
+        :rtype: void
+
 .. 
 .. ^^^^^^^^^^^^
 .. Data Members
 .. ^^^^^^^^^^^^
+
+
+.. [#fsuttervirtuality] C/C++ Users Journal, 19(9), September 2001

@@ -8,9 +8,6 @@ Welcome to Anansi's class documentation!
    
    Classes/Simulation.cpp.rst
 
-   Classes/InitSimEnv.cpp.rst
-
-   Classes/SimulationState.cpp.rst
    Classes/NullSimulationState.cpp.rst
    Classes/ProcessCmdLine.cpp.rst
    Classes/InitInitialConditions.cpp.rst

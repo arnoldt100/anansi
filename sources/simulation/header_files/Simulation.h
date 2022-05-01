@@ -5,8 +5,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
-#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -113,8 +111,6 @@ class Simulation : public MPL::BaseVisitable<>
         // This group of functions initializes the simulation environment.
         virtual void initializeSimulationEnvironment_()=0;
 
-        virtual void enableCommunication_()=0;
-
         // This group of functions processes the command line and sets the
         // simulation parameters.
         virtual void processCommandLine_()=0; 
@@ -129,6 +125,8 @@ class Simulation : public MPL::BaseVisitable<>
         // This group of functions terminates the simulation environment.
         virtual void terminateSimulationEnvironment_()=0;
 
+
+        virtual void enableCommunication_()=0;
         // Set the status of the MD object.
         virtual void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;
         virtual void setGlobalISEStatus_()=0;

@@ -4,9 +4,9 @@
 
 .. namespace:: ANANSI
 
-########################
-Simulation Documentation
-########################
+##############################
+Simulation State Documentation
+##############################
 
 This is an interface class for the various simulation states. We are using the
 State design pattern to implement concrete simulation behavoirs,
