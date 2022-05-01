@@ -60,7 +60,7 @@ class SimulationState
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationState
-        //      Method:  AnansiMDState :: initializeSimulationEnvironment
+        //      Method:  SimulationState :: initializeSimulationEnvironment
         // Description:  This function makes a request to the simulation object
         // to initialize the simulation environment.
         //
