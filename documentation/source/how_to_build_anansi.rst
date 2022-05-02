@@ -129,7 +129,7 @@ variables:
   Anansi binaries are installed.
 
 * **ANANSI_INSTALL_INCLUDE_DIRECTORY** - The fully qualified path where the
- Anansi header files are installed. 
+  Anansi header files are installed.
 
 * **ANANSI_INSTALL_LIB_DIRECTORY** - The fully qualified where the Anansi libraries
   are installed.

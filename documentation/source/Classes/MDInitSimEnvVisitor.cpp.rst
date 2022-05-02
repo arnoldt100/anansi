@@ -70,19 +70,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: MDInitSimEnvVisitor()
+    .. function:: MDInitSimEnvVisitor::MDInitSimEnvVisitor()
 
         The default constructor.
 
-    .. function:: MDInitSimEnvVisitor( const MDInitSimEnvVisitor &other )
+    .. function:: MDInitSimEnvVisitor::MDInitSimEnvVisitor( const MDInitSimEnvVisitor &other )
 
         The copy constructor.
 
-    .. function:: MDInitSimEnvVisitor(MDInitSimEnvVisitor && other) 
+    .. function:: MDInitSimEnvVisitor::MDInitSimEnvVisitor(MDInitSimEnvVisitor && other) 
 
         The copy-move constructor.
 
-    .. function:: virtual ~MDInitSimEnvVisitor()
+    .. function:: virtual MDInitSimEnvVisitor::~MDInitSimEnvVisitor()
 
         The destructor.
 

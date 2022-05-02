@@ -61,7 +61,7 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: ISEStatus()
+    .. function:: ISEStatus::ISEStatus()
 
        The default constructor.
 
