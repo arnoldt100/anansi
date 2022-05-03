@@ -8,8 +8,10 @@
 ProcessCmdLine Documentation
 ######################################
 
-The base class for the molecular dynamics factory classes. This
-class is an abstract base class. 
+An abstract base class that define the interface for
+for the Process Command Line state. The class is derived from
+SimulationState. 
+
 
 ======================
 Interface Header Files
@@ -23,6 +25,7 @@ Interface Header Files
 
 **Project Include Files**
 
+* #include "SimulationState.h"
 
 ==========================
 Implementaion Header Files
@@ -30,12 +33,14 @@ Implementaion Header Files
 
 **C++ Include Files**
 
+* #include <utility>
 
 **External Library Files**
 
 
 **Project Include Files**
 
+* #include "ProcessCmdLine.h"
 
 =================================
 ProcessCmdLine.h Global Variables

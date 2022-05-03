@@ -60,8 +60,7 @@
          header_files/ProcessCmdLine.h
          header_files/InitInitialConditions.h
          header_files/PerformSimulation.h 
-         header_files/TerminateSimulation.h
-         header_files/SimulationStateInvoker.hpp )
+         header_files/TerminateSimulation.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -77,8 +76,7 @@
          implementation_files/ProcessCmdLine.cpp
          implementation_files/InitInitialConditions.cpp
          implementation_files/PerformSimulation.cpp
-         implementation_files/TerminateSimulation.cpp
-         implementation_files/SimulationStateInvoker.cpp )
+         implementation_files/TerminateSimulation.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

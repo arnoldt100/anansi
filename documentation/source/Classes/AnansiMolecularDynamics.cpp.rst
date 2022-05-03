@@ -27,6 +27,7 @@ Include Header Files
 
 **Interface Include Files**
 
+* #include "SimulationState.h"
 * #include "MPIEnvironment.h"
 * #include "MolecularDynamics.h"
 * #include "CommandLineArguments.h"
@@ -36,11 +37,6 @@ Include Header Files
   
 **Implementation Include Files**
 
-* #include "AnansiMDStateISE.h"
-* #include "AnansiMDStatePCL.h"
-* #include "AnansiMDStateIIC.h"
-* #include "AnansiMDStatePS.h"
-* #include "AnansiMDStateTSE.h"
 * #include "SimulationParametersFactory.h"
 * #include "MPICommunicatorFactory.h"
 * #include "Pointer.hpp"

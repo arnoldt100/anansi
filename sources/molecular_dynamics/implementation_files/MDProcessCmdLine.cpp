@@ -82,11 +82,6 @@ void MDProcessCmdLine::Execute_(Simulation * const a_simulation) const
     return;
 };
 
-void MDProcessCmdLine::Execute_() const 
-{
-    return;
-};
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

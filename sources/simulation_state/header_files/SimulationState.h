@@ -78,8 +78,6 @@ class SimulationState
 
         void execute (Simulation * const a_simulation ) const;
 
-        void execute () const;
-
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -99,8 +97,6 @@ class SimulationState
 
         // ====================  ACCESSORS     =======================================
         virtual void execute_(Simulation* const a_simulation) const;
-
-        virtual void execute_() const;
 
         virtual std::string misbehviorErrorMessage_(state_misbehavior_info const & error_info) const;
 

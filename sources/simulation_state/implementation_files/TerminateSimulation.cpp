@@ -81,22 +81,10 @@ void TerminateSimulation::execute_(Simulation * const a_simulation) const
     return;
 }
 
-void TerminateSimulation::execute_() const
-{
-    this->Execute_();
-    return;
-}
-
 void TerminateSimulation::Execute_(Simulation * const a_simulation) const 
 {
     return;
 };
-
-void TerminateSimulation::Execute_() const 
-{
-    return;
-};
-
 
 //============================= MUTATORS =====================================
 

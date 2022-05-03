@@ -98,18 +98,7 @@ void NullSimulationState::execute_(Simulation * const a_simulation) const
     return;
 }
 
-void NullSimulationState::execute_() const
-{
-    this->Execute_();
-    return;
-}
-
 void NullSimulationState::Execute_(Simulation * const a_simulation) const 
-{
-    return;
-};
-
-void NullSimulationState::Execute_() const 
 {
     return;
 };

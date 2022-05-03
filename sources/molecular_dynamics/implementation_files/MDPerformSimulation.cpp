@@ -84,10 +84,6 @@ void MDPerformSimulation::Execute_(Simulation * const a_simulation) const
     return;
 };
 
-void MDPerformSimulation::Execute_() const 
-{
-    return;
-};
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

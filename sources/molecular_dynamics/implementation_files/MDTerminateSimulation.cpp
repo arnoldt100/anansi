@@ -83,11 +83,6 @@ void MDTerminateSimulation::Execute_(Simulation * const a_simulation) const
     return;
 };
 
-void MDTerminateSimulation::Execute_() const 
-{
-    return;
-};
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

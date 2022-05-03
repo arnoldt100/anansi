@@ -81,18 +81,7 @@ void PerformSimulation::execute_(Simulation * const a_simulation) const
     return;
 }
 
-void PerformSimulation::execute_() const
-{
-    this->Execute_();
-    return;
-}
-
 void PerformSimulation::Execute_(Simulation * const a_simulation) const 
-{
-    return;
-};
-
-void PerformSimulation::Execute_() const 
 {
     return;
 };

@@ -83,11 +83,6 @@ void MDInitInitialConditions::Execute_(Simulation * const a_simulation) const
     return;
 };
 
-void MDInitInitialConditions::Execute_() const 
-{
-    return;
-};
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

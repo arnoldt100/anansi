@@ -81,22 +81,10 @@ void ProcessCmdLine::execute_(Simulation * const a_simulation) const
     return;
 }
 
-void ProcessCmdLine::execute_() const
-{
-    this->Execute_();
-    return;
-}
-
 void ProcessCmdLine::Execute_(Simulation * const a_simulation) const 
 {
     return;
 };
-
-void ProcessCmdLine::Execute_() const 
-{
-    return;
-};
-
 
 //============================= MUTATORS =====================================
 

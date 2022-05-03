@@ -83,11 +83,6 @@ void MDNullSimulationState::Execute_(Simulation * const a_simulation) const
     return;
 };
 
-void MDNullSimulationState::Execute_() const 
-{
-    return;
-};
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

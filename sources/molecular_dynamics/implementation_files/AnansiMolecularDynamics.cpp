@@ -36,7 +36,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     simulationParameters_(),
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
-    mdStateInvoker_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -61,7 +60,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     simulationParameters_(),
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
-    mdStateInvoker_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {

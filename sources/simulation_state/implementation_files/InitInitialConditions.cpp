@@ -81,18 +81,7 @@ void InitInitialConditions::execute_(Simulation * const a_simulation) const
     return;
 }
 
-void InitInitialConditions::execute_() const
-{
-    this->Execute_();
-    return;
-}
-
 void InitInitialConditions::Execute_(Simulation * const a_simulation) const 
-{
-    return;
-};
-
-void InitInitialConditions::Execute_() const 
 {
     return;
 };
