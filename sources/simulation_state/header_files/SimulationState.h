@@ -58,24 +58,6 @@ class SimulationState
         // ====================  ACCESSORS     =======================================
         virtual void who_am_i() const;
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  SimulationState
-        //      Method:  SimulationState :: initializeSimulationEnvironment
-        // Description:  This function makes a request to the simulation object
-        // to initialize the simulation environment.
-        //
-        //  Parameters:
-        //        a_simulation : The object the request is made to.
-        //
-        //--------------------------------------------------------------------------------------
-        void processCommandLine(Simulation * const a_simulation ) const;
-
-        void initializeInitialCondition (Simulation * const a_simulation ) const;
-
-        void performSimulation (Simulation * const a_simulation ) const;
-
-        void terminateSimulation (Simulation * const a_simulation ) const;
-
         void execute (Simulation * const a_simulation ) const;
 
         // ====================  MUTATORS      =======================================
@@ -99,14 +81,6 @@ class SimulationState
         virtual void execute_(Simulation* const a_simulation) const;
 
         virtual std::string misbehviorErrorMessage_(state_misbehavior_info const & error_info) const;
-
-        virtual void processCommandLine_(Simulation* const a_simulation) const;
-
-        virtual void initializeInitialCondition_(Simulation * const a_simulation) const;
-
-        virtual void performSimulation_(Simulation * const a_simulation) const;
-
-        virtual void terminateSimulation_ (Simulation * const a_simulation ) const;
 
     private:
         // ====================  METHODS       =======================================
