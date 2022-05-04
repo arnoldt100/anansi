@@ -17,15 +17,11 @@ Interface Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
-
 **External Library Files**
-
-* #include "dummy3"
 
 **Project Include Files**
 
-* #include "dummy5"
+* #include "SimulationState.h"
 
 ==========================
 Implementaion Header Files
@@ -33,23 +29,19 @@ Implementaion Header Files
 
 **C++ Include Files**
 
-* #include <dummy1>
-
 **External Library Files**
-
-* #include "dummy3"
 
 **Project Include Files**
 
-* #include "dummy5"
+* #include "InitSimEnv.h"
 
 =============================
 InitSimEnv.h Global Variables
 =============================
 
-=============================
+==============================
 InitSimEnv Class Documentation
-=============================
+==============================
 
 .. class:: InitSimEnv : public SimulationState
 
@@ -108,7 +100,7 @@ Accessors
 ^^^^^^^^^
 .. function:: void InitSimEnv::execute_(Simulation * const a_simulation) const override
 
-    This methods overrides the SimulationState::execute_. 
+    This methods overrides the SimulationState::execute\_.
 
     :param a_simulation: A simulation object
 

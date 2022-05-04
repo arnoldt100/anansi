@@ -81,7 +81,6 @@ void InitSimEnv::execute_(Simulation * const a_simulation) const
     return;
 }
 
-
 void InitSimEnv::Execute_(Simulation * const a_simulation) const 
 {
     return;
