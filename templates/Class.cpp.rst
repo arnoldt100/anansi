@@ -61,39 +61,39 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: __Class__()
+.. function:: __Class__()
 
-       The default constructor.
+   The default constructor.
 
-    .. function:: __Class__( const __Class__ &other )
+.. function:: __Class__( const __Class__ &other )
 
-        The copy constructor.
+    The copy constructor.
 
-    .. function:: __Class__(__Class__ && other) 
+.. function:: __Class__(__Class__ && other) 
 
-        The copy-move constructor.
+    The copy-move constructor.
 
-    .. function:: ~__Class__()=0
+.. function:: ~__Class__()=0
 
-        The destructor.
+    The destructor.
 
 ^^^^^^^^^
 Accessors
 ^^^^^^^^^
 
-    No public accessors
+No public accessors
 
 ^^^^^^^^^
 Operators
 ^^^^^^^^^
 
-    .. function:: __Class__& operator=( __Class__ const & other)
+.. function:: __Class__& operator=( __Class__ const & other)
 
-        The assignment operator.
+    The assignment operator.
 
-    .. function:: __Class__& operator=( __Class__ && other)
+.. function:: __Class__& operator=( __Class__ && other)
 
-        The assignment-move operator.
+    The assignment-move operator.
 
 ^^^^^^^^
 Mutators
@@ -103,7 +103,7 @@ Mutators
 Protected Members
 -----------------
 
-    No protected members
+No protected members
 
 .. Commented out. 
 .. ^^^^^^^^^
