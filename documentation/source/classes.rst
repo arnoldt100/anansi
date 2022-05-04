@@ -9,13 +9,11 @@ Welcome to Anansi's class documentation!
    
    Classes/Simulation.cpp.rst
    Classes/SimulationState.cpp.rst
-
    Classes/MDInitSimEnvVisitor.cpp.rst
-
    Classes/MDInitSimEnv.cpp.rst
    Classes/InitSimEnv.cpp.rst
-
    Classes/ProcessCmdLine.cpp.rst
+   Classes/MDProcessCmdLine.cpp.rst
 
    Classes/NullSimulationState.cpp.rst
    Classes/InitInitialConditions.cpp.rst

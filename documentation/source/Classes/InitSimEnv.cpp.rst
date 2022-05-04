@@ -53,19 +53,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: InitSimEnv::InitSimEnv()
+.. function:: InitSimEnv::InitSimEnv()
 
        The default constructor.
 
-    .. function:: InitSimEnv::InitSimEnv( const InitSimEnv &other )
+.. function:: InitSimEnv::InitSimEnv( const InitSimEnv &other )
 
         The copy constructor.
 
-    .. function:: InitSimEnv::InitSimEnv(InitSimEnv && other) 
+.. function:: InitSimEnv::InitSimEnv(InitSimEnv && other) 
 
         The copy-move constructor.
 
-    .. function:: InitSimEnv::~InitSimEnv()=0
+.. function:: InitSimEnv::~InitSimEnv()=0
 
         The destructor.
 
@@ -79,11 +79,11 @@ Accessors
 Operators
 ^^^^^^^^^
 
-    .. function:: InitSimEnv& InitSimEnv::operator=( InitSimEnv const & other)
+.. function:: InitSimEnv& InitSimEnv::operator=( InitSimEnv const & other)
 
         The assignment operator.
 
-    .. function:: InitSimEnv& InitSimEnv::operator=( InitSimEnv && other)
+.. function:: InitSimEnv& InitSimEnv::operator=( InitSimEnv && other)
 
         The assignment-move operator.
 
@@ -98,6 +98,7 @@ Protected Members
 ^^^^^^^^^
 Accessors
 ^^^^^^^^^
+
 .. function:: void InitSimEnv::execute_(Simulation * const a_simulation) const override
 
     This methods overrides the SimulationState::execute\_.
@@ -116,7 +117,7 @@ Accessors
 Private Members
 ---------------
 
-    No private members
+No private members
 
 .. Commented out. 
 .. ^^^^^^^^^
