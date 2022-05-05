@@ -12,7 +12,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDProcessCmdLineVisitor.h"
 #include "ProcessCmdLine.h"
 
 namespace ANANSI
