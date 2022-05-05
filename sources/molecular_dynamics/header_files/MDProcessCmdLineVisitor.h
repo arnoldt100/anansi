@@ -48,7 +48,7 @@ class MDProcessCmdLineVisitor : public MPL::BaseVisitor,
         virtual ~MDProcessCmdLineVisitor ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        void visit(AnansiMolecularDynamics& a_sim) const;
+        void visit(AnansiMolecularDynamics& a_simulation) const;
 
         // ====================  MUTATORS      =======================================
 

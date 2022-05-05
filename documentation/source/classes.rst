@@ -14,6 +14,7 @@ Welcome to Anansi's class documentation!
    Classes/InitSimEnv.cpp.rst
    Classes/ProcessCmdLine.cpp.rst
    Classes/MDProcessCmdLine.cpp.rst
+   Classes/MDProcessCmdLineVisitor.cpp.rst
 
    Classes/NullSimulationState.cpp.rst
    Classes/InitInitialConditions.cpp.rst

@@ -42,9 +42,10 @@ MDProcessCmdLineVisitor::~MDProcessCmdLineVisitor()
 }
 
 //============================= ACCESSORS ====================================
-void MDProcessCmdLineVisitor::visit(AnansiMolecularDynamics& a_sim) const
+void MDProcessCmdLineVisitor::visit(AnansiMolecularDynamics& a_simulation) const
 {
-    a_sim.saveCommandLineOptionParameters();
+    a_simulation.saveCommandLineOptionParameters();
+
     return;
 }
 
