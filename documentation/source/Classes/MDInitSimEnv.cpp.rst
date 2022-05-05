@@ -111,7 +111,7 @@ Accessors
     
         The resposibility of the function is to initialize the simulation runtime
         environment for the object "a_simulation". The current implementation
-        use the visitor class MDInitSimEnvVisitor to accomplish this task.
+        uses the visitor class MDInitSimEnvVisitor to accomplish this task.
 
         :param a_simulation: A simulation object.
 
