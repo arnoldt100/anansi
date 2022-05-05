@@ -16,8 +16,10 @@ Welcome to Anansi's class documentation!
    Classes/MDProcessCmdLine.cpp.rst
    Classes/MDProcessCmdLineVisitor.cpp.rst
 
-   Classes/NullSimulationState.cpp.rst
+   Classes/MDInitInitialConditions.cpp.rst
    Classes/InitInitialConditions.cpp.rst
+
+   Classes/NullSimulationState.cpp.rst
    Classes/PerformSimulation.cpp.rst
    Classes/TerminateSimulationState.cpp.rst
    Classes/AnansiMolecularDynamics.cpp.rst

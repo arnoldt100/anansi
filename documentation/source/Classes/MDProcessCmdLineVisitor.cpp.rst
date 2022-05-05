@@ -83,7 +83,7 @@ Accessors
 
     :param  a_simulation: A simulation object. 
 
-    :rtype void:
+    :rtype: void
 
 
 ^^^^^^^^^

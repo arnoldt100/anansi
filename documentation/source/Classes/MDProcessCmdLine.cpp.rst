@@ -118,7 +118,7 @@ Accessors
 
     :param a_simulation: A pointer to a simulation object.
 
-    :rtype void:
+    :rtype: void
 
 ^^^^^^^^^
 Operators

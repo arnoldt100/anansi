@@ -116,11 +116,11 @@ Accessors
 
     :param a_simulation: A simulation object
 
-    :rtype void:
+    :rtype: void
 
 .. function:: virtual void ProcessCmdLine::Execute_(Simulation * const a_simulation) const
 
-    :rtype void:
+    :rtype: void
 
 ^^^^^^^^^
 Operators
