@@ -18,6 +18,7 @@ Welcome to Anansi's class documentation!
 
    Classes/MDInitInitialConditions.cpp.rst
    Classes/InitInitialConditions.cpp.rst
+   Classes/MDInitInitialConditionsVisitor.cpp.rst
 
    Classes/NullSimulationState.cpp.rst
    Classes/PerformSimulation.cpp.rst

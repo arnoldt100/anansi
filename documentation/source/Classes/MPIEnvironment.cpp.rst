@@ -1,6 +1,6 @@
-################################
-**MPIEnvironment Documentation**
-################################
+############################
+MPIEnvironment Documentation
+############################
 
 .. default-domain:: cpp
 
