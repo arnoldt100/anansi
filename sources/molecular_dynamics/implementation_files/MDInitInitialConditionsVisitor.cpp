@@ -10,7 +10,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include <iostream>
 #include "MDInitInitialConditionsVisitor.h"
 
 namespace ANANSI {

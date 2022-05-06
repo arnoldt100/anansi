@@ -75,7 +75,7 @@ Lifecycle
 
     The copy-move constructor.
 
-.. function:: MDInitInitialConditions::~MDInitInitialConditions()=0
+.. function:: MDInitInitialConditions::~MDInitInitialConditions()
 
     The destructor.
 
@@ -104,8 +104,6 @@ Mutators
 -----------------
 Protected Members
 -----------------
-
-No protected members
 
 ^^^^^^^^^
 Lifecycle
