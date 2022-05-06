@@ -26,7 +26,7 @@ namespace ANANSI
 //  Description:  
 //  =====================================================================================
 class MDPerformSimulationVisitor : public MPL::BaseVisitor,
-                                   public MPL::Visitor<AnansiMolecularDynamics>
+                                   public MPL::Visitor<ANANSI::AnansiMolecularDynamics>
 {
     public:
         // ====================  LIFECYCLE     =======================================

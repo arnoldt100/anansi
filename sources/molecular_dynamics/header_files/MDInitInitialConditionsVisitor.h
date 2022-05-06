@@ -22,10 +22,10 @@ namespace ANANSI
 
 // =====================================================================================
 //        Class:  MDInitInitialConditionsVisitor
-//  Description:  
+//  Description:
 //  =====================================================================================
 class MDInitInitialConditionsVisitor : public MPL::BaseVisitor,
-                                       public MPL::Visitor<AnansiMolecularDynamics>
+                                       public MPL::Visitor<ANANSI::AnansiMolecularDynamics>
 {
     public:
         // ====================  LIFECYCLE     =======================================
