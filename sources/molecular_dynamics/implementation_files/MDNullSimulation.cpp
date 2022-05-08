@@ -10,8 +10,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDNullSimulationStateVisitor.h"
-#include "MDNullSimulationState.h"
+#include "MDNullSimulationVisitor.h"
+#include "MDNullSimulation.h"
 
 namespace ANANSI {
 
@@ -21,26 +21,26 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDNullSimulationState::MDNullSimulationState() :
-    NullSimulationState()
+MDNullSimulation::MDNullSimulation() :
+    NullSimulation()
 {
     return;
 }
 
-MDNullSimulationState::MDNullSimulationState( MDNullSimulationState const & other) :
-    NullSimulationState(other)
+MDNullSimulation::MDNullSimulation( MDNullSimulation const & other) :
+    NullSimulation(other)
 {
     return;
 }
 
-MDNullSimulationState::MDNullSimulationState( MDNullSimulationState && other) :
-    NullSimulationState(std::move(other))
+MDNullSimulation::MDNullSimulation( MDNullSimulation && other) :
+    NullSimulation(std::move(other))
 {
     return;
-}		// -----  end of method MDNullSimulationState::MDNullSimulationState  -----
+}		// -----  end of method MDNullSimulation::MDNullSimulation  -----
 
 
-MDNullSimulationState::~MDNullSimulationState()
+MDNullSimulation::~MDNullSimulation()
 {
     return;
 }
@@ -51,20 +51,20 @@ MDNullSimulationState::~MDNullSimulationState()
 
 //============================= OPERATORS ====================================
 
-MDNullSimulationState& MDNullSimulationState::operator= ( MDNullSimulationState const & other ) 
+MDNullSimulation& MDNullSimulation::operator= ( MDNullSimulation const & other ) 
 {
     if (this != &other)
     {
-        NullSimulationState::operator=(other);
+        NullSimulation::operator=(other);
     }
     return *this;
 } // assignment operator
 
-MDNullSimulationState& MDNullSimulationState::operator= ( MDNullSimulationState && other )
+MDNullSimulation& MDNullSimulation::operator= ( MDNullSimulation && other )
 {
     if (this != &other)
     {
-        NullSimulationState::operator=(std::move(other));
+        NullSimulation::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
@@ -76,9 +76,9 @@ MDNullSimulationState& MDNullSimulationState::operator= ( MDNullSimulationState 
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void MDNullSimulationState::Execute_(Simulation * const a_simulation) const 
+void MDNullSimulation::Execute_(Simulation * const a_simulation) const 
 {
-    MDNullSimulationStateVisitor a_visitor;
+    MDNullSimulationVisitor a_visitor;
     a_simulation->Accept(a_visitor);
     return;
 };

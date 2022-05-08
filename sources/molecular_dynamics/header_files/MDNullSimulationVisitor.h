@@ -1,5 +1,5 @@
-#ifndef  ANANSI_MDNullSimulationStateVisitor_INC
-#define  ANANSI_MDNullSimulationStateVisitor_INC
+#ifndef  ANANSI_MDNullSimulationVisitor_INC
+#define  ANANSI_MDNullSimulationVisitor_INC
 
 
 //--------------------------------------------------------//
@@ -21,31 +21,31 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  MDNullSimulationStateVisitor
+//        Class:  MDNullSimulationVisitor
 //  Description:  
 //  =====================================================================================
-class MDNullSimulationStateVisitor : public MPL::BaseVisitor,
+class MDNullSimulationVisitor : public MPL::BaseVisitor,
                                      public MPL::Visitor<ANANSI::AnansiMolecularDynamics>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
-        //       Class:  MDNullSimulationStateVisitor
-        //      Method:  MDNullSimulationStateVisitor :: MDNullSimulationStateVisitor
+        //       Class:  MDNullSimulationVisitor
+        //      Method:  MDNullSimulationVisitor :: MDNullSimulationVisitor
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        MDNullSimulationStateVisitor ();   // constructor
+        MDNullSimulationVisitor ();   // constructor
 
-        MDNullSimulationStateVisitor (const MDNullSimulationStateVisitor & other);   // copy constructor
+        MDNullSimulationVisitor (const MDNullSimulationVisitor & other);   // copy constructor
 
-        MDNullSimulationStateVisitor (MDNullSimulationStateVisitor && other);   // copy-move constructor
+        MDNullSimulationVisitor (MDNullSimulationVisitor && other);   // copy-move constructor
 
-        virtual ~MDNullSimulationStateVisitor ();  // destructor
+        virtual ~MDNullSimulationVisitor ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         void visit(AnansiMolecularDynamics& a_sim) const;
@@ -54,9 +54,9 @@ class MDNullSimulationStateVisitor : public MPL::BaseVisitor,
 
         // ====================  OPERATORS     =======================================
 
-        MDNullSimulationStateVisitor& operator= ( const MDNullSimulationStateVisitor &other ); // assignment operator
+        MDNullSimulationVisitor& operator= ( const MDNullSimulationVisitor &other ); // assignment operator
 
-        MDNullSimulationStateVisitor& operator= ( MDNullSimulationStateVisitor && other ); // assignment-move operator
+        MDNullSimulationVisitor& operator= ( MDNullSimulationVisitor && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -70,9 +70,9 @@ class MDNullSimulationStateVisitor : public MPL::BaseVisitor,
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class MDNullSimulationStateVisitor  -----
+}; // -----  end of class MDNullSimulationVisitor  -----
 
 
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef ANANSI_MDNullSimulationStateVisitor_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_MDNullSimulationVisitor_INC  ----- */

@@ -1,5 +1,5 @@
-#ifndef ANANSI_MDNullSimulationState_INC
-#define ANANSI_MDNullSimulationState_INC
+#ifndef ANANSI_MDNullSimulation_INC
+#define ANANSI_MDNullSimulation_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -13,36 +13,36 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NullSimulationState.h"
+#include "NullSimulation.h"
 
 namespace ANANSI
 {
 
      // =====================================================================================
-     //        Class:  MDNullSimulationState
+     //        Class:  MDNullSimulation
      //  Description:  
      //  =====================================================================================
-    class MDNullSimulationState : public NullSimulationState
+    class MDNullSimulation : public NullSimulation
     {
         public:
             // ====================  LIFECYCLE     =======================================
 
             //--------------------------------------------------------------------------------------
-            //       Class:  MDNullSimulationState
-            //      Method:  MDNullSimulationState :: MDNullSimulationState
+            //       Class:  MDNullSimulation
+            //      Method:  MDNullSimulation :: MDNullSimulation
             // Description:  
             // 
             //  Parameters: 
             //
              //      Return:
             //--------------------------------------------------------------------------------------
-            MDNullSimulationState ();   // constructor
+            MDNullSimulation ();   // constructor
 
-            MDNullSimulationState (MDNullSimulationState const & other);   // copy constructor
+            MDNullSimulation (MDNullSimulation const & other);   // copy constructor
 
-            MDNullSimulationState (MDNullSimulationState && other);   // copy-move constructor
+            MDNullSimulation (MDNullSimulation && other);   // copy-move constructor
 
-            ~MDNullSimulationState ();  // destructor
+            ~MDNullSimulation ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 
@@ -50,9 +50,9 @@ namespace ANANSI
 
             // ====================  OPERATORS     =======================================
 
-            MDNullSimulationState& operator= ( MDNullSimulationState const & other ); // assignment operator
+            MDNullSimulation& operator= ( MDNullSimulation const & other ); // assignment operator
 
-            MDNullSimulationState& operator= ( MDNullSimulationState && other ); // assignment-move operator
+            MDNullSimulation& operator= ( MDNullSimulation && other ); // assignment-move operator
 
         protected:
             // ====================  METHODS       =======================================
@@ -67,9 +67,9 @@ namespace ANANSI
 
             // ====================  DATA MEMBERS  =======================================
 
-    }; // -----  end of class MDNullSimulationState  -----
+    }; // -----  end of class MDNullSimulation  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_MDNullSimulationState_INC
+#endif // ANANSI_MDNullSimulation_INC

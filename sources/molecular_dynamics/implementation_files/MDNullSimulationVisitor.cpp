@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDNullSimulationStateVisitor.h"
+#include "MDNullSimulationVisitor.h"
 
 namespace ANANSI {
 
@@ -20,31 +20,31 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDNullSimulationStateVisitor::MDNullSimulationStateVisitor()
+MDNullSimulationVisitor::MDNullSimulationVisitor()
 {
     return;
 }
 
-MDNullSimulationStateVisitor::MDNullSimulationStateVisitor( MDNullSimulationStateVisitor const & other)
+MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor const & other)
 {
     return;
 }
 
-MDNullSimulationStateVisitor::MDNullSimulationStateVisitor( MDNullSimulationStateVisitor && other)
+MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor && other)
 {
     return;
-}		// -----  end of method MDNullSimulationStateVisitor::MDNullSimulationStateVisitor  -----
+}		// -----  end of method MDNullSimulationVisitor::MDNullSimulationVisitor  -----
 
 
-MDNullSimulationStateVisitor::~MDNullSimulationStateVisitor()
+MDNullSimulationVisitor::~MDNullSimulationVisitor()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-void MDNullSimulationStateVisitor::visit(AnansiMolecularDynamics& a_sim) const
+void MDNullSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
-    std::cout << "MDNullSimulationStateVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
+    std::cout << "MDNullSimulationVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
     return;
 }
 
@@ -52,7 +52,7 @@ void MDNullSimulationStateVisitor::visit(AnansiMolecularDynamics& a_sim) const
 
 //============================= OPERATORS ====================================
 
-MDNullSimulationStateVisitor& MDNullSimulationStateVisitor::operator= ( const MDNullSimulationStateVisitor &other )
+MDNullSimulationVisitor& MDNullSimulationVisitor::operator= ( const MDNullSimulationVisitor &other )
 {
     if (this != &other)
     {
@@ -61,7 +61,7 @@ MDNullSimulationStateVisitor& MDNullSimulationStateVisitor::operator= ( const MD
     return *this;
 } // assignment operator
 
-MDNullSimulationStateVisitor& MDNullSimulationStateVisitor::operator= ( MDNullSimulationStateVisitor && other )
+MDNullSimulationVisitor& MDNullSimulationVisitor::operator= ( MDNullSimulationVisitor && other )
 {
     if (this != &other)
     {
