@@ -57,9 +57,9 @@ __Class__ Class Documentation
 Public Members
 --------------
 
-^^^^^^^^^
-Lifecycle
-^^^^^^^^^
+^^^^^^^^^^
+Life Cycle
+^^^^^^^^^^
 
 .. function:: __Class__::__Class__()
 
@@ -106,9 +106,9 @@ Protected Members
 No protected members
 
 .. Commented out. 
-.. ^^^^^^^^^
-.. Lifecycle
-.. ^^^^^^^^^
+.. ^^^^^^^^^^
+.. Life Cycle
+.. ^^^^^^^^^^
 ..
 .. ^^^^^^^^^
 .. Accessors
@@ -133,9 +133,9 @@ Private Members
     No private members
 
 .. Commented out. 
-.. ^^^^^^^^^
-.. Lifecycle
-.. ^^^^^^^^^
+.. ^^^^^^^^^^
+.. Life Cycle
+.. ^^^^^^^^^^
 ..
 .. ^^^^^^^^^
 .. Accessors
