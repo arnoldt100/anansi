@@ -19,11 +19,8 @@ Welcome to Anansi's class documentation!
    Classes/MDInitInitialConditions.cpp.rst
    Classes/InitInitialConditions.cpp.rst
    Classes/MDInitInitialConditionsVisitor.cpp.rst
-
-
    Classes/PerformSimulation.cpp.rst
-   Classes/TerminateSimulationState.cpp.rst
-
+   Classes/TerminateSimulation.cpp.rst
 
 
    Classes/AnansiMolecularDynamics.cpp.rst
