@@ -83,8 +83,8 @@
     #-----------------------------------------------------
     set (anansi_md_library_headers  
         header_files/AnansiMolecularDynamics.h
-        header_files/MDNullSimulationStateVisitor.h
-        header_files/MDNullSimulationState.h
+        header_files/MDNullSimulationVisitor.h
+        header_files/MDNullSimulation.h
         header_files/MDInitSimEnv.h
         header_files/MDInitSimEnvVisitor.h
         header_files/MDProcessCmdLine.h
@@ -108,8 +108,8 @@
     #-----------------------------------------------------
     set (anansi_md_library_implementation  
         implementation_files/AnansiMolecularDynamics.cpp
-        implementation_files/MDNullSimulationStateVisitor.cpp
-        implementation_files/MDNullSimulationState.cpp
+        implementation_files/MDNullSimulationVisitor.cpp
+        implementation_files/MDNullSimulation.cpp
         implementation_files/MDInitSimEnv.cpp
         implementation_files/MDInitSimEnvVisitor.cpp
         implementation_files/MDProcessCmdLine.cpp
