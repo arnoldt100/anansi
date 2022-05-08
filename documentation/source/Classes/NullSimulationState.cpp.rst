@@ -21,7 +21,7 @@ Interface Header Files
 
 **Project Include Files**
 
-* #include "SimulationSate.h"
+* #include "SimulationState.h"
 
 ==========================
 Implementaion Header Files
@@ -46,7 +46,7 @@ NullSimulationState.h Global Variables
 NullSimulationState Class Documentation
 =======================================
 
-.. class:: NullSimulationState
+.. class:: NullSimulationState : public SimulationState
 
 --------------
 Public Members
@@ -72,7 +72,7 @@ Lifecycle
 
         :param const NullSimulationState &other: The other simulation state to copy-move construct from.
 
-    .. function:: virtual NullSimulationState::~NullSimulationState()
+    .. function:: virtual NullSimulationState::~NullSimulationState() = 0
 
         The destructor.
 

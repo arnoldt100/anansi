@@ -72,7 +72,7 @@ Lifecycle
 
         The copy-move constructor.
 
-.. function:: ProcessCmdLine::~ProcessCmdLine()=0
+.. function:: virtual ProcessCmdLine::~ProcessCmdLine()=0
 
         The destructor.
 

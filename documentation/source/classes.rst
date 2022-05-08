@@ -9,20 +9,23 @@ Welcome to Anansi's class documentation!
    
    Classes/Simulation.cpp.rst
    Classes/SimulationState.cpp.rst
+   Classes/NullSimulationState.cpp.rst
    Classes/MDInitSimEnvVisitor.cpp.rst
    Classes/MDInitSimEnv.cpp.rst
    Classes/InitSimEnv.cpp.rst
    Classes/ProcessCmdLine.cpp.rst
    Classes/MDProcessCmdLine.cpp.rst
    Classes/MDProcessCmdLineVisitor.cpp.rst
-
    Classes/MDInitInitialConditions.cpp.rst
    Classes/InitInitialConditions.cpp.rst
    Classes/MDInitInitialConditionsVisitor.cpp.rst
 
-   Classes/NullSimulationState.cpp.rst
+
    Classes/PerformSimulation.cpp.rst
    Classes/TerminateSimulationState.cpp.rst
+
+
+
    Classes/AnansiMolecularDynamics.cpp.rst
    Classes/AnansiMolecularDynamicsFactory.cpp.rst
    Classes/CommandLineArguments.cpp.rst

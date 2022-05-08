@@ -67,7 +67,7 @@ Lifecycle
 
     The copy-move constructor.
 
-.. function:: InitInitialConditions::~InitInitialConditions()=0
+.. function:: virtual InitInitialConditions::~InitInitialConditions()=0
 
     The destructor.
 

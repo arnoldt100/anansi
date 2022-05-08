@@ -41,7 +41,7 @@ namespace ANANSI
 
             TerminateSimulation (TerminateSimulation && other);   // copy-move constructor
 
-            virtual ~TerminateSimulation ();  // destructor
+            virtual ~TerminateSimulation () = 0;  // destructor
 
             // ====================  ACCESSORS     =======================================
 

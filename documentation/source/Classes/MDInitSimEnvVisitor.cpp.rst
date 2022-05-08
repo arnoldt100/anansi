@@ -90,12 +90,12 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    .. function:: void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
+    .. function:: void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_simulation) const
 
-        Invoking visit will enable the simulation environment for thr AnansiMolecularDynamics object a_sim.
-        This means the MPI environment will be initiated.  
+        On Invocation of this method, the MPI environment will be initiated.  
 
-        :param a_sim: A simulation object.
+        :param a_simulation: An AnansiMolecularDynamics simulation object that is
+                             being visited.
 
         :rtype: void 
 

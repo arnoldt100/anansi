@@ -48,7 +48,7 @@ class MDInitInitialConditionsVisitor : public MPL::BaseVisitor,
         virtual ~MDInitInitialConditionsVisitor ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        void visit(AnansiMolecularDynamics& a_sim) const;
+        void visit(AnansiMolecularDynamics& a_simulation) const;
 
         // ====================  MUTATORS      =======================================
 

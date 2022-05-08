@@ -2,7 +2,7 @@
 
 .. default-domain:: cpp
 
-.. namespace:: __Namespace__
+.. namespace:: ANANSI
 
 ############################################
 MDInitInitialConditionsVisitor Documentation
@@ -70,7 +70,7 @@ Lifecycle
 
     The copy-move constructor.
 
-.. function:: MDInitInitialConditionsVisitor::~MDInitInitialConditionsVisitor()=0
+.. function:: MDInitInitialConditionsVisitor::~MDInitInitialConditionsVisitor()
 
     The destructor.
 
@@ -78,7 +78,17 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-No public accessors
+.. function:: void visit(AnansiMolecularDynamics& a_simulation) const
+
+    On invocation of this method, the
+    initial conditions (or configuration) of the
+    a_simulation object will be set.
+
+    :param a_simulation: An AnansiMolecularDynamics simulation object that is
+                         being visited. 
+                         
+
+    :rtype: void
 
 ^^^^^^^^^
 Operators

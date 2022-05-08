@@ -65,7 +65,7 @@ Lifecycle
 
         The copy-move constructor.
 
-.. function:: InitSimEnv::~InitSimEnv()=0
+.. function:: virtual InitSimEnv::~InitSimEnv()=0
 
         The destructor.
 

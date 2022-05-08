@@ -21,7 +21,7 @@ namespace ANANSI
      //        Class:  MDInitInitialConditions
      //  Description:  
      //  =====================================================================================
-    class MDInitInitialConditions : public InitInitialConditions
+    class MDInitInitialConditions : public ANANSI::InitInitialConditions
     {
         public:
             // ====================  LIFECYCLE     =======================================

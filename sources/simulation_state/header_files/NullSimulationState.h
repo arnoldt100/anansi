@@ -46,7 +46,7 @@ class NullSimulationState : public SimulationState
 
         NullSimulationState (NullSimulationState && other);   // copy-move constructor
 
-        virtual ~NullSimulationState ();  // destructor
+        virtual ~NullSimulationState () = 0 ;  // destructor
 
         // ====================  ACCESSORS     =======================================
         virtual void who_am_i() const override;
