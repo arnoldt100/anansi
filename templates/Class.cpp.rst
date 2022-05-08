@@ -27,9 +27,9 @@ Interface Header Files
 
 * #include "dummy5"
 
-==========================
-Implementaion Header Files
-==========================
+===========================
+Implementation Header Files
+===========================
 
 **C++ Include Files**
 
