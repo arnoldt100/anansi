@@ -78,7 +78,7 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-.. function:: void visit(AnansiMolecularDynamics& a_simulation) const
+.. function:: void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_simulation) const
 
     On invocation of this method, the
     initial conditions (or configuration) of the
