@@ -1,16 +1,16 @@
-.. _MDProcessCmdLineVisitor source target:
+.. _MDNullSimulationVisitor source target:
 
 .. default-domain:: cpp
 
 .. namespace:: ANANSI
 
 #####################################
-MDProcessCmdLineVisitor Documentation
+MDNullSimulationVisitor Documentation
 #####################################
 
 The responsibility of this class is to visit a AnansiMolecularDynamics
 simulation object and invoke the appropriate simulation object methods that
-will process the command line option of the main program.
+will process null tasks of the main program.
 
 ======================
 Interface Header Files
@@ -39,17 +39,17 @@ Implementaion Header Files
 
 **Project Include Files**
 
-* #include "MDProcessCmdLineVisitor.h"
+* #include "MDNullSimulationVisitor.h"
 
 ==========================================
-MDProcessCmdLineVisitor.h Global Variables
+MDNullSimulationVisitor.h Global Variables
 ==========================================
 
 ===========================================
-MDProcessCmdLineVisitor Class Documentation
+MDNullSimulationVisitor Class Documentation
 ===========================================
 
-.. class:: MDProcessCmdLineVisitor : public MPL::BaseVisitor, public MPL::Visitor<ANANSI::AnansiMolecularDynamics>
+.. class:: MDNullSimulationVisitor : public MPL::BaseVisitor, public MPL::Visitor<ANANSI::AnansiMolecularDynamics>
 
 --------------
 Public Members
@@ -59,19 +59,19 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-.. function:: MDProcessCmdLineVisitor::MDProcessCmdLineVisitor()
+.. function:: MDNullSimulationVisitor::MDNullSimulationVisitor()
 
    The default constructor.
 
-.. function:: MDProcessCmdLineVisitor::MDProcessCmdLineVisitor( const MDProcessCmdLineVisitor &other )
+.. function:: MDNullSimulationVisitor::MDNullSimulationVisitor( const MDNullSimulationVisitor &other )
 
     The copy constructor.
 
-.. function:: MDProcessCmdLineVisitor::MDProcessCmdLineVisitor(MDProcessCmdLineVisitor && other) 
+.. function:: MDNullSimulationVisitor::MDNullSimulationVisitor(MDNullSimulationVisitor && other) 
 
     The copy-move constructor.
 
-.. function:: MDProcessCmdLineVisitor::~MDProcessCmdLineVisitor()
+.. function:: MDNullSimulationVisitor::~MDNullSimulationVisitor()
 
     The destructor.
 
@@ -79,7 +79,7 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-.. function:: void MDProcessCmdLineVisitor::visit(AnansiMolecularDynamics& a_simulation) const
+.. function:: void MDNullSimulationVisitor::visit(AnansiMolecularDynamics& a_simulation) const
 
     :param  a_simulation: A simulation object. 
 
@@ -90,11 +90,11 @@ Accessors
 Operators
 ^^^^^^^^^
 
-.. function:: MDProcessCmdLineVisitor& MDProcessCmdLineVisitor::operator=( MDProcessCmdLineVisitor const & other)
+.. function:: MDNullSimulationVisitor& MDNullSimulationVisitor::operator=( MDNullSimulationVisitor const & other)
 
     The assignment operator.
 
-.. function:: MDProcessCmdLineVisitor& MDProcessCmdLineVisitor::operator=( MDProcessCmdLineVisitor && other)
+.. function:: MDNullSimulationVisitor& MDNullSimulationVisitor::operator=( MDNullSimulationVisitor && other)
 
     The assignment-move operator.
 

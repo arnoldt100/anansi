@@ -11,6 +11,7 @@ Welcome to Anansi's class documentation!
    Classes/SimulationState.cpp.rst
    Classes/NullSimulation.cpp.rst
    Classes/MDNullSimulation.cpp.rst
+   Classes/MDNullSimulationVisitor.cpp.rst
    Classes/MDInitSimEnvVisitor.cpp.rst
    Classes/MDInitSimEnv.cpp.rst
    Classes/InitSimEnv.cpp.rst
