@@ -1,12 +1,12 @@
-.. _NullSimulationState class target:
+.. _NullSimulation class target:
 
 .. default-domain:: cpp
 
 .. namespace:: ANANSI
 
-################################
-NullSimulationSate Documentation
-################################
+############################
+NullSimulation Documentation
+############################
 
 This is an interface class for the null simulation behavior. This
 does nothing.
@@ -36,17 +36,17 @@ Implementaion Header Files
 
 **Project Include Files**
 
-* #include "NullSimulationSate.h"
+* #include "NullSimulation.h"
 
 ======================================
-NullSimulationState.h Global Variables
+NullSimulation.h Global Variables
 ======================================
 
 =======================================
-NullSimulationState Class Documentation
+NullSimulation Class Documentation
 =======================================
 
-.. class:: NullSimulationState : public SimulationState
+.. class:: NullSimulation : public SimulationState
 
 --------------
 Public Members
@@ -56,23 +56,23 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: NullSimulationState::NullSimulationState()
+    .. function:: NullSimulation::NullSimulation()
 
        The default constructor.
 
-    .. function:: NullSimulationState::NullSimulationState( const NullSimulationState &other )
+    .. function:: NullSimulation::NullSimulation( const NullSimulation &other )
 
         The copy constructor.
 
-        :param const NullSimulationState &other: The other simulation state to copy construct from.
+        :param const NullSimulation &other: The other simulation state to copy construct from.
 
-    .. function:: NullSimulationState::NullSimulationState(NullSimulationState && other) 
+    .. function:: NullSimulation::NullSimulation(NullSimulation && other) 
 
         The copy-move constructor.
 
-        :param const NullSimulationState &other: The other simulation state to copy-move construct from.
+        :param const NullSimulation &other: The other simulation state to copy-move construct from.
 
-    .. function:: virtual NullSimulationState::~NullSimulationState() = 0
+    .. function:: virtual NullSimulation::~NullSimulation() = 0
 
         The destructor.
 
@@ -84,19 +84,17 @@ Accessors
 Operators
 ^^^^^^^^^
 
-    .. function:: NullSimulationState& NullSimulationState::operator=( NullSimulationState const & other)
+    .. function:: NullSimulation& NullSimulation::operator=( NullSimulation const & other)
 
         The assignment operator.
 
-    .. function:: NullSimulationState& NullSimulationState::operator=( NullSimulationState && other)
+    .. function:: NullSimulation& NullSimulation::operator=( NullSimulation && other)
 
         The assignment-move operator.
 
 ^^^^^^^^
 Mutators
 ^^^^^^^^
-
-
 
 -----------------
 Protected Members
@@ -137,53 +135,53 @@ Private Members
 Accessors
 ^^^^^^^^^
 
-    .. function:: void NullSimulationState::_initializeSimulationEnvironment(Simulation * const aSimulation) const
+    .. function:: void NullSimulation::_initializeSimulationEnvironment(Simulation * const a_simulation) const
 
         Implements the non-virtual interface private virtual
         for intializing the simulation environment.
 
-        This function should be overriden for by all valid NullSimulationState states.
+        This function should be overriden for by all valid NullSimulation states.
 
-        :param Simulation* const aSimulation: A pointer to a simulation object. 
+        :param a_simulation: A pointer to a simulation object. 
                                               This simulation object is to have its simulation environment
                                               initialized.
 
         :rtype: void
 
 
-    .. function:: void NullSimulationState::_processCommandLine(Simulation * const aSimulation) const
+    .. function:: void NullSimulation::_processCommandLine(Simulation * const a_simulation) const
 
         Implements the non-virtual interface private virtual
         for processing the command line arguments.
 
-        :param Simulation* const aSimulation: A pointer to a simulation object. 
+        :param a_simulation: A pointer to a simulation object. 
 
         :rtype: void
 
-    .. function:: void NullSimulationState::_initializeInitialConditions(Simulation* const aSimulation) const 
+    .. function:: void NullSimulation::_initializeInitialConditions(Simulation* const a_simulation) const 
 
         Implements the non-virtual interface private virtual 
         for initializing the initial conditions.
 
-        :param Simulation* const aSimulation: A pointer to a simulation object. 
+        :param a_simulation: A pointer to a simulation object. 
 
         :rtype: void
 
-    .. function:: void NullSimulationState::_performSimulation(Simulation* const aSimulation) const
+    .. function:: void NullSimulation::_performSimulation(Simulation* const a_simulation) const
 
         Implements the non-virtual interface private virtual extension
         for performing the simulation.
 
-        :param Simulation* const aSimulation: A pointer to a simulation object. 
+        :param a_simulation: A pointer to a simulation object. 
 
         :rtype: void
 
-    .. function:: void NullSimulationState::_terminateSimulationEnvironment(Simulation* const aSimulation) const
+    .. function:: void NullSimulation::_terminateSimulationEnvironment(Simulation* const a_simulation) const
 
         Implements the Non-Virtual Interface private virtual extension point
         for terminating the simulation environment.
 
-        :param Simulation* const aSimulation: A pointer to a simulation object. 
+        :param a_simulation: A pointer to a simulation object. 
 
         :rtype: void
 
