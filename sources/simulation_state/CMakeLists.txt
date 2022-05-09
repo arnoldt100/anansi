@@ -55,7 +55,7 @@
     #-----------------------------------------------------
     set (simulation_state_header_files
          header_files/SimulationState.h
-         header_files/NullSimulationState.h
+         header_files/NullSimulation.h
          header_files/InitSimEnv.h  
          header_files/ProcessCmdLine.h
          header_files/InitInitialConditions.h
@@ -71,7 +71,7 @@
     #-----------------------------------------------------
     set (simulation_state_implementation_files
          implementation_files/SimulationState.cpp
-         implementation_files/NullSimulationState.cpp 
+         implementation_files/NullSimulation.cpp 
          implementation_files/InitSimEnv.cpp
          implementation_files/ProcessCmdLine.cpp
          implementation_files/InitInitialConditions.cpp

@@ -1,5 +1,5 @@
-#ifndef ANANSI_NullSimulationState_INC
-#define ANANSI_NullSimulationState_INC
+#ifndef ANANSI_NullSimulation_INC
+#define ANANSI_NullSimulation_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -23,30 +23,30 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  NullSimulationState
+//        Class:  NullSimulation
 //  Description:  
 //  =====================================================================================
-class NullSimulationState : public SimulationState
+class NullSimulation : public SimulationState
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //--------------------------------------------------------------------------------------
-        //       Class:  NullSimulationState
-        //      Method:  NullSimulationState :: NullSimulationState
+        //       Class:  NullSimulation
+        //      Method:  NullSimulation :: NullSimulation
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return:
         //--------------------------------------------------------------------------------------
-        NullSimulationState ();   // constructor
+        NullSimulation ();   // constructor
 
-        NullSimulationState (NullSimulationState const & other);   // copy constructor
+        NullSimulation (NullSimulation const & other);   // copy constructor
 
-        NullSimulationState (NullSimulationState && other);   // copy-move constructor
+        NullSimulation (NullSimulation && other);   // copy-move constructor
 
-        virtual ~NullSimulationState () = 0 ;  // destructor
+        virtual ~NullSimulation () = 0 ;  // destructor
 
         // ====================  ACCESSORS     =======================================
         virtual void who_am_i() const override;
@@ -55,9 +55,9 @@ class NullSimulationState : public SimulationState
 
         // ====================  OPERATORS     =======================================
 
-        NullSimulationState& operator= ( NullSimulationState const & other ); // assignment operator
+        NullSimulation& operator= ( NullSimulation const & other ); // assignment operator
 
-        NullSimulationState& operator= ( NullSimulationState && other ); // assignment-move operator
+        NullSimulation& operator= ( NullSimulation && other ); // assignment-move operator
 
     protected:
         // ====================  ACCESSORS     =======================================
@@ -79,9 +79,9 @@ class NullSimulationState : public SimulationState
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class NullSimulationState  -----
+}; // -----  end of class NullSimulation  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_NullSimulationState_INC
+#endif // ANANSI_NullSimulation_INC

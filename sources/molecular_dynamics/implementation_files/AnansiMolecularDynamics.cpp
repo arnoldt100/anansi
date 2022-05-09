@@ -41,7 +41,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_ = std::make_unique<MDSimulationStateFactory>();
-    this->mdNullSimulationState_ = std::move(mdStateFactory_->create<NullSimulationState>());
+    this->mdNullSimulationState_ = std::move(mdStateFactory_->create<NullSimulation>());
     this->mdInitSimEnv_ = std::move(mdStateFactory_->create<InitSimEnv>());
     this->mdProcessCmdLine_ = std::move(mdStateFactory_->create<ProcessCmdLine>());
     this->mdInitInitialConditions_ = std::move(mdStateFactory_->create<InitInitialConditions>());
@@ -65,7 +65,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_ = std::make_unique<MDSimulationStateFactory>();
-    this->mdNullSimulationState_ = std::move(mdStateFactory_->create<NullSimulationState>());
+    this->mdNullSimulationState_ = std::move(mdStateFactory_->create<NullSimulation>());
     this->mdInitSimEnv_ = std::move(mdStateFactory_->create<InitSimEnv>());
     this->mdProcessCmdLine_ = std::move(mdStateFactory_->create<ProcessCmdLine>());
     this->mdInitInitialConditions_ = std::move(mdStateFactory_->create<InitInitialConditions>());

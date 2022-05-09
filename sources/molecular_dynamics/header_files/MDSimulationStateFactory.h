@@ -16,7 +16,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDNullSimulationState.h"
+#include "MDNullSimulation.h"
 #include "MDProcessCmdLine.h"
 #include "MDInitSimEnv.h"
 #include "MDInitInitialConditions.h"
@@ -81,7 +81,7 @@ namespace ANANSI
         private:
             // TYPE ALIASES
             using abstract_products_ = MPL::mpl_typelist<
-                                                          NullSimulationState,
+                                                          NullSimulation,
                                                           InitSimEnv,
                                                           ProcessCmdLine,
                                                           InitInitialConditions,
@@ -90,7 +90,7 @@ namespace ANANSI
                                                         >;
 
             using concrete_products_ = MPL::mpl_typelist<
-                                                          MDNullSimulationState,
+                                                          MDNullSimulation,
                                                           MDInitSimEnv,
                                                           MDProcessCmdLine,
                                                           MDInitInitialConditions,

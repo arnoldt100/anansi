@@ -11,7 +11,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NullSimulationState.h"
+#include "NullSimulation.h"
 
 namespace ANANSI {
 
@@ -21,41 +21,41 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-NullSimulationState::NullSimulationState() :
+NullSimulation::NullSimulation() :
     SimulationState()
 {
     return;
 }
 
-NullSimulationState::NullSimulationState( NullSimulationState const & other) :
+NullSimulation::NullSimulation( NullSimulation const & other) :
     SimulationState()
 {
     return;
 }
 
-NullSimulationState::NullSimulationState( NullSimulationState && other) :
+NullSimulation::NullSimulation( NullSimulation && other) :
     SimulationState(std::move(other))
 {
     return;
-}		// -----  end of method NullSimulationState::NullSimulationState  -----
+}		// -----  end of method NullSimulation::NullSimulation  -----
 
 
-NullSimulationState::~NullSimulationState()
+NullSimulation::~NullSimulation()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-void NullSimulationState::who_am_i() const
+void NullSimulation::who_am_i() const
 {
-    std::cout << "I'm a NullSimulationState" << std::endl;
+    std::cout << "I'm a NullSimulation" << std::endl;
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-NullSimulationState& NullSimulationState::operator= ( NullSimulationState const & other ) 
+NullSimulation& NullSimulation::operator= ( NullSimulation const & other ) 
 {
     if (this != &other)
     {
@@ -64,7 +64,7 @@ NullSimulationState& NullSimulationState::operator= ( NullSimulationState const 
     return *this;
 } // assignment operator
 
-NullSimulationState& NullSimulationState::operator= ( NullSimulationState && other )
+NullSimulation& NullSimulation::operator= ( NullSimulation && other )
 {
     if (this != &other)
     {
@@ -80,11 +80,11 @@ NullSimulationState& NullSimulationState::operator= ( NullSimulationState && oth
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-// void NullSimulationState::processCommandLine_(Simulation * const aSimulation) const
+// void NullSimulation::processCommandLine_(Simulation * const aSimulation) const
 // {
 //     SimulationState::state_misbehavior_info error_info = 
 //         { 
-//             {"simulation_state","NullSimulationState"},
+//             {"simulation_state","NullSimulation"},
 //             {"inappropiate_behavior","Processing command line"}
 //         };
 //     std::string error_message = this->misbehviorErrorMessage_(error_info);
@@ -92,13 +92,13 @@ NullSimulationState& NullSimulationState::operator= ( NullSimulationState && oth
 //     return;
 // }
 
-void NullSimulationState::execute_(Simulation * const a_simulation) const
+void NullSimulation::execute_(Simulation * const a_simulation) const
 {
     this->Execute_(a_simulation);
     return;
 }
 
-void NullSimulationState::Execute_(Simulation * const a_simulation) const 
+void NullSimulation::Execute_(Simulation * const a_simulation) const 
 {
     return;
 };
