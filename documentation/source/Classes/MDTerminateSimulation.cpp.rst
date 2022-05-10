@@ -8,8 +8,13 @@
 MDTerminateSimulation Documentation
 ###################################
 
-The base class for the molecular dynamics factory classes. This
-class is an abstract base class. 
+The responsibilty of this class is to store the program logic to terminate
+the simulation for the AnansiMolecularDynamics simulation.
+
+Specifically, the critical function call is MDTerminate::Execute\_. When
+invoked, a vistor for the AnansiMolecularDynamics object is created, the
+AnansiMolecularDynamics will accept the vistor which in turn will perform the
+neccesary function calls to terminate the simulation.
 
 ======================
 Interface Header Files
