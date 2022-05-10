@@ -7,6 +7,7 @@ Welcome to Anansi's class documentation!
    :titlesonly:
    
    
+   Classes/AnansiMolecularDynamics.cpp.rst
    Classes/Simulation.cpp.rst
    Classes/SimulationState.cpp.rst
    Classes/NullSimulation.cpp.rst
@@ -22,6 +23,8 @@ Welcome to Anansi's class documentation!
    Classes/InitInitialConditions.cpp.rst
    Classes/MDInitInitialConditionsVisitor.cpp.rst
 
+   Classes/MDPerformSimulationVisitor.cpp.rst
+   Classes/MDPerformSimulation.cpp.rst
    Classes/PerformSimulation.cpp.rst
 
    Classes/TerminateSimulation.cpp.rst
@@ -29,7 +32,6 @@ Welcome to Anansi's class documentation!
    Classes/MDTerminateSimulation.cpp.rst
 
 
-   Classes/AnansiMolecularDynamics.cpp.rst
    Classes/AnansiMolecularDynamicsFactory.cpp.rst
    Classes/CommandLineArguments.cpp.rst
    Classes/ControlFileParser.cpp.rst
