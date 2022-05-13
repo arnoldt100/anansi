@@ -12,19 +12,32 @@ Include Header Files
 
 **C++ Include Files**
 
+**External Library Files**
+
+**Package Include Files**
+
+* #include "ClassInstanceLimiter.hpp"
+
+======================
+Interface Header Files
+======================
+
+**C++ Include Files**
+
 * #include <iostream>
 * #include <cstdlib>
 
 **External Library Files**
 
-* #include "mpi.h"
 
-**Anansi Include Files**
+**Package Include Files**
 
 * #include "MPIInitException.h"
 * #include "MPIInitializedException.h"
 * #include "MPIFinalizedException.h"
-* #include "ClassInstanceLimiter.hpp"
+* #include "MPIEnvironment.h"
+* #include "Pointer2d.hpp"
+* #include "copy_2d_char_array.h"
 
 =================================
 MPIEnvironment.h Global Variables
@@ -65,61 +78,71 @@ Public Members
 Lifecycle
 ^^^^^^^^^
 
-    .. function:: MPIEnvironment::MPIEnvironment(int argc, char ** argv)
+.. function:: MPIEnvironment::MPIEnvironment()
 
-        The constructor.
+    This construtor calls MPI_Init with NULL arguments. 
 
-        :param int argc: The number of command line arguments.
-        :param char** argv: The command line arguments.
-        :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
+    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
+    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
+    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
 
-    .. function:: MPIEnvironment::MPIEnvironmentMPIEnvironment(const MPIEnvironment &other)=delete
+.. function:: MPIEnvironment::MPIEnvironment(int argc, char ** argv)
 
-        The copy constructor is deleted.
+    This construtor calls MPI_Init with non-NULL arguments. 
 
-    .. function:: MPIEnvironment::MPIEnvironmentMPIEnvironment (MPIEnvironment && other)=delete
+    :param int argc: The number of command line arguments.
+    :param char** argv: The command line arguments.
+    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
+    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
+    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
 
-        The copy-move constructor is deleted.
+.. function:: MPIEnvironment::MPIEnvironmentMPIEnvironment(const MPIEnvironment &other)=delete
 
-    .. function:: MPIEnvironment::MPIEnvironment~MPIEnvironment()=0
+    The copy constructor is deleted.
 
-        The destructor.
+.. function:: MPIEnvironment::MPIEnvironmentMPIEnvironment (MPIEnvironment && other)=delete
+
+    The copy-move constructor is deleted.
+
+.. function:: MPIEnvironment::MPIEnvironment~MPIEnvironment()
+
+    The destructor.
 
 ^^^^^^^^^
 Accessors
 ^^^^^^^^^
 
-    No public accessors
+No public accessors
 
 ^^^^^^^^^
 Operators
 ^^^^^^^^^
 
-    .. function:: MPIEnvironment& MPIEnvironment::operator=(const MPIEnvironment &other)=delete
+.. function:: MPIEnvironment& MPIEnvironment::operator=(const MPIEnvironment &other)=delete
 
-        The copy assignment operator is deleted.
+    The copy assignment operator is deleted.
 
-    .. function:: MPIEnvironment& MPIEnvironment::operator=(MPIEnvironment &&other)=delete
+.. function:: MPIEnvironment& MPIEnvironment::operator=(MPIEnvironment &&other)=delete
 
-        The assignment-move operator is deleted.
+    The assignment-move operator is deleted.
 
 ^^^^^^^^
 Mutators
 ^^^^^^^^
 
-    No public mutators
+No public mutators
 
 -----------------
 Protected Members
 -----------------
 
-    No protected members
+No protected members
 
 ---------------
 Private Members
 ---------------
 
-    No private members
+No private members
 
 .. Commented out. 
 .. ---------
