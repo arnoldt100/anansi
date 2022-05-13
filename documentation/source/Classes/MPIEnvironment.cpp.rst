@@ -80,21 +80,7 @@ Lifecycle
 
 .. function:: MPIEnvironment::MPIEnvironment()
 
-    This construtor calls MPI_Init with NULL arguments. 
-
-    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
-    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
-    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
-
-.. function:: MPIEnvironment::MPIEnvironment(int argc, char ** argv)
-
-    This construtor calls MPI_Init with non-NULL arguments. 
-
-    :param int argc: The number of command line arguments.
-    :param char** argv: The command line arguments.
-    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
-    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
-    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
+    The default constructor.
 
 .. function:: MPIEnvironment::MPIEnvironmentMPIEnvironment(const MPIEnvironment &other)=delete
 
@@ -130,7 +116,29 @@ Operators
 Mutators
 ^^^^^^^^
 
-No public mutators
+.. function:: void MPIEnvironment::enable(int const & argc, char const * const * const & argv) const
+
+    Calls MPI_Init with non-NULL arguments. 
+
+    :param int argc: The number of command line arguments.
+    :param char** argv: The command line arguments.
+
+    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
+    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
+    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
+
+    :rtype: void
+
+
+.. function:: void MPIEnvironment::enable() const
+
+    Calls MPI_Init with NULL arguments. 
+
+    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
+    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
+    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
+
+    :rtype: void
 
 -----------------
 Protected Members

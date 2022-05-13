@@ -82,8 +82,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
 
 AnansiMolecularDynamics::~AnansiMolecularDynamics()
 {
-    // Disable the communication.
-    this->disableCommunication();
     return;
 }
 
@@ -96,17 +94,25 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     char** my_argv_ptr=nullptr;
 
     this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
-
-	this->MpiEnvironment_ = std::make_unique<COMMUNICATOR::MPIEnvironment>(my_argc,my_argv_ptr);
+	this->MpiEnvironment_ = std::make_unique<COMMUNICATOR::MPIEnvironment>();
+    this->MpiEnvironment_->enable(my_argc,my_argv_ptr);
 
     if (my_argv_ptr != nullptr)
     {
         MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(my_argc,my_argv_ptr);
     }
 
-    std::cout << "Initialized the MPI environment." << std::endl;
+    std::cout << "Enabled the MPI environment." << std::endl;
     return;
 }
+
+void
+AnansiMolecularDynamics::disableCommunicationEnvironment()
+{
+    this->MpiEnvironment_->disable();
+    std::cout << "Disabled the MPI environment." << std::endl;
+    return;
+}       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
 
 void
 AnansiMolecularDynamics::saveCommandLineOptionParameters()
@@ -165,14 +171,6 @@ void AnansiMolecularDynamics::readInitialConfiguration()
 	std::cout << "Reading initial configuration" << std::endl;
 }
 
-
-void
-AnansiMolecularDynamics::disableCommunication()
-{
-    this->MpiWorldCommunicator_->freeCommunicator();
-    std::cout << "Disabling AnansiMolecularDynamics communication." << std::endl;
-    return;
-}       /* -----  end of method AnansiMolecularDynamics::disableCommunication_  ----- */
 
 //============================= OPERATORS ====================================
 

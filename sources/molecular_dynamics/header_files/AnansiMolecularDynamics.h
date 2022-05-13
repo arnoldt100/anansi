@@ -48,6 +48,8 @@ class AnansiMolecularDynamics final : public Simulation
 
         /* ====================  MUTATORS      ======================================= */
         void enableCommunicationEnvironment();
+
+        void disableCommunicationEnvironment();
         
         void saveCommandLineOptionParameters();
 
@@ -55,7 +57,6 @@ class AnansiMolecularDynamics final : public Simulation
 
         void readInitialConfiguration();
 
-        void disableCommunication();
 
         /* ====================  OPERATORS     ======================================= */
 
