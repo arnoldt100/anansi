@@ -43,7 +43,10 @@ namespace ANANSI
  */
 class SimulationParameters
 {
+
     public:
+        using OPTIONS_MAP_T = std::map<std::string,std::string>;
+
         /* ====================  LIFECYCLE     ======================================= */
 
         /*
@@ -58,17 +61,15 @@ class SimulationParameters
          */
         SimulationParameters (); /* constructor */
         
-        SimulationParameters( SimulationParameters && other);
-
         SimulationParameters(COMMANDLINE::CommandLineArguments const & aCommandLine); // constructor
 
         SimulationParameters( SimulationParameters const & other ); // copy constructor
 
+        SimulationParameters( SimulationParameters && other);
+
         ~SimulationParameters(); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
-
-         
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationParameters
@@ -140,8 +141,8 @@ class SimulationParameters
         static std::map<std::string,std::string> transferBoostVariableMap_(boost::program_options::variables_map const & vm);
 
         /* ====================  DATA MEMBERS  ======================================= */
-        std::map<std::string,std::string> commandLineOptionsMap_;
-        std::map<std::string,std::string> simulationParametersMap_;
+        OPTIONS_MAP_T  commandLineOptionsMap_;
+        OPTIONS_MAP_T  simulationParametersMap_;
 
 }; /* -----  end of class SimulationParameters  ----- */
 

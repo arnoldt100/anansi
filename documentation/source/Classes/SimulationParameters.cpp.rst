@@ -82,6 +82,10 @@ Life Cycle
 
     :param  other: The object to copy.
 
+.. function:: SimulationParameters::SimulationParameters( SimulationParameters && other)
+
+    :param other: The object to move-copy from.
+
 .. function:: SimulationParameters::~SimulationParameters()
 
     The destructor.
@@ -90,13 +94,47 @@ Life Cycle
 Accessors
 ^^^^^^^^^
 
+.. function:: bool SimulationParameters::isCommandLineOptionPresent (std::string const & key) const
+
+    Inquires if an option, designated by key, is present on the command line. If the option is present
+    then true is returned, otherwise false is returned.
+    
+    :param key: The string name of the option to be inquired about
+    :rtype: bool
+
+.. function:: std::string SimulationParameters::getCommandLineOptionValues(std::string const & key) const
+
+    Returns the command line option value for the corresponding key. If the option is not found then
+    the value SimulationParameters::OPTION_NOT_FOUND is returned.
+    
+    :param key: The string name of the option to be inquired about
+    :rtype: string
+
 ^^^^^^^^^
 Operators
 ^^^^^^^^^
 
+.. function:: SimulationParameters& SimulationParameters::operator=( const SimulationParameters &other )
+
+    The assignment operator.
+
+.. function:: SimulationParameters& SimulationParameters::operator=( SimulationParameters && other )
+
+    The assignment move operator.
+
 ^^^^^^^^
 Mutators
 ^^^^^^^^
+
+^^^^^^
+Static
+^^^^^^
+
+.. member:: static const std::string SimulationParameters::OPTION_NOT_FOUND
+
+    A string flag that is used ot indicate commnd line option
+    is not found. The value of this variable must be unique with respect
+    to all other command line options or the program may have undefined behavior.
 
 -----------------
 Protected Members
@@ -129,8 +167,6 @@ No protected members
 Private Members
 ---------------
 
-    No private members
-
 .. Commented out. 
 .. ^^^^^^^^^^
 .. Life Cycle
@@ -156,7 +192,11 @@ Private Members
 Static
 ^^^^^^
 
-.. function:: static SimulationParameters::_parseProgramOptionsFromCommandLine()
+.. function:: static std::map<std::string,std::string> SimulationParameters::parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine)
 
-    Parses the program options from the command line.
+    Parses the program options from the command line object to a options_map object,
+
+    :param aCommandLine: This object has the command line arguments.
+
+    :rtype: std::map<std::string,std::string>
 
