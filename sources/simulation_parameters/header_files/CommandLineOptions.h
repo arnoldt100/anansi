@@ -17,10 +17,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include <CommandLineOptionsParameter.h>
-#include "CommandLineOptionsUtilityFunctions.h"
-
-const std::vector<std::string> option_keys = 
-{"short_name","long_name","description","default_value"}; 
 
 namespace ANANSI
 {
