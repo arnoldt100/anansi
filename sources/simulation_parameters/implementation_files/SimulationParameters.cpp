@@ -40,23 +40,23 @@ SimulationParameters::SimulationParameters(COMMANDLINE::CommandLineArguments con
 {
 
     // Use the Boost program options library to parse the command line.
-    this->_commandLineOptionsMap =
-        SimulationParameters::_parseProgramOptionsFromCommandLine(aCommandLine);
+    this->commandLineOptionsMap_ =
+        SimulationParameters::parseProgramOptionsFromCommandLine_(aCommandLine);
 
     return;
 }
 
 SimulationParameters::SimulationParameters(const SimulationParameters &other ) :
-    _commandLineOptionsMap(other._commandLineOptionsMap),
-    _simulationParametersMap(other._simulationParametersMap)
+    commandLineOptionsMap_(other.commandLineOptionsMap_),
+    simulationParametersMap_(other.simulationParametersMap_)
 {
     return;
 }
 
 SimulationParameters::SimulationParameters( SimulationParameters && other)
 {
-    this->_commandLineOptionsMap = std::move(other._commandLineOptionsMap);
-    this->_simulationParametersMap = std::move(other._simulationParametersMap);
+    this->commandLineOptionsMap_ = std::move(other.commandLineOptionsMap_);
+    this->simulationParametersMap_ = std::move(other.simulationParametersMap_);
     return;
 }		// -----  end of method SimulationParameters::SimulationParameters  -----
 
@@ -72,15 +72,15 @@ bool SimulationParameters::isCommandLineOptionPresent ( std::string const & key)
     // We count the number of elements with key "key". If the 
     // count is > 0, then the option is present. Otherwise the option
     // is not present.
-    const auto count = this->_commandLineOptionsMap.count(key);
+    const auto count = this->commandLineOptionsMap_.count(key);
     const auto found_option = (count > 0) ? true : false;
     return found_option;
 }		// -----  end of method SimulationParameters::isCommandLineOptionPresent  ----- 
 
 std::string SimulationParameters::getCommandLineOptionValues (std::string const & key) const
 {
-    const auto search = this->_commandLineOptionsMap.find(key);
-    const auto my_value = ( search != this->_commandLineOptionsMap.end()) ? this->_commandLineOptionsMap.at(key) : SimulationParameters::OPTION_NOT_FOUND;
+    const auto search = this->commandLineOptionsMap_.find(key);
+    const auto my_value = ( search != this->commandLineOptionsMap_.end()) ? this->commandLineOptionsMap_.at(key) : SimulationParameters::OPTION_NOT_FOUND;
     return my_value;
 }		// -----  end of method SimulationParameters::getCommandLineOptionValues  ----- 
 
@@ -93,7 +93,7 @@ SimulationParameters& SimulationParameters::operator=( const SimulationParameter
 {
     if (this != &other)
     {
-        this->_commandLineOptionsMap = other._commandLineOptionsMap;
+        this->commandLineOptionsMap_ = other.commandLineOptionsMap_;
     }
     return *this;
 }
@@ -102,8 +102,8 @@ SimulationParameters& SimulationParameters::operator= ( SimulationParameters && 
 {
     if (this != &other)
     {
-        this->_commandLineOptionsMap = std::move(other._commandLineOptionsMap);
-        this->_simulationParametersMap = std::move(other._simulationParametersMap);
+        this->commandLineOptionsMap_ = std::move(other.commandLineOptionsMap_);
+        this->simulationParametersMap_ = std::move(other.simulationParametersMap_);
 
     }
     return *this;
@@ -138,7 +138,7 @@ const std::string SimulationParameters::OPTION_NOT_FOUND="option_not_found";
 //============================= OPERATORS ====================================
 
 //============================= STATIC    ====================================
-boost::program_options::variables_map SimulationParameters::_createBoostVariableMap(COMMANDLINE::CommandLineArguments const & aCommandLine)
+boost::program_options::variables_map SimulationParameters::createBoostVariableMap_(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
     namespace po = boost::program_options;
 
@@ -177,7 +177,7 @@ boost::program_options::variables_map SimulationParameters::_createBoostVariable
     return vm;
 }
 
-std::map<std::string,std::string> SimulationParameters::_transferBoostVariableMap(boost::program_options::variables_map const & vm)
+std::map<std::string,std::string> SimulationParameters::transferBoostVariableMap_(boost::program_options::variables_map const & vm)
 {
     std::map<std::string,std::string> options_map;
 
@@ -206,19 +206,13 @@ std::map<std::string,std::string> SimulationParameters::_transferBoostVariableMa
     return options_map;
 }
 
-std::vector<CommandLineOptions> SimulationParameters::_parseOptionsClasses()
-{
-    std::vector<CommandLineOptions> my_options;
-    return my_options;
-}
-
-std::map<std::string,std::string> SimulationParameters::_parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine)
+std::map<std::string,std::string> SimulationParameters::parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
     // Create the Boost variabler map.
-    const auto vm = SimulationParameters::_createBoostVariableMap(aCommandLine);
+    const auto vm = SimulationParameters::createBoostVariableMap_(aCommandLine);
 
     // Transfer the Boost variabler map to options map.
-    const auto options_map = SimulationParameters::_transferBoostVariableMap(vm);
+    const auto options_map = SimulationParameters::transferBoostVariableMap_(vm);
 
 
     return options_map;

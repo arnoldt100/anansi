@@ -114,36 +114,34 @@ class SimulationParameters
 
         /* ====================  STATIC        ======================================= */
 
-        static std::vector<CommandLineOptions> _parseOptionsClasses();
-
-        static std::map<std::string,std::string> _parseProgramOptionsFromCommandLine(COMMANDLINE::CommandLineArguments const & aCommandLine);
+        static std::map<std::string,std::string> parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine);
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationParameters
-        //      Method:  SimulationParameters :: _createBoostVariableMap
+        //      Method:  SimulationParameters :: createBoostVariableMap_
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return: void
         //--------------------------------------------------------------------------------------
-        static boost::program_options::variables_map _createBoostVariableMap(COMMANDLINE::CommandLineArguments const & aCommandLine);
+        static boost::program_options::variables_map createBoostVariableMap_(COMMANDLINE::CommandLineArguments const & aCommandLine);
 
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationParameters
-        //      Method:  SimulationParameters :: _transferBoostVariableMap
+        //      Method:  SimulationParameters :: transferBoostVariableMap_
         // Description:  
         // 
         //  Parameters: 
         //
         //      Return: void
         //--------------------------------------------------------------------------------------
-        static std::map<std::string,std::string> _transferBoostVariableMap(boost::program_options::variables_map const & vm);
+        static std::map<std::string,std::string> transferBoostVariableMap_(boost::program_options::variables_map const & vm);
 
         /* ====================  DATA MEMBERS  ======================================= */
-        std::map<std::string,std::string> _commandLineOptionsMap;
-        std::map<std::string,std::string> _simulationParametersMap;
+        std::map<std::string,std::string> commandLineOptionsMap_;
+        std::map<std::string,std::string> simulationParametersMap_;
 
 }; /* -----  end of class SimulationParameters  ----- */
 
