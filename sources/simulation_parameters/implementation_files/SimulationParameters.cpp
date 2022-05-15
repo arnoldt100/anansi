@@ -177,9 +177,9 @@ boost::program_options::variables_map SimulationParameters::createBoostVariableM
     return vm;
 }
 
-std::map<std::string,std::string> SimulationParameters::transferBoostVariableMap_(boost::program_options::variables_map const & vm)
+SimulationParameters::OPTIONS_MAP_T_ SimulationParameters::transferBoostVariableMap_(boost::program_options::variables_map const & vm)
 {
-    std::map<std::string,std::string> options_map;
+    SimulationParameters::OPTIONS_MAP_T_ options_map;
 
     // The options_map variable is  used to store the option values instead of the boost
     // variable_map so as to modularize the option parsing functionality - we don't want to use
@@ -206,7 +206,7 @@ std::map<std::string,std::string> SimulationParameters::transferBoostVariableMap
     return options_map;
 }
 
-std::map<std::string,std::string> SimulationParameters::parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine)
+SimulationParameters::OPTIONS_MAP_T_ SimulationParameters::parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine)
 {
     // Create the Boost variabler map.
     const auto vm = SimulationParameters::createBoostVariableMap_(aCommandLine);

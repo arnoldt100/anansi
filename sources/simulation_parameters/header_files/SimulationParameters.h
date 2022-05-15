@@ -30,10 +30,10 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommandLineArguments.h"
-#include "CommandLineOptions.h"
 
 namespace ANANSI
 {
+
 
 /*
  * =====================================================================================
@@ -45,7 +45,6 @@ class SimulationParameters
 {
 
     public:
-        using OPTIONS_MAP_T = std::map<std::string,std::string>;
 
         /* ====================  LIFECYCLE     ======================================= */
 
@@ -111,11 +110,14 @@ class SimulationParameters
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
+        /* ====================  TYPE ALIASES  ======================================= */
+        using OPTIONS_MAP_T_ = std::map<std::string,std::string>;
+
         /* ====================  METHODS       ======================================= */
 
         /* ====================  STATIC        ======================================= */
 
-        static std::map<std::string,std::string> parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine);
+        static OPTIONS_MAP_T_ parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine);
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationParameters
@@ -138,11 +140,11 @@ class SimulationParameters
         //
         //      Return: void
         //--------------------------------------------------------------------------------------
-        static std::map<std::string,std::string> transferBoostVariableMap_(boost::program_options::variables_map const & vm);
+        static OPTIONS_MAP_T_ transferBoostVariableMap_(boost::program_options::variables_map const & vm);
 
         /* ====================  DATA MEMBERS  ======================================= */
-        OPTIONS_MAP_T  commandLineOptionsMap_;
-        OPTIONS_MAP_T  simulationParametersMap_;
+        OPTIONS_MAP_T_  commandLineOptionsMap_;
+        OPTIONS_MAP_T_  simulationParametersMap_;
 
 }; /* -----  end of class SimulationParameters  ----- */
 
