@@ -167,26 +167,33 @@ No protected members
 Private Members
 ---------------
 
-.. Commented out. 
-.. ^^^^^^^^^^
-.. Life Cycle
-.. ^^^^^^^^^^
-..
-.. ^^^^^^^^^
-.. Accessors
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Operators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Mutators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^^^^
-.. Data Members
-.. ^^^^^^^^^^^^
+^^^^^^^^^^^^
+Type Aliases
+^^^^^^^^^^^^
+
+.. type:: OPTIONS_MAP_T = std::map<std::string,std::string>
+
+    An alias for the type of the object storing the simulation parameters. 
+
+^^^^^^^^^^
+Life Cycle
+^^^^^^^^^^
+
+^^^^^^^^^
+Accessors
+^^^^^^^^^
+
+^^^^^^^^^
+Operators
+^^^^^^^^^
+
+^^^^^^^^^
+Mutators
+^^^^^^^^^
+
+^^^^^^^^^^^^
+Data Members
+^^^^^^^^^^^^
 
 ^^^^^^
 Static
