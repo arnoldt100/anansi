@@ -151,19 +151,6 @@ boost::program_options::variables_map SimulationParameters::createBoostVariableM
     // options_description. If the help option is present in
     // the command line arguments, then only add to the help description.
     po::options_description description;
-    // const std::string help_long_opt("--help");
-    // const std::string help_short_opt("-h");
-    // if (aCommandLine.findArgument(help_long_opt) || aCommandLine.findArgument(help_short_opt))
-    // {
-    //     HelpOption.addBoostOption(description);
-    // }
-    // else
-    // {
-    //     for (const auto & a_option : Alloptions)
-    //     {
-    //         a_option.addBoostOption(description);
-    //     }
-    // }
     for (const auto & a_option : Alloptions)
     {
         a_option.addBoostOption(description);
@@ -185,28 +172,6 @@ OPTIONS_PARAMETERS_MAP_t SimulationParameters::transferBoostVariableMap_(boost::
 {
     OPTIONS_PARAMETERS_MAP_t options_map;
 
-    // The options_map variable is  used to store the option values instead of the boost
-    // variable_map so as to modularize the option parsing functionality - we don't want to use
-    // boost's variable map throughout the program.
-    //if ( vm.count("help") )
-    //{
-    //    // Process only the help option value and transfer from the boost variable map to
-    //    // options_map. 
-    //    const std::vector<std::string> options_to_process = {"help"};
-    //    for (const auto & a_option : Alloptions)
-    //    {
-    //        a_option.getSelectOptionsValue(options_map,vm,options_to_process);
-    //    }
-    //}
-    //else
-    //{
-    //    // Loop over all option values and transfer from the boost variable map to options_map.
-    //    for (const auto & a_option : Alloptions)
-    //    {
-    //        a_option.getOptionsValue(options_map,vm);
-    //    }
-    //}
-
     // Loop over all option values and transfer from the boost variable map to options_map.
     for (const auto & a_option : Alloptions)
     {
@@ -223,7 +188,6 @@ OPTIONS_PARAMETERS_MAP_t SimulationParameters::parseProgramOptionsFromCommandLin
 
     // Transfer the Boost variabler map to options map.
     const OPTIONS_PARAMETERS_MAP_t options_map = SimulationParameters::transferBoostVariableMap_(vm);
-
 
     return options_map;
 }
