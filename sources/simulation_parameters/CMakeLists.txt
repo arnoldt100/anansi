@@ -83,6 +83,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (simulation_parameters_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/OptionsParametersMap.h 
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationParameters.h 
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationParametersFactory.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorNoShortName.h
@@ -105,19 +106,20 @@
     #                                                    -
     #-----------------------------------------------------
     set (simulation_parameters_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParameters.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParametersFactory.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoShortName.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoLongName.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionDescription.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionAdded.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorIllFormedOption.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/AllOptions.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/HelpOption.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileOption.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptionsParameter.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptionsUtilityFunctions.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptions.cpp )
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/OptionsParametersMap.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParameters.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationParametersFactory.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoShortName.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoLongName.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionDescription.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorNoOptionAdded.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorIllFormedOption.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/AllOptions.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/HelpOption.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileOption.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptionsParameter.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptionsUtilityFunctions.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandLineOptions.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

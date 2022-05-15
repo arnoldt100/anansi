@@ -29,6 +29,7 @@ Welcome to Anansi's class documentation!
    Classes/TerminateSimulation.cpp.rst
    Classes/MDTerminateSimulationVisitor.cpp.rst
    Classes/MDTerminateSimulation.cpp.rst
+   Classes/OptionsParametersMap.cpp.rst
 
 
    Classes/AnansiMolecularDynamicsFactory.cpp.rst
