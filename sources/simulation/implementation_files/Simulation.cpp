@@ -91,6 +91,9 @@ void Simulation::initializeSimulationEnvironment()
 void Simulation::processCommandLine() 
 {
     this->processCommandLine_();
+
+    // Check for help on the command line. If help is found then print
+    // the help message and terminate the simulation.
     return;
 }        /* -----  end of method Simulation::processCommandLine  ----- */
 
