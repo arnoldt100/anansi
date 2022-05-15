@@ -10,13 +10,13 @@ This class encapsulates the parameters of the simulation.
 
 .. class:: SimulationParameters
 
-The responsibility of SimulationParameters is ton store the paramters of the simulation.
+The responsibility of SimulationParameters is to store the parameters of the simulation.
 It doesn't store atom positions, velocities, etc. It stores information such as the simulation
 temperature, pressure, methodology, restart file names, etc. This information will later be used 
 to initialize the simulation initial conditions and perform the simulation.
 
 The command line options are parsed and checked for correctness by using the Boost program options library.
-From the command line options, the appropiate contolfile file is parsed and the simulation parameters are stored
+From the command line options, the appropriate controlfile file is parsed and the simulation parameters are stored
 in class SimulationParamters.
 
 ======================

@@ -61,7 +61,7 @@ namespace ANANSI
             // ====================  ACCESSORS     =======================================
             void execute_(Simulation * const a_simulation) const override;
 
-            virtual void Execute_(Simulation * const a_simulation) const ;
+            virtual void Execute_(Simulation * const a_simulation) const;
 
         private:
             // ====================  METHODS       =======================================
