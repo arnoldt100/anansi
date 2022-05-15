@@ -193,10 +193,30 @@ Static
 
 .. function:: static ANANSI::OPTIONS_PARAMETERS_MAP_t  SimulationParameters::parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine)
 
-    Parses the program options from the command line object and stores in a
+    Parses the program options from the command line arguments and stores in a
     ANANSI::OPTIONS_PARAMETERS_MAP_t object which is returned.
 
     :param aCommandLine: Contains the command line arguments.
 
     :rtype: ANANSI::OPTIONS_PARAMETERS_MAP_t
 
+.. function:: static boost::program_options::variables_map createBoostVariableMap_(COMMANDLINE::CommandLineArguments const & aCommandLine)
+
+    Returns a Boost variable map based with respect to the the program command line arguments
+    the object ANANSI::Alloptions.
+
+    :param aCommandLine: Contains the command line argumnents.
+
+    :rtype: boost::program_options::variables_map
+
+.. function:: static OPTIONS_PARAMETERS_MAP_t transferBoostVariableMap_(boost::program_options::variables_map const & vm)
+
+    vm, a Boost variable map, is transfered to an object of type
+    OPTIONS_PARAMETERS_MAP_t and this object is returned. This
+    transfering is done because the Boost variable map is not ideal for
+    storing mapping of simple key-value pairs. We only use the Boost variable
+    map for parsing command line program options.
+
+    :param vm: A Boost variable map 
+
+    :rtype: ANANSI::OPTIONS_PARAMETERS_MAP_t
