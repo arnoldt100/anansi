@@ -17,7 +17,7 @@ to initialize the simulation initial conditions and perform the simulation.
 
 The command line options are parsed and checked for correctness by using the Boost program options library.
 From the command line options, the appropriate controlfile file is parsed and the simulation parameters are stored
-in class SimulationParamters.
+in class SimulationParameters.
 
 ======================
 Interface Header Files
@@ -35,8 +35,8 @@ Interface Header Files
 
 **Project Include Files**
 
+* #include "OptionsParametersMap.h"
 * #include "CommandLineArguments.h"
-* #include "CommandLineOptions.h"
 
 ===========================
 Implementation Header Files
@@ -167,14 +167,6 @@ No protected members
 Private Members
 ---------------
 
-^^^^^^^^^^^^
-Type Aliases
-^^^^^^^^^^^^
-
-.. type:: OPTIONS_MAP_T = std::map<std::string,std::string>
-
-    An alias for the type of the object storing the simulation parameters. 
-
 ^^^^^^^^^^
 Life Cycle
 ^^^^^^^^^^
@@ -199,11 +191,12 @@ Data Members
 Static
 ^^^^^^
 
-.. function:: static std::map<std::string,std::string> SimulationParameters::parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine)
+.. function:: static ANANSI::OPTIONS_PARAMETERS_MAP_t  SimulationParameters::parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine)
 
-    Parses the program options from the command line object to a options_map object,
+    Parses the program options from the command line object and stores in a
+    ANANSI::OPTIONS_PARAMETERS_MAP_t object which is returned.
 
-    :param aCommandLine: This object has the command line arguments.
+    :param aCommandLine: Contains the command line arguments.
 
-    :rtype: std::map<std::string,std::string>
+    :rtype: ANANSI::OPTIONS_PARAMETERS_MAP_t
 

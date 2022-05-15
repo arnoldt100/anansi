@@ -30,6 +30,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
+#include "OptionsParametersMap.h"
 #include "CommandLineArguments.h"
 
 namespace ANANSI
@@ -111,14 +112,11 @@ class SimulationParameters
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
-        /* ====================  TYPE ALIASES  ======================================= */
-        using OPTIONS_MAP_T_ = std::map<std::string,std::string>;
-
         /* ====================  METHODS       ======================================= */
 
         /* ====================  STATIC        ======================================= */
 
-        static OPTIONS_MAP_T_ parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine);
+        static OPTIONS_PARAMETERS_MAP_t parseProgramOptionsFromCommandLine_(COMMANDLINE::CommandLineArguments const & aCommandLine);
 
         //--------------------------------------------------------------------------------------
         //       Class:  SimulationParameters
@@ -141,11 +139,11 @@ class SimulationParameters
         //
         //      Return: void
         //--------------------------------------------------------------------------------------
-        static OPTIONS_MAP_T_ transferBoostVariableMap_(boost::program_options::variables_map const & vm);
+        static OPTIONS_PARAMETERS_MAP_t transferBoostVariableMap_(boost::program_options::variables_map const & vm);
 
         /* ====================  DATA MEMBERS  ======================================= */
-        OPTIONS_MAP_T_  commandLineOptionsMap_;
-        OPTIONS_MAP_T_  simulationParametersMap_;
+        OPTIONS_PARAMETERS_MAP_t  commandLineOptionsMap_;
+        OPTIONS_PARAMETERS_MAP_t  simulationParametersMap_;
 
 }; /* -----  end of class SimulationParameters  ----- */
 
