@@ -1,13 +1,11 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <memory>
-#include <type_traits>
+// #include <type_traits>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include "copy_2d_char_array.h"
 #include "Pointer.hpp"
 #include "Pointer2d.hpp"
 #include "MPICommunicatorFactory.h"
@@ -40,13 +38,13 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Initialize all state objects for this MD simulation.
-    std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_ = std::make_unique<MDSimulationStateFactory>();
-    this->mdNullSimulationState_ = std::move(mdStateFactory_->create<NullSimulation>());
-    this->mdInitSimEnv_ = std::move(mdStateFactory_->create<InitSimEnv>());
-    this->mdProcessCmdLine_ = std::move(mdStateFactory_->create<ProcessCmdLine>());
-    this->mdInitInitialConditions_ = std::move(mdStateFactory_->create<InitInitialConditions>());
-    this->mdPerformSimulation_ = std::move(mdStateFactory_->create<PerformSimulation>());
-    this->mdTerminateSimulation_ = std::move(mdStateFactory_->create<TerminateSimulation>());
+    std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
+    this->mdNullSimulationState_ = std::move(md_state_factory->create<NullSimulation>());
+    this->mdInitSimEnv_ = std::move(md_state_factory->create<InitSimEnv>());
+    this->mdProcessCmdLine_ = std::move(md_state_factory->create<ProcessCmdLine>());
+    this->mdInitInitialConditions_ = std::move(md_state_factory->create<InitInitialConditions>());
+    this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
+    this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -64,13 +62,13 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
     // Initialize all state objects for this MD simulation.
-    std::unique_ptr<ANANSI::MDSimulationStateFactory> mdStateFactory_ = std::make_unique<MDSimulationStateFactory>();
-    this->mdNullSimulationState_ = std::move(mdStateFactory_->create<NullSimulation>());
-    this->mdInitSimEnv_ = std::move(mdStateFactory_->create<InitSimEnv>());
-    this->mdProcessCmdLine_ = std::move(mdStateFactory_->create<ProcessCmdLine>());
-    this->mdInitInitialConditions_ = std::move(mdStateFactory_->create<InitInitialConditions>());
-    this->mdPerformSimulation_ = std::move(mdStateFactory_->create<PerformSimulation>());
-    this->mdTerminateSimulation_ = std::move(mdStateFactory_->create<TerminateSimulation>());
+    std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
+    this->mdNullSimulationState_ = std::move(md_state_factory->create<NullSimulation>());
+    this->mdInitSimEnv_ = std::move(md_state_factory->create<InitSimEnv>());
+    this->mdProcessCmdLine_ = std::move(md_state_factory->create<ProcessCmdLine>());
+    this->mdInitInitialConditions_ = std::move(md_state_factory->create<InitInitialConditions>());
+    this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
+    this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
 
     // Change the state to Null.
@@ -113,6 +111,21 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
     std::cout << "Disabled the MPI environment." << std::endl;
     return;
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
+
+
+void 
+AnansiMolecularDynamics::enableWorldCommunicator()
+{
+    return;
+}
+
+
+void 
+AnansiMolecularDynamics::disableWorldCommunicator()
+{
+    return;
+}
+
 
 void
 AnansiMolecularDynamics::saveCommandLineOptionParameters()
