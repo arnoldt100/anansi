@@ -55,7 +55,7 @@ class AnansiMolecularDynamics final : public Simulation
         void enableCommunicationEnvironment();
 
         void disableCommunicationEnvironment();
-       
+
         void enableWorldCommunicator();
 
         void disableWorldCommunicator();
@@ -69,11 +69,11 @@ class AnansiMolecularDynamics final : public Simulation
 
         /* ====================  OPERATORS     ======================================= */
 
-        AnansiMolecularDynamics&                                                 
+        AnansiMolecularDynamics&
         operator=(AnansiMolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
                                                                    // AnansiMolecularDynamics class.
 
-        AnansiMolecularDynamics&                                                 
+        AnansiMolecularDynamics&
         operator=(AnansiMolecularDynamics && other) = delete;
 
         /* ====================  STATIC        ======================================= */
@@ -101,7 +101,7 @@ class AnansiMolecularDynamics final : public Simulation
         /* ====================  MUTATORS      ======================================= */
 
         // This group of functions initializes the simulation environment.
-        void 
+        void
         initializeSimulationEnvironment_() final override;
 
         // This group of functions processes the command line and sets the
@@ -118,7 +118,7 @@ class AnansiMolecularDynamics final : public Simulation
 
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment_() final override;
-        
+
         void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
         void setGlobalISEStatus_() final override;
 

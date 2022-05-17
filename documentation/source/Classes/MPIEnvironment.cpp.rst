@@ -12,10 +12,13 @@ Include Header Files
 
 **C++ Include Files**
 
+* #include <memory>
+
 **External Library Files**
 
 **Package Include Files**
 
+* #include "NullMPIEnvironment.h"
 * #include "ClassInstanceLimiter.hpp"
 
 ======================
@@ -150,21 +153,27 @@ No protected members
 Private Members
 ---------------
 
-No private members
+---------
+Accessors
+---------
 
-.. Commented out. 
-.. ---------
-.. Accessors
-.. ---------
-.. 
-.. ---------
-.. Operators
-.. ---------
-.. 
-.. --------
-.. Mutators
-.. --------
-.. 
-.. ------------
-.. Data Members
-.. ------------
+---------
+Operators
+---------
+
+--------
+Mutators
+--------
+
+------------
+Data Members
+------------
+
+.. member:: std::shared_ptr<COMMUNICATOR::NullMPIEnvironment> nullmpistate_
+
+    A null MPI Environment state.
+
+.. member:: std::shared_ptr<COMMUNICATOR::MPIEnvironmentState> mpistate_
+
+    Stores the state of the MPI environment.
+
