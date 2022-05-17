@@ -30,6 +30,9 @@ Welcome to Anansi's class documentation!
    Classes/MDTerminateSimulationVisitor.cpp.rst
    Classes/MDTerminateSimulation.cpp.rst
    Classes/OptionsParametersMap.cpp.rst
+   Classes/MPIEnvironment.cpp.rst
+   Classes/MPIEnvironmentState.cpp.rst
+   Classes/NullMPIEnvironmentState.cpp.rst
 
 
    Classes/AnansiMolecularDynamicsFactory.cpp.rst
@@ -39,6 +42,5 @@ Welcome to Anansi's class documentation!
    Classes/SimulationParameters.cpp.rst
    Classes/SimulationParametersFactory.cpp.rst
    Classes/MolecularDynamicsFactory.cpp.rst
-   Classes/MPIEnvironment.cpp.rst
    Classes/Pointer2d.hpp.rst
    Classes/TooManyInstancesError.hpp.rst
