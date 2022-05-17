@@ -52,7 +52,7 @@ MDNullSimulation::~MDNullSimulation()
 
 //============================= OPERATORS ====================================
 
-MDNullSimulation& MDNullSimulation::operator= ( MDNullSimulation const & other ) 
+MDNullSimulation& MDNullSimulation::operator= ( MDNullSimulation const & other )
 {
     if (this != &other)
     {
@@ -77,7 +77,7 @@ MDNullSimulation& MDNullSimulation::operator= ( MDNullSimulation && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void MDNullSimulation::Execute_(Simulation * const a_simulation) const 
+void MDNullSimulation::Execute_(Simulation * const a_simulation) const
 {
     MDNullSimulationVisitor a_visitor;
     a_simulation->Accept(a_visitor);
@@ -91,7 +91,7 @@ void MDNullSimulation::Execute_(Simulation * const a_simulation) const
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-    
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
