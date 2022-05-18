@@ -25,15 +25,6 @@ class __classname__
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  __classname__
-        //      Method:  __classname__ :: __classname__
-        // Description:  
-        // 
-        //  Parameters: 
-        //
-        //      Return:
-        //--------------------------------------------------------------------------------------
         __classname__ ();   // constructor
 
         __classname__ (const __classname__ & other);   // copy constructor
