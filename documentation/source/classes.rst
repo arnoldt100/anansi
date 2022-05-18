@@ -32,7 +32,7 @@ Welcome to Anansi's class documentation!
    Classes/OptionsParametersMap.cpp.rst
    Classes/MPIEnvironment.cpp.rst
    Classes/MPIEnvironmentState.cpp.rst
-   Classes/NullMPIEnvironmentState.cpp.rst
+   Classes/NullMPIEnvironment.cpp.rst
 
 
    Classes/AnansiMolecularDynamicsFactory.cpp.rst

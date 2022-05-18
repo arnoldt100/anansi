@@ -68,7 +68,7 @@ Life Cycle
 
     The copy-move constructor.
 
-.. function:: NullMPIEnvironment::~NullMPIEnvironment()=0
+.. function:: NullMPIEnvironment::~NullMPIEnvironment()
 
     The destructor.
 
