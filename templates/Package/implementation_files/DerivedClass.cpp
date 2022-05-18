@@ -20,13 +20,15 @@ namespace __NAMESPACE__ {
 
 //============================= LIFECYCLE ====================================
 
-__classname__::__classname__()
+__classname__::__classname__() :
+    __derivedclass__()
 {
 	// TODO Auto-generated constructor stub
     return;
 }
 
-__classname__::__classname__( __classname__ const & other)
+__classname__::__classname__( __classname__ const & other) :
+   __derivedclass__(other) 
 {
 	// TODO Auto-generated constructor stub
     if (this != &other)
@@ -36,12 +38,12 @@ __classname__::__classname__( __classname__ const & other)
     return;
 }
 
-__classname__::__classname__( __classname__ && other)
+__classname__::__classname__( __classname__ && other) : 
+    __derivedclass__(std::move(other));
 {
 	// TODO Auto-generated constructor stub
     if (this != &other)
     {
-        
     }
     return;
 }		// -----  end of method __classname__::__classname__  -----
@@ -59,20 +61,22 @@ __classname__::~__classname__()
 
 //============================= OPERATORS ====================================
 
-__classname__& __classname__::operator= ( const __classname__ &other )
+__classname__& __classname__::operator=( const __classname__ &other )
 {
+	// TODO Auto-generated constructor stub
     if (this != &other)
     {
-
+        __derivedclass__::operator=(other);
     }
     return *this;
 } // assignment operator
 
-__classname__& __classname__::operator= ( __classname__ && other )
+__classname__& __classname__::operator=( __classname__ && other )
 {
+	// TODO Auto-generated constructor stub
     if (this != &other)
     {
-
+        __derivedclass__::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
