@@ -28,11 +28,21 @@ __classname__::__classname__()
 
 __classname__::__classname__( __classname__ const & other)
 {
+	// TODO Auto-generated constructor stub
+    if (this != &other)
+    {
+        
+    }
     return;
 }
 
 __classname__::__classname__( __classname__ && other)
 {
+	// TODO Auto-generated constructor stub
+    if (this != &other)
+    {
+        
+    }
     return;
 }		// -----  end of method __classname__::__classname__  -----
 
@@ -82,7 +92,7 @@ __classname__& __classname__::operator= ( __classname__ && other )
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-
+    
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
