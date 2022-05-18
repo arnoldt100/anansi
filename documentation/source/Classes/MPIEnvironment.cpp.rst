@@ -119,7 +119,7 @@ Operators
 Mutators
 ^^^^^^^^
 
-.. function:: void MPIEnvironment::enable(int const & argc, char const * const * const & argv) const
+.. function:: void MPIEnvironment::enable(int const & argc, char const * const * const & argv)
 
     Calls MPI_Init with non-NULL arguments. 
 
@@ -133,13 +133,21 @@ Mutators
     :rtype: void
 
 
-.. function:: void MPIEnvironment::enable() const
+.. function:: void MPIEnvironment::enable() 
 
     Calls MPI_Init with NULL arguments. 
 
     :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
     :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
     :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
+
+    :rtype: void
+
+.. function:: void MPIEnvironment::enableEnvironment(int const & argc, char const * const * const & argv)
+
+    :rtype: void
+
+.. function:: void MPIEnvironment::enableEnvironment()
 
     :rtype: void
 

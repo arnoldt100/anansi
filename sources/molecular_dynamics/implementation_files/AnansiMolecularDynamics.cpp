@@ -92,8 +92,8 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     char** my_argv_ptr=nullptr;
 
     this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
-	this->MpiEnvironment_ = std::make_unique<COMMUNICATOR::MPIEnvironment>();
-    this->MpiEnvironment_->enable(my_argc,my_argv_ptr);
+    this->MpiEnvironment_ = std::make_unique<COMMUNICATOR::MPIEnvironment>();
+    this->MpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
 
     if (my_argv_ptr != nullptr)
     {
@@ -107,7 +107,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 void
 AnansiMolecularDynamics::disableCommunicationEnvironment()
 {
-    this->MpiEnvironment_->disable();
+    this->MpiEnvironment_->disableEnvironment();
     std::cout << "Disabled the MPI environment." << std::endl;
     return;
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
@@ -177,11 +177,11 @@ AnansiMolecularDynamics::inputSimulationControlFile ()
     this->setStatus(my_status);
 
     return;
-}		/* -----  end of method AnansiMolecularDynamics::inputSimulationControlFile_  ----- */
+}   /* -----  end of method AnansiMolecularDynamics::inputSimulationControlFile_  ----- */
 
 void AnansiMolecularDynamics::readInitialConfiguration()
 {
-	std::cout << "Reading initial configuration" << std::endl;
+    std::cout << "Reading initial configuration" << std::endl;
 }
 
 
