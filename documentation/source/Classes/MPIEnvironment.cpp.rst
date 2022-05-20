@@ -18,7 +18,7 @@ Include Header Files
 
 **Package Include Files**
 
-* #include "NullMPIEnvironment.h"
+* #include "MPIEnvironmentState.h"
 * #include "ClassInstanceLimiter.hpp"
 
 ======================
@@ -32,6 +32,8 @@ Interface Header Files
 
 **External Library Files**
 
+* #include "mpi.h"
+
 
 **Package Include Files**
 
@@ -39,6 +41,9 @@ Interface Header Files
 * #include "MPIInitializedException.h"
 * #include "MPIFinalizedException.h"
 * #include "MPIEnvironment.h"
+* #include "NullMPIEnvironment.h"
+* #include "EnabledMPIEnvironment.h"
+* #include "DisabledMPIEnvironment.h"
 * #include "Pointer2d.hpp"
 * #include "copy_2d_char_array.h"
 
@@ -57,14 +62,33 @@ MPIEnvironment Class Documentation
 
 .. class:: MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
 
-This MPIEnvironment class abstracts the initialization of the MPI environment. 
-The instantiation of the class calls MPI_Init, and the class destruction calls
-MPI_Finalize.
+This MPIEnvironment class abstracts the state of the MPI environment. 
+The MPI environment has 3 states:
+
+* NullMPIEnvironment
+
+    The NullMPIEnvironment is where no invokcation of MPI_Init. This
+    is the state of MPIEnvironment uopn instantiation. One then
+    can enabled the MPIEnvironment. Disabling an NullMPIEnvironment 
+    throws and error ErrorInvalidMPIEnvironmentChange. 
+
+* EnabledMPIEnvironment
+
+    The EnabledMPIEnvironment state is where there has been a successful
+    MPI_Init invokcation. Once the MPIEnvironment is enabled it can be
+    disabled, and reenabling a MPIEnvironment does nothing.
+
+* DisabledMPIEnvironment
+
+    The DisabledMPIEnvironment state is where there has been a successful
+    MPI_Finalize invokcation. Once the MPIEnvironment is in the disabled it
+    stays disabled. The error ErrorInvalidMPIEnvironmentChange is
+    thrown if one attempts to change from disabled to an enabled state.
 
 This class can only be instantiated once, and it inherits *privately* from template <T,
 int MAX_INSTANCES> ClassInstanceLimiter() to achieve this constraint. 
 
-The class is designated as final, and furthermore the copy constructor, 
+The class is designated as final, and furthermore, the copy constructor, 
 move-copy, copy assignment, and move-assignment functions are deleted to enforce
 only 1 single instantiation.
 
@@ -76,6 +100,16 @@ COUNTERCLASS::ClassInstanceLimiter.
 --------------
 Public Members
 --------------
+
+^^^^^^^
+Friends
+^^^^^^^
+
+* COMMUNICATOR::NullMPIEnvironment
+
+* COMMUNICATOR::EnabledMPIEnvironment
+
+* COMMUNICATOR::DisbledMPIEnvironment
 
 ^^^^^^^^^
 Lifecycle
@@ -119,35 +153,25 @@ Operators
 Mutators
 ^^^^^^^^
 
-.. function:: void MPIEnvironment::enable(int const & argc, char const * const * const & argv)
-
-    Calls MPI_Init with non-NULL arguments. 
-
-    :param int argc: The number of command line arguments.
-    :param char** argv: The command line arguments.
-
-    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
-    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
-    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
-
-    :rtype: void
-
-
-.. function:: void MPIEnvironment::enable() 
-
-    Calls MPI_Init with NULL arguments. 
-
-    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
-    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
-    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
-
-    :rtype: void
-
 .. function:: void MPIEnvironment::enableEnvironment(int const & argc, char const * const * const & argv)
+
+    Attempts to change the MPIEnvironment state to enable. This call invokes
+    the MPIEnvironment state member to change MPIEnvironment to enable.
 
     :rtype: void
 
 .. function:: void MPIEnvironment::enableEnvironment()
+
+    Attempts to change the MPIEnvironment state to enable. This call invokes
+    the MPIEnvironment state member to change MPIEnvironment to enable.
+ 
+
+    :rtype: void
+
+.. function:: void disableEnvironment()
+
+    Attempts to change the MPIEnvironment state to disable. This call invokes
+    the MPIEnvironment state member to change MPIEnvironment to disable.
 
     :rtype: void
 
@@ -173,13 +197,47 @@ Operators
 Mutators
 --------
 
+.. function:: void MPIEnvironment::enable_(int const & argc, char const * const * const & argv)
+
+    Calls MPI_Init with non-NULL arguments. 
+
+    :param int argc: The number of command line arguments.
+    :param char** argv: The command line arguments.
+
+    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
+    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
+    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
+
+    :rtype: void
+
+
+.. function:: void MPIEnvironment::enable_() 
+
+    Calls MPI_Init with NULL arguments. 
+
+    :throws COUNTERCLASS::TooManyInstances: Raised when more than 1 MPIEnvironment classs is instantiated.
+    :throws COMMUNICATOR::MPIInitializedException: Raised when MPI_Init has already been called.
+    :throws COMMUNICATOR::MPIInitException: Raised when MPI_Init fails.
+
+    :rtype: void
+
+.. function:: void disable_()
+
+    This function invokes MPI_Finalize to disable the MPI environment.
+
+    :throws COMMUNICATOR::MPIFinalizedException : Raised when MPI_Finalize fails.
+
+    :rtype: void
+
+.. function:: template<class T> void changeMPIState_()
+
+    This function modifies the class member mpistate\_ to T.
+
+    :rtype: void
+
 ------------
 Data Members
 ------------
-
-.. member:: std::shared_ptr<COMMUNICATOR::NullMPIEnvironment> nullmpistate_
-
-    A null MPI Environment state.
 
 .. member:: std::shared_ptr<COMMUNICATOR::MPIEnvironmentState> mpistate_
 
