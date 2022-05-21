@@ -8,6 +8,14 @@
 EnabledMPIEnvironment Documentation
 ###################################
 
+The reponsibility of this class is to provide the logic when enabling of
+disabling an EnabledMPIEnvironment state. The behavior is as follows:
+
+* Disabling an enabled MPI environment results in a diabled MPIEnvironmentState, 
+  DisabledMPIEnvironment.
+
+* Enabling an enabled MPI environment results does nothing and the MPIEnvironmentState 
+  remains in state EnabledMPIEnvironment.
 
 ======================
 Interface Header Files
@@ -33,9 +41,9 @@ Implementation Header Files
 
 **Project Include Files**
 
-#include "DisabledMPIEnvironment.h"
-#include "EnabledMPIEnvironment.h"
-#include "MPIEnvironment.h"
+* #include "DisabledMPIEnvironment.h"
+* #include "EnabledMPIEnvironment.h"
+* #include "MPIEnvironment.h"
 
 ========================================
 EnabledMPIEnvironment.h Global Variables
@@ -67,7 +75,7 @@ Life Cycle
 
     The copy-move constructor.
 
-.. function:: EnabledMPIEnvironment::~EnabledMPIEnvironment()=0
+.. function:: EnabledMPIEnvironment::~EnabledMPIEnvironment()
 
     The destructor.
 
