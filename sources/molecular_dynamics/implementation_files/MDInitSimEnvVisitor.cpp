@@ -48,6 +48,7 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 
     // Initializing the communication environment.
     a_sim.enableCommunicationEnvironment();
+    a_sim.enableWorldCommunicator();
 
     return;
 }
