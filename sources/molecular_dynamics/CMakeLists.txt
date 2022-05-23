@@ -39,6 +39,7 @@
     get_target_property(my_mpl_include  mpl mpl_include)
     get_target_property(my_s_include  simulation simulation_include)
     get_target_property(my_ss_include  simulation_state simulation_state_include)
+    get_target_property(my_comm_include  communicator simulation_state_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -171,7 +172,7 @@ target_include_directories( ${my_anansi_md_library}
 #-----------------------------------------------------
 target_link_libraries(${my_anansi_md_library}
                       string_utilities
-                      mpi_communicator
+                      communicator
                       simulation_parameters
                       command_line_arguments
                       counterclass
@@ -216,7 +217,7 @@ target_link_libraries(${my_main_target_binary}
                       PRIVATE ${my_anansi_md_library} 
                       command_line_arguments
                       simulation_parameters
-                      mpi_communicator
+                      communicator
                       counterclass
                       mpl
                       simulation

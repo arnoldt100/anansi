@@ -53,7 +53,7 @@
     # This library needs access to the following header  -
     # files:                                             -
     #                                                    -
-    #   mpi_communicator target header files            -
+    #   communicator target header files                 -
     #                                                    -
     # We get the path to the above header files.         -
     #-----------------------------------------------------
@@ -142,7 +142,7 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files)
 
 target_link_libraries(${target}
-                      mpi_communicator)
+                      communicator)
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
