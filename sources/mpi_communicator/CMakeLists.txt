@@ -79,6 +79,7 @@
          header_files/MasterSlaveIdentification_Specialization_1.h
          header_files/MPIEnvironmentState.h
          header_files/MPIInitException.h
+         header_files/MPIUtilityFunctions.h
          header_files/MPICommunicatorFactory.h
          header_files/DisabledMPIEnvironment.h
          header_files/EnabledMPIEnvironment.h 
@@ -101,6 +102,7 @@
          implementation_files/MasterSlaveIdentification_Specialization_1.cpp
          implementation_files/MPIEnvironmentState.cpp
          implementation_files/MPIInitException.cpp
+         implementation_files/MPIUtilityFunctions.cpp
          implementation_files/MPICommunicatorFactory.cpp
          implementation_files/DisabledMPIEnvironment.cpp
          implementation_files/EnabledMPIEnvironment.cpp 
