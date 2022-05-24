@@ -37,6 +37,7 @@
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers/cmake_macros_and_functions/file_parsers.cmake)
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_state/cmake_macros_and_functions/simulation_state.cmake)
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation/cmake_macros_and_functions/simulation.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/mpi_communicator/cmake_macros_and_functions/mpi_communicator.cmake)
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -162,6 +163,16 @@ enable_building_simulation_library( "${anansi_install_lib_directory}"
                                     "${anansi_install_bin_directory}" 
                                     "${anansi_cxx_standard}" )
 
+# ----------------------------------------------------
+# Here we define variales which indicate where
+# to install the mpi_communicator libraries,
+# header files, and associated binariers.
+# 
+# ----------------------------------------------------
+enable_building_mpi_communicator_library( "${anansi_install_lib_directory}"
+                                          "${anansi_install_include_directory}"
+                                          "${anansi_install_bin_directory}" 
+                                          "${anansi_cxx_standard}" )
 
 #-----------------------------------------------------
 # This section permits use to find the header files  -
@@ -183,6 +194,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/mpi_communicator)
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -

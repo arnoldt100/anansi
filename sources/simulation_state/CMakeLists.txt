@@ -87,7 +87,7 @@
 
 #-----------------------------------------------------
 # Add the library associated with target             -
-# command_line_arguments.                            -
+# simulation_state                                   -
 #                                                    -
 #-----------------------------------------------------
 add_library( ${target} STATIC 
