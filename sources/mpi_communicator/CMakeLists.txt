@@ -73,6 +73,10 @@
     #-----------------------------------------------------
     set (mpi_communicator_header_files
          header_files/MPIEnvironment.h
+         header_files/Identification.h
+         header_files/MasterSlaveIdentification.h
+         header_files/MasterSlaveIdentification_Specialization_0.h
+         header_files/MasterSlaveIdentification_Specialization_1.h
          header_files/MPIEnvironmentState.h
          header_files/MPIInitException.h
          header_files/DisabledMPIEnvironment.h
@@ -90,6 +94,10 @@
     #-----------------------------------------------------
     set (mpi_communicator_implementation_files
          implementation_files/MPIEnvironment.cpp
+         implementation_files/Identification.cpp
+         implementation_files/MasterSlaveIdentification.cpp
+         implementation_files/MasterSlaveIdentification_Specialization_0.cpp
+         implementation_files/MasterSlaveIdentification_Specialization_1.cpp
          implementation_files/MPIEnvironmentState.cpp
          implementation_files/MPIInitException.cpp
          implementation_files/DisabledMPIEnvironment.cpp
