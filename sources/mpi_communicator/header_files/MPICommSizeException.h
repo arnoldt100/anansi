@@ -5,8 +5,8 @@
  *      Authors: Arnold Tharrington
  */
 
-#ifndef COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPICOMMSIZEEXCEPTION_H_
-#define COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPICOMMSIZEEXCEPTION_H_
+#ifndef ANANSI_MPICOMMSIZEEXCEPTION_H_
+#define ANANSI_MPICOMMSIZEEXCEPTION_H_
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,7 +17,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 class MPICommSizeException : public std::exception {
 
@@ -43,6 +43,6 @@ private:
 
 };
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */
 
-#endif /* COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPICOMMSIZEEXCEPTION_H_ */
+#endif /* ANANSI_MPICOMMSIZEEXCEPTION_H_ */
