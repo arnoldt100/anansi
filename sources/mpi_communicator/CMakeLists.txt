@@ -177,6 +177,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       mpi_communicator_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD ${mpi_communicator_cxx_standard}
                       PUBLIC_HEADER "${mpi_communicator_header_files}" )
 
 install( TARGETS ${target}

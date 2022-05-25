@@ -218,8 +218,7 @@ void
 MPICommunicator::_createSubcommunicator(const std::string & tag) 
 {
     std::map<std::string, std::size_t> aglobaltagmap = 
-        ANANSI::Communicator::formGlobalMap(tag,
-                                                  *this);
+        ANANSI::Communicator::formGlobalMap(tag,*this);
 
     // Get the hash for this global tag.
     std::size_t my_hash = aglobaltagmap[tag];
@@ -268,7 +267,7 @@ MPICommunicator::_getCommunicatorRank() const
    return rank;
 }
 
-ANANSI::Communicator*
+COMMUNICATOR::Communicator*
 MPICommunicator::_duplicateCommunicator() const 
 {
 	// First make a duplicate of the communicator

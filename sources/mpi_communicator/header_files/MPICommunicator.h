@@ -27,7 +27,7 @@ namespace ANANSI
 
 static constexpr std::size_t DEFAULT_MPI_MASTER_RANK_ID=0;
 
-class MPICommunicator final : public Communicator
+class MPICommunicator final : public COMMUNICATOR::Communicator
 {
 public:
 
@@ -63,7 +63,7 @@ private:
     int
     _getCommunicatorRank() const final override;
 
-    ANANSI::Communicator*
+    COMMUNICATOR::Communicator*
     _duplicateCommunicator() const final override;
 
     int
