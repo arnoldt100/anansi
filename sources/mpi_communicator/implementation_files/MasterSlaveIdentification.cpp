@@ -4,7 +4,7 @@
 
 #include "MasterSlaveIdentification.h"
 
-namespace COMMUNICATOR
+namespace ANANSI
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -50,4 +50,4 @@ namespace COMMUNICATOR
 
 //============================= STATIC METHODS ===============================
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */

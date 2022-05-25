@@ -2,8 +2,8 @@
  * MasterSlaveIdentification.h
  */
 
-#ifndef  MasterSlaveIdentification_INC
-#define  MasterSlaveIdentification_INC
+#ifndef  ANANSI_MasterSlaveIdentification_INC
+#define  ANANSI_MasterSlaveIdentification_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -15,13 +15,13 @@
 //--------------------------------------------------------//
 #include "Identification.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 template<typename T> 
 class MasterSlaveIdentification; 
 
 
-}; /* namespace COMMUNICATOR */
+}; /* namespace ANANSI */
 
-#endif   /* ----- #ifndef MasterSlaveIdentification_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_MasterSlaveIdentification_INC  ----- */
 
