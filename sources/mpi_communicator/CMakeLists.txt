@@ -72,6 +72,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_header_files
+         header_files/MPIAllGatherException.h
          header_files/MPIGatherException.h
          header_files/MPIDataType.h
          header_files/MPICommSizeException.h
@@ -102,6 +103,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_implementation_files
+         implementation_files/MPIAllGatherException.cpp
          implementation_files/MPIGatherException.cpp
          implementation_files/MPIDataType.cpp
          implementation_files/MPICommSizeException.cpp
