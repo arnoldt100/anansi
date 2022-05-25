@@ -1,5 +1,5 @@
-#ifndef  COMMUNICATOR_EnabledMPIEnvironment_INC
-#define  COMMUNICATOR_EnabledMPIEnvironment_INC
+#ifndef  ANANSI_EnabledMPIEnvironment_INC
+#define  ANANSI_EnabledMPIEnvironment_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -15,7 +15,7 @@
 //--------------------------------------------------------//
 #include "MPIEnvironmentState.h"
 
-namespace COMMUNICATOR
+namespace ANANSI
 {
 
 // =====================================================================================
@@ -60,6 +60,6 @@ class EnabledMPIEnvironment : public MPIEnvironmentState
 }; // -----  end of class EnabledMPIEnvironment  -----
 
 
-}; // namespace COMMUNICATOR
+}; // namespace ANANSI
 
-#endif   /* ----- #ifndef COMMUNICATOR_EnabledMPIEnvironment_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_EnabledMPIEnvironment_INC  ----- */

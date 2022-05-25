@@ -13,7 +13,7 @@
 #include "MPIEnvironment.h"
 #include "ErrorInvalidMPIEnvironmentChange.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -113,4 +113,4 @@ void DisabledMPIEnvironment::enable_(MPIEnvironment* const mpi_environment, int 
 //============================= OPERATORS ====================================
 
 
-} // namespace COMMUNICATOR
+} // namespace ANANSI

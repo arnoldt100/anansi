@@ -7,7 +7,7 @@
 
 #include "MPIUtilityFunctions.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -34,7 +34,7 @@ MPIUtilityFunctions::~MPIUtilityFunctions()
 //============================= STATIC METHODS ===============================
 bool MPIUtilityFunctions::i_am_master(const std::size_t id)
 {
-    return ( id == COMMUNICATOR::MASTER_TASK_ID ? true : false );
+    return ( id == ANANSI::MASTER_TASK_ID ? true : false );
 };
 
 bool MPIUtilityFunctions::i_am_master(const MPI_Comm & aCommunicator)
@@ -73,7 +73,7 @@ bool MPIUtilityFunctions::same_rank(const std::size_t id1,
 bool MPIUtilityFunctions::same_rank(const std::size_t id1,
                                     const MPI_Comm & aCommunicator)
 {
-    std::size_t my_rank = COMMUNICATOR::MPIUtilityFunctions::myRank(aCommunicator);
+    std::size_t my_rank = ANANSI::MPIUtilityFunctions::myRank(aCommunicator);
     return ( id1==my_rank ? true : false);
 }
 
@@ -106,4 +106,4 @@ bool MPIUtilityFunctions::same_rank(const std::size_t id1,
 
 //============================= STATIC METHODS ===============================
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */

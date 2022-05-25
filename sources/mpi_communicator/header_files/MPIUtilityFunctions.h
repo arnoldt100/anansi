@@ -5,8 +5,8 @@
  *      Authors: Arnold N. Tharrington
  */
 
-#ifndef COMMUNICATOR_MPIUTILITYFUNCTIONS_H_
-#define COMMUNICATOR_MPIUTILITYFUNCTIONS_H_
+#ifndef ANANSI_MPIUTILITYFUNCTIONS_H_
+#define ANANSI_MPIUTILITYFUNCTIONS_H_
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -19,7 +19,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 class MPIUtilityFunctions {
 
@@ -81,6 +81,6 @@ private:
 
 };
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */
 
-#endif /* COMMUNICATOR_MPIUTILITYFUNCTIONS_H_ */
+#endif /* ANANSI_MPIUTILITYFUNCTIONS_H_ */

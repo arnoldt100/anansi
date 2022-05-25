@@ -13,7 +13,7 @@
 #include "EnabledMPIEnvironment.h"
 #include "MPIEnvironment.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -101,10 +101,10 @@ EnabledMPIEnvironment& EnabledMPIEnvironment::operator= ( EnabledMPIEnvironment 
 void EnabledMPIEnvironment::disable_(MPIEnvironment* const mpi_environment)
 {
     mpi_environment->disable_();
-    mpi_environment->changeMPIState_<COMMUNICATOR::DisabledMPIEnvironment>();
+    mpi_environment->changeMPIState_<ANANSI::DisabledMPIEnvironment>();
     return;
 }
 //============================= OPERATORS ====================================
 
 
-} // namespace COMMUNICATOR
+} // namespace ANANSI

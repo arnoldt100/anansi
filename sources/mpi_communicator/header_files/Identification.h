@@ -15,7 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 enum class MASTER_SLAVE_IDENTITIES
 { 
@@ -149,6 +149,6 @@ Identification<T>& Identification<T>::operator=(Identification<T> const & other)
 //============================= STATIC METHODS ===============================
 
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */
 
 #endif   /* ----- #ifndef Identification_INC  ----- */

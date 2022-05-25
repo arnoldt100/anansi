@@ -14,7 +14,7 @@
 #include "EnabledMPIEnvironment.h"
 #include "MPIEnvironment.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -103,18 +103,18 @@ NullMPIEnvironment& NullMPIEnvironment::operator=( NullMPIEnvironment && other )
 void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
 {
     mpi_environment->enable_();
-    mpi_environment->changeMPIState_<COMMUNICATOR::EnabledMPIEnvironment>();
+    mpi_environment->changeMPIState_<ANANSI::EnabledMPIEnvironment>();
     return;
 }
 
 void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
 {
     mpi_environment->enable_(argc,argv);
-    mpi_environment->changeMPIState_<COMMUNICATOR::EnabledMPIEnvironment>();
+    mpi_environment->changeMPIState_<ANANSI::EnabledMPIEnvironment>();
     return;
 }
 
 //============================= OPERATORS ====================================
 
 
-} // namespace COMMUNICATOR
+} // namespace ANANSI

@@ -1,5 +1,5 @@
-#ifndef  COMMUNICATOR_NullMPIEnvironment_INC
-#define  COMMUNICATOR_NullMPIEnvironment_INC
+#ifndef  ANANSI_NullMPIEnvironment_INC
+#define  ANANSI_NullMPIEnvironment_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -15,7 +15,7 @@
 //--------------------------------------------------------//
 #include "MPIEnvironmentState.h"
 
-namespace COMMUNICATOR
+namespace ANANSI
 {
 
 // =====================================================================================
@@ -62,6 +62,6 @@ class NullMPIEnvironment : public MPIEnvironmentState
 }; // -----  end of class NullMPIEnvironment  -----
 
 
-}; // namespace COMMUNICATOR
+}; // namespace ANANSI
 
-#endif   /* ----- #ifndef COMMUNICATOR_NullMPIEnvironment_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_NullMPIEnvironment_INC  ----- */

@@ -11,7 +11,7 @@
 //--------------------------------------------------------//
 #include "MPIEnvironmentState.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -123,4 +123,4 @@ void MPIEnvironmentState::disable_(MPIEnvironment* const mpi_environment)
 //============================= OPERATORS ====================================
 
 
-} // namespace COMMUNICATOR
+} // namespace ANANSI

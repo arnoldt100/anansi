@@ -16,14 +16,14 @@
 //--------------------------------------------------------//
 //--------------------- Forward Declarations -------------//
 //--------------------------------------------------------//
-namespace COMMUNICATOR
+namespace ANANSI
 {
 
 class MPIEnvironment; 
 
 }
 
-namespace COMMUNICATOR
+namespace ANANSI
 {
 
 
@@ -88,6 +88,6 @@ class MPIEnvironmentState
 }; // -----  end of class MPIEnvironmentState  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
 #endif   /* ----- #ifndef COMMUNICATOR_MPIEnvironmentState_INC  ----- */
