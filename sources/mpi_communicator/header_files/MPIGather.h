@@ -5,8 +5,8 @@
  *      Authors: Arnold Tharrington
  */
 
-#ifndef COMMUNICATOR_MPIGATHER
-#define COMMUNICATOR_MPIGATHER
+#ifndef ANANSI_MPIGATHER
+#define ANANSI_MPIGATHER
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -26,7 +26,7 @@
 #include "Array1dChar.hpp"
 #include "MasterSlaveIdentification_Specialization_0.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 template<typename T>
 class MPI_GATHER;
@@ -56,6 +56,6 @@ class MPI_GATHER<int>
 
 };
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */
 
-#endif /* COMMUNICATOR_MPIGATHER */
+#endif /* ANANSI_MPIGATHER */

@@ -7,7 +7,7 @@
 
 #include "MPIGather.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -36,7 +36,7 @@ namespace COMMUNICATOR {
     int mpi_return_code = MPI_Comm_size(aCommunicator,&group_size);
     if (mpi_return_code != MPI_SUCCESS)
     {
-        throw COMMUNICATOR::MPICommSizeException();
+        throw ANANSI::MPICommSizeException();
     }
     nm_mpi_tasks = static_cast<std::size_t>(group_size);
 
@@ -44,7 +44,7 @@ namespace COMMUNICATOR {
     // data do we allocate the recieve buffer.
     std::size_t recv_buffer_size = 0;
     char* my_recv_buffer_ptr = nullptr;
-    if ( COMMUNICATOR::MPIUtilityFunctions::same_rank(task_id_to_gather_data,aCommunicator) )
+    if ( ANANSI::MPIUtilityFunctions::same_rank(task_id_to_gather_data,aCommunicator) )
     {
         recv_buffer_size = static_cast<std::size_t>(group_size*send_buffer_count);
         my_recv_buffer_ptr = my_char_array_factory.createArray(recv_buffer_size);
@@ -62,7 +62,7 @@ namespace COMMUNICATOR {
 
     if (mpi_return_code != MPI_SUCCESS)
     {
-        throw COMMUNICATOR::MPIGatherException();
+        throw ANANSI::MPIGatherException();
     }
 
     return my_recv_buffer_ptr;
@@ -76,7 +76,7 @@ std::vector<int> MPI_GATHER<int>::Gather(
 {
     MEMORY_MANAGEMENT::Array1d<int> my_array_factory;
 
-    COMMUNICATOR::MasterSlaveIdentification<MPI_Comm> my_identity(aCommunicator,
+    ANANSI::MasterSlaveIdentification<MPI_Comm> my_identity(aCommunicator,
                                                                   task_id_to_gather_data);
 
     // Get the size of the communicator group.
@@ -84,7 +84,7 @@ std::vector<int> MPI_GATHER<int>::Gather(
     int mpi_return_code = MPI_Comm_size(aCommunicator,&comm_group_size);
     if (mpi_return_code != MPI_SUCCESS)
     {
-        throw COMMUNICATOR::MPICommSizeException();
+        throw ANANSI::MPICommSizeException();
     }
 
     // Declare the recv buffer and only on the mpi task to gather the 
@@ -119,7 +119,7 @@ std::vector<int> MPI_GATHER<int>::Gather(
 
     if (mpi_return_code != MPI_SUCCESS)
     {
-        throw COMMUNICATOR::MPIGatherException();
+        throw ANANSI::MPIGatherException();
     }
 
     // Fill in the standard vector.
@@ -167,4 +167,4 @@ std::vector<int> MPI_GATHER<int>::Gather(
 //============================= OPERATORS ====================================
 
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */
