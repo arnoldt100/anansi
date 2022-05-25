@@ -4,7 +4,7 @@
 
 #include "MasterSlaveIdentification_Specialization_0.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -17,7 +17,7 @@ MasterSlaveIdentification<MPI_Comm>::MasterSlaveIdentification(
     const MPI_Comm & aCommunicator,
     const int master_mpi_rank) : Identification<MPI_Comm>()
 {
-    if (COMMUNICATOR::MPIUtilityFunctions::same_rank(master_mpi_rank,aCommunicator) )
+    if (ANANSI::MPIUtilityFunctions::same_rank(master_mpi_rank,aCommunicator) )
     {
         this->_myIdentity=MASTER_SLAVE_IDENTITIES::master_mpi_task;
     }
@@ -47,7 +47,7 @@ MasterSlaveIdentification<MPI_Comm>::~MasterSlaveIdentification()
 
 //============================= ACCESSORS ====================================
 
-COMMUNICATOR::MASTER_SLAVE_IDENTITIES MasterSlaveIdentification<MPI_Comm>::_getMyIdentity() const
+ANANSI::MASTER_SLAVE_IDENTITIES MasterSlaveIdentification<MPI_Comm>::_getMyIdentity() const
 {
     return this->_myIdentity;
 }
@@ -97,4 +97,4 @@ MasterSlaveIdentification<MPI_Comm>& MasterSlaveIdentification<MPI_Comm>::operat
 
 //============================= STATIC METHODS ===============================
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */

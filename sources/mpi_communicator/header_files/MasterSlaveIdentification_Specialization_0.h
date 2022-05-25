@@ -17,7 +17,7 @@
 #include "MPIUtilityFunctions.h"
 #include "Identification.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 template<>
 class MasterSlaveIdentification<MPI_Comm> : public Identification<MPI_Comm> 
@@ -60,7 +60,7 @@ class MasterSlaveIdentification<MPI_Comm> : public Identification<MPI_Comm>
         MASTER_SLAVE_IDENTITIES _myIdentity;      
 
         //===== ACCESSORS ======
-        COMMUNICATOR::MASTER_SLAVE_IDENTITIES _getMyIdentity() const override;
+        ANANSI::MASTER_SLAVE_IDENTITIES _getMyIdentity() const override;
 
         //===== MUTATORS =======
 
@@ -71,7 +71,7 @@ class MasterSlaveIdentification<MPI_Comm> : public Identification<MPI_Comm>
 
 
 
-}; /* namespace COMMUNICATOR */
+}; /* namespace ANANSI */
 
 #endif   /* ----- #ifndef MasterSlaveIdentification_INC  ----- */
 
