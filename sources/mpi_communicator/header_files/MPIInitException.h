@@ -5,8 +5,8 @@
  *      Authors: Arnold Tharrington
  */
 
-#ifndef COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPIINITEXCPTION_H_
-#define COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPIINITEXCPTION_H_
+#ifndef ANANSI_MPIINITEXCPTION_H_
+#define ANANSI_MPIINITEXCPTION_H_
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,7 +17,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 class MPIInitException : public std::exception {
 
@@ -43,6 +43,6 @@ private:
 
 };
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */
 
-#endif /* COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPIINITEXCPTION_H_ */
+#endif /* ANANSI_MPIINITEXCPTION_H_ */
