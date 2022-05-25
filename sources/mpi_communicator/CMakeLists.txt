@@ -72,6 +72,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_header_files
+         header_files/MPIFinalizedException.h
          header_files/MPIInitializedException.h
          header_files/MPIEnvironment.h
          header_files/Identification.h
@@ -97,6 +98,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_implementation_files
+         implementation_files/MPIFinalizedException.cpp
          implementation_files/MPIInitializedException.cpp
          implementation_files/MPIEnvironment.cpp
          implementation_files/Identification.cpp
