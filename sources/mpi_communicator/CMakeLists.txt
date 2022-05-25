@@ -79,6 +79,7 @@
          header_files/Identification.h
          header_files/MPIGather.h
          header_files/MasterSlaveIdentification.h
+         header_files/MPIAllgather.h
          header_files/MasterSlaveIdentification_Specialization_0.h
          header_files/MasterSlaveIdentification_Specialization_1.h
          header_files/MPIEnvironmentState.h
@@ -106,6 +107,7 @@
          implementation_files/Identification.cpp
          implementation_files/MPIGather.cpp
          implementation_files/MasterSlaveIdentification.cpp
+         implementation_files/MPIAllgather.cpp
          implementation_files/MasterSlaveIdentification_Specialization_0.cpp
          implementation_files/MasterSlaveIdentification_Specialization_1.cpp
          implementation_files/MPIEnvironmentState.cpp
