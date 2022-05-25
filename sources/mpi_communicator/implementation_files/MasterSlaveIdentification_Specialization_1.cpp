@@ -4,7 +4,7 @@
 
 #include "MasterSlaveIdentification_Specialization_1.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -13,9 +13,9 @@ namespace COMMUNICATOR {
 //============================= LIFECYCLE ====================================
 
 
-MasterSlaveIdentification<Communicator>::MasterSlaveIdentification(
-    const Communicator & aCommunicator,
-    const int master_mpi_rank) : Identification<Communicator>()
+MasterSlaveIdentification<COMMUNICATOR::Communicator>::MasterSlaveIdentification(
+    const COMMUNICATOR::Communicator & aCommunicator,
+    const int master_mpi_rank) : Identification<COMMUNICATOR::Communicator>()
 {
 
     if ( aCommunicator.sameCommunicatorRank(master_mpi_rank) )
@@ -30,8 +30,8 @@ MasterSlaveIdentification<Communicator>::MasterSlaveIdentification(
 }
 
 
-MasterSlaveIdentification<Communicator>::MasterSlaveIdentification(MasterSlaveIdentification<Communicator> const & other) :
-    Identification<Communicator>(),
+MasterSlaveIdentification<COMMUNICATOR::Communicator>::MasterSlaveIdentification(MasterSlaveIdentification<COMMUNICATOR::Communicator> const & other) :
+    Identification<COMMUNICATOR::Communicator>(),
     _myIdentity(other._myIdentity)
 {
     if ( this != &other )
@@ -41,14 +41,14 @@ MasterSlaveIdentification<Communicator>::MasterSlaveIdentification(MasterSlaveId
     return;
 }
 
-MasterSlaveIdentification<Communicator>::~MasterSlaveIdentification()
+MasterSlaveIdentification<COMMUNICATOR::Communicator>::~MasterSlaveIdentification()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-COMMUNICATOR::MASTER_SLAVE_IDENTITIES MasterSlaveIdentification<Communicator>::_getMyIdentity() const
+ANANSI::MASTER_SLAVE_IDENTITIES MasterSlaveIdentification<COMMUNICATOR::Communicator>::_getMyIdentity() const
 {
     return this->_myIdentity;
 }
@@ -57,9 +57,9 @@ COMMUNICATOR::MASTER_SLAVE_IDENTITIES MasterSlaveIdentification<Communicator>::_
 
 //============================= OPERATORS ====================================
 
-MasterSlaveIdentification<Communicator>& MasterSlaveIdentification<Communicator>::operator=(MasterSlaveIdentification<Communicator> const & other)
+MasterSlaveIdentification<COMMUNICATOR::Communicator>& MasterSlaveIdentification<COMMUNICATOR::Communicator>::operator=(MasterSlaveIdentification<COMMUNICATOR::Communicator> const & other)
 {
-    Identification<Communicator>::operator=(other);
+    Identification<COMMUNICATOR::Communicator>::operator=(other);
 
     if ( this != &other )
     {
@@ -98,4 +98,4 @@ MasterSlaveIdentification<Communicator>& MasterSlaveIdentification<Communicator>
 
 //============================= STATIC METHODS ===============================
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */

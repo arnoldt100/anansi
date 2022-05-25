@@ -77,7 +77,7 @@ std::vector<int> MPI_GATHER<int>::Gather(
     MEMORY_MANAGEMENT::Array1d<int> my_array_factory;
 
     ANANSI::MasterSlaveIdentification<MPI_Comm> my_identity(aCommunicator,
-                                                                  task_id_to_gather_data);
+                                                            task_id_to_gather_data);
 
     // Get the size of the communicator group.
     int comm_group_size;

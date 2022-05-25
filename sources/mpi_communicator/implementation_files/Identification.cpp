@@ -5,7 +5,7 @@
 
 #include "Identification.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -49,4 +49,4 @@ namespace COMMUNICATOR {
 
 //============================= STATIC METHODS ===============================
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */

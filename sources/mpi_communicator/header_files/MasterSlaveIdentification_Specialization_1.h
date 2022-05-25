@@ -17,17 +17,17 @@
 #include "Identification.h"
 #include "MPICommunicator.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 template<>
-class MasterSlaveIdentification<Communicator> : public Identification<Communicator> 
+class MasterSlaveIdentification<COMMUNICATOR::Communicator> : public Identification<COMMUNICATOR::Communicator> 
 {
     public:
         //===== LIFECYCLE ======
-        MasterSlaveIdentification(const Communicator & aCommunicator,
+        MasterSlaveIdentification(const COMMUNICATOR::Communicator & aCommunicator,
                                   const int master_mpi_rank);
 
-        MasterSlaveIdentification(MasterSlaveIdentification<Communicator> const & other);
+        MasterSlaveIdentification(MasterSlaveIdentification<COMMUNICATOR::Communicator> const & other);
 
         ~MasterSlaveIdentification();
 
@@ -38,7 +38,7 @@ class MasterSlaveIdentification<Communicator> : public Identification<Communicat
         //===== MUTATORS =======
 
         //===== OPERATORS ======
-        MasterSlaveIdentification& operator=(MasterSlaveIdentification<Communicator> const & other);
+        MasterSlaveIdentification& operator=(MasterSlaveIdentification<COMMUNICATOR::Communicator> const & other);
 
         //===== STATIC METHODS =
 
@@ -60,7 +60,7 @@ class MasterSlaveIdentification<Communicator> : public Identification<Communicat
         MASTER_SLAVE_IDENTITIES _myIdentity;      
 
         //===== ACCESSORS ======
-        COMMUNICATOR::MASTER_SLAVE_IDENTITIES _getMyIdentity() const override;
+        ANANSI::MASTER_SLAVE_IDENTITIES _getMyIdentity() const override;
 
         //===== MUTATORS =======
 
@@ -71,7 +71,7 @@ class MasterSlaveIdentification<Communicator> : public Identification<Communicat
 
 
 
-}; /* namespace COMMUNICATOR */
+}; /* namespace ANANSI */
 
 #endif   /* ----- #ifndef MasterSlaveIdentification_INC  ----- */
 
