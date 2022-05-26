@@ -218,7 +218,7 @@ void
 MPICommunicator::_createSubcommunicator(const std::string & tag) 
 {
     std::map<std::string, std::size_t> aglobaltagmap = 
-        ANANSI::Communicator::formGlobalMap(tag,*this);
+        COMMUNICATOR::Communicator::formGlobalMap(tag,*this);
 
     // Get the hash for this global tag.
     std::size_t my_hash = aglobaltagmap[tag];
