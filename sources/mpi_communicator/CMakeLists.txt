@@ -72,6 +72,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_header_files
+         header_files/MPICommDuplicateException.h
          header_files/MPIAllReduceException.h
          header_files/MPIReduce.h
          header_files/ErrorInvalidMPIEnvironmentChange.h
@@ -107,6 +108,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_implementation_files
+         implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIAllReduceException.cpp
          implementation_files/MPIReduce.cpp
          implementation_files/ErrorInvalidMPIEnvironmentChange.cpp
