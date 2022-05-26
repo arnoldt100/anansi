@@ -34,7 +34,7 @@ MPIUtilityFunctions::~MPIUtilityFunctions()
 //============================= STATIC METHODS ===============================
 bool MPIUtilityFunctions::i_am_master(const std::size_t id)
 {
-    return ( id == ANANSI::MASTER_TASK_ID ? true : false );
+    return ( id == COMMUNICATOR::MASTER_TASK_ID ? true : false );
 };
 
 bool MPIUtilityFunctions::i_am_master(const MPI_Comm & aCommunicator)
