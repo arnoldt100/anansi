@@ -1,13 +1,17 @@
-/*
- * MPICommunicatorFactory.cpp
- *
- *  Created on: 12/05/18
- *      Authors: Arnold Tharrington
- */
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
 
-#include "MPICommunicatorFactory.h"
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
 
-namespace ANANSI {
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "ErrorInvalidMPIEnvironmentChange.h"
+
+namespace COMMUNICATOR {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -15,38 +19,65 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MPICommunicatorFactory::MPICommunicatorFactory() : 
-    COMMUNICATOR::CommunicatorFactory()
+ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange()
 {
     return;
 }
 
-MPICommunicatorFactory::~MPICommunicatorFactory() {
-    return;
-}
-
-MPICommunicatorFactory::MPICommunicatorFactory(const MPICommunicatorFactory& other)
+ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange( ErrorInvalidMPIEnvironmentChange const & other)
 {
     if (this != &other)
     {
+        
     }
+    return;
+}
+
+ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange( ErrorInvalidMPIEnvironmentChange && other)
+{
+    if (this != &other)
+    {
+        
+    }
+    return;
+}		// -----  end of method ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange  -----
+
+
+ErrorInvalidMPIEnvironmentChange::~ErrorInvalidMPIEnvironmentChange()
+{
     return;
 }
 
 //============================= ACCESSORS ====================================
 
+const char* ErrorInvalidMPIEnvironmentChange::what() const noexcept
+{
+    return "Invalid change of MPIEnviromentState.";
+}
+
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-MPICommunicatorFactory& 
-MPICommunicatorFactory::operator=(const MPICommunicatorFactory& other)
+
+ErrorInvalidMPIEnvironmentChange& ErrorInvalidMPIEnvironmentChange::operator= ( const ErrorInvalidMPIEnvironmentChange &other )
 {
     if (this != &other)
     {
 
     }
     return *this;
-}
+} // assignment operator
+
+ErrorInvalidMPIEnvironmentChange& ErrorInvalidMPIEnvironmentChange::operator= ( ErrorInvalidMPIEnvironmentChange && other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment-move operator
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -66,26 +97,10 @@ MPICommunicatorFactory::operator=(const MPICommunicatorFactory& other)
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-std::unique_ptr<COMMUNICATOR::Communicator> MPICommunicatorFactory::_createWorldCommunicator() const
-{
-    std::unique_ptr<COMMUNICATOR::Communicator> aCommunicator = 
-        std::make_unique<ANANSI::MPICommunicator>();
-
-    aCommunicator->initializeWorldCommunicator();
-    return aCommunicator;
-}
-
-std::unique_ptr<COMMUNICATOR::Communicator> 
-MPICommunicatorFactory::_cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & otherCommunicator) const
-{
-    auto tmp_mpicommunicator = std::move(otherCommunicator->duplicateCommunicator());
-    std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator(tmp_mpicommunicator);
-    return aMPICommunicator;
-}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
 
-} /* namespace ANANSI */
+} // namespace COMMUNICATOR

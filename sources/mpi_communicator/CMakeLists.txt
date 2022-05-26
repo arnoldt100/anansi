@@ -72,6 +72,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_header_files
+         header_files/ErrorInvalidMPIEnvironmentChange.h
          header_files/MPIGenericException.h
          header_files/MPIAllGatherException.h
          header_files/MPIGatherException.h
@@ -104,6 +105,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_implementation_files
+         implementation_files/ErrorInvalidMPIEnvironmentChange.cpp
          implementation_files/MPIGenericException.cpp
          implementation_files/MPIAllGatherException.cpp
          implementation_files/MPIGatherException.cpp
