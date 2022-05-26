@@ -72,6 +72,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_header_files
+         header_files/ErrorMPIBroadcast.h
          header_files/MPIBroadcast.h
          header_files/MPICommDuplicateException.h
          header_files/MPIAllReduceException.h
@@ -109,6 +110,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpi_communicator_implementation_files
+         implementation_files/ErrorMPIBroadcast.cpp
+         implementation_files/MPICommSplitException.cpp
          implementation_files/MPIBroadcast.cpp
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIAllReduceException.cpp
