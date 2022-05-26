@@ -6,6 +6,7 @@
  */
 
 #include "MPIUtilityFunctions.h"
+#include "MPIGenericException.h"
 
 namespace ANANSI {
 
