@@ -11,7 +11,7 @@
 //--------------------------------------------------------//
 #include "ErrorInvalidMPIEnvironmentChange.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -102,5 +102,4 @@ ErrorInvalidMPIEnvironmentChange& ErrorInvalidMPIEnvironmentChange::operator= ( 
 
 //============================= OPERATORS ====================================
 
-
-} // namespace COMMUNICATOR
+} // namespace ANANSI

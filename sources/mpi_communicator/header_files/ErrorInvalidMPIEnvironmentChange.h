@@ -1,5 +1,5 @@
-#ifndef  MOUSEION_ErrorInvalidMPIEnvironmentChange_INC
-#define MOUSEION_ErrorInvalidMPIEnvironmentChange_INC
+#ifndef ANANSI_ErrorInvalidMPIEnvironmentChange_INC
+#define ANANSI_ErrorInvalidMPIEnvironmentChange_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -15,7 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace COMMUNICATOR
+namespace ANANSI
 {
 
 // =====================================================================================
@@ -59,6 +59,6 @@ class ErrorInvalidMPIEnvironmentChange : public std::exception
 }; // -----  end of class ErrorInvalidMPIEnvironmentChange  -----
 
 
-}; // namespace COMMUNICATOR
+}; // namespace ANANSI
 
-#endif   /* ----- #ifndef MOUSEION_ErrorInvalidMPIEnvironmentChange_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_ErrorInvalidMPIEnvironmentChange_INC  ----- */
