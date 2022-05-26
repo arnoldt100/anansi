@@ -155,7 +155,7 @@ AnansiMolecularDynamics::inputSimulationControlFile ()
     }
 
     // Create the control file parser and process the control file.
-    COMMUNICATOR::MPICommunicatorFactory a_communicator_factory;
+    ANANSI::MPICommunicatorFactory a_communicator_factory;
     std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
     StandardFileParserFactory file_parser_factory;
     std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
