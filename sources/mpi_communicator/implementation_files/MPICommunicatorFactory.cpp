@@ -16,7 +16,7 @@ namespace COMMUNICATOR {
 //============================= LIFECYCLE ====================================
 
 MPICommunicatorFactory::MPICommunicatorFactory() : 
-    CommunicatorFactory()
+    COMMUNICATOR::CommunicatorFactory()
 {
     return;
 }

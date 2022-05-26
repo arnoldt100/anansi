@@ -5,8 +5,8 @@
  *      Authors: Arnold Tharrington
  */
 
-#ifndef COMMUNICATOR_MPICOMMUNICATORFACTORY_H_ 
-#define COMMUNICATOR_MPICOMMUNICATORFACTORY_H_ 
+#ifndef ANANSI_MPICOMMUNICATORFACTORY_H_ 
+#define ANANSI_MPICOMMUNICATORFACTORY_H_ 
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -18,9 +18,9 @@
 #include "MPICommunicator.h"
 #include "CommunicatorFactory.h"
 
-namespace COMMUNICATOR {
+namespace ANANSI {
 
-class MPICommunicatorFactory : public CommunicatorFactory 
+class MPICommunicatorFactory : public COMMUNICATOR::CommunicatorFactory 
 {
 
 public:
@@ -70,6 +70,6 @@ private:
 
 };
 
-} /* namespace COMMUNICATOR */
+} /* namespace ANANSI */
 
-#endif /* COMMUNICATOR_MPICOMMUNICATORFACTORY_H_ */
+#endif /* ANANSI_MPICOMMUNICATORFACTORY_H_ */
