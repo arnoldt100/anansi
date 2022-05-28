@@ -1,15 +1,12 @@
-/*
- * MPICommunicatorFactory.h
- *
- *  Created on: 12/05/18
- *      Authors: Arnold Tharrington
- */
-
 #ifndef ANANSI_MPICOMMUNICATORFACTORY_H_ 
 #define ANANSI_MPICOMMUNICATORFACTORY_H_ 
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
 //--------------------------------------------------------//
 
 //--------------------------------------------------------//
@@ -20,16 +17,18 @@
 
 namespace ANANSI {
 
-class MPICommunicatorFactory : public COMMUNICATOR::CommunicatorFactory 
+class MPICommunicatorFactory final : public COMMUNICATOR::CommunicatorFactory 
 {
 
 public:
     //===== LIFECYCLE ======
     MPICommunicatorFactory();
 
-    ~MPICommunicatorFactory();
-
     MPICommunicatorFactory(MPICommunicatorFactory const & other);
+
+    MPICommunicatorFactory(MPICommunicatorFactory && other);
+
+    ~MPICommunicatorFactory();
 
     //===== DATA MEMBERS ===
 
@@ -39,6 +38,8 @@ public:
 
     //===== OPERATORS ======
     MPICommunicatorFactory& operator=(MPICommunicatorFactory const & other);
+
+    MPICommunicatorFactory& operator=(MPICommunicatorFactory && other);
     
 protected:
     //===== LIFECYCLE ======
@@ -58,10 +59,10 @@ private:
 
     //===== ACCESSORS ======
     std::unique_ptr<COMMUNICATOR::Communicator>
-     _createWorldCommunicator() const override;
+     createWorldCommunicator_() const override;
 
      std::unique_ptr<COMMUNICATOR::Communicator>
-     _cloneCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
+     cloneCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
 
     //===== MUTATORS =======
 

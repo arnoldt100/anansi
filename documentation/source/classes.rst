@@ -36,7 +36,8 @@ Welcome to Anansi's class documentation!
    Classes/EnabledMPIEnvironment.cpp.rst
    Classes/DisabledMPIEnvironment.cpp.rst
    Classes/ErrorInvalidMPIEnvironmentChange.cpp.rst
-
+   Classes/CommunicatorFactory.cpp.rst
+   Classes/MPICommunicatorFactory.cpp.rst
 
    Classes/AnansiMolecularDynamicsFactory.cpp.rst
    Classes/CommandLineArguments.cpp.rst
