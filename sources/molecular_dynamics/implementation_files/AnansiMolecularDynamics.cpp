@@ -116,6 +116,8 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 void 
 AnansiMolecularDynamics::enableWorldCommunicator()
 {
+    std::unique_ptr<COMMUNICATOR::CommunicatorFactory> my_mpi_factory(new MPICommunicatorFactory);
+    this->MpiWorldCommunicator_ = my_mpi_factory->createWorldCommunicator();
     return;
 }
 
