@@ -125,6 +125,7 @@ AnansiMolecularDynamics::enableWorldCommunicator()
 void 
 AnansiMolecularDynamics::disableWorldCommunicator()
 {
+    this->MpiWorldCommunicator_->freeCommunicator();
     return;
 }
 
