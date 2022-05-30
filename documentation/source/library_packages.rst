@@ -8,3 +8,4 @@ Welcome to Anansi's Library Package Documentation
 
     Library_Packages/string_utilities.rst
     Library_Packages/molecular_dynamics.rst
+    Library_Packages/logger.rst
