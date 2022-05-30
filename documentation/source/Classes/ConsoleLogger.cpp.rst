@@ -20,11 +20,15 @@ Interface Header Files
 
 **Project Include Files**
 
+* #include "Logger.h"
+
 ===========================
 Implementation Header Files
 ===========================
 
 **C++ Include Files**
+
+* #include <memory>
 
 **External Library Files**
 

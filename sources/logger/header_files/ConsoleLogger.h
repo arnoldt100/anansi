@@ -1,5 +1,5 @@
-#ifndef  ANANSI_Logger_INC
-#define  ANANSI_Logger_INC
+#ifndef  ANANSI_ConsoleLogger_INC
+#define  ANANSI_ConsoleLogger_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -12,26 +12,36 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Logger.h"
 
 namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  Logger
+//        Class:  ConsoleLogger
 //  Description:  
 //  =====================================================================================
-class Logger
+class ConsoleLogger : public ANANSI::Logger
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        Logger (); // constructor
+        //--------------------------------------------------------------------------------------
+        //       Class:  ConsoleLogger
+        //      Method:  ConsoleLogger :: ConsoleLogger
+        // Description:  
+        // 
+        //  Parameters: 
+        //
+        //      Return:
+        //--------------------------------------------------------------------------------------
+        ConsoleLogger();   // constructor
 
-        Logger (const Logger & other); // copy constructor
+        ConsoleLogger(const ConsoleLogger & other);   // copy constructor
 
-        Logger (Logger && other); // copy-move constructor
+        ConsoleLogger(ConsoleLogger && other);   // copy-move constructor
 
-        virtual ~Logger ()=0; // destructor
+        ~ConsoleLogger();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -39,9 +49,9 @@ class Logger
 
         // ====================  OPERATORS     =======================================
 
-        Logger& operator= ( const Logger &other ); // assignment operator
+        ConsoleLogger& operator=( const ConsoleLogger &other ); // assignment operator
 
-        Logger& operator= ( Logger && other ); // assignment-move operator
+        ConsoleLogger& operator=( ConsoleLogger && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -53,9 +63,9 @@ class Logger
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class Logger  -----
+}; // -----  end of class ConsoleLogger  -----
 
 
 }; // namespace ANANSI
 
-#endif //  ANANSI_Logger_INC
+#endif   /* ----- #ifndef ANANSI_ConsoleLogger_INC  ----- */
