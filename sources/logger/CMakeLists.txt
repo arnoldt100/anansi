@@ -67,7 +67,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (logger_header_files
-         <list of header files> )
+        header_files/Logger.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -77,7 +77,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (logger_implementation_files
-         <list of implementation files> )
+        implementation_files/Logger.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
