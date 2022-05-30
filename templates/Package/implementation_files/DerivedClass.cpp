@@ -39,7 +39,7 @@ __classname__::__classname__( __classname__ const & other) :
 }
 
 __classname__::__classname__( __classname__ && other) : 
-    __derivedclass__(std::move(other));
+    __derivedclass__(std::move(other))
 {
 	// TODO Auto-generated constructor stub
     if (this != &other)
