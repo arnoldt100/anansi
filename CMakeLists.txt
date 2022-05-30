@@ -38,6 +38,7 @@
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_state/cmake_macros_and_functions/simulation_state.cmake)
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation/cmake_macros_and_functions/simulation.cmake)
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/mpi_communicator/cmake_macros_and_functions/mpi_communicator.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/logger/cmake_macros_and_functions/logger.cmake)
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -174,6 +175,17 @@ enable_building_mpi_communicator_library( "${anansi_install_lib_directory}"
                                           "${anansi_install_bin_directory}" 
                                           "${anansi_cxx_standard}" )
 
+# ----------------------------------------------------
+# Here we define variales which indicate where
+# to install the logger libraries,
+# header files, and associated binariers.
+# 
+# ----------------------------------------------------
+enable_building_logger_library( "${anansi_install_lib_directory}"
+                                "${anansi_install_include_directory}"
+                                "${anansi_install_bin_directory}" 
+                                "${anansi_cxx_standard}" )
+
 #-----------------------------------------------------
 # This section permits use to find the header files  -
 # and link against the BOOST library.                -
@@ -195,6 +207,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/mpi_communicator)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/logger)
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -
