@@ -23,7 +23,7 @@ namespace ANANSI
      //        Class:  MolecularDynamicsTypeLists
      //  Description:  
      // =====================================================================================
-    class MolecularDynamicsTypeLists
+    class MolecularDynamicsTypeLists final
     {
         public:
             // ====================  LIFECYCLE     =======================================
@@ -43,7 +43,7 @@ namespace ANANSI
 
             MolecularDynamicsTypeLists (MolecularDynamicsTypeLists && other);   // copy-move constructor
 
-            virtual ~MolecularDynamicsTypeLists ();  // destructor
+            ~MolecularDynamicsTypeLists ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 

@@ -32,6 +32,7 @@ Welcome to Anansi's class documentation!
    Classes/MPICommunicatorFactory.cpp.rst
    Classes/MPIEnvironment.cpp.rst
    Classes/MPIEnvironmentState.cpp.rst
+   Classes/MolecularDynamicsTypeLists.h.cpp.rst
    Classes/NullMPIEnvironment.cpp.rst
    Classes/NullSimulation.cpp.rst
    Classes/OptionsParametersMap.cpp.rst
