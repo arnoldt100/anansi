@@ -58,7 +58,7 @@ namespace ANANSI
             std::unique_ptr<SimulationState> create() const
             {
                 constexpr auto index = MDSimulationStateFactory::findIndex_<T>();
-                std::unique_ptr<abstract_product_at<index> > product_ptr(this->mdSimStateFactory_->Create<abstract_product_at<index>>());
+                std::unique_ptr<abstract_product_at_<index> > product_ptr(this->mdSimStateFactory_->Create<abstract_product_at_<index>>());
                 return product_ptr;
 
             }
@@ -97,14 +97,14 @@ namespace ANANSI
                                                         >;
 
             template<std::size_t T>
-            using abstract_product_at = MPL::mpl_at_c<abstract_products_,T>;
+            using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;
 
             using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
 
             using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_products_>;
 
             template<class Base,class Derived>
-            using my_is_base_of = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
+            using my_is_base_of_ = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
 
             // ====================  STATIC METHODS       ================================
             template <typename T>
@@ -115,7 +115,7 @@ namespace ANANSI
                 using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
                                                     MPL::mpl_size<abstract_products_>::value>;
 
-                using R = MPL::mpl_transform<my_is_base_of,abstract_products_,list_base>;
+                using R = MPL::mpl_transform<my_is_base_of_,abstract_products_,list_base>;
                 
                 using my_index = MPL::mpl_find<R,MPL::mpl_true_type>;
 

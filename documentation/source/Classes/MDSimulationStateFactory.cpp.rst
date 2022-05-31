@@ -157,13 +157,13 @@ TYPE ALAIASES
                                                  MDTerminateSimulation>
 
 
-.. type:: template<std::size_t T> abstract_product_at = MPL::mpl_at_c<abstract_products_,T>
+.. type:: template<std::size_t T> abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>
 
 .. type:: abstract_factory_ = MPL::AbstractFactory<abstract_products_>
 
 .. type:: concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_products_>
 
-.. type:: template<class Base,class Derived> my_is_base_of = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
+.. type:: template<class Base,class Derived> my_is_base_of_ = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
 
 ^^^^^^^^^^^^^^
 Static Methods
