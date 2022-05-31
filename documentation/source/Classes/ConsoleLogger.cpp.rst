@@ -1,4 +1,4 @@
-.. _ConsoleLogger source target:
+.. _ConsoleLogger class target:
 
 .. default-domain:: cpp
 
@@ -66,7 +66,7 @@ Life Cycle
 
     The copy-move constructor.
 
-.. function:: ConsoleLogger::~ConsoleLogger()=0
+.. function:: ConsoleLogger::~ConsoleLogger()
 
     The destructor.
 

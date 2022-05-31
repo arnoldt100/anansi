@@ -1,4 +1,4 @@
-.. _PerformSimulation source target:
+.. _PerformSimulation class target:
 
 .. default-domain:: cpp
 

@@ -1,4 +1,4 @@
-.. ___Function__ source target:
+.. ___Function__ function target:
 
 .. default-domain:: cpp
 

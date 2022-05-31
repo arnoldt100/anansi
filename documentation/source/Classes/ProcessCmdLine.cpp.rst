@@ -1,4 +1,4 @@
-.. _ProcessCmdLine source target:
+.. _ProcessCmdLine class target:
 
 .. default-domain:: cpp
 

@@ -1,4 +1,4 @@
-.. _InitSimEnv source target:
+.. _InitSimEnv class target:
 
 .. default-domain:: cpp
 

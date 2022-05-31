@@ -1,4 +1,4 @@
-.. _MDInitSimEnvVisitor source target:
+.. _MDInitSimEnvVisitor class target:
 
 .. default-domain:: cpp
 

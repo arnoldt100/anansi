@@ -1,4 +1,4 @@
-.. _InitInitialConditions source target:
+.. _InitInitialConditions class target:
 
 .. default-domain:: cpp
 

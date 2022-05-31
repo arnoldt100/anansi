@@ -1,4 +1,4 @@
-.. ___Class__ source target:
+.. ___Class__ class target:
 
 .. default-domain:: cpp
 

@@ -1,4 +1,4 @@
-.. _MDTerminateSimulationVisitor source target:
+.. _MDTerminateSimulationVisitor class target:
 
 .. default-domain:: cpp
 

@@ -1,4 +1,4 @@
-.. _MDProcessCmdLineVisitor source target:
+.. _MDProcessCmdLineVisitor class target:
 
 .. default-domain:: cpp
 

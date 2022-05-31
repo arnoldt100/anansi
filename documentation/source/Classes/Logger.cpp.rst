@@ -1,4 +1,4 @@
-.. _Logger source target:
+.. _Logger class target:
 
 .. default-domain:: cpp
 

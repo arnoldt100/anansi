@@ -1,4 +1,4 @@
-.. _MDNullSimulation source target:
+.. _MDNullSimulation class target:
 
 .. default-domain:: cpp
 

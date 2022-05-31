@@ -1,4 +1,4 @@
-.. _OptionsParameterMap source target:
+.. _OptionsParameterMap class target:
 
 .. default-domain:: cpp
 

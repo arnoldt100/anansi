@@ -1,4 +1,4 @@
-.. _NullMPIEnvironment source target:
+.. _NullMPIEnvironment class target:
 
 .. default-domain:: cpp
 

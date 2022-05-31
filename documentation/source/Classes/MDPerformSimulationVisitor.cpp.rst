@@ -1,4 +1,4 @@
-.. _MDPerformSimulationVisitor source target:
+.. _MDPerformSimulationVisitor class target:
 
 .. default-domain:: cpp
 

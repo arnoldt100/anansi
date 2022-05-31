@@ -1,4 +1,4 @@
-.. _CommunicatorFactory source target:
+.. _CommunicatorFactory class target:
 
 .. default-domain:: cpp
 

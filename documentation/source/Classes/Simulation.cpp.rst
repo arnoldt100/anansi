@@ -1,4 +1,4 @@
-.. _Simulation source target:
+.. _Simulation class target:
 
 .. default-domain:: cpp
 

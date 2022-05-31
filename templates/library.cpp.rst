@@ -1,3 +1,7 @@
+.. ___library__ library target:
+
+.. default-domain:: cpp
+
 ###########
 __library__
 ###########

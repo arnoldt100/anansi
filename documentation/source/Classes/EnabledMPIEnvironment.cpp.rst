@@ -1,4 +1,4 @@
-.. _EnabledMPIEnvironment source target:
+.. _EnabledMPIEnvironment class target:
 
 .. default-domain:: cpp
 

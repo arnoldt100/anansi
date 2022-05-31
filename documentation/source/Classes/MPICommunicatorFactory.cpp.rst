@@ -1,4 +1,4 @@
-.. _MPICommunicatorFactory source target:
+.. _MPICommunicatorFactory class target:
 
 .. default-domain:: cpp
 

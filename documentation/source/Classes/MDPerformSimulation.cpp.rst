@@ -1,4 +1,4 @@
-.. _MDPerformSimulation source target:
+.. _MDPerformSimulation class target:
 
 .. default-domain:: cpp
 

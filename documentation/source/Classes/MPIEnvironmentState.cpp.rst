@@ -1,4 +1,4 @@
-.. _MPIEnvironmentState source target:
+.. _MPIEnvironmentState class target:
 
 .. default-domain:: cpp
 

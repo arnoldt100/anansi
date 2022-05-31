@@ -1,4 +1,4 @@
-.. _MDInitInitialConditions source target:
+.. _MDInitInitialConditions class target:
 
 .. default-domain:: cpp
 

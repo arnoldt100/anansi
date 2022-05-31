@@ -1,4 +1,4 @@
-.. _MDInitInitialConditionsVisitor source target:
+.. _MDInitInitialConditionsVisitor class target:
 
 .. default-domain:: cpp
 

@@ -1,4 +1,4 @@
-.. _TerminateSimulation source target:
+.. _TerminateSimulation class target:
 
 .. default-domain:: cpp
 

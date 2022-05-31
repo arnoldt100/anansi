@@ -1,4 +1,4 @@
-.. _ErrorInvalidMPIEnvironmentChange source target:
+.. _ErrorInvalidMPIEnvironmentChange class target:
 
 .. default-domain:: cpp
 

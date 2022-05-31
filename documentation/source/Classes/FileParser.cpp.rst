@@ -1,4 +1,4 @@
-.. _FileParser source target:
+.. _FileParser class target:
 
 .. default-domain:: cpp
 
