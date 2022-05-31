@@ -5,8 +5,6 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
-#include <iostream>
-#include <typeinfo>
 #include <utility>
 
 //--------------------------------------------------------//
@@ -33,7 +31,7 @@ namespace ANANSI
      //        Class:  MDSimulationStateFactory
      //  Description:  
      //  =====================================================================================
-    class MDSimulationStateFactory
+    class MDSimulationStateFactory final
     {
         public:
             // ====================  LIFECYCLE     =======================================
@@ -79,7 +77,7 @@ namespace ANANSI
             // ====================  DATA MEMBERS  =======================================
 
         private:
-            // TYPE ALIASES
+            // ====================  TYPE ALIASES  =======================================  
             using abstract_products_ = MPL::mpl_typelist<
                                                           NullSimulation,
                                                           InitSimEnv,
@@ -108,14 +106,14 @@ namespace ANANSI
             template<class Base,class Derived>
             using my_is_base_of = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
 
-            // ====================  METHODS       =======================================
+            // ====================  STATIC METHODS       ================================
             template <typename T>
             static constexpr std::size_t findIndex_()
             {
                 using nm_elements = MPL::mpl_size<abstract_products_>; 
 
                 using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
-                                                    MPL::mpl_size<abstract_products_>::value >;
+                                                    MPL::mpl_size<abstract_products_>::value>;
 
                 using R = MPL::mpl_transform<my_is_base_of,abstract_products_,list_base>;
                 

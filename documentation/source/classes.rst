@@ -27,12 +27,13 @@ Welcome to Anansi's class documentation!
    Classes/MDPerformSimulationVisitor.cpp.rst
    Classes/MDProcessCmdLine.cpp.rst
    Classes/MDProcessCmdLineVisitor.cpp.rst
+   Classes/MDSimulationStateFactory.cpp.rst
    Classes/MDTerminateSimulation.cpp.rst
    Classes/MDTerminateSimulationVisitor.cpp.rst
    Classes/MPICommunicatorFactory.cpp.rst
    Classes/MPIEnvironment.cpp.rst
    Classes/MPIEnvironmentState.cpp.rst
-   Classes/MolecularDynamicsTypeLists.h.cpp.rst
+   Classes/MolecularDynamicsTypeLists.cpp.rst
    Classes/NullMPIEnvironment.cpp.rst
    Classes/NullSimulation.cpp.rst
    Classes/OptionsParametersMap.cpp.rst

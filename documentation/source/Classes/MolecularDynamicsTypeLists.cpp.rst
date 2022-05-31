@@ -8,8 +8,8 @@
 MolecularDynamicsTypeLists Documentation
 ########################################
 
-The base class for the molecular dynamics factory classes. This
-class is an abstract base class. 
+Stores the typelist for MolecularDynamics types. Currently we only have 1 type
+of MD simulation in the typelist.
 
 ======================
 Interface Header Files
