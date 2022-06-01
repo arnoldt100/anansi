@@ -286,7 +286,7 @@ AnansiMolecularDynamics::initializeSimulationEnvironment_()
 void AnansiMolecularDynamics::processCommandLine_()
 {
     // Change the state of "this", a AnansiMolecularDynamics object, to 
-    // state MDprocessCmmdLine.
+    // state MDProcessCmmdLine.
     this->mdState_ = this->mdProcessCmdLine_;
 
     this->mdState_->execute(this);

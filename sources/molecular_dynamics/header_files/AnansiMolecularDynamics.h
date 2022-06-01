@@ -115,8 +115,7 @@ class AnansiMolecularDynamics final : public Simulation
         void initializeInitialConditions_ () final override;
 
         // This group of functions performs the MD simulation.
-        void
-        performSimulation_() final override;
+        void performSimulation_() final override;
 
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment_() final override;

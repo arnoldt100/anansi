@@ -12,6 +12,47 @@ This class responsibility is to perform the molecular dynanics simulation.
 It a derived class whose base is ANANSI::MolecularDynamics. AnansiMolecularDynamics
 is marked as final. 
 
+The class has the following behaviors:
+
+* **Null**
+
+    The behavior does nothing.
+
+* **Initialize Simulation Environment (ISE)**
+
+    This behavior is responsible for initializing the simulation environment. For example,
+    one side effect of this call is the MPI environment is initialized. It is not mandatory
+    for this behavior to fully initialize simulation environment, but it is highly desirable
+    to initialize as much as possible.
+
+* **Process command line (PCL)**
+
+    This behavior is responsible for processing the command line.
+
+* **Initialize Simulation Initial Conditions (ISIC)**
+
+    This behavior is responsible for initializing the simulation initial conditions.  
+
+* **Perform simulation (PS)**
+
+    This behavior is responsible for performing the molecular dynamics simulation. 
+
+* **Terminate simulation (TS)**
+
+    This behavior is responsible for terminating the simulation.
+
+
+The State design pattern is used to express the changing behaviors. The state or current
+behavior is stored in member :member:`AnansiMolecularDynamics::mdState_<AnansiMolecularDynamics::mdState_>`. Depending
+upon the desired behavior, this member is assigned one of following values:
+
+* AnansiMolecularDynamics::mdNullSimulationState\_
+* AnansiMolecularDynamics::mdInitSimEnv\_
+* AnansiMolecularDynamics::mdProcessCmdLine\_
+* AnansiMolecularDynamics::mdInitInitialConditions\_
+* AnansiMolecularDynamics::mdPerformSimulation\_
+* AnansiMolecularDynamics::mdTerminateSimulation\_
+
 
 ====================
 Include Header Files
@@ -165,7 +206,7 @@ Mutators
 Protected Members
 -----------------
 
-    No protected members
+No protected members
 
 ---------------
 Private Members
@@ -175,45 +216,78 @@ Private Members
 Accessors
 ^^^^^^^^^
 
-    No private accessors
+No private accessors
 
 ^^^^^^^^^
 Operators
 ^^^^^^^^^
 
-    No private operators
+No private operators
 
 ^^^^^^^^
 Mutators
 ^^^^^^^^
 
-.. function:: void AnansiMolecularDynamics::_initializeSimulationEnvironmnet( int const argc, char const * const * const argv ) override
+.. function:: void AnansiMolecularDynamics::initializeSimulationEnvironment_() final override
 
-    Performs the initialization of the simulation execution environment.
-   
-    The MPI environment is initiated. A duplicate communicator of the MPI_WORLD_COMMUNICATOR
-    is made.
+    :rtype: void
 
-    :param argc const int: The size of the array char* argv[].
-    :param argv char const * const * const &: Contains the command line options.
+.. function:: void AnansiMolecularDynamics::processCommandLine_() final override
+
+    :rtype: void
+
+.. function:: void AnansiMolecularDynamics::initializeInitialConditions_ () final override
+
+    :rtype: void
+
+.. function:: void AnansiMolecularDynamics::performSimulation_() final override
+
+    :rtype: void
+
+.. function:: void AnansiMolecularDynamics::terminateSimulationEnvironment_() final override
+
+    :rtype: void
 
 ^^^^^^^^^^^^
 Data Members
 ^^^^^^^^^^^^
 
-    .. member:: COMMANDLINE::CommandLineArguments commandLineArguments_
+.. member:: COMMANDLINE::CommandLineArguments commandLineArguments_
 
-    .. member:: ANANSI::SimulationParameters simulationParameters_
+.. member:: ANANSI::SimulationParameters simulationParameters_
 
-    .. member:: std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_
+.. member:: std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_
 
-    .. member:: std::unique_ptr<ANANSI::AnansiMDState> mdState_
+.. member:: std::unique_ptr<ANANSI::AnansiMDState> mdState_
 
-    .. member:: ANANSI::RegistryAnansiMDStatus mdStatus_
-    
-        Stores the status of the AnansiMolecularDynamics object.
+.. member:: std::shared_ptr<ANANSI::SimulationState> mdNullSimulationState_
 
-    .. member:: ANANSI::RegistryAnansiMDStatus mdGlobalStatus_
-    
-        Stores the global status of the AnansiMolecularDynamics object. The global MD status
-        is a the global reduction of the status of all MD objects in the communicator group.
+    Stores the null state behavior for AnansiMolecularDynamics simulations.
+
+.. member:: std::shared_ptr<ANANSI::SimulationState> mdInitSimEnv_
+
+    Stores the initialize simulation environment behavior
+    AnansiMolecularDynamics simulations.
+
+.. member:: std::shared_ptr<ANANSI::SimulationState> mdProcessCmdLine_
+
+    Stores the process command line environment behavior
+    AnansiMolecularDynamics simulations.
+
+.. member:: std::shared_ptr<ANANSI::SimulationState> mdInitInitialConditions_
+
+    Stores the initialize initial conditions environment behavior
+    AnansiMolecularDynamics simulations.
+
+.. member:: std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_
+
+    Stores the perform simulation environment behavior
+    AnansiMolecularDynamics simulations.
+
+.. member:: std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_
+
+    Stores the terminate simulation environment behavior
+    AnansiMolecularDynamics simulations.
+
+
+
