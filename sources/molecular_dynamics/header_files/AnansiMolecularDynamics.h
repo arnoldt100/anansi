@@ -120,7 +120,10 @@ class AnansiMolecularDynamics final : public Simulation
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment_() final override;
 
+        // To be depracated.
         void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
+
+        // To be depracated.
         void setGlobalISEStatus_() final override;
 
         /* ====================  DATA MEMBERS  ======================================= */
@@ -138,7 +141,10 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
+        // To be depracated.
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
+        
+        // To be depracated.
         COMMUNICATOR::RegistryAnansiMDStatus mdGlobalStatus_;
 
         /* ====================  STATIC        ======================================= */
