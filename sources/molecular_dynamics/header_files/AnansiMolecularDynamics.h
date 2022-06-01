@@ -48,10 +48,12 @@ class AnansiMolecularDynamics final : public Simulation
 
         /* ====================  ACCESSORS     ======================================= */
 
+
+        /* ====================  MUTATORS      ======================================= */
+        
         // This macro defines the Accept member function.
         DEFINE_VISITABLE()
 
-        /* ====================  MUTATORS      ======================================= */
         void enableCommunicationEnvironment();
 
         void disableCommunicationEnvironment();
@@ -62,7 +64,7 @@ class AnansiMolecularDynamics final : public Simulation
 
         void saveCommandLineOptionParameters();
 
-        void inputSimulationControlFile();
+        void readSimulationControlFile();
 
         void readInitialConfiguration();
 

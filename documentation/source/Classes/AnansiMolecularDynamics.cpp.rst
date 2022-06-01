@@ -10,7 +10,7 @@ AnansiMolecularDynamics Documentation
 
 This class responsibility is to perform the molecular dynanics simulation.
 It a derived class whose base is ANANSI::MolecularDynamics. AnansiMolecularDynamics
-is marked as final.
+is marked as final. 
 
 
 ====================
@@ -63,7 +63,7 @@ AnansiMolecularDynamics Global Variables
 AnansiMolecularDynamics Class Documentation
 ===========================================
 
-.. class:: AnansiMolecularDynamics : public Simulation
+.. class:: AnansiMolecularDynamics final : public Simulation
 
 --------------
 Public Members
@@ -93,7 +93,6 @@ Lifecycle
 Accessors
 ^^^^^^^^^
 
-    No public accessors
 
 ^^^^^^^^^
 Operators
@@ -111,11 +110,9 @@ Operators
 Mutators
 ^^^^^^^^
 
-.. function:: void saveCommandLineOptionParameters()
+.. function:: DEFINE_VISITABLE()
 
-    Stores the prorgram command line arguments and simulation control parameters.
-
-    :rtype: void
+    A macro that makes this class visitable. I defines the Accept member function.
 
 .. function:: void enableCommunicationEnvironment()
 
@@ -143,6 +140,24 @@ Mutators
     
     Disables the world communicator. Frees all resources associated with
     the world communicator.
+
+    :rtype: void
+
+.. function:: void saveCommandLineOptionParameters()
+
+    Stores the prorgram command line arguments and simulation control parameters.
+
+    :rtype: void
+
+.. function:: void readSimulationControlFile()
+
+    Stores the Simulation control file information. 
+
+    :rtype: void
+
+.. function:: void readInitialConfiguration()
+
+    Stores the initial configuration of the Simulation.
 
     :rtype: void
 
@@ -186,19 +201,19 @@ Mutators
 Data Members
 ^^^^^^^^^^^^
 
-    .. member:: COMMANDLINE::CommandLineArguments _commandLineArguments
+    .. member:: COMMANDLINE::CommandLineArguments commandLineArguments_
 
-    .. member:: ANANSI::SimulationParameters _simulationParameters
+    .. member:: ANANSI::SimulationParameters simulationParameters_
 
-    .. member:: std::unique_ptr<COMMUNICATOR::Communicator> _MpiWorldCommunicator
+    .. member:: std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_
 
-    .. member:: std::unique_ptr<ANANSI::AnansiMDState> _mdState
+    .. member:: std::unique_ptr<ANANSI::AnansiMDState> mdState_
 
-    .. member:: ANANSI::RegistryAnansiMDStatus _mdStatus
+    .. member:: ANANSI::RegistryAnansiMDStatus mdStatus_
     
         Stores the status of the AnansiMolecularDynamics object.
 
-    .. member:: ANANSI::RegistryAnansiMDStatus _mdGlobalStatus
+    .. member:: ANANSI::RegistryAnansiMDStatus mdGlobalStatus_
     
         Stores the global status of the AnansiMolecularDynamics object. The global MD status
         is a the global reduction of the status of all MD objects in the communicator group.

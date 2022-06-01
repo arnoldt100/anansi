@@ -139,7 +139,7 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 
 
 void
-AnansiMolecularDynamics::inputSimulationControlFile ()
+AnansiMolecularDynamics::readSimulationControlFile ()
 {
     // Initialize the variable "my_status" to failed. The variable will track the status of reading
     // in the simulation control file. At the end of this method, we will set the status of the md
@@ -180,7 +180,7 @@ AnansiMolecularDynamics::inputSimulationControlFile ()
     this->setStatus(my_status);
 
     return;
-}   /* -----  end of method AnansiMolecularDynamics::inputSimulationControlFile_  ----- */
+}   /* -----  end of method AnansiMolecularDynamics::readSimulationControlFile_  ----- */
 
 void AnansiMolecularDynamics::readInitialConfiguration()
 {

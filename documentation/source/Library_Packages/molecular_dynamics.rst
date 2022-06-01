@@ -32,7 +32,7 @@ Class Relationships
 AnansiMolecularDynamics
 -----------------------
 
-The AnansiMolecularDynamics class is the subclass and is derived from interface
+The AnansiMolecularDynamics class is a subclass and is derived from interface
 superclass MolecularDynamics. The MD objects are of type
 AnansiMolecularDynamics. The behavior of the MD object is controlled by the
 member attribute :cpp:member:`_mdState<AnansiMolecularDynamics::_mdState>`.
