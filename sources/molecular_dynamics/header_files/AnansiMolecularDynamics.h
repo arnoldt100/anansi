@@ -141,10 +141,10 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
-        // To be depracated.
+        // To be deprecated.
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
         
-        // To be depracated.
+        // To be deprecated.
         COMMUNICATOR::RegistryAnansiMDStatus mdGlobalStatus_;
 
         /* ====================  STATIC        ======================================= */

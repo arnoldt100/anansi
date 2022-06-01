@@ -116,7 +116,7 @@ Lifecycle
 
 .. function:: AnansiMolecularDynamics::AnansiMolecularDynamics()
 
-   The default constructor.
+    The default constructor.
 
 .. function:: AnansiMolecularDynamics::AnansiMolecularDynamics( AnansiMolecularDynamics const  &other )=delete
 
@@ -124,7 +124,7 @@ Lifecycle
 
 .. function:: AnansiMolecularDynamics::AnansiMolecularDynamics(AnansiMolecularDynamics && other)=delete 
 
-    The copy-move constructor is deleted
+    The copy-move constructor is deleted.
 
 .. function:: AnansiMolecularDynamics::~AnansiMolecularDynamics()=0
 
