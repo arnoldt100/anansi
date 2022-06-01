@@ -8,7 +8,12 @@
 MDSimulationStateFactory Documentation
 ######################################
 
-The factory for building the AnansiMolecularDynamics state objects.
+The factory for building the AnansiMolecularDynamics state objects. The key
+members of this class are the private type aliases abstract_products\_ and
+concrete_products\_. Each alias in abstract_products\_ must have one and only
+one corresponding located derived type in concrete_products\_.  For example,
+ProcessCmdLine, array index 2, is the abstract type and the derived
+corresponding type is MDProcessCmdLine, array index 2.
 
 ======================
 Interface Header Files
@@ -149,6 +154,8 @@ TYPE ALAIASES
                                                  PerformSimulation, \
                                                  TerminateSimulation>
 
+    A zero based list of abstract products.
+
 .. type:: concrete_products_ = MPL::mpl_typelist<MDNullSimulation, \
                                                  MDInitSimEnv, \
                                                  MDProcessCmdLine, \
@@ -156,6 +163,7 @@ TYPE ALAIASES
                                                  MDPerformSimulation, \
                                                  MDTerminateSimulation>
 
+    A zero based list of concrete products.
 
 .. type:: template<std::size_t T> abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>
 
