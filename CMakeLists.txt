@@ -39,6 +39,7 @@
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation/cmake_macros_and_functions/simulation.cmake)
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/mpi_communicator/cmake_macros_and_functions/mpi_communicator.cmake)
     include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/logger/cmake_macros_and_functions/logger.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/task_group/cmake_macros_and_functions/task_group.cmake)
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -185,6 +186,16 @@ enable_building_logger_library( "${anansi_install_lib_directory}"
                                 "${anansi_install_include_directory}"
                                 "${anansi_install_bin_directory}" 
                                 "${anansi_cxx_standard}" )
+
+# ----------------------------------------------------
+# Here we define variables which indicate where to install the task_group
+# libraries, header files, and associated binaries.
+# 
+# ----------------------------------------------------
+enable_building_task_group_library( "${anansi_install_lib_directory}"
+                                    "${anansi_install_include_directory}"
+                                    "${anansi_install_bin_directory}" 
+                                    "${anansi_cxx_standard}" )
 
 #-----------------------------------------------------
 # This section permits use to find the header files  -

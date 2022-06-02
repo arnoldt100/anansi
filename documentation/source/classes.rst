@@ -42,7 +42,7 @@ Welcome to Anansi's class documentation!
    Classes/Simulation.cpp.rst
    Classes/SimulationState.cpp.rst
    Classes/TerminateSimulation.cpp.rst
-
+   Classes/TaskGroup.cpp.rst
    Classes/AnansiMolecularDynamicsFactory.cpp.rst
    Classes/CommandLineArguments.cpp.rst
    Classes/ControlFileParser.cpp.rst
