@@ -222,48 +222,48 @@ bool AnansiMolecularDynamics::isHelpOnCommandLine_() const
 
 bool AnansiMolecularDynamics::isISEStatusOkay_() const
 {
-	bool ret_value=false;
-	if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
-	{
-		ret_value = true;
-	}
+    bool ret_value=false;
+    if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
+    {
+        ret_value = true;
+    }
     else if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
     {
-		ret_value = true;
-	}
-	return ret_value;
+        ret_value = true;
+    }
+    return ret_value;
 }
 
 bool AnansiMolecularDynamics::isISEGlobalStatusOkay_() const
 {
-	bool ret_value=false;
+    bool ret_value=false;
     if (this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
-	{
-		ret_value = true;
-	}
+    {
+        ret_value = true;
+    }
     else if ( this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
     {
-		ret_value = true;
-	}
-	return ret_value;
+        ret_value = true;
+    }
+    return ret_value;
 }
 
 bool AnansiMolecularDynamics::isIICStatusOkay_() const
 {
-	bool ret_value=false;
-	if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
+    bool ret_value=false;
+    if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
     {
-		ret_value = true;
-	}
-	else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionInProgress )
-	{
-		ret_value = true;
-	}
+        ret_value = true;
+    }
+    else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionInProgress )
+    {
+        ret_value = true;
+    }
     else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful)
     {
-		ret_value = true;
+        ret_value = true;
     }
-	return ret_value;
+    return ret_value;
 }
 
 //============================= MUTATORS =====================================
