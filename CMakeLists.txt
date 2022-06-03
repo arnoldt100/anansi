@@ -219,6 +219,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/mpi_communicator)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/logger)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/task_group)
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -

@@ -27,6 +27,7 @@
 #include "RegistryAnansiMDStatus.h"
 #include "Factory.hpp"
 #include "SimulationState.h"
+#include "TaskGroup.h"
 
 namespace ANANSI {
 
@@ -55,12 +56,13 @@ class AnansiMolecularDynamics final : public Simulation
         DEFINE_VISITABLE()
 
         void enableCommunicationEnvironment();
-
         void disableCommunicationEnvironment();
 
         void enableWorldCommunicator();
-
         void disableWorldCommunicator();
+
+        void enableWorldTaskGroup();
+        void disableWorldTaskGroup();
 
         void saveCommandLineOptionParameters();
 
@@ -131,6 +133,7 @@ class AnansiMolecularDynamics final : public Simulation
         ANANSI::SimulationParameters simulationParameters_;
         std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
         std::unique_ptr<ANANSI::MPIEnvironment> MpiEnvironment_;
+        std::unique_ptr<ANANSI::TaskGroup> worldTaskGroup_;
 
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;

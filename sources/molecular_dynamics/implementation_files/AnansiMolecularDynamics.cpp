@@ -34,6 +34,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     simulationParameters_(),
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
+    worldTaskGroup_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -58,6 +59,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     simulationParameters_(),
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
+    worldTaskGroup_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -129,8 +131,18 @@ AnansiMolecularDynamics::disableWorldCommunicator()
     return;
 }
 
+void AnansiMolecularDynamics::enableWorldTaskGroup()
+{
+    return;
+}
 
+
+void AnansiMolecularDynamics::disableWorldTaskGroup()
+{
+    return;
+}
 void
+
 AnansiMolecularDynamics::saveCommandLineOptionParameters()
 {
     this->simulationParameters_ = SimulationParametersFactory::create(this->commandLineArguments_);

@@ -74,6 +74,7 @@ Include Header Files
 * #include "CommandLineArguments.h"
 * #include "SimulationParameters.h"
 * #include "Communicator.h"
+* #include "TaskGroup.h"
 * #include "RegistryAnansiMDStatus.h"
   
 
@@ -155,14 +156,14 @@ Mutators
 
     A macro that makes this class visitable. I defines the Accept member function.
 
-.. function:: void enableCommunicationEnvironment()
+.. function:: void AnansiMolecularDynamics::enableCommunicationEnvironment()
 
     Enables the MPI communication environment. No inter-process communication
     can occur until the communication environment is enabled.
 
     :rtype: void
 
-.. function:: void disableCommunicationEnvironment()
+.. function:: void AnansiMolecularDynamics::disableCommunicationEnvironment()
 
     Disables the MPI communication environment. No inter-process communication
     will occur after the communication environment is disabled, and once disabled
@@ -170,33 +171,41 @@ Mutators
 
     :rtype: void
 
-.. function:: void enableWorldCommunicator()
+.. function:: void AnansiMolecularDynamics::enableWorldCommunicator()
 
     Enables the world communicator. This call does nothing if the world communicator
     is already enabled.
 
     :rtype: void
 
-.. function:: void disableWorldCommunicator()
+.. function:: void AnansiMolecularDynamics::disableWorldCommunicator()
     
     Disables the world communicator. Frees all resources associated with
     the world communicator.
 
     :rtype: void
 
-.. function:: void saveCommandLineOptionParameters()
+.. function:: void AnansiMolecularDynamics::enableWorldTaskGroup()
+
+    :rtype: void
+
+.. function:: void AnansiMolecularDynamics::disableWorldTaskGroup()
+
+    :rtype: void
+
+.. function:: void AnansiMolecularDynamics::saveCommandLineOptionParameters()
 
     Stores the prorgram command line arguments and simulation control parameters.
 
     :rtype: void
 
-.. function:: void readSimulationControlFile()
+.. function:: void AnansiMolecularDynamics::readSimulationControlFile()
 
     Stores the Simulation control file information. 
 
     :rtype: void
 
-.. function:: void readInitialConfiguration()
+.. function:: void AnansiMolecularDynamics::readInitialConfiguration()
 
     Stores the initial configuration of the Simulation.
 
@@ -252,39 +261,45 @@ Mutators
 Data Members
 ^^^^^^^^^^^^
 
-.. member:: COMMANDLINE::CommandLineArguments commandLineArguments_
+.. member:: COMMANDLINE::CommandLineArguments AnansiMolecularDynamics::commandLineArguments_
 
-.. member:: ANANSI::SimulationParameters simulationParameters_
+.. member:: ANANSI::SimulationParameters AnansiMolecularDynamics::simulationParameters_
 
-.. member:: std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_
+.. member:: std::unique_ptr<COMMUNICATOR::Communicator> AnansiMolecularDynamics::MpiWorldCommunicator_
 
-.. member:: std::unique_ptr<ANANSI::AnansiMDState> mdState_
+.. member:: std::unique_ptr<ANANSI::MPIEnvironment> AnansiMolecularDynamics::MpiEnvironment_
 
-.. member:: std::shared_ptr<ANANSI::SimulationState> mdNullSimulationState_
+.. member:: std::unique_ptr<ANANSI::TaskGroup> AnansiMolecularDynamics::worldTaskGroup_
+
+    This task group is the first task group that is instantiated.
+
+.. member:: std::unique_ptr<ANANSI::AnansiMDState> AnansiMolecularDynamics::mdState_
+
+.. member:: std::shared_ptr<ANANSI::SimulationState> AnansiMolecularDynamics::mdNullSimulationState_
 
     Stores the null state behavior for AnansiMolecularDynamics simulations.
 
-.. member:: std::shared_ptr<ANANSI::SimulationState> mdInitSimEnv_
+.. member:: std::shared_ptr<ANANSI::SimulationState> AnansiMolecularDynamics::mdInitSimEnv_
 
     Stores the initialize simulation environment behavior
     AnansiMolecularDynamics simulations.
 
-.. member:: std::shared_ptr<ANANSI::SimulationState> mdProcessCmdLine_
+.. member:: std::shared_ptr<ANANSI::SimulationState> AnansiMolecularDynamics::mdProcessCmdLine_
 
     Stores the process command line environment behavior
     AnansiMolecularDynamics simulations.
 
-.. member:: std::shared_ptr<ANANSI::SimulationState> mdInitInitialConditions_
+.. member:: std::shared_ptr<ANANSI::SimulationState> AnansiMolecularDynamics::mdInitInitialConditions_
 
     Stores the initialize initial conditions environment behavior
     AnansiMolecularDynamics simulations.
 
-.. member:: std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_
+.. member:: std::shared_ptr<ANANSI::SimulationState> AnansiMolecularDynamics::mdPerformSimulation_
 
     Stores the perform simulation environment behavior
     AnansiMolecularDynamics simulations.
 
-.. member:: std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_
+.. member:: std::shared_ptr<ANANSI::SimulationState> AnansiMolecularDynamics::mdTerminateSimulation_
 
     Stores the terminate simulation environment behavior
     AnansiMolecularDynamics simulations.

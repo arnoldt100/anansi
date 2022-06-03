@@ -51,7 +51,6 @@ TaskGroup& TaskGroup::operator=( TaskGroup && other )
 {
     if (this != &other)
     {
-        Logger::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
