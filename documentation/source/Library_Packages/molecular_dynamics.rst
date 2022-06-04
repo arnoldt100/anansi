@@ -37,7 +37,7 @@ superclass MolecularDynamics. The MD objects are of type
 AnansiMolecularDynamics. The behavior of the MD object is controlled by the
 member attribute :cpp:member:`mdState_<AnansiMolecularDynamics::mdState_>`.
 
-.. image:: ../Diagrams/AnansiMolecularDynamics.jpeg
+.. image:: ../Diagrams/AnansiMolecularDynamics.png
 
 AnansiMolecularDynamics Behaviors
 ---------------------------------
