@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>14</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>56</y>
+      <w>560</w>
+      <h>322</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+&lt;&lt;ANANSI::Simulation&gt;&gt;
+--
+
+--
++ DEFINE_VISITABLE() : void
++ initializeSimulationEnvironment() : void
++ processCommandLine(): void
++ initializeInitialConditions() : void
++ performSimulation() : void
++ terminateSimulationEnvironment(): void
+--
+Responsibilities
+-- Provides an interface for main tasks of the 
+   Molecular Dynamics simulations.
+   </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>224</x>
+      <y>434</y>
+      <w>658</w>
+      <h>476</h>
+    </coordinates>
+    <panel_attributes>AnansiMolecularDynamics
+--
+- commandLineArguments_ : COMMANDLINE::CommandLineArguments
+- simulationParameters_ : SimulationParameters
+- MpiEnvironment_ : std::unique_ptr&lt;MPIEnvironment&gt;
+- mdState_ : std::shared_ptr&lt;SimulationState&gt;
+- worldTaskGroup_ : std::unique_ptr&lt;ANANSI::TaskGroup&gt;
+- mdNullSimulationState_ : std::shared_ptr&lt;SimulationState&gt;
+- mdInitSimEnv_ : std::shared_ptr&lt;SimulationState&gt;
+- mdProcessCmdLine_ : std::shared_ptr&lt;SimulationState&gt;
+- mdInitInitialConditions_ : std::shared_ptr&lt;SimulationState&gt;
+- mdPerformSimulation_ : std::shared_ptr&lt;SimulationState&gt;
+- mdTerminateSimulation_ : std::shared_ptr&lt;SimulationState&gt;
+--
++ DEFINE_VISITABLE() : void
+// + enableCommunicationEnvironment() : void
+// + disableCommunicationEnvironment() : void
+// + enableWorldCommunicator() : void
+// + disableWorldCommunicator() : void
+// + saveCommandLineOptionParameters() : void
+// + readSimulationControlFile() : void
+// + readInitialConfiguration() : void
+- initializeSimulationEnvironment_() final override : void
+- processCommandLine_() final override : void
+- initializeInitialConditions_ () final override : void
+- performSimulation_() final override : void
+- terminateSimulationEnvironment_() final override : void
+--
+-- Provides an implementation for the Simulation interface via
+private methods</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>364</y>
+      <w>42</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+</diagram>
