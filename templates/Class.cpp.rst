@@ -8,8 +8,17 @@
 __Class__ Documentation
 ######################################
 
-The base class for the molecular dynamics factory classes. This
-class is an abstract base class. 
+===========
+UML Diagram
+===========
+
+.. image ../Diagrams/StudClass.png
+
+==============
+Class Overview
+==============
+
+Stud text for class overview
 
 ======================
 Interface Header Files
