@@ -8,6 +8,16 @@
 AnansiMolecularDynamics Documentation
 #####################################
 
+===========
+UML Diagram
+===========
+
+.. image:: ../Diagrams/AnansiMolecularDynamics.png
+
+==============
+Class Overview
+==============
+
 This class responsibility is to perform the molecular dynanics simulation.
 It a derived class whose base is ANANSI::MolecularDynamics. AnansiMolecularDynamics
 is marked as final. 
@@ -239,21 +249,41 @@ Mutators
 
 .. function:: void AnansiMolecularDynamics::initializeSimulationEnvironment_() final override
 
+    This function changes the class instance to ISE, inkokes the execute method
+    of the mdState\_ attribute, and returns class instance back to a Null
+    state. 
+
     :rtype: void
 
 .. function:: void AnansiMolecularDynamics::processCommandLine_() final override
+
+    This function changes the class instance to PCL, inkokes the execute method
+    of the mdState\_ attribute, and returns class instance back to a Null
+    state. 
 
     :rtype: void
 
 .. function:: void AnansiMolecularDynamics::initializeInitialConditions_ () final override
 
+    This function changes the class instance to ISIC, inkokes the execute method
+    of the mdState\_ attribute, and returns class instance back to a Null
+    state. 
+
     :rtype: void
 
 .. function:: void AnansiMolecularDynamics::performSimulation_() final override
 
+    This function changes the class instance to PS, inkokes the execute method
+    of the mdState\_ attribute, and returns class instance back to a Null
+    state. 
+
     :rtype: void
 
 .. function:: void AnansiMolecularDynamics::terminateSimulationEnvironment_() final override
+
+    This function changes the class instance to TS, inkokes the execute method
+    of the mdState\_ attribute, and returns class instance back to a Null
+    state. 
 
     :rtype: void
 
@@ -263,17 +293,28 @@ Data Members
 
 .. member:: COMMANDLINE::CommandLineArguments AnansiMolecularDynamics::commandLineArguments_
 
+    Stores the command line arguments.
+
 .. member:: ANANSI::SimulationParameters AnansiMolecularDynamics::simulationParameters_
+
+    Store the simulation control parameters of the control file.
 
 .. member:: std::unique_ptr<COMMUNICATOR::Communicator> AnansiMolecularDynamics::MpiWorldCommunicator_
 
+    The default world mpi communicator. This is the first communicator that is initialized 
+    in the sumlation. All other commnicators are created from this communicator.
+
 .. member:: std::unique_ptr<ANANSI::MPIEnvironment> AnansiMolecularDynamics::MpiEnvironment_
+
+    Represents the MPI runtime enviroment.
 
 .. member:: std::unique_ptr<ANANSI::TaskGroup> AnansiMolecularDynamics::worldTaskGroup_
 
     This task group is the first task group that is instantiated.
 
 .. member:: std::unique_ptr<ANANSI::AnansiMDState> AnansiMolecularDynamics::mdState_
+
+    Stores the current internal state of the object.
 
 .. member:: std::shared_ptr<ANANSI::SimulationState> AnansiMolecularDynamics::mdNullSimulationState_
 
