@@ -7,62 +7,90 @@ This following source files are use to create the library.
 Header files
 ============
 
-* :ref:`anansi_main_md.h <anansi_main_md function target>`
-* :ref:`AnansiMolecularDynamics.h <AnansiMolecularDynamics class target>`
-* :ref:`AnansiMolecularDynamicsFactory.h <AnansiMolecularDynamicsFactory class target>`
-* :ref:`MDInitInitialConditions.h <MDInitInitialConditions class target>`
-* :ref:`MDInitInitialConditionsVisitor.h <MDInitInitialConditionsVisitor class target>`
-* :ref:`MDInitSimEnv.h <MDInitSimEnv class target>`
-* :ref:`MDInitSimEnvVisitor.h <MDInitSimEnvVisitor class target>`
-* :ref:`MDNullSimulation.h <MDNullSimulation class target>`
-* :ref:`MDNullSimulationVisitor.h <MDNullSimulationVisitor class target>`
-* :ref:`MDPerformSimulation.h <MDPerformSimulation class target>`
-* :ref:`MDPerformSimulationVisitor.h <MDPerformSimulationVisitor class target>`
-* :ref:`MDProcessCmdLine.h <MDProcessCmdLine class target>`
-* :ref:`MDProcessCmdLineVisitor.h <MDProcessCmdLineVisitor class target>`
-* :ref:`MDSimulationStateFactory.h <MDSimulationStateFactory class target>`
-* :ref:`MDTerminateSimulation.h <MDTerminateSimulation class target>`
-* :ref:`MDTerminateSimulationVisitor.h <MDTerminateSimulationVisitor class target>`
-* :ref:`MolecularDynamicsTypeLists.h <MolecularDynamicsTypeLists class target>`
+* :ref:`anansi_main_md.{h,cpp} <anansi_main_md function target>`
+* :ref:`AnansiMolecularDynamics.{h,cpp} <AnansiMolecularDynamics class target>`
+* :ref:`AnansiMolecularDynamicsFactory.{h,cpp} <AnansiMolecularDynamicsFactory class target>`
+* :ref:`MDInitInitialConditions.{h,cpp} <MDInitInitialConditions class target>`
+* :ref:`MDInitInitialConditionsVisitor.{h,cpp) <MDInitInitialConditionsVisitor class target>`
+* :ref:`MDInitSimEnv.{h,cpp} <MDInitSimEnv class target>`
+* :ref:`MDInitSimEnvVisitor.{h,cpp} <MDInitSimEnvVisitor class target>`
+* :ref:`MDNullSimulation.{h,cpp} <MDNullSimulation class target>`
+* :ref:`MDNullSimulationVisitor.{h,cpp} <MDNullSimulationVisitor class target>`
+* :ref:`MDPerformSimulation.{h,cpp} <MDPerformSimulation class target>`
+* :ref:`MDPerformSimulationVisitor.{h,cpp} <MDPerformSimulationVisitor class target>`
+* :ref:`MDProcessCmdLine.{h,cpp} <MDProcessCmdLine class target>`
+* :ref:`MDProcessCmdLineVisitor.{h,cpp} <MDProcessCmdLineVisitor class target>`
+* :ref:`MDSimulationStateFactory.{h,cpp} <MDSimulationStateFactory class target>`
+* :ref:`MDTerminateSimulation.{h,cpp} <MDTerminateSimulation class target>`
+* :ref:`MDTerminateSimulationVisitor.{h,cpp} <MDTerminateSimulationVisitor class target>`
+* :ref:`MolecularDynamicsTypeLists.{h,cpp} <MolecularDynamicsTypeLists class target>`
+
+===================
+Main Program
+===================
+
+The main program source file is anansi\_main\_md.{cpp,h} and its UML sequence
+diagram is below. The md\_factory is an :ref:`AnansiMolecularDynamicsFactory <AnansiMolecularDynamicsFactory class target>`  object,
+and the md\_simulation is an :ref:`AnansiMolecularDynamics <AnansiMolecularDynamics class target>` object.
+
+.. image:: ../Diagrams/anansi_main_md.png
 
 ===================
 Class Relationships
 ===================
 
+
+-----------------------
 AnansiMolecularDynamics
 -----------------------
 
-The AnansiMolecularDynamics class is a subclass and is derived from interface
-superclass MolecularDynamics. The MD objects are of type
-AnansiMolecularDynamics. The behavior of the MD object is controlled by the
-member attribute :cpp:member:`mdState_<AnansiMolecularDynamics::mdState_>`.
+The primary class of this library is AnansiMolecularDynamics for it is the
+top in the *kickstarter* class of doing molecular dynamics simulations - the 
+main program initiates an AnansiMolecularDynamics object and then invokes its 
+appropriate methods.
 
-.. image:: ../Diagrams/AnansiMolecularDynamics.png
-
+---------------------------------
 AnansiMolecularDynamics Behaviors
 ---------------------------------
 
-The AnansiMolecularDynamics object behaviors are encapsulated by state clasess as
-shown in the table below:
+An AnansiMolecularDynamics object has behaviors
+uses  a state design pattern for altering its behavior. The below table
+lists the behaviors and the corresponding state classes which implement them. 
 
-    ================= ==============================================    
-    State Classes     Behavoirs                                         
-    ================= ==============================================    
-    AnansiMDStateISE  Initializing the simulation environment           
-    AnansiMDStatePCL  Processing the command line options               
-    AnansiMDStateIIC  Initializing the initial conditions               
-    AnansiMDStatePS   Performing the simulation                         
-    AnansiMDStateTSE  Terminating the simulation environment            
-    ================= ==============================================    
+=======================================     =================================
+Behaviors                                   State Classes
+=======================================     =================================
+Null                                        MDNullSimulation
+Initializing the Simulation Environment     MDInitSimEnv
+Processing the Command Line Arguments       MDProcessCmdLine
+Performing the Simulation                   MDPerformSimulation
+Terminating the Simulation                  MDTerminateSimulation
+=======================================     =================================
 
-
-.. image:: ../Diagrams/AnansiMDStates.jpeg
-
+-------------------------------------
 AnansiMolecularDynamics Factory Class
 -------------------------------------
 
-AnansiMolecularDynamicsFactory class initiates a AnansiMolecularDynamics
-object with its state set to AnansiMDStateISE.
+The class AnansiMolecularDynamicsFactory is the factory class for
+AnansiMolecularDynamics objects, and it's mandatory that one uses
+AnansiMolecularDynamicsFactory to instantiate AnansiMolecularDynamics objects. 
+There is hard limit 1 instantiated AnansiMolecularDynamics object.  
 
-.. image:: ../Diagrams/AnansiMolecularDynamicsFactory.jpeg
+--------------------------------------
+AnansiMolecularDynamics Vistor Classes
+--------------------------------------
+
+The AnansiMolecularDynamics behaviors are implemented by specializations from
+visitor classes listed in the table below.
+
+=======================================     =================================
+Behaviors                                   State Classes
+=======================================     =================================
+Null                                        MDNullSimulationVisitor
+Initializing the Simulation Environment     MDInitSimEnvVisitor
+Processing the Command Line Arguments       MDProcessCmdLineVisitor
+Performing the Simulation                   MDPerformSimulationVisitor
+Terminating the Simulation                  MDTerminateSimulationVisitor
+=======================================     =================================
+
 
