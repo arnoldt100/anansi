@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <help_text/>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>460</y>
+      <w>570</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>
+AnansiMolecularDynamicsFactory
+--
+- argc_: int 
+- argv_ptr_: char**
+--
+- create_shared_ptr_() const final override : std::shared_ptr&lt;Simulation&gt;
+--
+Responsibilities
+-- Creates AnansiMolecularDynamics objects</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>190</y>
+      <w>370</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+&lt;&lt;ANANSI::SimulationFactory&gt;&gt;
+--
+
+
+--
++ create_shared_ptr() : const
+- create_shared_ptr_() : const=0
+--
+Responsibilities
+-- Provides an interface for Simualtion factories</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>790</x>
+      <y>350</y>
+      <w>30</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+</diagram>

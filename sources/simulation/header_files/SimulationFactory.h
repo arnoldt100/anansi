@@ -48,7 +48,7 @@ namespace ANANSI
 
             /* ====================  ACCESSORS     ======================================= */
 
-            std::shared_ptr<Simulation> create_shared_ptr();
+            std::shared_ptr<Simulation> create_shared_ptr() const;
 
             /* ====================  MUTATORS      ======================================= */
 
@@ -64,7 +64,7 @@ namespace ANANSI
 
         private:
             /* ====================  ACCESSORS     ======================================= */
-            virtual std::shared_ptr<Simulation> create_shared_ptr_()=0;
+            virtual std::shared_ptr<Simulation> create_shared_ptr_() const=0 ; 
 
             /* ====================  MUTATORS      ======================================= */
 

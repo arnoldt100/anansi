@@ -109,7 +109,7 @@ Private Members
 Accessors
 ^^^^^^^^^
 
-    .. function:: MolecularDynamics* AnansiMolecularDynamicsFactory::_create() final override
+    .. function:: MolecularDynamics* AnansiMolecularDynamicsFactory::_create() const final override
 
         Creates a AnansiMolecularDynamics object.
 

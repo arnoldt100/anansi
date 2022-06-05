@@ -72,25 +72,27 @@ AnansiMolecularDynamics Factory Class
 -------------------------------------
 
 The class AnansiMolecularDynamicsFactory is the factory class for
-AnansiMolecularDynamics objects, and it's mandatory that one uses
-AnansiMolecularDynamicsFactory to instantiate AnansiMolecularDynamics objects. 
-There is hard limit 1 instantiated AnansiMolecularDynamics object.  
+AnansiMolecularDynamics objects and its UML diagram is below.
 
---------------------------------------
-AnansiMolecularDynamics Vistor Classes
---------------------------------------
+.. image:: ../Diagrams/AnansiMolecularDynamicsFactory.png
+
+It's mandatory that one uses AnansiMolecularDynamicsFactory to instantiate
+AnansiMolecularDynamics objects.  There is hard limit 1 instantiated
+AnansiMolecularDynamics object. 
+
+---------------------------------------
+AnansiMolecularDynamics Visitor Classes
+---------------------------------------
 
 The AnansiMolecularDynamics behaviors are implemented by specializations from
 visitor classes listed in the table below.
 
-=======================================     =================================
+=======================================     ==================================================================
 Behaviors                                   State Classes
-=======================================     =================================
-Null                                        MDNullSimulationVisitor
+=======================================     ==================================================================
+Null                                        :ref:`MDNullSimulationVisitor <MDNullSimulation class target>`
 Initializing the Simulation Environment     MDInitSimEnvVisitor
 Processing the Command Line Arguments       MDProcessCmdLineVisitor
 Performing the Simulation                   MDPerformSimulationVisitor
 Terminating the Simulation                  MDTerminateSimulationVisitor
-=======================================     =================================
-
-
+=======================================     ==================================================================
