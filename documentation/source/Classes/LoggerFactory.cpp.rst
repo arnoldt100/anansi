@@ -1,23 +1,30 @@
-.. _TaskGroup class target:
+.. _LoggerFactory class target:
 
 .. default-domain:: cpp
 
 .. namespace:: ANANSI
 
-#######################
-TaskGroup Documentation
-#######################
+###########################
+LoggerFactory Documentation
+###########################
 
-The resposibility of the class is to perform various tasks that need to be done
-to accomplish the simulation. This class can be thought of as a command class.
+===========
+UML Diagram
+===========
+
+.. image ../Diagrams/StudClass.png
+
+==============
+Class Overview
+==============
+
+The resposibilities of the LoggerFactory is to create Logger classes.
 
 ======================
 Interface Header Files
 ======================
 
 **C++ Include Files**
-
-* #include <memory>
 
 **External Library Files**
 
@@ -33,17 +40,17 @@ Implementation Header Files
 
 **Project Include Files**
 
-* #include "TaskGroup.h"
+* #include "LoggerFactory.h"
 
-============================
-TaskGroup.h Global Variables
-============================
+================================
+LoggerFactory.h Global Variables
+================================
 
-=============================
-TaskGroup Class Documentation
-=============================
+=================================
+LoggerFactory Class Documentation
+=================================
 
-.. class:: TaskGroup
+.. class:: LoggerFactory
 
 --------------
 Public Members
@@ -53,19 +60,19 @@ Public Members
 Life Cycle
 ^^^^^^^^^^
 
-.. function:: TaskGroup::TaskGroup()
+.. function:: LoggerFactory::LoggerFactory()
 
    The default constructor.
 
-.. function:: TaskGroup::TaskGroup( const TaskGroup &other ) = delete
+.. function:: LoggerFactory::LoggerFactory( const LoggerFactory &other )
 
     The copy constructor.
 
-.. function:: TaskGroup::TaskGroup(TaskGroup && other) 
+.. function:: LoggerFactory::LoggerFactory(LoggerFactory && other) 
 
     The copy-move constructor.
 
-.. function:: virtual TaskGroup::~TaskGroup()=0
+.. function:: LoggerFactory::~LoggerFactory()
 
     The destructor.
 
@@ -79,11 +86,11 @@ No public accessors
 Operators
 ^^^^^^^^^
 
-.. function:: TaskGroup& TaskGroup::operator=( TaskGroup const & other) = delete
+.. function:: LoggerFactory& LoggerFactory::operator=( LoggerFactory const & other)
 
     The assignment operator.
 
-.. function:: TaskGroup& TaskGroup::operator=( TaskGroup && other)
+.. function:: LoggerFactory& LoggerFactory::operator=( LoggerFactory && other)
 
     The assignment-move operator.
 

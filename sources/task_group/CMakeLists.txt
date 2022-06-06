@@ -42,6 +42,7 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_comm_include communicator communicator_include)
+    get_target_property(my_mpl_include mpl mpl_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -67,7 +68,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (task_group_header_files
-         header_files/TaskGroup.h )
+         header_files/TaskGroup.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -108,7 +109,9 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           ${my_comm_include} 
+                           ${my_mpl_include} )
 
 
 #-----------------------------------------------------
@@ -116,7 +119,8 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${target}
-                       PUBLIC communicator )
+                       PUBLIC communicator
+                       PUBLIC mpl )
 #-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -

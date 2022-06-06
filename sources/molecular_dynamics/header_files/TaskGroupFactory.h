@@ -1,5 +1,5 @@
-#ifndef  ANANSI_TaskGroup_INC
-#define  ANANSI_TaskGroup_INC
+#ifndef  ANANSI_TaskGroupFactory_INC
+#define  ANANSI_TaskGroupFactory_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -13,34 +13,28 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
+#include "TaskGroup.h"
+#include "Factory.hpp"
+
 namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  TaskGroup
+//        Class:  TaskGroupFactory
 //  Description:  
 //  =====================================================================================
-class TaskGroup 
+class TaskGroupFactory
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  TaskGroup
-        //      Method:  TaskGroup :: TaskGroup
-        // Description:  
-        // 
-        //  Parameters: 
-        //
-        //      Return:
-        //--------------------------------------------------------------------------------------
-        TaskGroup();   // constructor
+        TaskGroupFactory ();   // constructor
 
-        TaskGroup(const TaskGroup & other) = delete; // copy constructor
+        TaskGroupFactory (const TaskGroupFactory & other);   // copy constructor
 
-        TaskGroup(TaskGroup && other); // copy-move constructor
+        TaskGroupFactory (TaskGroupFactory && other);   // copy-move constructor
 
-        virtual ~TaskGroup()=0;  // destructor
+        ~TaskGroupFactory ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -48,9 +42,9 @@ class TaskGroup
 
         // ====================  OPERATORS     =======================================
 
-        TaskGroup& operator=( const TaskGroup &other ) = delete; // assignment operator
+        TaskGroupFactory& operator= ( const TaskGroupFactory &other ); // assignment operator
 
-        TaskGroup& operator=( TaskGroup && other ); // assignment-move operator
+        TaskGroupFactory& operator= ( TaskGroupFactory && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -59,12 +53,13 @@ class TaskGroup
 
     private:
         // ====================  METHODS       =======================================
+        MPL::Factory<ANANSI::TaskGroup,int> myFactory_;
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class TaskGroup  -----
+}; // -----  end of class TaskGroupFactory  -----
 
 
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef ANANSI_TaskGroup_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_TaskGroupFactory_INC  ----- */

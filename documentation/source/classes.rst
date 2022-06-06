@@ -9,6 +9,7 @@ Welcome to Anansi's class documentation!
    
 
    Classes/AnansiMolecularDynamics.cpp.rst
+   Classes/AnansiMolecularDynamicsFactory.cpp.rst
    Classes/CommunicatorFactory.cpp.rst
    Classes/ConsoleLogger.cpp.rst
    Classes/DisabledMPIEnvironment.cpp.rst
@@ -41,9 +42,11 @@ Welcome to Anansi's class documentation!
    Classes/ProcessCmdLine.cpp.rst
    Classes/Simulation.cpp.rst
    Classes/SimulationState.cpp.rst
-   Classes/TerminateSimulation.cpp.rst
    Classes/TaskGroup.cpp.rst
-   Classes/AnansiMolecularDynamicsFactory.cpp.rst
+   Classes/TaskGroupFactory.cpp.rst
+   Classes/TerminateSimulation.cpp.rst
+   Classes/LoggerFactory.cpp.rst
+
    Classes/CommandLineArguments.cpp.rst
    Classes/ControlFileParser.cpp.rst
    Classes/FileParser.cpp.rst
