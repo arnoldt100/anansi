@@ -13,38 +13,43 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
+#include "ClassInstanceLimiter.hpp"
 #include "TaskGroup.h"
 #include "Factory.hpp"
 
 namespace ANANSI
 {
 
+constexpr auto MAX_TASKGROUPFACTORY_INSTANCES = 1;
+
 // =====================================================================================
 //        Class:  TaskGroupFactory
 //  Description:  
 //  =====================================================================================
-class TaskGroupFactory
+class TaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<TaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         TaskGroupFactory ();   // constructor
 
-        TaskGroupFactory (const TaskGroupFactory & other);   // copy constructor
+        TaskGroupFactory (const TaskGroupFactory & other)=delete;   // copy constructor
 
-        TaskGroupFactory (TaskGroupFactory && other);   // copy-move constructor
+        TaskGroupFactory (TaskGroupFactory && other)=delete;   // copy-move constructor
 
         ~TaskGroupFactory ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        std::unique_ptr<ANANSI::TaskGroup> buildWorldTaskGroup() const;
+
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        TaskGroupFactory& operator= ( const TaskGroupFactory &other ); // assignment operator
+        TaskGroupFactory& operator= ( const TaskGroupFactory &other )=delete ; // assignment operator
 
-        TaskGroupFactory& operator= ( TaskGroupFactory && other ); // assignment-move operator
+        TaskGroupFactory& operator= ( TaskGroupFactory && other )=delete; // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================

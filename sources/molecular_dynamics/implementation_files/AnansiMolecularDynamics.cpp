@@ -35,6 +35,14 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     worldTaskGroup_(),
+    mdState_(),
+    mdNullSimulationState_(),
+    mdInitSimEnv_(),
+    mdProcessCmdLine_(),
+    mdInitInitialConditions_(),
+    mdPerformSimulation_(),
+    mdTerminateSimulation_(),
+    taskGroupFactory_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -60,6 +68,14 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     worldTaskGroup_(),
+    mdState_(),
+    mdNullSimulationState_(),
+    mdInitSimEnv_(),
+    mdProcessCmdLine_(),
+    mdInitInitialConditions_(),
+    mdPerformSimulation_(),
+    mdTerminateSimulation_(),
+    taskGroupFactory_(),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -72,6 +88,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
+    // Initialize all factories.
+    this->taskGroupFactory_ = std::make_unique<TaskGroupFactory>();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -133,6 +151,7 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
 void AnansiMolecularDynamics::enableWorldTaskGroup()
 {
+    this->worldTaskGroup_ = std::move(this->taskGroupFactory_->buildWorldTaskGroup());
     return;
 }
 
