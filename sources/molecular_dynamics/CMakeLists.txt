@@ -101,6 +101,7 @@
         header_files/MDSimulationStateFactory.h
         header_files/ISEStatus.h
         header_files/TaskGroupFactory.h
+        header_files/DefaultTaskGroup.h
         header_files/AnansiMolecularDynamicsFactory.h 
         header_files/AnansiMDStateInt2Type.hpp)
 
@@ -112,6 +113,7 @@
     #-----------------------------------------------------
     set (anansi_md_library_implementation  
         implementation_files/AnansiMolecularDynamics.cpp
+        implementation_files/DefaultTaskGroup.cpp
         implementation_files/MDNullSimulationVisitor.cpp
         implementation_files/MDNullSimulation.cpp
         implementation_files/MDInitSimEnv.cpp

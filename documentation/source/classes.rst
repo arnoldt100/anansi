@@ -12,12 +12,14 @@ Welcome to Anansi's class documentation!
    Classes/AnansiMolecularDynamicsFactory.cpp.rst
    Classes/CommunicatorFactory.cpp.rst
    Classes/ConsoleLogger.cpp.rst
+   Classes/DefaultTaskGroup.cpp.rst
    Classes/DisabledMPIEnvironment.cpp.rst
    Classes/EnabledMPIEnvironment.cpp.rst
    Classes/ErrorInvalidMPIEnvironmentChange.cpp.rst
    Classes/InitInitialConditions.cpp.rst
    Classes/InitSimEnv.cpp.rst
    Classes/Logger.cpp.rst
+   Classes/LoggerFactory.cpp.rst
    Classes/MDInitInitialConditions.cpp.rst
    Classes/MDInitInitialConditionsVisitor.cpp.rst
    Classes/MDInitSimEnv.cpp.rst
@@ -45,7 +47,6 @@ Welcome to Anansi's class documentation!
    Classes/TaskGroup.cpp.rst
    Classes/TaskGroupFactory.cpp.rst
    Classes/TerminateSimulation.cpp.rst
-   Classes/LoggerFactory.cpp.rst
 
    Classes/CommandLineArguments.cpp.rst
    Classes/ControlFileParser.cpp.rst
