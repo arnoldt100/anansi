@@ -45,7 +45,7 @@ class DefaultTaskGroup final : public TaskGroup
         DefaultTaskGroup& operator= ( DefaultTaskGroup && other ); // assignment-move operator
 
         // ====================  STATIC METHODS ======================================
-        static TaskGroup* createTaskGroup();
+        static TaskGroup* create();
 
         // ====================  DATA MEMBERS  =======================================
         const int id=1;

@@ -59,7 +59,7 @@ DefaultTaskGroup& DefaultTaskGroup::operator= ( DefaultTaskGroup && other )
 } // assignment-move operator
 
 //============================= STATIC METHODS ===============================
-TaskGroup* DefaultTaskGroup::createTaskGroup()
+TaskGroup* DefaultTaskGroup::create()
 {
     return new DefaultTaskGroup;
 }

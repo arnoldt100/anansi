@@ -4,6 +4,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -15,12 +17,25 @@
 
 #include "ClassInstanceLimiter.hpp"
 #include "TaskGroup.h"
+#include "DefaultTaskGroup.h"
 #include "Factory.hpp"
+#include "MPLAliases.hpp"
+#include "RegisterObjectFactories.hpp"
 
 namespace ANANSI
 {
-
+ 
 constexpr auto MAX_TASKGROUPFACTORY_INSTANCES = 1;
+
+// Define an alias of the TaskGroup object factory type.
+template <typename V,typename W>
+using TGObjectFactoryType = MPL::Factory<V,W>;
+
+// Define an alias for the TaskGroups concrete classes ID type.
+using TaskGroupIDType = int;
+
+// Define a typelist with the types of concrete TaskGroups to create.
+using TaskGroups_TList = MPL::mpl_typelist<DefaultTaskGroup>;
 
 // =====================================================================================
 //        Class:  TaskGroupFactory
@@ -57,10 +72,14 @@ class TaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<Task
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        // ====================  STATIC METHODS ======================================
+
         // ====================  METHODS       =======================================
-        MPL::Factory<ANANSI::TaskGroup,int> myFactory_;
 
         // ====================  DATA MEMBERS  =======================================
+
+        TGObjectFactoryType<TaskGroup,TaskGroupIDType> myFactory_;
+
 
 }; // -----  end of class TaskGroupFactory  -----
 

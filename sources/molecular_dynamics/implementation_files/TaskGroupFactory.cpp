@@ -9,11 +9,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "DefaultTaskGroup.h"
 #include "TaskGroupFactory.h"
+#include "RegisterObjectFactories.hpp"
 
 namespace ANANSI
 {
+
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -24,9 +25,12 @@ namespace ANANSI
 TaskGroupFactory::TaskGroupFactory() :
     COUNTERCLASSES::ClassInstanceLimiter<TaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>()
 {
-    // Register all TaskGroups.
-    const int defaulttaskgroupid=1; // ID
-    myFactory_.registerFactory(defaulttaskgroupid,DefaultTaskGroup::createTaskGroup);
+    MPL::RegisterObjectFactories< TGObjectFactoryType,
+                                  TaskGroup,
+                                  TaskGroupIDType,
+                                  TaskGroups_TList> rof;
+
+    rof(myFactory_);
 
     return;
 }
@@ -40,6 +44,7 @@ TaskGroupFactory::~TaskGroupFactory()
 //============================= ACCESSORS ====================================
 std::unique_ptr<ANANSI::TaskGroup> TaskGroupFactory::buildWorldTaskGroup() const
 {
+
     std::unique_ptr<TaskGroup> task_group = std::move(std::make_unique<DefaultTaskGroup>() );
     return task_group;
 }
@@ -71,6 +76,5 @@ std::unique_ptr<ANANSI::TaskGroup> TaskGroupFactory::buildWorldTaskGroup() const
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
 
 } // namespace ANANSI
