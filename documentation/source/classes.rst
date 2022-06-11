@@ -47,6 +47,7 @@ Welcome to Anansi's class documentation!
    Classes/TaskGroup.cpp.rst
    Classes/TaskGroupFactory.cpp.rst
    Classes/TerminateSimulation.cpp.rst
+   Classes/ForLoop.cpp.rst
 
    Classes/CommandLineArguments.cpp.rst
    Classes/ControlFileParser.cpp.rst
