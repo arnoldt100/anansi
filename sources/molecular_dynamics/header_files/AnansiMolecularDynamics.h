@@ -25,7 +25,6 @@
 #include "SimulationParameters.h"
 #include "Communicator.h"
 #include "RegistryAnansiMDStatus.h"
-#include "Factory.hpp"
 #include "SimulationState.h"
 #include "TaskGroupFactory.h"
 #include "TaskGroup.h"

@@ -42,6 +42,7 @@
     get_target_property(my_comm_include  communicator simulation_state_include)
     get_target_property(my_mpicomm_include  mpi_communicator mpi_communicator_include)
     get_target_property(my_task_group_include task_group task_group_include)
+    get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -172,7 +173,8 @@ target_include_directories( ${my_anansi_md_library}
                             PRIVATE ${my_ss_include}
                             PRIVATE ${my_mpl_include}
                             PRIVATE ${my_mpicomm_include}
-                            PRIVATE ${my_task_group_include} )
+                            PRIVATE ${my_task_group_include} 
+                            PRIVATE ${my_generic_object_factory_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -190,6 +192,7 @@ target_link_libraries(${my_anansi_md_library}
                       mpi_communicator
                       mpl
                       task_group
+                      generic_object_factory
                       ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
@@ -234,6 +237,7 @@ target_link_libraries(${my_main_target_binary}
                       simulation_state
                       mpi_communicator
                       task_group
+                      generic_object_factory
                       ${Boost_LIBRARIES} )
 
                   
