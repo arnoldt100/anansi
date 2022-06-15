@@ -35,6 +35,7 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_mpl_include  mpl mpl_include)
+    get_target_property(my_generic_vistor_include  generic_visitor generic_visitor_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -104,14 +105,16 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_mpl_include} )
+                           PRIVATE ${my_mpl_include}
+                           PRIVATE ${my_generic_vistor_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      communicator 
+                      communicator
+                      generic_visitor 
                       mpl )
 
 #-----------------------------------------------------
