@@ -42,7 +42,7 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_comm_include communicator communicator_include)
-    get_target_property(my_mpl_include mpl mpl_include)
+    get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -111,7 +111,7 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            ${my_comm_include} 
-                           ${my_mpl_include} )
+                           ${my_generic_object_factory_include} )
 
 
 #-----------------------------------------------------
@@ -120,7 +120,7 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries( ${target}
                        PUBLIC communicator
-                       PUBLIC mpl )
+                       PUBLIC generic_object_factory )
 #-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -

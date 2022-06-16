@@ -34,7 +34,7 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property(my_mpl_include  mpl mpl_include)
+    get_target_property(my_generic_object_factory_include  generic_object_factory generic_object_factory_include)
     get_target_property(my_generic_vistor_include  generic_visitor generic_visitor_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -105,7 +105,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_mpl_include}
+                           PRIVATE ${my_generic_vistor_include}
                            PRIVATE ${my_generic_vistor_include} )
 
 #-----------------------------------------------------
@@ -115,7 +115,7 @@ target_include_directories(${target}
 target_link_libraries(${target}
                       communicator
                       generic_visitor 
-                      mpl )
+                      generic_object_factory )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
