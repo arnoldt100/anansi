@@ -16,6 +16,7 @@ Welcome to Anansi's class documentation!
    Classes/DisabledMPIEnvironment.cpp.rst
    Classes/EnabledMPIEnvironment.cpp.rst
    Classes/ErrorInvalidMPIEnvironmentChange.cpp.rst
+   Classes/ForLoop.cpp.rst
    Classes/InitInitialConditions.cpp.rst
    Classes/InitSimEnv.cpp.rst
    Classes/Logger.cpp.rst
@@ -31,6 +32,8 @@ Welcome to Anansi's class documentation!
    Classes/MDProcessCmdLine.cpp.rst
    Classes/MDProcessCmdLineVisitor.cpp.rst
    Classes/MDSimulationStateFactory.cpp.rst
+   Classes/MDTaskGroupFactory.cpp.rst
+   Classes/MDTaskGroupTraits.cpp.rst
    Classes/MDTerminateSimulation.cpp.rst
    Classes/MDTerminateSimulationVisitor.cpp.rst
    Classes/MPICommunicatorFactory.cpp.rst
@@ -45,10 +48,7 @@ Welcome to Anansi's class documentation!
    Classes/Simulation.cpp.rst
    Classes/SimulationState.cpp.rst
    Classes/TaskGroup.cpp.rst
-   Classes/TaskGroupFactory.cpp.rst
-   Classes/TaskGroupTraits.cpp.rst
    Classes/TerminateSimulation.cpp.rst
-   Classes/ForLoop.cpp.rst
 
    Classes/CommandLineArguments.cpp.rst
    Classes/ControlFileParser.cpp.rst

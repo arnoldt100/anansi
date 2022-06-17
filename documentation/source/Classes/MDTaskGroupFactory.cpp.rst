@@ -1,12 +1,12 @@
-.. _TaskGroupFactory class target:
+.. _MDTaskGroupFactory class target:
 
 .. default-domain:: cpp
 
 .. namespace:: ANANSI
 
-##############################
-TaskGroupFactory Documentation
-##############################
+################################
+MDTaskGroupFactory Documentation
+################################
 
 ===========
 UML Diagram
@@ -31,8 +31,8 @@ Interface Header Files
 **Project Include Files**
 
 * #include "TaskGroup.h"
+* #include "MDTaskGroup.h"
 * #include "ClassInstanceLimiter.hpp"
-* #include "TaskGroup.h"
 * #include "DefaultTaskGroup.h"
 * #include "Factory.hpp"
 * #include "MPLAliases.hpp"
@@ -48,36 +48,36 @@ Implementation Header Files
 
 **Project Include Files**
 
-* #include "TaskGroupFactory.h"
+* #include "MDFactory.h"
 
-=====================================
-TaskGroupFactory.h Global Definitions
-=====================================
+=======================================
+MDTaskGroupFactory.h Global Definitions
+=======================================
 
-.. var:: constexpr auto MAX_TASKGROUPFACTORY_INSTANCES = 1
+.. var:: constexpr auto MAX_MDTASKGROUPFACTORY_INSTANCES = 1
 
-    Sets the maximum number of instances of the class TaskGroupFactory.  We
+    Sets the maximum number of instances of the class MDTaskGroupFactory.  We
     specify 1 due to only requiring that we register the derived TaskGroups
     only once.
 
-.. type:: TaskGroupsTypeList = MPL::mpl_typelist<DefaultTaskGroup>
+.. type:: MDTaskGroupTypeList = MPL::mpl_typelist<DefaultTaskGroup>
 
-    The list of TaskGroups that are instatantiated with the TaskGroupFactory.
+    The list of TaskGroups that are instatantiated with the MDTaskGroupFactory.
 
 .. type:: template <class BaseClassType,typename IDType> \
-           TGObjectFactoryType = MPL::Factory<BaseClassType,IDType>
+          TGObjectFactoryType = MPL::Factory<BaseClassType,IDType>
 
     A typedef for easing the calling of MPL::Factory class.
 
-    :tparam BaseClassType: The type of base class of the set of derived TaskGroups.
+    :tparam BaseClassType: The type of base class of the set of derived MDs.
     :tparam IDType: The type of the class identifier for registering the derived
-               TaskGroups.
+                    TaskGroups.
 
 ====================================
-TaskGroupFactory Class Documentation
+MDFactory Class Documentation
 ====================================
 
-.. class:: TaskGroupFactory
+.. class:: MDTaskGroupFactory final
 
 --------------
 Public Members
@@ -87,19 +87,19 @@ Public Members
 Life Cycle
 ^^^^^^^^^^
 
-.. function:: TaskGroupFactory::TaskGroupFactory()
+.. function:: MDTaskGroupFactory::MDTaskGroupFactory()
 
    The default constructor.
 
-.. function:: TaskGroupFactory::TaskGroupFactory( const TaskGroupFactory &other )
+.. function:: MDTaskGroupFactory::MDTaskGroupFactory( const MDTaskGroupFactory &other )
 
     The copy constructor.
 
-.. function:: TaskGroupFactory::TaskGroupFactory(TaskGroupFactory && other) 
+.. function:: MDTaskGroupFactory::MDTaskGroupFactory(MDTaskGroupFactory && other) 
 
     The copy-move constructor.
 
-.. function:: TaskGroupFactory::~TaskGroupFactory()
+.. function:: MDTaskGroupFactory::~MDTaskGroupFactory()
 
     The destructor.
 
@@ -113,11 +113,11 @@ No public accessors
 Operators
 ^^^^^^^^^
 
-.. function:: TaskGroupFactory& TaskGroupFactory::operator=( TaskGroupFactory const & other)
+.. function:: MDTaskGroupFactory& MDTaskGroupFactory::operator=( MDTaskGroupFactory const & other)
 
     The assignment operator.
 
-.. function:: TaskGroupFactory& TaskGroupFactory::operator=( TaskGroupFactory && other)
+.. function:: MDTaskGroupFactory& MDTaskGroupFactory::operator=( MDTaskGroupFactory && other)
 
     The assignment-move operator.
 

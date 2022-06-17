@@ -25,13 +25,6 @@ namespace ANANSI
 TaskGroupFactory::TaskGroupFactory() :
     COUNTERCLASSES::ClassInstanceLimiter<TaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>()
 {
-    MPL::RegisterObjectFactories< TGObjectFactoryType,
-                                  TaskGroup,
-                                  TaskGroupIDType,
-                                  TaskGroups_TList> rof;
-
-    rof(myFactory_);
-
     return;
 }
 

@@ -8,8 +8,10 @@
 TaskGroup Documentation
 #######################
 
-The resposibility of the class is to perform various tasks that need to be done
-to accomplish the simulation. This class can be thought of as a command class.
+
+This class provides the interface for the classes that perform various tasks
+to accomplish the simulation.
+
 
 ======================
 Interface Header Files

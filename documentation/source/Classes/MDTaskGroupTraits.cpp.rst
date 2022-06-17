@@ -1,12 +1,12 @@
-.. _TaskGroupTraits class target:
+.. _MDTaskGroupTraits class target:
 
 .. default-domain:: cpp
 
 .. namespace:: ANANSI
 
-#############################
-TaskGroupTraits Documentation
-#############################
+###############################
+MDTaskGroupTraits Documentation
+###############################
 
 ===========
 UML Diagram
@@ -45,17 +45,17 @@ Implementation Header Files
 
 **Project Include Files**
 
-* TaskGroupTraits.h
+* MDTaskGroupTraits.h
 
-==================================
-TaskGroupTraits.h Global Variables
-==================================
+====================================
+MDTaskGroupTraits.h Global Variables
+====================================
 
-===================================
-TaskGroupTraits Class Documentation
-===================================
+=====================================
+MDTaskGroupTraits Class Documentation
+=====================================
 
-.. class:: TaskGroupTraits
+.. class:: MDTaskGroupTraits final
 
 --------------
 Public Members
@@ -65,19 +65,19 @@ Public Members
 Life Cycle
 ^^^^^^^^^^
 
-.. function:: TaskGroupTraits::TaskGroupTraits()
+.. function:: MDTaskGroupTraits::MDTaskGroupTraits()
 
    The default constructor.
 
-.. function:: TaskGroupTraits::TaskGroupTraits( const TaskGroupTraits &other )
+.. function:: MDTaskGroupTraits::MDTaskGroupTraits( const MDTaskGroupTraits &other )
 
     The copy constructor.
 
-.. function:: TaskGroupTraits::TaskGroupTraits(TaskGroupTraits && other) 
+.. function:: MDTaskGroupTraits::MDTaskGroupTraits(MDTaskGroupTraits && other) 
 
     The copy-move constructor.
 
-.. function:: TaskGroupTraits::~TaskGroupTraits()
+.. function:: MDTaskGroupTraits::~MDTaskGroupTraits()
 
     The destructor.
 
@@ -101,11 +101,11 @@ No public accessors
 Operators
 ^^^^^^^^^
 
-.. function:: TaskGroupTraits& TaskGroupTraits::operator=( TaskGroupTraits const & other)
+.. function:: MDTaskGroupTraits& MDTaskGroupTraits::operator=( MDTaskGroupTraits const & other)
 
     The assignment operator.
 
-.. function:: TaskGroupTraits& TaskGroupTraits::operator=( TaskGroupTraits && other)
+.. function:: MDTaskGroupTraits& MDTaskGroupTraits::operator=( MDTaskGroupTraits && other)
 
     The assignment-move operator.
 
