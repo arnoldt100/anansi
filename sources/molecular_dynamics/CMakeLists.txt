@@ -97,6 +97,7 @@
         header_files/MDInitInitialConditionsVisitor.h
         header_files/MDPerformSimulationVisitor.h
         header_files/MDPerformSimulation.h
+        header_files/MDTaskGroupTraits.h
         header_files/MDTerminateSimulationVisitor.h
         header_files/MDTerminateSimulation.h
         header_files/MDSimulationStateFactory.h
@@ -127,6 +128,7 @@
         implementation_files/MDPerformSimulation.cpp
         implementation_files/MDTerminateSimulationVisitor.cpp
         implementation_files/MDTerminateSimulation.cpp
+        implementation_files/MDTaskGroupTraits.cpp
         implementation_files/MDSimulationStateFactory.cpp
         implementation_files/ISEStatus.cpp
         implementation_files/TaskGroupFactory.cpp

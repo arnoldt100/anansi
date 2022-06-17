@@ -68,7 +68,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (task_group_header_files
-         header_files/TaskGroupTraits.h
          header_files/TaskGroup.h)
 
     #-----------------------------------------------------
@@ -79,7 +78,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (task_group_implementation_files
-         implementation_files/TaskGroupTraits.cpp
          implementation_files/TaskGroup.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
