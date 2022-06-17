@@ -46,6 +46,7 @@ Welcome to Anansi's class documentation!
    Classes/SimulationState.cpp.rst
    Classes/TaskGroup.cpp.rst
    Classes/TaskGroupFactory.cpp.rst
+   Classes/TaskGroupTraits.cpp.rst
    Classes/TerminateSimulation.cpp.rst
    Classes/ForLoop.cpp.rst
 

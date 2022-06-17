@@ -15,6 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
+#include "TaskGroupTraits.h"
 #include "ClassInstanceLimiter.hpp"
 #include "TaskGroup.h"
 #include "DefaultTaskGroup.h"
@@ -25,17 +26,26 @@
 namespace ANANSI
 {
  
+// Sets the maximum number of instances of the class TaskGroupFactory.  We
+// specify 1 due to only requiring that we register the derived TaskGroups only
+// once.
 constexpr auto MAX_TASKGROUPFACTORY_INSTANCES = 1;
 
-// Define an alias of the TaskGroup object factory type.
-template <typename V,typename W>
-using TGObjectFactoryType = MPL::Factory<V,W>;
+// Define an alias for typelist with the types of concrete TaskGroups to
+// create.
+using TaskGroupsTypeList = MPL::mpl_typelist<DefaultTaskGroup>;
+
+// Define ans alias for the superclass type of the derived TaskGroups.
+using TaskGroupsBaseClassType = TaskGroup;
 
 // Define an alias for the TaskGroups concrete classes ID type.
-using TaskGroupIDType = int;
+using TaskGroupsIDType = int;
 
-// Define a typelist with the types of concrete TaskGroups to create.
-using TaskGroups_TList = MPL::mpl_typelist<DefaultTaskGroup>;
+// Define an alias of the TaskGroup object factory type.
+//
+using TGObjectFactoryType = MPL::Factory<TaskGroupsBaseClassType,TaskGroupsIDType>;
+
+
 
 // =====================================================================================
 //        Class:  TaskGroupFactory
@@ -77,8 +87,6 @@ class TaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<Task
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-
-        TGObjectFactoryType<TaskGroup,TaskGroupIDType> myFactory_;
 
 
 }; // -----  end of class TaskGroupFactory  -----
