@@ -15,7 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-#include "TaskGroupTraits.h"
+#include "MDTaskGroupTraits.h"
 #include "ClassInstanceLimiter.hpp"
 #include "TaskGroup.h"
 #include "DefaultTaskGroup.h"
@@ -26,7 +26,7 @@
 namespace ANANSI
 {
  
-// Sets the maximum number of instances of the class TaskGroupFactory.  We
+// Sets the maximum number of instances of the class MDTaskGroupFactory.  We
 // specify 1 due to only requiring that we register the derived TaskGroups only
 // once.
 constexpr auto MAX_TASKGROUPFACTORY_INSTANCES = 1;
@@ -48,21 +48,21 @@ using TGObjectFactoryType = MPL::Factory<TaskGroupsBaseClassType,TaskGroupsIDTyp
 
 
 // =====================================================================================
-//        Class:  TaskGroupFactory
+//        Class:  MDTaskGroupFactory
 //  Description:  
 //  =====================================================================================
-class TaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<TaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>
+class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MDTaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        TaskGroupFactory ();   // constructor
+        MDTaskGroupFactory ();   // constructor
 
-        TaskGroupFactory (const TaskGroupFactory & other)=delete;   // copy constructor
+        MDTaskGroupFactory (const MDTaskGroupFactory & other)=delete;   // copy constructor
 
-        TaskGroupFactory (TaskGroupFactory && other)=delete;   // copy-move constructor
+        MDTaskGroupFactory (MDTaskGroupFactory && other)=delete;   // copy-move constructor
 
-        ~TaskGroupFactory ();  // destructor
+        ~MDTaskGroupFactory ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         std::unique_ptr<ANANSI::TaskGroup> buildWorldTaskGroup() const;
@@ -72,9 +72,9 @@ class TaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<Task
 
         // ====================  OPERATORS     =======================================
 
-        TaskGroupFactory& operator= ( const TaskGroupFactory &other )=delete ; // assignment operator
+        MDTaskGroupFactory& operator= ( const MDTaskGroupFactory &other )=delete ; // assignment operator
 
-        TaskGroupFactory& operator= ( TaskGroupFactory && other )=delete; // assignment-move operator
+        MDTaskGroupFactory& operator= ( MDTaskGroupFactory && other )=delete; // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -89,7 +89,7 @@ class TaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<Task
         // ====================  DATA MEMBERS  =======================================
 
 
-}; // -----  end of class TaskGroupFactory  -----
+}; // -----  end of class MDTaskGroupFactory  -----
 
 
 }; // namespace ANANSI

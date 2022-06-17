@@ -89,7 +89,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
     // Initialize all factories.
-    this->taskGroupFactory_ = std::make_unique<TaskGroupFactory>();
+    this->taskGroupFactory_ = std::make_unique<MDTaskGroupFactory>();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;

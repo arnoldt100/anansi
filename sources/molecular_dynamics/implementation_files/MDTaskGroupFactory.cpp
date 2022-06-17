@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "TaskGroupFactory.h"
+#include "MDTaskGroupFactory.h"
 #include "RegisterObjectFactories.hpp"
 
 namespace ANANSI
@@ -22,22 +22,21 @@ namespace ANANSI
 
 //============================= LIFECYCLE ====================================
 
-TaskGroupFactory::TaskGroupFactory() :
-    COUNTERCLASSES::ClassInstanceLimiter<TaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>()
+MDTaskGroupFactory::MDTaskGroupFactory() :
+    COUNTERCLASSES::ClassInstanceLimiter<MDTaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>()
 {
     return;
 }
 
 
-TaskGroupFactory::~TaskGroupFactory()
+MDTaskGroupFactory::~MDTaskGroupFactory()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-std::unique_ptr<ANANSI::TaskGroup> TaskGroupFactory::buildWorldTaskGroup() const
+std::unique_ptr<ANANSI::TaskGroup> MDTaskGroupFactory::buildWorldTaskGroup() const
 {
-
     std::unique_ptr<TaskGroup> task_group = std::move(std::make_unique<DefaultTaskGroup>() );
     return task_group;
 }
