@@ -1,5 +1,5 @@
-#ifndef  ANANSI_TaskGroupFactory_INC
-#define  ANANSI_TaskGroupFactory_INC
+#ifndef  ANANSI_MDTaskGroupFactory_INC
+#define  ANANSI_MDTaskGroupFactory_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -26,46 +26,37 @@
 namespace ANANSI
 {
  
-// Sets the maximum number of instances of the class MDTaskGroupFactory.  We
-// specify 1 due to only requiring that we register the derived TaskGroups only
-// once.
-constexpr auto MAX_TASKGROUPFACTORY_INSTANCES = 1;
-
-// Define an alias for typelist with the types of concrete TaskGroups to
-// create.
-using TaskGroupsTypeList = MPL::mpl_typelist<DefaultTaskGroup>;
-
-// Define ans alias for the superclass type of the derived TaskGroups.
-using TaskGroupsBaseClassType = TaskGroup;
-
-// Define an alias for the TaskGroups concrete classes ID type.
-using TaskGroupsIDType = int;
-
-// Define an alias of the TaskGroup object factory type.
-//
-using TGObjectFactoryType = MPL::Factory<TaskGroupsBaseClassType,TaskGroupsIDType>;
-
-
 
 // =====================================================================================
 //        Class:  MDTaskGroupFactory
 //  Description:  
 //  =====================================================================================
-class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MDTaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>
+template<class Traits=MDTaskGroupTraits>
+class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MDTaskGroupFactory<Traits>,Traits::MAX_TASKGROUPFACTORY_INSTANCES>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        MDTaskGroupFactory ();   // constructor
+        MDTaskGroupFactory ()   // constructor
+        {
+            return;
+        }
 
         MDTaskGroupFactory (const MDTaskGroupFactory & other)=delete;   // copy constructor
 
         MDTaskGroupFactory (MDTaskGroupFactory && other)=delete;   // copy-move constructor
 
-        ~MDTaskGroupFactory ();  // destructor
+        ~MDTaskGroupFactory ()  // destructor
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
-        std::unique_ptr<ANANSI::TaskGroup> buildWorldTaskGroup() const;
+        std::unique_ptr<typename Traits::BaseClassType> buildWorldTaskGroup() const
+        {
+            std::unique_ptr<typename Traits::BaseClassType> task_group = std::move(std::make_unique<DefaultTaskGroup>() );
+            return task_group;
+        }
 
 
         // ====================  MUTATORS      =======================================
@@ -92,6 +83,42 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
 }; // -----  end of class MDTaskGroupFactory  -----
 
 
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PUBLIC ///////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//============================= LIFECYCLE ====================================
+
+//============================= ACCESSORS ====================================
+
+//============================= MUTATORS =====================================
+
+//============================= OPERATORS ====================================
+
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PROTECTED ////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//============================= LIFECYCLE ====================================
+
+//============================= ACCESSORS ====================================
+
+//============================= MUTATORS =====================================
+
+//============================= OPERATORS ====================================
+
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PRIVATE //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+    
+//============================= LIFECYCLE ====================================
+
+//============================= ACCESSORS ====================================
+
+//============================= MUTATORS =====================================
+
+//============================= OPERATORS ====================================
+
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef ANANSI_TaskGroupFactory_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_MDTaskGroupFactory_INC  ----- */

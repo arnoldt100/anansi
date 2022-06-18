@@ -22,24 +22,7 @@ namespace ANANSI
 
 //============================= LIFECYCLE ====================================
 
-MDTaskGroupFactory::MDTaskGroupFactory() :
-    COUNTERCLASSES::ClassInstanceLimiter<MDTaskGroupFactory,MAX_TASKGROUPFACTORY_INSTANCES>()
-{
-    return;
-}
-
-
-MDTaskGroupFactory::~MDTaskGroupFactory()
-{
-    return;
-}
-
 //============================= ACCESSORS ====================================
-std::unique_ptr<ANANSI::TaskGroup> MDTaskGroupFactory::buildWorldTaskGroup() const
-{
-    std::unique_ptr<TaskGroup> task_group = std::move(std::make_unique<DefaultTaskGroup>() );
-    return task_group;
-}
 
 //============================= MUTATORS =====================================
 

@@ -73,9 +73,9 @@ MDTaskGroupFactory.h Global Definitions
     :tparam IDType: The type of the class identifier for registering the derived
                     TaskGroups.
 
-====================================
-MDFactory Class Documentation
-====================================
+======================================
+MDTaskGroupFactory Class Documentation
+======================================
 
 .. class:: MDTaskGroupFactory final
 

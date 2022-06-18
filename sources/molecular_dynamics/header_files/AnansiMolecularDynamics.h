@@ -26,6 +26,7 @@
 #include "Communicator.h"
 #include "RegistryAnansiMDStatus.h"
 #include "SimulationState.h"
+#include "MDTaskGroupTraits.h"
 #include "MDTaskGroupFactory.h"
 #include "TaskGroup.h"
 
@@ -145,7 +146,7 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
         // These are the factories.
-        std::unique_ptr<MDTaskGroupFactory> taskGroupFactory_;
+        std::unique_ptr<MDTaskGroupFactory<>> taskGroupFactory_;
 
         // To be deprecated.
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;

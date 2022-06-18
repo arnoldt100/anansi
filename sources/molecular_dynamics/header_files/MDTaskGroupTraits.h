@@ -42,6 +42,17 @@ class MDTaskGroupTraits
         // create.
         using ConcreteTypes = MPL::mpl_typelist<DefaultTaskGroup>;
 
+        // Define ans alias for the superclass type of the derived TaskGroups.
+        using BaseClassType = ANANSI::TaskGroup;
+
+        // Define an alias for the TaskGroups concrete classes ID type.
+        using IDType = int;
+
+        // Sets the maximum number of instances of the class MDTaskGroupFactory.  We
+        // specify 1 due to only requiring that we register the derived TaskGroups only
+        // once.
+        static const int MAX_TASKGROUPFACTORY_INSTANCES = 1;
+
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
@@ -65,6 +76,6 @@ class MDTaskGroupTraits
 }; // -----  end of class MDTaskGroupTraits  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
 #endif   /* ----- #ifndef ANANSI_MDTaskGroupTraits_INC  ----- */
