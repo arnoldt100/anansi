@@ -52,9 +52,11 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
         }
 
         // ====================  ACCESSORS     =======================================
-        std::unique_ptr<typename Traits::BaseClassType> buildWorldTaskGroup() const
+        std::unique_ptr<typename Traits::AbstractProduct> buildWorldTaskGroup() const
         {
-            std::unique_ptr<typename Traits::BaseClassType> task_group = std::move(std::make_unique<DefaultTaskGroup>() );
+            
+
+            std::unique_ptr<typename Traits::AbstractProduct> task_group = std::move(std::make_unique<DefaultTaskGroup>() );
             return task_group;
         }
 

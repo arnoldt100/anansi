@@ -90,7 +90,7 @@ Static
         This typdef aliases a typelist which stores the concrete types
         that are derived from TaskGroup.
 
-    .. type:: BaseClassType = ANANSI::TaskGroup
+    .. type:: AbstractProduct = ANANSI::TaskGroup
 
         This typedef alaises the base class of the derived TaskGroups.
 
