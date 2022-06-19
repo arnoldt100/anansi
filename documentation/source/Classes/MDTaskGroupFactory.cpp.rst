@@ -26,13 +26,16 @@ Interface Header Files
 
 **C++ Include Files**
 
+* #include <string>
+* #include <map>
+
 **External Library Files**
 
 **Project Include Files**
 
-* #include "TaskGroup.h"
-* #include "MDTaskGroup.h"
+* #include "MDTaskGroupTraits.h"
 * #include "ClassInstanceLimiter.hpp"
+* #include "TaskGroup.h"
 * #include "DefaultTaskGroup.h"
 * #include "Factory.hpp"
 * #include "MPLAliases.hpp"
@@ -48,36 +51,20 @@ Implementation Header Files
 
 **Project Include Files**
 
-* #include "MDFactory.h"
+* #include "MDTaskGroupFactory.h"
 
 =======================================
 MDTaskGroupFactory.h Global Definitions
 =======================================
 
-.. var:: constexpr auto MAX_MDTASKGROUPFACTORY_INSTANCES = 1
-
-    Sets the maximum number of instances of the class MDTaskGroupFactory.  We
-    specify 1 due to only requiring that we register the derived TaskGroups
-    only once.
-
-.. type:: MDTaskGroupTypeList = MPL::mpl_typelist<DefaultTaskGroup>
-
-    The list of TaskGroups that are instatantiated with the MDTaskGroupFactory.
-
-.. type:: template <class BaseClassType,typename IDType> \
-          TGObjectFactoryType = MPL::Factory<BaseClassType,IDType>
-
-    A typedef for easing the calling of MPL::Factory class.
-
-    :tparam BaseClassType: The type of base class of the set of derived MDs.
-    :tparam IDType: The type of the class identifier for registering the derived
-                    TaskGroups.
-
 ======================================
 MDTaskGroupFactory Class Documentation
 ======================================
 
-.. class:: MDTaskGroupFactory final
+.. class:: template <class Traits=MDTaskGroupTraits> \
+           MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MDTaskGroupFactory<Traits>,Traits::MAX_TASKGROUPFACTORY_INSTANCES>
+
+    :tparam Traits: The traits of the concrete TaskGroups.
 
 --------------
 Public Members
@@ -91,11 +78,11 @@ Life Cycle
 
    The default constructor.
 
-.. function:: MDTaskGroupFactory::MDTaskGroupFactory( const MDTaskGroupFactory &other )
+.. function:: MDTaskGroupFactory::MDTaskGroupFactory( const MDTaskGroupFactory &other ) = delete
 
     The copy constructor.
 
-.. function:: MDTaskGroupFactory::MDTaskGroupFactory(MDTaskGroupFactory && other) 
+.. function:: MDTaskGroupFactory::MDTaskGroupFactory(MDTaskGroupFactory && other) = delete
 
     The copy-move constructor.
 
@@ -106,18 +93,17 @@ Life Cycle
 ^^^^^^^^^
 Accessors
 ^^^^^^^^^
-
-No public accessors
+.. function:: std::unique_ptr<typename Traits::BaseClassType> buildWorldTaskGroup() const
 
 ^^^^^^^^^
 Operators
 ^^^^^^^^^
 
-.. function:: MDTaskGroupFactory& MDTaskGroupFactory::operator=( MDTaskGroupFactory const & other)
+.. function:: MDTaskGroupFactory& MDTaskGroupFactory::operator=( MDTaskGroupFactory const & other) = delete
 
     The assignment operator.
 
-.. function:: MDTaskGroupFactory& MDTaskGroupFactory::operator=( MDTaskGroupFactory && other)
+.. function:: MDTaskGroupFactory& MDTaskGroupFactory::operator=( MDTaskGroupFactory && other) = delete
 
     The assignment-move operator.
 

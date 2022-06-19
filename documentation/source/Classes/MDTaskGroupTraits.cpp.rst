@@ -34,7 +34,6 @@ Interface Header Files
 * #include "MPLAliases.hpp"
 * #include "DefaultTaskGroup.h"
 
-
 ===========================
 Implementation Header Files
 ===========================
@@ -90,6 +89,22 @@ Static
 
         This typdef aliases a typelist which stores the concrete types
         that are derived from TaskGroup.
+
+    .. type:: BaseClassType = ANANSI::TaskGroup
+
+        This typedef alaises the base class of the derived TaskGroups.
+
+    .. type:: IDType = int
+
+        This typedef aliases the the ID type for registering an object with the TaskGroup
+        generic object factory.
+
+    .. member:: static const int MAX_TASKGROUPFACTORY_INSTANCES = 1
+
+        The maximum number of instances of the MDTaskGroupFactory that can simultaneously
+        exist. We specify 1 due to requiring that we register the derived TaskGroups only
+        once.
+
 
 ^^^^^^^^^
 Accessors
