@@ -36,13 +36,13 @@
     get_target_property(simulation_parameters_include_dir simulation_parameters simulation_parameters_include)
     get_target_property(my_cc_include counterclass counterclass_include)
     get_target_property(my_cf_include  file_parsers file_parsers_include)
-    get_target_property(my_generic_abstract_factory generic_abstract_factory generic_abstract_factory_include)
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_s_include  simulation simulation_include)
     get_target_property(my_ss_include  simulation_state simulation_state_include)
     get_target_property(my_comm_include  communicator simulation_state_include)
     get_target_property(my_mpicomm_include  mpi_communicator mpi_communicator_include)
     get_target_property(my_task_group_include task_group task_group_include)
+    get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -175,7 +175,8 @@ target_include_directories( ${my_anansi_md_library}
                             PRIVATE ${my_ss_include}
                             PRIVATE ${my_mpicomm_include}
                             PRIVATE ${my_task_group_include} 
-                            PRIVATE ${my_generic_abstract_factory_include} )
+                            PRIVATE ${my_generic_abstract_factory_include}
+                            PRIVATE ${my_foreach_loop_include}  )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -193,6 +194,7 @@ target_link_libraries(${my_anansi_md_library}
                       mpi_communicator
                       task_group
                       generic_abstract_factory
+                      generic_foreach_loop
                       ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
