@@ -58,9 +58,9 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
 
         MDTaskGroupFactory ()   // constructor
         {
-            constexpr int i_start=0;
+            constexpr auto i_start=0;
             constexpr auto i_end = MPL::mpl_size<ConcreteProductTypeList>::value-1;
-            MPL::ForLoopOverTypeList<i_start,i_end,0,ConcreteProductTypeList,RegisterTaskGroupObject> concrete_products;
+            MPL::ForLoopOverTypeList<i_start,i_end,ConcreteProductTypeList,RegisterTaskGroupObject> concrete_products;
             concrete_products();
 
             return;
