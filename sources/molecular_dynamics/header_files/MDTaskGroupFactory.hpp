@@ -76,8 +76,13 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
 
     private:
         // ====================  STATIC METHODS ======================================
+        
+        // ====================  MUTATORS      =======================================
 
-        // ====================  METHODS       =======================================
+        void registerObjectFactories_()
+        {
+            return;
+        }
 
         // ====================  DATA MEMBERS  =======================================
 

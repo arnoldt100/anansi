@@ -142,25 +142,11 @@ No protected members
 Private Members
 ---------------
 
-    No private members
+^^^^^^^^^^^^^^
+Static Methods
+^^^^^^^^^^^^^^
 
-.. Commented out. 
-.. ^^^^^^^^^^
-.. Life Cycle
-.. ^^^^^^^^^^
-..
-.. ^^^^^^^^^
-.. Accessors
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Operators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^
-.. Mutators
-.. ^^^^^^^^^
-.. 
-.. ^^^^^^^^^^^^
-.. Data Members
-.. ^^^^^^^^^^^^
+.. function:: static void registerObjectFactories_()
+
+    Registers all concrete TaskGroup products with the object factory.
+

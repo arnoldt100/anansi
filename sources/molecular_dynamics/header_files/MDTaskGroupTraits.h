@@ -46,7 +46,7 @@ class MDTaskGroupTraits
         using AbstractProduct = ANANSI::TaskGroup;
 
         // Define an alias for the TaskGroups concrete classes ID type.
-        using IDType = int;
+        using IdentifierType = int;
 
         // Sets the maximum number of instances of the class MDTaskGroupFactory.  We
         // specify 1 due to only requiring that we register the derived TaskGroups only

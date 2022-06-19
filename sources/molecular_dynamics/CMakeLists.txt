@@ -102,7 +102,7 @@
         header_files/MDTerminateSimulation.h
         header_files/MDSimulationStateFactory.h
         header_files/ISEStatus.h
-        header_files/MDTaskGroupFactory.h
+        header_files/MDTaskGroupFactory.hpp
         header_files/DefaultTaskGroup.h
         header_files/AnansiMolecularDynamicsFactory.h 
         header_files/AnansiMDStateInt2Type.hpp)

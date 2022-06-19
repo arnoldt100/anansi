@@ -94,7 +94,7 @@ Static
 
         This typedef alaises the base class of the derived TaskGroups.
 
-    .. type:: IDType = int
+    .. type:: IdentifierType = int
 
         This typedef aliases the the ID type for registering an object with the TaskGroup
         generic object factory.

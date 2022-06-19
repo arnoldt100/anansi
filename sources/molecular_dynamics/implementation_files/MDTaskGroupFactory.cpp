@@ -9,8 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDTaskGroupFactory.h"
-#include "RegisterObjectFactories.hpp"
+#include "MDTaskGroupFactory.hpp"
 
 namespace ANANSI
 {
