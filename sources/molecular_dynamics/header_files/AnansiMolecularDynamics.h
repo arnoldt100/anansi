@@ -27,7 +27,7 @@
 #include "RegistryAnansiMDStatus.h"
 #include "SimulationState.h"
 #include "MDTaskGroupTraits.h"
-#include "MDTaskGroupFactory.h"
+#include "MDTaskGroupFactory.hpp"
 #include "TaskGroup.h"
 
 namespace ANANSI {
