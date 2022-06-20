@@ -1,5 +1,5 @@
-#ifndef  ANANSI_DefaultTaskGroup_INC
-#define  ANANSI_DefaultTaskGroup_INC
+#ifndef  ANANSI_WorldTaskGroup_INC
+#define  ANANSI_WorldTaskGroup_INC
 
 
 //--------------------------------------------------------//
@@ -19,21 +19,21 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  DefaultTaskGroup
+//        Class:  WorldTaskGroup
 //  Description:  
 //  =====================================================================================
-class DefaultTaskGroup final : public TaskGroup
+class WorldTaskGroup final : public TaskGroup
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        DefaultTaskGroup ();   // constructor
+        WorldTaskGroup ();   // constructor
 
-        DefaultTaskGroup (const DefaultTaskGroup & other)=delete;   // copy constructor
+        WorldTaskGroup (const WorldTaskGroup & other)=delete;   // copy constructor
 
-        DefaultTaskGroup (DefaultTaskGroup && other);   // copy-move constructor
+        WorldTaskGroup (WorldTaskGroup && other);   // copy-move constructor
 
-        ~DefaultTaskGroup ();  // destructor
+        ~WorldTaskGroup ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -41,9 +41,9 @@ class DefaultTaskGroup final : public TaskGroup
 
         // ====================  OPERATORS     =======================================
 
-        DefaultTaskGroup& operator= ( const DefaultTaskGroup &other )=delete; // assignment operator
+        WorldTaskGroup& operator= ( const WorldTaskGroup &other )=delete; // assignment operator
 
-        DefaultTaskGroup& operator= ( DefaultTaskGroup && other ); // assignment-move operator
+        WorldTaskGroup& operator= ( WorldTaskGroup && other ); // assignment-move operator
 
         // ====================  STATIC METHODS ======================================
         static TaskGroup* create();
@@ -61,9 +61,9 @@ class DefaultTaskGroup final : public TaskGroup
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class DefaultTaskGroup  -----
+}; // -----  end of class WorldTaskGroup  -----
 
 
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef ANANSI_DefaultTaskGroup_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_WorldTaskGroup_INC  ----- */
