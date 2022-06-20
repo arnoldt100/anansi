@@ -38,8 +38,8 @@ template<class Traits=MDTaskGroupTraits>
 class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MDTaskGroupFactory<Traits>,Traits::MAX_TASKGROUPFACTORY_INSTANCES>
 {
     private:
-        using ConcreteProductTypeList = MDTaskGroupTraits::ConcreteTypes;
-        using ObjectFactoryType = MDTaskGroupTraits::FactoryType;
+        using ConcreteProductTypeList = typename Traits::ConcreteTypes;
+        using ObjectFactoryType = typename Traits::FactoryType;
 
     public:
         
