@@ -13,6 +13,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
+#include "Factory.hpp"
 #include "MPLAliases.hpp"
 #include "DefaultTaskGroup.h"
 
@@ -47,6 +48,10 @@ class MDTaskGroupTraits
 
         // Define an alias for the TaskGroups concrete classes ID type.
         using IdentifierType = int;
+
+        // Define an alias for the TaskGroups object factory type
+        using FactoryType = MPL::Factory<AbstractProduct,
+                                         IdentifierType>;
 
         // Sets the maximum number of instances of the class MDTaskGroupFactory.  We
         // specify 1 due to only requiring that we register the derived TaskGroups only

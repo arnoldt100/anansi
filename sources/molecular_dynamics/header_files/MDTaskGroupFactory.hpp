@@ -24,23 +24,11 @@
 #include "Factory.hpp"
 #include "MPLAliases.hpp"
 #include "ForLoop.hpp"
+#include "functional"
 
 namespace ANANSI
 {
  
-template<int I>
-class RegisterTaskGroupObject
-{
-    private:
-        using ConcreteProductType = MPL::mpl_at_c<typename MDTaskGroupTraits::ConcreteTypes,I>;
-
-    public:
-        void operator()() const
-        {
-            std::cout << "Registerd product " << I << " : " << typeid(ConcreteProductType).name() << std::endl;
-            return;
-        }       
-};
 
 // =====================================================================================
 //        Class:  MDTaskGroupFactory
@@ -51,6 +39,7 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
 {
     private:
         using ConcreteProductTypeList = MDTaskGroupTraits::ConcreteTypes;
+        using ObjectFactoryType = MDTaskGroupTraits::FactoryType;
 
     public:
         
@@ -58,9 +47,7 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
 
         MDTaskGroupFactory ()   // constructor
         {
-            MPL::ForLoopOverTypeList<ConcreteProductTypeList,RegisterTaskGroupObject> concrete_products;
-            concrete_products();
-
+            this->registerProducts_<ConcreteProductTypeList>();
             return;
         }
 
@@ -97,8 +84,56 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        MPL::Factory<typename Traits::AbstractProduct,
-                     typename Traits::IdentifierType> _objectFactory;
+        ObjectFactoryType objectFactory_;
+
+        template<typename TypeList=ConcreteProductTypeList>
+        void registerProducts_()
+        {
+            
+            // Verify that the typelist size must be greater than 0. If not, 
+            // the return with no products registered. 
+            constexpr auto typelist_size = MPL::mpl_size<TypeList>::value-1;
+
+            if constexpr (typelist_size >= 0)
+            {
+                // N_initial is the beginning index of the typelist
+                // N_final is the ending index of the typelist.
+                // N is the inde of the current type in the typelist.
+                // The typelist use a 0 based indexing system.
+                constexpr auto N_initial=0;
+                constexpr auto N = 0;
+                constexpr auto N_final = MPL::mpl_size<TypeList>::value-1;
+
+                // Get the concrete product type to register.
+                using ConcreteProductType = MPL::mpl_at_c<TypeList,N>;
+
+                // Register the concrete product.
+                 this->objectFactory_.registerFactory(N,&ConcreteProductType::create);
+
+                // Attempt to register the next concrete product.
+                constexpr auto N_next = N + 1;
+                this->registerNextProduct_<TypeList,N_initial,N_final,N_next>();
+            }
+            return;
+        }
+
+        template<typename TypeList,int N_initial, int N_final, int N >
+        void registerNextProduct_()
+        {
+            if constexpr ( (N_initial <= N) && (N <= N_final )  )
+            {
+                // Get the concrete product type to register.
+                using ConcreteProductType = MPL::mpl_at_c<TypeList,N>;
+
+                // Register the N'th concrete product.
+                this->objectFactory_.registerFactory(N,&ConcreteProductType::create);
+
+                // Attempt to register the next concrete product.
+                constexpr auto N_next = N + 1;
+                this->registerNextProduct_<TypeList,N_initial,N_final,N_next>();
+            }
+            return;
+        }
 
         // ====================  STATIC METHODS ======================================
 
