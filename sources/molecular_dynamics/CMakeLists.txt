@@ -51,7 +51,10 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-enable_building_md_taskgroups()
+enable_building_md_taskgroups_packages(${anansi_install_lib_directory}
+                                       ${anansi_install_include_directory}
+                                       ${anansi_install_bin_directory}
+                                       ${anansi_cxx_standard})
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

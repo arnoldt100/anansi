@@ -10,7 +10,7 @@
 ## =====================================================================================
 
 # ===  MACRO     ======================================================================
-#         Name:  enable_md_task_groups_package
+#         Name:  enable_building_md_taskgroups_packages
 #  Description:  Defines key environmental variables enabling the
 #                building of the md_tasks_groups packages.
 # 
@@ -20,13 +20,13 @@
 #             install_bin_directory - The location to install sub-package binaraies
 #             cxx_standard - The C++ standard to build the sub-package library and binaries
 # =====================================================================================
-macro ( enable_building_md_task_groups_library install_lib_directory
+macro ( enable_building_md_taskgroups_packages install_lib_directory
         install_include_directory
         install_bin_directory 
         cxx_standard)
 
-    set(md_task_groups_install_lib_directory ${install_lib_directory})
-    set(md_task_groups_install_include_directory ${install_include_directory})
-    set(md_task_groups_install_bin_directory ${install_bin_directory} )
-    set(md_task_groups_cxx_standard ${cxx_standard} )
-endmacro()
+    set(md_taskgroups_install_lib_directory ${install_lib_directory})
+    set(md_taskgroups_install_include_directory ${install_include_directory})
+    set(md_taskgroups_install_bin_directory ${install_bin_directory} )
+    set(md_taskgroups_cxx_standard ${cxx_standard} )
+endmacro(enable_building_md_taskgroups_packages)
