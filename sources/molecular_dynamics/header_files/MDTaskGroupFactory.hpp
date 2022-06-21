@@ -61,9 +61,14 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
         }
 
         // ====================  ACCESSORS     =======================================
-        std::unique_ptr<typename Traits::AbstractProduct> buildWorldTaskGroup() const
+        template<typename TaskGroup_t>
+        std::unique_ptr<typename Traits::AbstractProduct> buildTaskGroup() const
         {
-            std::unique_ptr<typename Traits::AbstractProduct> task_group = std::move(std::make_unique<DefaultTaskGroup>() );
+            // Get the index which is also the identfier value of the TaskGroup_t in the ConcreteProductTypeList.
+            constexpr auto N = MPL::mpl_find<ConcreteProductTypeList,TaskGroup_t>::value;
+
+            // Use the object factory to 
+            std::unique_ptr<typename Traits::AbstractProduct> task_group(this->objectFactory_.createObject(N));
             return task_group;
         }
 

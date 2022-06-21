@@ -4,6 +4,7 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     include( cmake_macros_and_functions/project_properties.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/md_taskgroups/cmake_macros_and_functions/md_taskgroups.cmake )
 
     #-----------------------------------------------------
     # Define the project.                                -
@@ -50,7 +51,7 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
+enable_building_md_taskgroups()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
