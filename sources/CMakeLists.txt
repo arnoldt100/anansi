@@ -28,18 +28,18 @@
     # Make available the project cmake modules.          -
     #                                                    -
     #-----------------------------------------------------
-    include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_build_prerequisites.cmake )
-    include( $ENV{ANANSI_CMAKE_MODULE_PATH}/anansi_boost.cmake )
-    include( $ENV{ANANSI_CMAKE_MODULE_PATH}/enable_compile_warnings.cmake )
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/mouseion/cmake_macros_and_functions/mouseion_library.cmake )
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments/cmake_macros_and_functions/command_line_arguments.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters/cmake_macros_and_functions/simulation_parameters.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers/cmake_macros_and_functions/file_parsers.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_state/cmake_macros_and_functions/simulation_state.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation/cmake_macros_and_functions/simulation.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/mpi_communicator/cmake_macros_and_functions/mpi_communicator.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/logger/cmake_macros_and_functions/logger.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/sources/task_group/cmake_macros_and_functions/task_group.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_and_functions/anansi_build_prerequisites.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_and_functions/anansi_boost.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_and_functions/enable_compile_warnings.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/mouseion/cmake_macros_and_functions/mouseion_library.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments/cmake_macros_and_functions/command_line_arguments.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation_parameters/cmake_macros_and_functions/simulation_parameters.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/file_parsers/cmake_macros_and_functions/file_parsers.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation_state/cmake_macros_and_functions/simulation_state.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation/cmake_macros_and_functions/simulation.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator/cmake_macros_and_functions/mpi_communicator.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/logger/cmake_macros_and_functions/logger.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/task_group/cmake_macros_and_functions/task_group.cmake)
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -106,7 +106,7 @@ enable_building_mouseion("${anansi_top_level}"
                          "${anansi_install_bin_directory}"
                          "${anansi_install_include_directory}"
                          "${anansi_install_lib_directory}"
-                         "${CMAKE_CURRENT_LIST_DIR}/sources/mouseion"
+                         "${CMAKE_CURRENT_LIST_DIR}/mouseion"
                          "$ENV{ANANSI_BOOST_TOP_LEVEL}")
 
 #-----------------------------------------------------
@@ -211,19 +211,19 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 # libraries.                                         -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/mouseion)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_state)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/command_line_arguments)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/simulation_parameters)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/file_parsers)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/mpi_communicator)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/logger)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/task_group)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_state)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_parameters)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/file_parsers)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
+a -l ../d_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/task_group)
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -
 # dynamics program.                                  -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/sources/molecular_dynamics)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/molecular_dynamics)
