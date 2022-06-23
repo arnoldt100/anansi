@@ -3,6 +3,7 @@
 # CMake preamble section.                                         @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
     #-----------------------------------------------------
     # Check that the cmake minimum version is            -
     # satisfied.                                         -
@@ -25,21 +26,13 @@
     project(anansi)
 
     #-----------------------------------------------------
-    # Make available the project cmake modules.          -
+    # Make available the anansi project cmake modules.   -
     #                                                    -
     #-----------------------------------------------------
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_and_functions/anansi_build_prerequisites.cmake )
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_and_functions/anansi_boost.cmake )
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_and_functions/enable_compile_warnings.cmake )
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/mouseion/cmake_macros_and_functions/mouseion_library.cmake )
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments/cmake_macros_and_functions/command_line_arguments.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation_parameters/cmake_macros_and_functions/simulation_parameters.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/file_parsers/cmake_macros_and_functions/file_parsers.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation_state/cmake_macros_and_functions/simulation_state.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation/cmake_macros_and_functions/simulation.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator/cmake_macros_and_functions/mpi_communicator.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/logger/cmake_macros_and_functions/logger.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/task_group/cmake_macros_and_functions/task_group.cmake)
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_build_prerequisites.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_boost.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_log_message.cmake )
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -53,7 +46,7 @@
 # Start of C++ build and release section                          @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+    
     #-----------------------------------------------------
     # Turn on verbose debugging.                         -
     #                                                    -
@@ -85,117 +78,10 @@ set(anansi_install_bin_directory $ENV{ANANSI_INSTALL_BIN_DIRECTORY})
 set(anansi_install_include_directory $ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY})
 set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
 set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
-
-#-----------------------------------------------------
-# Define the file to write messages to.              -
-#                                                    -
-#-----------------------------------------------------
 set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 
-#-----------------------------------------------------
-# Call the macro that enables building of mouseion   -
-# target.                                            -
-#                                                    -
-#-----------------------------------------------------
-enable_building_mouseion("${anansi_top_level}"
-                         "${anansi_minimum_cmake_version}" 
-                         "${anansi_cxx_standard}"  
-                         "${anansi_cmake_c_compiler}" 
-                         "${anansi_cmake_cxx_compiler}" 
-                         "${anansi_install_prefix}"
-                         "${anansi_install_bin_directory}"
-                         "${anansi_install_include_directory}"
-                         "${anansi_install_lib_directory}"
-                         "${CMAKE_CURRENT_LIST_DIR}/mouseion"
-                         "$ENV{ANANSI_BOOST_TOP_LEVEL}")
-
-#-----------------------------------------------------
-# Call the macro that enables building of command    -
-# line arguments target.                             -
-#                                                    -
-#-----------------------------------------------------
-enable_building_command_line_arguments_library( "${anansi_install_lib_directory}"
-                                                "${anansi_install_include_directory}"
-                                                "${anansi_install_bin_directory}" 
-                                                "${anansi_cxx_standard}")
-
-
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
-# to install the simulation_parameters libraries,    -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-enable_building_simulation_parameters_library( "${anansi_install_lib_directory}"
-                                               "${anansi_install_include_directory}"
-                                               "${anansi_install_bin_directory}" 
-                                               "${anansi_cxx_standard}" )
-
-#-----------------------------------------------------
-# Here we define variables which indicate where      -
-# to install the file_parsers libraries,             -
-# header files, and associated binaries.             -
-#                                                    -
-#-----------------------------------------------------
-enable_building_file_parsers_library( "${anansi_install_lib_directory}"
-                                      "${anansi_install_include_directory}"
-                                      "${anansi_install_bin_directory}" 
-                                      "${anansi_cxx_standard}" )
-
-
-# ----------------------------------------------------
-# Here we define variables which indicate where
-# to install the simulation_state libraries,
-# header files, and associated binariers.
-# 
-# ----------------------------------------------------
-enable_building_simulation_state_library( "${anansi_install_lib_directory}"
-                                          "${anansi_install_include_directory}"
-                                          "${anansi_install_bin_directory}" 
-                                          "${anansi_cxx_standard}" )
-
-# ----------------------------------------------------
-# Here we define variables which indicate where
-# to install the simulation_state libraries,
-# header files, and associated binariers.
-# 
-# ----------------------------------------------------
-enable_building_simulation_library( "${anansi_install_lib_directory}"
-                                    "${anansi_install_include_directory}"
-                                    "${anansi_install_bin_directory}" 
-                                    "${anansi_cxx_standard}" )
-
-# ----------------------------------------------------
-# Here we define variales which indicate where
-# to install the mpi_communicator libraries,
-# header files, and associated binariers.
-# 
-# ----------------------------------------------------
-enable_building_mpi_communicator_library( "${anansi_install_lib_directory}"
-                                          "${anansi_install_include_directory}"
-                                          "${anansi_install_bin_directory}" 
-                                          "${anansi_cxx_standard}" )
-
-# ----------------------------------------------------
-# Here we define variales which indicate where
-# to install the logger libraries,
-# header files, and associated binariers.
-# 
-# ----------------------------------------------------
-enable_building_logger_library( "${anansi_install_lib_directory}"
-                                "${anansi_install_include_directory}"
-                                "${anansi_install_bin_directory}" 
-                                "${anansi_cxx_standard}" )
-
-# ----------------------------------------------------
-# Here we define variables which indicate where to install the task_group
-# libraries, header files, and associated binaries.
-# 
-# ----------------------------------------------------
-enable_building_task_group_library( "${anansi_install_lib_directory}"
-                                    "${anansi_install_include_directory}"
-                                    "${anansi_install_bin_directory}" 
-                                    "${anansi_cxx_standard}" )
+set(my_message "Start of building project anansi\n")
+log_message_to_file(${anansi_log_file} ${my_message})
 
 #-----------------------------------------------------
 # This section permits use to find the header files  -
@@ -206,24 +92,22 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
                                            # sets up the boost library for
                                            # linking against.
 
-#-----------------------------------------------------
-# Add the subdirectories for the various             -
-# libraries.                                         -
-#                                                    -
-#-----------------------------------------------------
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_state)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_parameters)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/file_parsers)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
-a -l ../d_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/task_group)
+
+# ----------------------------------------------------
+# This subdirectory builds the code package 
+# dependencies for anansi, and it must be done first.
+# 
+# ----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/core_packages/cmake_macros_and_functions/core_packages.cmake )
+enable_building_core_packages_package()
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core_packages)
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -
 # dynamics program.                                  -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/molecular_dynamics)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/molecular_dynamics)
+
+set(my_message "End of building project anansi\n")
+log_message_to_file( ${anansi_log_file} ${my_message})

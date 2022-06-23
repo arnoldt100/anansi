@@ -4,14 +4,14 @@
 #  Description:  Write a message to file by appending the message to the file.
 # 
 #   Parameters: 
-#               filename : The name of the file to write the message
+#               filepath : The name of the file to write the message
 #               message : The message to be logged to file
 #        Return:
 # =====================================================================================
-function ( log_message_to_file filename message )
+function ( log_message_to_file filepath message )
 
     string(TIMESTAMP my_date) 
     set (log_message "${my_date} : ${message}")
-    file (APPEND  ${log_message})
+    file (APPEND  ${filepath} ${log_message} )
 
 endfunction()
