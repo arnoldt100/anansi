@@ -33,6 +33,7 @@
     include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_boost.cmake )
     include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake )
     include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_log_message.cmake )
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_test_variable.cmake )
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -99,7 +100,16 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 # 
 # ----------------------------------------------------
 include( ${CMAKE_CURRENT_SOURCE_DIR}/core_packages/cmake_macros_and_functions/core_packages.cmake )
-enable_building_core_packages_package()
+enable_building_core_packages_package("${anansi_minimum_cmake_version}" 
+                                      "${anansi_cxx_standard}"  
+                                      "${anansi_cmake_c_compiler}" 
+                                      "${anansi_cmake_cxx_compiler}" 
+                                      "${anansi_install_prefix}"
+                                      "${anansi_install_bin_directory}"
+                                      "${anansi_install_include_directory}"
+                                      "${anansi_install_lib_directory}"
+                                      "${anansi_log_file}")
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core_packages)
 
 #-----------------------------------------------------
