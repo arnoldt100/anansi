@@ -4,17 +4,12 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    #-----------------------------------------------------
-    # Make available the project cmake modules.          -
-    #                                                    -
-    #-----------------------------------------------------
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/core_packages_build_prerequisites.cmake )
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation/cmake_macros_and_functions/simulation.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/logger/cmake_macros_and_functions/logger.cmake)
-    include( ${CMAKE_CURRENT_SOURCE_DIR}/task_group/cmake_macros_and_functions/task_group.cmake)
+#-----------------------------------------------------
+# Make available the project cmake modules.          -
+#                                                    -
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/core_packages_build_prerequisites.cmake )
 
-    
-    
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -30,7 +25,7 @@ verify_core_packages_build_prerequisites_are_set()
 
 #-----------------------------------------------------
 # Call the macro that enables building of mouseion   -
-# target and add mouseion package.                  -
+# target and add mouseion package.                   -
 #                                                    -
 #-----------------------------------------------------
 include( ${CMAKE_CURRENT_SOURCE_DIR}/mouseion/cmake_macros_and_functions/mouseion_library.cmake )
@@ -106,6 +101,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_state)
 # header files, and associated binariers.
 # 
 # ----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation/cmake_macros_and_functions/simulation.cmake)
 enable_building_simulation_library( "${core_packages_install_lib_directory}"
                                     "${core_packages_install_include_directory}"
                                     "${core_packages_install_bin_directory}" 
@@ -131,6 +127,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator)
 # header files, and associated binariers.
 # 
 # ----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/logger/cmake_macros_and_functions/logger.cmake)
 enable_building_logger_library( "${core_packages_install_lib_directory}"
                                 "${core_packages_install_include_directory}"
                                 "${core_packages_install_bin_directory}" 
@@ -142,15 +139,11 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 # libraries, header files, and associated binaries.
 # 
 # ----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/task_group/cmake_macros_and_functions/task_group.cmake)
 enable_building_task_group_library( "${core_packages_install_lib_directory}"
                                     "${core_packages_install_include_directory}"
                                     "${core_packages_install_bin_directory}" 
                                     "${core_packages_cxx_standard}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/task_group)
 
-#-----------------------------------------------------
-# Add the subdirectories for the various             -
-# libraries.                                         -
-#                                                    -
-#-----------------------------------------------------
 
