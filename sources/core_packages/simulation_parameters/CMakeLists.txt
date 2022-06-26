@@ -44,10 +44,10 @@
     include(cmake_macros_and_functions/simulation_parameters_build_prerequisites.cmake)
 
     #-----------------------------------------------------
-    # Verify key variables are set.                      -
+    # Verifybuild prerequisities are met.                -
     #                                                    -
     #-----------------------------------------------------
-    verify_key_environmental_are_set()
+    verify_simulation_parameters_build_prerequisites_are_met()
 
     #-----------------------------------------------------
     # This library needs access to the following header  -

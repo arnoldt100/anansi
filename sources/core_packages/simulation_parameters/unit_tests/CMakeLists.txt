@@ -89,8 +89,8 @@
     #                                                    -
     #-----------------------------------------------------
     install( TARGETS ${target}
-             RUNTIME DESTINATION ${anansi_install_bin_directory} 
-             PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
+             RUNTIME DESTINATION ${simulation_parameters_install_bin_directory} 
+             PUBLIC_HEADER DESTINATION ${simulation_parameters_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

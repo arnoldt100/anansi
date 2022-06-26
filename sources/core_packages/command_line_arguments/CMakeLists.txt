@@ -53,7 +53,7 @@
     # Verify key variables are set.                      -
     #                                                    -
     #-----------------------------------------------------
-    verify_key_environmental_are_set()
+    verify_command_line_arguments_build_prerequisites_are_set()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

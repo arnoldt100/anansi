@@ -4,7 +4,7 @@
 #                                                    -
 #                                                    -
 #-----------------------------------------------------
-function(verify_key_environmental_are_set)
+function(verify_command_line_arguments_build_prerequisites_are_set)
 
     #-----------------------------------------------------
     # Verify environmental variable                      -

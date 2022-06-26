@@ -39,8 +39,7 @@ enable_building_mouseion("${core_packages_minimum_cmake_version}"
                          "${core_packages_install_lib_directory}"
                          "${CMAKE_CURRENT_SOURCE_DIR}/mouseion"
                          "$ENV{ANANSI_BOOST_TOP_LEVEL}"
-                         ${core_packages_logfilepath})
-
+                         "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
 
 #-----------------------------------------------------
@@ -65,7 +64,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation_parameters/cmake_macros_and_func
 enable_building_simulation_parameters_library( "${core_packages_install_lib_directory}"
                                                "${core_packages_install_include_directory}"
                                                "${core_packages_install_bin_directory}" 
-                                               "${core_packages_cxx_standard}" )
+                                               "${core_packages_cxx_standard}"
+                                               "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_parameters)
 
 #-----------------------------------------------------

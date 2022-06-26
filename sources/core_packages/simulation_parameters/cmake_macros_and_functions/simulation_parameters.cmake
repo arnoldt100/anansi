@@ -24,10 +24,12 @@
 macro ( enable_building_simulation_parameters_library install_lib_directory
         install_include_directory
         install_bin_directory 
-        cxx_standard)
+        cxx_standard
+        logfilepath)
 
     set(simulation_parameters_install_lib_directory ${install_lib_directory})
     set(simulation_parameters_install_include_directory ${install_include_directory})
     set(simulation_parameters_install_bin_directory ${install_bin_directory} )
     set(simulation_parameters_cxx_standard ${cxx_standard} )
+    set(simulation_parameters_logfilepath ${logfilepath} )
 endmacro()
