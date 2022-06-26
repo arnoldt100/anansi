@@ -11,7 +11,7 @@
 
 
 # ===  MACRO     ======================================================================
-#         Name:  enable_building_simulation_library
+#         Name:  enable_building_simulation_package
 #  Description:  Defines key environmental variables enabling the
 #                building of the simulation state library.
 # 
@@ -20,15 +20,18 @@
 #             install_include_directory - The location to install header files
 #             install_bin_directory - The location to install binaraies
 #             cxx_standard - The C++ standard to build the library and binaries
+#             logfilepath - The path to the logging file.
 # =====================================================================================
-macro ( enable_building_simulation_library install_lib_directory
+macro ( enable_building_simulation_package install_lib_directory
         install_include_directory
         install_bin_directory 
-        cxx_standard)
+        cxx_standard
+        logfilepath)
 
     set(simulation_install_lib_directory ${install_lib_directory})
     set(simulation_install_include_directory ${install_include_directory})
     set(simulation_install_bin_directory ${install_bin_directory} )
     set(simulation_cxx_standard ${cxx_standard} )
+    set(simulation_logfilepath ${logfilepath})
 endmacro()
 

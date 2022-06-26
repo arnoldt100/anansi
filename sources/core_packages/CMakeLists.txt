@@ -104,10 +104,11 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_state)
 # 
 # ----------------------------------------------------
 include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation/cmake_macros_and_functions/simulation.cmake)
-enable_building_simulation_library( "${core_packages_install_lib_directory}"
+enable_building_simulation_package( "${core_packages_install_lib_directory}"
                                     "${core_packages_install_include_directory}"
                                     "${core_packages_install_bin_directory}" 
-                                    "${core_packages_cxx_standard}" )
+                                    "${core_packages_cxx_standard}"
+                                    "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation)
 
 # ----------------------------------------------------

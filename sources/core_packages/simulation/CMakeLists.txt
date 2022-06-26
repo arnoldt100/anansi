@@ -37,6 +37,14 @@
     get_target_property(my_generic_object_factory_include  generic_object_factory generic_object_factory_include)
     get_target_property(my_generic_vistor_include  generic_visitor generic_visitor_include)
 
+    # ----------------------------------------------------
+    # Verify that all build prerequisites are met to
+    # configure simulation for building.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/simulation_build_prerequisites.cmake")
+    verify_simulation_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
