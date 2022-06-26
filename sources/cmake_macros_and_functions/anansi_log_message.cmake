@@ -11,7 +11,7 @@
 function ( log_message_to_file filepath message )
 
     string(TIMESTAMP my_date) 
-    set (log_message "${my_date} : ${message}")
+    set (log_message "${my_date} : ${message}\n")
     file (APPEND  ${filepath} ${log_message} )
 
 endfunction()

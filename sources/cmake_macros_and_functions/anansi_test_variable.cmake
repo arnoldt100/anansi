@@ -23,10 +23,10 @@ function(anansi_test_variable_is_defined
     if ( DEFINED "${variable_name}" )
         set ( my_message "${variable_name}=${${variable_name}}")
         message("${my_message}") 
-        log_message_to_file("${logfilepath}", "${my_message}")
+        log_message_to_file("${logfilepath}" "${my_message}")
     else()
-        set (my_message "The variable ${variable_name} is not defined.\n")
-        log_message_to_file("${logfilepath}", "Fatal Error: ${my_message}")
+        set (my_message "The variable ${variable_name} is not defined.")
+        log_message_to_file("${logfilepath}" "Fatal Error: ${my_message}")
         message( FATAL_ERROR "${my_message}" )
     endif()
 
