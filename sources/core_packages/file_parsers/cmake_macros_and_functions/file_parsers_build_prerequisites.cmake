@@ -14,7 +14,7 @@ function(verify_file_parsers_build_prerequisites_are_met)
         message (FATAL_ERROR "file_parsers_logfilepath is not defined.")
     endif()
 
-    set(my_message "Verifying \"file_parsers' build prerequisities\" are satisfied.")
+    set(my_message "Verifying package \"file_parsers\" build prerequisities are satisfied.")
     log_message_to_file(${file_parsers_logfilepath} "---")
     log_message_to_file(${file_parsers_logfilepath} ${my_message})
 
@@ -34,7 +34,7 @@ function(verify_file_parsers_build_prerequisites_are_met)
     # Verfying that variable 'file_parsers_install_lib_directory' is defined.
     anansi_test_variable_is_defined("file_parsers_install_lib_directory"  "${file_parsers_logfilepath}")
 
-    set(my_message "Package \"file_parsers' build prerequisities\" are satisfied.")
+    set(my_message "Package \"file_parsers\" build prerequisities are satisfied.")
     log_message_to_file(${file_parsers_logfilepath} ${my_message})
     log_message_to_file(${file_parsers_logfilepath} "---\n")
 

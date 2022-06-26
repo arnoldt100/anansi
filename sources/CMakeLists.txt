@@ -81,7 +81,7 @@ set(anansi_install_lib_directory $ENV{ANANSI_INSTALL_LIB_DIRECTORY})
 set(anansi_minimum_cmake_version $ENV{ANANSI_MINIMUM_CMAKE_VERSION})
 set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 
-set(my_message "Start of building project anansi\n")
+set(my_message "Start of configuring project anansi\n")
 log_message_to_file(${anansi_log_file} ${my_message})
 
 #-----------------------------------------------------
@@ -99,6 +99,10 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 # dependencies for anansi, and it must be done first.
 # 
 # ----------------------------------------------------
+log_message_to_file(${anansi_log_file} "===")
+set(my_message "Configuring project core_packages...\n")
+log_message_to_file(${anansi_log_file} ${my_message})
+
 include( ${CMAKE_CURRENT_SOURCE_DIR}/core_packages/cmake_macros_and_functions/core_packages.cmake )
 enable_building_core_packages_package("${anansi_minimum_cmake_version}" 
                                       "${anansi_cxx_standard}"  
@@ -111,6 +115,10 @@ enable_building_core_packages_package("${anansi_minimum_cmake_version}"
                                       "${anansi_log_file}")
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core_packages)
+
+set(my_message "Completed configuring project core_packages.")
+log_message_to_file(${anansi_log_file} ${my_message})
+log_message_to_file(${anansi_log_file} "===\n")
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -
