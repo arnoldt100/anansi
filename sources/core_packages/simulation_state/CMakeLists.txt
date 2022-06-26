@@ -30,6 +30,13 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    # ----------------------------------------------------
+    # Verify the all build prerequisites are met
+    # 
+    # ----------------------------------------------------
+    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/simulation_state_build_prerequisites.cmake)
+    verify_simulation_state_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
