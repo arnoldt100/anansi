@@ -76,12 +76,12 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_parameters)
 #                                                    -
 #-----------------------------------------------------
 include( ${CMAKE_CURRENT_SOURCE_DIR}/file_parsers/cmake_macros_and_functions/file_parsers.cmake)
-enable_building_file_parsers_library( "${core_packages_install_lib_directory}"
+enable_building_file_parsers_package( "${core_packages_install_lib_directory}"
                                       "${core_packages_install_include_directory}"
                                       "${core_packages_install_bin_directory}" 
-                                      "${core_packages_cxx_standard}" )
+                                      "${core_packages_cxx_standard}"
+                                      "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/file_parsers)
-
 
 # ----------------------------------------------------
 # Here we define variables which indicate where

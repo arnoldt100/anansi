@@ -47,7 +47,7 @@
     # Verify key variables are set.                      -
     #                                                    -
     #-----------------------------------------------------
-    verify_key_variables_are_set()
+    verify_file_parsers_build_prerequisites_are_met()
 
     #-----------------------------------------------------
     # This library needs access to the following header  -

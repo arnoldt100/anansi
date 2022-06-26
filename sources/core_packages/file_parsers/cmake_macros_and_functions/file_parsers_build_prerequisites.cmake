@@ -1,35 +1,41 @@
-#-----------------------------------------------------
-# This function verifies the key                     -
-# variables are set.                                 -
-#                                                    -
-#                                                    -
-#-----------------------------------------------------
-function(verify_key_variables_are_set)
+# =====================================================================================
+#
+#       Filename:  file_parsers_build_prerequisites.cmake
+#    Description:  Contains convenience functions that help verify the
+#                  prerequisites for building the  package file_parsers
+#                  are satisfied.
+#
+# =====================================================================================
 
-    #-----------------------------------------------------
-    # Verify variable file_parsers_install_lib_directory -
-    # is defined.                                        -
-    #-----------------------------------------------------
-    if(NOT DEFINED file_parsers_install_lib_directory)
-        message( FATAL_ERROR "The variable file_parsers_install_lib_directory is not defined. This \
-        variable defines the install directory of the file_parsers library." )
+function(verify_file_parsers_build_prerequisites_are_met)
+
+    # Ensure that variable "file_parsers_logfilepath" is defined.
+    if (NOT DEFINED file_parsers_logfilepath) 
+        message (FATAL_ERROR "file_parsers_logfilepath is not defined.")
     endif()
 
-    #-----------------------------------------------------
-    # Verify variable                                    -
-    # file_parsers_install_include_directory is defined. -
-    #-----------------------------------------------------
-    if ( NOT DEFINED file_parsers_install_include_directory )
-        message( FATAL_ERROR "The variable file_parsers_install_include_directory is not defined. This \
-        variable defines the install directory of the file_parser header files." )
-    endif()
+    set(my_message "Verifying \"file_parsers' build prerequisities\" are satisfied.")
+    log_message_to_file(${file_parsers_logfilepath} "---")
+    log_message_to_file(${file_parsers_logfilepath} ${my_message})
 
-    #-----------------------------------------------------
-    # Verify variable                                    -
-    # file_parsers_install_bin_directory is defined.     -
-    #-----------------------------------------------------
-    if ( NOT DEFINED file_parsers_install_bin_directory )
-        message( FATAL_ERROR "The variable file_parsers_install_bin_directory is not defined. This \
-        variable defines the install directory of the unit tests associated file_parser library." )
-    endif()
+    # Again verfying that variable 'file_parsers_logfilepath' is defined ... repeated
+    # for consistency.
+    anansi_test_variable_is_defined("file_parsers_logfilepath" "${file_parsers_logfilepath}")
+
+    # Verfying that variable 'file_parsers_cxx_standard' is defined.
+    anansi_test_variable_is_defined("file_parsers_cxx_standard"  "${file_parsers_logfilepath}")
+
+    # Verfying that variable 'file_parsers_install_bin_directory' is defined.
+    anansi_test_variable_is_defined("file_parsers_install_bin_directory"  "${file_parsers_logfilepath}")
+
+    # Verfying that variable 'file_parsers_install_include_directory' is defined.
+    anansi_test_variable_is_defined("file_parsers_install_include_directory"  "${file_parsers_logfilepath}")
+
+    # Verfying that variable 'file_parsers_install_lib_directory' is defined.
+    anansi_test_variable_is_defined("file_parsers_install_lib_directory"  "${file_parsers_logfilepath}")
+
+    set(my_message "Package \"file_parsers' build prerequisities\" are satisfied.")
+    log_message_to_file(${file_parsers_logfilepath} ${my_message})
+    log_message_to_file(${file_parsers_logfilepath} "---\n")
+
 endfunction()
