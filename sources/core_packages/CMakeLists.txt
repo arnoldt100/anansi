@@ -51,7 +51,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments/cmake_macros_and_fun
 enable_building_command_line_arguments_library( "${core_packages_install_lib_directory}"
                                                 "${core_packages_install_include_directory}"
                                                 "${core_packages_install_bin_directory}" 
-                                                "${core_packages_cxx_standard}")
+                                                "${core_packages_cxx_standard}"
+                                                "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments)
 
 #-----------------------------------------------------

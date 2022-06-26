@@ -17,8 +17,6 @@
 #  Description:  Verifies that key variables that control the building and installation
 #                of the various subpackages of core_packages.
 # 
-#   Parameters: target : The target of 
-#
 # =====================================================================================
 function(verify_core_packages_build_prerequisites_are_set )
 
@@ -27,7 +25,8 @@ function(verify_core_packages_build_prerequisites_are_set )
         message (FATAL_ERROR "core_packages_logfilepath is not defined.")
     endif()
 
-    set(my_message "Verifying \"core_packages' build prerequisities\" are satisfied.\n")
+    set(my_message "Verifying \"core_packages' build prerequisities\" are satisfied.")
+    log_message_to_file( ${core_packages_logfilepath} "---")
     log_message_to_file( ${core_packages_logfilepath} ${my_message})
 
     # Again verfying that variable 'core_packages_logfilepath' is defined ... repeated
@@ -58,8 +57,9 @@ function(verify_core_packages_build_prerequisites_are_set )
     # Verfying that variable 'core_packages_install_lib_directory' is defined.
     anansi_test_variable_is_defined("core_packages_install_lib_directory"  "${core_packages_logfilepath}")
 
-    set(my_message "Package \"core_packages' build prerequisities\" are satisfied.\n")
+    set(my_message "Package \"core_packages' build prerequisities\" are satisfied.")
     log_message_to_file( ${core_packages_logfilepath} ${my_message})
+    log_message_to_file( ${core_packages_logfilepath} "---\n")
 
 endfunction(verify_core_packages_build_prerequisites_are_set)
 

@@ -26,7 +26,8 @@ function(verify_simulation_parameters_build_prerequisites_are_met)
         message (FATAL_ERROR "simulation_parameters_logfilepath is not defined.")
     endif()
 
-    set(my_message "Verifying \"simulation_parameters' build prerequisities\" are satisfied.\n")
+    set(my_message "Verifying \"simulation_parameters' build prerequisities\" are satisfied.")
+    log_message_to_file( ${simulation_parameters_logfilepath} "---")
     log_message_to_file( ${simulation_parameters_logfilepath} ${my_message})
 
     # Again verfying that variable 'simulation_parameters_logfilepath' is defined ... repeated
@@ -45,8 +46,9 @@ function(verify_simulation_parameters_build_prerequisites_are_met)
     # Verfying that variable 'simulation_parameters_install_lib_directory' is defined.
     anansi_test_variable_is_defined("simulation_parameters_install_lib_directory"  "${simulation_parameters_logfilepath}")
 
-    set(my_message "Package \"simulation_parameters' build prerequisities\" are satisfied.\n")
+    set(my_message "Package \"simulation_parameters' build prerequisities\" are satisfied.")
     log_message_to_file( ${simulation_parameters_logfilepath} ${my_message})
+    log_message_to_file( ${simulation_parameters_logfilepath} "---\n")
 
 endfunction()
 
