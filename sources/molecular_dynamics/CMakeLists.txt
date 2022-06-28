@@ -45,6 +45,14 @@
     get_target_property(my_task_group_include task_group task_group_include)
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
 
+    # ----------------------------------------------------
+    # Verify that all molecular_dynamics build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/molecular_dynamics_build_prerequisites.cmake")
+    verify_molecular_dynamics_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @

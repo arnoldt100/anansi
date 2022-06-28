@@ -95,7 +95,7 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 
 
 # ----------------------------------------------------
-# This subdirectory builds the code package 
+# This subdirectory builds the core package 
 # dependencies for anansi, and it must be done first.
 # 
 # ----------------------------------------------------
@@ -122,8 +122,23 @@ package_config_end_delimiter("core_packages" "${anansi_log_file}")
 #                                                    -
 #-----------------------------------------------------
 package_config_begin_delimiter("molecular_dynamics" "${anansi_log_file}")
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/molecular_dynamics)
+
+include( ${CMAKE_CURRENT_SOURCE_DIR}/molecular_dynamics/cmake_macros_and_functions/molecular_dynamics.cmake )
+
+enable_building_molecular_dynamics_package("${anansi_minimum_cmake_version}" 
+                                           "${anansi_cxx_standard}"  
+                                           "${anansi_cmake_c_compiler}" 
+                                           "${anansi_cmake_cxx_compiler}" 
+                                           "${anansi_install_prefix}"
+                                           "${anansi_install_bin_directory}"
+                                           "${anansi_install_include_directory}"
+                                           "${anansi_install_lib_directory}"
+                                           "${anansi_log_file}")
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/molecular_dynamics)
+
 package_config_end_delimiter("molecular_dynamics" "${anansi_log_file}")
 
 set(my_message "End of building project anansi\n")
+
 log_message_to_file( ${anansi_log_file} ${my_message})
