@@ -47,6 +47,14 @@
     include(cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake)
     verify_md_taskgroups_build_prerequisites_are_met()
 
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include )
+    get_target_property(my_task_group_include task_group task_group_include )
+    get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -124,7 +132,20 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PRIVATE ${my_generic_object_factory_include}
+                           PRIVATE ${my_task_group_include} 
+                           PRIVATE ${my_foreach_loop_include} ) 
+
+#-----------------------------------------------------
+# Set the list of libraries to link against.         -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries(${target}
+                      generic_object_factory
+                      task_group 
+                      generic_foreach_loop )
+
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

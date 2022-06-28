@@ -28,6 +28,28 @@
     #-----------------------------------------------------
     string(TOLOWER ${PROJECT_NAME} my_anansi_md_library)
 
+    # ----------------------------------------------------
+    # Verify that all molecular_dynamics build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/molecular_dynamics_build_prerequisites.cmake")
+    verify_molecular_dynamics_build_prerequisites_are_met()
+
+    # ----------------------------------------------------
+    # This section configures the md_taskgroups package.
+    # 
+    # ----------------------------------------------------
+    package_config_begin_delimiter("md_taskgroups" "${molecular_dynamics_logfilepath}")
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/molecular_dynamics.cmake")
+    enable_building_md_taskgroups_packages(${molecular_dynamics_install_lib_directory}
+                                           ${molecular_dynamics_install_include_directory}
+                                           ${molecular_dynamics_install_bin_directory}
+                                           ${molecular_dynamics_cxx_standard}
+                                           ${molecular_dynamics_logfilepath})
+    add_subdirectory(md_taskgroups)
+    package_config_end_delimiter("md_taskgroups" "${molecular_dynamics_logfilepath}")
+
     #-----------------------------------------------------
     # Set various variables for include directories.     -
     #                                                    -
@@ -44,38 +66,14 @@
     get_target_property(my_mpicomm_include  mpi_communicator mpi_communicator_include)
     get_target_property(my_task_group_include task_group task_group_include)
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
+    get_target_property(my_md_taskgroup_include md_taskgroups md_taskgroups_include)
 
-    # ----------------------------------------------------
-    # Verify that all molecular_dynamics build prerequisities
-    # are satisfied.
-    # 
-    # ----------------------------------------------------
-    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/molecular_dynamics_build_prerequisites.cmake")
-    verify_molecular_dynamics_build_prerequisites_are_met()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-# ----------------------------------------------------
-# This section configures the md_taskgroups package.
-# 
-# ----------------------------------------------------
-package_config_begin_delimiter("md_taskgroups" "${molecular_dynamics_logfilepath}")
-
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/molecular_dynamics.cmake")
-
-enable_building_md_taskgroups_packages(${molecular_dynamics_install_lib_directory}
-                                       ${molecular_dynamics_install_include_directory}
-                                       ${molecular_dynamics_install_bin_directory}
-                                       ${molecular_dynamics_cxx_standard}
-                                       ${molecular_dynamics_logfilepath})
-
-add_subdirectory(md_taskgroups)
-
-package_config_end_delimiter("md_taskgroups" "${molecular_dynamics_logfilepath}")
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -196,7 +194,8 @@ target_include_directories( ${my_anansi_md_library}
                             PRIVATE ${my_mpicomm_include}
                             PRIVATE ${my_task_group_include} 
                             PRIVATE ${my_generic_abstract_factory_include}
-                            PRIVATE ${my_foreach_loop_include}  )
+                            PRIVATE ${my_foreach_loop_include} 
+                            PRIVATE ${my_md_taskgroup_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -215,6 +214,7 @@ target_link_libraries(${my_anansi_md_library}
                       task_group
                       generic_abstract_factory
                       generic_foreach_loop
+                      md_taskgroups
                       ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
