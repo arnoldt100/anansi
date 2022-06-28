@@ -72,6 +72,13 @@ WorldTaskGroupConvenienceFunctions& WorldTaskGroupConvenienceFunctions::operator
     return *this;
 } // assignment-move operator
 
+//============================= OPERATORS ====================================
+
+void WorldTaskGroupConvenienceFunctions::enable(WorldTaskGroup & world_task_group)
+{
+    return;
+}
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////

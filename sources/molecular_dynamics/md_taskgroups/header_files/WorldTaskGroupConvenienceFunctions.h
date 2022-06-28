@@ -12,6 +12,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "WorldTaskGroup.h"
 
 namespace ANANSI
 {
@@ -42,6 +43,9 @@ class WorldTaskGroupConvenienceFunctions
         WorldTaskGroupConvenienceFunctions& operator= ( const WorldTaskGroupConvenienceFunctions &other ); // assignment operator
 
         WorldTaskGroupConvenienceFunctions& operator= ( WorldTaskGroupConvenienceFunctions && other ); // assignment-move operator
+
+        // ====================  STATIC        =======================================
+        static void enable(WorldTaskGroup & world_task_group);
 
     protected:
         // ====================  METHODS       =======================================
