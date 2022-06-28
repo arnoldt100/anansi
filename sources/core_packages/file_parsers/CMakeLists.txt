@@ -17,6 +17,7 @@
 #   file_parsers_install_lib_directory
 #   file_parsers_install_include_directory
 #   file_parsers_install_bin_directory
+#   file_parsers_logfilepath
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -38,15 +39,10 @@
     set(target ${my_project_name})
 
     #-----------------------------------------------------
-    # Include various functions and macros.              -
-    #                                                    -
-    #-----------------------------------------------------
-    include(cmake_macros_and_functions/file_parsers_build_prerequisites.cmake)
-
-    #-----------------------------------------------------
     # Verify key variables are set.                      -
     #                                                    -
     #-----------------------------------------------------
+    include(cmake_macros_and_functions/file_parsers_build_prerequisites.cmake)
     verify_file_parsers_build_prerequisites_are_met()
 
     #-----------------------------------------------------

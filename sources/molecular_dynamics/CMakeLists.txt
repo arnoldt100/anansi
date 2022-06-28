@@ -59,10 +59,24 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-enable_building_md_taskgroups_packages(${anansi_install_lib_directory}
-                                       ${anansi_install_include_directory}
-                                       ${anansi_install_bin_directory}
-                                       ${anansi_cxx_standard})
+# ----------------------------------------------------
+# This section configures the md_taskgroups package.
+# 
+# ----------------------------------------------------
+package_config_begin_delimiter("md_taskgroups" "${molecular_dynamics_logfilepath}")
+
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/molecular_dynamics.cmake")
+
+enable_building_md_taskgroups_packages(${molecular_dynamics_install_lib_directory}
+                                       ${molecular_dynamics_install_include_directory}
+                                       ${molecular_dynamics_install_bin_directory}
+                                       ${molecular_dynamics_cxx_standard}
+                                       ${molecular_dynamics_logfilepath})
+
+add_subdirectory(md_taskgroups)
+
+package_config_end_delimiter("md_taskgroups" "${molecular_dynamics_logfilepath}")
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -109,14 +123,10 @@ enable_building_md_taskgroups_packages(${anansi_install_lib_directory}
         header_files/MDInitInitialConditionsVisitor.h
         header_files/MDPerformSimulationVisitor.h
         header_files/MDPerformSimulation.h
-        header_files/MDTaskGroupTraits.h
         header_files/MDTerminateSimulationVisitor.h
         header_files/MDTerminateSimulation.h
         header_files/MDSimulationStateFactory.h
         header_files/ISEStatus.h
-        header_files/MDTaskGroupFactory.hpp
-        header_files/DefaultTaskGroup.h
-        header_files/WorldTaskGroup.h
         header_files/AnansiMolecularDynamicsFactory.h 
         header_files/AnansiMDStateInt2Type.hpp)
 
@@ -128,8 +138,6 @@ enable_building_md_taskgroups_packages(${anansi_install_lib_directory}
     #-----------------------------------------------------
     set (anansi_md_library_implementation  
         implementation_files/AnansiMolecularDynamics.cpp
-        implementation_files/DefaultTaskGroup.cpp
-        implementation_files/WorldTaskGroup.cpp
         implementation_files/MDNullSimulationVisitor.cpp
         implementation_files/MDNullSimulation.cpp
         implementation_files/MDInitSimEnv.cpp
@@ -142,8 +150,6 @@ enable_building_md_taskgroups_packages(${anansi_install_lib_directory}
         implementation_files/MDPerformSimulation.cpp
         implementation_files/MDTerminateSimulationVisitor.cpp
         implementation_files/MDTerminateSimulation.cpp
-        implementation_files/MDTaskGroupTraits.cpp
-        implementation_files/MDTaskGroupFactory.cpp
         implementation_files/MDSimulationStateFactory.cpp
         implementation_files/ISEStatus.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp 

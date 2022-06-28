@@ -18,7 +18,7 @@
 #  Arguments: 
 # =====================================================================================
 macro( DEFINE_PROJECT_NAME )
-    set(molecular_dynamics_project_name "anansi")
+    set(molecular_dynamics_project_name "molecular_dynamics")
 endmacro()
 
 

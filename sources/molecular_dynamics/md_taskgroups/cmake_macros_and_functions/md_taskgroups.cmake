@@ -23,10 +23,12 @@
 macro ( enable_building_md_taskgroups_packages install_lib_directory
         install_include_directory
         install_bin_directory 
-        cxx_standard)
+        cxx_standard
+        logfilepath)
 
     set(md_taskgroups_install_lib_directory ${install_lib_directory})
     set(md_taskgroups_install_include_directory ${install_include_directory})
     set(md_taskgroups_install_bin_directory ${install_bin_directory} )
     set(md_taskgroups_cxx_standard ${cxx_standard} )
+    set(md_taskgroups_logfilepath ${logfilepath} )
 endmacro(enable_building_md_taskgroups_packages)
