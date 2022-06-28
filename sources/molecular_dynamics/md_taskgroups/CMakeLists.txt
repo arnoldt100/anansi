@@ -87,7 +87,7 @@
          implementation_files/MDTaskGroupTraits.cpp
          implementation_files/MDTaskGroupFactory.cpp
          implementation_files/DefaultTaskGroup.cpp
-         implementation_files/WorldTaskGroup.cpp
+         implementation_files/WorldTaskGroup.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

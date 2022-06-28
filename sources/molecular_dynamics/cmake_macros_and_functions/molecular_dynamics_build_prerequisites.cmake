@@ -18,7 +18,7 @@
 #                of the package molecular_dynamics.
 # 
 # =====================================================================================
-function(verify_molecular_dynamics_build_prerequisites_are_met )
+function(verify_molecular_dynamics_build_prerequisites_are_met)
 
     # Ensure that variable "molecular_dynamics_logfilepath" is defined.
     if (NOT DEFINED molecular_dynamics_logfilepath) 
@@ -61,5 +61,5 @@ function(verify_molecular_dynamics_build_prerequisites_are_met )
     log_message_to_file( ${molecular_dynamics_logfilepath} ${my_message})
     log_message_to_file( ${molecular_dynamics_logfilepath} "---\n")
 
-endfunction(verify_molecular_dynamics_build_prerequisites_are_set)
+endfunction()
 
