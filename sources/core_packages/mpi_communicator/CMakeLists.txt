@@ -48,6 +48,13 @@
     get_target_property(my_su_include string_utilities string_utilities_include)
     get_target_property(my_cc_include counterclass counterclass_include)
 
+    # ----------------------------------------------------
+    #  Verify all build prerequisites are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mpi_communicator_build_prerequisites.cmake")
+    verify_mpi_communicator_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
