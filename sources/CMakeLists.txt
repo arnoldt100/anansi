@@ -34,7 +34,7 @@
     include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake )
     include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_log_message.cmake )
     include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_test_variable.cmake )
-
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_package_configure_delimiter_comments.cmake) 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -99,9 +99,7 @@ enable_boost($ENV{ANANSI_BOOST_TOP_LEVEL}) # The enable_boost macro
 # dependencies for anansi, and it must be done first.
 # 
 # ----------------------------------------------------
-log_message_to_file(${anansi_log_file} "===")
-set(my_message "Configuring project core_packages...\n")
-log_message_to_file(${anansi_log_file} ${my_message})
+package_config_begin_delimiter("core_packages" "${anansi_log_file}")
 
 include( ${CMAKE_CURRENT_SOURCE_DIR}/core_packages/cmake_macros_and_functions/core_packages.cmake )
 enable_building_core_packages_package("${anansi_minimum_cmake_version}" 
@@ -116,16 +114,16 @@ enable_building_core_packages_package("${anansi_minimum_cmake_version}"
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core_packages)
 
-set(my_message "Completed configuring project core_packages.")
-log_message_to_file(${anansi_log_file} ${my_message})
-log_message_to_file(${anansi_log_file} "===\n")
+package_config_end_delimiter("core_packages" "${anansi_log_file}")
 
 #-----------------------------------------------------
 # This subdirectory builds the main molecular        -
 # dynamics program.                                  -
 #                                                    -
 #-----------------------------------------------------
+package_config_begin_delimiter("molecular_dynamics" "${anansi_log_file}")
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/molecular_dynamics)
+package_config_end_delimiter("molecular_dynamics" "${anansi_log_file}")
 
 set(my_message "End of building project anansi\n")
 log_message_to_file( ${anansi_log_file} ${my_message})
