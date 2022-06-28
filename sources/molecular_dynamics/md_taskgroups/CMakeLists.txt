@@ -44,7 +44,7 @@
     # md_taskgroups are satisfied.
     # 
     # ----------------------------------------------------
-    include(cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake)
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake")
     verify_md_taskgroups_build_prerequisites_are_met()
 
     #-----------------------------------------------------
@@ -82,6 +82,7 @@
          header_files/MDTaskGroupTraits.h
          header_files/MDTaskGroupFactory.hpp
          header_files/DefaultTaskGroup.h
+         header_files/WorldTaskGroupConvenienceFunctions.h
          header_files/WorldTaskGroup.h)
 
     #-----------------------------------------------------
@@ -95,6 +96,7 @@
          implementation_files/MDTaskGroupTraits.cpp
          implementation_files/MDTaskGroupFactory.cpp
          implementation_files/DefaultTaskGroup.cpp
+         implementation_files/WorldTaskGroupConvenienceFunctions.cpp
          implementation_files/WorldTaskGroup.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

@@ -153,7 +153,7 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
 {
     this->worldTaskGroup_ = std::move(this->taskGroupFactory_->buildTaskGroup<WorldTaskGroup>());
     // Create a convenience function to do the below tasks
-    // Should this be sevral calls of one call with many arguments.
+    // Should this be several calls of one call with many arguments.
     // this->worldTaskGroup_.addCommunicator();
     // this->worldTaskGroup_.addLogger();
     // this->worldTaskGroup_.addCommandLineArguments();
