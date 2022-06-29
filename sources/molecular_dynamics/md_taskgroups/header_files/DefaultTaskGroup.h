@@ -60,6 +60,8 @@ class DefaultTaskGroup final : public TaskGroup
 
         // ====================  MUTATORS      =======================================
         void addCommunicator_() override;
+
+        void addLogger_() override;
         
         // ====================  DATA MEMBERS  =======================================
 

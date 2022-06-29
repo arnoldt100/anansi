@@ -46,6 +46,7 @@ class TaskGroup
 
         // ====================  MUTATORS      =======================================
         void addCommunicator();
+        void addLogger();
 
         // ====================  OPERATORS     =======================================
 
@@ -63,6 +64,7 @@ class TaskGroup
         
         // ====================  MUTATORS      =======================================
         virtual void addCommunicator_()=0;
+        virtual void addLogger_()=0;
 
 
         // ====================  DATA MEMBERS  =======================================

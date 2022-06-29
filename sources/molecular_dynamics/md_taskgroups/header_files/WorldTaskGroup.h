@@ -38,6 +38,7 @@ class WorldTaskGroup final : public TaskGroup
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        void addCommandLineArguments();
 
         // ====================  OPERATORS     =======================================
 
@@ -60,6 +61,8 @@ class WorldTaskGroup final : public TaskGroup
 
         // ====================  MUTATORS      =======================================
         void addCommunicator_() override;
+
+        void addLogger_() override;
         
         // ====================  DATA MEMBERS  =======================================
 

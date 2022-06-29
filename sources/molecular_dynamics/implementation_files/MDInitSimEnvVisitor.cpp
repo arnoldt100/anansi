@@ -35,7 +35,6 @@ MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor && other)
     return;
 }		// -----  end of method MDInitSimEnvVisitor::MDInitSimEnvVisitor  -----
 
-
 MDInitSimEnvVisitor::~MDInitSimEnvVisitor()
 {
     return;

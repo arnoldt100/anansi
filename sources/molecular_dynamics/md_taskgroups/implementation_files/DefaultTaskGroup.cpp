@@ -91,6 +91,10 @@ void DefaultTaskGroup::addCommunicator_()
     return;
 }
 
+void DefaultTaskGroup::addLogger_()
+{
+    return;
+}
 
 //============================= OPERATORS ====================================
 

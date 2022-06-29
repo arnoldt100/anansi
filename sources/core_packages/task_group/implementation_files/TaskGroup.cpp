@@ -43,6 +43,11 @@ TaskGroup::~TaskGroup()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void TaskGroup::addLogger()
+{
+    this->addLogger_();
+}
+
 void TaskGroup::addCommunicator()
 {
     this->addCommunicator_();

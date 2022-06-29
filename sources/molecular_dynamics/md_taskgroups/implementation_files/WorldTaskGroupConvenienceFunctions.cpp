@@ -76,6 +76,8 @@ WorldTaskGroupConvenienceFunctions& WorldTaskGroupConvenienceFunctions::operator
 
 void WorldTaskGroupConvenienceFunctions::enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group)
 {
+    world_task_group->addCommunicator();
+    world_task_group->addLogger();
     return;
 }
 
@@ -100,10 +102,6 @@ void WorldTaskGroupConvenienceFunctions::enable(std::unique_ptr<ANANSI::TaskGrou
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void WorldTaskGroup::addCommunicator_()
-{
-    return;
-}
 
 //============================= OPERATORS ====================================
 

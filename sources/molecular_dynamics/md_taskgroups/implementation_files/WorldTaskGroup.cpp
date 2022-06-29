@@ -47,6 +47,10 @@ WorldTaskGroup::~WorldTaskGroup()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void WorldTaskGroup::addCommandLineArguments()
+{
+    return;
+}
 
 //============================= OPERATORS ====================================
 
@@ -86,6 +90,16 @@ TaskGroup* WorldTaskGroup::create()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void WorldTaskGroup::addCommunicator_()
+{
+    return;
+}
+
+void WorldTaskGroup::addLogger_()
+{
+    return;
+}
+
 
 //============================= OPERATORS ====================================
 
