@@ -43,6 +43,7 @@
     #-----------------------------------------------------
     get_target_property(my_comm_include communicator communicator_include)
     get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include)
+    get_target_property(my_generic_vistor_include  generic_visitor generic_visitor_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -110,8 +111,9 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           ${my_comm_include} 
-                           ${my_generic_object_factory_include} )
+                           PRIVATE ${my_comm_include} 
+                           PRIVATE ${my_generic_vistor_include}
+                           PRIVATE ${my_generic_object_factory_include} )
 
 
 #-----------------------------------------------------
@@ -119,8 +121,10 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${target}
+                       PUBLIC generic_visitor 
                        PUBLIC communicator
                        PUBLIC generic_object_factory )
+
 #-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -

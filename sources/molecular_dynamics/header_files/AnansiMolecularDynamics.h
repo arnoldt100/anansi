@@ -18,6 +18,7 @@
 #include "Simulation.h"
 
 // This include is for making the AnansiMolecularDynamics a visitable class.
+#include "DefineVisitableMacro.h"
 #include "BaseVisitable.hpp"
 
 #include "MPIEnvironment.h"

@@ -14,6 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "TaskGroup.h"
+#include "BaseVisitable.hpp"
 
 namespace ANANSI
 {
@@ -38,6 +39,9 @@ class WorldTaskGroup final : public TaskGroup
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        // This macro defines the Accept member function.
+        DEFINE_VISITABLE()
+
         void addCommandLineArguments();
 
         // ====================  OPERATORS     =======================================

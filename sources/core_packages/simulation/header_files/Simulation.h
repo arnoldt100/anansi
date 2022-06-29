@@ -39,7 +39,6 @@ class Simulation : public MPL::BaseVisitable<>
 
         /* ====================  ACCESSORS     ======================================= */
 
-        DEFINE_VISITABLE()
 
         void stud_function(std::string const & message) const;
 
@@ -57,6 +56,7 @@ class Simulation : public MPL::BaseVisitable<>
 
         /* ====================  MUTATORS      ======================================= */
 
+        DEFINE_VISITABLE()
 
         // This function initializes the simulation environment.
         void initializeSimulationEnvironment();

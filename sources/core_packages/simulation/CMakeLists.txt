@@ -121,9 +121,9 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      communicator
-                      generic_visitor 
-                      generic_object_factory )
+                      PUBLIC communicator
+                      PUBLIC generic_visitor 
+                      PUBLIC generic_object_factory )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

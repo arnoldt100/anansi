@@ -12,6 +12,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "DefineVisitableMacro.h"
+#include "BaseVisitable.hpp"
 
 namespace ANANSI
 {
@@ -20,7 +22,7 @@ namespace ANANSI
 //        Class:  TaskGroup
 //  Description:  
 //  =====================================================================================
-class TaskGroup 
+class TaskGroup : public  MPL::BaseVisitable<>
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -45,6 +47,8 @@ class TaskGroup
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        DEFINE_VISITABLE()
+
         void addCommunicator();
         void addLogger();
 
