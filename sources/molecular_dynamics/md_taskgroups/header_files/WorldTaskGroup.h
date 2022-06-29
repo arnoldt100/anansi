@@ -49,7 +49,6 @@ class WorldTaskGroup final : public TaskGroup
         static TaskGroup* create();
 
         // ====================  DATA MEMBERS  =======================================
-        const int id=1;
 
     protected:
         // ====================  METHODS       =======================================
@@ -59,7 +58,12 @@ class WorldTaskGroup final : public TaskGroup
     private:
         // ====================  METHODS       =======================================
 
+        // ====================  MUTATORS      =======================================
+        void addCommunicator_() override;
+        
         // ====================  DATA MEMBERS  =======================================
+
+
 
 }; // -----  end of class WorldTaskGroup  -----
 

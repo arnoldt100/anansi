@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -45,7 +46,7 @@ class WorldTaskGroupConvenienceFunctions
         WorldTaskGroupConvenienceFunctions& operator= ( WorldTaskGroupConvenienceFunctions && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================
-        static void enable(WorldTaskGroup & world_task_group);
+        static void enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group);
 
     protected:
         // ====================  METHODS       =======================================

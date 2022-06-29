@@ -49,7 +49,6 @@ class DefaultTaskGroup final : public TaskGroup
         static TaskGroup* create();
 
         // ====================  DATA MEMBERS  =======================================
-        const int id=1;
 
     protected:
         // ====================  METHODS       =======================================
@@ -59,6 +58,9 @@ class DefaultTaskGroup final : public TaskGroup
     private:
         // ====================  METHODS       =======================================
 
+        // ====================  MUTATORS      =======================================
+        void addCommunicator_() override;
+        
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class DefaultTaskGroup  -----
