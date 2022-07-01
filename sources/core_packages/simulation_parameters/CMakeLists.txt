@@ -165,8 +165,9 @@ target_include_directories(${target}
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries( ${my_library_target}
-                       command_line_arguments)
+target_link_libraries( ${target}
+                        PUBLIC command_line_arguments
+                        PUBLIC ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

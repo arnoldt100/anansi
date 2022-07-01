@@ -54,6 +54,7 @@
     get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include )
     get_target_property(my_task_group_include task_group task_group_include )
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
+    get_target_property(my_command_line_include_dir command_line_arguments command_line_arguments_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -139,6 +140,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PRIVATE ${my_command_line_include_dir}
                            PRIVATE ${my_generic_object_factory_include}
                            PRIVATE ${my_task_group_include} 
                            PRIVATE ${my_foreach_loop_include} ) 
@@ -150,6 +152,7 @@ target_include_directories(${target}
 target_link_libraries(${target}
                       PUBLIC generic_object_factory
                       PUBLIC task_group 
+                      PUBLIC command_line_arguments
                       PUBLIC generic_foreach_loop )
 
 

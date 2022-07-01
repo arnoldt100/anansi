@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "CommandLineArguments.h"
 
 namespace ANANSI
 {
@@ -53,6 +54,7 @@ class WorldTaskGroupIngredients
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        COMMANDLINE::CommandLineArguments commandLineArguments_;
 
 }; // -----  end of class WorldTaskGroupIngredients  -----
 

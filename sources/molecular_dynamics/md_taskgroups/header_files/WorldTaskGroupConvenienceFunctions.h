@@ -14,6 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "WorldTaskGroup.h"
+#include "WorldTaskGroupIngredients.h"
 
 namespace ANANSI
 {
@@ -46,7 +47,8 @@ class WorldTaskGroupConvenienceFunctions
         WorldTaskGroupConvenienceFunctions& operator= ( WorldTaskGroupConvenienceFunctions && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================
-        static void enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group);
+        static void enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group,
+                                           WorldTaskGroupIngredients & world_task_group_ingredients);
 
     protected:
         // ====================  METHODS       =======================================

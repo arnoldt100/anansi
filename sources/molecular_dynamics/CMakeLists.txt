@@ -55,7 +55,7 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(mm_include_dir memory_management memory_management_include)
-    get_target_property(command_line_include_dir command_line_arguments command_line_arguments_include)
+    get_target_property(my_command_line_include_dir command_line_arguments command_line_arguments_include)
     get_target_property(simulation_parameters_include_dir simulation_parameters simulation_parameters_include)
     get_target_property(my_cc_include counterclass counterclass_include)
     get_target_property(my_cf_include  file_parsers file_parsers_include)
@@ -187,6 +187,7 @@ target_sources(${my_anansi_md_library}
 target_include_directories( ${my_anansi_md_library} 
                             PUBLIC header_files
                             PRIVATE ${Boost_INCLUDE_DIR}
+                            PRIVATE ${my_command_line_include_dir}
                             PRIVATE ${my_cc_include}
                             PRIVATE ${my_cf_include}
                             PRIVATE ${my_s_include}
@@ -249,17 +250,7 @@ target_include_directories( ${my_main_target_binary}
                             PRIVATE ${Boost_INCLUDE_DIR} )
 
 target_link_libraries(${my_main_target_binary}
-                      PRIVATE ${my_anansi_md_library} 
-                      PUBLIC command_line_arguments
-                      PUBLIC simulation_parameters
-                      PUBLIC communicator
-                      PUBLIC counterclass
-                      PUBLIC simulation
-                      PUBLIC simulation_state
-                      PUBLIC mpi_communicator
-                      PUBLIC task_group
-                      PUBLIC generic_abstract_factory
-                      ${Boost_LIBRARIES} )
+                      PRIVATE ${my_anansi_md_library} )
 
                   
 set_target_properties(${my_main_target_binary} PROPERTIES
