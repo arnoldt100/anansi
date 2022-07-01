@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "WorldTaskGroupEnableVisitor.h"
 #include "WorldTaskGroupConvenienceFunctions.h"
 
 namespace ANANSI {
@@ -78,6 +79,9 @@ void WorldTaskGroupConvenienceFunctions::enable(std::unique_ptr<ANANSI::TaskGrou
 {
     world_task_group->addCommunicator();
     world_task_group->addLogger();
+
+    WorldTaskGroupEnableVisitor my_taskgroup_enable_visitor;
+    world_task_group->Accept(my_taskgroup_enable_visitor);
     return;
 }
 
