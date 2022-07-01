@@ -49,6 +49,8 @@ WorldTaskGroup::~WorldTaskGroup()
 //============================= MUTATORS =====================================
 void WorldTaskGroup::addCommandLineArguments()
 {
+
+    std::cout << "Adding command line arguments to WorldTaskGroup." << std::endl;
     return;
 }
 
@@ -92,11 +94,13 @@ TaskGroup* WorldTaskGroup::create()
 //============================= MUTATORS =====================================
 void WorldTaskGroup::addCommunicator_()
 {
+    std::cout << "Adding communicator to WorldTaskGroup." << std::endl;
     return;
 }
 
 void WorldTaskGroup::addLogger_()
 {
+    std::cout << "Adding logger to WorldTaskGroup." << std::endl;
     return;
 }
 

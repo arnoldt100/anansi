@@ -14,7 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "BaseVisitor.h"
-#include "Visitor.h"
+#include "Visitor.hpp"
 #include "WorldTaskGroup.h"
 
 namespace ANANSI

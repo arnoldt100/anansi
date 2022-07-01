@@ -51,6 +51,7 @@ WorldTaskGroupEnableVisitor::~WorldTaskGroupEnableVisitor()
 //============================= ACCESSORS ====================================
 void WorldTaskGroupEnableVisitor::visit(WorldTaskGroup & a_task_group) const
 {
+    a_task_group.addCommandLineArguments();
     return;
 }
 

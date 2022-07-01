@@ -202,20 +202,20 @@ target_include_directories( ${my_anansi_md_library}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${my_anansi_md_library}
-                      string_utilities
-                      communicator
-                      simulation_parameters
-                      command_line_arguments
-                      counterclass
-                      file_parsers
-                      simulation
-                      simulation_state
-                      mpi_communicator
-                      task_group
-                      generic_abstract_factory
-                      generic_foreach_loop
-                      md_taskgroups
-                      ${Boost_LIBRARIES} )
+                      PUBLIC string_utilities
+                      PUBLIC communicator
+                      PUBLIC simulation_parameters
+                      PUBLIC command_line_arguments
+                      PUBLIC counterclass
+                      PUBLIC file_parsers
+                      PUBLIC simulation
+                      PUBLIC simulation_state
+                      PUBLIC mpi_communicator
+                      PUBLIC task_group
+                      PUBLIC generic_abstract_factory
+                      PUBLIC generic_foreach_loop
+                      PUBLIC md_taskgroups
+                      PUBLIC ${Boost_LIBRARIES} )
 
 #-----------------------------------------------------
 # Here we set the propertes on target.               -
@@ -250,15 +250,15 @@ target_include_directories( ${my_main_target_binary}
 
 target_link_libraries(${my_main_target_binary}
                       PRIVATE ${my_anansi_md_library} 
-                      command_line_arguments
-                      simulation_parameters
-                      communicator
-                      counterclass
-                      simulation
-                      simulation_state
-                      mpi_communicator
-                      task_group
-                      generic_abstract_factory
+                      PUBLIC command_line_arguments
+                      PUBLIC simulation_parameters
+                      PUBLIC communicator
+                      PUBLIC counterclass
+                      PUBLIC simulation
+                      PUBLIC simulation_state
+                      PUBLIC mpi_communicator
+                      PUBLIC task_group
+                      PUBLIC generic_abstract_factory
                       ${Boost_LIBRARIES} )
 
                   

@@ -146,9 +146,9 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      generic_object_factory
-                      task_group 
-                      generic_foreach_loop )
+                      PUBLIC generic_object_factory
+                      PUBLIC task_group 
+                      PUBLIC generic_foreach_loop )
 
 
 #-----------------------------------------------------

@@ -153,8 +153,6 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
 {
     this->worldTaskGroup_ = std::move(this->taskGroupFactory_->buildTaskGroup<WorldTaskGroup>());
     WorldTaskGroupConvenienceFunctions::enable(this->worldTaskGroup_);
-    //
-    // this->worldTaskGroup_.addCommandLineArguments();
     return;
 }
 
