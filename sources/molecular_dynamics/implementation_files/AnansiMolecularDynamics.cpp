@@ -19,6 +19,8 @@
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
 #include "WorldTaskGroupConvenienceFunctions.h"
+#include "WorldTaskGroupIngredients.h"
+
 namespace ANANSI {
 
 
@@ -152,6 +154,9 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 void AnansiMolecularDynamics::enableWorldTaskGroup()
 {
     this->worldTaskGroup_ = std::move(this->taskGroupFactory_->buildTaskGroup<WorldTaskGroup>());
+
+    WorldTaskGroupIngredients world_task_group_ingrdients;
+
     WorldTaskGroupConvenienceFunctions::enable(this->worldTaskGroup_);
     return;
 }
