@@ -31,13 +31,14 @@ class WorldTaskGroupIngredients
 
         WorldTaskGroupIngredients ();   // constructor
                                                                                          //
-        WorldTaskGroupIngredients (const COMMANDLINE::CommandLineArguments & cmdline);   // constructor
+        WorldTaskGroupIngredients (const COMMANDLINE::CommandLineArguments & cmdline,
+                                   const std::unique_ptr<COMMUNICATOR::Communicator> & world_communicator);   // constructor
 
         WorldTaskGroupIngredients (const WorldTaskGroupIngredients & other);   // copy constructor
 
         WorldTaskGroupIngredients (WorldTaskGroupIngredients && other);   // copy-move constructor
 
-        virtual ~WorldTaskGroupIngredients ();  // destructor
+        ~WorldTaskGroupIngredients ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -59,6 +60,7 @@ class WorldTaskGroupIngredients
 
         // ====================  DATA MEMBERS  =======================================
         COMMANDLINE::CommandLineArguments commandLineArguments_;
+        std::unique_ptr<COMMUNICATOR::Communicator> worldCommunicator_;
 
 }; // -----  end of class WorldTaskGroupIngredients  -----
 
