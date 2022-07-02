@@ -34,7 +34,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
 
         WorldTaskGroupEnableVisitor ();   // constructor
 
-        WorldTaskGroupEnableVisitor (std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients);   // constructor
+        WorldTaskGroupEnableVisitor (const std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients);   // constructor
 
         WorldTaskGroupEnableVisitor (const WorldTaskGroupEnableVisitor & other);   // copy constructor
 

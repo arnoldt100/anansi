@@ -25,9 +25,10 @@ WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor() :
     return;
 }
 
-WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients)
+WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (const std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients)
 {
-    this->ingredients_ = std::move(world_task_group_ingredients);
+    std::unique_ptr<WorldTaskGroupIngredients> tmp_ingredients(world_task_group_ingredients->clone());
+    this->ingredients_ = std::move(tmp_ingredients);
     return;
 }
 
