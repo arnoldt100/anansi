@@ -41,6 +41,7 @@ class WorldTaskGroupIngredients
         ~WorldTaskGroupIngredients ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        WorldTaskGroupIngredients* clone() const; 
 
         // ====================  MUTATORS      =======================================
 

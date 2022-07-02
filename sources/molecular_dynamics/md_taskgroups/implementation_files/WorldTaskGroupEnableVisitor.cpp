@@ -25,9 +25,9 @@ WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor() :
     return;
 }
 
-WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (WorldTaskGroupIngredients & world_task_group_ingredients) :
-    ingredients_(world_task_group_ingredients)
+WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients)
 {
+    this->ingredients_ = std::move(world_task_group_ingredients);
     return;
 }
 
@@ -35,7 +35,7 @@ WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor( WorldTaskGroupEnableVi
 {
     if (this != &other)
     {
-        this->ingredients_ = other.ingredients_;
+        *this = other;
     }
     return;
 }
@@ -70,7 +70,8 @@ WorldTaskGroupEnableVisitor& WorldTaskGroupEnableVisitor::operator= ( const Worl
 {
     if (this != &other)
     {
-
+        std::unique_ptr<WorldTaskGroupIngredients> tmp_ingredients((*other.ingredients_).clone());
+        this->ingredients_ = std::move(tmp_ingredients);
     }
     return *this;
 } // assignment operator
@@ -79,7 +80,7 @@ WorldTaskGroupEnableVisitor& WorldTaskGroupEnableVisitor::operator= ( WorldTaskG
 {
     if (this != &other)
     {
-
+        this->ingredients_ = std::move(other.ingredients_);
     }
     return *this;
 } // assignment-move operator

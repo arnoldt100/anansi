@@ -64,6 +64,11 @@ WorldTaskGroupIngredients::~WorldTaskGroupIngredients()
 }
 
 //============================= ACCESSORS ====================================
+WorldTaskGroupIngredients* WorldTaskGroupIngredients::clone() const
+{
+    WorldTaskGroupIngredients * tmp_ptr = new WorldTaskGroupIngredients(*this); 
+    return tmp_ptr;
+}
 
 //============================= MUTATORS =====================================
 

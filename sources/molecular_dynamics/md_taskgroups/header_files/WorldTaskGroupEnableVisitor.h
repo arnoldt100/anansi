@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -33,7 +34,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
 
         WorldTaskGroupEnableVisitor ();   // constructor
 
-        WorldTaskGroupEnableVisitor (WorldTaskGroupIngredients & world_task_group_ingredients);   // constructor
+        WorldTaskGroupEnableVisitor (std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients);   // constructor
 
         WorldTaskGroupEnableVisitor (const WorldTaskGroupEnableVisitor & other);   // copy constructor
 
@@ -61,7 +62,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        WorldTaskGroupIngredients ingredients_;
+        std::unique_ptr<WorldTaskGroupIngredients> ingredients_;
 
 }; // -----  end of class WorldTaskGroupEnableVisitor  -----
 
