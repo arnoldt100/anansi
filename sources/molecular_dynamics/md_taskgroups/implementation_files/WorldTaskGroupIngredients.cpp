@@ -24,20 +24,27 @@ WorldTaskGroupIngredients::WorldTaskGroupIngredients()
     return;
 }
 
-WorldTaskGroupIngredients::WorldTaskGroupIngredients( WorldTaskGroupIngredients const & other)
+WorldTaskGroupIngredients::WorldTaskGroupIngredients(const COMMANDLINE::CommandLineArguments & cmdline) :
+    commandLineArguments_(cmdline)
+{
+    return;
+}
+
+WorldTaskGroupIngredients::WorldTaskGroupIngredients( WorldTaskGroupIngredients const & other) 
 {
     if (this != &other)
     {
-        
+        this->commandLineArguments_=  other.commandLineArguments_;
+
     }
     return;
 }
 
-WorldTaskGroupIngredients::WorldTaskGroupIngredients( WorldTaskGroupIngredients && other)
+WorldTaskGroupIngredients::WorldTaskGroupIngredients( WorldTaskGroupIngredients && other) 
 {
     if (this != &other)
     {
-        
+        this->commandLineArguments_ = std::move(other.commandLineArguments_);
     }
     return;
 }		// -----  end of method WorldTaskGroupIngredients::WorldTaskGroupIngredients  -----
@@ -58,7 +65,7 @@ WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator= ( const WorldTas
 {
     if (this != &other)
     {
-
+       this->commandLineArguments_ = std::move(other.commandLineArguments_); 
     }
     return *this;
 } // assignment operator
@@ -67,7 +74,7 @@ WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator= ( WorldTaskGroup
 {
     if (this != &other)
     {
-
+        this->commandLineArguments_ = std::move(other.commandLineArguments_);
     }
     return *this;
 } // assignment-move operator

@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,6 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommandLineArguments.h"
+#include "Communicator.h"
 
 namespace ANANSI
 {
@@ -28,6 +30,8 @@ class WorldTaskGroupIngredients
         // ====================  LIFECYCLE     =======================================
 
         WorldTaskGroupIngredients ();   // constructor
+                                                                                         //
+        WorldTaskGroupIngredients (const COMMANDLINE::CommandLineArguments & cmdline);   // constructor
 
         WorldTaskGroupIngredients (const WorldTaskGroupIngredients & other);   // copy constructor
 

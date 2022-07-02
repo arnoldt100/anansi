@@ -32,13 +32,26 @@ _numberOfArguments(argc)
     return;
 }
 
-CommandLineArguments::CommandLineArguments( const CommandLineArguments &other ) :
-_numberOfArguments(other._numberOfArguments),
-_commandLineArguments(other._commandLineArguments)
+CommandLineArguments::CommandLineArguments( const CommandLineArguments &other ) 
 {
+    if (this != &other)
+    {
+        this->_numberOfArguments=other._numberOfArguments;
+        this->_commandLineArguments = std::move(other._commandLineArguments);
+    }
     return;
 }
 
+CommandLineArguments::CommandLineArguments( CommandLineArguments && other ) 
+{
+    if (this != &other)
+    {
+        this->_numberOfArguments = other._numberOfArguments;
+        this->_commandLineArguments = std::move(other._commandLineArguments);
+        other._numberOfArguments = 0;
+    }
+    return;
+}
 CommandLineArguments::~CommandLineArguments()
 {
     return;
@@ -73,7 +86,7 @@ bool CommandLineArguments::findArgument( const std::string & str ) const
 //============================= OPERATORS ====================================
 
 CommandLineArguments&
-CommandLineArguments::operator=( const CommandLineArguments &other )
+CommandLineArguments::operator=( const CommandLineArguments & other )
 {
     if (this != &other)
     {
@@ -83,6 +96,17 @@ CommandLineArguments::operator=( const CommandLineArguments &other )
     return *this;
 }
 
+CommandLineArguments&
+CommandLineArguments::operator=( CommandLineArguments && other )
+{
+    if (this != &other)
+    {
+        this->_numberOfArguments = other._numberOfArguments;
+        this->_commandLineArguments = std::move(other._commandLineArguments);
+        other._numberOfArguments = 0;
+    }
+    return *this;
+}
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////

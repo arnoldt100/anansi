@@ -62,7 +62,7 @@
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_s_include  simulation simulation_include)
     get_target_property(my_ss_include  simulation_state simulation_state_include)
-    get_target_property(my_comm_include  communicator simulation_state_include)
+    get_target_property(my_comm_include  communicator communicator_include)
     get_target_property(my_mpicomm_include  mpi_communicator mpi_communicator_include)
     get_target_property(my_task_group_include task_group task_group_include)
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)

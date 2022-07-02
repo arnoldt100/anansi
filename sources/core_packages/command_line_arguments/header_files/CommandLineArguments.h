@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 #include <new>
 #include <cstring>
 #include <string>
@@ -68,6 +69,8 @@ class CommandLineArguments
 
         CommandLineArguments( const CommandLineArguments &other ); /* Copy constructor */
 
+        CommandLineArguments( CommandLineArguments && other ); /* Move-Copy constructor */
+
         ~CommandLineArguments(); /* destructor */
 
         /* ====================  ACCESSORS     ======================================= */
@@ -91,6 +94,9 @@ class CommandLineArguments
 
         CommandLineArguments&
         operator=( const CommandLineArguments &other ); /* Assignment operator */
+
+        CommandLineArguments&
+        operator=(  CommandLineArguments && other ); /* Move-Assignment operator */
 
     protected:
         /* ====================  METHODS       ======================================= */
