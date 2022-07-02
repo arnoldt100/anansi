@@ -19,7 +19,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor()
+WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor() :
+    ingredients_()
+{
+    return;
+}
+
+WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (WorldTaskGroupIngredients & world_task_group_ingredients) :
+    ingredients_(world_task_group_ingredients)
 {
     return;
 }
@@ -28,7 +35,7 @@ WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor( WorldTaskGroupEnableVi
 {
     if (this != &other)
     {
-        
+        this->ingredients_ = other.ingredients_;
     }
     return;
 }
@@ -37,7 +44,7 @@ WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor( WorldTaskGroupEnableVi
 {
     if (this != &other)
     {
-        
+        *this = std::move(other);
     }
     return;
 }		// -----  end of method WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor  -----

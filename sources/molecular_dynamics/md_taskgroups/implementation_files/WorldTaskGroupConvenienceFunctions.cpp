@@ -81,7 +81,7 @@ void WorldTaskGroupConvenienceFunctions::enable(std::unique_ptr<ANANSI::TaskGrou
     world_task_group->addCommunicator();
     world_task_group->addLogger();
 
-    WorldTaskGroupEnableVisitor my_taskgroup_enable_visitor;
+    WorldTaskGroupEnableVisitor my_taskgroup_enable_visitor(world_task_group_ingredients);
     world_task_group->Accept(my_taskgroup_enable_visitor);
     return;
 }

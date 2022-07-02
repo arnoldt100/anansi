@@ -16,6 +16,7 @@
 #include "BaseVisitor.h"
 #include "Visitor.hpp"
 #include "WorldTaskGroup.h"
+#include "WorldTaskGroupIngredients.h"
 
 namespace ANANSI
 {
@@ -31,6 +32,8 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
         // ====================  LIFECYCLE     =======================================
 
         WorldTaskGroupEnableVisitor ();   // constructor
+
+        WorldTaskGroupEnableVisitor (WorldTaskGroupIngredients & world_task_group_ingredients);   // constructor
 
         WorldTaskGroupEnableVisitor (const WorldTaskGroupEnableVisitor & other);   // copy constructor
 
@@ -58,6 +61,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        WorldTaskGroupIngredients ingredients_;
 
 }; // -----  end of class WorldTaskGroupEnableVisitor  -----
 
