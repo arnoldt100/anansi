@@ -139,18 +139,3 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/molecular_dynamics)
 
 package_config_end_delimiter("molecular_dynamics" "${anansi_log_file}")
 
-
-#-----------------------------------------------------
-# This subdirectory builds the molecular             -
-# dynamics main program.                             -
-#                                                    -
-#-----------------------------------------------------
-
-# Here put building main program.
-package_config_begin_delimiter("molecular_dynamics_main" "${anansi_log_file}")
-
-package_config_end_delimiter("molecular_dynamics_main" "${anansi_log_file}")
-
-
-set(my_message "End of building project anansi\n")
-log_message_to_file( ${anansi_log_file} ${my_message})
