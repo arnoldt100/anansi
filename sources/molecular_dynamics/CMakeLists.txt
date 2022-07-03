@@ -50,13 +50,13 @@ package_config_end_delimiter("md_taskgroups" "${molecular_dynamics_logfilepath}"
 # ----------------------------------------------------
 package_config_begin_delimiter("md_core_package" "${molecular_dynamics_logfilepath}")
 
-include( ${CMAKE_CURRENT_SOURCE_DIR}/md_core_package/cmake_macros_and_functions/md_core_package.cmake )
+include( "${CMAKE_CURRENT_SOURCE_DIR}/md_core_package/cmake_macros_and_functions/md_core_package.cmake ")
 
 enable_building_md_core_package("${molecular_dynamics_install_lib_directory}"
                                 "${molecular_dynamics_install_include_directory}"
                                 "${molecular_dynamics_install_bin_directory}"
                                 "${molecular_dynamics_cxx_standard}"
-                                "${molecular_dynamics_logfilepath})"
+                                "${molecular_dynamics_logfilepath}")
 
 add_subdirectory(md_core_package)
 
