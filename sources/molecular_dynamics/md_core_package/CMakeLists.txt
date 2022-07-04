@@ -2,9 +2,9 @@
 # and its unit tests. To add source files, simply append the appropiate variable
 # md_core_package_header_files or md_core_package_implementation_files.
 #
-# The target for the library is md_core_package.
+# The target for the library is md_core.
 #
-# The following properties are set for the target md_core_package.
+# The following properties are set for the target md_core.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
@@ -21,14 +21,21 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "md_core_package")
-    project(${my_project_name})
+    set(my_project_name "md_core")
+    project("${my_project_name}")
 
     #-----------------------------------------------------
     # Define the target name variable.                   -
     #                                                    -
     #-----------------------------------------------------
-    set(md_core_package_target "${PROJECT_NAME}")
+    set(md_core_target "${PROJECT_NAME}")
+
+    # ----------------------------------------------------
+    # Verify the md_core target build prerequisites are met
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_core_package_build_prerequisites.cmake")
+    verify_md_core_build_prerequisites_are_met()
 
     #-----------------------------------------------------
     # Set various variables for include directories.     -
@@ -121,10 +128,10 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #-----------------------------------------------------
-# Add the library associated with md_core_package_target
+# Add the library associated with md_core_target
 #
 #-----------------------------------------------------
-add_library( "${md_core_package_target}" STATIC 
+add_library( "${md_core_target}" STATIC 
              "")
 
 #-----------------------------------------------------
@@ -132,7 +139,7 @@ add_library( "${md_core_package_target}" STATIC
 # header files.                                      -
 #                                                    -
 #-----------------------------------------------------
-target_include_directories( "${md_core_package_target}" 
+target_include_directories( "${md_core_target}" 
                             PUBLIC header_files
                             PRIVATE "${Boost_INCLUDE_DIR}"
                             PRIVATE "${my_command_line_include_dir}"
@@ -150,7 +157,7 @@ target_include_directories( "${md_core_package_target}"
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries("${my_md_core_package_library}"
+target_link_libraries("${my_md_core_library}"
                       PUBLIC string_utilities
                       PUBLIC communicator
                       PUBLIC simulation_parameters
@@ -167,10 +174,10 @@ target_link_libraries("${my_md_core_package_library}"
                       PUBLIC "${Boost_LIBRARIES}" )
 
 #-----------------------------------------------------
-# We associate the source files with the md_core_package_target.
+# We associate the source files with the md_core_target.
 # 
 #-----------------------------------------------------
-target_sources("${md_core_package_target}"
+target_sources("${md_core_target}"
     PRIVATE "${md_core_package_header_files}" "${md_core_package_implementation_files}" )
 
 #-----------------------------------------------------
@@ -178,28 +185,28 @@ target_sources("${md_core_package_target}"
 # header files.                                      -
 #                                                    -
 #-----------------------------------------------------
-target_include_directories("${md_core_package_target}" 
+target_include_directories("${md_core_target}" 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files" )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -
 #-----------------------------------------------------
-enable_compile_warnings("${md_core_package_target}")
+enable_compile_warnings("${md_core_target}")
 
 #-----------------------------------------------------
-# Here we set the propertes on md_core_package_target.
+# Here we set the properties on md_core_target.
 #
 #-----------------------------------------------------
-set_target_properties("${md_core_package_target}" PROPERTIES 
+set_target_properties("${md_core_target}" PROPERTIES 
     PUBLIC_HEADER "${md_core_package_library_headers}" 
     CXX_STANDARD "${md_core_package_cxx_standard}" )
 
-install( TARGETS "${md_core_package_target}"
+install( TARGETS "${md_core_target}"
          ARCHIVE DESTINATION "${md_core_package_install_lib_directory}"
          PUBLIC_HEADER DESTINATION "${md_core_package_install_include_directory}" )
 
-set_target_properties("${md_core_package_target}" PROPERTIES
+set_target_properties("${md_core_target}" PROPERTIES
                       md_core_package_include "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
                       PUBLIC_HEADER "${md_core_package_header_files}" )
 

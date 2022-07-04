@@ -26,7 +26,7 @@ function(verify_md_core_build_prerequisites_are_met)
         message (FATAL_ERROR "md_core_logfilepath is not defined.")
     endif()
 
-    set(my_message "Verifying \"md_core' build prerequisities\" are satisfied.")
+    set(my_message "Verifying \"md_core' build prerequisites\" are satisfied.")
     log_message_to_file( ${md_core_logfilepath} "---")
     log_message_to_file( ${md_core_logfilepath} ${my_message})
 
