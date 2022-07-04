@@ -1,13 +1,13 @@
-## =====================================================================================
-##
-##       Filename:  md_core.cmake
-##
-##    Description:  
-##
-##         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
-##   Organization:  ORNL-National Center of Computational Sciences
-##
-## =====================================================================================
+# =====================================================================================
+#
+#       Filename:  md_core.cmake
+#
+#    Description:  
+#
+#         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
+#   Organization:  ORNL-National Center of Computational Sciences
+#
+# =====================================================================================
 
 # ===  MACRO     ======================================================================
 #         Name:  enable_building_md_core_package

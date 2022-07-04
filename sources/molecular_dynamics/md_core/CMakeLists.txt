@@ -1,6 +1,6 @@
-# This CMakeLists.txt file creates the library libmd_core_package.a
+# This CMakeLists.txt file creates the library libmd_core.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# md_core_package_header_files or md_core_package_implementation_files.
+# md_core_header_files or md_core_implementation_files.
 #
 # The target for the library is md_core.
 #
@@ -8,7 +8,9 @@
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
-#
+#  md_core_include                      "${CMAKE_CURRENT_SOURCE_DIR}/header_files"          The location of the header files for
+#                                                                                           this package.
+
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -34,7 +36,7 @@
     # Verify the md_core target build prerequisites are met
     # 
     # ----------------------------------------------------
-    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_core_package_build_prerequisites.cmake")
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_core_build_prerequisites.cmake")
     verify_md_core_build_prerequisites_are_met()
 
     #-----------------------------------------------------
@@ -72,11 +74,11 @@
 
     #-----------------------------------------------------
     # Here we define the variable
-    # md_core_package_library_headers associated
+    # md_core_library_headers associated
     # with the molecular dynamics library
     # 
     #-----------------------------------------------------
-    set (md_core_package_header_files
+    set (md_core_header_files
         header_files/AnansiMolecularDynamics.h
         header_files/MDNullSimulationVisitor.h
         header_files/MDNullSimulation.h
@@ -97,11 +99,11 @@
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # md_core_package_library_implementation associated with   -
+    # md_core_library_implementation associated with     -
     # the molecular dynamics library                     -
     #                                                    -
     #-----------------------------------------------------
-    set (md_core_package_implementation_files
+    set (md_core_implementation_files
         implementation_files/AnansiMolecularDynamics.cpp
         implementation_files/MDNullSimulationVisitor.cpp
         implementation_files/MDNullSimulation.cpp
@@ -157,7 +159,7 @@ target_include_directories( "${md_core_target}"
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries("${my_md_core_library}"
+target_link_libraries("${md_core_target}"
                       PUBLIC string_utilities
                       PUBLIC communicator
                       PUBLIC simulation_parameters
@@ -178,7 +180,7 @@ target_link_libraries("${my_md_core_library}"
 # 
 #-----------------------------------------------------
 target_sources("${md_core_target}"
-    PRIVATE "${md_core_package_header_files}" "${md_core_package_implementation_files}" )
+    PRIVATE "${md_core_header_files}" "${md_core_implementation_files}" )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -199,16 +201,16 @@ enable_compile_warnings("${md_core_target}")
 #
 #-----------------------------------------------------
 set_target_properties("${md_core_target}" PROPERTIES 
-    PUBLIC_HEADER "${md_core_package_library_headers}" 
-    CXX_STANDARD "${md_core_package_cxx_standard}" )
+    PUBLIC_HEADER "${md_core_library_headers}" 
+    CXX_STANDARD "${md_core_cxx_standard}" )
 
 install( TARGETS "${md_core_target}"
-         ARCHIVE DESTINATION "${md_core_package_install_lib_directory}"
-         PUBLIC_HEADER DESTINATION "${md_core_package_install_include_directory}" )
+         ARCHIVE DESTINATION "${md_core_install_lib_directory}"
+         PUBLIC_HEADER DESTINATION "${md_core_install_include_directory}" )
 
 set_target_properties("${md_core_target}" PROPERTIES
-                      md_core_package_include "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
-                      PUBLIC_HEADER "${md_core_package_header_files}" )
+                      md_core_include "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
+                      PUBLIC_HEADER "${md_core_header_files}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
