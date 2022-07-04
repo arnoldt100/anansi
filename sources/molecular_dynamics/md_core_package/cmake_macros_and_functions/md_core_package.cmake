@@ -26,9 +26,9 @@ macro ( enable_building_md_core_package install_lib_directory
         cxx_standard
         logfilepath)
 
-    set(md_core_install_lib_directory ${install_lib_directory})
-    set(md_core_install_include_directory ${install_include_directory})
-    set(md_core_install_bin_directory ${install_bin_directory} )
-    set(md_core_cxx_standard ${cxx_standard} )
-    set(md_core_logfilepath ${logfilepath} )
+    set(md_core_install_lib_directory "${install_lib_directory}")
+    set(md_core_install_include_directory "${install_include_directory}")
+    set(md_core_install_bin_directory "${install_bin_directory}" )
+    set(md_core_cxx_standard "${cxx_standard}" )
+    set(md_core_logfilepath "${logfilepath}" )
 endmacro()
