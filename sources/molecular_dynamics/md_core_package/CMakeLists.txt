@@ -28,7 +28,7 @@
     # Define the target name variable.                   -
     #                                                    -
     #-----------------------------------------------------
-    set(md_core_package_target "${PROJECT_NAME})"
+    set(md_core_package_target "${PROJECT_NAME}")
 
     #-----------------------------------------------------
     # Set various variables for include directories.     -
