@@ -1,10 +1,10 @@
-# This CMakeLists.txt file creates the program molecular_dynamics_main.
+# This CMakeLists.txt file creates the program md_main.
 # and its unit tests. To add source files, simply append the appropiate variable
-# molecular_dynamics_main_header_files or molecular_dynamics_main_implementation_files.
+# md_main_header_files or md_main_implementation_files.
 #
-# The target for the executable is molecular_dynamics_main.
+# The target for the executable is md_main.
 #
-# The following properties are set for the target molecular_dynamics_main.
+# The following properties are set for the target md_main.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
@@ -21,19 +21,20 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "molecular_dynamics_main")
-    project(${my_project_name})
+    set(my_project_name "md_main")
+    project("${my_project_name}")
 
     #-----------------------------------------------------
     # Define the target name.                            -
     #                                                    -
     #-----------------------------------------------------
-    set(target ${my_project_name})
+    set(target "${my_project_name}")
 
     #-----------------------------------------------------
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
+    get_target_property( my_md_core_include md_core md_core_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -52,20 +53,20 @@
 
     #-----------------------------------------------------
     # Here we define the variable
-    # molecular_dynamics_main_public_headers that stores header
-    # files associated with the molecular_dynamics_main target.
+    # md_main_public_headers that stores header
+    # files associated with the md_main target.
     #  
     #-----------------------------------------------------
-    set(molecular_dynamics_main_public_headers 
+    set(md_main_public_header_files 
         header_files/anansi_main_md.h )
 
     #-----------------------------------------------------
-    # Here we define the variable molecular_dynamics_main_public_implementation that
-    # stores implementation files associated with the molecular_dynamics_main target.
+    # Here we define the variable md_main_public_implementation that
+    # stores implementation files associated with the md_main target.
     # 
     #
     #-----------------------------------------------------
-    set(molecular_dynamics_main_public_implementation
+    set(md_main_public_implementation_files
         implementation_files/anansi_main_md.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -81,29 +82,35 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-add_executable( ${target}
+add_executable( "${target}"
                 "" )
 
-add_dependencies(${target} 
-                 ${my_molecular_dynamics_main_library})
+#-----------------------------------------------------
+# Enable compile warnings.                           -
+#                                                    -
+#-----------------------------------------------------
+enable_compile_warnings("${target}")
 
-target_sources(${target}
-               PRIVATE ${molecular_dynamics_main_public_implementation} 
-               PRIVATE ${molecular_dynamics_main_public_headers} )
+add_dependencies("${target}" 
+                 md_core)
 
-target_include_directories( ${target} 
-                            PUBLIC header_files 
-                            PRIVATE ${Boost_INCLUDE_DIR} )
+target_sources("${target}"
+               PRIVATE "${md_main_public_implementation_files}" 
+               PRIVATE "${md_main_public_header_files}" )
 
-target_link_libraries(${target}
-                      PRIVATE ${my_molecular_dynamics_main_library} )
+target_include_directories( "${target}" 
+                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
+                            PRIVATE "${my_md_core_include}" )
+
+target_link_libraries("${target}"
+                      PUBLIC md_core )
 
                   
-set_target_properties(${target} PROPERTIES
-                      CXX_STANDARD ${anansi_cxx_standard} )
+set_target_properties("${target}" PROPERTIES
+                      CXX_STANDARD "${md_main_cxx_standard}" )
 
-install( TARGETS ${target} 
-         RUNTIME DESTINATION ${anansi_install_bin_directory} )
+install( TARGETS "${target}" 
+         RUNTIME DESTINATION "${md_main_install_bin_directory}" )
                      
 
 #-----------------------------------------------------
