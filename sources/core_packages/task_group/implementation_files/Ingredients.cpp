@@ -19,58 +19,11 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-Ingredients::Ingredients()
-{
-    return;
-}
-
-Ingredients::Ingredients( Ingredients const & other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}
-
-Ingredients::Ingredients( Ingredients && other)
-{
-    if (this != &other)
-    {
-        *this = std::move(other);
-    }
-    return;
-}		// -----  end of method Ingredients::Ingredients  -----
-
-
-Ingredients::~Ingredients()
-{
-    return;
-}
-
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-Ingredients& Ingredients::operator= ( const Ingredients &other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment operator
-
-Ingredients& Ingredients::operator= ( Ingredients && other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
