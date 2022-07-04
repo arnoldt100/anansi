@@ -72,11 +72,11 @@ package_config_begin_delimiter("md_main" "${molecular_dynamics_logfilepath}")
 
 include( ${CMAKE_CURRENT_SOURCE_DIR}/md_main/cmake_macros_and_functions/md_main.cmake )
 
-enable_building_molecular_dynamics_main_package("${molecular_dynamics_install_lib_directory}"
-                                                "${molecular_dynamics_install_include_directory}"
-                                                "${molecular_dynamics_install_bin_directory}"
-                                                "${molecular_dynamics_cxx_standard}"
-                                                "${molecular_dynamics_logfilepath}")
+enable_building_md_main_package("${molecular_dynamics_install_lib_directory}"
+                                "${molecular_dynamics_install_include_directory}"
+                                "${molecular_dynamics_install_bin_directory}"
+                                "${molecular_dynamics_cxx_standard}"
+                                "${molecular_dynamics_logfilepath}")
 # add_subdirectory(md_main)
 
 package_config_end_delimiter("md_main" "${molecular_dynamics_logfilepath}")
