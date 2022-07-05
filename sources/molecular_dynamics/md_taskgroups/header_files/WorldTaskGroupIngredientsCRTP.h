@@ -1,5 +1,5 @@
-#ifndef  ANANSI_WorldTaskGroupIngredients_INC
-#define  ANANSI_WorldTaskGroupIngredients_INC
+#ifndef  ANANSI_WorldTaskGroupIngredientsCRTP_INC
+#define  ANANSI_WorldTaskGroupIngredientsCRTP_INC
 
 
 //--------------------------------------------------------//

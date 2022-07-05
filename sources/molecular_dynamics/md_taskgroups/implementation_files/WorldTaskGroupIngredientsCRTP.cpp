@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorldTaskGroupIngredients.h"
+#include "WorldTaskGroupIngredientsCRTP.h"
 
 namespace ANANSI_CRTP {
 
@@ -120,4 +120,4 @@ WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator= ( WorldTaskGroup
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+} // namespace ANANSI_CRTP
