@@ -17,7 +17,7 @@
 #include "BaseVisitor.h"
 #include "Visitor.hpp"
 #include "WorldTaskGroup.h"
-#include "WorldTaskGroupIngredients.h"
+#include "WorldTaskGroupIngredientsCRTP.h"
 
 namespace ANANSI
 {
@@ -34,7 +34,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
 
         WorldTaskGroupEnableVisitor ();   // constructor
 
-        WorldTaskGroupEnableVisitor (const std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients);   // constructor
+        WorldTaskGroupEnableVisitor (const std::unique_ptr<ANANSI_CRTP::WorldTaskGroupIngredients> & world_task_group_ingredients);   // constructor
 
         WorldTaskGroupEnableVisitor (const WorldTaskGroupEnableVisitor & other);   // copy constructor
 
@@ -62,7 +62,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::unique_ptr<WorldTaskGroupIngredients> ingredients_;
+        std::unique_ptr<ANANSI_CRTP::WorldTaskGroupIngredients> ingredients_;
 
 }; // -----  end of class WorldTaskGroupEnableVisitor  -----
 

@@ -14,7 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "WorldTaskGroup.h"
-#include "WorldTaskGroupIngredients.h"
+#include "WorldTaskGroupIngredientsCRTP.h"
 
 namespace ANANSI
 {
@@ -48,7 +48,7 @@ class WorldTaskGroupConvenienceFunctions
 
         // ====================  STATIC        =======================================
         static void enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group,
-                           const std::unique_ptr<ANANSI::WorldTaskGroupIngredients> & world_task_group_ingredients);
+                           const std::unique_ptr<ANANSI_CRTP::WorldTaskGroupIngredients> & world_task_group_ingredients);
 
     protected:
         // ====================  METHODS       =======================================

@@ -76,7 +76,7 @@ WorldTaskGroupConvenienceFunctions& WorldTaskGroupConvenienceFunctions::operator
 //============================= OPERATORS ====================================
 
 void WorldTaskGroupConvenienceFunctions::enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group,
-                                                const std::unique_ptr<ANANSI::WorldTaskGroupIngredients> & world_task_group_ingredients)
+                                                const std::unique_ptr<ANANSI_CRTP::WorldTaskGroupIngredients> & world_task_group_ingredients)
 {
     WorldTaskGroupEnableVisitor my_taskgroup_enable_visitor(world_task_group_ingredients);
 

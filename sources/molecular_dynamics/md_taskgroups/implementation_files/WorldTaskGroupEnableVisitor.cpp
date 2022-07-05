@@ -25,9 +25,9 @@ WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor() :
     return;
 }
 
-WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (const std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients)
+WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (const std::unique_ptr<ANANSI_CRTP::WorldTaskGroupIngredients> & world_task_group_ingredients)
 {
-    std::unique_ptr<WorldTaskGroupIngredients> tmp_ingredients(world_task_group_ingredients->clone());
+    std::unique_ptr<ANANSI_CRTP::WorldTaskGroupIngredients> tmp_ingredients(world_task_group_ingredients->clone());
     this->ingredients_ = std::move(tmp_ingredients);
     return;
 }
@@ -71,7 +71,7 @@ WorldTaskGroupEnableVisitor& WorldTaskGroupEnableVisitor::operator= ( const Worl
 {
     if (this != &other)
     {
-        std::unique_ptr<WorldTaskGroupIngredients> tmp_ingredients((*other.ingredients_).clone());
+        std::unique_ptr<ANANSI_CRTP::WorldTaskGroupIngredients> tmp_ingredients((*other.ingredients_).clone());
         this->ingredients_ = std::move(tmp_ingredients);
     }
     return *this;
