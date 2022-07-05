@@ -15,6 +15,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Ingredients.hpp"
 #include "CommandLineArguments.h"
 #include "Communicator.h"
 
@@ -25,7 +26,7 @@ namespace ANANSI_CRTP
 //        Class:  WorldTaskGroupIngredients
 //  Description:  
 //  =====================================================================================
-class WorldTaskGroupIngredients
+class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI_CRTP::WorldTaskGroupIngredients>
 {
     public:
         // ====================  LIFECYCLE     =======================================
