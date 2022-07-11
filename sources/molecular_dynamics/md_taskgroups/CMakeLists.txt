@@ -83,7 +83,7 @@
          header_files/MDTaskGroupTraits.h
          header_files/MDTaskGroupFactory.hpp
          header_files/DefaultTaskGroup.h
-         header_files/WorldTaskGroupIngredientsCRTP.h
+         header_files/WorldTaskGroupIngredients.h
          header_files/WorldTaskGroupEnableVisitor.h
          header_files/WorldTaskGroupConvenienceFunctions.h
          header_files/WorldTaskGroup.h)
@@ -99,7 +99,7 @@
          implementation_files/MDTaskGroupTraits.cpp
          implementation_files/MDTaskGroupFactory.cpp
          implementation_files/DefaultTaskGroup.cpp
-         implementation_files/WorldTaskGroupIngredientsCRTP.cpp
+         implementation_files/WorldTaskGroupIngredients.cpp
          implementation_files/WorldTaskGroupEnableVisitor.cpp
          implementation_files/WorldTaskGroupConvenienceFunctions.cpp
          implementation_files/WorldTaskGroup.cpp )
