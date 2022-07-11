@@ -58,11 +58,11 @@ class Ingredients
 
 
         // ====================  ACCESSORS     =======================================
-        template <typename IngredientType>
-        IngredientType getIngredient()
+        template <class IngredientType>
+        IngredientType getIngredient() const
         {
-            IngredientType x;
-            return x;
+            T* underlying = static_cast<T*>(this);
+            return underlying->template getValue<IngredientType>();
         }
 
 

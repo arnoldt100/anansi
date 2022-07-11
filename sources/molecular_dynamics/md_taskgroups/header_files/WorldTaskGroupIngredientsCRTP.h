@@ -45,6 +45,9 @@ class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI_CRTP::WorldT
         // ====================  ACCESSORS     =======================================
         WorldTaskGroupIngredients* clone() const; 
 
+        template<typename T> 
+        T getValue() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
