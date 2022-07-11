@@ -19,7 +19,7 @@
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
 #include "WorldTaskGroupConvenienceFunctions.h"
-#include "WorldTaskGroupIngredientsCRTP.h"
+#include "WorldTaskGroupIngredients.h"
 
 namespace ANANSI {
 
@@ -156,8 +156,8 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
     this->worldTaskGroup_ = std::move(this->taskGroupFactory_->buildTaskGroup<WorldTaskGroup>());
 
 
-    std::unique_ptr<ANANSI_CRTP::WorldTaskGroupIngredients> world_taskgroup_ingredients(
-            new ANANSI_CRTP::WorldTaskGroupIngredients(this->commandLineArguments_,this->MpiWorldCommunicator_)
+    std::unique_ptr<ANANSI::WorldTaskGroupIngredients> world_taskgroup_ingredients(
+            new ANANSI::WorldTaskGroupIngredients(this->commandLineArguments_,this->MpiWorldCommunicator_)
             );
 
     WorldTaskGroupConvenienceFunctions::enable(this->worldTaskGroup_,world_taskgroup_ingredients);

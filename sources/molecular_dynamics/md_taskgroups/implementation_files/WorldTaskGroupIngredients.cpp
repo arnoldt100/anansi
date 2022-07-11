@@ -9,9 +9,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorldTaskGroupIngredientsCRTP.h"
+#include "WorldTaskGroupIngredients.h"
 
-namespace ANANSI_CRTP {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -20,14 +20,14 @@ namespace ANANSI_CRTP {
 //============================= LIFECYCLE ====================================
 
 WorldTaskGroupIngredients::WorldTaskGroupIngredients() :
-    Ingredients<ANANSI_CRTP::WorldTaskGroupIngredients>()
+    Ingredients<ANANSI::WorldTaskGroupIngredients>()
 {
     return;
 }
 
 WorldTaskGroupIngredients::WorldTaskGroupIngredients(const COMMANDLINE::CommandLineArguments & cmdline,
                                                      const std::unique_ptr<COMMUNICATOR::Communicator> & world_communicator ) :
-    Ingredients<ANANSI_CRTP::WorldTaskGroupIngredients>(),
+    Ingredients<ANANSI::WorldTaskGroupIngredients>(),
     commandLineArguments_(cmdline),
     worldCommunicator_(nullptr)
 {
@@ -64,7 +64,7 @@ WorldTaskGroupIngredients::~WorldTaskGroupIngredients()
 //============================= ACCESSORS ====================================
 WorldTaskGroupIngredients* WorldTaskGroupIngredients::clone() const
 {
-    ANANSI_CRTP::WorldTaskGroupIngredients * tmp_ptr = new ANANSI_CRTP::WorldTaskGroupIngredients(*this); 
+    ANANSI::WorldTaskGroupIngredients * tmp_ptr = new ANANSI::WorldTaskGroupIngredients(*this); 
     return tmp_ptr;
 }
 
@@ -89,7 +89,7 @@ WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator=( const WorldTask
 {
     if (this != &other)
     {
-        Ingredients<ANANSI_CRTP::WorldTaskGroupIngredients>::operator=(other);
+        Ingredients<ANANSI::WorldTaskGroupIngredients>::operator=(other);
         this->commandLineArguments_ = other.commandLineArguments_;
         std::unique_ptr<COMMUNICATOR::Communicator> tmp_world_communicator(other.worldCommunicator_->duplicateCommunicator());
         this->worldCommunicator_ = std::move(tmp_world_communicator);
@@ -101,7 +101,7 @@ WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator=( WorldTaskGroupI
 {
     if (this != &other)
     {
-        Ingredients<ANANSI_CRTP::WorldTaskGroupIngredients>::operator=(std::move(other));
+        Ingredients<ANANSI::WorldTaskGroupIngredients>::operator=(std::move(other));
         this->commandLineArguments_ = std::move(other.commandLineArguments_);
         this->worldCommunicator_ = std::move(other.worldCommunicator_);
     }
@@ -133,4 +133,4 @@ WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator=( WorldTaskGroupI
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI_CRTP
+} // namespace ANANSI

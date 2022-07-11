@@ -1,5 +1,5 @@
-#ifndef  ANANSI_WorldTaskGroupIngredientsCRTP_INC
-#define  ANANSI_WorldTaskGroupIngredientsCRTP_INC
+#ifndef  ANANSI_WorldTaskGroupIngredients_INC
+#define  ANANSI_WorldTaskGroupIngredients_INC
 
 
 //--------------------------------------------------------//
@@ -19,14 +19,14 @@
 #include "CommandLineArguments.h"
 #include "Communicator.h"
 
-namespace ANANSI_CRTP
+namespace ANANSI
 {
 
 // =====================================================================================
 //        Class:  WorldTaskGroupIngredients
 //  Description:  
 //  =====================================================================================
-class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI_CRTP::WorldTaskGroupIngredients>
+class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI::WorldTaskGroupIngredients>
 {
     public:
         // ====================  LIFECYCLE     =======================================
