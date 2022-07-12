@@ -22,14 +22,18 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 WorldTaskGroup::WorldTaskGroup() :
-   TaskGroup() 
+    TaskGroup(),
+    commandLineArguments_(),
+    worldCommunicator_(nullptr) 
 {
     return;
 }
 
 
 WorldTaskGroup::WorldTaskGroup( WorldTaskGroup && other) :
-    TaskGroup(std::move(other))
+    TaskGroup(std::move(other)),
+    commandLineArguments_(),
+    worldCommunicator_(nullptr) 
 {
     if (this != &other)
     {
@@ -49,7 +53,6 @@ WorldTaskGroup::~WorldTaskGroup()
 //============================= MUTATORS =====================================
 void WorldTaskGroup::addCommandLineArguments(COMMANDLINE::CommandLineArguments && cmdline)
 {
-    std::cout << "Adding command line arguments to WorldTaskGroup." << std::endl;
     this->commandLineArguments_ = std::move(cmdline);
     return;
 }
@@ -103,13 +106,13 @@ void obtainIngredient_( )
 void WorldTaskGroup::addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm )
 {
     this->worldCommunicator_ = std::move(my_comm);
-    std::cout << "Adding communicator to WorldTaskGroup." << std::endl;
     return;
 }
 
 void WorldTaskGroup::addLogger_()
 {
-    std::cout << "Adding logger to WorldTaskGroup." << std::endl;
+    // The logger for the WorldTaskGroup can't be added until 
+    // the it's communicator is set.
     return;
 }
 
