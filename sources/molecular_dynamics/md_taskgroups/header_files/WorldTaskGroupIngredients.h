@@ -46,7 +46,7 @@ class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI::WorldTaskGr
         WorldTaskGroupIngredients* clone() const; 
 
         template<typename T> 
-        T getValue() const;
+        T giveIngredient() const;
 
         // ====================  MUTATORS      =======================================
 

@@ -34,7 +34,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
 
         WorldTaskGroupEnableVisitor ();   // constructor
 
-        WorldTaskGroupEnableVisitor (const std::unique_ptr<ANANSI::WorldTaskGroupIngredients> & world_task_group_ingredients);   // constructor
+        WorldTaskGroupEnableVisitor (const std::unique_ptr<ANANSI::Ingredients<WorldTaskGroupIngredients>> & world_task_group_ingredients);   // constructor
 
         WorldTaskGroupEnableVisitor (const WorldTaskGroupEnableVisitor & other);   // copy constructor
 
@@ -62,7 +62,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::unique_ptr<ANANSI::WorldTaskGroupIngredients> ingredients_;
+        std::unique_ptr<ANANSI::Ingredients<WorldTaskGroupIngredients>> ingredients_;
 
 }; // -----  end of class WorldTaskGroupEnableVisitor  -----
 

@@ -48,9 +48,9 @@ void TaskGroup::addLogger()
     this->addLogger_();
 }
 
-void TaskGroup::addCommunicator()
+void TaskGroup::addCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm )
 {
-    this->addCommunicator_();
+    this->addCommunicator_(std::move(my_comm));
 }
 
 //============================= OPERATORS ====================================

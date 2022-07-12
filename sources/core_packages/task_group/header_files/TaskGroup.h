@@ -4,6 +4,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -12,6 +14,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Communicator.h"
 #include "DefineVisitableMacro.h"
 #include "BaseVisitable.hpp"
 
@@ -49,7 +52,7 @@ class TaskGroup : public  MPL::BaseVisitable<>
         // ====================  MUTATORS      =======================================
         DEFINE_VISITABLE()
 
-        void addCommunicator();
+        void addCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm );
         void addLogger();
 
         // ====================  OPERATORS     =======================================
@@ -67,7 +70,7 @@ class TaskGroup : public  MPL::BaseVisitable<>
         // ====================  METHODS       =======================================
         
         // ====================  MUTATORS      =======================================
-        virtual void addCommunicator_()=0;
+        virtual void addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm)=0;
         virtual void addLogger_()=0;
 
 

@@ -33,7 +33,7 @@ DefaultTaskGroup::DefaultTaskGroup( DefaultTaskGroup && other) :
 {
     if (this != &other)
     {
-        
+        *this = std::move(other);
     }
     return;
 }		// -----  end of method DefaultTaskGroup::DefaultTaskGroup  -----
@@ -55,6 +55,7 @@ DefaultTaskGroup& DefaultTaskGroup::operator= ( DefaultTaskGroup && other )
     if (this != &other)
     {
         TaskGroup::operator=(std::move(other));
+        this->worldCommunicator_ = std::move(other.worldCommunicator_);
     }
     return *this;
 } // assignment-move operator
@@ -86,7 +87,7 @@ TaskGroup* DefaultTaskGroup::create()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void DefaultTaskGroup::addCommunicator_()
+void DefaultTaskGroup::addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm)
 {
     return;
 }

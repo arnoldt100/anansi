@@ -25,9 +25,9 @@ WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor() :
     return;
 }
 
-WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (const std::unique_ptr<ANANSI::WorldTaskGroupIngredients> & world_task_group_ingredients)
+WorldTaskGroupEnableVisitor::WorldTaskGroupEnableVisitor (const std::unique_ptr<ANANSI::Ingredients<WorldTaskGroupIngredients>> & world_task_group_ingredients)
 {
-    std::unique_ptr<ANANSI::WorldTaskGroupIngredients> tmp_ingredients(world_task_group_ingredients->clone());
+    std::unique_ptr<ANANSI::Ingredients<WorldTaskGroupIngredients>> tmp_ingredients(world_task_group_ingredients->clone());
     this->ingredients_ = std::move(tmp_ingredients);
     return;
 }
@@ -59,7 +59,9 @@ WorldTaskGroupEnableVisitor::~WorldTaskGroupEnableVisitor()
 //============================= ACCESSORS ====================================
 void WorldTaskGroupEnableVisitor::visit(WorldTaskGroup & a_task_group) const
 {
-    a_task_group.addCommandLineArguments();
+    COMMANDLINE::CommandLineArguments my_args =
+        (this->ingredients_)->giveIngredient<COMMANDLINE::CommandLineArguments>();
+    a_task_group.addCommandLineArguments(std::move(my_args));
     return;
 }
 
@@ -71,7 +73,7 @@ WorldTaskGroupEnableVisitor& WorldTaskGroupEnableVisitor::operator= ( const Worl
 {
     if (this != &other)
     {
-        std::unique_ptr<ANANSI::WorldTaskGroupIngredients> tmp_ingredients((*other.ingredients_).clone());
+        std::unique_ptr<ANANSI::Ingredients<WorldTaskGroupIngredients>> tmp_ingredients((*other.ingredients_).clone());
         this->ingredients_ = std::move(tmp_ingredients);
     }
     return *this;

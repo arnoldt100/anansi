@@ -5,6 +5,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -15,6 +17,8 @@
 //--------------------------------------------------------//
 #include "TaskGroup.h"
 #include "BaseVisitable.hpp"
+#include "CommandLineArguments.h"
+#include "Communicator.h"
 
 namespace ANANSI
 {
@@ -42,7 +46,7 @@ class WorldTaskGroup final : public TaskGroup
         // This macro defines the Accept member function.
         DEFINE_VISITABLE()
 
-        void addCommandLineArguments();
+        void addCommandLineArguments(COMMANDLINE::CommandLineArguments && cmdline);
 
         // ====================  OPERATORS     =======================================
 
@@ -64,11 +68,13 @@ class WorldTaskGroup final : public TaskGroup
         // ====================  METHODS       =======================================
 
         // ====================  MUTATORS      =======================================
-        void addCommunicator_() override;
+        void addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm) override;
 
         void addLogger_() override;
         
         // ====================  DATA MEMBERS  =======================================
+        COMMANDLINE::CommandLineArguments commandLineArguments_;
+        std::unique_ptr<COMMUNICATOR::Communicator> worldCommunicator_;
 
 
 

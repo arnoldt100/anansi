@@ -76,12 +76,16 @@ WorldTaskGroupConvenienceFunctions& WorldTaskGroupConvenienceFunctions::operator
 //============================= OPERATORS ====================================
 
 void WorldTaskGroupConvenienceFunctions::enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group,
-                                                const std::unique_ptr<ANANSI::WorldTaskGroupIngredients> & world_task_group_ingredients)
+                                                const std::unique_ptr<ANANSI::Ingredients<WorldTaskGroupIngredients>> & world_task_group_ingredients)
 {
-    WorldTaskGroupEnableVisitor my_taskgroup_enable_visitor(world_task_group_ingredients);
 
-    world_task_group->addCommunicator();
+    std::unique_ptr<COMMUNICATOR::Communicator> my_comm = 
+        std::move(world_task_group_ingredients->giveIngredient<std::unique_ptr<COMMUNICATOR::Communicator>>());
+    world_task_group->addCommunicator(std::move(my_comm));
+
     world_task_group->addLogger();
+
+    WorldTaskGroupEnableVisitor my_taskgroup_enable_visitor(world_task_group_ingredients);
     world_task_group->Accept(my_taskgroup_enable_visitor);
     return;
 }

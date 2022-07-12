@@ -59,12 +59,17 @@ class Ingredients
 
         // ====================  ACCESSORS     =======================================
         template <class IngredientType>
-        IngredientType getIngredient() const
+        IngredientType giveIngredient() const
         {
-            T* underlying = static_cast<T*>(this);
-            return underlying->template getValue<IngredientType>();
+            const T* underlying = static_cast<const T*>(this);
+            return underlying->template giveIngredient<IngredientType>();
         }
 
+        T* clone () const
+        {
+            const T* underlying = static_cast<const T*>(this);
+            return underlying->template clone();
+        }
 
         // ====================  MUTATORS      =======================================
 

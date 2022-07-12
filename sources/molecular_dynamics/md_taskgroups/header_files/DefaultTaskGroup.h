@@ -5,6 +5,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,6 +15,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Communicator.h"
 #include "TaskGroup.h"
 
 namespace ANANSI
@@ -59,11 +62,12 @@ class DefaultTaskGroup final : public TaskGroup
         // ====================  METHODS       =======================================
 
         // ====================  MUTATORS      =======================================
-        void addCommunicator_() override;
+        void addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm ) override;
 
         void addLogger_() override;
         
         // ====================  DATA MEMBERS  =======================================
+        std::unique_ptr<COMMUNICATOR::Communicator> worldCommunicator_;
 
 }; // -----  end of class DefaultTaskGroup  -----
 

@@ -156,7 +156,7 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
     this->worldTaskGroup_ = std::move(this->taskGroupFactory_->buildTaskGroup<WorldTaskGroup>());
 
 
-    std::unique_ptr<ANANSI::WorldTaskGroupIngredients> world_taskgroup_ingredients(
+    std::unique_ptr<Ingredients<WorldTaskGroupIngredients>> world_taskgroup_ingredients(
             new ANANSI::WorldTaskGroupIngredients(this->commandLineArguments_,this->MpiWorldCommunicator_)
             );
 

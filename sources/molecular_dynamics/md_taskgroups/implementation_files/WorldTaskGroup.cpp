@@ -33,7 +33,7 @@ WorldTaskGroup::WorldTaskGroup( WorldTaskGroup && other) :
 {
     if (this != &other)
     {
-        
+        *this = std::move(other);
     }
     return;
 }		// -----  end of method WorldTaskGroup::WorldTaskGroup  -----
@@ -47,10 +47,10 @@ WorldTaskGroup::~WorldTaskGroup()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void WorldTaskGroup::addCommandLineArguments()
+void WorldTaskGroup::addCommandLineArguments(COMMANDLINE::CommandLineArguments && cmdline)
 {
-
     std::cout << "Adding command line arguments to WorldTaskGroup." << std::endl;
+    this->commandLineArguments_ = std::move(cmdline);
     return;
 }
 
@@ -61,6 +61,8 @@ WorldTaskGroup& WorldTaskGroup::operator= ( WorldTaskGroup && other )
     if (this != &other)
     {
         TaskGroup::operator=(std::move(other));
+        this->commandLineArguments_ = std::move(other.commandLineArguments_);
+        this->worldCommunicator_ = std::move(other.worldCommunicator_);
     }
     return *this;
 } // assignment-move operator
@@ -92,8 +94,15 @@ TaskGroup* WorldTaskGroup::create()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void WorldTaskGroup::addCommunicator_()
+template <typename IngredientType>
+void obtainIngredient_( )
 {
+    return;
+}
+
+void WorldTaskGroup::addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm )
+{
+    this->worldCommunicator_ = std::move(my_comm);
     std::cout << "Adding communicator to WorldTaskGroup." << std::endl;
     return;
 }
