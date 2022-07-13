@@ -75,7 +75,7 @@ COMMANDLINE::CommandLineArguments WorldTaskGroupIngredients::giveIngredient<COMM
 }
 
 template <>
-WorldCommunicatorIngredientTraits::type WorldTaskGroupIngredients::giveIngredient<> () const
+WorldCommunicatorIngredientTraits::type WorldTaskGroupIngredients::giveIngredient<WorldCommunicatorIngredientTraits::type> () const
 {
     WorldCommunicatorIngredientTraits::type tmp_world_communicator(this->worldCommunicator_->duplicateCommunicator());
     return tmp_world_communicator;

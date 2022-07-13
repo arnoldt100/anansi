@@ -16,9 +16,10 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "TaskGroup.h"
+#include "MPLAliases.hpp"
 #include "BaseVisitable.hpp"
 #include "CommandLineArguments.h"
-#include "Communicator.h"
+#include "WorldCommunicatorIngredientTraits.h"
 
 namespace ANANSI
 {
@@ -39,6 +40,9 @@ class WorldTaskGroup final : public TaskGroup
         WorldTaskGroup (WorldTaskGroup && other);   // copy-move constructor
 
         ~WorldTaskGroup ();  // destructor
+
+        // ====================  ALIASES       =======================================
+        using NeededInredients = MPL::mpl_typelist<COMMANDLINE::CommandLineArguments> ;
 
         // ====================  ACCESSORS     =======================================
 
@@ -74,7 +78,7 @@ class WorldTaskGroup final : public TaskGroup
         
         // ====================  DATA MEMBERS  =======================================
         COMMANDLINE::CommandLineArguments commandLineArguments_;
-        std::unique_ptr<COMMUNICATOR::Communicator> worldCommunicator_;
+        WorldCommunicatorIngredientTraits::type worldCommunicator_;
 
 
 
