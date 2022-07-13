@@ -16,6 +16,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Ingredients.hpp"
+#include "WorldCommunicatorIngredientTraits.h"
 #include "CommandLineArguments.h"
 #include "Communicator.h"
 
@@ -66,7 +67,7 @@ class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI::WorldTaskGr
 
         // ====================  DATA MEMBERS  =======================================
         COMMANDLINE::CommandLineArguments commandLineArguments_;
-        std::unique_ptr<COMMUNICATOR::Communicator> worldCommunicator_;
+        WorldCommunicatorIngredientTraits::type worldCommunicator_;
 
 }; // -----  end of class WorldTaskGroupIngredients  -----
 

@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorldTaskGroupIngredients.h"
+#include "WorldCommunicatorIngredientTraits.h"
 
 namespace ANANSI {
 
@@ -19,91 +19,54 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-WorldTaskGroupIngredients::WorldTaskGroupIngredients() :
-    Ingredients<ANANSI::WorldTaskGroupIngredients>()
+WorldCommunicatorIngredientTraits::WorldCommunicatorIngredientTraits()
 {
     return;
 }
 
-WorldTaskGroupIngredients::WorldTaskGroupIngredients(const COMMANDLINE::CommandLineArguments & cmdline,
-                                                     const WorldCommunicatorIngredientTraits::type & world_communicator ) :
-    Ingredients<ANANSI::WorldTaskGroupIngredients>(),
-    commandLineArguments_(cmdline),
-    worldCommunicator_(nullptr)
-{
-    // We clone the world_communicator and move-copy the clone to "this->world_communicator_".
-    WorldCommunicatorIngredientTraits::type tmp_world_communicator(world_communicator->duplicateCommunicator());
-    this->worldCommunicator_ = std::move(tmp_world_communicator);
-    return;
-}
-
-WorldTaskGroupIngredients::WorldTaskGroupIngredients( WorldTaskGroupIngredients const & other)
+WorldCommunicatorIngredientTraits::WorldCommunicatorIngredientTraits( WorldCommunicatorIngredientTraits const & other)
 {
     if (this != &other)
     {
-        *this = other;
+        
     }
     return;
 }
 
-WorldTaskGroupIngredients::WorldTaskGroupIngredients( WorldTaskGroupIngredients && other)
+WorldCommunicatorIngredientTraits::WorldCommunicatorIngredientTraits( WorldCommunicatorIngredientTraits && other)
 {
     if (this != &other)
     {
-        *this = std::move(other);
+        *this = std::move(other); 
     }
     return;
-}		// -----  end of method WorldTaskGroupIngredients::WorldTaskGroupIngredients  -----
+}       // -----  end of method WorldCommunicatorIngredientTraits::WorldCommunicatorIngredientTraits  -----
 
 
-WorldTaskGroupIngredients::~WorldTaskGroupIngredients()
+WorldCommunicatorIngredientTraits::~WorldCommunicatorIngredientTraits()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-WorldTaskGroupIngredients* WorldTaskGroupIngredients::clone() const
-{
-    ANANSI::WorldTaskGroupIngredients * tmp_ptr = new ANANSI::WorldTaskGroupIngredients(*this); 
-    return tmp_ptr;
-}
-
-template <>
-COMMANDLINE::CommandLineArguments WorldTaskGroupIngredients::giveIngredient<COMMANDLINE::CommandLineArguments> () const
-{
-   return this->commandLineArguments_;
-}
-
-template <>
-WorldCommunicatorIngredientTraits::type WorldTaskGroupIngredients::giveIngredient<> () const
-{
-    WorldCommunicatorIngredientTraits::type tmp_world_communicator(this->worldCommunicator_->duplicateCommunicator());
-    return tmp_world_communicator;
-}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator=( const WorldTaskGroupIngredients &other )
+WorldCommunicatorIngredientTraits& WorldCommunicatorIngredientTraits::operator= ( const WorldCommunicatorIngredientTraits &other )
 {
     if (this != &other)
     {
-        Ingredients<ANANSI::WorldTaskGroupIngredients>::operator=(other);
-        this->commandLineArguments_ = other.commandLineArguments_;
-        WorldCommunicatorIngredientTraits::type tmp_world_communicator(other.worldCommunicator_->duplicateCommunicator());
-        this->worldCommunicator_ = std::move(tmp_world_communicator);
+
     }
     return *this;
 } // assignment operator
 
-WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator=( WorldTaskGroupIngredients && other )
+WorldCommunicatorIngredientTraits& WorldCommunicatorIngredientTraits::operator=( WorldCommunicatorIngredientTraits && other )
 {
     if (this != &other)
     {
-        Ingredients<ANANSI::WorldTaskGroupIngredients>::operator=(std::move(other));
-        this->commandLineArguments_ = std::move(other.commandLineArguments_);
-        this->worldCommunicator_ = std::move(other.worldCommunicator_);
     }
     return *this;
 } // assignment-move operator
