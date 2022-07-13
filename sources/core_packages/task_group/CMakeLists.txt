@@ -41,6 +41,7 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
+    get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
     get_target_property(my_comm_include communicator communicator_include)
     get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include)
     get_target_property(my_generic_vistor_include  generic_visitor generic_visitor_include)
@@ -71,7 +72,8 @@
     set (task_group_header_files
          header_files/TaskGroup.h
          header_files/Ingredients.hpp
-         header_files/WorldCommunicatorIngredientTraits.h)
+         header_files/WorldCommunicatorIngredientTraits.h
+         header_files/CommandLineArgumentsIngredientTraits.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -83,7 +85,8 @@
     set (task_group_implementation_files
          implementation_files/TaskGroup.cpp
          implementation_files/Ingredients.cpp
-         implementation_files/WorldCommunicatorIngredientTraits.cpp)
+         implementation_files/WorldCommunicatorIngredientTraits.cpp
+         implementation_files/CommandLineArgumentsIngredientTraits.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -115,7 +118,8 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_comm_include} 
+                           PRIVATE ${my_comm_include}
+                           PRIVATE ${my_command_line_arguments_include} 
                            PRIVATE ${my_generic_vistor_include}
                            PRIVATE ${my_generic_object_factory_include} )
 
@@ -125,6 +129,7 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${target}
+                       PUBLIC command_line_arguments
                        PUBLIC generic_visitor 
                        PUBLIC communicator
                        PUBLIC generic_object_factory )
