@@ -70,7 +70,8 @@
     #-----------------------------------------------------
     set (task_group_header_files
          header_files/TaskGroup.h
-         header_files/Ingredients.hpp)
+         header_files/Ingredients.hpp
+         header_files/WorldCommunicatorIngredientTraits.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -81,7 +82,8 @@
     #-----------------------------------------------------
     set (task_group_implementation_files
          implementation_files/TaskGroup.cpp
-         implementation_files/Ingredients.cpp )
+         implementation_files/Ingredients.cpp
+         implementation_files/WorldCommunicatorIngredientTraits.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
