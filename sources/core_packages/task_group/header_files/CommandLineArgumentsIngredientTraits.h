@@ -37,7 +37,7 @@ class CommandLineArgumentsIngredientTraits
         ~CommandLineArgumentsIngredientTraits ();  // destructor
 
         // ====================  Aliases       =======================================
-        using type = std::unique_ptr<COMMANDLINE::CommandLineArguments>;
+        using type = COMMANDLINE::CommandLineArguments;
 
         // ====================  ACCESSORS     =======================================
 

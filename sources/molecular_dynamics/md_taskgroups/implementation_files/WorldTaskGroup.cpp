@@ -51,7 +51,7 @@ WorldTaskGroup::~WorldTaskGroup()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void WorldTaskGroup::addCommandLineArguments(COMMANDLINE::CommandLineArguments && cmdline)
+void WorldTaskGroup::addCommandLineArguments(CommandLineArgumentsIngredientTraits::type && cmdline)
 {
     this->commandLineArguments_ = std::move(cmdline);
     return;

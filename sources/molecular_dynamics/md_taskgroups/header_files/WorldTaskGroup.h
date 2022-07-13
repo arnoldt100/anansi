@@ -18,7 +18,7 @@
 #include "TaskGroup.h"
 #include "MPLAliases.hpp"
 #include "BaseVisitable.hpp"
-#include "CommandLineArguments.h"
+#include "CommandLineArgumentsIngredientTraits.h"
 #include "WorldCommunicatorIngredientTraits.h"
 
 namespace ANANSI
@@ -50,7 +50,7 @@ class WorldTaskGroup final : public TaskGroup
         // This macro defines the Accept member function.
         DEFINE_VISITABLE()
 
-        void addCommandLineArguments(COMMANDLINE::CommandLineArguments && cmdline);
+        void addCommandLineArguments(CommandLineArgumentsIngredientTraits::type && cmdline);
 
         // ====================  OPERATORS     =======================================
 
@@ -77,7 +77,7 @@ class WorldTaskGroup final : public TaskGroup
         void addLogger_() override;
         
         // ====================  DATA MEMBERS  =======================================
-        COMMANDLINE::CommandLineArguments commandLineArguments_;
+        CommandLineArgumentsIngredientTraits::type commandLineArguments_;
         WorldCommunicatorIngredientTraits::type worldCommunicator_;
 
 
