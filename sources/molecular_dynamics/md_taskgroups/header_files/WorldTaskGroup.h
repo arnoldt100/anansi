@@ -51,8 +51,6 @@ class WorldTaskGroup final : public TaskGroup
         // This macro defines the Accept member function.
         DEFINE_VISITABLE()
 
-        void addCommandLineArguments(CommandLineArgumentsIngredientTraits::type && cmdline);
-
         template <typename T>
         void addIngredient(T && ingredient);
 
@@ -88,6 +86,11 @@ class WorldTaskGroup final : public TaskGroup
 
 }; // -----  end of class WorldTaskGroup  -----
 
+template <>
+void WorldTaskGroup::addIngredient(WorldCommunicatorIngredientTraits::type && ingredient);
+
+template <>
+void WorldTaskGroup::addIngredient(CommandLineArgumentsIngredientTraits::type && ingredient);
 
 }; // namespace ANANSI
 
