@@ -57,6 +57,19 @@ void WorldTaskGroup::addCommandLineArguments(CommandLineArgumentsIngredientTrait
     return;
 }
 
+template <>
+void WorldTaskGroup::addIngredient(WorldCommunicatorIngredientTraits::type && ingredient)
+{
+    this->worldCommunicator_ = std::move(ingredient);
+    return;
+}
+
+template <>
+void WorldTaskGroup::addIngredient(CommandLineArgumentsIngredientTraits::type && ingredient)
+{
+    this->commandLineArguments_ = std::move(ingredient);
+    return;
+}
 //============================= OPERATORS ====================================
 
 WorldTaskGroup& WorldTaskGroup::operator= ( WorldTaskGroup && other )

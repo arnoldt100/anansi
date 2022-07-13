@@ -42,7 +42,8 @@ class WorldTaskGroup final : public TaskGroup
         ~WorldTaskGroup ();  // destructor
 
         // ====================  ALIASES       =======================================
-        using NeededInredients = MPL::mpl_typelist<COMMANDLINE::CommandLineArguments> ;
+        using NeededInredients = MPL::mpl_typelist<CommandLineArgumentsIngredientTraits::type,
+                                                   WorldCommunicatorIngredientTraits::type>;
 
         // ====================  ACCESSORS     =======================================
 
@@ -51,6 +52,9 @@ class WorldTaskGroup final : public TaskGroup
         DEFINE_VISITABLE()
 
         void addCommandLineArguments(CommandLineArgumentsIngredientTraits::type && cmdline);
+
+        template <typename T>
+        void addIngredient(T && ingredient);
 
         // ====================  OPERATORS     =======================================
 
