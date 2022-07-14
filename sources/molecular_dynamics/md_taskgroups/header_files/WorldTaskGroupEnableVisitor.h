@@ -85,6 +85,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
             a_task_group.addIngredient(std::move(an_ingredient));
             return;
         }
+
     protected:
         // ====================  METHODS       =======================================
 
