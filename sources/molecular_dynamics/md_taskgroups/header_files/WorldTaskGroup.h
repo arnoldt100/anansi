@@ -81,9 +81,6 @@ class WorldTaskGroup final : public TaskGroup
         // ====================  DATA MEMBERS  =======================================
         CommandLineArgumentsIngredientTraits::type commandLineArguments_;
         WorldCommunicatorIngredientTraits::type worldCommunicator_;
-
-
-
 }; // -----  end of class WorldTaskGroup  -----
 
 template <>

@@ -59,16 +59,26 @@ WorldTaskGroupEnableVisitor::~WorldTaskGroupEnableVisitor()
 //============================= ACCESSORS ====================================
 void WorldTaskGroupEnableVisitor::visit(WorldTaskGroup & a_task_group) const
 {
-    CommandLineArgumentsIngredientTraits::type my_args = 
-        (this->ingredients_)->giveIngredient<CommandLineArgumentsIngredientTraits::type>();
+    auto glambda = [this]() { return (this->ingredients_)->giveIngredient<CommandLineArgumentsIngredientTraits::type>(); };
 
-    a_task_group.addIngredient(std::move(my_args));
+    // CommandLineArgumentsIngredientTraits::type my_args = 
+    //     (this->ingredients_)->giveIngredient<CommandLineArgumentsIngredientTraits::type>();
 
+    // CommandLineArgumentsIngredientTraits::type my_args = glambda();
+
+    // CommandLineArgumentsIngredientTraits::type my_args =
+    //     WorldTaskGroupEnableVisitor::getIngredient<CommandLineArgumentsIngredientTraits::type>(this);
+
+    // a_task_group.addIngredient(std::move(my_args));
+
+    WorldTaskGroupEnableVisitor::transferIngredient<CommandLineArgumentsIngredientTraits::type>(this,a_task_group);
 
     WorldCommunicatorIngredientTraits::type my_comm =
         (this->ingredients_)->giveIngredient<WorldCommunicatorIngredientTraits::type>();
 
     a_task_group.addIngredient(std::move(my_comm));
+
+
 
     return;
 }
