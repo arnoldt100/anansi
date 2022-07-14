@@ -72,6 +72,8 @@ void WorldTaskGroupEnableVisitor::visit(WorldTaskGroup & a_task_group) const
     // a_task_group.addIngredient(std::move(my_args));
 
     // WorldTaskGroupEnableVisitor::transferIngredient<CommandLineArgumentsIngredientTraits::type>(this,a_task_group);
+    std::function< CommandLineArgumentsIngredientTraits::type(const ANANSI::Ingredients<WorldTaskGroupIngredients>&) > obtian_ingredient = 
+         &ANANSI::Ingredients<WorldTaskGroupIngredients>::giveIngredient<CommandLineArgumentsIngredientTraits::type>;
 
     WorldTaskGroupEnableVisitor::transferIngredient<CommandLineArgumentsIngredientTraits::type,
                                                     ANANSI::Ingredients<WorldTaskGroupIngredients>,
