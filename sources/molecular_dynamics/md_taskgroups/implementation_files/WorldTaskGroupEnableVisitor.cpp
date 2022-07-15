@@ -61,16 +61,17 @@ WorldTaskGroupEnableVisitor::~WorldTaskGroupEnableVisitor()
 //============================= ACCESSORS ====================================
 void WorldTaskGroupEnableVisitor::visit(WorldTaskGroup & a_task_group) const
 {
+    using ingrd_t = decltype(this->ingredients_);
+    TransferIngredients<ingrd_t> transfer_ingredient(this->ingredients_);
 
-    TransferIngredient<ANANSI::Ingredients<WorldTaskGroupIngredients>,
-                       WorldTaskGroup> transfer_ingredient;
+    a_task_group = transfer_ingredient.allIngredients(std::move(a_task_group));
 
-    using T = TransferIngredient<ANANSI::Ingredients<WorldTaskGroupIngredients>>;
-    int a =1;
-    ForLoopOverTransferIngredients< WorldTaskGroup::NeededIngredients,
-                                    WorldTaskGroup,
-                                    int
-                                  > transfer_loop(a);
+    // using T = TransferIngredients<ANANSI::Ingredients<WorldTaskGroupIngredients>>;
+    // int a =1;
+    // ForLoopOverTransferIngredients< WorldTaskGroup::NeededIngredients,
+    //                                 WorldTaskGroup,
+    //                                 int
+    //                               > transfer_loop(a);
 
     // transfer_ingredient.operator()<CommandLineArgumentsIngredientTraits::type>(this->ingredients_,a_task_group);
 

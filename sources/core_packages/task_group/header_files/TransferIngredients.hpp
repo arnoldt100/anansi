@@ -18,31 +18,21 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  TransferIngredient
+//        Class:  TransferIngredients
 //  Description:  
 //  =====================================================================================
-template < typename taskgroup_ingredients_t,
-           typename taskgroup_t >
-class TransferIngredient
+template < typename taskgroup_ingredients_t >
+class TransferIngredients
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        TransferIngredient ()   // constructor
+        TransferIngredients ( const taskgroup_ingredients_t & ingredients )   // constructor
         {
             return;
         }
 
-        TransferIngredient (const TransferIngredient & other)   // copy constructor
-        {
-            if ( this != &other )
-            {
-
-            }
-            return;
-        }
-
-        TransferIngredient (TransferIngredient && other)   // copy-move constructor
+        TransferIngredients (const TransferIngredients & other)   // copy constructor
         {
             if ( this != &other )
             {
@@ -51,18 +41,41 @@ class TransferIngredient
             return;
         }
 
-        ~TransferIngredient ()  // destructor
+        TransferIngredients (TransferIngredients && other)   // copy-move constructor
+        {
+            if ( this != &other )
+            {
+
+            }
+            return;
+        }
+
+        ~TransferIngredients ()  // destructor
         {
             return;
         }
         
         // ====================  ACCESSORS     =======================================
 
+        template <typename ingredient_T>
+        void one() const
+        {
+            // auto an_ingredient = ingredients->template giveIngredient<ingredient_T>();
+            // a_task_group.addIngredient(std::move(an_ingredient));
+            return;
+        }
+
+        template <typename taskgroup_t>
+        taskgroup_t allIngredients( taskgroup_t && a_task_group) const
+        {
+            taskgroup_t tmp_task_group = std::move(a_task_group);
+            return tmp_task_group;
+        }
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        TransferIngredient& operator= ( const TransferIngredient &other ) // assignment operator
+        TransferIngredients& operator= ( const TransferIngredients &other ) // assignment operator
         { 
             if ( this != &other )
             {
@@ -71,7 +84,7 @@ class TransferIngredient
             return *this;
         }
 
-        TransferIngredient& operator=( TransferIngredient && other ) // assignment-move operator
+        TransferIngredients& operator=( TransferIngredients && other ) // assignment-move operator
         {
             if ( this != &other ) 
             {
@@ -80,14 +93,6 @@ class TransferIngredient
             return *this;
         }
 
-        template <typename ingredient_T>
-        void operator()(const std::unique_ptr<taskgroup_ingredients_t> & ingredients,
-                        taskgroup_t & a_task_group) const
-        {
-            auto an_ingredient = ingredients->template giveIngredient<ingredient_T>();
-            a_task_group.addIngredient(std::move(an_ingredient));
-            return;
-        }
 
     protected:
         // ====================  METHODS       =======================================
@@ -98,8 +103,8 @@ class TransferIngredient
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-
-}; // -----  end of class TransferIngredient  -----
+        
+}; // -----  end of class TransferIngredients  -----
 
 
 }; // namespace ANANSI
