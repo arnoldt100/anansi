@@ -82,6 +82,7 @@
     #-----------------------------------------------------
     set (md_taskgroups_header_files
          header_files/MDTaskGroupTraits.h
+         header_files/ForLoopTransferIngredients.hpp
          header_files/MDTaskGroupFactory.hpp
          header_files/DefaultTaskGroup.h
          header_files/WorldTaskGroupIngredients.h
@@ -98,6 +99,7 @@
     #-----------------------------------------------------
     set (md_taskgroups_implementation_files
          implementation_files/MDTaskGroupTraits.cpp
+         implementation_files/ForLoopTransferIngredients.cpp
          implementation_files/MDTaskGroupFactory.cpp
          implementation_files/DefaultTaskGroup.cpp
          implementation_files/WorldTaskGroupIngredients.cpp

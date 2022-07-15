@@ -42,7 +42,7 @@ class WorldTaskGroup final : public TaskGroup
         ~WorldTaskGroup ();  // destructor
 
         // ====================  ALIASES       =======================================
-        using NeededInredients = MPL::mpl_typelist<CommandLineArgumentsIngredientTraits::type,
+        using NeededIngredients = MPL::mpl_typelist<CommandLineArgumentsIngredientTraits::type,
                                                    WorldCommunicatorIngredientTraits::type>;
 
         // ====================  ACCESSORS     =======================================

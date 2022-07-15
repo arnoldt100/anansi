@@ -9,6 +9,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ForLoopTransferIngredients.hpp"
+#include "TransferIngredients.hpp"
 #include "WorldTaskGroupEnableVisitor.h"
 
 namespace ANANSI {
@@ -59,31 +61,21 @@ WorldTaskGroupEnableVisitor::~WorldTaskGroupEnableVisitor()
 //============================= ACCESSORS ====================================
 void WorldTaskGroupEnableVisitor::visit(WorldTaskGroup & a_task_group) const
 {
-    // auto glambda = [this]() { return (this->ingredients_)->giveIngredient<CommandLineArgumentsIngredientTraits::type>(); };
 
-    // CommandLineArgumentsIngredientTraits::type my_args = 
-    //     (this->ingredients_)->giveIngredient<CommandLineArgumentsIngredientTraits::type>();
+    TransferIngredient<ANANSI::Ingredients<WorldTaskGroupIngredients>,
+                       WorldTaskGroup> transfer_ingredient;
 
-    // CommandLineArgumentsIngredientTraits::type my_args = glambda();
+    using T = TransferIngredient<ANANSI::Ingredients<WorldTaskGroupIngredients>>;
+    int a =1;
+    ForLoopOverTransferIngredients< WorldTaskGroup::NeededIngredients,
+                                    WorldTaskGroup,
+                                    int
+                                  > transfer_loop(a);
 
-    // CommandLineArgumentsIngredientTraits::type my_args =
-    //     WorldTaskGroupEnableVisitor::getIngredient<CommandLineArgumentsIngredientTraits::type>(this);
+    // transfer_ingredient.operator()<CommandLineArgumentsIngredientTraits::type>(this->ingredients_,a_task_group);
 
-    // a_task_group.addIngredient(std::move(my_args));
-
-    // WorldTaskGroupEnableVisitor::transferIngredient<CommandLineArgumentsIngredientTraits::type>(this,a_task_group);
-    std::function<CommandLineArgumentsIngredientTraits::type(const ANANSI::Ingredients<WorldTaskGroupIngredients>&)> obtain_ingredient = 
-         &ANANSI::Ingredients<WorldTaskGroupIngredients>::giveIngredient<CommandLineArgumentsIngredientTraits::type>;
-
-    WorldTaskGroupEnableVisitor::transferIngredient<CommandLineArgumentsIngredientTraits::type,
-                                                    ANANSI::Ingredients<WorldTaskGroupIngredients>,
-                                                    WorldTaskGroup>(this->ingredients_,a_task_group);
-
-    WorldCommunicatorIngredientTraits::type my_comm =
-        (this->ingredients_)->giveIngredient<WorldCommunicatorIngredientTraits::type>();
-
-    a_task_group.addIngredient(std::move(my_comm));
-
+    // transfer_ingredient.operator()<WorldCommunicatorIngredientTraits::type>(this->ingredients_,a_task_group);
+    
     return;
 }
 

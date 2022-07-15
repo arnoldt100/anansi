@@ -54,38 +54,7 @@ class WorldTaskGroupEnableVisitor : public MPL::BaseVisitor,
 
         WorldTaskGroupEnableVisitor& operator= ( WorldTaskGroupEnableVisitor && other ); // assignment-move operator
 
-
-        // ====================  STATIC        =======================================
-        template <typename T>
-        static auto getIngredient( const WorldTaskGroupEnableVisitor * v)
-        {
-            T my_args = 
-                (v->ingredients_)->giveIngredient<T>();
-            return my_args;
-        }
         
-        template <typename T>
-        static auto transferIngredient( const WorldTaskGroupEnableVisitor * v,
-                                        WorldTaskGroup & a_task_group)
-        {
-            T my_args = 
-                (v->ingredients_)->giveIngredient<T>();
-    
-            a_task_group.addIngredient(std::move(my_args));
-            return;
-        }
-
-        template <typename ingredient_T, 
-                  typename taskgroup_ingredients_t,
-                  typename taskgroup_t>
-        static auto transferIngredient( const std::unique_ptr<taskgroup_ingredients_t> & v,
-                                        taskgroup_t & a_task_group)
-        {
-            auto an_ingredient = v->template giveIngredient<ingredient_T>();
-            a_task_group.addIngredient(std::move(an_ingredient));
-            return;
-        }
-
     protected:
         // ====================  METHODS       =======================================
 

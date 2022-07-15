@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -20,28 +21,73 @@ namespace ANANSI
 //        Class:  TransferIngredient
 //  Description:  
 //  =====================================================================================
+template < typename taskgroup_ingredients_t,
+           typename taskgroup_t >
 class TransferIngredient
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        TransferIngredient ();   // constructor
+        TransferIngredient ()   // constructor
+        {
+            return;
+        }
 
-        TransferIngredient (const TransferIngredient & other);   // copy constructor
+        TransferIngredient (const TransferIngredient & other)   // copy constructor
+        {
+            if ( this != &other )
+            {
 
-        TransferIngredient (TransferIngredient && other);   // copy-move constructor
+            }
+            return;
+        }
 
-        ~TransferIngredient ();  // destructor
+        TransferIngredient (TransferIngredient && other)   // copy-move constructor
+        {
+            if ( this != &other )
+            {
 
+            }
+            return;
+        }
+
+        ~TransferIngredient ()  // destructor
+        {
+            return;
+        }
+        
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        TransferIngredient& operator= ( const TransferIngredient &other ); // assignment operator
+        TransferIngredient& operator= ( const TransferIngredient &other ) // assignment operator
+        { 
+            if ( this != &other )
+            {
 
-        TransferIngredient& operator= ( TransferIngredient && other ); // assignment-move operator
+            }
+            return *this;
+        }
+
+        TransferIngredient& operator=( TransferIngredient && other ) // assignment-move operator
+        {
+            if ( this != &other ) 
+            {
+
+            }
+            return *this;
+        }
+
+        template <typename ingredient_T>
+        void operator()(const std::unique_ptr<taskgroup_ingredients_t> & ingredients,
+                        taskgroup_t & a_task_group) const
+        {
+            auto an_ingredient = ingredients->template giveIngredient<ingredient_T>();
+            a_task_group.addIngredient(std::move(an_ingredient));
+            return;
+        }
 
     protected:
         // ====================  METHODS       =======================================
