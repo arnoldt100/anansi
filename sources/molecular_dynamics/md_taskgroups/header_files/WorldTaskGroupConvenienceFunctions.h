@@ -1,5 +1,5 @@
-#ifndef  ANANSI_WorldTaskGroupConvenienceFunctions_INC
-#define  ANANSI_WorldTaskGroupConvenienceFunctions_INC
+#ifndef  ANANSI_TaskGroupConvenienceFunctions_INC
+#define  ANANSI_TaskGroupConvenienceFunctions_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -13,28 +13,48 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorldTaskGroup.h"
-#include "WorldTaskGroupIngredients.h"
-
 namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  WorldTaskGroupConvenienceFunctions
+//        Class:  TaskGroupConvenienceFunctions
 //  Description:  
 //  =====================================================================================
-class WorldTaskGroupConvenienceFunctions
+template<typename Derived>
+class TaskGroupConvenienceFunctions 
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        WorldTaskGroupConvenienceFunctions ();   // constructor
+        TaskGroupConvenienceFunctions ()   // constructor
+        {
+            return;
+        }
 
-        WorldTaskGroupConvenienceFunctions (const WorldTaskGroupConvenienceFunctions & other);   // copy constructor
+        TaskGroupConvenienceFunctions (const TaskGroupConvenienceFunctions & other)   // copy constructor
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }
 
-        WorldTaskGroupConvenienceFunctions (WorldTaskGroupConvenienceFunctions && other);   // copy-move constructor
 
-        ~WorldTaskGroupConvenienceFunctions ();  // destructor
+        TaskGroupConvenienceFunctions (TaskGroupConvenienceFunctions && other)   // copy-move constructor
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }		// -----  end of method TaskGroupConvenienceFunctions::TaskGroupConvenienceFunctions  -----
+
+
+        ~TaskGroupConvenienceFunctions ()  // destructor
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
 
@@ -42,13 +62,26 @@ class WorldTaskGroupConvenienceFunctions
 
         // ====================  OPERATORS     =======================================
 
-        WorldTaskGroupConvenienceFunctions& operator= ( const WorldTaskGroupConvenienceFunctions &other ); // assignment operator
+        TaskGroupConvenienceFunctions& operator= ( const TaskGroupConvenienceFunctions &other ) // assignment operator
+        {
+            if (this != &other)
+            {
+        
+            }
+            return *this;
+        } // assignment operator
 
-        WorldTaskGroupConvenienceFunctions& operator= ( WorldTaskGroupConvenienceFunctions && other ); // assignment-move operator
+
+        TaskGroupConvenienceFunctions& operator= ( TaskGroupConvenienceFunctions && other ) // assignment-move operator
+        {
+            if (this != &other)
+            {
+        
+            }
+            return *this;
+        } // assignment-move operator
 
         // ====================  STATIC        =======================================
-        static void enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group,
-                           const std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients);
 
     protected:
         // ====================  METHODS       =======================================
@@ -60,9 +93,9 @@ class WorldTaskGroupConvenienceFunctions
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class WorldTaskGroupConvenienceFunctions  -----
+}; // -----  end of class TaskGroupConvenienceFunctions  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_WorldTaskGroupConvenienceFunctions_INC  ----- 
+#endif   // ----- #ifndef ANANSI_TaskGroupConvenienceFunctions_INC  ----- 
