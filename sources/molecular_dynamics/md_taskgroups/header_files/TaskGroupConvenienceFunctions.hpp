@@ -50,8 +50,7 @@ class TaskGroupConvenienceFunctions
             return;
         }		// -----  end of method TaskGroupConvenienceFunctions::TaskGroupConvenienceFunctions  -----
 
-
-        ~TaskGroupConvenienceFunctions ()  // destructor
+        virtual ~TaskGroupConvenienceFunctions ()  // destructor
         {
             return;
         }
