@@ -18,7 +18,7 @@
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
-#include "WorldTaskGroupConvenienceFunctions.h"
+#include "TaskGroupConvenienceFunctions.hpp"
 #include "WorldTaskGroupIngredients.h"
 
 namespace ANANSI {
