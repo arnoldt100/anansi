@@ -48,7 +48,7 @@ class WorldTaskGroupConvenienceFunctions
 
         // ====================  STATIC        =======================================
         static void enable(std::unique_ptr<ANANSI::TaskGroup> & world_task_group,
-                           const std::unique_ptr<ANANSI::Ingredients<WorldTaskGroupIngredients>> & world_task_group_ingredients);
+                           const std::unique_ptr<WorldTaskGroupIngredients> & world_task_group_ingredients);
 
     protected:
         // ====================  METHODS       =======================================
