@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorldTaskGroupConvenienceFunctions.h"
+#include "TaskGroupConvenienceFunctions.hpp"
 
 namespace ANANSI {
 
