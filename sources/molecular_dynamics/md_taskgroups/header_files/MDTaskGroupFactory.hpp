@@ -72,6 +72,17 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
             return task_group;
         }
 
+        template<typename TaskGroup_t>
+        typename Traits::AbstractProduct* buildTaskGroupPointer() const
+        {
+            // Get the index which is also the identfier value of the TaskGroup_t in the ConcreteProductTypeList.
+            constexpr auto N = MPL::mpl_find<ConcreteProductTypeList,TaskGroup_t>::value;
+
+            // Use the object factory to
+            typename Traits::AbstractProduct* task_group_ptr = (this->objectFactory_.createObject(N));
+            return task_group_ptr;
+        }
+
 
         // ====================  MUTATORS      =======================================
 

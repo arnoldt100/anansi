@@ -21,7 +21,15 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 WorldTaskGroupConvenienceFunctions::WorldTaskGroupConvenienceFunctions() :
-    TaskGroupConvenienceFunctions<WorldTaskGroupConvenienceFunctions>()
+    TaskGroupConvenienceFunctions<WorldTaskGroupConvenienceFunctions>(),
+    taskGroupFactory_()
+{
+    return;
+}
+
+WorldTaskGroupConvenienceFunctions::WorldTaskGroupConvenienceFunctions (std::shared_ptr<MDTaskGroupFactory<>> task_group_factory) :  // constructor
+    TaskGroupConvenienceFunctions<WorldTaskGroupConvenienceFunctions>(),
+    taskGroupFactory_(task_group_factory)
 {
     return;
 }
@@ -35,7 +43,7 @@ WorldTaskGroupConvenienceFunctions::WorldTaskGroupConvenienceFunctions( WorldTas
     return;
 }
 
-WorldTaskGroupConvenienceFunctions::WorldTaskGroupConvenienceFunctions( WorldTaskGroupConvenienceFunctions && other)
+WorldTaskGroupConvenienceFunctions::WorldTaskGroupConvenienceFunctions(WorldTaskGroupConvenienceFunctions && other)
 {
     if (this != &other)
     {
@@ -61,6 +69,7 @@ WorldTaskGroupConvenienceFunctions& WorldTaskGroupConvenienceFunctions::operator
     if (this != &other)
     {
         TaskGroupConvenienceFunctions<WorldTaskGroupConvenienceFunctions>::operator=(other);
+        this->taskGroupFactory_ = other.taskGroupFactory_;
     }
     return *this;
 } // assignment operator
@@ -70,6 +79,7 @@ WorldTaskGroupConvenienceFunctions& WorldTaskGroupConvenienceFunctions::operator
     if (this != &other)
     {
         TaskGroupConvenienceFunctions<WorldTaskGroupConvenienceFunctions>::operator=(std::move(other));
+        this->taskGroupFactory_ = other.taskGroupFactory_;
     }
     return *this;
 } // assignment-move operator

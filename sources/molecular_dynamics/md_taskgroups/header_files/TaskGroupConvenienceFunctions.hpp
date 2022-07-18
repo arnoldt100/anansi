@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "TaskGroup.h"
 namespace ANANSI
 {
 
@@ -40,7 +41,6 @@ class TaskGroupConvenienceFunctions
             return;
         }
 
-
         TaskGroupConvenienceFunctions (TaskGroupConvenienceFunctions && other)   // copy-move constructor
         {
             if (this != &other)
@@ -50,13 +50,19 @@ class TaskGroupConvenienceFunctions
             return;
         }		// -----  end of method TaskGroupConvenienceFunctions::TaskGroupConvenienceFunctions  -----
 
-        virtual ~TaskGroupConvenienceFunctions ()  // destructor
+        virtual ~TaskGroupConvenienceFunctions()  // destructor
         {
             return;
         }
 
         // ====================  ACCESSORS     =======================================
-
+        template<typename taskgroup_t,typename ingredients_t,typename needed_ingredients_typelist>
+        std::unique_ptr<taskgroup_t> transferAllIngredients(std::unique_ptr<taskgroup_t> & taskgroup,
+            std::unique_ptr<ingredients_t> & ingredients) const
+        {
+            const Derived& underlying = static_cast<const Derived&>(*this); 
+            return underlying. template transferAllIngredients__<taskgroup_t,ingredients_t,needed_ingredients_typelist>(taskgroup,ingredients);
+        }
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

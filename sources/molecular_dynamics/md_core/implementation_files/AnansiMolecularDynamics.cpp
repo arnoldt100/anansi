@@ -18,7 +18,7 @@
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
-#include "TaskGroupConvenienceFunctions.hpp"
+#include "WorldTaskGroupConvenienceFunctions.h"
 #include "WorldTaskGroupIngredients.h"
 
 namespace ANANSI {
@@ -91,7 +91,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
     // Initialize all factories.
-    this->taskGroupFactory_ = std::make_unique<MDTaskGroupFactory<>>();
+    this->taskGroupFactory_ = std::make_shared<MDTaskGroupFactory<>>();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -153,27 +153,32 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
 void AnansiMolecularDynamics::enableWorldTaskGroup()
 {
-    this->worldTaskGroup_ = std::move(this->taskGroupFactory_->buildTaskGroup<WorldTaskGroup>());
-
     std::unique_ptr<WorldTaskGroupIngredients> world_taskgroup_ingredients(
             new ANANSI::WorldTaskGroupIngredients(this->commandLineArguments_,this->MpiWorldCommunicator_));
 
-    // WorldTaskGroupConvenienceFunctions::enable(this->worldTaskGroup_,world_taskgroup_ingredients);
+    WorldTaskGroupConvenienceFunctions my_conv_functions(this->taskGroupFactory_);
 
+    using ingredients_t = WorldTaskGroupIngredients;
+    using taskgroup_t = WorldTaskGroup;
+    using needed_ingredients_typelist = WorldTaskGroup::NeededIngredients;
+
+
+    // this->worldTaskGroup_ =
+    //         (my_conv_functions.transferAllIngredients<taskgroup_t,ingredients_t,needed_ingredients_typelist>(my_worktaskgroup_ptr,world_taskgroup_ingredients));
     return;
 }
 
-
-void AnansiMolecularDynamics::disableWorldTaskGroup()
+void
+AnansiMolecularDynamics::disableWorldTaskGroup()
 {
     return;
 }
-void
 
+void
 AnansiMolecularDynamics::saveCommandLineOptionParameters()
 {
     this->simulationParameters_ = SimulationParametersFactory::create(this->commandLineArguments_);
-    return ;
+    return;
 }      /* -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- */
 
 
