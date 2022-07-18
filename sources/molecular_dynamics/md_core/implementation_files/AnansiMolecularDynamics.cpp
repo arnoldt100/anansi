@@ -163,8 +163,12 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
     using needed_ingredients_typelist = WorldTaskGroup::NeededIngredients;
 
 
-    // this->worldTaskGroup_ =
-    //         (my_conv_functions.transferAllIngredients<taskgroup_t,ingredients_t,needed_ingredients_typelist>(my_worktaskgroup_ptr,world_taskgroup_ingredients));
+    this->worldTaskGroup_ = std::move(
+        my_conv_functions.transferAllIngredients<
+            taskgroup_t,
+            ingredients_t,
+            needed_ingredients_typelist>(this->worldTaskGroup_,
+                                         world_taskgroup_ingredients));
     return;
 }
 

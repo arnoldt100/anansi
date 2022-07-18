@@ -40,11 +40,15 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
         ~WorldTaskGroupConvenienceFunctions ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        template<typename taskgroup_t,typename ingredients_t,typename needed_ingredients_typelist>
-        std::unique_ptr<taskgroup_t> transferAllIngredients__(std::unique_ptr<taskgroup_t> & taskgroup,
-            std::unique_ptr<ingredients_t> & ingredients) const
+        template<
+            typename taskgroup_t,
+            typename ingredients_t,
+            typename needed_ingredients_typelist >
+        std::unique_ptr<TaskGroup> transferAllIngredients__(
+            const std::unique_ptr<TaskGroup> & taskgroup,
+            const std::unique_ptr<ingredients_t> & ingredients) const
         {
-            std::unique_ptr<taskgroup_t> tmp_taskgroup();
+            std::unique_ptr<TaskGroup> tmp_taskgroup(new taskgroup_t());
             return tmp_taskgroup;
         }
 

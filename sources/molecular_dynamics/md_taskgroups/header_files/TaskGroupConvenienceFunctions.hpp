@@ -56,12 +56,19 @@ class TaskGroupConvenienceFunctions
         }
 
         // ====================  ACCESSORS     =======================================
-        template<typename taskgroup_t,typename ingredients_t,typename needed_ingredients_typelist>
-        std::unique_ptr<taskgroup_t> transferAllIngredients(std::unique_ptr<taskgroup_t> & taskgroup,
-            std::unique_ptr<ingredients_t> & ingredients) const
+        template<typename taskgroup_t,
+                 typename ingredients_t,
+                 typename needed_ingredients_typelist>
+        std::unique_ptr<TaskGroup> transferAllIngredients(
+            const std::unique_ptr<TaskGroup> & taskgroup,
+            const std::unique_ptr<ingredients_t> & ingredients) const
         {
             const Derived& underlying = static_cast<const Derived&>(*this); 
-            return underlying. template transferAllIngredients__<taskgroup_t,ingredients_t,needed_ingredients_typelist>(taskgroup,ingredients);
+            return underlying. template transferAllIngredients__<
+                taskgroup_t,
+                ingredients_t,
+                needed_ingredients_typelist>(taskgroup,
+                                             ingredients);
         }
         // ====================  MUTATORS      =======================================
 
