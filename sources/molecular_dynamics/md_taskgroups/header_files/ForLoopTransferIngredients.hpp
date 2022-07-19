@@ -28,47 +28,60 @@ namespace ANANSI
 // =====================================================================================
 
 
-// template<int N_initial, 
-//          int N_final, 
-//          int N,
-//          typename ingredients_typelist, 
-//          typename taskgroup_t,
-//          typename Callable 
-// class ForLoopOverTransferIngredientsNext
-// {
-//     public:
-// 
-//         void operator()()
-//         {
-//             if constexpr ( (N_initial <= N) && (N <= N_final )  )
-//             {
-//                 // Instantiate an instance of the Wrapper for the N'th iteration
-//                 // and do functor call.
-//                 // Wrapper member;
-//                 // member .template operator()<N>();
-//                
-//                 // Compute the increment.
-//                 constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;
-// 
-//                 // Call ForLoopOverTransferIngredientsNext for next ieration.
-//                 ForLoopOverTransferIngredientsNext<N_initial,N_final,N+dN,TypeList,Wrapper> a_forloop;
-//                 a_forloop();
-//             }
-//             return;
-//         }
-// 
-//         std::shared_ptr<Wrapper> wrapper_; 
-// 
-// }; // -----  end of class ForLoopOverTransferIngredientsNext  -----
+template<int N_initial, 
+         int N_final, 
+         int N,
+         typename needed_ingredients_typelist_t, 
+         typename taskgroup_t,
+         typename Callable> 
+class ForLoopOverTransferIngredientsNext
+{
+    public:
+        ForLoopOverTransferIngredientsNext(std::function<Callable(int)> op) :
+            op_(op)
+        {
+            return;
+        }
 
-template<typename ingredients_typelist_t, 
+        void operator()()
+        {
+            if constexpr ( (N_initial <= N) && (N <= N_final )  )
+            {
+                // Instantiate an instance of the Wrapper for the N'th iteration
+                // and do functor call.
+                // Wrapper member;
+                // member .template operator()<N>();
+                this->op_(N);
+               
+                // Compute the increment.
+                constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;
+
+                // Call ForLoopOverTransferIngredientsNext for next ieration.
+                ForLoopOverTransferIngredientsNext<
+                    N_initial,
+                    N_final,
+                    N+dN,
+                    needed_ingredients_typelist_t,
+                    taskgroup_t,
+                    Callable> a_forloop(this->op_);
+                a_forloop();
+            }
+            return;
+        }
+    private :
+        std::function<Callable(int)> op_;
+
+}; // -----  end of class ForLoopOverTransferIngredientsNext  -----
+
+template<typename needed_ingredients_typelist_t,
          typename taskgroup_t, 
          typename Callable >
 class ForLoopOverTransferIngredients
 {
     public:
 
-        ForLoopOverTransferIngredients(Callable & op)
+        ForLoopOverTransferIngredients(std::function<Callable(int)> op) :
+            op_(op)
         {
             return;
         }
@@ -77,7 +90,7 @@ class ForLoopOverTransferIngredients
         {
             // Compute the bounds of the TypeList. 
             constexpr auto N_initial=0;
-            constexpr auto N_final = MPL::mpl_size<ingredients_typelist_t>::value-1;
+            constexpr auto N_final = MPL::mpl_size<needed_ingredients_typelist_t>::value-1;
 
             // The values of N_initial or N_final can't be negative for it will
             // break the indexing of TypeList. The TypeList uses positive integers
@@ -96,20 +109,28 @@ class ForLoopOverTransferIngredients
                 // and do functor call.
                 // Wrapper member;
                 // member .template operator()<N>();
-                std::cout << "Transferred ingredient " << N << std::endl;
+                this->op_(N);
 
                 // Compute the increment.
                 constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;
 
                 // Call ForLoopOverTransferIngredientsNext for next ieration.
-                // ForLoopOverTransferIngredientsNext<N_initial,N_final,N+dN,ingredients_typelist_t,taskgroup_t,Callable> a_forloop;
-                // a_forloop();
+                ForLoopOverTransferIngredientsNext<
+                    N_initial,
+                    N_final,
+                    N+dN,
+                    needed_ingredients_typelist_t,
+                    taskgroup_t,
+                    Callable> a_forloop(this->op_);
+                a_forloop();
             }
             return;
 
             //std::shared_ptr<Wrapper> wrapper_; 
 
         }
+    private :
+        std::function<Callable(int)> op_;
 
 }; // -----  end of class ForLoopOverTransferIngredients  -----
 

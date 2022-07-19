@@ -6,6 +6,7 @@
 //--------------------------------------------------------//
 #include <memory>
 #include <utility>
+#include <functional>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -16,6 +17,7 @@
 //--------------------------------------------------------//
 #include "TaskGroupConvenienceFunctions.hpp"
 #include "MDTaskGroupFactory.hpp"
+#include "ForLoopTransferIngredients.hpp"
 
 namespace ANANSI
 {
@@ -44,12 +46,20 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
             typename taskgroup_t,
             typename ingredients_t,
             typename needed_ingredients_typelist >
-        std::unique_ptr<TaskGroup> transferAllIngredients__(
-            const std::unique_ptr<TaskGroup> & taskgroup,
+        void transferAllIngredients__(
+            const std::shared_ptr<TaskGroup> & taskgroup,
             const std::unique_ptr<ingredients_t> & ingredients) const
         {
-            std::unique_ptr<TaskGroup> tmp_taskgroup(new taskgroup_t());
-            return tmp_taskgroup;
+            
+            std::function<void(int)> op = [](int N){ 
+                std::cout << "Transferred ingredient " << N << std::endl;
+                return;};
+
+            ForLoopOverTransferIngredients<needed_ingredients_typelist,
+                taskgroup_t,
+                void > my_for_loop(op);
+                my_for_loop();
+            return;
         }
 
         // ====================  MUTATORS      =======================================
