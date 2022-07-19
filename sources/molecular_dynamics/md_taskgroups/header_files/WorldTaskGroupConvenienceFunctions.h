@@ -18,6 +18,7 @@
 #include "TaskGroupConvenienceFunctions.hpp"
 #include "MDTaskGroupFactory.hpp"
 #include "ForLoopTransferIngredients.hpp"
+#include "TransferIngredients.hpp"
 
 namespace ANANSI
 {
@@ -51,13 +52,18 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
             const std::unique_ptr<ingredients_t> & ingredients) const
         {
             
-            std::function<void(int)> op = [](int N){ 
-                std::cout << "Transferred ingredient " << N << std::endl;
+            using transfer_t = TransferIngredients;
+            
+            std::function<void(int)> op = [&taskgroup,&ingredients](const int N){ 
+                std::cout << "Op lambda: Transferred ingredient " << N << std::endl;
                 return;};
 
-            ForLoopOverTransferIngredients<needed_ingredients_typelist,
+
+            ForLoopOverTransferIngredients<
+                needed_ingredients_typelist,
                 taskgroup_t,
-                void > my_for_loop(op);
+                void,
+                transfer_t> my_for_loop(op);
                 my_for_loop();
             return;
         }
