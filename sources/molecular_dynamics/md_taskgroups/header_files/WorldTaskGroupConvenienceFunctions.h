@@ -48,7 +48,7 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
             typename ingredients_t,
             typename needed_ingredients_typelist >
         void transferAllIngredients__(
-            const std::shared_ptr<TaskGroup> & taskgroup,
+            std::shared_ptr<TaskGroup> taskgroup,
             const std::unique_ptr<ingredients_t> & ingredients) const
         {
             
@@ -64,7 +64,7 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
                 taskgroup_t,
                 void,
                 transfer_t> my_for_loop(op);
-                my_for_loop();
+                my_for_loop. template operator()<ingredients_t>(taskgroup,ingredients);
             return;
         }
 

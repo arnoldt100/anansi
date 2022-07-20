@@ -15,6 +15,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
 
 namespace ANANSI
 {
@@ -62,12 +63,20 @@ class TransferIngredients
 
         // ====================  OPERATORS     =======================================
 
-        template <typename ingredient_T>
-        void operator()() const
+        template <
+            typename ingredient_t,
+            typename taskgroup_t,
+            typename ingredients_t>
+        void operator()(std::shared_ptr<typename taskgroup_t::baseclass> a_taskgroup,
+                       const std::unique_ptr<ingredients_t> & ingredients) const
         {
-            // auto an_ingredient = ingredients->template giveIngredient<ingredient_T>();
-            // a_task_group.addIngredient(std::move(an_ingredient));
-            std::cout << "Class TransferIngredients: Transferred ingredient: " << typeid(ingredient_T).name() << std::endl;
+
+            auto downcastedPtr = std::dynamic_pointer_cast<taskgroup_t>(a_taskgroup);
+            MPL::mpl_typelist<ingredient_t> dummy_t;
+            // auto an_ingredient = ingredients->giveIngredient__(dummy_t);
+            auto an_ingredient = ingredients-> template giveIngredient<ingredient_t>();
+            downcastedPtr-> template addIngredient<ingredient_t>(std::move(an_ingredient));
+            std::cout << "Class TransferIngredients: Transferred ingredient: " << typeid(ingredient_t).name() << std::endl;
             return;
         }
 

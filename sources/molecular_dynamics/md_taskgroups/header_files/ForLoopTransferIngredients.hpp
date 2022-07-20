@@ -48,7 +48,7 @@ class ForLoopOverTransferIngredientsNext
         {
             if constexpr ( (N_initial <= N) && (N <= N_final )  )
             {
-                using ingredient_t = MPL::mpl_at_c<needed_ingredients_typelist_t,N>();
+                // using ingredient_t = MPL::mpl_at_c<needed_ingredients_typelist_t,N>();
 
                 // Instantiate an instance of the Wrapper for the N'th iteration
                 // and do functor call.
@@ -56,8 +56,8 @@ class ForLoopOverTransferIngredientsNext
                 // member .template operator()<N>();
                 this->op_(N);
                
-                transfer_t my_transfer_op;
-                my_transfer_op. template operator()<ingredient_t>();
+                // transfer_t my_transfer_op;
+                // my_transfer_op. template operator()<ingredient_t>();
 
                 // Compute the increment.
                 constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;
@@ -94,7 +94,9 @@ class ForLoopOverTransferIngredients
             return;
         }
 
-        void operator()()
+        template <typename ingredients_t>
+        void operator()(std::shared_ptr<typename taskgroup_t::baseclass> a_taskgroup,
+                                        const std::unique_ptr<ingredients_t> & ingredients)
         {
             // Compute the bounds of the TypeList. 
             constexpr auto N_initial=0;
@@ -114,12 +116,14 @@ class ForLoopOverTransferIngredients
 
             if constexpr ( (N_initial <= N) && (N <= N_final ) )
             {
-                using ingredient_t = MPL::mpl_at_c<needed_ingredients_typelist_t,N>();
+                using ingredient_t = MPL::mpl_at_c<needed_ingredients_typelist_t,N>;
 
                 this->op_(N);
 
                 transfer_t my_transfer_op;
-                my_transfer_op. template operator()<ingredient_t>();
+                my_transfer_op. template operator()<ingredient_t,
+                                                    taskgroup_t>(a_taskgroup,
+                                                                 ingredients);
 
                 // Compute the increment.
                 constexpr auto dN = ( N_initial <= N_final ) ? 1 : -1;

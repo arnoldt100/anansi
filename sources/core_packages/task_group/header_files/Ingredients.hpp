@@ -14,6 +14,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
 
 namespace ANANSI
 {
@@ -62,7 +63,9 @@ class Ingredients
         IngredientType giveIngredient() const
         {
             const T* underlying = static_cast<const T*>(this);
-            return underlying->template giveIngredient<IngredientType>();
+            MPL::mpl_typelist<IngredientType> dummy_t;
+            // return underlying->giveIngredient__(dummy_t);
+            return underlying-> template giveIngredient__<IngredientType>();
         }
 
         T* clone () const

@@ -68,19 +68,6 @@ WorldTaskGroupIngredients* WorldTaskGroupIngredients::clone() const
     return tmp_ptr;
 }
 
-template <>
-COMMANDLINE::CommandLineArguments WorldTaskGroupIngredients::giveIngredient<COMMANDLINE::CommandLineArguments> () const
-{
-   return this->commandLineArguments_;
-}
-
-template <>
-WorldCommunicatorIngredientTraits::type WorldTaskGroupIngredients::giveIngredient<WorldCommunicatorIngredientTraits::type> () const
-{
-    WorldCommunicatorIngredientTraits::type tmp_world_communicator(this->worldCommunicator_->duplicateCommunicator());
-    return tmp_world_communicator;
-}
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

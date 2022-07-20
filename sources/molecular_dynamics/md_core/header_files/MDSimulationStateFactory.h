@@ -110,7 +110,7 @@ namespace ANANSI
             template <typename T>
             static constexpr std::size_t findIndex_()
             {
-                using nm_elements = MPL::mpl_size<abstract_products_>; 
+                // using nm_elements = MPL::mpl_size<abstract_products_>; 
 
                 using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
                                                     MPL::mpl_size<abstract_products_>::value>;
