@@ -7,6 +7,7 @@
 #include <memory>
 #include <iostream>
 #include <typeinfo>
+#include <cassert>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -71,12 +72,13 @@ class TransferIngredients
                        const std::unique_ptr<ingredients_t> & ingredients) const
         {
 
-            auto downcastedPtr = std::dynamic_pointer_cast<taskgroup_t>(a_taskgroup);
-            MPL::mpl_typelist<ingredient_t> dummy_t;
-            // auto an_ingredient = ingredients->giveIngredient__(dummy_t);
+            // Assert that the taskgroup and ingredients are not a nullptrs.
+            assert(a_taskgroup != nullptr);
+            assert(ingredients != nullptr);
+
             auto an_ingredient = ingredients-> template giveIngredient<ingredient_t>();
-            downcastedPtr-> template addIngredient<ingredient_t>(std::move(an_ingredient));
-            std::cout << "Class TransferIngredients: Transferred ingredient: " << typeid(ingredient_t).name() << std::endl;
+            auto derived_taskgroup = std::dynamic_pointer_cast<taskgroup_t>(a_taskgroup);
+            derived_taskgroup-> template addIngredient< ingredient_t>(std::move(an_ingredient));
             return;
         }
 
@@ -88,16 +90,6 @@ class TransferIngredients
             }
             return *this;
         }
-
-        // TransferIngredients& operator=( TransferIngredients && other ) // assignment-move operator
-        // {
-        //     if ( this != &other ) 
-        //     {
-
-        //     }
-        //     return *this;
-        // }
-
 
     protected:
         // ====================  METHODS       =======================================

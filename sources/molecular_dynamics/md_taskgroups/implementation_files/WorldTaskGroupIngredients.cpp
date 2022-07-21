@@ -95,6 +95,27 @@ WorldTaskGroupIngredients& WorldTaskGroupIngredients::operator=( WorldTaskGroupI
     return *this;
 } // assignment-move operator
 
+template <>
+WorldCommunicatorIngredientTraits::type WorldTaskGroupIngredients::giveIngredient__<typename WorldCommunicatorIngredientTraits::type> () const
+{
+    WorldCommunicatorIngredientTraits::type tmp_world_communicator(this->worldCommunicator_->duplicateCommunicator());
+    return tmp_world_communicator;
+}
+
+template <>
+CommandLineArgumentsIngredientTraits::type WorldTaskGroupIngredients::giveIngredient__<typename CommandLineArgumentsIngredientTraits::type> () const
+{
+    CommandLineArgumentsIngredientTraits::type tmp_command_line(this->commandLineArguments_);
+    return tmp_command_line;
+}
+
+template <>
+int WorldTaskGroupIngredients::giveIngredient__<int> () const
+{
+    return 1;
+}
+
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////

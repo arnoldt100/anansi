@@ -63,8 +63,6 @@ class Ingredients
         IngredientType giveIngredient() const
         {
             const T* underlying = static_cast<const T*>(this);
-            MPL::mpl_typelist<IngredientType> dummy_t;
-            // return underlying->giveIngredient__(dummy_t);
             return underlying-> template giveIngredient__<IngredientType>();
         }
 

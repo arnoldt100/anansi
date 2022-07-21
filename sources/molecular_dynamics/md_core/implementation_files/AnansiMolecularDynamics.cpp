@@ -93,6 +93,10 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     // Initialize all factories.
     this->taskGroupFactory_ = std::make_shared<MDTaskGroupFactory<>>();
 
+    // Intialize the WorldTaskGroup.
+    this->worldTaskGroup_ = 
+        this->taskGroupFactory_->buildTaskGroupSharedPtr<WorldTaskGroup>();
+
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
     this->mdState_->who_am_i();

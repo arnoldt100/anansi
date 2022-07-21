@@ -53,11 +53,6 @@ class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI::WorldTaskGr
            return this->commandLineArguments_;
         }
 
-        CommandLineArgumentsIngredientTraits::type giveIngredient__( CommandLineArgumentsIngredientTraits::type dummy_t ) const
-        {
-           return this->commandLineArguments_;
-        }
-
         WorldCommunicatorIngredientTraits::type giveIngredient__( MPL::mpl_typelist<WorldCommunicatorIngredientTraits::type> dummy_t ) const
         {
             auto tmp_mpicommunicator = std::move(this->worldCommunicator_->duplicateCommunicator());
@@ -65,6 +60,8 @@ class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI::WorldTaskGr
             return aMPICommunicator;
         }
 
+        template<typename T>
+        T giveIngredient__() const ;
 
         // ====================  MUTATORS      =======================================
 
@@ -89,14 +86,21 @@ class WorldTaskGroupIngredients : public ANANSI::Ingredients<ANANSI::WorldTaskGr
 }; // -----  end of class WorldTaskGroupIngredients  -----
 
 // template <>
-// WorldCommunicatorIngredientTraits::type WorldTaskGroupIngredients::giveIngredient__<typename WorldCommunicatorIngredientTraits::type> () const
+// inline WorldCommunicatorIngredientTraits::type WorldTaskGroupIngredients::giveIngredient__<typename WorldCommunicatorIngredientTraits::type> () const
 // {
 //     WorldCommunicatorIngredientTraits::type tmp_world_communicator(this->worldCommunicator_->duplicateCommunicator());
 //     return tmp_world_communicator;
 // }
-// 
+
 // template <>
-// int WorldTaskGroupIngredients::giveIngredient__<int> () const
+// inline CommandLineArgumentsIngredientTraits::type WorldTaskGroupIngredients::giveIngredient__<typename CommandLineArgumentsIngredientTraits::type> () const
+// {
+//     CommandLineArgumentsIngredientTraits::type tmp_command_line(this->commandLineArguments_);
+//     return tmp_command_line;
+// }
+
+// template <>
+// inline int WorldTaskGroupIngredients::giveIngredient__<int> () const
 // {
 //     return 1;
 // }

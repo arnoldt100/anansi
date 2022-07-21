@@ -60,7 +60,7 @@ class TaskGroupConvenienceFunctions
                  typename ingredients_t,
                  typename needed_ingredients_typelist>
         void transferAllIngredients(
-            const std::shared_ptr<TaskGroup> & taskgroup,
+            std::shared_ptr<TaskGroup> taskgroup,
             const std::unique_ptr<ingredients_t> & ingredients) const
         {
             const Derived& underlying = static_cast<const Derived&>(*this); 

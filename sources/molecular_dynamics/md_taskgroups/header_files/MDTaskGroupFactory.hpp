@@ -62,25 +62,25 @@ class MDTaskGroupFactory final : private COUNTERCLASSES::ClassInstanceLimiter<MD
 
         // ====================  ACCESSORS     =======================================
         template<typename TaskGroup_t>
-        std::unique_ptr<typename Traits::AbstractProduct> buildTaskGroup() const
+        std::unique_ptr<typename Traits::AbstractProduct> buildTaskGroupUniquePtr() const
         {
             // Get the index which is also the identfier value of the TaskGroup_t in the ConcreteProductTypeList.
             constexpr auto N = MPL::mpl_find<ConcreteProductTypeList,TaskGroup_t>::value;
 
             // Use the object factory to 
-            std::unique_ptr<typename Traits::AbstractProduct> task_group(this->objectFactory_.createObject(N));
-            return task_group;
+            std::unique_ptr<typename Traits::AbstractProduct> task_group_uptr(this->objectFactory_.createObject(N));
+            return task_group_uptr;
         }
 
         template<typename TaskGroup_t>
-        typename Traits::AbstractProduct* buildTaskGroupPointer() const
+        std::shared_ptr<typename Traits::AbstractProduct> buildTaskGroupSharedPtr() const
         {
             // Get the index which is also the identfier value of the TaskGroup_t in the ConcreteProductTypeList.
             constexpr auto N = MPL::mpl_find<ConcreteProductTypeList,TaskGroup_t>::value;
 
             // Use the object factory to
-            typename Traits::AbstractProduct* task_group_ptr = (this->objectFactory_.createObject(N));
-            return task_group_ptr;
+            std::shared_ptr<typename Traits::AbstractProduct> task_group_sptr(this->objectFactory_.createObject(N));
+            return task_group_sptr;
         }
 
 
