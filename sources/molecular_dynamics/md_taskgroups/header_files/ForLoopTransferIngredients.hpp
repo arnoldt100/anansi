@@ -59,7 +59,7 @@ class ForLoopOverTransferIngredientsNext
                 // member .template operator()<N>();
                 this->op_(N);
                
-                using ingredient_t = MPL::mpl_at_c<needed_ingredients_typelist,N>();
+                using ingredient_t = MPL::mpl_at_c<needed_ingredients_typelist,N>;
 
                 transfer_t my_transfer_op;
                 my_transfer_op. template operator()<ingredient_t,
