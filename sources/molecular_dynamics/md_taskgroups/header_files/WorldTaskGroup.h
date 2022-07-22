@@ -78,7 +78,9 @@ class WorldTaskGroup final : public TaskGroup
         void addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm) override;
 
         void addLogger_() override;
-        
+       
+        void enable_() override;
+
         // ====================  DATA MEMBERS  =======================================
         CommandLineArgumentsIngredientTraits::type commandLineArguments_;
         WorldCommunicatorIngredientTraits::type worldCommunicator_;

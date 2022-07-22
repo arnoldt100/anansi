@@ -65,7 +65,9 @@ class DefaultTaskGroup final : public TaskGroup
         void addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm ) override;
 
         void addLogger_() override;
-        
+
+        void enable_() override;
+
         // ====================  DATA MEMBERS  =======================================
         std::unique_ptr<COMMUNICATOR::Communicator> worldCommunicator_;
 

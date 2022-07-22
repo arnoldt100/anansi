@@ -43,16 +43,24 @@ TaskGroup::~TaskGroup()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void TaskGroup::addLogger()
-{
-    this->addLogger_();
-}
 
 void TaskGroup::addCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm )
 {
     this->addCommunicator_(std::move(my_comm));
+    return;
 }
 
+void TaskGroup::addLogger()
+{
+    this->addLogger_();
+    return;
+}
+
+void TaskGroup::enable()
+{
+    this->enable_();
+    return;
+}
 //============================= OPERATORS ====================================
 
 

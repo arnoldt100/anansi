@@ -97,6 +97,10 @@ void DefaultTaskGroup::addLogger_()
     return;
 }
 
+void DefaultTaskGroup::enable_()
+{
+    return;
+}
 //============================= OPERATORS ====================================
 
 

@@ -54,6 +54,7 @@ class TaskGroup : public  MPL::BaseVisitable<>
 
         void addCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm );
         void addLogger();
+        void enable();
 
         // ====================  OPERATORS     =======================================
 
@@ -72,6 +73,7 @@ class TaskGroup : public  MPL::BaseVisitable<>
         // ====================  MUTATORS      =======================================
         virtual void addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm)=0;
         virtual void addLogger_()=0;
+        virtual void enable_()=0;
 
 
         // ====================  DATA MEMBERS  =======================================

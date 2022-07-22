@@ -33,8 +33,6 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
 
         WorldTaskGroupConvenienceFunctions ();   // constructor
 
-        WorldTaskGroupConvenienceFunctions (std::shared_ptr<MDTaskGroupFactory<>> task_group_factory);   // constructor
-
         WorldTaskGroupConvenienceFunctions (const WorldTaskGroupConvenienceFunctions & other);   // copy constructor
 
         WorldTaskGroupConvenienceFunctions (WorldTaskGroupConvenienceFunctions && other);   // copy-move constructor
@@ -78,7 +76,6 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::shared_ptr<MDTaskGroupFactory<>> taskGroupFactory_;
 
 }; // -----  end of class WorldTaskGroupConvenienceFunctions  -----
 

@@ -124,6 +124,10 @@ void WorldTaskGroup::addLogger_()
     return;
 }
 
+void WorldTaskGroup::enable_()
+{
+    return;
+}
 
 //============================= OPERATORS ====================================
 
