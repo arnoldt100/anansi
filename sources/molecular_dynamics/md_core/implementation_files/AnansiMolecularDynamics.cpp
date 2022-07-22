@@ -166,7 +166,6 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
     using taskgroup_t = WorldTaskGroup;
     using needed_ingredients_typelist = WorldTaskGroup::NeededIngredients;
 
-
     my_conv_functions.transferAllIngredients<
         taskgroup_t,
         ingredients_t,

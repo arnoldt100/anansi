@@ -5,7 +5,6 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
-#include <functional>
 #include <iostream>
 
 //--------------------------------------------------------//
@@ -33,13 +32,11 @@ template<int N_initial,
          int N,
          typename needed_ingredients_typelist, 
          typename taskgroup_t,
-         typename Callable,
          typename transfer_t> 
 class ForLoopOverTransferIngredientsNext
 {
     public:
-        ForLoopOverTransferIngredientsNext(std::function<Callable(int)> op) :
-            op_(op),
+        explicit ForLoopOverTransferIngredientsNext() :
             transfer_op_()
 
         {
@@ -53,12 +50,6 @@ class ForLoopOverTransferIngredientsNext
             if constexpr ( (N_initial <= N) && (N <= N_final )  )
             {
 
-                // Instantiate an instance of the Wrapper for the N'th iteration
-                // and do functor call.
-                // Wrapper member;
-                // member .template operator()<N>();
-                this->op_(N);
-               
                 using ingredient_t = MPL::mpl_at_c<needed_ingredients_typelist,N>;
 
                 transfer_t my_transfer_op;
@@ -76,29 +67,25 @@ class ForLoopOverTransferIngredientsNext
                     N+dN,
                     needed_ingredients_typelist,
                     taskgroup_t,
-                    Callable,
-                    transfer_t> a_fornextloop(this->op_);
+                    transfer_t> a_fornextloop;
                 a_fornextloop. template operator()<ingredients_t >(a_taskgroup,
                                                                    ingredients);
             }
             return;
         }
     private :
-        std::function<Callable(int)> op_;
         transfer_t transfer_op_;
 
 }; // -----  end of class ForLoopOverTransferIngredientsNext  -----
 
 template<typename needed_ingredients_typelist,
          typename taskgroup_t, 
-         typename Callable,
          typename transfer_t>
 class ForLoopOverTransferIngredients
 {
     public:
 
-        explicit ForLoopOverTransferIngredients(std::function<Callable(int)> op) :
-            op_(op),
+        explicit ForLoopOverTransferIngredients() :
             transfer_op_()
         {
             return;
@@ -128,8 +115,6 @@ class ForLoopOverTransferIngredients
             {
                 using ingredient_t = MPL::mpl_at_c<needed_ingredients_typelist,N>;
 
-                this->op_(N);
-
                 transfer_t my_transfer_op;
                 my_transfer_op. template operator()<ingredient_t,
                                                     taskgroup_t,
@@ -146,18 +131,14 @@ class ForLoopOverTransferIngredients
                     N+dN,
                     needed_ingredients_typelist,
                     taskgroup_t,
-                    Callable,
-                    transfer_t> a_forloop(this->op_);
+                    transfer_t> a_forloop;
                 a_forloop. template operator()<ingredients_t>(a_taskgroup,
                                                               ingredients);
             }
             return;
 
-            //std::shared_ptr<Wrapper> wrapper_; 
-
         }
     private :
-        std::function<Callable(int)> op_;
         transfer_t transfer_op_;
 
 }; // -----  end of class ForLoopOverTransferIngredients  -----

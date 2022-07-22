@@ -6,7 +6,6 @@
 //--------------------------------------------------------//
 #include <memory>
 #include <utility>
-#include <functional>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -54,16 +53,10 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
             
             using transfer_t = TransferIngredients;
             
-            std::function<void(int)> op = [&taskgroup,&ingredients](const int N){ 
-                std::cout << "Op lambda: Transferred ingredient " << N << std::endl;
-                return;};
-
-
             ForLoopOverTransferIngredients<
                 needed_ingredients_typelist,
                 taskgroup_t,
-                void,
-                transfer_t> my_for_loop(op);
+                transfer_t> my_for_loop;
                 my_for_loop. template operator()<ingredients_t>(taskgroup,ingredients);
             return;
         }
