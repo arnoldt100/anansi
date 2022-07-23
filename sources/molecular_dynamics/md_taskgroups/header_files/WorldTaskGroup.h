@@ -17,7 +17,6 @@
 //--------------------------------------------------------//
 #include "TaskGroup.h"
 #include "MPLAliases.hpp"
-#include "BaseVisitable.hpp"
 #include "CommandLineArgumentsIngredientTraits.h"
 #include "WorldCommunicatorIngredientTraits.h"
 
@@ -49,8 +48,6 @@ class WorldTaskGroup final : public TaskGroup
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
-        // This macro defines the Accept member function.
-        DEFINE_VISITABLE()
 
         template <typename T>
         void addIngredient(T && ingredient);
@@ -75,10 +72,6 @@ class WorldTaskGroup final : public TaskGroup
         // ====================  METHODS       =======================================
 
         // ====================  MUTATORS      =======================================
-        void addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm) override;
-
-        void addLogger_() override;
-       
         void enable_() override;
 
         // ====================  DATA MEMBERS  =======================================

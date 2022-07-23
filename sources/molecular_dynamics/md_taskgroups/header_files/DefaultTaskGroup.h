@@ -62,9 +62,6 @@ class DefaultTaskGroup final : public TaskGroup
         // ====================  METHODS       =======================================
 
         // ====================  MUTATORS      =======================================
-        void addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm ) override;
-
-        void addLogger_() override;
 
         void enable_() override;
 

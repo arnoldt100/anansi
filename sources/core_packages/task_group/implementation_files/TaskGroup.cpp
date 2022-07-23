@@ -44,18 +44,6 @@ TaskGroup::~TaskGroup()
 
 //============================= MUTATORS =====================================
 
-void TaskGroup::addCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm )
-{
-    this->addCommunicator_(std::move(my_comm));
-    return;
-}
-
-void TaskGroup::addLogger()
-{
-    this->addLogger_();
-    return;
-}
-
 void TaskGroup::enable()
 {
     this->enable_();

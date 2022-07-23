@@ -111,18 +111,6 @@ void obtainIngredient_( )
     return;
 }
 
-void WorldTaskGroup::addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm )
-{
-    this->worldCommunicator_ = std::move(my_comm);
-    return;
-}
-
-void WorldTaskGroup::addLogger_()
-{
-    // The logger for the WorldTaskGroup can't be added until 
-    // the it's communicator is set.
-    return;
-}
 
 void WorldTaskGroup::enable_()
 {

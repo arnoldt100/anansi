@@ -87,15 +87,6 @@ TaskGroup* DefaultTaskGroup::create()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void DefaultTaskGroup::addCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> && my_comm)
-{
-    return;
-}
-
-void DefaultTaskGroup::addLogger_()
-{
-    return;
-}
 
 void DefaultTaskGroup::enable_()
 {
