@@ -1,0 +1,26 @@
+<!-- This control file performs a nve simulation for -->
+<!-- a cluster of 2 Lennard Jones atoms.             -->
+
+<!-- Specifcation for the units of the simulation. -->
+<units>real</units>
+
+<!-- Specifcation for the initial configuration of the system. -->
+<initial_configuration>
+    <filename> ar2.initialconfiguration </filename>
+</initial_configuration>
+
+<!-- Specificaion of atomic/molecular topology --!>
+<topology>
+	<filename> ar2.topology </filename>
+</topology>
+
+<!-- Force field specification --!>
+<Hamiltonian> 
+    <filename> ar2.hamiltonian </filename> 
+</Hamiltonian>
+
+<!-- Specifcation for the timestep. -->
+<timestep>
+    <value> 1.0 </value>
+    <units> femtoseconds </units>
+</timestep>

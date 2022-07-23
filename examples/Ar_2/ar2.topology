@@ -1,0 +1,9 @@
+<!-- Specifcation for the atoms in the simulation. -->
+<!-- Argon atoms -->
+<atoms>
+    <atom 1>
+        <tags> ar </tags>
+        <charge-monopole> 0.00 <!charge-monopole>
+    </atom 1>
+    
+</atoms>

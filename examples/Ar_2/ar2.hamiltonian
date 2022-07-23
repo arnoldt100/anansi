@@ -1,0 +1,10 @@
+<!-- Argon Hamiltonian -->
+<masses>
+    <ar> 39.948 </ar>    
+<\masses>
+
+<non-bonded>
+    <nb1>
+        ar ar lj_12_6 0.997 3.4
+    </nb1>
+</non-bonded>

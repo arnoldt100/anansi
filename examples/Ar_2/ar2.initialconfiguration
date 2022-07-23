@@ -1,0 +1,24 @@
+<!-- Specifcation for the atoms in the simulation. -->
+
+<!-- Argon atoms -->
+<number atoms>
+    2
+<\number atoms>
+
+<atoms>
+    <atom 1>
+        <id> 1 </id>
+        <atomic symbol> Ar </atomic symbol>
+        <tags> Ar </tags>
+        <coordinates> 0.00 0.00 0.00 </coordinates>
+        <velocities> 0.00 0.00 0.00 </velocities>
+    </atom 1>
+    
+    <atom 2>
+        <id> 2 </id>
+        <atomic symbol> Ar </atomic symbol>
+        <tags> Ar </tags>
+        <coordinates> 0.00 0.00 1.00 </coordinates>
+        <velocities> 0.00 0.00 0.00 </velocities>
+    </atom 2>
+</atoms>
