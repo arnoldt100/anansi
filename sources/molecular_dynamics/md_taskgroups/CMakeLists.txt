@@ -87,7 +87,6 @@
          header_files/DefaultTaskGroup.h
          header_files/WorldTaskGroupIngredients.h
          header_files/WorldTaskGroupConvenienceFunctions.h
-         header_files/TaskGroupConvenienceFunctions.hpp
          header_files/WorldTaskGroup.h)
 
     #-----------------------------------------------------
@@ -104,7 +103,6 @@
          implementation_files/DefaultTaskGroup.cpp
          implementation_files/WorldTaskGroupIngredients.cpp
          implementation_files/WorldTaskGroupConvenienceFunctions.cpp
-         implementation_files/TaskGroupConvenienceFunctions.cpp
          implementation_files/WorldTaskGroup.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
