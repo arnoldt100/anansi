@@ -90,6 +90,8 @@ class CommandLineArguments
 
         /* ====================  MUTATORS      ======================================= */
 
+        void reset();
+
         /* ====================  OPERATORS     ======================================= */
 
         CommandLineArguments&

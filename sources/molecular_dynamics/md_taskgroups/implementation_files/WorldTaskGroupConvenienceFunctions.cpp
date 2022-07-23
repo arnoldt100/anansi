@@ -52,6 +52,18 @@ WorldTaskGroupConvenienceFunctions::~WorldTaskGroupConvenienceFunctions()
 
 //============================= ACCESSORS ====================================
 
+void WorldTaskGroupConvenienceFunctions::enableTaskGroup__(std::shared_ptr<TaskGroup> taskgroup) const
+{
+    taskgroup->enable();
+    return;
+}
+
+void WorldTaskGroupConvenienceFunctions::disableTaskGroup__(std::shared_ptr<TaskGroup> taskgroup) const
+{
+    taskgroup->disable();
+    return;
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

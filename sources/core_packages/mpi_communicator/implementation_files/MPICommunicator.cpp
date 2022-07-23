@@ -77,7 +77,7 @@ MPICommunicator::MPICommunicator(const MPI_Comm & mpi_world_communicator,
 
 MPICommunicator::~MPICommunicator()
 {
-    this->_freeCommunicator();
+    this->freeCommunicator_();
     return;
 }
 
@@ -114,11 +114,11 @@ MPICommunicator::_initializeWorldCommunicator()
 }
 
 void
-MPICommunicator::_freeCommunicator()
+MPICommunicator::freeCommunicator_()
 {
     // We now destroy/free all communicators.
-    this->_freeMPICommunicator(this->_mpiCommunicator);
-
+    this->freeMPICommunicator_(this->_mpiCommunicator);
+    this->_hostname = std::string(MPICommunicator::HOSTNAME_NOT_DEFINED);
     return;
 }
 
@@ -555,7 +555,7 @@ MPICommunicator::_calculateStartAndEndOffsets(
 }
 
 void
-MPICommunicator::_freeMPICommunicator(MPI_Comm & a_communicator)
+MPICommunicator::freeMPICommunicator_(MPI_Comm & a_communicator)
 {
     try 
     {

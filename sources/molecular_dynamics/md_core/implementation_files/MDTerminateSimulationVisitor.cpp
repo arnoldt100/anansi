@@ -46,9 +46,10 @@ void MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     std::cout << "MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
 
-    // Terminating the communication environment.
+    a_sim.disableWorldTaskGroup();
     a_sim.disableWorldCommunicator();
     a_sim.disableCommunicationEnvironment();
+
     return;
 }
 

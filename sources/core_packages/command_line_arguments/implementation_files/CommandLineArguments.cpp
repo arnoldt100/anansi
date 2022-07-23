@@ -83,6 +83,12 @@ bool CommandLineArguments::findArgument( const std::string & str ) const
 
 //============================= MUTATORS =====================================
 
+void CommandLineArguments::reset()
+{
+    this->_numberOfArguments=0;
+    this->_commandLineArguments.clear();
+    return;
+}
 //============================= OPERATORS ====================================
 
 CommandLineArguments&

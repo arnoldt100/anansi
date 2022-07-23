@@ -74,6 +74,8 @@ class WorldTaskGroup final : public TaskGroup
         // ====================  MUTATORS      =======================================
         void enable_() override;
 
+        void disable_() override;
+
         // ====================  DATA MEMBERS  =======================================
         CommandLineArgumentsIngredientTraits::type commandLineArguments_;
         WorldCommunicatorIngredientTraits::type worldCommunicator_;

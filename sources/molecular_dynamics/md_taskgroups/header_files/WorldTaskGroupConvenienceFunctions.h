@@ -59,6 +59,10 @@ class WorldTaskGroupConvenienceFunctions : public TaskGroupConvenienceFunctions<
             return;
         }
 
+        void enableTaskGroup__(std::shared_ptr<TaskGroup> taskgroup) const ;
+
+        void disableTaskGroup__(std::shared_ptr<TaskGroup> taskgroup) const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

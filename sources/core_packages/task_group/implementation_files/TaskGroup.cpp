@@ -49,6 +49,12 @@ void TaskGroup::enable()
     this->enable_();
     return;
 }
+
+void TaskGroup::disable()
+{
+    this->disable_();
+    return;
+}
 //============================= OPERATORS ====================================
 
 

@@ -105,15 +105,16 @@ TaskGroup* WorldTaskGroup::create()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-template <typename IngredientType>
-void obtainIngredient_( )
+
+void WorldTaskGroup::enable_()
 {
     return;
 }
 
-
-void WorldTaskGroup::enable_()
+void WorldTaskGroup::disable_()
 {
+    this->worldCommunicator_->freeCommunicator();
+    this->commandLineArguments_.reset();
     return;
 }
 

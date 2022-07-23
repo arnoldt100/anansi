@@ -92,6 +92,12 @@ void DefaultTaskGroup::enable_()
 {
     return;
 }
+
+void DefaultTaskGroup::disable_()
+{
+    this->worldCommunicator_->freeCommunicator();
+    return;
+}
 //============================= OPERATORS ====================================
 
 

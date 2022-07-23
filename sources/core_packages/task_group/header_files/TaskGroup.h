@@ -51,6 +51,8 @@ class TaskGroup
 
         void enable();
 
+        void disable();
+
         // ====================  OPERATORS     =======================================
 
         TaskGroup& operator=( const TaskGroup &other ) = delete; // assignment operator
@@ -67,6 +69,8 @@ class TaskGroup
         
         // ====================  MUTATORS      =======================================
         virtual void enable_()=0;
+
+        virtual void disable_()=0;
 
 
         // ====================  DATA MEMBERS  =======================================

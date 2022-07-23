@@ -114,7 +114,7 @@ private:
     void
     _initializeWorldCommunicator() final override;
 
-    void _freeCommunicator() final override;
+    void freeCommunicator_() final override;
    
     // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
     void 
@@ -122,7 +122,7 @@ private:
 
     //===== STATIC METHODS ======
     static void
-    _freeMPICommunicator(MPI_Comm & a_communicator);
+    freeMPICommunicator_(MPI_Comm & a_communicator);
 
     static void
     _calculateStartAndEndOffsets(

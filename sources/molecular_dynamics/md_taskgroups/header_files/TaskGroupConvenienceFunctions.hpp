@@ -71,6 +71,21 @@ class TaskGroupConvenienceFunctions
                                              ingredients);
             return;
         }
+
+        void enableTaskGroup(std::shared_ptr<TaskGroup> taskgroup) const
+        {
+            const Derived& underlying = static_cast<const Derived&>(*this); 
+            underlying.enableTaskGroup__(taskgroup);
+            return;
+        }
+
+        void disableTaskGroup(std::shared_ptr<TaskGroup> taskgroup) const
+        {
+            const Derived& underlying = static_cast<const Derived&>(*this); 
+            underlying.disableTaskGroup__(taskgroup);
+            return;
+        }
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

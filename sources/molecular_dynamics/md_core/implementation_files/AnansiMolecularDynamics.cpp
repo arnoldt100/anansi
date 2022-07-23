@@ -152,6 +152,7 @@ void
 AnansiMolecularDynamics::disableWorldCommunicator()
 {
     this->MpiWorldCommunicator_->freeCommunicator();
+    this->MpiWorldCommunicator_.reset();
     return;
 }
 
@@ -172,7 +173,7 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
         needed_ingredients_typelist>(this->worldTaskGroup_,
                                      world_taskgroup_ingredients);
 
-    this->worldTaskGroup_->enable();
+    my_conv_functions.enableTaskGroup(this->worldTaskGroup_);
 
     return;
 }
@@ -180,6 +181,8 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
 void
 AnansiMolecularDynamics::disableWorldTaskGroup()
 {
+    WorldTaskGroupConvenienceFunctions my_conv_functions;
+    my_conv_functions.disableTaskGroup(this->worldTaskGroup_);
     return;
 }
 
