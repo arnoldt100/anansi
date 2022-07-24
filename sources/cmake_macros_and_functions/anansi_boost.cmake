@@ -34,6 +34,7 @@ macro(enable_boost MY_BOOST_ROOT)
     # the generate a fatal error message and exit.
     find_package( Boost
                   COMPONENTS program_options 
+                             log
                              system 
                              unit_test_framework 
                              chrono

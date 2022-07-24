@@ -50,6 +50,10 @@ Logger::~Logger()
 }
 
 //============================= ACCESSORS ====================================
+void Logger::logMessage(const std::string message) const
+{
+    this->logMessage_(message);
+}
 
 //============================= MUTATORS =====================================
 

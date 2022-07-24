@@ -19,6 +19,7 @@
 #include "MPLAliases.hpp"
 #include "CommandLineArgumentsIngredientTraits.h"
 #include "WorldCommunicatorIngredientTraits.h"
+#include "ConsoleLoggerTraits.h"
 
 namespace ANANSI
 {
@@ -79,6 +80,8 @@ class WorldTaskGroup final : public TaskGroup
         // ====================  DATA MEMBERS  =======================================
         CommandLineArgumentsIngredientTraits::type commandLineArguments_;
         WorldCommunicatorIngredientTraits::type worldCommunicator_;
+        ConsoleLoggerTraits::type consoleLogger_;
+
 }; // -----  end of class WorldTaskGroup  -----
 
 template <>

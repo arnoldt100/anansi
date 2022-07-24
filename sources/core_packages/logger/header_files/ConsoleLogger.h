@@ -4,15 +4,24 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include "boost/log/trivial.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Logger.h"
+
+        namespace logging = boost::log;
+        namespace sinks = boost::log::sinks;
+        namespace src = boost::log::sources;
+        namespace expr = boost::log::expressions;
+        namespace attrs = boost::log::attributes;
+        namespace keywords = boost::log::keywords;
 
 namespace ANANSI
 {
@@ -59,7 +68,9 @@ class ConsoleLogger : public ANANSI::Logger
         // ====================  DATA MEMBERS  =======================================
 
     private:
+
         // ====================  METHODS       =======================================
+        void logMessage_(const std::string message) const override;
 
         // ====================  DATA MEMBERS  =======================================
 

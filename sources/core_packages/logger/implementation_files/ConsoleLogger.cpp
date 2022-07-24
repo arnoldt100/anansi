@@ -94,6 +94,11 @@ ConsoleLogger& ConsoleLogger::operator=( ConsoleLogger && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void ConsoleLogger::logMessage_(const std::string message) const 
+{
+    BOOST_LOG_TRIVIAL(info) << message;
+    return;
+}
 
 //============================= MUTATORS =====================================
 

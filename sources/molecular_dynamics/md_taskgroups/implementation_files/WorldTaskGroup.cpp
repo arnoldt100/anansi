@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ConsoleLogger.h"
 #include "WorldTaskGroup.h"
 
 namespace ANANSI {
@@ -24,7 +25,8 @@ namespace ANANSI {
 WorldTaskGroup::WorldTaskGroup() :
     TaskGroup(),
     commandLineArguments_(),
-    worldCommunicator_(nullptr) 
+    worldCommunicator_(nullptr),
+    consoleLogger_(nullptr) 
 {
     return;
 }
@@ -33,7 +35,8 @@ WorldTaskGroup::WorldTaskGroup() :
 WorldTaskGroup::WorldTaskGroup( WorldTaskGroup && other) :
     TaskGroup(std::move(other)),
     commandLineArguments_(),
-    worldCommunicator_(nullptr) 
+    worldCommunicator_(nullptr), 
+    consoleLogger_(nullptr) 
 {
     if (this != &other)
     {
@@ -74,6 +77,7 @@ WorldTaskGroup& WorldTaskGroup::operator= ( WorldTaskGroup && other )
         TaskGroup::operator=(std::move(other));
         this->commandLineArguments_ = std::move(other.commandLineArguments_);
         this->worldCommunicator_ = std::move(other.worldCommunicator_);
+        this->consoleLogger_ = std::move(other.consoleLogger_);
     }
     return *this;
 } // assignment-move operator
@@ -108,11 +112,15 @@ TaskGroup* WorldTaskGroup::create()
 
 void WorldTaskGroup::enable_()
 {
+    // the first task is to enable the logger.
+    this->consoleLogger_ = std::make_shared<ANANSI::ConsoleLogger>();
+    this->consoleLogger_->logMessage("The WorldTaskGroup console logger is enabled.");
     return;
 }
 
 void WorldTaskGroup::disable_()
 {
+    this->consoleLogger_.reset();
     this->worldCommunicator_->freeCommunicator();
     this->commandLineArguments_.reset();
     return;
