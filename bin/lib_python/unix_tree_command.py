@@ -2,10 +2,11 @@
 import copy
 import subprocess
 
-
 class UnixTreeCommand:
-
+    """This class encapsulates the unix/linux tree command."""
+ 
     def __init__(self,options) :
+        
         self.options_ = copy.deepcopy(options)
         return
 

@@ -1,4 +1,12 @@
 #! /usr/bin/env python3
+"""Anansi Source Tree Diagram Generator
+
+This script generates a tree diagram of Anansi's source. 
+
+An image file will be written.
+
+""" 
+
 from lib_python import unix_tree_command
 
 def main () :
@@ -14,4 +22,3 @@ def main () :
 if __name__ == "__main__" :
 
     main()
-    
