@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-cd ${ANANSI_TOP_LEVEL}/sources/mouseion/documentation
+cd ${ANANSI_TOP_LEVEL}/sources/core_packages/mouseion/documentation
 make clean && make html
 if [[ $? != 0 ]]; then
     echo "Failed to create mouseion documentation."
