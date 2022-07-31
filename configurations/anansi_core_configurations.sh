@@ -48,4 +48,10 @@ else
     #                                                    -
     #-----------------------------------------------------
     export PATH="${ANANSI_TOP_LEVEL}/bin":"$PATH"
+
+    #-----------------------------------------------------
+    # The pylint runtime configuration file.             -
+    #                                                    -
+    #-----------------------------------------------------
+    export PYLINTR=${ANANSI_TOP_LEVEL}/etc/anansi_pylint.rc
 fi
