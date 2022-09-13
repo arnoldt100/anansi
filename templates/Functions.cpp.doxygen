@@ -1,0 +1,9 @@
+//!
+//! Brief documentation
+//! 
+//! Detailed documentation.
+//!
+//! @param [in,out] arg1 Argument 1 description.
+//! @param [in,out] arg2 Argument 2 description.
+//! @retval int The return value of the main program.
+//!
