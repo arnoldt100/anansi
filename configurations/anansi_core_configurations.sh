@@ -54,4 +54,10 @@ else
     #                                                    -
     #-----------------------------------------------------
     export PYLINTR=${ANANSI_TOP_LEVEL}/etc/anansi_pylint.rc
+
+    # ----------------------------------------------------
+    # Modify PYTHONPATH
+    # 
+    # ----------------------------------------------------
+    export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
 fi
