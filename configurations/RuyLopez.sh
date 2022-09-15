@@ -25,25 +25,25 @@ export ANANSI_CMAKE_C_COMPILER=mpicc
 # Define the install prefix.                         -
 #                                                    -
 #-----------------------------------------------------
-export ANANSI_INSTALL_PREFIX=${HOME}/sw/Anansi
+export ANANSI_INSTALL_PREFIX="${HOME}/sw/Anansi"
 
 #-----------------------------------------------------
 # Define the anansi bin directory.                   -
 #                                                    -
 #-----------------------------------------------------
-export ANANSI_INSTALL_BIN_DIRECTORY=${ANANSI_INSTALL_PREFIX}/bin
+export ANANSI_INSTALL_BIN_DIRECTORY="${ANANSI_INSTALL_PREFIX}/bin"
 
 #-----------------------------------------------------
 # Define the anansi include directory.               -
 #                                                    -
 #-----------------------------------------------------
-export ANANSI_INSTALL_INCLUDE_DIRECTORY=${ANANSI_INSTALL_PREFIX}/include
+export ANANSI_INSTALL_INCLUDE_DIRECTORY="${ANANSI_INSTALL_PREFIX}/include"
 
 #-----------------------------------------------------
 # Define the anansi include directory.               -
 #                                                    -
 #-----------------------------------------------------
-export ANANSI_INSTALL_LIB_DIRECTORY=${ANANSI_INSTALL_PREFIX}/lib
+export ANANSI_INSTALL_LIB_DIRECTORY="${ANANSI_INSTALL_PREFIX}/lib"
 
 #-----------------------------------------------------
 # Define the anansi boost root path.                 -

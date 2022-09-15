@@ -1,27 +1,14 @@
 #ifndef  anansi_main_md_INC
 #define  anansi_main_md_INC
+//! @file anansi_main_md.h
+//!
+//! The file contains the interface for the main program.
 
-// =====================================================================================
-//
-//       Filename:  anansi_main_md.h
-//
-//    Description: The main program for Anansi molecular dynamics.  
-//
-//
-//         Author:  Arnold N. Tharrington (), arnoldt@ornl.gov
-//   Organization:  ORNL-National Center of Computational Sciences
-//
-// =====================================================================================
-
-
-// ===  FUNCTION  ======================================================================
-//         Name:  main
-//  Description:  The main fuction of the anansi md program.
-//
-//  Arguments: 
-//      argc - The number of command line arguments.
-//      argv - A array of char* that contain the command line options.
-// =====================================================================================
+//! The main program for Anansi molecular dynamics
+//! 
+//! @param [in] argc The number of command line arguments.
+//! @param [in] argv The command line arguments.
+//! @retval int The return value of the main program.
 int main(int argc, char** argv);
 
 #endif   /* ----- #ifndef anansi_main_md_INC  ----- */

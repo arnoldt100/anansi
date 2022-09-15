@@ -21,6 +21,12 @@ then
     echo "Anansi will not build correctly till this variable is set."
 else
 
+    # ----------------------------------------------------
+    # The path to the Doxygen configuration file.
+    # 
+    # ----------------------------------------------------
+    export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
+
     #-----------------------------------------------------
     # Define the anansi bin directory.                   -
     #                                                    -
@@ -59,5 +65,5 @@ else
     # Modify PYTHONPATH
     # 
     # ----------------------------------------------------
-    export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
+    export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python":"${PYTHONPATH}"
 fi
