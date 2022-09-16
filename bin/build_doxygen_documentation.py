@@ -97,6 +97,7 @@ def _run_doxygen_command():
     Returns:
         Nothing returned
     """
+    import sys
     import os
     import subprocess
     import shlex
@@ -119,7 +120,7 @@ def _relocate_gitlab_mode():
 
 def _relocate_standard_mode():
     """Relocate files according to standard requirements."""
-    print ("Executing _relocate_standard_mode.")
+    print ("Executing relocation of documentation in standard mode.")
 
 def _relocate_documentation(a_function_dispatcher,publish_mode):
     """Relocates the Doxygen generated documentation.
@@ -128,7 +129,12 @@ def _relocate_documentation(a_function_dispatcher,publish_mode):
         a_function_dispatcher (FunctionDispatcher) : The object that contains the function to call.
         publish_mode: A string flag that signals which publishing mode the program is in.
     """
-    function_dispatcher.execute(a_function_dispatcher,publish_mode)
+    try:
+        function_dispatcher.execute(a_function_dispatcher,publish_mode)
+    except  function_dispatcher.FunctionDispatcherAPIError as err:
+        print(err.message)
+        sys.exit(1) 
+
     return
 
 if __name__ == "__main__":
