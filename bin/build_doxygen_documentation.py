@@ -26,6 +26,9 @@ import function_dispatcher
 
 def main():
     doc_relocater = function_dispatcher.create_function_dispatcher()
+    function_dispatcher.register_function(doc_relocater,"standard",_relocate_standard_mode)
+    function_dispatcher.register_function(doc_relocater,"github-pages",_relocate_github_mode)
+    function_dispatcher.register_function(doc_relocater,"gitlab-pages",_relocate_gitlab_mode)
 
     args = _parse_arguments()
 
@@ -37,7 +40,7 @@ def main():
 
     _run_doxygen_command()
 
-    _relocate_documentation()
+    _relocate_documentation(doc_relocater,args.publish_mode)
 
     logger.info("End of main program")
 
@@ -110,17 +113,22 @@ def _relocate_github_mode():
     """Relocate files according to GitHub Pages requirements."""
     print ("Executing _relocate_github_mode.")
 
-def _relocate_github_mode():
+def _relocate_gitlab_mode():
     """Relocate files according to GitLab Pages requirements."""
     print ("Executing _relocate_gitlab_mode.")
 
-def _relocate_documentation():
+def _relocate_standard_mode():
+    """Relocate files according to standard requirements."""
+    print ("Executing _relocate_standard_mode.")
+
+def _relocate_documentation(a_function_dispatcher,publish_mode):
     """Relocates the Doxygen generated documentation.
 
     Args: 
+        a_function_dispatcher (FunctionDispatcher) : The object that contains the function to call.
         publish_mode: A string flag that signals which publishing mode the program is in.
     """
-    print ("Executing _relocate_documentation.")
+    function_dispatcher.execute(a_function_dispatcher,publish_mode)
     return
 
 if __name__ == "__main__":
