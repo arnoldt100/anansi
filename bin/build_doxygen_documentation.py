@@ -23,6 +23,8 @@ import argparse
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 import function_dispatcher
+import os
+import shutil
 
 def main():
     doc_relocater = function_dispatcher.create_function_dispatcher()
@@ -98,7 +100,6 @@ def _run_doxygen_command():
         Nothing returned
     """
     import sys
-    import os
     import subprocess
     import shlex
 
@@ -111,15 +112,41 @@ def _run_doxygen_command():
     return
 
 def _relocate_github_mode():
-    """Relocate files according to GitHub Pages requirements."""
-    print ("Executing _relocate_github_mode.")
+    """Relocate files according to GitHub Pages requirements.
+
+    In the gitlab-pages mode the documentation is relocated from
+    the default location as specified in the doxygen configuration
+    file to ${ANANSI_TOP_LEVEL}/docs.
+    """
+
+    print ("Executing relocation of documentation in github mode.")
+
+    top_level_dir = os.getenv("ANANSI_TOP_LEVEL")
+    src_dir = os.path.join(top_level_dir,"doxygen_documentation","html" )
+    dest_dir = os.path.join(top_level_dir,"docs")
+    shutil.copytree(src_dir,dest_dir,dirs_exist_ok=True)
 
 def _relocate_gitlab_mode():
-    """Relocate files according to GitLab Pages requirements."""
-    print ("Executing _relocate_gitlab_mode.")
+    """Relocate files according to GitLab Pages requirements.
+
+    In the gitlab-pages mode the documentation is relocated from
+    the default location as specified in the doxygen configuration
+    file to ${ANANSI_TOP_LEVEL}/public.
+    """
+
+    top_level_dir = os.getenv("ANANSI_TOP_LEVEL")
+    src_dir = os.path.join(top_level_dir,"doxygen_documentation","html" )
+    dest_dir = os.path.join(top_level_dir,"public")
+    shutil.copytree(src_dir,dest_dir,dirs_exist_ok=True)
 
 def _relocate_standard_mode():
-    """Relocate files according to standard requirements."""
+    """Relocate files according to standard requirements.
+
+    In the standard mode the documentation is not relocated from
+    the default location as specified in the doxygen configuration
+    file.
+    """
+
     print ("Executing relocation of documentation in standard mode.")
 
 def _relocate_documentation(a_function_dispatcher,publish_mode):
