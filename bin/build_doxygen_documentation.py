@@ -28,12 +28,10 @@ import shutil
 
 def main():
     doc_relocater = function_dispatcher.create_function_dispatcher()
-    function_dispatcher.register_function(doc_relocater,"standard",_relocate_standard_mode)
-    function_dispatcher.register_function(doc_relocater,"github-pages",_relocate_github_mode)
-    function_dispatcher.register_function(doc_relocater,"gitlab-pages",_relocate_gitlab_mode)
+
+    _register_functions(doc_relocater)
 
     args = _parse_arguments()
-
 
     logger = create_logger(log_id='MainLogger',
                            log_level=args.log_level)
@@ -45,7 +43,6 @@ def main():
     _relocate_documentation(doc_relocater,args.publish_mode)
 
     logger.info("End of main program")
-
 
 def _parse_arguments():
     """Parses the command line arguments.
@@ -163,6 +160,22 @@ def _relocate_documentation(a_function_dispatcher,publish_mode):
         sys.exit(1) 
 
     return
+
+def _register_functions(a_function_dispatcher):
+    """ Registers the functions that relocate the generated Doxygen documentation.
+
+    Args: 
+        a_function_dispatcher (FunctionDispatcher) : The object that contains the function to call.
+
+    Returns:
+        The FunctionDispatcher with the registered functions.
+    """
+
+    function_dispatcher.register_function(a_function_dispatcher,"standard",_relocate_standard_mode)
+    function_dispatcher.register_function(a_function_dispatcher,"github-pages",_relocate_github_mode)
+    function_dispatcher.register_function(a_function_dispatcher,"gitlab-pages",_relocate_gitlab_mode)
+
+    return a_function_dispatcher
 
 if __name__ == "__main__":
     main()
