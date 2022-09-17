@@ -1,28 +1,18 @@
 #! /usr/bin/env python3
-"""This module builds the Anansi source code doxygen documentation.
-
-This module intended to be executed as script. Typical usage is
-
-    build_doxygen_documentation --publish-mode *publishmode*
-
-where
-
-* *publishmode* is the publication mode of the documentation.
-
-For a list of available publication modes do
-
-    build_doxygen_documentation --help
-
-
-To  create a new publishing mode one must 
-
-* Add a new publishing mode choice
-
-* Add a new publishing mode help message
-
-* Add a register a new function for the publishing mode
-
-"""
+## @package build_doxygen_documentation
+# This module builds the Anansi source code doxygen documentation.
+# 
+# This module intended to be executed as script. Typical usage is
+# 
+#     build_doxygen_documentation.py --publish-mode <publishmode>
+# 
+# where
+# 
+# <publishmode> is the publication mode of the documentation.
+# 
+# For a list of available publication modes do
+# 
+#     build_doxygen_documentation.py --help
 
 
 # System imports
@@ -36,7 +26,7 @@ import function_dispatcher
 import os
 import shutil
 
-def main():
+def _main():
     doc_relocater = function_dispatcher.create_function_dispatcher()
     choices = []
     help_message = ""
@@ -46,7 +36,7 @@ def main():
     p_choices = _register_publishing_mode_choices()
     p_help_message = _register_publishing_mode_help_message ()
 
-    args = _parse_arguments(p_choices, p_help_message )
+    args = _parse_arguments(p_choices, p_help_message)
 
     logger = create_logger(log_id='MainLogger',
                            log_level=args.log_level)
@@ -59,15 +49,13 @@ def main():
 
     logger.info("End of main program")
 
+## Parses the command line arguments and returns A namespace.
+#
+# @param [in] publishing_mode_choices A string list of publishing mode choices.
+# @param [in] publishing_mode_help  A string that contains the publishing mode help message
+#
+# @returns A namespace contains attributes that are the command line arguments.
 def _parse_arguments(publishing_mode_choices,publishing_mode_help ):
-    """Parses the command line arguments.
-
-    Parses the command line arguments and returns A namespace.
-
-    Returns:
-        A namespace. The namespace contains attributes
-        that are the command line arguments.
-    """
 
     import logging
 
@@ -87,7 +75,10 @@ def _parse_arguments(publishing_mode_choices,publishing_mode_help ):
                            default=logging.WARNING,
                            help=create_logger_description() )
 
-    my_parser.add_argument("--publish-mode",
+    # Adding mandatory argument group.
+    mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
+
+    mandatory_args_group.add_argument("--publish-mode",
                            required=True,
                            type=str,
                            choices=publishing_mode_choices,
@@ -155,8 +146,7 @@ def _relocate_standard_mode():
     the default location as specified in the doxygen configuration
     file.
     """
-
-    print ("Executing relocation of documentation in standard mode.")
+    pass
 
 def _relocate_documentation(a_function_dispatcher,publish_mode):
     """Relocates the Doxygen generated documentation.
@@ -217,4 +207,4 @@ def _register_publishing_mode_help_message():
     return help_message
 
 if __name__ == "__main__":
-    main()
+    _main()

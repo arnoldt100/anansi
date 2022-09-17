@@ -96,9 +96,6 @@ class FunctionDispatcher:
     def __init__(self):
         self._functionReference = {}
 
-    def __iadd__(self,other):
-        pass
-
     @property
     def function_reference(self):
         return self._functionReference
