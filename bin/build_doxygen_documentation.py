@@ -12,6 +12,16 @@ where
 For a list of available publication modes do
 
     build_doxygen_documentation --help
+
+
+To  create a new publishing mode one must 
+
+* Add a new publishing mode choice
+
+* Add a new publishing mode help message
+
+* Add a register a new function for the publishing mode
+
 """
 
 
@@ -28,10 +38,15 @@ import shutil
 
 def main():
     doc_relocater = function_dispatcher.create_function_dispatcher()
+    choices = []
+    help_message = ""
 
-    _register_functions(doc_relocater)
 
-    args = _parse_arguments()
+    doc_relocater = _register_functions()
+    p_choices = _register_publishing_mode_choices()
+    p_help_message = _register_publishing_mode_help_message ()
+
+    args = _parse_arguments(p_choices, p_help_message )
 
     logger = create_logger(log_id='MainLogger',
                            log_level=args.log_level)
@@ -44,7 +59,7 @@ def main():
 
     logger.info("End of main program")
 
-def _parse_arguments():
+def _parse_arguments(publishing_mode_choices,publishing_mode_help ):
     """Parses the command line arguments.
 
     Parses the command line arguments and returns A namespace.
@@ -72,14 +87,11 @@ def _parse_arguments():
                            default=logging.WARNING,
                            help=create_logger_description() )
 
-    publish_mode_help = ( f"""The standard mode places the documentation in directory ${{ANANSI_TOP_LEVEL}}/doxygen_doxygen/html\n"""
-            f"""The gitlab-pages mode publishes documentation in directory ${{ANANSI_TOP_LEVEL}}/public\n"""
-            f"""The github-pages mode publishes documentation in branch gh-pages to directory ${{ANANSI_TOP_LEVEL}}/docs\n""")
     my_parser.add_argument("--publish-mode",
                            required=True,
                            type=str,
-                           choices=['standard','gitlab-pages','github-pages'],
-                           help=publish_mode_help)
+                           choices=publishing_mode_choices,
+                           help=publishing_mode_help)
 
     my_args = my_parser.parse_args()
 
@@ -161,21 +173,48 @@ def _relocate_documentation(a_function_dispatcher,publish_mode):
 
     return
 
-def _register_functions(a_function_dispatcher):
+def _register_functions():
     """ Registers the functions that relocate the generated Doxygen documentation.
-
-    Args: 
-        a_function_dispatcher (FunctionDispatcher) : The object that contains the function to call.
 
     Returns:
         The FunctionDispatcher with the registered functions.
     """
 
+    a_function_dispatcher = function_dispatcher.create_function_dispatcher()
+
+    # Registers the function for standard mode.
     function_dispatcher.register_function(a_function_dispatcher,"standard",_relocate_standard_mode)
+
+    # Registers the function for github-pages mode.
     function_dispatcher.register_function(a_function_dispatcher,"github-pages",_relocate_github_mode)
+
+    # Registers the function for gitlag-pages mode.
     function_dispatcher.register_function(a_function_dispatcher,"gitlab-pages",_relocate_gitlab_mode)
 
-    return a_function_dispatcher
+    return (a_function_dispatcher)
+
+def _register_publishing_mode_choices():
+    """Creates the choices avaiable for the publishing mode.
+
+    Returns:
+        An array of strings.
+
+    """
+    publishing_mode_choices = ['standard','gitlab-pages','github-pages']
+    return publishing_mode_choices 
+
+def _register_publishing_mode_help_message():
+    """Creates the help message for the publish mode argument.
+
+    Returns:
+        A string.
+
+    """
+    help_message = ( f"""The standard mode places the documentation in directory ${{ANANSI_TOP_LEVEL}}/doxygen_doxygen/html\n"""
+        f"""The gitlab-pages mode publishes documentation in directory ${{ANANSI_TOP_LEVEL}}/public\n"""
+        f"""The github-pages mode publishes documentation in branch gh-pages to directory ${{ANANSI_TOP_LEVEL}}/docs\n""")
+
+    return help_message
 
 if __name__ == "__main__":
     main()
