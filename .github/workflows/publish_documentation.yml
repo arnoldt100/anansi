@@ -42,6 +42,6 @@ jobs:
         steps:
         - run: echo "Deploying Anansi's documentation."
         - name: Checkout Anansi 
-              uses: actions/checkout@v3
-              with:
-                    submodules: recursive 
+          uses: actions/checkout@v3
+          with:
+                submodules: recursive 
