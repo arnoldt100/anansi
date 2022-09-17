@@ -43,4 +43,5 @@ jobs:
         - run: echo "Deploying Anansi's documentation."
         - name: Checkout Anansi 
           uses: actions/checkout@v3
-        - run: git submodule update --init --recursive
+          with: 
+              submodules: recursive
