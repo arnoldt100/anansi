@@ -34,9 +34,7 @@ env:
     PIP_CACHE_DIR: $GITHUB_WORKSPACE/.cache/pip
 
 jobs:
-    # This workflow contains a single job called "deploy_documentation"
-    # which publishes documentation to github-pages.
-    deploy_documentation:
+    checkout_repository:
         # The runner that the job will run on.
         runs-on : [Catalan]
         steps:
@@ -45,3 +43,21 @@ jobs:
           uses: actions/checkout@v3
           with: 
               submodules: recursive
+
+    build_documentation:
+        runs-on : [Catalan]
+        needs: [checkout_repository]
+        steps:
+        - run: echo "Building Anansi's documentation."
+
+    merge_gh_pages_with_main:
+        runs-on : [Catalan]
+        needs: [build_documentation]
+        steps:
+        - run: echo "Merging main into gh-pages branch."
+
+    psuh_gh_pages_branch_upstream:
+        runs-on : [Catalan]
+        needs: [merge_gh_pages_with_main]
+        steps:
+        - run: echo "Push gh-pages branch upstream."
