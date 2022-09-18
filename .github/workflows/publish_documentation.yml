@@ -50,14 +50,14 @@ jobs:
         steps:
         - run: echo "Building Anansi's documentation."
 
-    merge_gh_pages_with_main:
+    merge_documentation_into_gh_pages_branch:
         runs-on : [Catalan]
         needs: [build_documentation]
         steps:
-        - run: echo "Merging main into gh-pages branch."
+        - run: echo "Merging documentation into gh-pages branch."
 
-    psuh_gh_pages_branch_upstream:
+    push_gh_pages_branch_upstream:
         runs-on : [Catalan]
-        needs: [merge_gh_pages_with_main]
+        needs: [merge_documentation_into_gh_pages_branch]
         steps:
         - run: echo "Push gh-pages branch upstream."
