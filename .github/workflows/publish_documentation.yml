@@ -93,6 +93,9 @@ jobs:
                mv doxygen_documentation/html/* docs/
                git add docs
                git commit -a -m "Restaging files in docs."
+
+    update_gh_pages_branch:
+        needs: [update_gh_pages_branch]
         - name: Pushing gh-pages upstream
           uses: ad-m/github-push-action@master
           with:
