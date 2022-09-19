@@ -56,21 +56,23 @@ jobs:
         steps:
         - name: Building Anansi's documentation.
           run: |
-                echo "ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}"
-                export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
-                export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
-                export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
-                export PATH="${ANANSI_BIN_DIRECTORY}:${PATH}"
-                export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
-                build_doxygen_documentation.py --publish-mode standard
+               export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
+               export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
+               export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
+               export PATH="${ANANSI_BIN_DIRECTORY}:${PATH}"
+               export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
+               build_doxygen_documentation.py --publish-mode standard
 
 
-#     merge_documentation_into_gh_pages_branch:
-#         runs-on : [Catalan]
-#         needs: [build_documentation]
-#         steps:
-#         - run: echo "Merging documentation into gh-pages branch."
-# 
+    merge_documentation_into_gh_pages_branch:
+        runs-on : [Catalan]
+        needs: [build_documentation]
+        steps:
+        - name: Check out gh-pages branch
+          run: |
+               git checkout gh-pages 
+               ls -l ${ANANSI_TOP_LEVEL}/doxygen_documentation/html
+ 
 #     push_gh_pages_branch_upstream:
 #         runs-on : [Catalan]
 #         needs: [merge_documentation_into_gh_pages_branch]
