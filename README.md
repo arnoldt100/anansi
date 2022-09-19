@@ -5,6 +5,10 @@ investigating aspects MD algorithms, integrators, design patterns, etc.  The
 goal of this code is to develop a modular MD code, that is performance  and
 functional portable across existing and future HPC architectures.
 
+## Documentation
+
+The user and developer [documentation](https://github.com/arnoldt100/anansi).
+
 
 ## License
 
