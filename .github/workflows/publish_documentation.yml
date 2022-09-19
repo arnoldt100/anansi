@@ -69,7 +69,7 @@ jobs:
 
     update_gh_pages_branch:
         runs-on : [Catalan]
-        needs: [update_gh_pages_branch]
+        needs: [build_documentation]
         steps:
         - name: Check out gh-pages branch
           run: |
