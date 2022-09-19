@@ -59,7 +59,8 @@ jobs:
                export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
                git checkout gh-pages 
                git status
-               ls -l ${ANANSI_TOP_LEVEL}/doxygen_documentation/html
+               ls -l ${ANANSI_TOP_LEVEL}/doxygen_documentation/
+               ls -l ${ANANSI_TOP_LEVEL}
 
     build_documentation:
         runs-on : [Catalan]
