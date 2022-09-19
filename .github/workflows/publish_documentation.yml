@@ -34,19 +34,19 @@ env:
     PIP_CACHE_DIR: $GITHUB_WORKSPACE/.cache/pip
 
 jobs:
-    checkout_repository:
-        # The runner that the job will run on.
-        runs-on : [Catalan]
-        steps:
-        - name: Checkout Anansi 
-        - run: echo "Deploying Anansi's documentation."
-          uses: actions/checkout@v3
-          with: 
-              submodules: recursive
-        - run: git fetch origin gh-pages
-        - run: git branch --all
-        - run: git branch -vv
-
+#     checkout_repository:
+#         # The runner that the job will run on.
+#         runs-on : [Catalan]
+#         steps:
+#         - name: Checkout Anansi 
+#         - run: echo "Deploying Anansi's documentation."
+#           uses: actions/checkout@v3
+#           with: 
+#               submodules: recursive
+#         - run: git fetch origin gh-pages
+#         - run: git branch --all
+#         - run: git branch -vv
+# 
     build_documentation:
         runs-on : [Catalan]
         needs: [checkout_repository]
@@ -54,14 +54,14 @@ jobs:
         - run: echo "Building Anansi's documentation."
          
 
-    merge_documentation_into_gh_pages_branch:
-        runs-on : [Catalan]
-        needs: [build_documentation]
-        steps:
-        - run: echo "Merging documentation into gh-pages branch."
-
-    push_gh_pages_branch_upstream:
-        runs-on : [Catalan]
-        needs: [merge_documentation_into_gh_pages_branch]
-        steps:
-        - run: echo "Push gh-pages branch upstream."
+#     merge_documentation_into_gh_pages_branch:
+#         runs-on : [Catalan]
+#         needs: [build_documentation]
+#         steps:
+#         - run: echo "Merging documentation into gh-pages branch."
+# 
+#     push_gh_pages_branch_upstream:
+#         runs-on : [Catalan]
+#         needs: [merge_documentation_into_gh_pages_branch]
+#         steps:
+#         - run: echo "Push gh-pages branch upstream."
