@@ -38,15 +38,16 @@ jobs:
       # The runner that the job will run on.
       runs-on : [Catalan]
       steps:
+
       - name: Checkout Anansi 
         uses: actions/checkout@v3
         with: 
             submodules: recursive
+
       - name: Deploying Anansi's documentation.
-        run: echo "Deploying Anansi's documentation."
-#      - run: git fetch origin gh-pages
-#      - run: git branch --all
-#      - run: git branch -vv
+        run: git fetch origin gh-pages
+        run: git branch --all
+        run: git branch -vv
 # 
 #     build_documentation:
 #         runs-on : [Catalan]
