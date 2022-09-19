@@ -81,11 +81,6 @@ jobs:
                export PATH="${ANANSI_BIN_DIRECTORY}:${PATH}"
                export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
                git rm -r docs && git commit -a -m "Removed docs directory."
-               build_doxygen_documentation.py --publish-mode github-pages
-               git add docs && git commit -a -m "Readded docs directory."
-               ls -l ${ANANSI_TOP_LEVEL}/docs/.gitkeep
-               ls -l ${ANANSI_TOP_LEVEL}/docs
-               git status
 
 #     push_gh_pages_branch_upstream:
 #         runs-on : [Catalan]
