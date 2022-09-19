@@ -56,7 +56,7 @@ jobs:
         steps:
         - name: Building Anansi's documentation.
           run: |
-                echo "ANANSI_TOP_LEVEL=${ANANSI_TOP_LEVEL}"
+                echo "ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}"
                 # export ANANSI_TOP_LEVEL=$(pwd)
                 export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
                 export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
