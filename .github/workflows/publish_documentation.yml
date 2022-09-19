@@ -43,11 +43,10 @@ jobs:
         uses: actions/checkout@v3
         with: 
             submodules: recursive
-
       - name: Deploying Anansi's documentation.
         run: git fetch origin gh-pages
-        run: git branch --all
-        run: git branch -vv
+#        run: git branch --all
+#        run: git branch -vv
 # 
 #     build_documentation:
 #         runs-on : [Catalan]
