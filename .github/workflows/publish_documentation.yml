@@ -51,7 +51,6 @@ jobs:
         runs-on : [Catalan]
         needs: [checkout_repository]
         steps:
-          - name:  "Building Anansi's documentation."
           - run: echo "Building Anansi's documentation."
          
 
