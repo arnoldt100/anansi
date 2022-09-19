@@ -52,7 +52,7 @@ jobs:
         needs: [checkout_repository]
         steps:
           - name:  "Building Anansi's documentation."
-            run: echo "Building Anansi's documentation."
+          - run: echo "Building Anansi's documentation."
          
 
     merge_documentation_into_gh_pages_branch:
