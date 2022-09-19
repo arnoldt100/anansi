@@ -79,7 +79,7 @@ jobs:
                ls -l ${ANANSI_TOP_LEVEL}/docs
                git status
 
-     push_gh_pages_branch_upstream:
+#     push_gh_pages_branch_upstream:
 #         runs-on : [Catalan]
 #         needs: [merge_documentation_into_gh_pages_branch]
 #         steps:
