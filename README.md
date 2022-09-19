@@ -7,7 +7,7 @@ functional portable across existing and future HPC architectures.
 
 ## Documentation
 
-The user and developer [documentation](https://github.com/arnoldt100/anansi).
+The user and developer [documentation](https://arnoldt100.github.io/anansi)
 
 
 ## License
