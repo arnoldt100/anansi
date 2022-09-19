@@ -38,8 +38,8 @@ jobs:
         # The runner that the job will run on.
         runs-on : [Catalan]
         steps:
-        - run: echo "Deploying Anansi's documentation."
         - name: Checkout Anansi 
+        - run: echo "Deploying Anansi's documentation."
           uses: actions/checkout@v3
           with: 
               submodules: recursive
