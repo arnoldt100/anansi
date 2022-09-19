@@ -47,7 +47,11 @@ jobs:
         - name: Fetching gh-pages remote branch
           run: |
                 git fetch origin gh-pages
+        - name: Checking status of all branches
+          run: |
                 git branch --all
+        - name: Checking status of branch tracking remotes
+          run: |
                 git branch -vv
 
     update_gh_pages_branch:
