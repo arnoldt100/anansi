@@ -86,7 +86,7 @@ jobs:
                export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
                cd docs
                git rm -r -f --ignore-unmatch [a-z]* _*
-               git commit -a -m "Cleaning out docs directory."
+               git commit -a -m "Cleaning out docs directory." || echo 0
 
 
 
