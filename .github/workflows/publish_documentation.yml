@@ -59,7 +59,7 @@ jobs:
                 export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
                 export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
                 export PATH="${ANANSI_BIN_DIRECTORY}:${PATH}"
-                export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_pytnon:${PYTHONPATH}"
+                export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
                 build_doxygen_documentation.py --publish-mode standard
 
 
