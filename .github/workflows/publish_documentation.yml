@@ -54,9 +54,22 @@ jobs:
           run: |
                 git branch -vv
 
-    update_gh_pages_branch:
+    build_documentation:
         runs-on : [Catalan]
         needs: [checkout_repository]
+        steps:
+        - name: Building Anansi's documentation.
+          run: |
+               export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
+               export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
+               export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
+               export PATH="${ANANSI_BIN_DIRECTORY}:${PATH}"
+               export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
+               build_doxygen_documentation.py --publish-mode standard
+
+    update_gh_pages_branch:
+        runs-on : [Catalan]
+        needs: [update_gh_pages_branch]
         steps:
         - name: Check out gh-pages branch
           run: |
@@ -68,19 +81,15 @@ jobs:
         - name: Checking status of branch tracking remotes
           run: |
                 git branch -vv
-
-    build_documentation:
-        runs-on : [Catalan]
-        needs: [update_gh_pages_branch]
-        steps:
-        - name: Building Anansi's documentation.
+        - name: Cleaning out docs directory
           run: |
                export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
-               export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
-               export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
-               export PATH="${ANANSI_BIN_DIRECTORY}:${PATH}"
-               export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
-               git rm -r docs && git commit -a -m "Removed docs directory."
+               cd docs
+               git rm -r -f --ignore-unmatch [a-z]* _*
+               git commit -a -m "Cleaning out docs directory."
+
+
+
 
 #     push_gh_pages_branch_upstream:
 #         runs-on : [Catalan]
