@@ -54,8 +54,8 @@ jobs:
         needs: [checkout_repository]
         steps:
         - name: Building Anansi's documentation.
-          run :
-              export ANANSI_TOP_LEVEL=$(pwd)
+        run : |
+            export ANANSI_TOP_LEVEL=$(pwd)
          
 
 #     merge_documentation_into_gh_pages_branch:
