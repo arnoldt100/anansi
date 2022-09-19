@@ -62,9 +62,12 @@ jobs:
           run: |
                export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
                git checkout gh-pages 
-               git status
-               ls -l ${ANANSI_TOP_LEVEL}/doxygen_documentation/
-               ls -l ${ANANSI_TOP_LEVEL}
+        - name: Checking status of all branches
+          run: |
+                git branch --all
+        - name: Checking status of branch tracking remotes
+          run: |
+                git branch -vv
 
     build_documentation:
         runs-on : [Catalan]
