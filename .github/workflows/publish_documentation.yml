@@ -28,6 +28,7 @@ on:
 env: 
     python_venv_dir: $GITHUB_WORKSPACE/anansi_python_env
     python_version: '3.9'
+    ANANSI_TOP_LEVEL : $GITHUB_WORKSPACE
 
     # Change pip's cache directory to be inside the project directory since we
     # can only cache local items.
@@ -55,7 +56,8 @@ jobs:
         steps:
         - name: Building Anansi's documentation.
           run: |
-                export ANANSI_TOP_LEVEL=$(pwd)
+                echo "ANANSI_TOP_LEVEL=${ANANSI_TOP_LEVEL}"
+                # export ANANSI_TOP_LEVEL=$(pwd)
                 export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
                 export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
                 export PATH="${ANANSI_BIN_DIRECTORY}:${PATH}"
