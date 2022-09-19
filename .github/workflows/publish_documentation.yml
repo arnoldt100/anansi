@@ -94,7 +94,7 @@ jobs:
                git add docs
                git commit -a -m "Restaging files in docs."
 
-    update_gh_pages_branch:
+    push_gh_pages_upstream:
         needs: [update_gh_pages_branch]
         - name: Pushing gh-pages upstream
           uses: ad-m/github-push-action@master
