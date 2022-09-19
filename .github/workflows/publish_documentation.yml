@@ -50,9 +50,20 @@ jobs:
                 git branch --all
                 git branch -vv
 
-    build_documentation:
+    update_gh_pages_branch:
         runs-on : [Catalan]
         needs: [checkout_repository]
+        steps:
+        - name: Check out gh-pages branch
+          run: |
+               export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
+               git checkout gh-pages 
+               git merge main
+               ls -l ${ANANSI_TOP_LEVEL}/doxygen_documentation/html
+
+    build_documentation:
+        runs-on : [Catalan]
+        needs: [update_gh_pages_branch]
         steps:
         - name: Building Anansi's documentation.
           run: |
@@ -61,20 +72,12 @@ jobs:
                export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
                export PATH="${ANANSI_BIN_DIRECTORY}:${PATH}"
                export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python:${PYTHONPATH}"
-               build_doxygen_documentation.py --publish-mode standard
+               git rm -r docs && git commit -a -m "Removed docs directory."
+               build_doxygen_documentation.py --publish-mode github-pages
+               git add docs && git commit -a -m "Readded docs directory."
+               ls -l ${ANANSI_TOP_LEVEL}/docs
 
-
-    merge_documentation_into_gh_pages_branch:
-        runs-on : [Catalan]
-        needs: [build_documentation]
-        steps:
-        - name: Check out gh-pages branch
-          run: |
-               export ANANSI_TOP_LEVEL=${{env.ANANSI_TOP_LEVEL}}
-               git checkout gh-pages 
-               ls -l ${ANANSI_TOP_LEVEL}/doxygen_documentation/html
- 
-#     push_gh_pages_branch_upstream:
+     push_gh_pages_branch_upstream:
 #         runs-on : [Catalan]
 #         needs: [merge_documentation_into_gh_pages_branch]
 #         steps:
