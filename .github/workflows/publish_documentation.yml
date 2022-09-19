@@ -93,6 +93,11 @@ jobs:
                mv doxygen_documentation/html/* docs/
                git add docs
                git commit -a -m "Restaging files in docs."
+        - name: Pushing gh-pages upstream
+          uses: ad-m/github-push-action@master
+          with:
+              branch: gh-pages
+              github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
 
