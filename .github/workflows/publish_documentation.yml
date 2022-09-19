@@ -44,7 +44,7 @@ jobs:
           with: 
               submodules: recursive
         - name: Fetching gh-pages remote branch
-            run: |
+          run: |
                 git fetch origin gh-pages
                 git branch --all
                 git branch -vv
@@ -54,7 +54,7 @@ jobs:
         needs: [checkout_repository]
         steps:
         - name: Building Anansi's documentation.
-            run: |
+          run: |
                 export ANANSI_TOP_LEVEL=$(pwd)
                 export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
                 export ANANSI_BIN_DIRECTORY="${ANANSI_TOP_LEVEL}/bin"
