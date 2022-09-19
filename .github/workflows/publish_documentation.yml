@@ -95,12 +95,14 @@ jobs:
                git commit -a -m "Restaging files in docs."
 
     push_gh_pages_upstream:
+        runs-on : [Catalan]
         needs: [update_gh_pages_branch]
-        - name: Pushing gh-pages upstream
-          uses: ad-m/github-push-action@master
-          with:
-              branch: gh-pages
-              github_token: ${{ secrets.GITHUB_TOKEN }}
+        steps:
+          - name: Pushing gh_pages upstream
+            uses: ad-m/github-push-action@master
+            with:
+                branch: gh-pages
+                github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
 
