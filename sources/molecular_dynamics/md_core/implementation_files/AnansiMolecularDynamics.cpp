@@ -1,7 +1,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-// #include <type_traits>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -358,9 +357,19 @@ void AnansiMolecularDynamics::processCommandLine_()
 void
 AnansiMolecularDynamics::initializeInitialConditions_()
 {
- // :TODO:09/20/2022 01:21:24 PM:: Enable this fuction.
- // Change statte function, call execute, and change state back to
- // Mull state. 
+    // :TODO:09/20/2022 01:21:24 PM:: Enable this fuction.
+    // Change statte function, call execute, and change state back to
+    // Null state. 
+
+    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // state MDInitInitialConditions.
+    this->mdState_ = this->mdInitSimEnv_;
+
+    this->mdState_->execute(this);
+    
+    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // state MDNullSimulationState.
+    this->mdState_ = this->mdNullSimulationState_;
     return;
 }        // -----  end of method AnansiMolecularDynamics::initializeInitialConditions_  -----
 
