@@ -1,5 +1,18 @@
 #ifndef  ANANSI_Simulation_INC
 #define  ANANSI_Simulation_INC
+//! @file Simulation.h
+//!
+//! The file contains the interface for the molecular simulation.
+//!
+//! All molecular simulations perform the following general tasks:
+//!
+//! * Initialize the simulation environment
+//! * Process the command line
+//! * Initialize the initial conditions
+//! * Perform the simulation
+//! * Terminate the simulation
+//!
+//! The class Simulation
 
 
 //--------------------------------------------------------//
@@ -24,6 +37,9 @@ namespace ANANSI
 //        Class:  Simulation
 //  Description:  
 //  =====================================================================================
+//! @class Simulation 
+//!
+//! Provides the interface for the molecular simulation.
 class Simulation : public MPL::BaseVisitable<>
 {
 
@@ -40,6 +56,8 @@ class Simulation : public MPL::BaseVisitable<>
         /* ====================  ACCESSORS     ======================================= */
 
 
+        //! @brief Prints message to std out.
+        //! @param [in] message The message to print to stdout.
         void stud_function(std::string const & message) const;
 
         bool isISEStatusOkay() const;
