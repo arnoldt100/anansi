@@ -12,6 +12,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "DefaultTaskGroup.h"
+#include "ConsoleLogger.h"
 
 namespace ANANSI {
 
@@ -22,14 +23,18 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 DefaultTaskGroup::DefaultTaskGroup() :
-   TaskGroup() 
+   TaskGroup(), 
+    communicator_(nullptr),
+    consoleLogger_(nullptr) 
 {
     return;
 }
 
 
 DefaultTaskGroup::DefaultTaskGroup( DefaultTaskGroup && other) :
-    TaskGroup(std::move(other))
+    TaskGroup(std::move(other)),
+    communicator_(nullptr), 
+    consoleLogger_(nullptr) 
 {
     if (this != &other)
     {
@@ -48,6 +53,13 @@ DefaultTaskGroup::~DefaultTaskGroup()
 
 //============================= MUTATORS =====================================
 
+template <>
+void DefaultTaskGroup::addIngredient(CommunicatorIngredientTraits::type && ingredient)
+{
+    this->communicator_ = std::move(ingredient);
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 DefaultTaskGroup& DefaultTaskGroup::operator= ( DefaultTaskGroup && other )
@@ -55,7 +67,8 @@ DefaultTaskGroup& DefaultTaskGroup::operator= ( DefaultTaskGroup && other )
     if (this != &other)
     {
         TaskGroup::operator=(std::move(other));
-        this->worldCommunicator_ = std::move(other.worldCommunicator_);
+        this->communicator_ = std::move(other.communicator_);
+        this->consoleLogger_ = std::move(other.consoleLogger_);
     }
     return *this;
 } // assignment-move operator
@@ -90,12 +103,16 @@ TaskGroup* DefaultTaskGroup::create()
 
 void DefaultTaskGroup::enable_()
 {
+    // the first task is to enable the logger.
+    this->consoleLogger_ = std::make_shared<ANANSI::ConsoleLogger>();
+    this->consoleLogger_->logMessage("The DefaultTaskGroup console logger is enabled.");
     return;
 }
 
 void DefaultTaskGroup::disable_()
 {
-    this->worldCommunicator_->freeCommunicator();
+    this->consoleLogger_.reset();
+    this->communicator_->freeCommunicator();
     return;
 }
 //============================= OPERATORS ====================================

@@ -1,7 +1,6 @@
 #ifndef  ANANSI_DefaultTaskGroup_INC
 #define  ANANSI_DefaultTaskGroup_INC
 
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -15,8 +14,10 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Communicator.h"
 #include "TaskGroup.h"
+#include "MPLAliases.hpp"
+#include "CommunicatorIngredientTraits.h"
+#include "ConsoleLoggerTraits.h"
 
 namespace ANANSI
 {
@@ -37,10 +38,17 @@ class DefaultTaskGroup final : public TaskGroup
         DefaultTaskGroup (DefaultTaskGroup && other);   // copy-move constructor
 
         ~DefaultTaskGroup ();  // destructor
+        
+        // ====================  ALIASES       =======================================
+        using baseclass = TaskGroup;
+        using NeededIngredients = MPL::mpl_typelist<CommunicatorIngredientTraits::type>;
 
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+
+        template <typename T>
+        void addIngredient(T && ingredient);
 
         // ====================  OPERATORS     =======================================
 
@@ -68,10 +76,13 @@ class DefaultTaskGroup final : public TaskGroup
         void disable_() override;
 
         // ====================  DATA MEMBERS  =======================================
-        std::unique_ptr<COMMUNICATOR::Communicator> worldCommunicator_;
+        std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
+        ConsoleLoggerTraits::type consoleLogger_;
 
 }; // -----  end of class DefaultTaskGroup  -----
 
+template <>
+void DefaultTaskGroup::addIngredient(CommunicatorIngredientTraits::type && ingredient);
 
 }; // namespace ANANSI
 

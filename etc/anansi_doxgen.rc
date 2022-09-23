@@ -836,7 +836,8 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_state/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_state/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation/header_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/task_groups/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/task_groups/implementation_files \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto 
 
 
