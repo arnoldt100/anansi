@@ -93,6 +93,10 @@ def _parse_arguments(publishing_mode_choices,publishing_mode_help ):
 def _run_doxygen_command():
     """Runs the doxygen command to build Anansi's doxygen documentation.
 
+    The command mmust be run at the top-level of the directory
+    doxygen_documentation which is stored in environmental variable
+    "ANANSI_DOXYGEN_RUN_DIRECTORY".
+
     Args:
         No arguments
 
@@ -103,11 +107,12 @@ def _run_doxygen_command():
     import subprocess
     import shlex
 
+    run_dir = os.getenv("ANANSI_DOXYGEN_RUN_DIRECTORY")
     doxygen_binary = "doxygen"
     doxygen_config_file = os.getenv("ANANSI_DOXYGEN_CONFIGURATION")
     command = f"""{doxygen_binary} {doxygen_config_file}"""
     args = shlex.split(command)
-    my_process = subprocess.run(args)
+    my_process = subprocess.run(args,cwd=run_dir)
 
     return
 
