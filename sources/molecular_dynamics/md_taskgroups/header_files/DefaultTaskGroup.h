@@ -76,7 +76,7 @@ class DefaultTaskGroup final : public TaskGroup
         void disable_() override;
 
         // ====================  DATA MEMBERS  =======================================
-        std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
+        CommunicatorIngredientTraits::type communicator_;
         ConsoleLoggerTraits::type consoleLogger_;
 
 }; // -----  end of class DefaultTaskGroup  -----
