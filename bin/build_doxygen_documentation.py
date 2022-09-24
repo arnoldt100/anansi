@@ -8,7 +8,7 @@
 # 
 # where
 # 
-# <publishmode> is the publication mode of the documentation.
+# \<publishmode\> is the publication mode of the documentation.
 # 
 # For a list of available publication modes do
 # 
