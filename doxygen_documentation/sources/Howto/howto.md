@@ -1,5 +1,3 @@
-{#howto}
+# Table of Contents {#howto}
 
-# Table of Contents
-
-* Creating a 
+* Creating a TaskGroup
