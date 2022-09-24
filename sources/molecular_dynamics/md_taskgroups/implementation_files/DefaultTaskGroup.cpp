@@ -23,7 +23,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 DefaultTaskGroup::DefaultTaskGroup() :
-   TaskGroup(), 
+    TaskGroup(), 
     communicator_(nullptr),
     consoleLogger_(nullptr) 
 {
