@@ -37,7 +37,7 @@ class TasksGroup
             return;
         }
 
-        TasksGroup (const TasksGroup & other)=0;   // copy constructor
+        TasksGroup (const TasksGroup & other)=delete;   // copy constructor
 
         TasksGroup (TasksGroup && other)   // copy-move constructor
         {
@@ -56,7 +56,7 @@ class TasksGroup
 
         // ====================  OPERATORS     =======================================
 
-        TasksGroup& operator= ( const TasksGroup &other )=0; // assignment operator
+        TasksGroup& operator= ( const TasksGroup &other )=delete; // assignment operator
 
         TasksGroup& operator= ( TasksGroup && other ) // assignment-move operator
         {
@@ -75,14 +75,31 @@ class TasksGroup
 
     private:
         // ====================  METHODS       =======================================
+
+        // ====================  ACCESSORS     =======================================
+
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to a constant CRTP derived class "Derived".
+        Derived const & asDerived() const
+        {
+            return *static_cast<Derived const*>(this);
+        }
+
+        // ====================  MUTATORS      =======================================
+        
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to the CRTP derived class.
         Derived& asDerived()
         {
             return *static_cast<Derived*>(this);
         }
 
-        Derived const & asDerived() const
+        friend void enable()
         {
-            return *static_cast<Derived const*>(this);
+            return;
+
         }
 
         // ====================  DATA MEMBERS  =======================================
