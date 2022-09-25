@@ -1,18 +1,19 @@
-#ifndef  ANANSI_TaskGroup_INC
-#define  ANANSI_TaskGroup_INC
-//! @file TaskGroup.h
+#ifndef  ANANSI_TasksGroup_INC
+#define  ANANSI_TasksGroup_INC
+//! @file TasksGroup.hpp
 //!
 //! The file contains the interface for the task groups.
-//!
-//! All Anansi's task groups use class TaskGroup as the base class.
-//! This class and all derived classes can't be copied or assigned, but
-//! move-assignments or move-copies are permitted.
+//! 
+//! All Anansi's task groups use class TaskGroup as the base class.  This class and
+//! all derived classes can't be copied or assigned, but move-assignments or
+//! move-copies are permitted.
+//! 
+//! TaskGroup and its derived classes use "The Curiously Recurring Template
+//! Pattern" (CRTP) to achieve inheritance.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <memory>
-#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -25,41 +26,47 @@
 namespace ANANSI
 {
 
-class TaskGroup
+template<typename Derived>
+class TasksGroup
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  TaskGroup
-        //      Method:  TaskGroup :: TaskGroup
-        // Description:  
-        // 
-        //  Parameters: 
-        //
-        //      Return:
-        //--------------------------------------------------------------------------------------
-        TaskGroup();   // constructor
+        TasksGroup ()   // constructor
+        {
+            return;
+        }
 
-        TaskGroup(const TaskGroup & other) = delete; // copy constructor
+        TasksGroup (const TasksGroup & other)=0;   // copy constructor
 
-        TaskGroup(TaskGroup && other); // copy-move constructor
+        TasksGroup (TasksGroup && other)   // copy-move constructor
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }		// -----  end of method TasksGroup::TasksGroup  -----
 
-        virtual ~TaskGroup()=0;  // destructor
+        virtual ~TasksGroup ()=0; // destructor
 
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
 
-        void enable();
-
-        void disable();
-
         // ====================  OPERATORS     =======================================
 
-        TaskGroup& operator=( const TaskGroup &other ) = delete; // assignment operator
+        TasksGroup& operator= ( const TasksGroup &other )=0; // assignment operator
 
-        TaskGroup& operator=( TaskGroup && other ); // assignment-move operator
+        TasksGroup& operator= ( TasksGroup && other ) // assignment-move operator
+        {
+            if (this != &other)
+            {
+        
+            }
+            return *this;
+        } // assignment-move operator
+
 
     protected:
         // ====================  METHODS       =======================================
@@ -68,18 +75,18 @@ class TaskGroup
 
     private:
         // ====================  METHODS       =======================================
-        
-        // ====================  MUTATORS      =======================================
-        virtual void enable_()=0;
-
-        virtual void disable_()=0;
-
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class TaskGroup  -----
+}; // -----  end of class TasksGroup  -----
+
+template<typename Derived>
+TasksGroup<Derived>::~TasksGroup()  // destructor
+{
+    return;
+}
 
 
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef ANANSI_TaskGroup_INC  ----- */
+#endif   // ----- #ifndef ANANSI_TasksGroup_INC  ----- 
