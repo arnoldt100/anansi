@@ -53,6 +53,20 @@ class TasksGroup
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        
+        //! Enables the task group.
+        void enable()
+        {
+            asDerived().enableTaskGroup();
+            return;
+        }
+
+        //! Disables the task group.
+        void disable()
+        {
+            asDerived().disenableTaskGroup();
+            return;
+        }
 
         // ====================  OPERATORS     =======================================
 
@@ -96,11 +110,6 @@ class TasksGroup
             return *static_cast<Derived*>(this);
         }
 
-        friend void enable()
-        {
-            return;
-
-        }
 
         // ====================  DATA MEMBERS  =======================================
 

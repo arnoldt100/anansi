@@ -36,7 +36,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     worldTaskGroup_(),
-    worldTasksGroup_(),
+    worldTasksGroup_(nullptr),
     mdState_(),
     mdNullSimulationState_(),
     mdInitSimEnv_(),
@@ -70,7 +70,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     worldTaskGroup_(),
-    worldTasksGroup_(),
+    worldTasksGroup_(nullptr),
     mdState_(),
     mdNullSimulationState_(),
     mdInitSimEnv_(),
@@ -176,6 +176,8 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
 
     my_conv_functions.enableTaskGroup(this->worldTaskGroup_);
 
+    this->worldTasksGroup_ = std::make_shared<DefaultTasksGroup>();
+    this->worldTasksGroup_->enable();
     return;
 }
 

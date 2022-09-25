@@ -43,6 +43,10 @@ class DefaultTasksGroup final : public TasksGroup<DefaultTasksGroup>
 
         // ====================  MUTATORS      =======================================
 
+        void enableTaskGroup();
+
+        void disableTaskGroup();
+
         // ====================  OPERATORS     =======================================
 
         DefaultTasksGroup& operator= ( const DefaultTasksGroup &other )=delete; // assignment operator
@@ -62,10 +66,6 @@ class DefaultTasksGroup final : public TasksGroup<DefaultTasksGroup>
         // ====================  METHODS       =======================================
 
         // ====================  MUTATORS      =======================================
-
-        void enable_();
-
-        void disable_();
 
         // ====================  DATA MEMBERS  =======================================
         CommunicatorIngredientTraits::type communicator_;

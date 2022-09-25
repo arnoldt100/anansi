@@ -53,6 +53,20 @@ DefaultTasksGroup::~DefaultTasksGroup()
 
 //============================= MUTATORS =====================================
 
+void DefaultTasksGroup::enableTaskGroup()
+{
+    // the first task is to enable the logger.
+    this->consoleLogger_ = std::make_shared<ANANSI::ConsoleLogger>();
+    this->consoleLogger_->logMessage("The DefaultTasksGroup console logger is enabled.");
+    return;
+}
+
+void DefaultTasksGroup::disableTaskGroup()
+{
+    this->consoleLogger_.reset();
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 DefaultTasksGroup& DefaultTasksGroup::operator= ( DefaultTasksGroup && other )
@@ -89,21 +103,6 @@ DefaultTasksGroup& DefaultTasksGroup::operator= ( DefaultTasksGroup && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-
-void DefaultTasksGroup::enable_()
-{
-    // the first task is to enable the logger.
-    this->consoleLogger_ = std::make_shared<ANANSI::ConsoleLogger>();
-    this->consoleLogger_->logMessage("The DefaultTasksGroup console logger is enabled.");
-    return;
-}
-
-void DefaultTasksGroup::disable_()
-{
-    this->consoleLogger_.reset();
-    this->communicator_->freeCommunicator();
-    return;
-}
 
 //============================= OPERATORS ====================================
 
