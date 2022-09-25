@@ -75,6 +75,15 @@ class TasksGroup
 
     private:
         // ====================  METHODS       =======================================
+        Derived& asDerived()
+        {
+            return *static_cast<Derived*>(this);
+        }
+
+        Derived const & asDerived() const
+        {
+            return *static_cast<Derived const*>(this);
+        }
 
         // ====================  DATA MEMBERS  =======================================
 
