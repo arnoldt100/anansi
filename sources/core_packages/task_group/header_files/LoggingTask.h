@@ -1,14 +1,8 @@
-#ifndef  ANANSI_AnansiTask_INC
-#define  ANANSI_AnansiTask_INC
-
-//! @file AnansiTask.h
+#ifndef ANANSI_LoggingTask_INC
+#define ANANSI_LoggingTask_INC
+//! @file LoggingTask.h
 //!
-//! The base class for the tasks in Anansi.
-//
-//! This class is needed for the Abstract Factory Pattern as 
-//! descriped in *Modern C++ design: Generic Programming and Design Patterns
-//! Applied* by Andrei Alexandrescu.
-
+//! The base class for the logging tasks. 
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -21,26 +15,23 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTask.h"
 
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  AnansiTask
-//  Description:  
-//  =====================================================================================
-class AnansiTask
+class LoggingTask : public AnansiTask
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        AnansiTask ();   // constructor
+        LoggingTask ();   // constructor
 
-        AnansiTask (const AnansiTask & other);   // copy constructor
+        LoggingTask (const LoggingTask & other);   // copy constructor
 
-        AnansiTask (AnansiTask && other);   // copy-move constructor
+        LoggingTask (LoggingTask && other);   // copy-move constructor
 
-        virtual ~AnansiTask ()=0;  // destructor
+        virtual ~LoggingTask ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -48,9 +39,9 @@ class AnansiTask
 
         // ====================  OPERATORS     =======================================
 
-        AnansiTask& operator= ( const AnansiTask &other ); // assignment operator
+        LoggingTask& operator= ( const LoggingTask &other ); // assignment operator
 
-        AnansiTask& operator= ( AnansiTask && other ); // assignment-move operator
+        LoggingTask& operator= ( LoggingTask && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -62,9 +53,9 @@ class AnansiTask
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class AnansiTask  -----
+}; // -----  end of class LoggingTask  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_AnansiTask_INC  ----- 
+#endif // ANANSI_LoggingTask_INC
