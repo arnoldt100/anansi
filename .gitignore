@@ -39,7 +39,7 @@
 
 # Ignore the documentation build directory.
 documentation/build
-documentation/html
+documentation/doxygen/html
 doxygen_documentation/html
 
 # Ignore the CMake build directory.
