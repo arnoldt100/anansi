@@ -51,7 +51,7 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include )
+    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_task_group_include task_group task_group_include )
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
@@ -84,6 +84,7 @@
          header_files/MDTaskGroupTraits.h
          header_files/ForLoopTransferIngredients.hpp
          header_files/MDTaskGroupFactory.hpp
+         header_files/MDAnansiTaskFactory.h
          header_files/DefaultTaskGroup.h
          header_files/DefaultTasksGroup.hpp
          header_files/ConsoleLoggingTask.h
@@ -102,6 +103,7 @@
          implementation_files/MDTaskGroupTraits.cpp
          implementation_files/ForLoopTransferIngredients.cpp
          implementation_files/MDTaskGroupFactory.cpp
+         implementation_files/MDAnansiTaskFactory.cpp
          implementation_files/DefaultTaskGroup.cpp
          implementation_files/DefaultTasksGroup.cpp
          implementation_files/ConsoleLoggingTask.cpp
@@ -146,7 +148,7 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
                            PRIVATE ${my_command_line_include_dir}
-                           PRIVATE ${my_generic_object_factory_include}
+                           PRIVATE ${my_generic_abstract_factory_include}
                            PRIVATE ${my_task_group_include} 
                            PRIVATE ${my_foreach_loop_include} 
                            PRIVATE ${my_typelist_aliases_include} ) 
@@ -156,10 +158,10 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC generic_object_factory
                       PUBLIC task_group 
                       PUBLIC typelist_aliases
                       PUBLIC command_line_arguments
+                      PUBLIC generic_abstract_factory
                       PUBLIC generic_foreach_loop )
 
 

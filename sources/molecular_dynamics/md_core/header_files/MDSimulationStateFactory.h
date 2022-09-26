@@ -1,6 +1,8 @@
 #ifndef ANANSI_MDSimulationStateFactory_INC
 #define ANANSI_MDSimulationStateFactory_INC
 
+
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -27,24 +29,11 @@
 namespace ANANSI
 {
 
-     // =====================================================================================
-     //        Class:  MDSimulationStateFactory
-     //  Description:  
-     //  =====================================================================================
     class MDSimulationStateFactory final
     {
         public:
             // ====================  LIFECYCLE     =======================================
 
-            //--------------------------------------------------------------------------------------
-            //       Class:  MDSimulationStateFactory
-            //      Method:  MDSimulationStateFactory :: MDSimulationStateFactory
-            // Description:  
-            // 
-            //  Parameters: 
-            //
-            //      Return:
-            //--------------------------------------------------------------------------------------
             MDSimulationStateFactory ();   // constructor
 
             MDSimulationStateFactory (const MDSimulationStateFactory & other);   // deleted copy constructor
@@ -110,8 +99,6 @@ namespace ANANSI
             template <typename T>
             static constexpr std::size_t findIndex_()
             {
-                // using nm_elements = MPL::mpl_size<abstract_products_>; 
-
                 using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
                                                     MPL::mpl_size<abstract_products_>::value>;
 

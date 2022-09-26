@@ -30,6 +30,7 @@
 #include "MDTaskGroupTraits.h"
 #include "MDTaskGroupFactory.hpp"
 #include "TaskGroup.h"
+#include "AnansiTask.h"
 #include "DefaultTasksGroup.hpp"
 
 namespace ANANSI {
@@ -137,7 +138,7 @@ class AnansiMolecularDynamics final : public Simulation
         std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
         std::unique_ptr<ANANSI::MPIEnvironment> MpiEnvironment_;
         std::shared_ptr<ANANSI::TaskGroup> worldTaskGroup_;
-        std::shared_ptr<ANANSI::TasksGroup<DefaultTasksGroup>> worldTasksGroup_;
+        std::shared_ptr<ANANSI::AnansiTask> consoleLogger_;
 
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;

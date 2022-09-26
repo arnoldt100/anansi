@@ -17,6 +17,7 @@
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
+#include "MDAnansiTaskFactory.h"
 #include "WorldTaskGroupConvenienceFunctions.h"
 #include "WorldTaskGroupIngredients.h"
 
@@ -36,7 +37,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     worldTaskGroup_(),
-    worldTasksGroup_(nullptr),
+    consoleLogger_(nullptr),
     mdState_(),
     mdNullSimulationState_(),
     mdInitSimEnv_(),
@@ -70,7 +71,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     worldTaskGroup_(),
-    worldTasksGroup_(nullptr),
+    consoleLogger_(nullptr),
     mdState_(),
     mdNullSimulationState_(),
     mdInitSimEnv_(),
@@ -176,8 +177,9 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
 
     my_conv_functions.enableTaskGroup(this->worldTaskGroup_);
 
-    this->worldTasksGroup_ = std::make_shared<DefaultTasksGroup>();
-    this->worldTasksGroup_->enable();
+    // :TODO:09/26/2022 04:16:24 PM:: Rework this for AnansiTask. 
+    // this->consoleLogger_ = std::make_shared<DefaultTasksGroup>();
+    // this->consoleLogger_->enable();
     return;
 }
 
