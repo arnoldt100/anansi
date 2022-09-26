@@ -137,7 +137,6 @@ class AnansiMolecularDynamics final : public Simulation
         std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
         std::unique_ptr<ANANSI::MPIEnvironment> MpiEnvironment_;
         std::shared_ptr<ANANSI::TaskGroup> worldTaskGroup_;
-        // ANANSI::TasksGroup<DefaultTasksGroup>* worldTasksGroup_;
         std::shared_ptr<ANANSI::TasksGroup<DefaultTasksGroup>> worldTasksGroup_;
 
         // These are the state objects for the MD simulation.
