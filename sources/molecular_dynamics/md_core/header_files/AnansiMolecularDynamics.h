@@ -66,8 +66,8 @@ class AnansiMolecularDynamics final : public Simulation
         void enableWorldCommunicator();
         void disableWorldCommunicator();
 
-        void enableWorldTaskGroup();
-        void disableWorldTaskGroup();
+        void enableConsoleLogger();
+        void disableConsoleLogger();
 
         void saveCommandLineOptionParameters();
 

@@ -162,7 +162,7 @@ AnansiMolecularDynamics::disableWorldCommunicator()
     return;
 }
 
-void AnansiMolecularDynamics::enableWorldTaskGroup()
+void AnansiMolecularDynamics::enableConsoleLogger()
 {
     std::unique_ptr<WorldTaskGroupIngredients> world_taskgroup_ingredients(
             new ANANSI::WorldTaskGroupIngredients(this->commandLineArguments_,this->MpiWorldCommunicator_));
@@ -187,7 +187,7 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
 }
 
 void
-AnansiMolecularDynamics::disableWorldTaskGroup()
+AnansiMolecularDynamics::disableConsoleLogger()
 {
     WorldTaskGroupConvenienceFunctions my_conv_functions;
     my_conv_functions.disableTaskGroup(this->worldTaskGroup_);
@@ -200,6 +200,9 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
     this->simulationParameters_ = SimulationParametersFactory::create(this->commandLineArguments_);
     return;
 }      /* -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- */
+
+
+
 
 
 void

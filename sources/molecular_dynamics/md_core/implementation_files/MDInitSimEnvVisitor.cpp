@@ -49,8 +49,9 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
     a_sim.enableCommunicationEnvironment();
     a_sim.enableWorldCommunicator();
 
-    // Initialize the world task group.
-    a_sim.enableWorldTaskGroup();
+    // Enable the console logger.
+    a_sim.enableConsoleLogger();
+
 
     return;
 }
