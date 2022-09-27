@@ -33,18 +33,18 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     Simulation(),
     commandLineArguments_(),
     simulationParameters_(),
-    MpiWorldCommunicator_(),
-    MpiEnvironment_(),
-    worldTaskGroup_(),
+    MpiWorldCommunicator_(nullptr),
+    MpiEnvironment_(nullptr),
+    worldTaskGroup_(nullptr),
     consoleLogger_(nullptr),
-    mdState_(),
-    mdNullSimulationState_(),
-    mdInitSimEnv_(),
-    mdProcessCmdLine_(),
-    mdInitInitialConditions_(),
-    mdPerformSimulation_(),
-    mdTerminateSimulation_(),
-    taskGroupFactory_(),
+    mdState_(nullptr),
+    mdNullSimulationState_(nullptr),
+    mdInitSimEnv_(nullptr),
+    mdProcessCmdLine_(nullptr),
+    mdInitInitialConditions_(nullptr),
+    mdPerformSimulation_(nullptr),
+    mdTerminateSimulation_(nullptr),
+    taskGroupFactory_(nullptr),
     mdAnansiTaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
@@ -68,18 +68,19 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     Simulation(),
     commandLineArguments_(COMMANDLINE::CommandLineArguments(argc,argv)),
     simulationParameters_(),
-    MpiWorldCommunicator_(),
-    MpiEnvironment_(),
-    worldTaskGroup_(),
+    MpiWorldCommunicator_(nullptr),
+    MpiEnvironment_(nullptr),
+    worldTaskGroup_(nullptr),
     consoleLogger_(nullptr),
-    mdState_(),
-    mdNullSimulationState_(),
-    mdInitSimEnv_(),
-    mdProcessCmdLine_(),
-    mdInitInitialConditions_(),
-    mdPerformSimulation_(),
-    mdTerminateSimulation_(),
+    mdState_(nullptr),
+    mdNullSimulationState_(nullptr),
+    mdInitSimEnv_(nullptr),
+    mdProcessCmdLine_(nullptr),
+    mdInitInitialConditions_(nullptr),
+    mdPerformSimulation_(nullptr),
+    mdTerminateSimulation_(nullptr),
     taskGroupFactory_(nullptr),
+    mdAnansiTaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -99,6 +100,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     // Initialize the WorldTaskGroup.
     this->worldTaskGroup_ = 
         this->taskGroupFactory_->buildTaskGroupSharedPtr<WorldTaskGroup>();
+
+    this->consoleLogger_ = this->mdAnansiTaskFactory_->create_shared_ptr<LoggingTask>();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -179,7 +182,6 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
     my_conv_functions.enableTaskGroup(this->worldTaskGroup_);
 
     // :TODO:09/26/2022 04:16:24 PM:: Rework this for AnansiTask. 
-    // this->consoleLogger_ = std::make_shared<DefaultTasksGroup>();
     // this->consoleLogger_->enable();
     return;
 }

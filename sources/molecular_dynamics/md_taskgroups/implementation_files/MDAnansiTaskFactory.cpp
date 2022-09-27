@@ -19,12 +19,15 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDAnansiTaskFactory::MDAnansiTaskFactory() 
+MDAnansiTaskFactory::MDAnansiTaskFactory() : 
+    mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
+
 {
     return;
 }
 
-MDAnansiTaskFactory::MDAnansiTaskFactory( MDAnansiTaskFactory const & other)
+MDAnansiTaskFactory::MDAnansiTaskFactory( MDAnansiTaskFactory const & other) :
+    mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
 {
     if (this != &other)
     {
@@ -67,7 +70,7 @@ MDAnansiTaskFactory& MDAnansiTaskFactory::operator= ( MDAnansiTaskFactory && oth
 {
     if (this != &other)
     {
-
+        mdAnansiTaskFactory_ = std::move(other.mdAnansiTaskFactory_);
     }
     return *this;
 } // assignment-move operator
