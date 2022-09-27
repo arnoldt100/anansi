@@ -17,7 +17,6 @@
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
-#include "MDAnansiTaskFactory.h"
 #include "WorldTaskGroupConvenienceFunctions.h"
 #include "WorldTaskGroupIngredients.h"
 
@@ -46,6 +45,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdPerformSimulation_(),
     mdTerminateSimulation_(),
     taskGroupFactory_(),
+    mdAnansiTaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -79,7 +79,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdInitInitialConditions_(),
     mdPerformSimulation_(),
     mdTerminateSimulation_(),
-    taskGroupFactory_(),
+    taskGroupFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -94,6 +94,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
 
     // Initialize all factories.
     this->taskGroupFactory_ = std::make_shared<MDTaskGroupFactory<>>();
+    this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory>();
 
     // Initialize the WorldTaskGroup.
     this->worldTaskGroup_ = 
