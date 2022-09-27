@@ -1,10 +1,14 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
-//! @file __filename__
+#ifndef  ANANSI_AnansiTask_INC
+#define  ANANSI_AnansiTask_INC
+
+//! @file AnansiTask.h
 //!
-//! Brief description
-//!
-//! Detailed description
+//! The base class for the tasks in Anansi.
+//
+//! This class is needed for the Abstract Factory Pattern as 
+//! descriped in *Modern C++ design: Generic Programming and Design Patterns
+//! Applied* by Andrei Alexandrescu.
+
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -18,25 +22,25 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  __classname__
+//        Class:  AnansiTask
 //  Description:  
 //  =====================================================================================
-class __classname__
+class AnansiTask
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ ();   // constructor
+        AnansiTask ();   // constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        AnansiTask (const AnansiTask & other);   // copy constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        AnansiTask (AnansiTask && other);   // copy-move constructor
 
-        virtual ~__classname__ ();  // destructor
+        virtual ~AnansiTask ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +48,9 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        AnansiTask& operator= ( const AnansiTask &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        AnansiTask& operator= ( AnansiTask && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -58,9 +62,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class AnansiTask  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif   // ----- #ifndef ANANSI_AnansiTask_INC  ----- 

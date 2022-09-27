@@ -1,5 +1,5 @@
-#ifndef  ANANSI_DefaultTaskGroup_INC
-#define  ANANSI_DefaultTaskGroup_INC
+#ifndef  ANANSI_DefaultTasksGroup_INC
+#define  ANANSI_DefaultTasksGroup_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -14,7 +14,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "TaskGroup.h"
+#include "TasksGroup.hpp"
 #include "MPLAliases.hpp"
 #include "CommunicatorIngredientTraits.h"
 #include "ConsoleLoggerTraits.h"
@@ -22,42 +22,38 @@
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  DefaultTaskGroup
-//  Description:  
-//  =====================================================================================
-class DefaultTaskGroup final : public TaskGroup
+class DefaultTasksGroup final : public TasksGroup<DefaultTasksGroup>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        DefaultTaskGroup ();   // constructor
+        DefaultTasksGroup ();   // constructor
 
-        DefaultTaskGroup (const DefaultTaskGroup & other)=delete;   // copy constructor
+        DefaultTasksGroup (const DefaultTasksGroup & other)=delete;   // copy constructor
 
-        DefaultTaskGroup (DefaultTaskGroup && other);   // copy-move constructor
+        DefaultTasksGroup (DefaultTasksGroup && other);   // copy-move constructor
 
-        ~DefaultTaskGroup ();  // destructor
+        ~DefaultTasksGroup ();  // destructor
         
         // ====================  ALIASES       =======================================
-        using baseclass = TaskGroup;
+        using baseclass = TasksGroup;
         using NeededIngredients = MPL::mpl_typelist<CommunicatorIngredientTraits::type>;
 
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
 
-        template <typename T>
-        void addIngredient(T && ingredient);
+        void enableTaskGroup();
+
+        void disableTaskGroup();
 
         // ====================  OPERATORS     =======================================
 
-        DefaultTaskGroup& operator= ( const DefaultTaskGroup &other )=delete; // assignment operator
+        DefaultTasksGroup& operator= ( const DefaultTasksGroup &other )=delete; // assignment operator
 
-        DefaultTaskGroup& operator= ( DefaultTaskGroup && other ); // assignment-move operator
+        DefaultTasksGroup& operator= ( DefaultTasksGroup && other ); // assignment-move operator
 
         // ====================  STATIC METHODS ======================================
-        static TaskGroup* create();
 
         // ====================  DATA MEMBERS  =======================================
 
@@ -71,19 +67,12 @@ class DefaultTaskGroup final : public TaskGroup
 
         // ====================  MUTATORS      =======================================
 
-        void enable_() override;
-
-        void disable_() override;
-
         // ====================  DATA MEMBERS  =======================================
         CommunicatorIngredientTraits::type communicator_;
         ConsoleLoggerTraits::type consoleLogger_;
 
-}; // -----  end of class DefaultTaskGroup  -----
-
-template <>
-void DefaultTaskGroup::addIngredient(CommunicatorIngredientTraits::type && ingredient);
+}; // -----  end of class DefaultTasksGroup  -----
 
 }; // namespace ANANSI
 
-#endif   /* ----- #ifndef ANANSI_DefaultTaskGroup_INC  ----- */
+#endif   /* ----- #ifndef ANANSI_DefaultTasksGroup_INC  ----- */

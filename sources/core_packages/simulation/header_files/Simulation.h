@@ -33,10 +33,6 @@
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  Simulation
-//  Description:  
-//  =====================================================================================
 //! @class Simulation 
 //!
 //! Provides the interface for the molecular simulation.

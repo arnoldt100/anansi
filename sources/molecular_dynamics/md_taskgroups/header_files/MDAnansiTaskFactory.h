@@ -1,10 +1,8 @@
 #ifndef __filepreprocessordefine__
 #define __filepreprocessordefine__
-//! @file __filename__
+//! @file MDAnansiTaskFactory.h
 //!
-//! Brief description
-//!
-//! Detailed description
+//! This files implements the Anansi task factory.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,26 +15,26 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ConsoleLoggingTask.h"
+#include "MPLAliases.hpp"
+#include "AbstractFactory.hpp"
+#include "ConcreteFactory.hpp"
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  __classname__
-//  Description:  
-//  =====================================================================================
-class __classname__
+class MDAnansiTaskFactory final
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ ();   // constructor
+        MDAnansiTaskFactory ();   // constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        MDAnansiTaskFactory (const MDAnansiTaskFactory & other);   // copy constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        MDAnansiTaskFactory (MDAnansiTaskFactory && other);   // copy-move constructor
 
-        virtual ~__classname__ ();  // destructor
+        ~MDAnansiTaskFactory ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +42,9 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        MDAnansiTaskFactory& operator= ( const MDAnansiTaskFactory &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        MDAnansiTaskFactory& operator= ( MDAnansiTaskFactory && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -58,9 +56,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class MDAnansiTaskFactory  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
 #endif // __filepreprocessordefine__

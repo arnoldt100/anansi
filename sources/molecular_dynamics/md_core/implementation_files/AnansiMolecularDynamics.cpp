@@ -17,6 +17,7 @@
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
+#include "MDAnansiTaskFactory.h"
 #include "WorldTaskGroupConvenienceFunctions.h"
 #include "WorldTaskGroupIngredients.h"
 
@@ -36,6 +37,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     worldTaskGroup_(),
+    consoleLogger_(nullptr),
     mdState_(),
     mdNullSimulationState_(),
     mdInitSimEnv_(),
@@ -69,6 +71,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(),
     MpiEnvironment_(),
     worldTaskGroup_(),
+    consoleLogger_(nullptr),
     mdState_(),
     mdNullSimulationState_(),
     mdInitSimEnv_(),
@@ -92,7 +95,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     // Initialize all factories.
     this->taskGroupFactory_ = std::make_shared<MDTaskGroupFactory<>>();
 
-    // Intialize the WorldTaskGroup.
+    // Initialize the WorldTaskGroup.
     this->worldTaskGroup_ = 
         this->taskGroupFactory_->buildTaskGroupSharedPtr<WorldTaskGroup>();
 
@@ -174,6 +177,9 @@ void AnansiMolecularDynamics::enableWorldTaskGroup()
 
     my_conv_functions.enableTaskGroup(this->worldTaskGroup_);
 
+    // :TODO:09/26/2022 04:16:24 PM:: Rework this for AnansiTask. 
+    // this->consoleLogger_ = std::make_shared<DefaultTasksGroup>();
+    // this->consoleLogger_->enable();
     return;
 }
 
@@ -196,19 +202,13 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 void
 AnansiMolecularDynamics::readSimulationControlFile ()
 {
-    // Initialize the variable "my_status" to failed. The variable will track the status of reading
-    // in the simulation control file. At the end of this method, we will set the status of the md
-    // simulation to "my_status".
-    auto my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-
     // The control file option is mandatory. If the option is not present, then we set the MD status
     // as "COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
     // Otherwise we process/parse the control file.
     const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
+
     if (file_name == SimulationParameters::OPTION_NOT_FOUND )
     {
-        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-        this->setStatus(my_status);
         return;
     }
 
@@ -221,18 +221,7 @@ AnansiMolecularDynamics::readSimulationControlFile ()
                                                                           file_name,
                                                                           std::move(a_communicator));
 
-    // Read the control file.
-    try 
-    {
-        control_file->readFile();
-        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
-    }
-    catch ( const std::exception & my_error ) 
-    {
-        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-    }
-
-    this->setStatus(my_status);
+    control_file->readFile();
 
     return;
 }   /* -----  end of method AnansiMolecularDynamics::readSimulationControlFile_  ----- */
@@ -363,7 +352,7 @@ AnansiMolecularDynamics::initializeInitialConditions_()
 
     // Change the state of "this", a AnansiMolecularDynamics object, to 
     // state MDInitInitialConditions.
-    this->mdState_ = this->mdInitSimEnv_;
+    this->mdState_ = this->mdInitInitialConditions_;
 
     this->mdState_->execute(this);
     

@@ -1,10 +1,8 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
-//! @file __filename__
+#ifndef ANANSI_LoggingTask_INC
+#define ANANSI_LoggingTask_INC
+//! @file LoggingTask.h
 //!
-//! Brief description
-//!
-//! Detailed description
+//! The base class for the logging tasks. 
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,26 +15,23 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTask.h"
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  __classname__
-//  Description:  
-//  =====================================================================================
-class __classname__
+class LoggingTask : public AnansiTask
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ ();   // constructor
+        LoggingTask ();   // constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        LoggingTask (const LoggingTask & other);   // copy constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        LoggingTask (LoggingTask && other);   // copy-move constructor
 
-        virtual ~__classname__ ();  // destructor
+        virtual ~LoggingTask ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +39,9 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        LoggingTask& operator= ( const LoggingTask &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        LoggingTask& operator= ( LoggingTask && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -58,9 +53,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class LoggingTask  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif // ANANSI_LoggingTask_INC

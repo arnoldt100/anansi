@@ -11,7 +11,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorldTaskGroup.h"
+#include "DefaultTasksGroup.hpp"
 #include "ConsoleLogger.h"
 
 namespace ANANSI {
@@ -22,20 +22,18 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-WorldTaskGroup::WorldTaskGroup() :
-    TaskGroup(),
-    commandLineArguments_(),
-    worldCommunicator_(nullptr),
+DefaultTasksGroup::DefaultTasksGroup() :
+    TasksGroup(), 
+    communicator_(nullptr),
     consoleLogger_(nullptr) 
 {
     return;
 }
 
 
-WorldTaskGroup::WorldTaskGroup( WorldTaskGroup && other) :
-    TaskGroup(std::move(other)),
-    commandLineArguments_(),
-    worldCommunicator_(nullptr), 
+DefaultTasksGroup::DefaultTasksGroup( DefaultTasksGroup && other) :
+    TasksGroup(std::move(other)),
+    communicator_(nullptr), 
     consoleLogger_(nullptr) 
 {
     if (this != &other)
@@ -43,10 +41,10 @@ WorldTaskGroup::WorldTaskGroup( WorldTaskGroup && other) :
         *this = std::move(other);
     }
     return;
-}		// -----  end of method WorldTaskGroup::WorldTaskGroup  -----
+}		// -----  end of method DefaultTasksGroup::DefaultTasksGroup  -----
 
 
-WorldTaskGroup::~WorldTaskGroup()
+DefaultTasksGroup::~DefaultTasksGroup()
 {
     return;
 }
@@ -55,38 +53,34 @@ WorldTaskGroup::~WorldTaskGroup()
 
 //============================= MUTATORS =====================================
 
-template <>
-void WorldTaskGroup::addIngredient(WorldCommunicatorIngredientTraits::type && ingredient)
+void DefaultTasksGroup::enableTaskGroup()
 {
-    this->worldCommunicator_ = std::move(ingredient);
+    // the first task is to enable the logger.
+    this->consoleLogger_ = std::make_shared<ANANSI::ConsoleLogger>();
+    this->consoleLogger_->logMessage("The DefaultTasksGroup console logger is enabled.");
     return;
 }
 
-template <>
-void WorldTaskGroup::addIngredient(CommandLineArgumentsIngredientTraits::type && ingredient)
+void DefaultTasksGroup::disableTaskGroup()
 {
-    this->commandLineArguments_ = std::move(ingredient);
+    this->consoleLogger_.reset();
     return;
 }
+
 //============================= OPERATORS ====================================
 
-WorldTaskGroup& WorldTaskGroup::operator= ( WorldTaskGroup && other )
+DefaultTasksGroup& DefaultTasksGroup::operator= ( DefaultTasksGroup && other )
 {
     if (this != &other)
     {
-        TaskGroup::operator=(std::move(other));
-        this->commandLineArguments_ = std::move(other.commandLineArguments_);
-        this->worldCommunicator_ = std::move(other.worldCommunicator_);
+        TasksGroup::operator=(std::move(other));
+        this->communicator_ = std::move(other.communicator_);
         this->consoleLogger_ = std::move(other.consoleLogger_);
     }
     return *this;
 } // assignment-move operator
 
 //============================= STATIC METHODS ===============================
-TaskGroup* WorldTaskGroup::create()
-{
-    return new WorldTaskGroup;
-}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -109,22 +103,6 @@ TaskGroup* WorldTaskGroup::create()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-
-void WorldTaskGroup::enable_()
-{
-    // the first task is to enable the logger.
-    this->consoleLogger_ = std::make_shared<ANANSI::ConsoleLogger>();
-    this->consoleLogger_->logMessage("The WorldTaskGroup console logger is enabled.");
-    return;
-}
-
-void WorldTaskGroup::disable_()
-{
-    this->consoleLogger_.reset();
-    this->worldCommunicator_->freeCommunicator();
-    this->commandLineArguments_.reset();
-    return;
-}
 
 //============================= OPERATORS ====================================
 

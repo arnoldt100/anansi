@@ -1,5 +1,12 @@
 #ifndef  ANANSI_TaskGroup_INC
 #define  ANANSI_TaskGroup_INC
+//! @file TaskGroup.h
+//!
+//! The file contains the interface for the task groups.
+//!
+//! All Anansi's task groups use class TaskGroup as the base class.
+//! This class and all derived classes can't be copied or assigned, but
+//! move-assignments or move-copies are permitted.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -14,15 +21,10 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Communicator.h"
 
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  TaskGroup
-//  Description:  
-//  =====================================================================================
 class TaskGroup
 {
     public:

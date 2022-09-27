@@ -39,6 +39,8 @@
 
 # Ignore the documentation build directory.
 documentation/build
+documentation/doxygen/html
+doxygen_documentation/html
 
 # Ignore the CMake build directory.
 anansi_cmake_build_dir/*

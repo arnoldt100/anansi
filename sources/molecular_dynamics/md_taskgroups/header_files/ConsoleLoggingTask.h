@@ -1,10 +1,8 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
-//! @file __filename__
+#ifndef ANANSI_ConsoleLoggingTask_INC
+#define ANANSI_ConsoleLoggingTask_INC
+//! @file ConsoleLoggingTask.h
 //!
-//! Brief description
-//!
-//! Detailed description
+//! Implements logging to the console (i.e. stdout).
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,26 +15,36 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "LoggingTask.h"
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  __classname__
+//        Class:  ConsoleLoggingTask
 //  Description:  
 //  =====================================================================================
-class __classname__
+class ConsoleLoggingTask : public LoggingTask
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ ();   // constructor
+        //--------------------------------------------------------------------------------------
+        //       Class:  ConsoleLoggingTask
+        //      Method:  ConsoleLoggingTask :: ConsoleLoggingTask
+        // Description:  
+        // 
+        //  Parameters: 
+        //
+        //      Return:
+        //--------------------------------------------------------------------------------------
+        ConsoleLoggingTask ();   // constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        ConsoleLoggingTask (const ConsoleLoggingTask & other);   // copy constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        ConsoleLoggingTask (ConsoleLoggingTask && other);   // copy-move constructor
 
-        virtual ~__classname__ ();  // destructor
+        virtual ~ConsoleLoggingTask ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +52,9 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        ConsoleLoggingTask& operator= ( const ConsoleLoggingTask &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        ConsoleLoggingTask& operator= ( ConsoleLoggingTask && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -58,9 +66,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class ConsoleLoggingTask  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif // ANANSI_ConsoleLoggingTask_INC

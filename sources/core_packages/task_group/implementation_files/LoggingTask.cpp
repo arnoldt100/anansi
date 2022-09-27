@@ -1,8 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
-#include <memory>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -11,8 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorldTaskGroup.h"
-#include "ConsoleLogger.h"
+#include "LoggingTask.h"
 
 namespace ANANSI {
 
@@ -22,31 +20,34 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-WorldTaskGroup::WorldTaskGroup() :
-    TaskGroup(),
-    commandLineArguments_(),
-    worldCommunicator_(nullptr),
-    consoleLogger_(nullptr) 
+LoggingTask::LoggingTask() :
+    AnansiTask()
 {
     return;
 }
 
-
-WorldTaskGroup::WorldTaskGroup( WorldTaskGroup && other) :
-    TaskGroup(std::move(other)),
-    commandLineArguments_(),
-    worldCommunicator_(nullptr), 
-    consoleLogger_(nullptr) 
+LoggingTask::LoggingTask( LoggingTask const & other) :
+    AnansiTask(other)
 {
     if (this != &other)
     {
-        *this = std::move(other);
+        
     }
     return;
-}		// -----  end of method WorldTaskGroup::WorldTaskGroup  -----
+}
+
+LoggingTask::LoggingTask( LoggingTask && other) :
+    AnansiTask(std::move(other))
+{
+    if (this != &other)
+    {
+        
+    }
+    return;
+}		// -----  end of method LoggingTask::LoggingTask  -----
 
 
-WorldTaskGroup::~WorldTaskGroup()
+LoggingTask::~LoggingTask()
 {
     return;
 }
@@ -55,38 +56,25 @@ WorldTaskGroup::~WorldTaskGroup()
 
 //============================= MUTATORS =====================================
 
-template <>
-void WorldTaskGroup::addIngredient(WorldCommunicatorIngredientTraits::type && ingredient)
-{
-    this->worldCommunicator_ = std::move(ingredient);
-    return;
-}
-
-template <>
-void WorldTaskGroup::addIngredient(CommandLineArgumentsIngredientTraits::type && ingredient)
-{
-    this->commandLineArguments_ = std::move(ingredient);
-    return;
-}
 //============================= OPERATORS ====================================
 
-WorldTaskGroup& WorldTaskGroup::operator= ( WorldTaskGroup && other )
+LoggingTask& LoggingTask::operator= ( const LoggingTask &other )
 {
     if (this != &other)
     {
-        TaskGroup::operator=(std::move(other));
-        this->commandLineArguments_ = std::move(other.commandLineArguments_);
-        this->worldCommunicator_ = std::move(other.worldCommunicator_);
-        this->consoleLogger_ = std::move(other.consoleLogger_);
+        AnansiTask::operator=(other);
+    }
+    return *this;
+} // assignment operator
+
+LoggingTask& LoggingTask::operator= ( LoggingTask && other )
+{
+    if (this != &other)
+    {
+        AnansiTask::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
-
-//============================= STATIC METHODS ===============================
-TaskGroup* WorldTaskGroup::create()
-{
-    return new WorldTaskGroup;
-}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -109,22 +97,6 @@ TaskGroup* WorldTaskGroup::create()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-
-void WorldTaskGroup::enable_()
-{
-    // the first task is to enable the logger.
-    this->consoleLogger_ = std::make_shared<ANANSI::ConsoleLogger>();
-    this->consoleLogger_->logMessage("The WorldTaskGroup console logger is enabled.");
-    return;
-}
-
-void WorldTaskGroup::disable_()
-{
-    this->consoleLogger_.reset();
-    this->worldCommunicator_->freeCommunicator();
-    this->commandLineArguments_.reset();
-    return;
-}
 
 //============================= OPERATORS ====================================
 

@@ -44,7 +44,7 @@ class MDTaskGroupTraits
         // create.
         using ConcreteTypes = MPL::mpl_typelist<DefaultTaskGroup,WorldTaskGroup>;
 
-        // Define ans alias for the superclass type of the derived TaskGroups.
+        // Define an alias for the superclass type of the derived TaskGroups.
         using AbstractProduct = ANANSI::TaskGroup;
 
         // Define an alias for the TaskGroups concrete classes ID type.
