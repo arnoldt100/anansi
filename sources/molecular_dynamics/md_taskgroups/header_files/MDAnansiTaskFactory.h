@@ -2,7 +2,8 @@
 #define __filepreprocessordefine__
 //! @file MDAnansiTaskFactory.h
 //!
-//! This files implements the Anansi task factory.
+//! This files implements the Anansi task factory. The factory
+//! use the object factory design pattern.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
