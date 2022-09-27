@@ -55,6 +55,5 @@ export ANANSI_BOOST_TOP_LEVEL=${BOOST_TOP_LEVEL}
 # This anansi core configuration must be sourced.    -
 #                                                    -
 #-----------------------------------------------------
-source ${ANANSI_TOP_LEVEL}/configurations/anansi_core_configurations.sh
-
+source "${ANANSI_TOP_LEVEL}/configurations/anansi_core_configurations.sh"
 
