@@ -358,7 +358,7 @@ void
 AnansiMolecularDynamics::initializeInitialConditions_()
 {
     // :TODO:09/20/2022 01:21:24 PM:: Enable this fuction.
-    // Change statte function, call execute, and change state back to
+    // Change state function, call execute, and change state back to
     // Null state. 
 
     // Change the state of "this", a AnansiMolecularDynamics object, to 
