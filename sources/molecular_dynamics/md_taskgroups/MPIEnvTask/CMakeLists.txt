@@ -1,6 +1,6 @@
-# This CMakeLists.txt file creates the library lib__library__.a
+# This CMakeLists.txt file creates the library libmpienvtask.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# mpienvTask_header_files or mpienvTask_implementation_files.
+# mpienvtask_header_files or mpienvtask_implementation_files.
 #
 # The target for the library is mpienvtask.
 #
@@ -10,7 +10,7 @@
 #----------------------------------------------------------------------------------------------------------------------------
 #
 # mpienvtask_include         ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                ${md_taskgroups_header_files}                        The list of headers files associated with this librarry.
+# PUBLIC_HEADER              ${mpienvtask_header_files}                        The list of headers files associated with this librarry.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -55,7 +55,7 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (mpienvTask_header_files
+    set (mpienvtask_header_files
         header_files/MPIEnvTask.h )
 
     #-----------------------------------------------------
@@ -65,7 +65,7 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (mpienvTask_implementation_files
+    set (mpienvtask_implementation_files
          implementation_files/MPIEnvTask.cpp )
 
     #-----------------------------------------------------
@@ -95,7 +95,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${mpienvTask_header_files} ${mpienvTask_implementation_files} )
+    PRIVATE ${mpienvtask_header_files} ${mpienvtask_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -125,7 +125,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       mpienvtask_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${mpienvTask_header_files}" )
+                      PUBLIC_HEADER "${mpienvtask_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
