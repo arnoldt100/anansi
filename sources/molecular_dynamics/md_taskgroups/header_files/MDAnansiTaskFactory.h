@@ -19,6 +19,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ConsoleLoggingTask.h"
+#include "MPIEnvTask.h"
 #include "MPLAliases.hpp"
 #include "AbstractFactory.hpp"
 #include "ConcreteFactory.hpp"
@@ -72,11 +73,13 @@ class MDAnansiTaskFactory final
     private:
             // ====================  TYPE ALIASES  =======================================  
             using abstract_products_ = MPL::mpl_typelist<
-                                                          LoggingTask
+                                                          LoggingTask,
+                                                          InterProcessCommEnv
                                                         >;
 
             using concrete_products_ = MPL::mpl_typelist<
-                                                          ConsoleLoggingTask
+                                                          ConsoleLoggingTask,
+                                                          MPIEnvTask
                                                         >;
             template<std::size_t T>
             using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;
