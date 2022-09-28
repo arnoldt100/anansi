@@ -47,6 +47,10 @@
     include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake")
     verify_md_taskgroups_build_prerequisites_are_met()
 
+    # configure MPIEnvTask  
+    add_subdirectory(MPIEnvTask)
+    add_subdirectory(ConsoleLoggingTask)
+
     #-----------------------------------------------------
     # Set various variables for include directories.     -
     #                                                    -
@@ -54,8 +58,8 @@
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_task_group_include task_group task_group_include )
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
-    get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
+    get_target_property(my_consoleloggingtask_include consoleloggingtask consoleloggingtask_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -146,6 +150,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PRIVATE ${my_consoleloggingtask_include}
                            PRIVATE ${my_command_line_include_dir}
                            PRIVATE ${my_generic_abstract_factory_include}
                            PRIVATE ${my_task_group_include} 
@@ -185,8 +190,6 @@ install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
          PUBLIC_HEADER DESTINATION ${md_taskgroups_install_include_directory} )
 
-# configure MPIEnvTask  
-add_subdirectory(MPIEnvTask)
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
