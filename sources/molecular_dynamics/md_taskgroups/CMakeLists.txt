@@ -87,7 +87,6 @@
          header_files/MDAnansiTaskFactory.h
          header_files/DefaultTaskGroup.h
          header_files/DefaultTasksGroup.hpp
-         header_files/ConsoleLoggingTask.h
          header_files/WorldTaskGroupIngredients.h
          header_files/WorldTaskGroupConvenienceFunctions.h
          header_files/WorldTaskGroup.h)
@@ -106,7 +105,6 @@
          implementation_files/MDAnansiTaskFactory.cpp
          implementation_files/DefaultTaskGroup.cpp
          implementation_files/DefaultTasksGroup.cpp
-         implementation_files/ConsoleLoggingTask.cpp
          implementation_files/WorldTaskGroupIngredients.cpp
          implementation_files/WorldTaskGroupConvenienceFunctions.cpp
          implementation_files/WorldTaskGroup.cpp )
@@ -161,6 +159,7 @@ target_include_directories(${target}
 target_link_libraries(${target}
                       PUBLIC task_group 
                       PUBLIC mpienvtask
+                      PUBLIC consoleloggingtask
                       PUBLIC typelist_aliases
                       PUBLIC command_line_arguments
                       PUBLIC generic_abstract_factory
