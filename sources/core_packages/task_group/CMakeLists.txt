@@ -80,7 +80,8 @@
          header_files/WorldCommunicatorIngredientTraits.h
          header_files/CommunicatorIngredientTraits.h
          header_files/ConsoleLoggerTraits.h
-         header_files/CommandLineArgumentsIngredientTraits.h)
+         header_files/CommandLineArgumentsIngredientTraits.h
+         header_files/InterProcessCommEnv.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -100,7 +101,8 @@
          implementation_files/WorldCommunicatorIngredientTraits.cpp
          implementation_files/CommunicatorIngredientTraits.cpp
          implementation_files/ConsoleLoggerTraits.cpp
-         implementation_files/CommandLineArgumentsIngredientTraits.cpp)
+         implementation_files/CommandLineArgumentsIngredientTraits.cpp
+         implementation_files/InterProcessCommEnv.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
