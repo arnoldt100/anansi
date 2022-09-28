@@ -1,23 +1,16 @@
-# This CMakeLists.txt file creates the library libmd_taskgroups.a
+# This CMakeLists.txt file creates the library lib__library__.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# md_taskgroups_header_files or md_taskgroups_implementation_files.
+# mpienvTask_header_files or mpienvTask_implementation_files.
 #
-# The target for the library is md_taskgroups.
+# The target for the library is mpienvtask.
 #
-# The following properties are set for the target md_taskgroups.
+# The following properties are set for the target mpienvtask.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #
-# md_taskgroups_include         ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+# mpienvtask_include         ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
 # PUBLIC_HEADER                ${md_taskgroups_header_files}                        The list of headers files associated with this librarry.
-
-# The build will abort unless the following variables are defined to
-# install the library archive, header files and unit tests:
-#   md_taskgroups_install_lib_directory
-#   md_taskgroups_install_include_directory
-#   md_taskgroups_install_bin_directory
-#   md_taskgroups_logfilepath
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -30,7 +23,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "md_taskgroups")
+    set(my_project_name "mpienvtask")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -38,24 +31,6 @@
     #                                                    -
     #-----------------------------------------------------
     set(target ${my_project_name})
-
-    # ----------------------------------------------------
-    # Verify the prerequisites for configuring package
-    # md_taskgroups are satisfied.
-    # 
-    # ----------------------------------------------------
-    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake")
-    verify_md_taskgroups_build_prerequisites_are_met()
-
-    #-----------------------------------------------------
-    # Set various variables for include directories.     -
-    #                                                    -
-    #-----------------------------------------------------
-    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
-    get_target_property(my_task_group_include task_group task_group_include )
-    get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
-    get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
-    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -80,17 +55,8 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (md_taskgroups_header_files
-         header_files/MDTaskGroupTraits.h
-         header_files/ForLoopTransferIngredients.hpp
-         header_files/MDTaskGroupFactory.hpp
-         header_files/MDAnansiTaskFactory.h
-         header_files/DefaultTaskGroup.h
-         header_files/DefaultTasksGroup.hpp
-         header_files/ConsoleLoggingTask.h
-         header_files/WorldTaskGroupIngredients.h
-         header_files/WorldTaskGroupConvenienceFunctions.h
-         header_files/WorldTaskGroup.h)
+    set (mpienvTask_header_files
+        header_files/MPIEnvTask.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -99,17 +65,14 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (md_taskgroups_implementation_files
-         implementation_files/MDTaskGroupTraits.cpp
-         implementation_files/ForLoopTransferIngredients.cpp
-         implementation_files/MDTaskGroupFactory.cpp
-         implementation_files/MDAnansiTaskFactory.cpp
-         implementation_files/DefaultTaskGroup.cpp
-         implementation_files/DefaultTasksGroup.cpp
-         implementation_files/ConsoleLoggingTask.cpp
-         implementation_files/WorldTaskGroupIngredients.cpp
-         implementation_files/WorldTaskGroupConvenienceFunctions.cpp
-         implementation_files/WorldTaskGroup.cpp )
+    set (mpienvTask_implementation_files
+         implementation_files/MPIEnvTask.cpp )
+
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_task_group_include task_group task_group_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -127,19 +90,12 @@ add_library( ${target} STATIC
              "")
 
 #-----------------------------------------------------
-# Enable compile warnings.                           -
-#                                                    -
-#-----------------------------------------------------
-enable_compile_warnings(${target})
-
-#-----------------------------------------------------
 #                                                    -
 # We associate the source files with the target.     -
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${md_taskgroups_header_files} 
-            ${md_taskgroups_implementation_files} )
+    PRIVATE ${mpienvTask_header_files} ${mpienvTask_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -147,25 +103,15 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
-                           PRIVATE ${my_command_line_include_dir}
-                           PRIVATE ${my_generic_abstract_factory_include}
-                           PRIVATE ${my_task_group_include} 
-                           PRIVATE ${my_foreach_loop_include} 
-                           PRIVATE ${my_typelist_aliases_include} ) 
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_task_group_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC task_group 
-                      PUBLIC mpienvtask
-                      PUBLIC typelist_aliases
-                      PUBLIC command_line_arguments
-                      PUBLIC generic_abstract_factory
-                      PUBLIC generic_foreach_loop )
-
+                      PUBLIC task_group )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
@@ -178,19 +124,15 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      md_taskgroups_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD ${md_taskgroups_cxx_standard}
-                      PUBLIC_HEADER "${md_taskgroups_header_files}" )
+                      mpienvtask_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      PUBLIC_HEADER "${mpienvTask_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
          PUBLIC_HEADER DESTINATION ${md_taskgroups_install_include_directory} )
 
-# configure MPIEnvTask  
-add_subdirectory(MPIEnvTask)
-
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-#add_subdirectory(unit_tests)
+# add_subdirectory(unit_tests)

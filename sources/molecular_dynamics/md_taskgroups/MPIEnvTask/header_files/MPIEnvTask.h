@@ -1,6 +1,6 @@
-#ifndef ANANSI_InterProcessCommEnv
-#define ANANSI_InterProcessCommEnv
-//! @file __filename__
+#ifndef ANANSI_MPIEnvTask_INC
+#define ANANSI_MPIEnvTask_INC
+//! @file MPIEnvTask.h
 //!
 //! Brief description
 //!
@@ -70,4 +70,4 @@ class MPIEnvTask final : public ANANSI::InterProcessCommEnv
 
 }; // namespace ANANSI
 
-#endif // ANANSI_InterProcessCommEnv
+#endif // ANANSI_MPIEnvTask_INC
