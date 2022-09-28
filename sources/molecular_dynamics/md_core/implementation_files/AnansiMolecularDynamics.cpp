@@ -126,9 +126,13 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     int my_argc=0;
     char** my_argv_ptr=nullptr;
 
+
+    // :TODO:09/28/2022 10:52:51 AM:: mpiEnvironment_ enabling in this manner is to be depracated. 
     this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
     this->MpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
     this->MpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
+
+    this->mpiEnvironment_->enable();
 
     if (my_argv_ptr != nullptr)
     {

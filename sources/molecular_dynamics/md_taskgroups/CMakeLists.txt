@@ -140,7 +140,8 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${md_taskgroups_header_files} ${md_taskgroups_implementation_files} )
+    PRIVATE ${md_taskgroups_header_files} 
+            ${md_taskgroups_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -185,6 +186,9 @@ set_target_properties(${target} PROPERTIES
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
          PUBLIC_HEADER DESTINATION ${md_taskgroups_install_include_directory} )
+
+# configure MPIEnvTask  
+add_subdirectory(MPIEnvTask)
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
