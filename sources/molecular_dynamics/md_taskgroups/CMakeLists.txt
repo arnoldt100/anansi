@@ -60,6 +60,7 @@
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
     get_target_property(my_consoleloggingtask_include consoleloggingtask consoleloggingtask_include)
+    get_target_property(my_mpienvtask_include mpienvtask mpienvtask_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -151,6 +152,7 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
                            PRIVATE ${my_consoleloggingtask_include}
+                           PRIVATE ${my_mpienvtask_include}
                            PRIVATE ${my_command_line_include_dir}
                            PRIVATE ${my_generic_abstract_factory_include}
                            PRIVATE ${my_task_group_include} 
