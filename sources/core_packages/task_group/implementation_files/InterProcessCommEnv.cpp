@@ -96,6 +96,15 @@ InterProcessCommEnv& InterProcessCommEnv::operator=( InterProcessCommEnv && othe
 
 //============================= MUTATORS =====================================
 
+void InterProcessCommEnv::enable_()
+{
+    return;
+}
+        
+void InterProcessCommEnv::disenable_()
+{
+    return;
+}
 //============================= OPERATORS ====================================
 
 

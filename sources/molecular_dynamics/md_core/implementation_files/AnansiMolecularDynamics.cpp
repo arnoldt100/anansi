@@ -37,6 +37,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiEnvironment_(nullptr),
     worldTaskGroup_(nullptr),
     consoleLogger_(nullptr),
+    mpiEnvironment_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -72,6 +73,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiEnvironment_(nullptr),
     worldTaskGroup_(nullptr),
     consoleLogger_(nullptr),
+    mpiEnvironment_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -101,6 +103,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->worldTaskGroup_ = 
         this->taskGroupFactory_->buildTaskGroupSharedPtr<WorldTaskGroup>();
 
+    this->mpiEnvironment_ = this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     this->consoleLogger_ = this->mdAnansiTaskFactory_->create_shared_ptr<LoggingTask>();
 
     // Change the state to Null.

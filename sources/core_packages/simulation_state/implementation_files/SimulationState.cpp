@@ -95,7 +95,7 @@ std::string SimulationState::misbehviorErrorMessage_(state_misbehavior_info cons
     std::string error_message;
     error_message += "Warining! The simulation state ";
     error_message += error_info.at("simulation_state");
-    error_message += " is doing an inappropiate behavior: \n";
+    error_message += " is doing an inappropriate behavior: \n";
     error_message += error_info.at("inappropiate_behavior");
     error_message += "\n";
     return error_message;

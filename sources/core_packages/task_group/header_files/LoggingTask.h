@@ -51,6 +51,10 @@ class LoggingTask : public AnansiTask
     private:
         // ====================  METHODS       =======================================
 
+        virtual void enable_();
+        
+        virtual void disenable_();
+
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class LoggingTask  -----

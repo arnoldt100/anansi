@@ -62,6 +62,10 @@ class InterProcessCommEnv : public AnansiTask
     private:
         // ====================  METHODS       =======================================
 
+        virtual void enable_();
+        
+        virtual void disenable_();
+
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class InterProcessCommEnv  -----

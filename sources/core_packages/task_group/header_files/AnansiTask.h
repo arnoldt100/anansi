@@ -46,6 +46,10 @@ class AnansiTask
 
         // ====================  MUTATORS      =======================================
 
+        void enable();
+
+        void disable();
+
         // ====================  OPERATORS     =======================================
 
         AnansiTask& operator= ( const AnansiTask &other ); // assignment operator
@@ -58,7 +62,13 @@ class AnansiTask
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        // ====================  METHODS       =======================================
+
+        // ====================  MUTATORS      =======================================
+
+        virtual void enable_();
+
+        virtual void disable_();
+
 
         // ====================  DATA MEMBERS  =======================================
 
