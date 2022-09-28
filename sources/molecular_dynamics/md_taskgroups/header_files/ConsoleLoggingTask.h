@@ -29,15 +29,6 @@ class ConsoleLoggingTask : public LoggingTask
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  ConsoleLoggingTask
-        //      Method:  ConsoleLoggingTask :: ConsoleLoggingTask
-        // Description:  
-        // 
-        //  Parameters: 
-        //
-        //      Return:
-        //--------------------------------------------------------------------------------------
         ConsoleLoggingTask ();   // constructor
 
         ConsoleLoggingTask (const ConsoleLoggingTask & other);   // copy constructor

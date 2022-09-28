@@ -101,7 +101,7 @@ void InterProcessCommEnv::enable_()
     return;
 }
         
-void InterProcessCommEnv::disenable_()
+void InterProcessCommEnv::disable_() 
 {
     return;
 }

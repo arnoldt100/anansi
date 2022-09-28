@@ -27,15 +27,6 @@ class InterProcessCommEnv : public AnansiTask
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  InterProcessCommEnv
-        //      Method:  InterProcessCommEnv :: InterProcessCommEnv
-        // Description:  
-        // 
-        //  Parameters: 
-        //
-        //      Return:
-        //--------------------------------------------------------------------------------------
         InterProcessCommEnv ();   // constructor
 
         InterProcessCommEnv (const InterProcessCommEnv & other);   // copy constructor
@@ -62,9 +53,9 @@ class InterProcessCommEnv : public AnansiTask
     private:
         // ====================  METHODS       =======================================
 
-        virtual void enable_();
+        void enable_() override;
         
-        virtual void disenable_();
+        void disable_() override;
 
         // ====================  DATA MEMBERS  =======================================
 

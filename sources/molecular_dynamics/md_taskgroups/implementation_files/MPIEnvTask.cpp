@@ -95,6 +95,15 @@ MPIEnvTask& MPIEnvTask::operator=( MPIEnvTask && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void MPIEnvTask::enable_()
+{
+    return;
+}
+
+void MPIEnvTask::disable_()
+{
+    return;
+}
 
 //============================= OPERATORS ====================================
 

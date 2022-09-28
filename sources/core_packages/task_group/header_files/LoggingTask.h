@@ -51,9 +51,9 @@ class LoggingTask : public AnansiTask
     private:
         // ====================  METHODS       =======================================
 
-        virtual void enable_();
+        void enable_() override;
         
-        virtual void disenable_();
+        void disable_() override;
 
         // ====================  DATA MEMBERS  =======================================
 

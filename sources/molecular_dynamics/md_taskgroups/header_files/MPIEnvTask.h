@@ -32,15 +32,6 @@ class MPIEnvTask final : public ANANSI::InterProcessCommEnv
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  MPIEnvTask
-        //      Method:  MPIEnvTask :: MPIEnvTask
-        // Description:  
-        // 
-        //  Parameters: 
-        //
-        //      Return:
-        //--------------------------------------------------------------------------------------
         MPIEnvTask ();   // constructor
 
         MPIEnvTask (const MPIEnvTask & other);   // copy constructor
@@ -65,7 +56,12 @@ class MPIEnvTask final : public ANANSI::InterProcessCommEnv
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        // ====================  METHODS       =======================================
+        // ====================  ACCESSORS     =======================================
+        
+        // ====================  MUTATORS      =======================================
+        void enable_() override;
+
+        void disable_() override;
 
         // ====================  DATA MEMBERS  =======================================
 

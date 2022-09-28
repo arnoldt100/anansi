@@ -103,7 +103,7 @@ void LoggingTask::enable_()
     return;
 }
         
-void LoggingTask::disenable_()
+void LoggingTask::disable_()
 {
     return;
 }
