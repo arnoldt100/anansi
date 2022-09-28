@@ -184,8 +184,7 @@ void AnansiMolecularDynamics::enableConsoleLogger()
 
     my_conv_functions.enableTaskGroup(this->worldTaskGroup_);
 
-    // :TODO:09/26/2022 04:16:24 PM:: Rework this for AnansiTask. 
-    // this->consoleLogger_->enable();
+    this->consoleLogger_->enable();
     return;
 }
 
@@ -194,6 +193,8 @@ AnansiMolecularDynamics::disableConsoleLogger()
 {
     WorldTaskGroupConvenienceFunctions my_conv_functions;
     my_conv_functions.disableTaskGroup(this->worldTaskGroup_);
+    
+    this->consoleLogger_->disable();
     return;
 }
 

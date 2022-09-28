@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -97,11 +98,13 @@ MPIEnvTask& MPIEnvTask::operator=( MPIEnvTask && other )
 //============================= MUTATORS =====================================
 void MPIEnvTask::enable_()
 {
+    std::cout << "Enabling MPI environment." << std::endl;
     return;
 }
 
 void MPIEnvTask::disable_()
 {
+    std::cout << "Disabling MPI environment." << std::endl;
     return;
 }
 
