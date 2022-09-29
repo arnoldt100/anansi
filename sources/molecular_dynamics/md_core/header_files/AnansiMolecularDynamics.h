@@ -32,7 +32,6 @@
 #include "MDAnansiTaskFactory.h"
 #include "TaskGroup.h"
 #include "AnansiTask.h"
-#include "DefaultTasksGroup.hpp"
 
 namespace ANANSI {
 
