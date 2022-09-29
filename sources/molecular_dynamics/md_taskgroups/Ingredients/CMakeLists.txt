@@ -56,7 +56,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdtasksingredients_header_files
-        header_files/ConsoleLoggingTaskIngredients.h )
+        header_files/ConsoleLoggerTraits.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -66,7 +66,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdtasksingredients_implementation_files
-        implementation_files/ConsoleLoggingTaskIngredients.cpp )
+        implementation_files/ConsoleLoggerTraits.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

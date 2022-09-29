@@ -32,6 +32,13 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
+    get_target_property(mdtasksingredients_include mdtasksingredients mdtasksingredients_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -56,7 +63,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (consoleloggingtask_header_files
-         header_files/ConsoleLoggingTask.h )
+         header_files/ConsoleLoggingTask.h
+         header_files/ConsoleLoggingTaskIngredients.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -66,7 +74,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (consoleloggingtask_implementation_files
-         implementation_files/ConsoleLoggingTask.cpp )
+         implementation_files/ConsoleLoggingTask.cpp
+         implementation_files/ConsoleLoggingTaskIngredients.cpp )
 
     #-----------------------------------------------------
     # Set various variables for include directories.     -
@@ -104,14 +113,16 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_task_group_include} )
+                           PRIVATE ${my_task_group_include}
+                           PRIVATE ${my_typelist_aliases_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC task_group )
+                      PUBLIC task_group 
+                      PUBLIC typelist_aliases )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -47,7 +47,8 @@
     include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake")
     verify_md_taskgroups_build_prerequisites_are_met()
 
-    # configure MPIEnvTask  
+    # configure the ingredients and tasks.
+    add_subdirectory(Ingredients)
     add_subdirectory(MPIEnvTask)
     add_subdirectory(ConsoleLoggingTask)
 
