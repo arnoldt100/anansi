@@ -137,7 +137,6 @@ class AnansiMolecularDynamics final : public Simulation
         ANANSI::SimulationParameters simulationParameters_;
         std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
         std::unique_ptr<ANANSI::MPIEnvironment> MpiEnvironment_;
-        std::shared_ptr<ANANSI::TaskGroup> worldTaskGroup_;
 
         std::shared_ptr<ANANSI::AnansiTask> consoleLogger_;
         std::shared_ptr<ANANSI::AnansiTask> mpiEnvironment_;

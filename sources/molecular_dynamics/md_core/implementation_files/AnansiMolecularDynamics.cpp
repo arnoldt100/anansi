@@ -35,7 +35,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     MpiEnvironment_(nullptr),
-    worldTaskGroup_(nullptr),
     consoleLogger_(nullptr),
     mpiEnvironment_(nullptr),
     mdState_(nullptr),
@@ -71,7 +70,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     MpiEnvironment_(nullptr),
-    worldTaskGroup_(nullptr),
     consoleLogger_(nullptr),
     mpiEnvironment_(nullptr),
     mdState_(nullptr),
@@ -98,10 +96,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     // Initialize all factories.
     this->taskGroupFactory_ = std::make_shared<MDTaskGroupFactory<>>();
     this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory>();
-
-    // Initialize the WorldTaskGroup.
-    this->worldTaskGroup_ = 
-        this->taskGroupFactory_->buildTaskGroupSharedPtr<WorldTaskGroup>();
 
     this->mpiEnvironment_ = this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     this->consoleLogger_ = this->mdAnansiTaskFactory_->create_shared_ptr<LoggingTask>();
@@ -180,14 +174,6 @@ void AnansiMolecularDynamics::enableConsoleLogger()
     using taskgroup_t = WorldTaskGroup;
     using needed_ingredients_typelist = WorldTaskGroup::NeededIngredients;
 
-    my_conv_functions.transferAllIngredients<
-        taskgroup_t,
-        ingredients_t,
-        needed_ingredients_typelist>(this->worldTaskGroup_,
-                                     world_taskgroup_ingredients);
-
-    my_conv_functions.enableTaskGroup(this->worldTaskGroup_);
-
     this->consoleLogger_->enable();
     return;
 }
@@ -195,9 +181,6 @@ void AnansiMolecularDynamics::enableConsoleLogger()
 void
 AnansiMolecularDynamics::disableConsoleLogger()
 {
-    WorldTaskGroupConvenienceFunctions my_conv_functions;
-    my_conv_functions.disableTaskGroup(this->worldTaskGroup_);
-    
     this->consoleLogger_->disable();
     return;
 }

@@ -106,7 +106,7 @@
          implementation_files/MDTaskGroupTraits.cpp
          implementation_files/ForLoopTransferIngredients.cpp
          implementation_files/MDTaskGroupFactory.cpp
-         implementation_files/MDAnansiTaskFactory.cpp
+         implementation_files/MDAnansiTaskFactory.cpp1G
          implementation_files/WorldTaskGroupIngredients.cpp
          implementation_files/WorldTaskGroupConvenienceFunctions.cpp
          implementation_files/WorldTaskGroup.cpp )
