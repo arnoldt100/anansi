@@ -15,7 +15,6 @@
 
 #include "Factory.hpp"
 #include "MPLAliases.hpp"
-#include "WorldTaskGroup.h"
 
 namespace ANANSI
 {
@@ -41,7 +40,7 @@ class MDTaskGroupTraits
 
         // Define an alias for typelist with the types of concrete TaskGroups to
         // create.
-        using ConcreteTypes = MPL::mpl_typelist<WorldTaskGroup>;
+        using ConcreteTypes = MPL::mpl_typelist<>;
 
         // Define an alias for the superclass type of the derived TaskGroups.
         using AbstractProduct = ANANSI::TaskGroup;

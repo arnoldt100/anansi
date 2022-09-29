@@ -17,8 +17,6 @@
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
-#include "WorldTaskGroupConvenienceFunctions.h"
-#include "WorldTaskGroupIngredients.h"
 
 namespace ANANSI {
 
@@ -165,15 +163,6 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
 void AnansiMolecularDynamics::enableConsoleLogger()
 {
-    std::unique_ptr<WorldTaskGroupIngredients> world_taskgroup_ingredients(
-            new ANANSI::WorldTaskGroupIngredients(this->commandLineArguments_,this->MpiWorldCommunicator_));
-
-    WorldTaskGroupConvenienceFunctions my_conv_functions;
-
-    using ingredients_t = WorldTaskGroupIngredients;
-    using taskgroup_t = WorldTaskGroup;
-    using needed_ingredients_typelist = WorldTaskGroup::NeededIngredients;
-
     this->consoleLogger_->enable();
     return;
 }

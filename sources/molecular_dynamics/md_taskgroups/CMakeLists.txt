@@ -92,8 +92,7 @@
          header_files/MDTaskGroupFactory.hpp
          header_files/MDAnansiTaskFactory.h
          header_files/WorldTaskGroupIngredients.h
-         header_files/WorldTaskGroupConvenienceFunctions.h
-         header_files/WorldTaskGroup.h)
+         header_files/WorldTaskGroupConvenienceFunctions.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -108,8 +107,7 @@
          implementation_files/MDTaskGroupFactory.cpp
          implementation_files/MDAnansiTaskFactory.cpp1G
          implementation_files/WorldTaskGroupIngredients.cpp
-         implementation_files/WorldTaskGroupConvenienceFunctions.cpp
-         implementation_files/WorldTaskGroup.cpp )
+         implementation_files/WorldTaskGroupConvenienceFunctions.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
