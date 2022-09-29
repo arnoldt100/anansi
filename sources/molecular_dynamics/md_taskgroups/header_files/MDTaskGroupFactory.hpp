@@ -20,7 +20,6 @@
 #include "MDTaskGroupTraits.h"
 #include "ClassInstanceLimiter.hpp"
 #include "TaskGroup.h"
-#include "DefaultTaskGroup.h"
 #include "Factory.hpp"
 #include "MPLAliases.hpp"
 #include "ForLoop.hpp"
