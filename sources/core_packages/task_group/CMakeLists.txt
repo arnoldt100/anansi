@@ -73,8 +73,6 @@
          header_files/TaskGroupConvenienceFunctions.hpp
          header_files/AnansiTask.h
          header_files/LoggingTask.h
-         header_files/TaskGroup.h
-         header_files/TasksGroup.hpp
          header_files/TransferIngredients.hpp
          header_files/Ingredients.hpp
          header_files/WorldCommunicatorIngredientTraits.h
@@ -93,8 +91,6 @@
          implementation_files/TaskGroupConvenienceFunctions.cpp
          implementation_files/AnansiTask.cpp
          implementation_files/LoggingTask.cpp
-         implementation_files/TaskGroup.cpp
-         implementation_files/TasksGroup.cpp
          implementation_files/TransferIngredients.cpp
          implementation_files/Ingredients.cpp
          implementation_files/WorldCommunicatorIngredientTraits.cpp
