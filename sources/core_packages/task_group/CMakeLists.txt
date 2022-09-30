@@ -70,7 +70,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (task_group_header_files
-         header_files/TaskGroupConvenienceFunctions.hpp
          header_files/AnansiTask.h
          header_files/LoggingTask.h
          header_files/TransferIngredients.hpp
@@ -88,7 +87,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (task_group_implementation_files
-         implementation_files/TaskGroupConvenienceFunctions.cpp
          implementation_files/AnansiTask.cpp
          implementation_files/LoggingTask.cpp
          implementation_files/TransferIngredients.cpp
