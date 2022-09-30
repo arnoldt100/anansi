@@ -89,7 +89,6 @@
     set (md_taskgroups_header_files
          header_files/MDTaskGroupTraits.h
          header_files/ForLoopTransferIngredients.hpp
-         header_files/MDTaskGroupFactory.hpp
          header_files/MDAnansiTaskFactory.h
          header_files/WorldTaskGroupIngredients.h
          header_files/WorldTaskGroupConvenienceFunctions.h)
@@ -104,8 +103,7 @@
     set (md_taskgroups_implementation_files
          implementation_files/MDTaskGroupTraits.cpp
          implementation_files/ForLoopTransferIngredients.cpp
-         implementation_files/MDTaskGroupFactory.cpp
-         implementation_files/MDAnansiTaskFactory.cpp1G
+         implementation_files/MDAnansiTaskFactory.cpp
          implementation_files/WorldTaskGroupIngredients.cpp
          implementation_files/WorldTaskGroupConvenienceFunctions.cpp)
 

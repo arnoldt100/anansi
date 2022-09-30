@@ -28,7 +28,6 @@
 #include "RegistryAnansiMDStatus.h"
 #include "SimulationState.h"
 #include "MDTaskGroupTraits.h"
-#include "MDTaskGroupFactory.hpp"
 #include "MDAnansiTaskFactory.h"
 #include "TaskGroup.h"
 #include "AnansiTask.h"
@@ -150,10 +149,6 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
-        // These are the factories.
-        // :TODO:09/27/2022 12:33:00 PM::The taskGroupFactory_ will
-        //  be depracated and replaced with mdAnansiTaskFactory_.
-        std::shared_ptr<MDTaskGroupFactory<>> taskGroupFactory_;
         std::shared_ptr<MDAnansiTaskFactory> mdAnansiTaskFactory_;
 
         // :TODO:09/27/2022 02:38:21 PM:: To be deprecated.

@@ -42,7 +42,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
     mdTerminateSimulation_(nullptr),
-    taskGroupFactory_(nullptr),
     mdAnansiTaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
@@ -77,7 +76,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
     mdTerminateSimulation_(nullptr),
-    taskGroupFactory_(nullptr),
     mdAnansiTaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
@@ -92,7 +90,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
     // Initialize all factories.
-    this->taskGroupFactory_ = std::make_shared<MDTaskGroupFactory<>>();
     this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory>();
 
     this->mpiEnvironment_ = this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();

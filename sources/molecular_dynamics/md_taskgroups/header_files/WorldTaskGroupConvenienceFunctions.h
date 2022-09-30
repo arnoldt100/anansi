@@ -15,7 +15,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "TaskGroupConvenienceFunctions.hpp"
-#include "MDTaskGroupFactory.hpp"
 #include "ForLoopTransferIngredients.hpp"
 #include "TransferIngredients.hpp"
 
