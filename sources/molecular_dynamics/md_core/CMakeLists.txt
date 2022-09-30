@@ -55,7 +55,6 @@
     get_target_property(my_mpicomm_include  mpi_communicator mpi_communicator_include)
     get_target_property(my_task_group_include task_group task_group_include)
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
-    get_target_property(my_md_taskgroup_include md_taskgroups md_taskgroups_include)
     get_target_property(my_mdanansitaskfactory_include mdanansitaskfactory mdanansitaskfactory_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -154,7 +153,6 @@ target_include_directories( "${md_core_target}"
                             PRIVATE ${my_task_group_include} 
                             PRIVATE ${my_generic_abstract_factory_include}
                             PRIVATE ${my_foreach_loop_include} 
-                            PRIVATE ${my_md_taskgroup_include}
                             PRIVATE ${my_mdanansitaskfactory_include} )
 
 #-----------------------------------------------------
@@ -174,7 +172,6 @@ target_link_libraries("${md_core_target}"
                       PUBLIC task_group
                       PUBLIC generic_abstract_factory
                       PUBLIC generic_foreach_loop
-                      PUBLIC md_taskgroups
                       PUBLIC mdanansitaskfactory
                       PUBLIC "${Boost_LIBRARIES}" )
 
