@@ -27,7 +27,6 @@
 #include "Communicator.h"
 #include "RegistryAnansiMDStatus.h"
 #include "SimulationState.h"
-#include "MDTaskGroupTraits.h"
 #include "MDAnansiTaskFactory.h"
 #include "TaskGroup.h"
 #include "AnansiTask.h"
