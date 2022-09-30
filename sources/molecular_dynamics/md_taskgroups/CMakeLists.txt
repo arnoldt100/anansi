@@ -88,8 +88,7 @@
     #-----------------------------------------------------
     set (md_taskgroups_header_files
          header_files/ForLoopTransferIngredients.hpp
-         header_files/WorldTaskGroupIngredients.h
-         header_files/WorldTaskGroupConvenienceFunctions.h)
+         header_files/WorldTaskGroupIngredients.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -100,8 +99,7 @@
     #-----------------------------------------------------
     set (md_taskgroups_implementation_files
          implementation_files/ForLoopTransferIngredients.cpp
-         implementation_files/WorldTaskGroupIngredients.cpp
-         implementation_files/WorldTaskGroupConvenienceFunctions.cpp)
+         implementation_files/WorldTaskGroupIngredients.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
