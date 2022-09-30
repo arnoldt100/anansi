@@ -57,7 +57,6 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_task_group_include task_group task_group_include )
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)

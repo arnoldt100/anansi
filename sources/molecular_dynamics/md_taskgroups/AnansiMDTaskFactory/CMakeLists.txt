@@ -31,14 +31,6 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
-    # ----------------------------------------------------
-    # Specify dependencies for ${target}
-    # 
-    # ----------------------------------------------------
-    add_dependencies(${target}
-                     mpienvtask
-                     consoleloggingtask)
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -75,6 +67,15 @@
     set (mdanansitaskfactory_implementation_files
          implementation_files/MDAnansiTaskFactory.cpp )
 
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include)
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
+    get_target_property(my_consoleloggingtask_include consoleloggingtask consoleloggingtask_include)
+    get_target_property(my_mpienvtask_include mpienvtask mpienvtask_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
@@ -90,6 +91,14 @@
 add_library( ${target} STATIC 
              "")
 
+# ----------------------------------------------------
+# Specify dependencies for ${target}
+# 
+# ----------------------------------------------------
+add_dependencies(${target}
+                 mpienvtask
+                 consoleloggingtask)
+
 #-----------------------------------------------------
 #                                                    -
 # We associate the source files with the target.     -
@@ -104,14 +113,22 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_consoleloggingtask_include}
+                           PRIVATE ${my_mpienvtask_include}
+                           PRIVATE ${my_typelist_aliases_include}
+                           PRIVATE ${my_generic_abstract_factory_include} )
 
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries(${target} )
+target_link_libraries(${target}
+                      PUBLIC mpienvtask
+                      PUBLIC consoleloggingtask
+                      PUBLIC typelist_aliases
+                      PUBLIC generic_abstract_factory )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
