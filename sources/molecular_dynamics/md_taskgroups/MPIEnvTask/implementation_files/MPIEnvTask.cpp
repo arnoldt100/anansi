@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 #include <iostream>
 
 //--------------------------------------------------------//
@@ -21,17 +22,19 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 MPIEnvTask::MPIEnvTask() :
-    InterProcessCommEnv()
+    InterProcessCommEnv(),
+    commandLineArgs_()
 {
     return;
 }
 
 MPIEnvTask::MPIEnvTask( MPIEnvTask const & other) :
-   InterProcessCommEnv(other) 
+   InterProcessCommEnv(other),
+   commandLineArgs_(other.commandLineArgs_) 
 {
     if (this != &other)
     {
-        
+        this->commandLineArgs_ = other.commandLineArgs_;
     }
     return;
 }
@@ -41,6 +44,7 @@ MPIEnvTask::MPIEnvTask( MPIEnvTask && other) :
 {
     if (this != &other)
     {
+        this->commandLineArgs_ = std::move(other.commandLineArgs_);
     }
     return;
 }		// -----  end of method MPIEnvTask::MPIEnvTask  -----

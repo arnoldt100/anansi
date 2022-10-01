@@ -94,7 +94,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     // Initialize all factories.
     this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory>();
 
-    this->mpiEnvironmentCmd_ = this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     this->consoleLogger_ = this->mdAnansiTaskFactory_->create_shared_ptr<LoggingTask>();
 
     // Change the state to Null.
@@ -124,6 +123,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     this->mpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
     this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
 
+    this->mpiEnvironmentCmd_ = this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     this->mpiEnvironmentCmd_->enable();
 
     this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();

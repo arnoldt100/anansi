@@ -9,7 +9,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,6 +18,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "InterProcessCommEnv.h"
+#include "CommandLineArguments.h"
 
 namespace ANANSI
 {
@@ -64,6 +64,7 @@ class MPIEnvTask final : public ANANSI::InterProcessCommEnv
         void disable_() override;
 
         // ====================  DATA MEMBERS  =======================================
+        COMMANDLINE::CommandLineArguments commandLineArgs_;
 
 }; // -----  end of class MPIEnvTask  -----
 
