@@ -96,6 +96,10 @@
         header_files/ISEStatus.h
         header_files/AnansiMolecularDynamicsFactory.h 
         header_files/AnansiMDStateInt2Type.hpp)
+    
+    # ----------------------------------------------------
+    # These files are for communicattion environment invoker.
+    # 
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -122,6 +126,16 @@
         implementation_files/AnansiMolecularDynamicsFactory.cpp 
         implementation_files/AnansiMDStateInt2Type.cpp)
     
+    # ----------------------------------------------------
+    # These files are for communication environment invoker.
+    # 
+    # ----------------------------------------------------
+    list(APPEND md_core_header_files
+        header_files/MDCommEnvInvoker.h)
+
+    list(APPEND md_core_implementation_files
+         implementation_files/MDCommEnvInvoker.cpp)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
