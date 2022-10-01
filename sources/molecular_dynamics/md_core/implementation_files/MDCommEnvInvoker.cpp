@@ -40,8 +40,21 @@ MDCommEnvInvoker::~MDCommEnvInvoker()
 }
 
 //============================= ACCESSORS ====================================
+void MDCommEnvInvoker::doTask() const
+{
+    return;
+}
+
+void MDCommEnvInvoker::undoTask() const
+{
+    return;
+}
 
 //============================= MUTATORS =====================================
+void MDCommEnvInvoker::addTask()
+{
+    return;
+}
 
 //============================= OPERATORS ====================================
 

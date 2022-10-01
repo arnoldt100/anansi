@@ -79,6 +79,8 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         }
 
         /* ====================  DATA MEMBERS  ======================================= */
+        int argc_ptr_;
+        char** argv_ptr_;
         std::shared_ptr<ANANSI::MPIEnvironmentState> mpistate_;
 
 }; /* -----  end of class MPIEnvironment  ----- */

@@ -120,10 +120,13 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 
     // :TODO:09/28/2022 10:52:51 AM:: mpiEnvironmentCmd_ enabling in this manner is to be depracated. 
     this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
+
     this->mpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
     this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
 
     this->mpiEnvironmentCmd_->enable();
+
+    this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
 
     if (my_argv_ptr != nullptr)
     {

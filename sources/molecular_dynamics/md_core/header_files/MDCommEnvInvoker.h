@@ -23,6 +23,9 @@
 namespace ANANSI
 {
 
+//! The Invoker for the communication environment.
+//!
+//! Invoking the enable method enables the communication run-time environment.
 class MDCommEnvInvoker
 {
     public:
@@ -38,7 +41,22 @@ class MDCommEnvInvoker
 
         // ====================  ACCESSORS     =======================================
 
+        //! Enables the communication run-time environment.
+        //!
+        //! @return void
+        void doTask() const;
+
+        //! Disables the communication run-time environment.
+        //!
+        //! @return void
+        void undoTask() const;
+
         // ====================  MUTATORS      =======================================
+
+        //! Adds a task to the invoker.
+        //!
+        //! @return void
+        void addTask(); 
 
         // ====================  OPERATORS     =======================================
 

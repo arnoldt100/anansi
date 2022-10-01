@@ -31,7 +31,9 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 MPIEnvironment::MPIEnvironment() :
-    COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>()
+    COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>(),
+    argc_ptr_(0),
+    argv_ptr_(nullptr)
 {
     this->changeMPIState_<ANANSI::NullMPIEnvironment>();
     return;
@@ -39,6 +41,11 @@ MPIEnvironment::MPIEnvironment() :
 
 MPIEnvironment::~MPIEnvironment()
 {
+    if (argv_ptr_ !=nullptr)
+    {
+        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(argc_ptr_,argv_ptr_);
+    }
+
     return;
 }
 
@@ -54,6 +61,8 @@ void MPIEnvironment::enableEnvironment()
 
 void MPIEnvironment::enableEnvironment(int const & argc, char const * const * const & argv) 
 {
+    this->argc_ptr_ = argc;
+
     this->mpistate_->enable(this,argc,argv);
     return;
 }
