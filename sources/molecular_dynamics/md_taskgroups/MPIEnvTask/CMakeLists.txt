@@ -73,6 +73,7 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_task_group_include task_group task_group_include )
+    get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -83,11 +84,14 @@
 
 #-----------------------------------------------------
 # Add the library associated with target             -
-# command_line_arguments.                            -
+# mpienvtask                                         -
 #                                                    -
 #-----------------------------------------------------
 add_library( ${target} STATIC 
              "")
+
+add_dependencies(${target} 
+                 command_line_arguments)
 
 #-----------------------------------------------------
 #                                                    -
@@ -104,14 +108,16 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_task_group_include} )
+                           PRIVATE ${my_task_group_include}
+                           PRIVATE ${my_command_line_arguments_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC task_group )
+                      PUBLIC task_group
+                      PUBLIC command_line_arguments )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
