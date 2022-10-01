@@ -133,10 +133,10 @@ class AnansiMolecularDynamics final : public Simulation
         COMMANDLINE::CommandLineArguments commandLineArguments_;
         ANANSI::SimulationParameters simulationParameters_;
         std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
-        std::unique_ptr<ANANSI::MPIEnvironment> MpiEnvironment_;
-
         std::shared_ptr<ANANSI::AnansiTask> consoleLogger_;
-        std::shared_ptr<ANANSI::AnansiTask> mpiEnvironment_;
+
+        std::unique_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
+        std::shared_ptr<ANANSI::AnansiTask> mpiEnvironmentCmd_;
 
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;

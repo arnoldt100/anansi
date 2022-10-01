@@ -32,9 +32,9 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     commandLineArguments_(),
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
-    MpiEnvironment_(nullptr),
     consoleLogger_(nullptr),
     mpiEnvironment_(nullptr),
+    mpiEnvironmentCmd_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -66,9 +66,9 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     commandLineArguments_(COMMANDLINE::CommandLineArguments(argc,argv)),
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
-    MpiEnvironment_(nullptr),
     consoleLogger_(nullptr),
     mpiEnvironment_(nullptr),
+    mpiEnvironmentCmd_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -92,7 +92,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     // Initialize all factories.
     this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory>();
 
-    this->mpiEnvironment_ = this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
+    this->mpiEnvironmentCmd_ = this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     this->consoleLogger_ = this->mdAnansiTaskFactory_->create_shared_ptr<LoggingTask>();
 
     // Change the state to Null.
@@ -116,12 +116,12 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     char** my_argv_ptr=nullptr;
 
 
-    // :TODO:09/28/2022 10:52:51 AM:: mpiEnvironment_ enabling in this manner is to be depracated. 
+    // :TODO:09/28/2022 10:52:51 AM:: mpiEnvironmentCmd_ enabling in this manner is to be depracated. 
     this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
-    this->MpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
-    this->MpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
+    this->mpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
+    this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
 
-    this->mpiEnvironment_->enable();
+    this->mpiEnvironmentCmd_->enable();
 
     if (my_argv_ptr != nullptr)
     {
@@ -135,7 +135,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 void
 AnansiMolecularDynamics::disableCommunicationEnvironment()
 {
-    this->MpiEnvironment_->disableEnvironment();
+    this->mpiEnvironment_->disableEnvironment();
     std::cout << "Disabled the MPI environment." << std::endl;
     return;
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
@@ -329,7 +329,7 @@ void AnansiMolecularDynamics::processCommandLine_()
 void
 AnansiMolecularDynamics::initializeInitialConditions_()
 {
-    // :TODO:09/20/2022 01:21:24 PM:: Enable this fuction.
+    // :TODO:09/20/2022 01:21:24 PM:: Enable this function.
     // Change state function, call execute, and change state back to
     // Null state. 
 
