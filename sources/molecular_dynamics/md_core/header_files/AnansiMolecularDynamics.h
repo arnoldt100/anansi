@@ -30,6 +30,9 @@
 #include "MDAnansiTaskFactory.h"
 #include "AnansiTask.h"
 
+// Includes for invoking the communication environment.
+#include "MDCommEnvInvoker.h"
+
 namespace ANANSI {
 
 class AnansiMolecularDynamics final : public Simulation
@@ -137,6 +140,7 @@ class AnansiMolecularDynamics final : public Simulation
 
         std::unique_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
         std::shared_ptr<ANANSI::AnansiTask> mpiEnvironmentCmd_;
+        std::shared_ptr<ANANSI::MDCommEnvInvoker> mdCommEnvInvk_;
 
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;
