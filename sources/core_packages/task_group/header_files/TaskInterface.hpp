@@ -25,18 +25,39 @@ namespace ANANSI
 //        Class:  TaskInterface
 //  Description:  
 //  =====================================================================================
+template <typename Derived>
 class TaskInterface
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        TaskInterface ();   // constructor
+        TaskInterface ()   // constructor
+        {
+            return;
+        }
 
-        TaskInterface (const TaskInterface & other);   // copy constructor
+        TaskInterface (const TaskInterface & other)   // copy constructor
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }
 
-        TaskInterface (TaskInterface && other);   // copy-move constructor
+        TaskInterface (TaskInterface && other)   // copy-move constructor
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }		// -----  end of method TaskInterface::TaskInterface  -----
 
-        virtual ~TaskInterface ();  // destructor
+        ~TaskInterface ()  // destructor
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +65,23 @@ class TaskInterface
 
         // ====================  OPERATORS     =======================================
 
-        TaskInterface& operator= ( const TaskInterface &other ); // assignment operator
+        TaskInterface& operator= ( const TaskInterface &other ) // assignment operator
+        {
+            if (this != &other)
+            {
+        
+            }
+            return *this;
+        } // assignment operator
 
-        TaskInterface& operator= ( TaskInterface && other ); // assignment-move operator
+        TaskInterface& operator= ( TaskInterface && other ) // assignment-move operator
+        {
+            if (this != &other)
+            {
+
+            }
+            return *this;
+        } // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================

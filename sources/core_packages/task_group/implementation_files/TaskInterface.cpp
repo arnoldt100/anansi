@@ -19,58 +19,11 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-TaskInterface::TaskInterface()
-{
-    return;
-}
-
-TaskInterface::TaskInterface( TaskInterface const & other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}
-
-TaskInterface::TaskInterface( TaskInterface && other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}		// -----  end of method TaskInterface::TaskInterface  -----
-
-
-TaskInterface::~TaskInterface()
-{
-    return;
-}
-
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-TaskInterface& TaskInterface::operator= ( const TaskInterface &other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment operator
-
-TaskInterface& TaskInterface::operator= ( TaskInterface && other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
