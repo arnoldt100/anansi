@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,6 +20,7 @@
 //--------------------------------------------------------//
 #include "InterProcessCommEnv.h"
 #include "CommandLineArguments.h"
+#include "TaskInterface.hpp"
 
 namespace ANANSI
 {
@@ -27,7 +29,8 @@ namespace ANANSI
 //        Class:  MPIEnvTask
 //  Description:  
 //  =====================================================================================
-class MPIEnvTask final : public ANANSI::InterProcessCommEnv
+class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
+    public ANANSI::InterProcessCommEnv
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -43,7 +46,21 @@ class MPIEnvTask final : public ANANSI::InterProcessCommEnv
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        
+        void enableConcreteTask()
+        {
+            std::cout << "Enabling concrete task MPIEnvTask." << std::endl;
+        }
 
+        void disableConcreteTask()
+        {
+            std::cout << "Disabling concrete task MPIEnvTask." << std::endl;
+        }
+
+        void executeConcreteTask()
+        {
+            std::cout << "Executing concrete task MPIEnvTask." << std::endl;
+        }
         // ====================  OPERATORS     =======================================
 
         MPIEnvTask& operator= ( const MPIEnvTask &other ); // assignment operator
@@ -59,6 +76,7 @@ class MPIEnvTask final : public ANANSI::InterProcessCommEnv
         // ====================  ACCESSORS     =======================================
         
         // ====================  MUTATORS      =======================================
+
         void enable_() override;
 
         void disable_() override;

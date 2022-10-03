@@ -54,14 +54,39 @@ class TaskInterface
             return;
         }		// -----  end of method TaskInterface::TaskInterface  -----
 
-        ~TaskInterface ()  // destructor
-        {
-            return;
-        }
+        virtual ~TaskInterface () = 0;  // destructor
 
         // ====================  ACCESSORS     =======================================
 
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to a constant CRTP derived class "Derived".
+        Derived const & asDerived() const
+        {
+            return *static_cast<Derived const*>(this);
+        }
+
         // ====================  MUTATORS      =======================================
+
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to the CRTP derived class.
+        Derived& asDerived()
+        {
+            return *static_cast<Derived*>(this);
+        }
+
+        virtual void enableTask() 
+        {
+            asDerived().enableConcreteTask();
+            return;
+        }
+
+        virtual void disableTask() 
+        {
+            asDerived().disableConcreteTask();
+            return;
+        }
 
         // ====================  OPERATORS     =======================================
 
@@ -83,6 +108,11 @@ class TaskInterface
             return *this;
         } // assignment-move operator
 
+
+        virtual void operator()()
+        {
+            asDerived().executeConcreteTask();
+        }
     protected:
         // ====================  METHODS       =======================================
 
@@ -95,6 +125,11 @@ class TaskInterface
 
 }; // -----  end of class TaskInterface  -----
 
+template <typename Derived>
+TaskInterface<Derived>::~TaskInterface ()  // destructor
+{
+    return;
+}
 
 }; // namespace ANANSI
 

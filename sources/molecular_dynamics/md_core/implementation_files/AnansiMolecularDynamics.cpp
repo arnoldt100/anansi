@@ -127,6 +127,9 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv, COMMANDLINE::CommandLineArguments>(this->commandLineArguments_);
     this->mpiEnvironmentCmd_->enable();
 
+    auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->mpiEnvironmentCmd_);
+    dPtr->enableTask();
+
     this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
 
     if (my_argv_ptr != nullptr)
