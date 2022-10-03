@@ -123,7 +123,8 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     this->mpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
     this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
 
-    this->mpiEnvironmentCmd_ = this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
+    this->mpiEnvironmentCmd_ = 
+        this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv, COMMANDLINE::CommandLineArguments>(this->commandLineArguments_);
     this->mpiEnvironmentCmd_->enable();
 
     this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
