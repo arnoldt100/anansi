@@ -118,18 +118,44 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 
 
     // :TODO:09/28/2022 10:52:51 AM:: mpiEnvironmentCmd_ enabling in this manner is to be depracated. 
+    // Use invoker 
     this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
 
+    // ---------------------------------------------------
+    //  Create the receiver and enable it.
+    // 
+    // ---------------------------------------------------
     this->mpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
-    this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
+    this->mpiEnvironment_->enableReceiver();
 
+    // ---------------------------------------------------
+    //  Create the task abject and bind it to the 
+    //  receiver.
+    // 
+    // ---------------------------------------------------
     this->mpiEnvironmentCmd_ = 
         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv, COMMANDLINE::CommandLineArguments>(this->commandLineArguments_);
 
+    // ---------------------------------------------------
+    //  Create the invoker and add the task object to the invoker.
+    // 
+    // ---------------------------------------------------
+    this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
+    this->mdCommEnvInvk_->addTask();
+
+
+
+
+
+
+
+    // This action must be done in the command object.
+    this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
+
+    // Bind 
     auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->mpiEnvironmentCmd_);
     dPtr->enableTask();
 
-    this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
 
     if (my_argv_ptr != nullptr)
     {
@@ -143,6 +169,8 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 void
 AnansiMolecularDynamics::disableCommunicationEnvironment()
 {
+    // :TODO:10/04/2022 11:05:07 AM:: mpiEnvironmentCmd_ disabling in this manner is to be depracated.
+    // Use invoker 
     this->mpiEnvironment_->disableEnvironment();
     std::cout << "Disabled the MPI environment." << std::endl;
     return;

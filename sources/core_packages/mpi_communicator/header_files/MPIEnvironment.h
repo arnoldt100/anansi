@@ -38,6 +38,10 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
+        void enableReceiver();
+
+        void disableReceiver();
+
         void enableEnvironment(int const & argc, char const * const * const & argv);
 
         void enableEnvironment();
