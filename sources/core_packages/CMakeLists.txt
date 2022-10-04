@@ -47,8 +47,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
 # package.
 # 
 # ----------------------------------------------------
-include( ${CMAKE_CURRENT_SOURCE_DIR}/receiver/cmake_macros_and_functions/receiever.cmake )
-enable_building_receiver_library( "${core_packages_install_lib_directory}"
+include( ${CMAKE_CURRENT_SOURCE_DIR}/receiver/cmake_macros_and_functions/receiver.cmake )
+enable_building_receiver_package( "${core_packages_install_lib_directory}"
                                   "${core_packages_install_include_directory}"
                                   "${core_packages_install_bin_directory}" 
                                   "${core_packages_cxx_standard}"

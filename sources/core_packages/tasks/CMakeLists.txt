@@ -72,7 +72,6 @@
     set (tasks_header_files
          header_files/AnansiTask.h
          header_files/TaskInterface.hpp
-         header_files/ReceiverInterface.hpp
          header_files/LoggingTask.h
          header_files/TransferIngredients.hpp
          header_files/Ingredients.hpp
@@ -91,7 +90,6 @@
     set (tasks_implementation_files
          implementation_files/AnansiTask.cpp
          implementation_files/TaskInterface.cpp
-         implementation_files/ReceiverInterface.cpp
          implementation_files/LoggingTask.cpp
          implementation_files/TransferIngredients.cpp
          implementation_files/Ingredients.cpp
