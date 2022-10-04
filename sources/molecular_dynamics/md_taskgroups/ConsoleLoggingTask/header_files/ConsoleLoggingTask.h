@@ -7,6 +7,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -15,6 +16,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "TaskInterface.hpp"
 #include "LoggingTask.h"
 
 namespace ANANSI
@@ -24,7 +26,8 @@ namespace ANANSI
 //        Class:  ConsoleLoggingTask
 //  Description:  
 //  =====================================================================================
-class ConsoleLoggingTask : public LoggingTask
+class ConsoleLoggingTask final : public TaskInterface<ConsoleLoggingTask >,
+                                 public LoggingTask
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -40,6 +43,21 @@ class ConsoleLoggingTask : public LoggingTask
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+
+        void enableConcreteTask()
+        {
+            std::cout << "Enabling concrete task ConsoleLoggingTask." << std::endl;
+        }
+
+        void disableConcreteTask()
+        {
+            std::cout << "Disabling concrete task ConsoleLoggingTask." << std::endl;
+        }
+
+        void executeConcreteTask()
+        {
+            std::cout << "Executing concrete task ConsoleLoggingTask." << std::endl;
+        }
 
         // ====================  OPERATORS     =======================================
 

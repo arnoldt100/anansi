@@ -36,6 +36,7 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
+    get_target_property(my_task_group_include task_group task_group_include )
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
     get_target_property(mdtasksingredients_include mdtasksingredients mdtasksingredients_include)
 
@@ -76,12 +77,6 @@
     set (consoleloggingtask_implementation_files
          implementation_files/ConsoleLoggingTask.cpp
          implementation_files/ConsoleLoggingTaskIngredients.cpp )
-
-    #-----------------------------------------------------
-    # Set various variables for include directories.     -
-    #                                                    -
-    #-----------------------------------------------------
-    get_target_property(my_task_group_include task_group task_group_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
