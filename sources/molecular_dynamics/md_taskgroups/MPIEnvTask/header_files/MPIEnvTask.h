@@ -30,7 +30,7 @@ namespace ANANSI
 //  Description:  
 //  =====================================================================================
 class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
-    public ANANSI::InterProcessCommEnv
+                         public ANANSI::InterProcessCommEnv
 {
     public:
         // ====================  LIFECYCLE     =======================================

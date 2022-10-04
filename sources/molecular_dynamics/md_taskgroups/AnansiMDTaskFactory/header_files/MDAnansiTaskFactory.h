@@ -49,13 +49,7 @@ class MDAnansiTaskFactory final
             return product_ptr;
         }
 
-        // template <typename T>
-        // std::shared_ptr<AnansiTask> create_shared_ptr() const
-        // {
-        //     constexpr auto index = MDAnansiTaskFactory::findIndex_<T>();
-        //     std::shared_ptr<abstract_product_at_<index> > product_ptr(this->mdAnansiTaskFactory_->Create<abstract_product_at_<index>>());
-        //     return product_ptr;
-        // }
+
 
         template <typename T, typename... Types>
         std::unique_ptr<AnansiTask> create_unique_ptr(Types... args) const
@@ -64,14 +58,6 @@ class MDAnansiTaskFactory final
             std::unique_ptr<abstract_product_at_<index> > product_ptr(this->mdAnansiTaskFactory_->Create<abstract_product_at_<index>>());
             return product_ptr;
         }
-
-        // template <typename T>
-        // std::unique_ptr<AnansiTask> create_unique_ptr() const
-        // {
-        //     constexpr auto index = MDAnansiTaskFactory::findIndex_<T>();
-        //     std::unique_ptr<abstract_product_at_<index> > product_ptr(this->mdAnansiTaskFactory_->Create<abstract_product_at_<index>>());
-        //     return product_ptr;
-        // }
 
         // ====================  MUTATORS      =======================================
 
