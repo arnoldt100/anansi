@@ -1,22 +1,22 @@
-# This CMakeLists.txt file creates the library libtask_group.a
+# This CMakeLists.txt file creates the library libtasks.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# task_group_header_files or task_group_implementation_files.
+# tasks_header_files or tasks_implementation_files.
 #
-# The target for the library is task_group.
+# The target for the library is tasks.
 #
-# The following properties are set for the target task_group.
+# The following properties are set for the target tasks.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
-#   task_group_include                  ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-#   PUBLIC_HEADER                       ${task_group_header_files}                          The list of headers files associated with this librarry.
+#   tasks_include                       ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+#   PUBLIC_HEADER                       ${tasks_header_files}                               The list of headers files associated with this librarry.
 #
 # The build will abort unless the following variables are defined to
 # install the library archive, header files, and unit tests:
-#   task_group_install_lib_directory
-#   task_group_install_include_directory
-#   task_group_install_bin_directory
-#   task_group_cxx_standard
+#   tasks_install_lib_directory
+#   tasks_install_include_directory
+#   tasks_install_bin_directory
+#   tasks_cxx_standard
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -28,7 +28,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "task_group")
+    set(my_project_name "tasks")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -69,7 +69,7 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (task_group_header_files
+    set (tasks_header_files
          header_files/AnansiTask.h
          header_files/TaskInterface.hpp
          header_files/LoggingTask.h
@@ -87,7 +87,7 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (task_group_implementation_files
+    set (tasks_implementation_files
          implementation_files/AnansiTask.cpp
          implementation_files/TaskInterface.cpp
          implementation_files/LoggingTask.cpp
@@ -119,7 +119,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${task_group_header_files} ${task_group_implementation_files} )
+    PRIVATE ${tasks_header_files} ${tasks_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -155,13 +155,13 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      task_group_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD ${task_group_cxx_standard}
-                      PUBLIC_HEADER "${task_group_header_files}" )
+                      tasks_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD ${tasks_cxx_standard}
+                      PUBLIC_HEADER "${tasks_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION "${task_group_install_lib_directory}" 
-         PUBLIC_HEADER DESTINATION "${task_group_install_lib_directory}" )
+         ARCHIVE DESTINATION "${tasks_install_lib_directory}" 
+         PUBLIC_HEADER DESTINATION "${tasks_install_lib_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

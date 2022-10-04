@@ -127,15 +127,15 @@ enable_building_logger_library( "${core_packages_install_lib_directory}"
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 
 # ----------------------------------------------------
-# Here we define variables which indicate where to install the task_group
+# Here we define variables which indicate where to install the tasks
 # libraries, header files, and associated binaries.
 # 
 # ----------------------------------------------------
-include( ${CMAKE_CURRENT_SOURCE_DIR}/task_group/cmake_macros_and_functions/task_group.cmake)
-enable_building_task_group_library( "${core_packages_install_lib_directory}"
+include( ${CMAKE_CURRENT_SOURCE_DIR}/tasks/cmake_macros_and_functions/tasks.cmake)
+enable_building_tasks_library( "${core_packages_install_lib_directory}"
                                     "${core_packages_install_include_directory}"
                                     "${core_packages_install_bin_directory}" 
                                     "${core_packages_cxx_standard}" )
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/task_group)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tasks)
 
 
