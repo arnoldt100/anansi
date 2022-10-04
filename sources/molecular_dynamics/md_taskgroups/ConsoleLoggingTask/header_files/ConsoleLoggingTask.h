@@ -72,9 +72,6 @@ class ConsoleLoggingTask final : public TaskInterface<ConsoleLoggingTask >,
 
     private:
         // ====================  METHODS       =======================================
-        void enable_() override;
-
-        void disable_() override;
 
         // ====================  DATA MEMBERS  =======================================
 

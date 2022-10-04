@@ -51,10 +51,6 @@ class LoggingTask : public AnansiTask
     private:
         // ====================  METHODS       =======================================
 
-        void enable_() override;
-        
-        void disable_() override;
-
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class LoggingTask  -----

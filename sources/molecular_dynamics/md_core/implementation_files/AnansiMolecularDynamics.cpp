@@ -125,7 +125,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 
     this->mpiEnvironmentCmd_ = 
         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv, COMMANDLINE::CommandLineArguments>(this->commandLineArguments_);
-    this->mpiEnvironmentCmd_->enable();
 
     auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->mpiEnvironmentCmd_);
     dPtr->enableTask();
@@ -169,14 +168,16 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
 void AnansiMolecularDynamics::enableConsoleLogger()
 {
-    this->consoleLogger_->enable();
+    auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->consoleLogger_);
+    dPtr->enableTask();
     return;
 }
 
 void
 AnansiMolecularDynamics::disableConsoleLogger()
 {
-    this->consoleLogger_->disable();
+    auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->consoleLogger_);
+    dPtr->disableTask();
     return;
 }
 

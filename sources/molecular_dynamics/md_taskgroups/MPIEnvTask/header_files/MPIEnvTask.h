@@ -77,10 +77,6 @@ class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
         
         // ====================  MUTATORS      =======================================
 
-        void enable_() override;
-
-        void disable_() override;
-
         // ====================  DATA MEMBERS  =======================================
         COMMANDLINE::CommandLineArguments commandLineArgs_;
 

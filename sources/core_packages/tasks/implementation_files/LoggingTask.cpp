@@ -98,15 +98,6 @@ LoggingTask& LoggingTask::operator= ( LoggingTask && other )
 
 //============================= MUTATORS =====================================
 
-void LoggingTask::enable_()
-{
-    return;
-}
-        
-void LoggingTask::disable_()
-{
-    return;
-}
 //============================= OPERATORS ====================================
 
 

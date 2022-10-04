@@ -51,17 +51,6 @@ AnansiTask::~AnansiTask()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiTask::enable()
-{
-    this->enable_();
-    return;
-}
-
-void AnansiTask::disable()
-{
-    this->disable_();
-    return;
-}
 
 //============================= OPERATORS ====================================
 
@@ -104,17 +93,7 @@ AnansiTask& AnansiTask::operator= ( AnansiTask && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiTask::enable_()
-{
-    return;
-}
-
-void AnansiTask::disable_()
-{
-    return;
-}
 
 //============================= OPERATORS ====================================
-
 
 } // namespace ANANSI

@@ -100,17 +100,6 @@ MPIEnvTask& MPIEnvTask::operator=( MPIEnvTask && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MPIEnvTask::enable_()
-{
-    std::cout << "Enabling MPI environment." << std::endl;
-    return;
-}
-
-void MPIEnvTask::disable_()
-{
-    std::cout << "Disabling MPI environment." << std::endl;
-    return;
-}
 
 //============================= OPERATORS ====================================
 

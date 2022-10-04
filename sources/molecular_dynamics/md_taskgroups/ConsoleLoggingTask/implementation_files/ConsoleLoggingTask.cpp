@@ -98,17 +98,6 @@ ConsoleLoggingTask& ConsoleLoggingTask::operator=( ConsoleLoggingTask && other )
 
 //============================= MUTATORS =====================================
 
-void ConsoleLoggingTask::enable_()
-{
-    std::cout << "Enabling console logger." << std::endl;
-    return;
-}
-        
-void ConsoleLoggingTask::disable_() 
-{
-    std::cout << "Disabling console logger." << std::endl;
-    return;
-}
 //============================= OPERATORS ====================================
 
 

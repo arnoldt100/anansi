@@ -36,7 +36,7 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property(my_task_group_include task_group task_group_include )
+    get_target_property(my_tasks_include tasks tasks_include )
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
     get_target_property(mdtasksingredients_include mdtasksingredients mdtasksingredients_include)
 
