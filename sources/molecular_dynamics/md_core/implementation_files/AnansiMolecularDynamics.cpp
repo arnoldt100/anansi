@@ -136,7 +136,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     this->mpiEnvironmentCmd_ = 
         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
 
-    this->mpiEnvironmentCmd_->bindReceivers(this->mpiEnvironment_);
 
     // ---------------------------------------------------
     //  Create the invoker and add the task object to the invoker.
