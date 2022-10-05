@@ -33,7 +33,9 @@ namespace ANANSI {
 MPIEnvironment::MPIEnvironment() :
     COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>(),
     argc_ptr_(0),
-    argv_ptr_(nullptr)
+    argv_ptr_(nullptr),
+    cmdLineArgs_(),
+    mpistate_(nullptr)
 {
     this->changeMPIState_<ANANSI::NullMPIEnvironment>();
     return;

@@ -129,12 +129,14 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     this->mpiEnvironment_->enable(this->commandLineArguments_);
 
     // ---------------------------------------------------
-    //  Create the task abject and bind it to the 
-    //  receiver.
+    //  Create the task abject and bind  the 
+    //  receiver(s) to the task.
     // 
     // ---------------------------------------------------
     this->mpiEnvironmentCmd_ = 
-        this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv, COMMANDLINE::CommandLineArguments>(this->commandLineArguments_);
+        this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
+
+    this->mpiEnvironmentCmd_->bindReceivers(this->mpiEnvironment_);
 
     // ---------------------------------------------------
     //  Create the invoker and add the task object to the invoker.

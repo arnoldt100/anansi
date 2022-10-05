@@ -45,6 +45,7 @@ class MPIEnvironment final : public RECEIVER::ReceiverInterface<MPIEnvironment>,
         void enableReceiver( COMMANDLINE::CommandLineArguments & cmd_line_args)
         {
             std::cout << "Enabling the receiver MPIEnvironment." << std::endl;
+            this->cmdLineArgs_ = cmd_line_args;
             return;
         }
 
@@ -91,8 +92,10 @@ class MPIEnvironment final : public RECEIVER::ReceiverInterface<MPIEnvironment>,
         }
 
         /* ====================  DATA MEMBERS  ======================================= */
+
         int argc_ptr_;
         char** argv_ptr_;
+        COMMANDLINE::CommandLineArguments cmdLineArgs_;
         std::shared_ptr<ANANSI::MPIEnvironmentState> mpistate_;
 
 }; /* -----  end of class MPIEnvironment  ----- */

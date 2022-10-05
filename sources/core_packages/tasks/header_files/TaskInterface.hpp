@@ -66,6 +66,7 @@ class TaskInterface
             return *static_cast<Derived const*>(this);
         }
 
+
         // ====================  MUTATORS      =======================================
 
         //! Provides access to the CRTP derived class "Derived."
@@ -85,6 +86,12 @@ class TaskInterface
         virtual void disableTask() 
         {
             asDerived().disableConcreteTask();
+            return;
+        }
+
+        template<typename... Types>
+        void bindReceivers(Types... args)
+        {
             return;
         }
 
