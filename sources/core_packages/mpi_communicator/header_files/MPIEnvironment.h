@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 #include <memory>
 
 //--------------------------------------------------------//
@@ -16,13 +17,15 @@
 //--------------------------------------------------------//
 #include "MPIEnvironmentState.h"
 #include "ClassInstanceLimiter.hpp"
+#include "ReceiverInterface.hpp"
+#include "CommandLineArguments.h"
 
 namespace ANANSI
 {
 
 constexpr auto MAX_MPIENVIRONMENT_INSTANCES = 1;
 
-class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
+class MPIEnvironment final : public RECEIVER::ReceiverInterface<MPIEnvironment>, private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
@@ -38,7 +41,12 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
-        void enableReceiver();
+        template <typename... Types>
+        void enableReceiver( COMMANDLINE::CommandLineArguments & cmd_line_args)
+        {
+            std::cout << "Enabling the receiver MPIEnvironment." << std::endl;
+            return;
+        }
 
         void disableReceiver();
 
@@ -88,6 +96,7 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         std::shared_ptr<ANANSI::MPIEnvironmentState> mpistate_;
 
 }; /* -----  end of class MPIEnvironment  ----- */
+
 
 
 }; /* namespace ANANSI */

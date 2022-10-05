@@ -9,6 +9,8 @@
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #
+#   receiver_include                    ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+#   PUBLIC_HEADER                       ${receiver_header_files}                            The list of headers files associated with this librarry.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

@@ -126,7 +126,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // 
     // ---------------------------------------------------
     this->mpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
-    this->mpiEnvironment_->enableReceiver();
+    this->mpiEnvironment_->enable(this->commandLineArguments_);
 
     // ---------------------------------------------------
     //  Create the task abject and bind it to the 

@@ -1,5 +1,5 @@
-#ifndef ANANSI_ReceiverInterface_INC
-#define ANANSI_ReceiverInterface_INC
+#ifndef RECEIVER_ReceiverInterface_INC
+#define RECEIVER_ReceiverInterface_INC
 //! @file ReceiverInterface.hpp
 //!
 //! Brief description
@@ -18,7 +18,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace ANANSI
+namespace RECEIVER
 {
 
 template<typename Derived>
@@ -72,9 +72,10 @@ class ReceiverInterface
             return *static_cast<Derived*>(this);
         }
 
-        void enable()
+        template<typename... Types>
+        void enable(Types... args)
         {
-            asDerived().enableReceiver();
+            asDerived().enableReceiver(args...);
         }
 
         void disable()
@@ -120,6 +121,6 @@ ReceiverInterface<Derived>::~ReceiverInterface ()  // destructor
     return;
 }
 
-}; // namespace ANANSI
+}; // namespace RECEIVER
 
-#endif // ANANSI_ReceiverInterface_INC
+#endif // RECEIVER_ReceiverInterface_INC

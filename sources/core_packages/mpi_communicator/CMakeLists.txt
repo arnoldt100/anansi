@@ -43,9 +43,11 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
+    get_target_property(my_receiver_include receiver receiver_include)
     get_target_property(my_comm_include communicator communicator_include)
     get_target_property(my_mm_include memory_management memory_management_include)
     get_target_property(my_su_include string_utilities string_utilities_include)
+    get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include)
     get_target_property(my_cc_include counterclass counterclass_include)
 
     # ----------------------------------------------------
@@ -182,7 +184,9 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_command_line_arguments_include} 
+                           PRIVATE ${my_receiver_include}
                            PRIVATE ${my_su_include}
                            PRIVATE ${my_comm_include} 
                            PRIVATE ${my_mm_include}
@@ -196,6 +200,8 @@ target_include_directories(${target}
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
+                       PUBLIC receiver
+                       PUBLIC command_line_arguments
                        PUBLIC Threads::Threads
                        PUBLIC string_utilities
                        PUBLIC communicator

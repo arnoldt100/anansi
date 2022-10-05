@@ -52,10 +52,6 @@ MPIEnvironment::~MPIEnvironment()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MPIEnvironment::enableReceiver()
-{
-    return;
-}
 
 void MPIEnvironment::disableReceiver()
 {
