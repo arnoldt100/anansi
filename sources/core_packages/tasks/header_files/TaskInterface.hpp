@@ -89,9 +89,16 @@ class TaskInterface
             return;
         }
 
-        template<typename... Types>
-        void bindReceivers(Types... args)
+        void bindReceivers()
         {
+            return;
+        }
+
+        template<typename T, typename... Types>
+        void bindReceivers(T firstArg, Types... args)
+        {
+            asDerived().bindAReceiver(firstArg);
+            this->bindReceivers(args...);
             return;
         }
 

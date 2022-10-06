@@ -61,6 +61,13 @@ class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
         {
             std::cout << "Executing concrete task MPIEnvTask." << std::endl;
         }
+
+        template <typename T>
+        void bindAReceiver(T & aReceiver)
+        {
+            std::cout << "Binding a receiver" << std::endl;
+        }
+
         // ====================  OPERATORS     =======================================
 
         MPIEnvTask& operator= ( const MPIEnvTask &other ); // assignment operator

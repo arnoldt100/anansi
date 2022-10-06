@@ -17,6 +17,7 @@
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
+#include "TaskInterfaceUtilities.hpp"
 
 namespace ANANSI {
 
@@ -133,9 +134,14 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     //  receiver(s) to the task.
     // 
     // ---------------------------------------------------
+    using concrete_task_t = ANANSI::MPIEnvTask;
+    const auto mpienvtask_interface_utility = 
+        std::shared_ptr<TaskInterfaceUtilities<concrete_task_t>>();
+
     this->mpiEnvironmentCmd_ = 
         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
-
+    
+    mpienvtask_interface_utility->bindReceiverToTask(this->mpiEnvironmentCmd_,this->mpiEnvironment_);
 
     // ---------------------------------------------------
     //  Create the invoker and add the task object to the invoker.
