@@ -79,6 +79,19 @@ void MPIEnvironment::disableEnvironment()
     this->mpistate_->disable(this);
     return;
 }
+
+void MPIEnvironment::receiverDoAction()
+{
+    this->mpistate_->enable(this);
+    return;
+}
+
+void MPIEnvironment::receiverUndoAction()
+{
+    this->mpistate_->disable(this);
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 //============================= STATIC =======================================

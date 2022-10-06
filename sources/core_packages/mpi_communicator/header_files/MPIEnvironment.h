@@ -51,6 +51,10 @@ class MPIEnvironment final : public RECEIVER::ReceiverInterface<MPIEnvironment>,
 
         void disableReceiver();
 
+        void receiverDoAction();
+
+        void receiverUndoAction();
+
         void enableEnvironment(int const & argc, char const * const * const & argv);
 
         void enableEnvironment();

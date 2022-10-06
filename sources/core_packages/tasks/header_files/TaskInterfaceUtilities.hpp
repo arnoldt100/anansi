@@ -88,16 +88,8 @@ class TaskInterfaceUtilities
         template<typename... Types>
         void bindReceiverToTask(std::shared_ptr<ANANSI::AnansiTask> & aTask, Types... args )
         {
-            // auto tmp =  std::static_pointer_cast<CONCRETE_TASK_TYPE>(aTask);
-
             auto dPtr = this->asConcreteTask_(aTask);
-
             dPtr->bindReceivers(args...);
-
-
-            // this->mpiEnvironmentCmd_->bindReceivers(this->mpiEnvironment_);
-            // We need a for loop to peel of each function parameter, a receiver,  and
-            // bind add to the task.
         }
 
     protected:

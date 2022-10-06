@@ -130,17 +130,18 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     this->mpiEnvironment_->enable(this->commandLineArguments_);
 
     // ---------------------------------------------------
-    //  Create the task abject and bind  the 
+    //  Create the task abject and bind the 
     //  receiver(s) to the task.
     // 
     // ---------------------------------------------------
     using concrete_task_t = ANANSI::MPIEnvTask;
-    const auto mpienvtask_interface_utility = 
-        std::shared_ptr<TaskInterfaceUtilities<concrete_task_t>>();
 
     this->mpiEnvironmentCmd_ = 
         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     
+    const auto mpienvtask_interface_utility = 
+        std::shared_ptr<TaskInterfaceUtilities<concrete_task_t>>();
+
     mpienvtask_interface_utility->bindReceiverToTask(this->mpiEnvironmentCmd_,this->mpiEnvironment_);
 
     // ---------------------------------------------------
@@ -149,9 +150,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
     this->mdCommEnvInvk_->addTask();
-
-
-
 
 
 

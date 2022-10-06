@@ -23,28 +23,27 @@ namespace ANANSI {
 
 MPIEnvTask::MPIEnvTask() :
     InterProcessCommEnv(),
-    commandLineArgs_()
+    mpiEnvironment_(nullptr)
 {
     return;
 }
 
 MPIEnvTask::MPIEnvTask( MPIEnvTask const & other) :
    InterProcessCommEnv(other),
-   commandLineArgs_(other.commandLineArgs_) 
+   mpiEnvironment_(other.mpiEnvironment_) 
 {
     if (this != &other)
     {
-        this->commandLineArgs_ = other.commandLineArgs_;
     }
     return;
 }
 
 MPIEnvTask::MPIEnvTask( MPIEnvTask && other) : 
-    InterProcessCommEnv(std::move(other))
+    InterProcessCommEnv(std::move(other)),
+    mpiEnvironment_(std::move(other.mpiEnvironment_)) 
 {
     if (this != &other)
     {
-        this->commandLineArgs_ = std::move(other.commandLineArgs_);
     }
     return;
 }		// -----  end of method MPIEnvTask::MPIEnvTask  -----
@@ -66,6 +65,7 @@ MPIEnvTask& MPIEnvTask::operator=( const MPIEnvTask &other )
     if (this != &other)
     {
         InterProcessCommEnv::operator=(other);
+        this->mpiEnvironment_ = other.mpiEnvironment_; 
     }
     return *this;
 } // assignment operator
@@ -75,6 +75,7 @@ MPIEnvTask& MPIEnvTask::operator=( MPIEnvTask && other )
     if (this != &other)
     {
         InterProcessCommEnv::operator=(std::move(other));
+        this->mpiEnvironment_ = std::move(other.mpiEnvironment_); 
     }
     return *this;
 } // assignment-move operator
@@ -88,6 +89,13 @@ MPIEnvTask& MPIEnvTask::operator=( MPIEnvTask && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+
+template <>
+void MPIEnvTask::bindAReceiver(std::shared_ptr<ANANSI::MPIEnvironment> & receiver)
+{
+    std::cout << "Binding a specfic mpi environment receiver." << std::endl;
+    this->mpiEnvironment_ = receiver;
+}
 
 //============================= OPERATORS ====================================
 

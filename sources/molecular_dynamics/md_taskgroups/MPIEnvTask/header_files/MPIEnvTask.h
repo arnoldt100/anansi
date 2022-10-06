@@ -21,6 +21,7 @@
 #include "InterProcessCommEnv.h"
 #include "CommandLineArguments.h"
 #include "TaskInterface.hpp"
+#include "MPIEnvironment.h"
 
 namespace ANANSI
 {
@@ -59,13 +60,13 @@ class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
 
         void executeConcreteTask()
         {
-            std::cout << "Executing concrete task MPIEnvTask." << std::endl;
+            this->mpiEnvironment_->action();
         }
 
         template <typename T>
         void bindAReceiver(T & aReceiver)
         {
-            std::cout << "Binding a receiver" << std::endl;
+            std::cout << "Binding a general receiver." << std::endl;
         }
 
         // ====================  OPERATORS     =======================================
@@ -85,9 +86,10 @@ class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
         // ====================  MUTATORS      =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        COMMANDLINE::CommandLineArguments commandLineArgs_;
+        std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
 
 }; // -----  end of class MPIEnvTask  -----
+
 
 
 }; // namespace ANANSI

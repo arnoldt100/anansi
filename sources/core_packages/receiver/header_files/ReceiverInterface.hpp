@@ -83,6 +83,16 @@ class ReceiverInterface
             asDerived().disableReceiver();
         }
 
+        void action()
+        {
+            asDerived().receiverDoAction();
+        }
+
+        void undoAction()
+        {
+            asDerived().receiverUndoAction();
+        }
+
         // ====================  OPERATORS     =======================================
 
         ReceiverInterface& operator= ( const ReceiverInterface &other ) // assignment operator
