@@ -54,7 +54,7 @@ class TaskInterface
             return;
         }		// -----  end of method TaskInterface::TaskInterface  -----
 
-        virtual ~TaskInterface () = 0;  // destructor
+        virtual ~TaskInterface ()  // destructor
 
         // ====================  ACCESSORS     =======================================
 

@@ -30,8 +30,7 @@ namespace ANANSI
 //        Class:  MPIEnvTask
 //  Description:  
 //  =====================================================================================
-class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
-                         public ANANSI::InterProcessCommEnv
+class MPIEnvTask final : public ANANSI::InterProcessCommEnv
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -63,10 +62,10 @@ class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
             this->mpiEnvironment_->action();
         }
 
-        template <typename T>
-        void bindAReceiver(T & aReceiver)
+        template <typename... Types>
+        void bindReceivers(Types... args)
         {
-            std::cout << "Binding a general receiver." << std::endl;
+            std::cout << "Binding general receiver." << std::endl;
         }
 
         // ====================  OPERATORS     =======================================
@@ -86,6 +85,7 @@ class MPIEnvTask final : public TaskInterface<MPIEnvTask>,
         // ====================  MUTATORS      =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::shared_ptr<TaskInterface<MPIEnvTask>> taskInterface_;
         std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
 
 }; // -----  end of class MPIEnvTask  -----

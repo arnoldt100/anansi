@@ -139,27 +139,27 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     this->mpiEnvironmentCmd_ = 
         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     
-    const auto mpienvtask_interface_utility = 
+    const auto mpienvtask_interface_utility =
         std::shared_ptr<TaskInterfaceUtilities<concrete_task_t>>();
 
     mpienvtask_interface_utility->bindReceiverToTask(this->mpiEnvironmentCmd_,this->mpiEnvironment_);
 
-    // ---------------------------------------------------
-    //  Create the invoker and add the task object to the invoker.
-    // 
-    // ---------------------------------------------------
-    this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
-    this->mdCommEnvInvk_->addTask();
+    // // ---------------------------------------------------
+    // //  Create the invoker and add the task object to the invoker.
+    // // 
+    // // ---------------------------------------------------
+    // this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
+    // this->mdCommEnvInvk_->addSlot("MPIEnivornent", this->mpiEnvironment_);
 
 
 
 
     // This action must be done in the command object.
-    this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
+    // this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
 
     // Bind 
-    auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->mpiEnvironmentCmd_);
-    dPtr->enableTask();
+    // auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->mpiEnvironmentCmd_);
+    // dPtr->enableTask();
 
 
     if (my_argv_ptr != nullptr)
@@ -201,16 +201,18 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
 void AnansiMolecularDynamics::enableConsoleLogger()
 {
-    auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->consoleLogger_);
-    dPtr->enableTask();
+	// TODO: Refactor accoding to new TaskInterface composite pattern.
+    // auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->consoleLogger_);
+    // dPtr->enableTask();
     return;
 }
 
 void
 AnansiMolecularDynamics::disableConsoleLogger()
 {
-    auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->consoleLogger_);
-    dPtr->disableTask();
+	// TODO: Refactor accoding to new TaskInterface composite pattern.
+    // auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->consoleLogger_);
+    ///dPtr->disableTask();
     return;
 }
 

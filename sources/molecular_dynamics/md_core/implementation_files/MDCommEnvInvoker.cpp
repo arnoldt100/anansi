@@ -54,7 +54,8 @@ void MDCommEnvInvoker::undoTask() const
 }
 
 //============================= MUTATORS =====================================
-void MDCommEnvInvoker::addTask()
+void MDCommEnvInvoker::addSlot(std::string const & key, 
+                               std::shared_ptr<ANANSI::AnansiTask> aCommand)
 {
     return;
 }

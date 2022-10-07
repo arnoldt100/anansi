@@ -105,6 +105,11 @@ class TaskInterfaceUtilities
             return std::static_pointer_cast<CONCRETE_TASK_TYPE>(aTask);
         }
         
+        std::shared_ptr<AnansiTask> asTask_(std::shared_ptr<CONCRETE_TASK_TYPE> & concrete_task) const
+        {
+            return std::static_pointer_cast<AnansiTask>(concrete_task);
+        }
+
         // ====================  MUTATORS      =======================================
 
         // ====================  DATA MEMBERS  =======================================

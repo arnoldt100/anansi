@@ -23,6 +23,7 @@ namespace ANANSI {
 
 MPIEnvTask::MPIEnvTask() :
     InterProcessCommEnv(),
+    taskInterface_(nullptr),
     mpiEnvironment_(nullptr)
 {
     return;
@@ -30,6 +31,7 @@ MPIEnvTask::MPIEnvTask() :
 
 MPIEnvTask::MPIEnvTask( MPIEnvTask const & other) :
    InterProcessCommEnv(other),
+   taskInterface_(nullptr),
    mpiEnvironment_(other.mpiEnvironment_) 
 {
     if (this != &other)
@@ -40,6 +42,7 @@ MPIEnvTask::MPIEnvTask( MPIEnvTask const & other) :
 
 MPIEnvTask::MPIEnvTask( MPIEnvTask && other) : 
     InterProcessCommEnv(std::move(other)),
+    taskInterface_(std::move(other.taskInterface_)),
     mpiEnvironment_(std::move(other.mpiEnvironment_)) 
 {
     if (this != &other)
@@ -65,6 +68,7 @@ MPIEnvTask& MPIEnvTask::operator=( const MPIEnvTask &other )
     if (this != &other)
     {
         InterProcessCommEnv::operator=(other);
+        this->taskInterface_ = other.taskInterface_;
         this->mpiEnvironment_ = other.mpiEnvironment_; 
     }
     return *this;
@@ -75,6 +79,7 @@ MPIEnvTask& MPIEnvTask::operator=( MPIEnvTask && other )
     if (this != &other)
     {
         InterProcessCommEnv::operator=(std::move(other));
+        this->taskInterface_ = std::move(other.taskInterface_);
         this->mpiEnvironment_ = std::move(other.mpiEnvironment_); 
     }
     return *this;
