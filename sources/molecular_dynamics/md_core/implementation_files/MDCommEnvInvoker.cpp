@@ -19,12 +19,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDCommEnvInvoker::MDCommEnvInvoker()
+MDCommEnvInvoker::MDCommEnvInvoker() :
+    _commands()
 {
     return;
 }
 
-MDCommEnvInvoker::MDCommEnvInvoker( MDCommEnvInvoker && other)
+MDCommEnvInvoker::MDCommEnvInvoker( MDCommEnvInvoker && other) :
+    _commands(std::move(other._commands))
 {
     if (this != &other)
     {
@@ -36,6 +38,7 @@ MDCommEnvInvoker::MDCommEnvInvoker( MDCommEnvInvoker && other)
 
 MDCommEnvInvoker::~MDCommEnvInvoker()
 {
+    this->_commands.clear();
     return;
 }
 
