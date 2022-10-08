@@ -55,6 +55,9 @@ class TaskInterface
         }		// -----  end of method TaskInterface::TaskInterface  -----
 
         virtual ~TaskInterface ()  // destructor
+        {
+            return;                          
+        }
 
         // ====================  ACCESSORS     =======================================
 
@@ -138,12 +141,6 @@ class TaskInterface
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class TaskInterface  -----
-
-template <typename Derived>
-TaskInterface<Derived>::~TaskInterface ()  // destructor
-{
-    return;
-}
 
 }; // namespace ANANSI
 
