@@ -68,6 +68,12 @@ class MPIEnvTask final : public ANANSI::InterProcessCommEnv
             std::cout << "Binding general receiver." << std::endl;
         }
 
+        template <typename T>
+        void bindAReceiver(T arg)
+        {
+            std::cout << "Binding a general receiver." << std::endl;
+        }
+
         // ====================  OPERATORS     =======================================
 
         MPIEnvTask& operator= ( const MPIEnvTask &other ); // assignment operator
