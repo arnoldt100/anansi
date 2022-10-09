@@ -30,6 +30,15 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # Define the property name for the include directory.
+    # 
+    # We use the function "target_include_property_name" to define the property
+    # name.
+    #-----------------------------------------------------
+    target_include_property_name("${target}")
+    set(my_target_include_property_name "${target}_include_property_name" )
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -108,7 +117,7 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      __target___include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${__target___header_files}" )
 
 install( TARGETS ${target}
