@@ -1,18 +1,3 @@
-# The target for the library is md_taskgroups.
-#
-# The following properties are set for the target md_taskgroups.
-#
-#   Property                            Value                                               Description
-#----------------------------------------------------------------------------------------------------------------------------
-#
-
-# The build will abort unless the following variables are defined to
-# install the library archive, header files and unit tests:
-#   md_taskgroups_install_lib_directory
-#   md_taskgroups_install_include_directory
-#   md_taskgroups_install_bin_directory
-#   md_taskgroups_logfilepath
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -30,6 +15,7 @@
 
     # configure the ingredients and tasks.
     add_subdirectory(Ingredients)
+    # add_subdirectory(GenericMDTask)
     add_subdirectory(MPIEnvTask)
     add_subdirectory(ConsoleLoggingTask)
     add_subdirectory(AnansiMDTaskFactory)

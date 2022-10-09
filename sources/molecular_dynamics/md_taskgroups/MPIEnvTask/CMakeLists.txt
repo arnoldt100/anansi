@@ -32,6 +32,13 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # Define the property name for the include directory.
+    # 
+    #-----------------------------------------------------
+    target_include_property_name("${target}")
+    set(my_target_include_property_name "${target}_include_property_name" )
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -56,7 +63,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpienvtask_header_files
-        header_files/MPIEnvTask.h )
+         header_files/MPIEnvTask.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -68,13 +75,24 @@
     set (mpienvtask_implementation_files
          implementation_files/MPIEnvTask.cpp )
 
-    #-----------------------------------------------------
-    # Set various variables for include directories.     -
-    #                                                    -
-    #-----------------------------------------------------
-    get_target_property(my_tasks_include tasks tasks_include )
-    get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
-    get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
+    # -----------------------------------------------------
+    # Set various variables for include directories.
+    # 
+    # We use the function "target_include_property_name" to 
+    # get the property name for the include directory of the 
+    # various dependent targets. 
+    #
+    # -----------------------------------------------------
+    target_include_property_name("tasks")
+    get_target_property(my_tasks_include tasks "${tasks_include_property_name}" )
+
+    target_include_property_name("command_line_arguments")
+    get_target_property(my_command_line_arguments_include command_line_arguments 
+                        "${command_line_arguments_include_property_name}" )
+
+    target_include_property_name("mpi_communicator")
+    get_target_property(my_mpi_communicator_include mpi_communicator 
+                        "${mpi_communicator_include_property_name}")
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -129,11 +147,14 @@ target_link_libraries(${target}
 enable_compile_warnings(${target})
 
 #-----------------------------------------------------
-# Here we set the properties on target               -
-#                                                    -
+# Here we set the properties on target 
+# 
+# We use the function "target_include_property_name" to set the property name
+# for the include directory of the target. 
+#
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      mpienvtask_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${mpienvtask_header_files}" )
 
 install( TARGETS ${target}
