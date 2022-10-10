@@ -17,7 +17,6 @@
 //--------------------------------------------------------//
 #include "MPIEnvironmentState.h"
 #include "ClassInstanceLimiter.hpp"
-#include "ReceiverInterface.hpp"
 #include "CommandLineArguments.h"
 
 namespace ANANSI
@@ -25,12 +24,14 @@ namespace ANANSI
 
 constexpr auto MAX_MPIENVIRONMENT_INSTANCES = 1;
 
-class MPIEnvironment final : public RECEIVER::ReceiverInterface<MPIEnvironment>, private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
+class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
         MPIEnvironment(); /* constructor */
+
+        MPIEnvironment(COMMANDLINE::CommandLineArguments & cmd_line_args);
 
         MPIEnvironment(const MPIEnvironment &other)=delete; /* copy constructor */
 
@@ -41,21 +42,8 @@ class MPIEnvironment final : public RECEIVER::ReceiverInterface<MPIEnvironment>,
         /* ====================  ACCESSORS     ======================================= */
 
         /* ====================  MUTATORS      ======================================= */
-        template <typename... Types>
-        void enableReceiver( COMMANDLINE::CommandLineArguments & cmd_line_args)
-        {
-            std::cout << "Enabling the receiver MPIEnvironment." << std::endl;
-            this->cmdLineArgs_ = cmd_line_args;
-            return;
-        }
-
-        void disableReceiver();
-
-        void receiverDoAction();
-
-        void receiverUndoAction();
-
-        void enableEnvironment(int const & argc, char const * const * const & argv);
+        template <typename T>
+        void addMember( T & member);
 
         void enableEnvironment();
 
@@ -97,8 +85,6 @@ class MPIEnvironment final : public RECEIVER::ReceiverInterface<MPIEnvironment>,
 
         /* ====================  DATA MEMBERS  ======================================= */
 
-        int argc_ptr_;
-        char** argv_ptr_;
         COMMANDLINE::CommandLineArguments cmdLineArgs_;
         std::shared_ptr<ANANSI::MPIEnvironmentState> mpistate_;
 

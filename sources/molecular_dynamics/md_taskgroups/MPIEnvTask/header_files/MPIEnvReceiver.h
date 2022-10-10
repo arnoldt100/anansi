@@ -17,11 +17,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ReceiverInterface.hpp"
 
 namespace ANANSI
 {
 
-class MPIEnvReceiver final
+class MPIEnvReceiver :  public RECEIVER::ReceiverInterface<MPIEnvReceiver>
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -37,6 +38,17 @@ class MPIEnvReceiver final
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        template<typename... Types>
+        void enableReceiver(Types... args);
+
+        template<typename... Types>
+        void disableReceiver(Types... args);
+
+        template<typename... Types>
+        void receiverDoAction(Types... args);
+
+        template<typename... Types>
+        void receiverUndoAction(Types... args);
 
         // ====================  OPERATORS     =======================================
 
@@ -56,6 +68,29 @@ class MPIEnvReceiver final
 
 }; // -----  end of class MPIEnvReceiver  -----
 
+template<typename... Types>
+void MPIEnvReceiver::enableReceiver(Types... args)
+{
+    return;
+}
+
+template<typename... Types>
+void MPIEnvReceiver::disableReceiver(Types... args)
+{
+    return;
+}
+
+template<typename... Types>
+void MPIEnvReceiver::receiverDoAction(Types... args)
+{
+    return;
+}
+
+template<typename... Types>
+void MPIEnvReceiver::receiverUndoAction(Types... args)
+{
+    return;
+}
 
 }; // namespace ANANSI
 

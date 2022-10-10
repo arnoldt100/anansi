@@ -34,7 +34,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
-    mpiEnvironment_(nullptr),
     mpiEnvReceiver_(nullptr),
     mpiEnvironmentCmd_(nullptr),
     mdCommEnvInvk_(nullptr),
@@ -70,7 +69,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
-    mpiEnvironment_(nullptr),
     mpiEnvReceiver_(nullptr),
     mpiEnvironmentCmd_(nullptr),
     mdCommEnvInvk_(nullptr),
@@ -122,14 +120,13 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 
     // :TODO:09/28/2022 10:52:51 AM:: mpiEnvironmentCmd_ enabling in this manner is to be depracated. 
     // Use invoker 
-    this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
 
     // ---------------------------------------------------
     //  Create the receiver and enable it.
     // 
     // ---------------------------------------------------
-    // this->mpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
-    // this->mpiEnvironment_->enable(this->commandLineArguments_);
+    std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment;
+    mpi_environment->addMember(this->commandLineArguments_);
 
     // ---------------------------------------------------
     //  Create the task abject and bind the 
@@ -141,23 +138,15 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // this->mpiEnvironmentCmd_ = 
     //     this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     
-    // const auto mpienvtask_interface_utility =
-    //     std::shared_ptr<TaskInterfaceUtilities<concrete_task_t>>();
-
-    //  mpienvtask_interface_utility->bindReceiverToTask(this->mpiEnvironmentCmd_,this->mpiEnvironment_);
-
     // // ---------------------------------------------------
     // //  Create the invoker and add the task object to the invoker.
     // // 
     // // ---------------------------------------------------
-    // this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
-    // this->mdCommEnvInvk_->addSlot("MPIEnivornent", this->mpiEnvironment_);
 
 
 
 
     // This action must be done in the command object.
-    // this->mpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
 
     // Bind 
     // auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->mpiEnvironmentCmd_);
@@ -178,7 +167,6 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 {
     // :TODO:10/04/2022 11:05:07 AM:: Use mpiEnvInk_ to
     // end the mpi environment
-    // this->mpiEnvironment_->disableEnvironment();
     std::cout << "Disabled the MPI environment." << std::endl;
     return;
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */

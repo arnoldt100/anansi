@@ -107,13 +107,6 @@ void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
     return;
 }
 
-void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
-{
-    mpi_environment->enable_(argc,argv);
-    mpi_environment->changeMPIState_<ANANSI::EnabledMPIEnvironment>();
-    return;
-}
-
 //============================= OPERATORS ====================================
 
 

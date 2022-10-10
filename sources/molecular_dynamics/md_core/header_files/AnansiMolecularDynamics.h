@@ -139,7 +139,6 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::AnansiTask> consoleLogger_;
 
 
-        std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
         std::shared_ptr<ANANSI::MPIEnvReceiver> mpiEnvReceiver_;
         std::shared_ptr<ANANSI::AnansiTask> mpiEnvironmentCmd_;
         std::shared_ptr<ANANSI::MDCommEnvInvoker> mdCommEnvInvk_;

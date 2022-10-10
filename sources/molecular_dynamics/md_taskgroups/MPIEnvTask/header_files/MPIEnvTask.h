@@ -59,7 +59,7 @@ class MPIEnvTask final : public ANANSI::InterProcessCommEnv
 
         void executeConcreteTask()
         {
-            this->mpiEnvironment_->action();
+            return;
         }
 
         template <typename... Types>

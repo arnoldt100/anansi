@@ -55,8 +55,6 @@ class DisabledMPIEnvironment : public MPIEnvironmentState
 
         void enable_(MPIEnvironment* const mpi_environment) override;
 
-        void enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv) override;
-
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class DisabledMPIEnvironment  -----

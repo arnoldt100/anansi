@@ -40,6 +40,15 @@
     include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/receiver_build_prerequisites.cmake")
     verify_receiver_build_prerequisites_are_met()
 
+    #-----------------------------------------------------
+    # Define the property name for the include directory.
+    # 
+    # We use the function "target_include_property_name" to define the property
+    # name.
+    #-----------------------------------------------------
+    target_include_property_name("${target}")
+    set(my_target_include_property_name "${target}_include_property_name" )
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -117,7 +126,7 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      receiver_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       PUBLIC_HEADER "${receiver_header_files}" )
 
 install( TARGETS ${target}

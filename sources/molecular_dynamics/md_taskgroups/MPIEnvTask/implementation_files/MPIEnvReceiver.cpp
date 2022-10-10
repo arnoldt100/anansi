@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,12 +20,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MPIEnvReceiver::MPIEnvReceiver()
+MPIEnvReceiver::MPIEnvReceiver() :
+    ReceiverInterface<MPIEnvReceiver>()
 {
     return;
 }
 
-MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver const & other)
+MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver const & other) :
+    ReceiverInterface<MPIEnvReceiver>(other)
 {
     if (this != &other)
     {
@@ -33,15 +36,15 @@ MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver const & other)
     return;
 }
 
-MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver && other)
+MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver && other) :
+    ReceiverInterface<MPIEnvReceiver>(std::move(other))
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method MPIEnvReceiver::MPIEnvReceiver  -----
-
+}
 
 MPIEnvReceiver::~MPIEnvReceiver()
 {
@@ -58,6 +61,7 @@ MPIEnvReceiver& MPIEnvReceiver::operator= ( const MPIEnvReceiver &other )
 {
     if (this != &other)
     {
+        ReceiverInterface<MPIEnvReceiver>::operator=(other);
 
     }
     return *this;
@@ -67,7 +71,7 @@ MPIEnvReceiver& MPIEnvReceiver::operator= ( MPIEnvReceiver && other )
 {
     if (this != &other)
     {
-
+        ReceiverInterface<MPIEnvReceiver>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

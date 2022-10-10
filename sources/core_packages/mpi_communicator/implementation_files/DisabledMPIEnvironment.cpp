@@ -104,12 +104,6 @@ void DisabledMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
     return;
 }
 
-void DisabledMPIEnvironment::enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv)
-{
-    throw ErrorInvalidMPIEnvironmentChange();
-    return;
-}
-
 //============================= OPERATORS ====================================
 
 

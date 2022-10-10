@@ -19,8 +19,6 @@
 #include "NullMPIEnvironment.h"
 #include "EnabledMPIEnvironment.h"
 #include "DisabledMPIEnvironment.h"
-#include "Pointer2d.hpp"
-#include "copy_2d_char_array.h"
 
 namespace ANANSI {
 
@@ -32,8 +30,6 @@ namespace ANANSI {
 
 MPIEnvironment::MPIEnvironment() :
     COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>(),
-    argc_ptr_(0),
-    argv_ptr_(nullptr),
     cmdLineArgs_(),
     mpistate_(nullptr)
 {
@@ -41,22 +37,28 @@ MPIEnvironment::MPIEnvironment() :
     return;
 }
 
+MPIEnvironment::MPIEnvironment(COMMANDLINE::CommandLineArguments & cmd_line_args) :
+    COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>(),
+    cmdLineArgs_(),
+    mpistate_(nullptr)
+{
+    this->cmdLineArgs_ = cmd_line_args;
+    this->changeMPIState_<ANANSI::NullMPIEnvironment>();
+    return;
+}
+
 MPIEnvironment::~MPIEnvironment()
 {
-    if (argv_ptr_ !=nullptr)
-    {
-        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(argc_ptr_,argv_ptr_);
-    }
-
     return;
 }
 
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-
-void MPIEnvironment::disableReceiver()
+template <>
+void MPIEnvironment::addMember(COMMANDLINE::CommandLineArguments & cmd_line_args)
 {
+    this->cmdLineArgs_ = cmd_line_args;
     return;
 }
 
@@ -66,31 +68,12 @@ void MPIEnvironment::enableEnvironment()
     return;
 }
 
-void MPIEnvironment::enableEnvironment(int const & argc, char const * const * const & argv) 
-{
-    this->argc_ptr_ = argc;
-
-    this->mpistate_->enable(this,argc,argv);
-    return;
-}
-
 void MPIEnvironment::disableEnvironment() 
 {
     this->mpistate_->disable(this);
     return;
 }
 
-void MPIEnvironment::receiverDoAction()
-{
-    this->mpistate_->enable(this);
-    return;
-}
-
-void MPIEnvironment::receiverUndoAction()
-{
-    this->mpistate_->disable(this);
-    return;
-}
 
 //============================= OPERATORS ====================================
 
@@ -117,7 +100,7 @@ void MPIEnvironment::receiverUndoAction()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MPIEnvironment::enable_(int const & argc, char const * const * const & argv) 
+void MPIEnvironment::enable_() 
 {
 
     // Verify that the MPI environment is not already initialized. If
@@ -131,10 +114,10 @@ void MPIEnvironment::enable_(int const & argc, char const * const * const & argv
             throw ANANSI::MPIInitializedException();
         }
 
-        int tmp_argc = argc;
+        int tmp_argc;
         char** tmp_argv = nullptr;
+        this->cmdLineArgs_.reformCommandLineArguments(tmp_argc,tmp_argv);
 
-        STRING_UTILITIES::copy_2d_char_array(tmp_argc,argv,tmp_argv);
         mpi_return_code = MPI_Init(&tmp_argc,&tmp_argv);
 
         if (mpi_return_code != MPI_SUCCESS)
@@ -166,43 +149,6 @@ void MPIEnvironment::disable_()
         }
     }
     catch(ANANSI::MPIFinalizedException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-    return;
-}
-
-void MPIEnvironment::enable_()
-{
-
-    // Verify that the MPI environment is not already initialized. If
-    // the MPI environment is not initialized, the call MPI_Init.
-    try
-    {
-        int flag;
-        int mpi_return_code = MPI_Initialized( &flag );
-        if (flag)
-        {
-            throw ANANSI::MPIInitializedException();
-        }
-
-        int tmp_argc = 0;
-        char** tmp_argv = nullptr;
-
-        mpi_return_code = MPI_Init(&tmp_argc,&tmp_argv);
-
-        if (mpi_return_code != MPI_SUCCESS)
-        {
-            throw ANANSI::MPIInitException();
-        }
-    }
-    catch(ANANSI::MPIInitializedException const & my_mpi_exception)
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
-    catch (ANANSI::MPIInitException const & my_mpi_exception)
     {
         std::cout << my_mpi_exception.what() << std::endl;
         std::abort();

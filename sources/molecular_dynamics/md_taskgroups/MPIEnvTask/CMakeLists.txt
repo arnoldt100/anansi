@@ -98,6 +98,11 @@
     get_target_property(my_mpi_communicator_include mpi_communicator 
                         "${mpi_communicator_include_property_name}")
 
+
+    target_include_property_name("receiver")
+    get_target_property(my_receiver_include receiver 
+                        "${receiver_include_property_name}" )
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
@@ -133,7 +138,8 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_mpi_communicator_include}
                            PRIVATE ${my_tasks_include}
-                           PRIVATE ${my_command_line_arguments_include} )
+                           PRIVATE ${my_command_line_arguments_include} 
+                           PRIVATE ${my_receiver_include})
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -142,7 +148,8 @@ target_include_directories(${target}
 target_link_libraries(${target}
                       PUBLIC mpi_communicator
                       PUBLIC tasks
-                      PUBLIC command_line_arguments )
+                      PUBLIC command_line_arguments 
+                      PUBLIC receiver)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -58,8 +58,6 @@ class MPIEnvironmentState
         // ====================  MUTATORS      =======================================
         void enable(MPIEnvironment* const mpi_environment);
 
-        void enable(MPIEnvironment* const mpi_environment,int const & argc, char const * const * const & argv );
-
         void disable(MPIEnvironment* const mpi_environment);
 
         // ====================  OPERATORS     =======================================
@@ -76,8 +74,6 @@ class MPIEnvironmentState
     private:
         // ====================  MUTATORS      =======================================
         virtual void enable_(MPIEnvironment* const mpi_environment);
-
-        virtual void enable_(MPIEnvironment* const mpi_environment, int const & argc, char const * const * const & argv);
 
         virtual void disable_(MPIEnvironment* const mpi_environment);
 
