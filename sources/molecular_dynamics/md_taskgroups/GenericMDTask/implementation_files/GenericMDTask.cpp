@@ -20,58 +20,11 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-GenericMDTask::GenericMDTask()
-{
-    return;
-}
-
-GenericMDTask::GenericMDTask( GenericMDTask const & other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}
-
-GenericMDTask::GenericMDTask( GenericMDTask && other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}		// -----  end of method GenericMDTask::GenericMDTask  -----
-
-
-GenericMDTask::~GenericMDTask()
-{
-    return;
-}
-
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-GenericMDTask& GenericMDTask::operator= ( const GenericMDTask &other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment operator
-
-GenericMDTask& GenericMDTask::operator= ( GenericMDTask && other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
