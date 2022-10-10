@@ -65,7 +65,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpienvtask_header_files
-         header_files/MPIEnvTask.h )
+         header_files/MPIEnvTask.h
+         header_files/MPIEnvReceiver.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -75,7 +76,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpienvtask_implementation_files
-         implementation_files/MPIEnvTask.cpp )
+         implementation_files/MPIEnvTask.cpp
+         implementation_files/MPIEnvReceiver.cpp )
 
     # -----------------------------------------------------
     # Set various variables for include directories.
