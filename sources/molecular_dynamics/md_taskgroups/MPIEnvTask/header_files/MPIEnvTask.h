@@ -30,7 +30,7 @@ namespace ANANSI
 //        Class:  MPIEnvTask
 //  Description:  
 //  =====================================================================================
-class MPIEnvTask final : public ANANSI::InterProcessCommEnv
+class MPIEnvTask : public ANANSI::InterProcessCommEnv
 {
     public:
         // ====================  LIFECYCLE     =======================================

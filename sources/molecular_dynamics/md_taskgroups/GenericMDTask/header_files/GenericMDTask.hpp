@@ -19,13 +19,15 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "DefaultFunctorImpl.h"
+
 namespace ANANSI
 {
 
-template <typename ReceiverType,
-          typename FunctorImplType,
-          typename BaseClass>
-class GenericMDTask final : public BaseClass  
+template <typename BaseClass,
+          typename ReceiverType,
+          typename FunctorImplType = DefaultFunctorImpl>
+class GenericMDTask : public BaseClass  
 {
     public:
         // ====================  LIFECYCLE     =======================================

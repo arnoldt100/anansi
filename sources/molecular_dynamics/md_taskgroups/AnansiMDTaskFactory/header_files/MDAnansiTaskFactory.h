@@ -24,6 +24,8 @@
 #include "AbstractFactory.hpp"
 #include "ConcreteFactory.hpp"
 #include "GenericMDTask.hpp"
+#include "DefaultFunctorImpl.h"
+#include "MPIEnvReceiver.h"
 
 namespace ANANSI
 {
@@ -82,7 +84,7 @@ class MDAnansiTaskFactory final
 
             using concrete_products_ = MPL::mpl_typelist<
                                                           ConsoleLoggingTask,
-                                                          MPIEnvTask
+                                                          GenericMDTask<MPIEnvTask,MPIEnvReceiver>
                                                         >;
             template<std::size_t T>
             using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;

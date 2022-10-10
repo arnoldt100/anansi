@@ -133,10 +133,10 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     //  receiver(s) to the task.
     // 
     // ---------------------------------------------------
-    // using concrete_task_t = ANANSI::MPIEnvTask;
+    using concrete_task_t = ANANSI::MPIEnvTask;
 
-    // this->mpiEnvironmentCmd_ = 
-    //     this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
+    this->mpiEnvironmentCmd_ = 
+         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     
     // // ---------------------------------------------------
     // //  Create the invoker and add the task object to the invoker.

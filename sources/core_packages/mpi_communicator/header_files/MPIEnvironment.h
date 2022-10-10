@@ -24,7 +24,7 @@ namespace ANANSI
 
 constexpr auto MAX_MPIENVIRONMENT_INSTANCES = 1;
 
-class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
+class MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
