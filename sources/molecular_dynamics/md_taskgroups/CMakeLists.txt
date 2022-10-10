@@ -14,8 +14,8 @@
     verify_md_taskgroups_build_prerequisites_are_met()
 
     # configure the ingredients and tasks.
+    add_subdirectory(GenericMDTask)
     add_subdirectory(Ingredients)
-    # add_subdirectory(GenericMDTask)
     add_subdirectory(MPIEnvTask)
     add_subdirectory(ConsoleLoggingTask)
     add_subdirectory(AnansiMDTaskFactory)

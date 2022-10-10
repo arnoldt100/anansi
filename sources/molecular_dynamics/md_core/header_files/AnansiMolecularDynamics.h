@@ -20,8 +20,8 @@
 // This include is for making the AnansiMolecularDynamics a visitable class.
 #include "DefineVisitableMacro.h"
 #include "BaseVisitable.hpp"
-
 #include "MPIEnvironment.h"
+#include "MPIEnvReceiver.h"
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
@@ -138,7 +138,9 @@ class AnansiMolecularDynamics final : public Simulation
         std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
         std::shared_ptr<ANANSI::AnansiTask> consoleLogger_;
 
+
         std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
+        std::shared_ptr<ANANSI::MPIEnvReceiver> mpiEnvReceiver_;
         std::shared_ptr<ANANSI::AnansiTask> mpiEnvironmentCmd_;
         std::shared_ptr<ANANSI::MDCommEnvInvoker> mdCommEnvInvk_;
 

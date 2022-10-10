@@ -56,6 +56,8 @@
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
     get_target_property(my_mdanansitaskfactory_include mdanansitaskfactory mdanansitaskfactory_include )
+    get_target_property(my_mpienvtask_include mpienvtask mpienvtask_include )
+    get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -161,7 +163,9 @@ target_include_directories( "${md_core_target}"
                             PRIVATE "${my_command_line_include_dir}"
                             PRIVATE "${my_cc_include}"
                             PRIVATE "${my_cf_include}"
-                            PRIVATE ${my_s_include}
+                            PRIVATE "${my_s_include}"
+                            PRIVATE ${my_mpienvtask_include}
+                            PRIVATE ${my_genericmdtask_include}
                             PRIVATE ${my_ss_include}
                             PRIVATE ${my_mpicomm_include}
                             PRIVATE ${my_tasks_include} 
@@ -179,6 +183,8 @@ target_link_libraries("${md_core_target}"
                       PUBLIC simulation_parameters
                       PUBLIC command_line_arguments
                       PUBLIC counterclass
+                      PUBLIC mpienvtask
+                      PUBLIC genericmdtask
                       PUBLIC file_parsers
                       PUBLIC simulation
                       PUBLIC simulation_state

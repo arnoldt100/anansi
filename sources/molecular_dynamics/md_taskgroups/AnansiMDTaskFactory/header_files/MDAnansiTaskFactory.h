@@ -23,6 +23,7 @@
 #include "MPLAliases.hpp"
 #include "AbstractFactory.hpp"
 #include "ConcreteFactory.hpp"
+#include "GenericMDTask.hpp"
 
 namespace ANANSI
 {

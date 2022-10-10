@@ -19,13 +19,13 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-
 namespace ANANSI
 {
 
 template <typename ReceiverType,
-          typename FunctorImplType>
-class GenericMDTask final
+          typename FunctorImplType,
+          typename BaseClass>
+class GenericMDTask final : public BaseClass  
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -63,7 +63,7 @@ class GenericMDTask final
 
         // ====================  MUTATORS      =======================================
         template<typename... T>
-        FunctorImplType::ResultType operator()(T &... args)
+        typename FunctorImplType::ResultType operator()(T &... args)
         {
             std::cout << "FunctorImplType::ResultType operator stud call";
         }
