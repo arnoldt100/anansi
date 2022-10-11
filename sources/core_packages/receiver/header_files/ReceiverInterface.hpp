@@ -75,7 +75,7 @@ class ReceiverInterface
         template<typename... Types>
         void enable(Types... args)
         {
-            asDerived().enableReceiver(args...);
+            this->enable_(args...);
         }
 
         void disable()
@@ -120,6 +120,17 @@ class ReceiverInterface
 
     private:
         // ====================  METHODS       =======================================
+        template<typename FirstArgType, typename... Types>
+        void enable_(FirstArgType & firstArg, Types... args)
+        {
+            asDerived().enableReceiver(firstArg);
+            this->enable_(args...);
+        }
+
+        void enable_()
+        {
+            return;
+        }
 
         // ====================  DATA MEMBERS  =======================================
 

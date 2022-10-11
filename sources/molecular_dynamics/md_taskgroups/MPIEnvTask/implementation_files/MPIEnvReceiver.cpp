@@ -22,14 +22,14 @@ namespace ANANSI {
 
 MPIEnvReceiver::MPIEnvReceiver() :
     ReceiverInterface<MPIEnvReceiver>(),
-    commandLineArguments_()
+    mpiEnvironment_(nullptr)
 {
     return;
 }
 
 MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver const & other) :
     ReceiverInterface<MPIEnvReceiver>(other),
-    commandLineArguments_(other.commandLineArguments_)
+    mpiEnvironment_(other.mpiEnvironment_)
 {
     if (this != &other)
     {
@@ -40,7 +40,7 @@ MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver const & other) :
 
 MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver && other) :
     ReceiverInterface<MPIEnvReceiver>(std::move(other)),
-    commandLineArguments_(std::move(other.commandLineArguments_))
+    mpiEnvironment_(std::move(other.mpiEnvironment_))
 {
     if (this != &other)
     {
@@ -65,7 +65,7 @@ MPIEnvReceiver& MPIEnvReceiver::operator= ( const MPIEnvReceiver &other )
     if (this != &other)
     {
         ReceiverInterface<MPIEnvReceiver>::operator=(other);
-        this->commandLineArguments_ = std::move(other.commandLineArguments_);
+        this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
 
     }
     return *this;
@@ -76,7 +76,7 @@ MPIEnvReceiver& MPIEnvReceiver::operator= ( MPIEnvReceiver && other )
     if (this != &other)
     {
         ReceiverInterface<MPIEnvReceiver>::operator=(std::move(other));
-        this->commandLineArguments_ = std::move(other.commandLineArguments_);
+        this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
     }
     return *this;
 } // assignment-move operator
@@ -90,6 +90,12 @@ MPIEnvReceiver& MPIEnvReceiver::operator= ( MPIEnvReceiver && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+template<>
+void MPIEnvReceiver::enableReceiver(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
+{
+    std::cout << "Enabling command line arguments in MPIEnvReceiver" <<  std::endl;
+    return;
+}
 
 //============================= OPERATORS ====================================
 

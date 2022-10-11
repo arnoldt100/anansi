@@ -19,7 +19,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverInterface.hpp"
-#include "CommandLineArguments.h"
+#include "MPIEnvironment.h"
 
 namespace ANANSI
 {
@@ -40,8 +40,8 @@ class MPIEnvReceiver :  public RECEIVER::ReceiverInterface<MPIEnvReceiver>
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
-        template<typename... Types>
-        void enableReceiver(Types... args);
+        template<typename T>
+        void enableReceiver(T & arg);
 
         template<typename... Types>
         void disableReceiver(Types... args);
@@ -67,14 +67,14 @@ class MPIEnvReceiver :  public RECEIVER::ReceiverInterface<MPIEnvReceiver>
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        COMMANDLINE::CommandLineArguments commandLineArguments_; 
+        std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
 
 }; // -----  end of class MPIEnvReceiver  -----
 
-template<typename... Types>
-void MPIEnvReceiver::enableReceiver(Types... args)
+template<typename T>
+void MPIEnvReceiver::enableReceiver(T & arg)
 {
-    std::cout << "Enabling reciever (MPIEnvReceiver)." <<  std::endl;
+    std::cout << "Enabling a single in class MPIEnvReceiver." <<  std::endl;
     return;
 }
 
