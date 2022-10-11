@@ -73,7 +73,7 @@ class ReceiverInterface
         }
 
         template<typename... Types>
-        void enable(Types... args)
+        void enable(Types &... args)
         {
             this->enable_(args...);
         }
@@ -121,7 +121,7 @@ class ReceiverInterface
     private:
         // ====================  METHODS       =======================================
         template<typename FirstArgType, typename... Types>
-        void enable_(FirstArgType & firstArg, Types... args)
+        void enable_(FirstArgType & firstArg, Types &... args)
         {
             asDerived().enableReceiver(firstArg);
             this->enable_(args...);

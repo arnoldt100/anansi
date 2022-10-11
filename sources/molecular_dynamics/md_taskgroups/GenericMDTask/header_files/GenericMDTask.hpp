@@ -32,12 +32,16 @@ class GenericMDTask : public BaseClass
     public:
         // ====================  LIFECYCLE     =======================================
 
-        GenericMDTask ()   // constructor
+        GenericMDTask ()  : // constructor
+            funcImpl_(nullptr),
+            receiver_(nullptr)
         {
             return;
         }
 
-        GenericMDTask (const GenericMDTask & other)   // copy constructor
+        GenericMDTask (const GenericMDTask & other)  :  // copy constructor
+            funcImpl_(other.funcImpl_),
+            receiver_(other.receiver_)
         {
             if (this != &other)
             {
@@ -46,7 +50,9 @@ class GenericMDTask : public BaseClass
             return;
         }
 
-        GenericMDTask (GenericMDTask && other)   // copy-move constructor
+        GenericMDTask (GenericMDTask && other) :  // copy-move constructor
+            funcImpl_(std::move(other.funcImpl_)),
+            receiver_(std::move(other.receiver_))
         {
             if (this != &other)
             {
@@ -71,15 +77,9 @@ class GenericMDTask : public BaseClass
         }
         
         template <typename... Types>
-        void bindReceivers(Types... args)
+        void bindReceivers(Types &... args)
         {
-            std::cout << "Binding receivers." << std::endl;
-        }
-
-        template <typename T>
-        void bindAReceiver(T arg)
-        {
-            std::cout << "Binding a general receiver." << std::endl;
+            std::cout << "Binding " << sizeof...(args)  << " receiver(s)." << std::endl;
         }
 
         // ====================  OPERATORS     =======================================
@@ -88,6 +88,8 @@ class GenericMDTask : public BaseClass
         {
             if (this != &other)
             {
+                this->funcImpl_ = other.funcImpl_;
+                this->receiver_ = other.receiver_;
         
             }
             return *this;
@@ -97,7 +99,8 @@ class GenericMDTask : public BaseClass
         {
             if (this != &other)
             {
-
+                this->funcImpl_ = std::move(other.funcImpl_);
+                this->receiver_ = std::move(other.receiver_);
             }
             return *this;
         } // assignment-move operator
@@ -109,6 +112,11 @@ class GenericMDTask : public BaseClass
 
     private:
         // ====================  METHODS       =======================================
+        template <typename firstArgType, typename... Types>
+        void bindReceiverrs_(firstArgType & firstarg, Types &... args)
+        {
+            std::cout << "Binding a general receiver." << std::endl;
+        }
 
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<FunctorImplType> funcImpl_;
