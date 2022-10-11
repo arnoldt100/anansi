@@ -52,8 +52,6 @@ class MDAnansiTaskFactory final
             return product_ptr;
         }
 
-
-
         template <typename T>
         std::unique_ptr<AnansiTask> create_unique_ptr() const
         {
@@ -84,7 +82,7 @@ class MDAnansiTaskFactory final
 
             using concrete_products_ = MPL::mpl_typelist<
                                                           ConsoleLoggingTask,
-                                                          GenericMDTask<MPIEnvTask,MPIEnvReceiver>
+                                                          GenericMDTask<InterProcessCommEnv,MPIEnvReceiver>
                                                         >;
             template<std::size_t T>
             using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;

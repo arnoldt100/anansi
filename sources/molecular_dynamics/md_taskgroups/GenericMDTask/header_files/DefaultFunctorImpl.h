@@ -25,7 +25,7 @@ namespace ANANSI
 //        Class:  DefaultFunctorImpl
 //  Description:  
 //  =====================================================================================
-class DefaultFunctorImpl final
+class DefaultFunctorImpl 
 {
     public:
         // ====================  LIFECYCLE     =======================================

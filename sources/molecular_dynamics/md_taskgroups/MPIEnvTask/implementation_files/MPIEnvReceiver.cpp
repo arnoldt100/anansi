@@ -21,13 +21,15 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 MPIEnvReceiver::MPIEnvReceiver() :
-    ReceiverInterface<MPIEnvReceiver>()
+    ReceiverInterface<MPIEnvReceiver>(),
+    commandLineArguments_()
 {
     return;
 }
 
 MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver const & other) :
-    ReceiverInterface<MPIEnvReceiver>(other)
+    ReceiverInterface<MPIEnvReceiver>(other),
+    commandLineArguments_(other.commandLineArguments_)
 {
     if (this != &other)
     {
@@ -37,7 +39,8 @@ MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver const & other) :
 }
 
 MPIEnvReceiver::MPIEnvReceiver( MPIEnvReceiver && other) :
-    ReceiverInterface<MPIEnvReceiver>(std::move(other))
+    ReceiverInterface<MPIEnvReceiver>(std::move(other)),
+    commandLineArguments_(std::move(other.commandLineArguments_))
 {
     if (this != &other)
     {
@@ -62,6 +65,7 @@ MPIEnvReceiver& MPIEnvReceiver::operator= ( const MPIEnvReceiver &other )
     if (this != &other)
     {
         ReceiverInterface<MPIEnvReceiver>::operator=(other);
+        this->commandLineArguments_ = std::move(other.commandLineArguments_);
 
     }
     return *this;
@@ -72,6 +76,7 @@ MPIEnvReceiver& MPIEnvReceiver::operator= ( MPIEnvReceiver && other )
     if (this != &other)
     {
         ReceiverInterface<MPIEnvReceiver>::operator=(std::move(other));
+        this->commandLineArguments_ = std::move(other.commandLineArguments_);
     }
     return *this;
 } // assignment-move operator

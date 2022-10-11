@@ -95,6 +95,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     // Initialize all factories.
     this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory>();
 
+    this->mpiEnvReceiver_ = std::make_shared<ANANSI::MPIEnvReceiver>();
     this->consoleLogger_ = this->mdAnansiTaskFactory_->create_shared_ptr<LoggingTask>();
 
     // Change the state to Null.
@@ -125,8 +126,9 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     //  Create the receiver and enable it.
     // 
     // ---------------------------------------------------
-    std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment;
+    std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
     mpi_environment->addMember(this->commandLineArguments_);
+    this->mpiEnvReceiver_->enable(mpi_environment); 
 
     // ---------------------------------------------------
     //  Create the task abject and bind the 
@@ -138,10 +140,10 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     this->mpiEnvironmentCmd_ = 
          this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>();
     
-    // // ---------------------------------------------------
-    // //  Create the invoker and add the task object to the invoker.
-    // // 
-    // // ---------------------------------------------------
+    // ---------------------------------------------------
+    //  Create the invoker and add the task object to the invoker.
+    // 
+    // ---------------------------------------------------
 
 
 

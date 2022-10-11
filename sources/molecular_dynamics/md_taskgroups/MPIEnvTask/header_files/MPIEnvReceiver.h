@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,6 +19,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverInterface.hpp"
+#include "CommandLineArguments.h"
 
 namespace ANANSI
 {
@@ -65,12 +67,14 @@ class MPIEnvReceiver :  public RECEIVER::ReceiverInterface<MPIEnvReceiver>
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        COMMANDLINE::CommandLineArguments commandLineArguments_; 
 
 }; // -----  end of class MPIEnvReceiver  -----
 
 template<typename... Types>
 void MPIEnvReceiver::enableReceiver(Types... args)
 {
+    std::cout << "Enabling reciever (MPIEnvReceiver)." <<  std::endl;
     return;
 }
 
