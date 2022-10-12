@@ -2,9 +2,10 @@
 #define RECEIVER_ReceiverInterface_INC
 //! @file ReceiverInterface.hpp
 //!
-//! Brief description
+//! An abstract base class that provides the interface for receiver objects.
 //!
-//! Detailed description
+//! ReceiverInterface provides the interface for all receiver objects
+//! as found in the Command pattern.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//

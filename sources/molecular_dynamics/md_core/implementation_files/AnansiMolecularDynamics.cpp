@@ -145,16 +145,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // 
     // ---------------------------------------------------
 
-
-
-
-    // This action must be done in the command object.
-
-    // Bind 
-    // auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->mpiEnvironmentCmd_);
-    // dPtr->enableTask();
-
-
     if (my_argv_ptr != nullptr)
     {
         MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(my_argc,my_argv_ptr);
@@ -193,9 +183,7 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
 void AnansiMolecularDynamics::enableConsoleLogger()
 {
-	// TODO: Refactor accoding to new TaskInterface composite pattern.
-    // auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->consoleLogger_);
-    // dPtr->enableTask();
+	// TODO: Refactor according to new TaskInterface composite pattern.
     return;
 }
 
@@ -203,8 +191,6 @@ void
 AnansiMolecularDynamics::disableConsoleLogger()
 {
 	// TODO: Refactor accoding to new TaskInterface composite pattern.
-    // auto dPtr = std::static_pointer_cast<MPIEnvTask>(this->consoleLogger_);
-    ///dPtr->disableTask();
     return;
 }
 

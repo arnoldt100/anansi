@@ -65,7 +65,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpienvtask_header_files
-         header_files/MPIEnvTask.h
          header_files/MPIEnvReceiver.h )
 
     #-----------------------------------------------------
@@ -76,7 +75,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpienvtask_implementation_files
-         implementation_files/MPIEnvTask.cpp
          implementation_files/MPIEnvReceiver.cpp )
 
     # -----------------------------------------------------

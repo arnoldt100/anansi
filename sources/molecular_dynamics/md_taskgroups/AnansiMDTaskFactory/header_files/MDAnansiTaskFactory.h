@@ -19,7 +19,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ConsoleLoggingTask.h"
-#include "MPIEnvTask.h"
+#include "InterProcessCommEnv.h"
 #include "MPLAliases.hpp"
 #include "AbstractFactory.hpp"
 #include "ConcreteFactory.hpp"

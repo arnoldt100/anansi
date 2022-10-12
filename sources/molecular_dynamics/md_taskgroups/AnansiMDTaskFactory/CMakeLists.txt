@@ -75,6 +75,7 @@
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
     get_target_property(my_consoleloggingtask_include consoleloggingtask consoleloggingtask_include)
     get_target_property(my_mpienvtask_include mpienvtask mpienvtask_include)
+    get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -117,6 +118,7 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_consoleloggingtask_include}
                            PRIVATE ${my_mpienvtask_include}
+                           PRIVATE ${my_tasks_include}
                            PRIVATE ${my_genericmdtask_include}
                            PRIVATE ${my_typelist_aliases_include}
                            PRIVATE ${my_generic_abstract_factory_include} )
@@ -128,6 +130,7 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries(${target}
                       PUBLIC mpienvtask
+                      PUBLIC tasks
                       PUBLIC genericmdtask
                       PUBLIC consoleloggingtask
                       PUBLIC typelist_aliases
