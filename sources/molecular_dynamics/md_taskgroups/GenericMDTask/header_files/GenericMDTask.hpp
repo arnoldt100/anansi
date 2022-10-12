@@ -79,7 +79,7 @@ class GenericMDTask : public BaseClass
         template <typename... Types>
         void bindReceivers(Types &... args)
         {
-            std::cout << "Binding " << sizeof...(args)  << " receiver(s)." << std::endl;
+            this->bindReceivers_(args...);
         }
 
         // ====================  OPERATORS     =======================================
@@ -112,18 +112,23 @@ class GenericMDTask : public BaseClass
 
     private:
         // ====================  METHODS       =======================================
-        template <typename firstArgType, typename... Types>
-        void bindReceiverrs_(firstArgType & firstarg, Types &... args)
+        void bindAReceiver_(std::shared_ptr<ReceiverType> & arg)
         {
-            std::cout << "Binding a general receiver." << std::endl;
+            this->receiver_ = arg;
         }
+
+        template <typename firstArgType, typename... Types>
+        void bindReceivers_(firstArgType & firstarg, Types &... args)
+        {
+            this->bindAReceiver_(firstarg);
+        }
+
 
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<FunctorImplType> funcImpl_;
         std::shared_ptr<ReceiverType> receiver_;
 
 }; // -----  end of class GenericMDTask  -----
-
 
 }; // namespace ANANSI
 

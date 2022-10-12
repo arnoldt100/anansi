@@ -93,7 +93,7 @@ MPIEnvReceiver& MPIEnvReceiver::operator= ( MPIEnvReceiver && other )
 template<>
 void MPIEnvReceiver::enableReceiver(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
 {
-    std::cout << "Enabling MPIEnvReceiver" <<  std::endl;
+    this->mpiEnvironment_ = arg;
     return;
 }
 

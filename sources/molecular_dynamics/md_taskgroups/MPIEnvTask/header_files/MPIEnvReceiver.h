@@ -71,13 +71,6 @@ class MPIEnvReceiver :  public RECEIVER::ReceiverInterface<MPIEnvReceiver>
 
 }; // -----  end of class MPIEnvReceiver  -----
 
-template<typename T>
-void MPIEnvReceiver::enableReceiver(T & arg)
-{
-    std::cout << "Enabling a single in class MPIEnvReceiver." <<  std::endl;
-    return;
-}
-
 template<typename... Types>
 void MPIEnvReceiver::disableReceiver(Types... args)
 {
@@ -87,12 +80,14 @@ void MPIEnvReceiver::disableReceiver(Types... args)
 template<typename... Types>
 void MPIEnvReceiver::receiverDoAction(Types... args)
 {
+    this->mpiEnvironment_->enableEnvironment();
     return;
 }
 
 template<typename... Types>
 void MPIEnvReceiver::receiverUndoAction(Types... args)
 {
+    this->mpiEnvironment_->disableEnvironment();
     return;
 }
 
