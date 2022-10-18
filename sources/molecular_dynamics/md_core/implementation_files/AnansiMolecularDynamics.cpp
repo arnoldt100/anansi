@@ -34,8 +34,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
-    mpiEnvReceiver_(nullptr),
-    mpiEnvironmentCmd_(nullptr),
     mdCommEnvInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
@@ -69,8 +67,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
-    mpiEnvReceiver_(nullptr),
-    mpiEnvironmentCmd_(nullptr),
     mdCommEnvInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
@@ -95,7 +91,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     // Initialize all factories.
     this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory>();
 
-    this->mpiEnvReceiver_ = std::make_shared<ANANSI::MPIEnvReceiver>();
 
     // :TODO:10/11/2022 01:36:08 PM:: Refactor to use a Invoker.
     //this->consoleLogger_ = this->mdAnansiTaskFactory_->create_shared_ptr<LoggingTask>();
@@ -121,7 +116,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     char** my_argv_ptr=nullptr;
 
 
-    // :TODO:09/28/2022 10:52:51 AM:: mpiEnvironmentCmd_ enabling in this manner is to be depracated. 
+    // :TODO:09/28/2022 10:52:51 AM:: mpi_environment_cmd enabling in this manner is to be depracated. 
     // Use invoker 
 
     // ---------------------------------------------------
@@ -130,21 +125,21 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
     mpi_environment->addMember(this->commandLineArguments_);
-    this->mpiEnvReceiver_->enable(mpi_environment); 
+    std::shared_ptr<ANANSI::MPIEnvReceiver> mpi_environment_receiver= std::make_shared<ANANSI::MPIEnvReceiver>();
+    mpi_environment_receiver->enable(mpi_environment); 
 
     // ---------------------------------------------------
     //  Create the mpi environment task object and bind the 
     //  mpi receiver to it.
     // 
     // ---------------------------------------------------
-    this->mpiEnvironmentCmd_ = 
-         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>(this->mpiEnvReceiver_);
+    std::shared_ptr<ANANSI::AnansiTask> mpi_environment_cmd = 
+         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
     
     // ---------------------------------------------------
     //  Create the invoker and add the task object to the invoker.
     // 
     // ---------------------------------------------------
-
     if (my_argv_ptr != nullptr)
     {
         MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(my_argc,my_argv_ptr);
@@ -352,9 +347,6 @@ void AnansiMolecularDynamics::processCommandLine_()
 void
 AnansiMolecularDynamics::initializeInitialConditions_()
 {
-    // :TODO:09/20/2022 01:21:24 PM:: Enable this function.
-    // Change state function, call execute, and change state back to
-    // Null state. 
 
     // Change the state of "this", a AnansiMolecularDynamics object, to 
     // state MDInitInitialConditions.
