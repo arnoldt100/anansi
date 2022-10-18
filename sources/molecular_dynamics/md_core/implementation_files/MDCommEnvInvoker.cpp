@@ -20,13 +20,13 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 MDCommEnvInvoker::MDCommEnvInvoker() :
-    _commands()
+    commandSlots_()
 {
     return;
 }
 
 MDCommEnvInvoker::MDCommEnvInvoker( MDCommEnvInvoker && other) :
-    _commands(std::move(other._commands))
+    commandSlots_(std::move(other.commandSlots_))
 {
     if (this != &other)
     {
@@ -38,7 +38,7 @@ MDCommEnvInvoker::MDCommEnvInvoker( MDCommEnvInvoker && other) :
 
 MDCommEnvInvoker::~MDCommEnvInvoker()
 {
-    this->_commands.clear();
+    this->commandSlots_.clear();
     return;
 }
 
@@ -54,9 +54,10 @@ void MDCommEnvInvoker::undoTask() const
 }
 
 //============================= MUTATORS =====================================
-void MDCommEnvInvoker::addSlot(std::string const & key, 
+void MDCommEnvInvoker::addCommand(std::string const & key,
                                std::shared_ptr<ANANSI::AnansiTask> aCommand)
 {
+	this->commandSlots_[key] = aCommand;
     return;
 }
 

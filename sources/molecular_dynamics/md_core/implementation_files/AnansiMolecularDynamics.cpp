@@ -112,9 +112,6 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= MUTATORS =====================================
 void AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
-    int my_argc=0;
-    char** my_argv_ptr=nullptr;
-
 
     // :TODO:09/28/2022 10:52:51 AM:: mpi_environment_cmd enabling in this manner is to be depracated. 
     // Use invoker 
@@ -140,10 +137,8 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     //  Create the invoker and add the task object to the invoker.
     // 
     // ---------------------------------------------------
-    if (my_argv_ptr != nullptr)
-    {
-        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(my_argc,my_argv_ptr);
-    }
+    this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
+    this->mdCommEnvInvk_->addCommand("mpi_environmnet",mpi_environment_cmd);
 
     std::cout << "Enabled the MPI environment." << std::endl;
     return;

@@ -23,6 +23,7 @@ namespace ANANSI
 //        Class:  WorldCommunicatorIngredientTraits
 //  Description:  
 //  =====================================================================================
+// :TODO: Remove class WorldCommunicatorIngredientTraits from project.
 class WorldCommunicatorIngredientTraits
 {
     public:

@@ -60,7 +60,7 @@ class MDCommEnvInvoker
         //! Adds a task to the invoker.
         //!
         //! @return void
-        void addSlot(std::string const & key, 
+        void addCommand(std::string const & key,
                      std::shared_ptr<ANANSI::AnansiTask> aCommand); 
 
         // ====================  OPERATORS     =======================================
@@ -78,7 +78,7 @@ class MDCommEnvInvoker
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::map <std::string,std::shared_ptr<ANANSI::AnansiTask>> _commands;
+        std::map <std::string,std::shared_ptr<ANANSI::AnansiTask>> commandSlots_;
 
 }; // -----  end of class MDCommEnvInvoker  -----
 
