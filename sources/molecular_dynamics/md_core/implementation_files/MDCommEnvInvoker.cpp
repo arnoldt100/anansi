@@ -43,21 +43,24 @@ MDCommEnvInvoker::~MDCommEnvInvoker()
 }
 
 //============================= ACCESSORS ====================================
-void MDCommEnvInvoker::doTask() const
-{
-    return;
-}
-
-void MDCommEnvInvoker::undoTask() const
-{
-    return;
-}
 
 //============================= MUTATORS =====================================
 void MDCommEnvInvoker::addCommand(std::string const & key,
                                std::shared_ptr<ANANSI::AnansiTask> aCommand)
 {
 	this->commandSlots_[key] = aCommand;
+    return;
+}
+
+void MDCommEnvInvoker::doTask(std::string const & command_key)
+{
+    this->commandSlots_[command_key]->action();
+    return;
+}
+
+void MDCommEnvInvoker::undoTask(std::string const & command_key)
+{
+    this->commandSlots_[command_key]->undoAction();
     return;
 }
 

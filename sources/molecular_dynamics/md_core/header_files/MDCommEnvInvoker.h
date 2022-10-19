@@ -45,16 +45,6 @@ class MDCommEnvInvoker
 
         // ====================  ACCESSORS     =======================================
 
-        //! Enables the communication run-time environment.
-        //!
-        //! @return void
-        void doTask() const;
-
-        //! Disables the communication run-time environment.
-        //!
-        //! @return void
-        void undoTask() const;
-
         // ====================  MUTATORS      =======================================
 
         //! Adds a task to the invoker.
@@ -62,6 +52,16 @@ class MDCommEnvInvoker
         //! @return void
         void addCommand(std::string const & key,
                      std::shared_ptr<ANANSI::AnansiTask> aCommand); 
+
+        //! Enables the communication run-time environment.
+        //!
+        //! @return void
+        void doTask(std::string const & command_key);
+
+        //! Disables the communication run-time environment.
+        //!
+        //! @return void
+        void undoTask(std::string const & command_key); 
 
         // ====================  OPERATORS     =======================================
 

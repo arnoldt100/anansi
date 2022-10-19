@@ -113,9 +113,6 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 void AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
 
-    // :TODO:09/28/2022 10:52:51 AM:: mpi_environment_cmd enabling in this manner is to be depracated. 
-    // Use invoker 
-
     // ---------------------------------------------------
     //  Create the mpi environment receiver and enable it.
     // 
@@ -138,8 +135,13 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // 
     // ---------------------------------------------------
     this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
-    this->mdCommEnvInvk_->addCommand("mpi_environmnet",mpi_environment_cmd);
+    this->mdCommEnvInvk_->addCommand("mpi_environment",mpi_environment_cmd);
 
+    // ---------------------------------------------------
+    // Use the invoker to initialize the communication environment.
+    // 
+    // ---------------------------------------------------
+    this->mdCommEnvInvk_->doTask("mpi_environment");
     std::cout << "Enabled the MPI environment." << std::endl;
     return;
 }
@@ -147,10 +149,14 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 void
 AnansiMolecularDynamics::disableCommunicationEnvironment()
 {
-    // :TODO:10/04/2022 11:05:07 AM:: Use mpiEnvInk_ to
-    // end the mpi environment
+    // ---------------------------------------------------
+    // Use the invoker to initialize the communication environment.
+    // 
+    // ---------------------------------------------------
+    this->mdCommEnvInvk_->undoTask("mpi_environment");
     std::cout << "Disabled the MPI environment." << std::endl;
     return;
+
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
 
 
