@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDCommEnvInvoker.h"
+#include "MPIEnvironmentTraits.h"
 
 namespace ANANSI {
 
@@ -19,54 +19,55 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDCommEnvInvoker::MDCommEnvInvoker() :
-    commandSlots_()
+MPIEnvironmentTraits::MPIEnvironmentTraits()
 {
+	// TODO Auto-generated constructor stub
     return;
 }
 
-MDCommEnvInvoker::MDCommEnvInvoker( MDCommEnvInvoker && other) :
-    commandSlots_(std::move(other.commandSlots_))
+MPIEnvironmentTraits::MPIEnvironmentTraits( MPIEnvironmentTraits const & other)
 {
+	// TODO Auto-generated constructor stub
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method MDCommEnvInvoker::MDCommEnvInvoker  -----
+}
 
-
-MDCommEnvInvoker::~MDCommEnvInvoker()
+MPIEnvironmentTraits::MPIEnvironmentTraits( MPIEnvironmentTraits && other)
 {
-    this->commandSlots_.clear();
+	// TODO Auto-generated constructor stub
+    if (this != &other)
+    {
+        
+    }
+    return;
+}		// -----  end of method MPIEnvironmentTraits::MPIEnvironmentTraits  -----
+
+
+MPIEnvironmentTraits::~MPIEnvironmentTraits()
+{
+	// TODO Auto-generated destructor stub
     return;
 }
 
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MDCommEnvInvoker::addCommand(std::string const & key,
-                               std::shared_ptr<ANANSI::AnansiTask> aCommand)
-{
-	this->commandSlots_[key] = aCommand;
-    return;
-}
-
-void MDCommEnvInvoker::doTask(std::string const & command_key)
-{
-    // this->commandSlots_[command_key]->action();
-    return;
-}
-
-void MDCommEnvInvoker::undoTask(std::string const & command_key)
-{
-    // this->commandSlots_[command_key]->undoAction();
-    return;
-}
 
 //============================= OPERATORS ====================================
 
-MDCommEnvInvoker& MDCommEnvInvoker::operator= ( MDCommEnvInvoker && other )
+MPIEnvironmentTraits& MPIEnvironmentTraits::operator= ( const MPIEnvironmentTraits &other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment operator
+
+MPIEnvironmentTraits& MPIEnvironmentTraits::operator= ( MPIEnvironmentTraits && other )
 {
     if (this != &other)
     {

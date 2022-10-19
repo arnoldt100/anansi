@@ -55,7 +55,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdanansitaskfactory_header_files
-         header_files/MDAnansiTaskFactory.h )
+         header_files/MDAnansiTaskFactory.h
+         header_files/MPIEnvironmentTraits.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -65,7 +66,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdanansitaskfactory_implementation_files
-         implementation_files/MDAnansiTaskFactory.cpp )
+         implementation_files/MDAnansiTaskFactory.cpp
+         implementation_files/MPIEnvironmentTraits.cpp )
 
     #-----------------------------------------------------
     # Set various variables for include directories.     -
