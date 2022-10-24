@@ -91,8 +91,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
 
     // Initialize all factories.
     this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory<MPIEnvironmentTraits::abstract_products,
-                                                                      MPIEnvironmentTraits::concrete_products
-                                                                     >
+                                                                      MPIEnvironmentTraits::concrete_products>
                                                  >();
 
 
@@ -132,7 +131,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> mpi_environment_cmd = 
-         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
+         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv,decltype(mpi_environment_receiver)>(mpi_environment_receiver);
     
     // ---------------------------------------------------
     //  Create the invoker and add the task object to the invoker.
