@@ -27,7 +27,7 @@
 namespace ANANSI
 {
 
-class MPIEnvironmentTraits final
+class MPIEnvironmentTraits 
 {
     public:
         // ====================  LIFECYCLE     =======================================

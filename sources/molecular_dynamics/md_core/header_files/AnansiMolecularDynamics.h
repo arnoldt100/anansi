@@ -150,7 +150,10 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
-        std::shared_ptr<MDAnansiTaskFactory> mdAnansiTaskFactory_;
+        std::shared_ptr<MDAnansiTaskFactory<MPIEnvironmentTraits::abstract_products,
+                                            MPIEnvironmentTraits::concrete_products
+                                           >
+                       >mdAnansiTaskFactory_;
 
         // :TODO:09/27/2022 02:38:21 PM:: To be deprecated.
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;

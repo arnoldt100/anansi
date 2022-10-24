@@ -18,6 +18,7 @@
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
 #include "TaskInterfaceUtilities.hpp"
+#include "MPIEnvironmentTraits.h"
 
 namespace ANANSI {
 
@@ -89,7 +90,10 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
     // Initialize all factories.
-    this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory>();
+    this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory<MPIEnvironmentTraits::abstract_products,
+                                                                      MPIEnvironmentTraits::concrete_products
+                                                                     >
+                                                 >();
 
 
     // :TODO:10/11/2022 01:36:08 PM:: Refactor to use a Invoker.

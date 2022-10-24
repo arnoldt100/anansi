@@ -25,13 +25,25 @@
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
 #include "MPIEnvReceiver.h"
+#include "MPIEnvironmentTraits.h"
 
 namespace ANANSI
 {
 
 template <typename AbstractProductsTypeList,typename ConcreteProductsTypeList>
-class MDAnansiTaskFactory final
+class MDAnansiTaskFactory 
 {
+    private :
+        using abstract_products_ = AbstractProductsTypeList; // MPIEnvironmentTraits::abstract_products;
+
+        using concrete_products_ = ConcreteProductsTypeList; // MPIEnvironmentTraits::concrete_products;
+
+        template<std::size_t T>
+        using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;
+
+        template<std::size_t T>
+        using concrete_product_at_ = MPL::mpl_at_c<concrete_products_,T>;
+
     public:
         // ====================  LIFECYCLE     =======================================
 
@@ -41,11 +53,29 @@ class MDAnansiTaskFactory final
             return;
         }
 
-        MDAnansiTaskFactory (const MDAnansiTaskFactory & other);   // copy constructor
+        MDAnansiTaskFactory (const MDAnansiTaskFactory & other) :  // copy constructor
+            mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }
 
-        MDAnansiTaskFactory (MDAnansiTaskFactory && other);   // copy-move constructor
+        MDAnansiTaskFactory (MDAnansiTaskFactory && other)   // copy-move constructor
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }		// -----  end of method MDAnansiTaskFactory::MDAnansiTaskFactory  -----
 
-        ~MDAnansiTaskFactory ();  // destructor
+        ~MDAnansiTaskFactory ()  // destructor
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
         template <typename T, typename... Types>
@@ -82,9 +112,25 @@ class MDAnansiTaskFactory final
 
         // ====================  OPERATORS     =======================================
 
-        MDAnansiTaskFactory& operator= ( const MDAnansiTaskFactory &other ); // assignment operator
+        MDAnansiTaskFactory& operator= ( const MDAnansiTaskFactory &other ) // assignment operator
+        {
+            if (this != &other)
+            {
+        
+            }
+            return *this;
+        } // assignment operator
 
-        MDAnansiTaskFactory& operator= ( MDAnansiTaskFactory && other ); // assignment-move operator
+
+        MDAnansiTaskFactory& operator= ( MDAnansiTaskFactory && other ) // assignment-move operator
+        {
+            if (this != &other)
+            {
+                mdAnansiTaskFactory_ = std::move(other.mdAnansiTaskFactory_);
+            }
+            return *this;
+        } // assignment-move operator
+
 
     protected:
         // ====================  METHODS       =======================================
@@ -93,15 +139,6 @@ class MDAnansiTaskFactory final
 
     private:
             // ====================  TYPE ALIASES  =======================================  
-            using abstract_products_ = AbstractProductsTypeList;
-
-            using concrete_products_ = ConcreteProductsTypeList;
-
-            template<std::size_t T>
-            using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;
-
-            template<std::size_t T>
-            using concrete_product_at_ = MPL::mpl_at_c<concrete_products_,T>;
 
             using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
 
