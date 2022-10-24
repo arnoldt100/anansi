@@ -33,17 +33,6 @@ namespace ANANSI
 template <typename AbstractProductsTypeList,typename ConcreteProductsTypeList>
 class MDAnansiTaskFactory 
 {
-    private :
-        using abstract_products_ = AbstractProductsTypeList; // MPIEnvironmentTraits::abstract_products;
-
-        using concrete_products_ = ConcreteProductsTypeList; // MPIEnvironmentTraits::concrete_products;
-
-        template<std::size_t T>
-        using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;
-
-        template<std::size_t T>
-        using concrete_product_at_ = MPL::mpl_at_c<concrete_products_,T>;
-
     public:
         // ====================  LIFECYCLE     =======================================
 
@@ -111,26 +100,36 @@ class MDAnansiTaskFactory
     private:
             // ====================  TYPE ALIASES  =======================================  
 
-            using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
+        using abstract_products_ = AbstractProductsTypeList; 
 
-            using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_products_>;
+        using concrete_products_ = ConcreteProductsTypeList;
 
-            template<class Base,class Derived>
-            using my_is_base_of_ = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
+        template<std::size_t T>
+        using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;
 
-            // ====================  STATIC METHODS       ================================
-            template <typename T>
-            static constexpr std::size_t findIndex_()
-            {
-                using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
-                                                    MPL::mpl_size<abstract_products_>::value>;
+        template<std::size_t T>
+        using concrete_product_at_ = MPL::mpl_at_c<concrete_products_,T>;
 
-                using R = MPL::mpl_transform<my_is_base_of_,abstract_products_,list_base>;
-                
-                using my_index = MPL::mpl_find<R,MPL::mpl_true_type>;
+        using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
 
-                return my_index::value;
-            } 
+        using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_products_>;
+
+        template<class Base,class Derived>
+        using my_is_base_of_ = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
+
+        // ====================  STATIC METHODS       ================================
+        template <typename T>
+        static constexpr std::size_t findIndex_()
+        {
+            using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
+                                                MPL::mpl_size<abstract_products_>::value>;
+
+            using R = MPL::mpl_transform<my_is_base_of_,abstract_products_,list_base>;
+            
+            using my_index = MPL::mpl_find<R,MPL::mpl_true_type>;
+
+            return my_index::value;
+        } 
 
 
         // ====================  METHODS       =======================================
@@ -204,7 +203,7 @@ class MDAnansiTaskFactory
             using abstract_product_t = abstract_product_at_<index>;
             using concrete_product_t = concrete_product_at_<index>;
 
-            std::shared_ptr<abstract_product_t> product_ptr(this->mdAnansiTaskFactory_->Create<abstract_product_t>());
+            std::shared_ptr<abstract_product_t> product_ptr(this->mdAnansiTaskFactory_->template Create<abstract_product_t>());
 
             std::shared_ptr<abstract_product_t> p_ptr = 
                 this->bindReceivers_<concrete_product_t,abstract_product_t,Types...>(product_ptr, args...);
@@ -219,7 +218,7 @@ class MDAnansiTaskFactory
             using abstract_product_t = abstract_product_at_<index>;
             using concrete_product_t = concrete_product_at_<index>;
 
-            std::unique_ptr<abstract_product_t> product_ptr(this->mdAnansiTaskFactory_->Create<abstract_product_t>());
+            std::unique_ptr<abstract_product_t> product_ptr(this->mdAnansiTaskFactory_->template Create<abstract_product_t>());
 
             std::unique_ptr<abstract_product_t> p_ptr = 
                 this->bindReceivers_<concrete_product_t,abstract_product_t,Types...>(product_ptr, args...);
