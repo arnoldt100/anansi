@@ -17,6 +17,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
+#include "InterProcessCommEnv.h"
+#include "GenericMDTask.hpp"
+#include "DefaultFunctorImpl.h"
+#include "MPIEnvReceiver.h"
+
 
 namespace ANANSI
 {
@@ -44,6 +50,13 @@ class MPIEnvironmentTraits final
 
         MPIEnvironmentTraits& operator= ( MPIEnvironmentTraits && other ); // assignment-move operator
 
+        using abstract_products = MPL::mpl_typelist<
+                                                       InterProcessCommEnv
+                                                   >;
+
+        using concrete_products = MPL::mpl_typelist<
+                                                       GenericMDTask<InterProcessCommEnv,MPIEnvReceiver>
+                                                   >;
     protected:
         // ====================  METHODS       =======================================
 

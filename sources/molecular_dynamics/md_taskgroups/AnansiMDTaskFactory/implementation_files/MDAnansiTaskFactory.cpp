@@ -19,13 +19,6 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDAnansiTaskFactory::MDAnansiTaskFactory() : 
-    mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
-
-{
-    return;
-}
-
 MDAnansiTaskFactory::MDAnansiTaskFactory( MDAnansiTaskFactory const & other) :
     mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
 {

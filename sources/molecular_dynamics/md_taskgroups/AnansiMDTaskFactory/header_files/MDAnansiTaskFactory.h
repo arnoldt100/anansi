@@ -29,12 +29,17 @@
 namespace ANANSI
 {
 
+template <typename AbstractProductsTypeList,typename ConcreteProductsTypeList>
 class MDAnansiTaskFactory final
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        MDAnansiTaskFactory ();   // constructor
+        MDAnansiTaskFactory () :  // constructor
+            mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
+        {
+            return;
+        }
 
         MDAnansiTaskFactory (const MDAnansiTaskFactory & other);   // copy constructor
 
@@ -88,13 +93,10 @@ class MDAnansiTaskFactory final
 
     private:
             // ====================  TYPE ALIASES  =======================================  
-            using abstract_products_ = MPL::mpl_typelist<
-                                                          InterProcessCommEnv
-                                                        >;
+            using abstract_products_ = AbstractProductsTypeList;
 
-            using concrete_products_ = MPL::mpl_typelist<
-                                                          GenericMDTask<InterProcessCommEnv,MPIEnvReceiver>
-                                                        >;
+            using concrete_products_ = ConcreteProductsTypeList;
+
             template<std::size_t T>
             using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;
 
