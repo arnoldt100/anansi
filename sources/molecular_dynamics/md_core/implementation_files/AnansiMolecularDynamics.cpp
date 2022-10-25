@@ -189,7 +189,7 @@ void AnansiMolecularDynamics::enableConsoleLogger()
 void
 AnansiMolecularDynamics::disableConsoleLogger()
 {
-	// TODO: Refactor accoding to new TaskInterface composite pattern.
+	// TODO: Refactor according to new TaskInterface composite pattern.
     return;
 }
 

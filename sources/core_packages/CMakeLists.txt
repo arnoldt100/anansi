@@ -23,6 +23,19 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/core_packages_bu
 # ----------------------------------------------------
 verify_core_packages_build_prerequisites_are_set()
 
+#-----------------------------------------------------
+# Call the macro that enables build the invoker target and add the invoker
+# package.
+#
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/invoker/cmake_macros_and_functions/receiver.cmake )
+enable_building_invoker_package( "${core_packages_install_lib_directory}"
+                                  "${core_packages_install_include_directory}"
+                                  "${core_packages_install_bin_directory}" 
+                                  "${core_packages_cxx_standard}"
+                                  "${core_packages_logfilepath}" )
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/invoker)
+
 # ----------------------------------------------------
 # Call the macro that enables build the receiver target and add the receiver
 # package.
