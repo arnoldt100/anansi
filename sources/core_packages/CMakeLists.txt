@@ -28,7 +28,7 @@ verify_core_packages_build_prerequisites_are_set()
 # package.
 #
 #-----------------------------------------------------
-include( ${CMAKE_CURRENT_SOURCE_DIR}/invoker/cmake_macros_and_functions/receiver.cmake )
+include( ${CMAKE_CURRENT_SOURCE_DIR}/invoker/cmake_macros_and_functions/invoker.cmake )
 enable_building_invoker_package( "${core_packages_install_lib_directory}"
                                   "${core_packages_install_include_directory}"
                                   "${core_packages_install_bin_directory}" 

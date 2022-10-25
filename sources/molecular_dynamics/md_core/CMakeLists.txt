@@ -58,6 +58,7 @@
     get_target_property(my_mdanansitaskfactory_include mdanansitaskfactory mdanansitaskfactory_include )
     get_target_property(my_mpienvtask_include mpienvtask mpienvtask_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
+    get_target_property(my_invoker_include invoker invoker_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -128,16 +129,6 @@
         implementation_files/AnansiMolecularDynamicsFactory.cpp 
         implementation_files/AnansiMDStateInt2Type.cpp)
     
-    # ----------------------------------------------------
-    # These files are for invoker.
-    # 
-    # ----------------------------------------------------
-    list(APPEND md_core_header_files
-        header_files/GenericTaskInvoker.h)
-
-    list(APPEND md_core_implementation_files
-        implementation_files/GenericTaskInvoker.cpp)
-
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
@@ -169,6 +160,7 @@ target_include_directories( "${md_core_target}"
                             PRIVATE ${my_ss_include}
                             PRIVATE ${my_mpicomm_include}
                             PRIVATE ${my_tasks_include} 
+                            PRIVATE ${my_invoker_include}
                             PRIVATE ${my_generic_abstract_factory_include}
                             PRIVATE ${my_foreach_loop_include} 
                             PRIVATE ${my_mdanansitaskfactory_include} )
@@ -190,6 +182,7 @@ target_link_libraries("${md_core_target}"
                       PUBLIC simulation_state
                       PUBLIC mpi_communicator
                       PUBLIC tasks
+                      PUBLIC invoker
                       PUBLIC generic_abstract_factory
                       PUBLIC generic_foreach_loop
                       PUBLIC mdanansitaskfactory
