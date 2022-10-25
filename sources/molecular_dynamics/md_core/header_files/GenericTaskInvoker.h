@@ -1,6 +1,6 @@
-#ifndef ANANSI_MDCommEnvInvoker_INC
-#define ANANSI_MDCommEnvInvoker_INC
-//! @file MDCommEnvInvoker.h
+#ifndef ANANSI_GenericTaskInvoker_INC
+#define ANANSI_GenericTaskInvoker_INC
+//! @file GenericTaskInvoker.h
 //!
 //! The command (or task) invoker for the communication environment.
 //!
@@ -30,18 +30,18 @@ namespace ANANSI
 //! The Invoker for the communication environment.
 //!
 //! Invoking the enable method enables the communication run-time environment.
-class MDCommEnvInvoker
+class GenericTaskInvoker
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        MDCommEnvInvoker ();   // constructor
+        GenericTaskInvoker ();   // constructor
 
-        MDCommEnvInvoker (const MDCommEnvInvoker & other)=delete;   // copy constructor
+        GenericTaskInvoker (const GenericTaskInvoker & other)=delete;   // copy constructor
 
-        MDCommEnvInvoker (MDCommEnvInvoker && other);   // copy-move constructor
+        GenericTaskInvoker (GenericTaskInvoker && other);   // copy-move constructor
 
-        ~MDCommEnvInvoker ();  // destructor
+        ~GenericTaskInvoker ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -65,9 +65,9 @@ class MDCommEnvInvoker
 
         // ====================  OPERATORS     =======================================
 
-        MDCommEnvInvoker& operator= ( const MDCommEnvInvoker &other )=delete; // assignment operator
+        GenericTaskInvoker& operator= ( const GenericTaskInvoker &other )=delete; // assignment operator
 
-        MDCommEnvInvoker& operator= ( MDCommEnvInvoker && other ); // assignment-move operator
+        GenericTaskInvoker& operator= ( GenericTaskInvoker && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -80,9 +80,9 @@ class MDCommEnvInvoker
         // ====================  DATA MEMBERS  =======================================
         std::map <std::string,std::shared_ptr<ANANSI::AnansiTask>> commandSlots_;
 
-}; // -----  end of class MDCommEnvInvoker  -----
+}; // -----  end of class GenericTaskInvoker  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_MDCommEnvInvoker_INC
+#endif // ANANSI_GenericTaskInvoker_INC

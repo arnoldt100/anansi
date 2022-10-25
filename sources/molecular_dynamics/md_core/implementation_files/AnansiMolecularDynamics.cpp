@@ -137,7 +137,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     //  Create the invoker and add the task object to the invoker.
     // 
     // ---------------------------------------------------
-    this->mdCommEnvInvk_ = std::make_shared<ANANSI::MDCommEnvInvoker>();
+    this->mdCommEnvInvk_ = std::make_shared<ANANSI::GenericTaskInvoker>();
     this->mdCommEnvInvk_->addCommand("mpi_environment",mpi_environment_cmd);
 
     // ---------------------------------------------------

@@ -129,14 +129,14 @@
         implementation_files/AnansiMDStateInt2Type.cpp)
     
     # ----------------------------------------------------
-    # These files are for communication environment invoker.
+    # These files are for invoker.
     # 
     # ----------------------------------------------------
     list(APPEND md_core_header_files
-        header_files/MDCommEnvInvoker.h)
+        header_files/GenericTaskInvoker.h)
 
     list(APPEND md_core_implementation_files
-         implementation_files/MDCommEnvInvoker.cpp)
+        implementation_files/GenericTaskInvoker.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

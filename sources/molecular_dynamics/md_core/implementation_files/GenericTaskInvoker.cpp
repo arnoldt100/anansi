@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDCommEnvInvoker.h"
+#include "GenericTaskInvoker.h"
 
 namespace ANANSI {
 
@@ -19,13 +19,13 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDCommEnvInvoker::MDCommEnvInvoker() :
+GenericTaskInvoker::GenericTaskInvoker() :
     commandSlots_()
 {
     return;
 }
 
-MDCommEnvInvoker::MDCommEnvInvoker( MDCommEnvInvoker && other) :
+GenericTaskInvoker::GenericTaskInvoker( GenericTaskInvoker && other) :
     commandSlots_(std::move(other.commandSlots_))
 {
     if (this != &other)
@@ -33,10 +33,10 @@ MDCommEnvInvoker::MDCommEnvInvoker( MDCommEnvInvoker && other) :
         
     }
     return;
-}		// -----  end of method MDCommEnvInvoker::MDCommEnvInvoker  -----
+}		// -----  end of method GenericTaskInvoker::GenericTaskInvoker  -----
 
 
-MDCommEnvInvoker::~MDCommEnvInvoker()
+GenericTaskInvoker::~GenericTaskInvoker()
 {
     this->commandSlots_.clear();
     return;
@@ -45,20 +45,20 @@ MDCommEnvInvoker::~MDCommEnvInvoker()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void MDCommEnvInvoker::addCommand(std::string const & key,
+void GenericTaskInvoker::addCommand(std::string const & key,
                                std::shared_ptr<ANANSI::AnansiTask> aCommand)
 {
 	this->commandSlots_[key] = aCommand;
     return;
 }
 
-void MDCommEnvInvoker::doTask(std::string const & command_key)
+void GenericTaskInvoker::doTask(std::string const & command_key)
 {
     // this->commandSlots_[command_key]->action();
     return;
 }
 
-void MDCommEnvInvoker::undoTask(std::string const & command_key)
+void GenericTaskInvoker::undoTask(std::string const & command_key)
 {
     // this->commandSlots_[command_key]->undoAction();
     return;
@@ -66,7 +66,7 @@ void MDCommEnvInvoker::undoTask(std::string const & command_key)
 
 //============================= OPERATORS ====================================
 
-MDCommEnvInvoker& MDCommEnvInvoker::operator= ( MDCommEnvInvoker && other )
+GenericTaskInvoker& GenericTaskInvoker::operator= ( GenericTaskInvoker && other )
 {
     if (this != &other)
     {
