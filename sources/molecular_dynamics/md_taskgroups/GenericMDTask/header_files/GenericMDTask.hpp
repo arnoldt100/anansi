@@ -11,6 +11,8 @@
 //--------------------------------------------------------//
 #include <iostream>
 #include <memory>
+#include <vector>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -80,6 +82,11 @@ class GenericMDTask : public BaseClass
         void bindReceivers(Types &... args)
         {
             this->bindReceivers_(args...);
+        }
+
+        void doAction_(const std::vector<std::string> & commands) override
+        {
+            return;
         }
 
         // ====================  OPERATORS     =======================================

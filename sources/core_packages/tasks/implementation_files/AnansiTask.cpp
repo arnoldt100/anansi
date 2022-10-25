@@ -51,6 +51,18 @@ AnansiTask::~AnansiTask()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void AnansiTask::doAction(const std::vector<std::string> & commands )
+{
+    this->doAction_(commands);
+    return;
+}
+        
+void AnansiTask::undoAction(const std::vector<std::string> & commands )
+{
+    this->undoAction_(commands);
+    return;
+}
+
 
 //============================= OPERATORS ====================================
 

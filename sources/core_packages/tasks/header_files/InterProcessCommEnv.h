@@ -9,6 +9,8 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <vector>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -51,7 +53,16 @@ class InterProcessCommEnv : public AnansiTask
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        // ====================  METHODS       =======================================
+        // ====================  MUTATORS      =======================================
+        // void doAction_(const std::vector<std::string> & commands) override
+        // {
+        //     return;
+        // }
+        
+        void undoAction_(const std::vector<std::string> & commands) override
+        {
+            return;
+        }
 
         // ====================  DATA MEMBERS  =======================================
 

@@ -13,6 +13,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <vector>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -45,6 +47,9 @@ class AnansiTask
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        void doAction(const std::vector<std::string> & commands );
+        
+        void undoAction(const std::vector<std::string> & commands );
 
         // ====================  OPERATORS     =======================================
 
@@ -60,6 +65,9 @@ class AnansiTask
     private:
 
         // ====================  MUTATORS      =======================================
+        virtual void doAction_(const std::vector<std::string> & commands) = 0;
+        
+        virtual void undoAction_(const std::vector<std::string> & commands) = 0;
 
         // ====================  DATA MEMBERS  =======================================
 
