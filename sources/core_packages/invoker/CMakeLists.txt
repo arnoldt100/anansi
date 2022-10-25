@@ -70,7 +70,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (invoker_implementation_files
-         implementation_files/GenericTaskInvoker.h )
+         implementation_files/GenericTaskInvoker.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
