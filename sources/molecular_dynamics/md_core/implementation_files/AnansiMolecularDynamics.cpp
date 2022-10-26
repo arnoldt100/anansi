@@ -146,7 +146,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     const std::vector<std::string> commands = {"mpi_environment"};
     this->mdCommEnvInvk_->doTask(commands);
-    std::cout << "Enabled the MPI environment." << std::endl;
     return;
 }
 
@@ -157,8 +156,8 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
     // Use the invoker to initialize the communication environment.
     // 
     // ---------------------------------------------------
-    this->mdCommEnvInvk_->undoTask("mpi_environment");
-    std::cout << "Disabled the MPI environment." << std::endl;
+    const std::vector<std::string> commands = {"mpi_environment"};
+    this->mdCommEnvInvk_->undoTask(commands);
     return;
 
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */

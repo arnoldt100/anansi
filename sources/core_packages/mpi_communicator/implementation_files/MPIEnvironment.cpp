@@ -124,6 +124,7 @@ void MPIEnvironment::enable_()
         {
             throw ANANSI::MPIInitException();
         }
+        std::cout << "Enabled the MPI environment." << std::endl;
     }
     catch(ANANSI::MPIInitializedException const & my_mpi_exception)
     {
@@ -147,6 +148,7 @@ void MPIEnvironment::disable_()
         {
             throw ANANSI::MPIFinalizedException();
         }
+        std::cout << "Disabled the MPI environment." << std::endl;
     }
     catch(ANANSI::MPIFinalizedException const & my_mpi_exception)
     {

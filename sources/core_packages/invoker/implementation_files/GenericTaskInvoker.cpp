@@ -54,13 +54,21 @@ void GenericTaskInvoker::addCommand(std::string const & key,
 
 void GenericTaskInvoker::doTask(std::vector<std::string> const & command_keys)
 {
-    // this->commandSlots_[command_key]->action();
+    const std::vector<std::string> flags = {"default"};
+    for (auto key : command_keys)
+    {
+        (this->commandSlots_.at(key))->doAction(flags);
+    }
     return;
 }
 
 void GenericTaskInvoker::undoTask(std::vector<std::string> const & command_keys)
 {
-    // this->commandSlots_[command_key]->undoAction();
+    const std::vector<std::string> flags = {"default"};
+    for (auto key : command_keys)
+    {
+        (this->commandSlots_.at(key))->undoAction(flags);
+    }
     return;
 }
 

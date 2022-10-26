@@ -86,11 +86,13 @@ class GenericMDTask : public BaseClass
 
         void doAction_(const std::vector<std::string> & commands) override
         {
+            this->receiver_->action();
             return;
         }
 
         void undoAction_(const std::vector<std::string> & commands) override
         {
+            this->receiver_->undoAction();
             return;
         }
 
