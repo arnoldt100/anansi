@@ -14,6 +14,7 @@
 #include <map>
 #include <memory>
 #include <string>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -56,12 +57,12 @@ class GenericTaskInvoker
         //! Enables the communication run-time environment.
         //!
         //! @return void
-        void doTask(std::string const & command_key);
+        void doTask(std::vector<std::string> const & command_keys);
 
         //! Disables the communication run-time environment.
         //!
         //! @return void
-        void undoTask(std::string const & command_key); 
+        void undoTask(std::vector<std::string> const & command_keys); 
 
         // ====================  OPERATORS     =======================================
 

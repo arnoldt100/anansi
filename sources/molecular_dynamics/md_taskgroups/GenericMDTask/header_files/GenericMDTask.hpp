@@ -89,6 +89,11 @@ class GenericMDTask : public BaseClass
             return;
         }
 
+        void undoAction_(const std::vector<std::string> & commands) override
+        {
+            return;
+        }
+
         // ====================  OPERATORS     =======================================
 
         GenericMDTask& operator= (const GenericMDTask &other) // assignment operator

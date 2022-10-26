@@ -52,13 +52,13 @@ void GenericTaskInvoker::addCommand(std::string const & key,
     return;
 }
 
-void GenericTaskInvoker::doTask(std::string const & command_key)
+void GenericTaskInvoker::doTask(std::vector<std::string> const & command_keys)
 {
     // this->commandSlots_[command_key]->action();
     return;
 }
 
-void GenericTaskInvoker::undoTask(std::string const & command_key)
+void GenericTaskInvoker::undoTask(std::vector<std::string> const & command_keys)
 {
     // this->commandSlots_[command_key]->undoAction();
     return;

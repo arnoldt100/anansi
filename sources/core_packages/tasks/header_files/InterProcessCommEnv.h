@@ -54,15 +54,6 @@ class InterProcessCommEnv : public AnansiTask
 
     private:
         // ====================  MUTATORS      =======================================
-        // void doAction_(const std::vector<std::string> & commands) override
-        // {
-        //     return;
-        // }
-        
-        void undoAction_(const std::vector<std::string> & commands) override
-        {
-            return;
-        }
 
         // ====================  DATA MEMBERS  =======================================
 
