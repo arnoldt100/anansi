@@ -22,6 +22,7 @@
 #include "BaseVisitable.hpp"
 #include "MPIEnvironment.h"
 #include "MPIEnvReceiver.h"
+#include "MPIEnvironmentTraits.h"
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"

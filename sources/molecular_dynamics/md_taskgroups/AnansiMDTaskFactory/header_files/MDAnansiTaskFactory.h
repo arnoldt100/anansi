@@ -18,14 +18,11 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InterProcessCommEnv.h"
+// #include "InterProcessCommEnv.h"
 #include "MPLAliases.hpp"
 #include "AbstractFactory.hpp"
 #include "ConcreteFactory.hpp"
-#include "GenericMDTask.hpp"
-#include "DefaultFunctorImpl.h"
-#include "MPIEnvReceiver.h"
-#include "MPIEnvironmentTraits.h"
+#include "AnansiTask.h"
 
 namespace ANANSI
 {
