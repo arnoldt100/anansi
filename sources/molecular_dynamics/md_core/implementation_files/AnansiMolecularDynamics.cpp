@@ -146,10 +146,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 
     this->mdCommEnvInvk_ = mdCommEnvInvkFactory_->create_shared_ptr();
 
-    // this->mdCommEnvInvk_ = std::make_shared<ANANSI::GenericTaskInvoker<MPIEnvironmentTraits::abstract_products,
-    //                                                                    MPIEnvironmentTraits::concrete_products>
-    //                                                                   >();
-
     this->mdCommEnvInvk_->addCommand("mpi_environment",mpi_environment_cmd);
 
     // ---------------------------------------------------
