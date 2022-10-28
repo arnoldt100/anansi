@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,6 +19,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GenericTaskInvoker.hpp"
 
 namespace ANANSI
 {
@@ -57,6 +59,22 @@ class GenericTaskInvokerFactory
         }
 
         // ====================  ACCESSORS     =======================================
+        template < typename... Types>
+        std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>
+        > create_shared_ptr(Types &... args) const
+        {
+            std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>> p_ptr = 
+                std::make_shared<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>>(args...);
+            return p_ptr;
+        }
+
+        template <typename... Types>
+        std::unique_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>> create_unique_ptr(Types &... args) const
+        {
+            std::unique_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>> p_ptr = 
+                std::make_unique<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>>(args...);
+            return p_ptr;
+        }
 
         // ====================  MUTATORS      =======================================
 

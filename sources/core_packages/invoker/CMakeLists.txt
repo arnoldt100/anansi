@@ -67,7 +67,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (invoker_header_files
-        header_files/GenericTaskInvoker.h
+        header_files/GenericTaskInvoker.hpp
         header_files/GenericTaskInvokerFactory.hpp )
 
     #-----------------------------------------------------

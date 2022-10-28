@@ -18,6 +18,7 @@
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
 #include "TaskInterfaceUtilities.hpp"
+#include "GenericTaskInvokerFactory.hpp"
 
 namespace ANANSI {
 
@@ -136,7 +137,17 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     //  Create the invoker and add the task object to the invoker.
     // 
     // ---------------------------------------------------
-    this->mdCommEnvInvk_ = std::make_shared<ANANSI::GenericTaskInvoker>();
+    std::shared_ptr<GenericTaskInvokerFactory<MPIEnvironmentTraits::abstract_products,
+                                              MPIEnvironmentTraits::concrete_products>
+                   > mdCommEnvInvkFactory_ = 
+        std::make_shared<GenericTaskInvokerFactory<MPIEnvironmentTraits::abstract_products,
+                                                   MPIEnvironmentTraits::concrete_products>
+                        >();
+
+    this->mdCommEnvInvk_ = std::make_shared<ANANSI::GenericTaskInvoker<MPIEnvironmentTraits::abstract_products,
+                                                                       MPIEnvironmentTraits::concrete_products>
+                                                                      >();
+
     this->mdCommEnvInvk_->addCommand("mpi_environment",mpi_environment_cmd);
 
     // ---------------------------------------------------

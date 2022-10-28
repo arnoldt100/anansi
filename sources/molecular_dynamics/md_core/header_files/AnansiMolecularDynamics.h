@@ -32,7 +32,7 @@
 #include "AnansiTask.h"
 
 // Includes for invoking the communication environment.
-#include "GenericTaskInvoker.h"
+#include "GenericTaskInvoker.hpp"
 
 namespace ANANSI {
 
@@ -140,7 +140,9 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::AnansiTask> consoleLogger_;
 
 
-        std::shared_ptr<ANANSI::GenericTaskInvoker> mdCommEnvInvk_;
+        std::shared_ptr<ANANSI::GenericTaskInvoker<MPIEnvironmentTraits::abstract_products,
+                                                   MPIEnvironmentTraits::concrete_products>
+                                                  > mdCommEnvInvk_;
 
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;
