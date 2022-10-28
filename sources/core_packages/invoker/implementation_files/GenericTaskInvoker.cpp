@@ -55,7 +55,7 @@ void GenericTaskInvoker::addCommand(std::string const & key,
 void GenericTaskInvoker::doTask(std::vector<std::string> const & command_keys)
 {
     const std::vector<std::string> flags = {"default"};
-    for (auto key : command_keys)
+    for (auto & key : command_keys)
     {
         (this->commandSlots_.at(key))->doAction(flags);
     }

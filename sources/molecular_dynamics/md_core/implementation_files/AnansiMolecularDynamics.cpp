@@ -18,7 +18,6 @@
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
 #include "TaskInterfaceUtilities.hpp"
-#include "MPIEnvironmentTraits.h"
 
 namespace ANANSI {
 
@@ -43,7 +42,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
     mdTerminateSimulation_(nullptr),
-    mdAnansiTaskFactory_(nullptr),
+    mdAnansiMPITaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -76,7 +75,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
     mdTerminateSimulation_(nullptr),
-    mdAnansiTaskFactory_(nullptr),
+    mdAnansiMPITaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -90,13 +89,13 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
     // Initialize all factories.
-    this->mdAnansiTaskFactory_ = std::make_shared<MDAnansiTaskFactory<MPIEnvironmentTraits::abstract_products,
+    this->mdAnansiMPITaskFactory_ = std::make_shared<MDAnansiTaskFactory<MPIEnvironmentTraits::abstract_products,
                                                                       MPIEnvironmentTraits::concrete_products>
                                                  >();
 
 
     // :TODO:10/11/2022 01:36:08 PM:: Refactor to use a Invoker.
-    //this->consoleLogger_ = this->mdAnansiTaskFactory_->create_shared_ptr<LoggingTask>();
+    //this->consoleLogger_ = this->mdAnansiMPITaskFactory_->create_shared_ptr<LoggingTask>();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -131,7 +130,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> mpi_environment_cmd = 
-         this->mdAnansiTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
+         this->mdAnansiMPITaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
     
     // ---------------------------------------------------
     //  Create the invoker and add the task object to the invoker.
@@ -199,10 +198,6 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
     this->simulationParameters_ = SimulationParametersFactory::create(this->commandLineArguments_);
     return;
 }      /* -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- */
-
-
-
-
 
 void
 AnansiMolecularDynamics::readSimulationControlFile ()
