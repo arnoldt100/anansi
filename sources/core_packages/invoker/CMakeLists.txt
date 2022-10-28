@@ -67,7 +67,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (invoker_header_files
-        header_files/GenericTaskInvoker.h )
+        header_files/GenericTaskInvoker.h 
+        header_files/GenericTaskInvokerFactory.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -77,7 +78,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (invoker_implementation_files
-         implementation_files/GenericTaskInvoker.cpp )
+         implementation_files/GenericTaskInvoker.cpp 
+         implementation/GenericTaskInvokerFactory.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

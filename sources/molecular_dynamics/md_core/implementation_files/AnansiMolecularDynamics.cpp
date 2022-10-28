@@ -18,7 +18,6 @@
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
 #include "TaskInterfaceUtilities.hpp"
-#include "MPIEnvironmentTraits.h"
 
 namespace ANANSI {
 
