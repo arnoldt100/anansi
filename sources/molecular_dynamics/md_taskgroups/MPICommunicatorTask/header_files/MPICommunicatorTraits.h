@@ -55,7 +55,7 @@ class MPICommunicatorTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<InterProcessCommEnv,MPICommunicatoReceiver>
+                                                       GenericMDTask<CommunicatorTask,MPICommunicatorReceiver>
                                                    >;
 
     protected:

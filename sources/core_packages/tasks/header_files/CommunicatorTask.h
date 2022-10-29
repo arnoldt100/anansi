@@ -18,11 +18,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTask.h"
 
 namespace ANANSI
 {
 
-class CommunicatorTask
+class CommunicatorTask : public AnansiTask
 {
     public:
         // ====================  LIFECYCLE     =======================================

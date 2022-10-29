@@ -16,7 +16,7 @@
     # configure the ingredients and tasks.
     add_subdirectory(GenericMDTask)
     add_subdirectory(Ingredients)
-    add_subdirectory(MPIComminicatorTask)
+    add_subdirectory(MPICommunicatorTask)
     add_subdirectory(MPIEnvTask)
     add_subdirectory(ConsoleLoggingTask)
     add_subdirectory(AnansiMDTaskFactory)

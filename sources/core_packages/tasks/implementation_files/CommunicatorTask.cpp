@@ -20,12 +20,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-CommunicatorTask::CommunicatorTask()
+CommunicatorTask::CommunicatorTask() :
+    AnansiTask()
 {
     return;
 }
 
-CommunicatorTask::CommunicatorTask( CommunicatorTask const & other)
+CommunicatorTask::CommunicatorTask( CommunicatorTask const & other) :
+    AnansiTask(other)
 {
     if (this != &other)
     {
@@ -34,7 +36,8 @@ CommunicatorTask::CommunicatorTask( CommunicatorTask const & other)
     return;
 }
 
-CommunicatorTask::CommunicatorTask( CommunicatorTask && other)
+CommunicatorTask::CommunicatorTask( CommunicatorTask && other) :
+    AnansiTask(std::move(other))
 {
     if (this != &other)
     {
@@ -59,7 +62,7 @@ CommunicatorTask& CommunicatorTask::operator= ( const CommunicatorTask &other )
 {
     if (this != &other)
     {
-
+        AnansiTask::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -68,7 +71,7 @@ CommunicatorTask& CommunicatorTask::operator= ( CommunicatorTask && other )
 {
     if (this != &other)
     {
-
+        AnansiTask::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
