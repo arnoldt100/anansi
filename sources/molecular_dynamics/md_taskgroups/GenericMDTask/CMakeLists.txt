@@ -10,7 +10,7 @@
 #----------------------------------------------------------------------------------------------------------------------------
 #
 # genericmdtask_include                 ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                         ${genericmdtask__header_files}                        The list of headers files associated with this librarry.
+# PUBLIC_HEADER                         ${genericmdtask_header_files}                         The list of headers files associated with this librarry.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
