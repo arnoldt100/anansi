@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InterProcessCommEnv.h"
+#include "CommunicatorTask.h"
 
 namespace ANANSI {
 
@@ -20,14 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-InterProcessCommEnv::InterProcessCommEnv() :
-    AnansiTask()
+CommunicatorTask::CommunicatorTask()
 {
     return;
 }
 
-InterProcessCommEnv::InterProcessCommEnv( InterProcessCommEnv const & other) :
-   AnansiTask(other) 
+CommunicatorTask::CommunicatorTask( CommunicatorTask const & other)
 {
     if (this != &other)
     {
@@ -36,17 +34,17 @@ InterProcessCommEnv::InterProcessCommEnv( InterProcessCommEnv const & other) :
     return;
 }
 
-InterProcessCommEnv::InterProcessCommEnv( InterProcessCommEnv && other) : 
-    AnansiTask(std::move(other))
+CommunicatorTask::CommunicatorTask( CommunicatorTask && other)
 {
     if (this != &other)
     {
+        
     }
     return;
-}		// -----  end of method InterProcessCommEnv::InterProcessCommEnv  -----
+}		// -----  end of method CommunicatorTask::CommunicatorTask  -----
 
 
-InterProcessCommEnv::~InterProcessCommEnv()
+CommunicatorTask::~CommunicatorTask()
 {
     return;
 }
@@ -57,20 +55,20 @@ InterProcessCommEnv::~InterProcessCommEnv()
 
 //============================= OPERATORS ====================================
 
-InterProcessCommEnv& InterProcessCommEnv::operator=( const InterProcessCommEnv &other )
+CommunicatorTask& CommunicatorTask::operator= ( const CommunicatorTask &other )
 {
     if (this != &other)
     {
-        AnansiTask::operator=(other);
+
     }
     return *this;
 } // assignment operator
 
-InterProcessCommEnv& InterProcessCommEnv::operator=( InterProcessCommEnv && other )
+CommunicatorTask& CommunicatorTask::operator= ( CommunicatorTask && other )
 {
     if (this != &other)
     {
-        AnansiTask::operator=(std::move(other));
+
     }
     return *this;
 } // assignment-move operator

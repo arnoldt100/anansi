@@ -79,7 +79,8 @@
          header_files/WorldCommunicatorIngredientTraits.h
          header_files/CommunicatorIngredientTraits.h
          header_files/CommandLineArgumentsIngredientTraits.h
-         header_files/InterProcessCommEnv.h)
+         header_files/InterProcessCommEnv.h
+         header_files/CommunicatorTask.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -98,7 +99,8 @@
          implementation_files/WorldCommunicatorIngredientTraits.cpp
          implementation_files/CommunicatorIngredientTraits.cpp
          implementation_files/CommandLineArgumentsIngredientTraits.cpp
-         implementation_files/InterProcessCommEnv.cpp)
+         implementation_files/InterProcessCommEnv.cpp
+         implementation_files/CommunicatorTask.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

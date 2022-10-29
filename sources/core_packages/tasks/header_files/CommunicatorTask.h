@@ -1,9 +1,11 @@
-#ifndef  ANANSI_InterProcessCommEnv_INC
-#define  ANANSI_InterProcessCommEnv_INC
+#ifndef  ANANSI_CommunicatorTask_INC
+#define  ANANSI_CommunicatorTask_INC
 
-//! @file InterProcessCommEnv.h
+//! @file CommunicatorTask.h
 //!
-//! Base class for initializing the interprocess communication environment.
+//! Brief description
+//!
+//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -16,23 +18,22 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "AnansiTask.h"
 
 namespace ANANSI
 {
 
-class InterProcessCommEnv : public AnansiTask
+class CommunicatorTask
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        InterProcessCommEnv ();   // constructor
+        CommunicatorTask ();   // constructor
 
-        InterProcessCommEnv (const InterProcessCommEnv & other);   // copy constructor
+        CommunicatorTask (const CommunicatorTask & other);   // copy constructor
 
-        InterProcessCommEnv (InterProcessCommEnv && other);   // copy-move constructor
+        CommunicatorTask (CommunicatorTask && other);   // copy-move constructor
 
-        virtual ~InterProcessCommEnv ()=0;  // destructor
+        virtual ~CommunicatorTask ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -40,9 +41,9 @@ class InterProcessCommEnv : public AnansiTask
 
         // ====================  OPERATORS     =======================================
 
-        InterProcessCommEnv& operator= ( const InterProcessCommEnv &other ); // assignment operator
+        CommunicatorTask& operator= ( const CommunicatorTask &other ); // assignment operator
 
-        InterProcessCommEnv& operator= ( InterProcessCommEnv && other ); // assignment-move operator
+        CommunicatorTask& operator= ( CommunicatorTask && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -50,13 +51,13 @@ class InterProcessCommEnv : public AnansiTask
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        // ====================  MUTATORS      =======================================
+        // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class InterProcessCommEnv  -----
+}; // -----  end of class CommunicatorTask  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_InterProcessCommEnv_INC
+#endif   // ----- #ifndef ANANSI_CommunicatorTask_INC  ----- 
