@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPIEnvironmentTraits.h"
+#include "MPICommunicatorTraits.h"
 
 namespace ANANSI {
 
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MPIEnvironmentTraits::MPIEnvironmentTraits()
+MPICommunicatorTraits::MPICommunicatorTraits()
 {
     return;
 }
 
-MPIEnvironmentTraits::MPIEnvironmentTraits( MPIEnvironmentTraits const & other)
+MPICommunicatorTraits::MPICommunicatorTraits( MPICommunicatorTraits const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ MPIEnvironmentTraits::MPIEnvironmentTraits( MPIEnvironmentTraits const & other)
     return;
 }
 
-MPIEnvironmentTraits::MPIEnvironmentTraits( MPIEnvironmentTraits && other)
+MPICommunicatorTraits::MPICommunicatorTraits( MPICommunicatorTraits && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method MPIEnvironmentTraits::MPIEnvironmentTraits  -----
+}		// -----  end of method MPICommunicatorTraits::MPICommunicatorTraits  -----
 
 
-MPIEnvironmentTraits::~MPIEnvironmentTraits()
+MPICommunicatorTraits::~MPICommunicatorTraits()
 {
     return;
 }
@@ -54,7 +54,7 @@ MPIEnvironmentTraits::~MPIEnvironmentTraits()
 
 //============================= OPERATORS ====================================
 
-MPIEnvironmentTraits& MPIEnvironmentTraits::operator= ( const MPIEnvironmentTraits &other )
+MPICommunicatorTraits& MPICommunicatorTraits::operator= ( const MPICommunicatorTraits &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ MPIEnvironmentTraits& MPIEnvironmentTraits::operator= ( const MPIEnvironmentTrai
     return *this;
 } // assignment operator
 
-MPIEnvironmentTraits& MPIEnvironmentTraits::operator= ( MPIEnvironmentTraits && other )
+MPICommunicatorTraits& MPICommunicatorTraits::operator= ( MPICommunicatorTraits && other )
 {
     if (this != &other)
     {

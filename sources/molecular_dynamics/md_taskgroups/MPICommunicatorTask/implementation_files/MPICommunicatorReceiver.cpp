@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -9,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPIEnvironmentTraits.h"
+#include "MPICommunicatorReceiver.h"
 
 namespace ANANSI {
 
@@ -19,12 +20,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MPIEnvironmentTraits::MPIEnvironmentTraits()
+MPICommunicatorReceiver::MPICommunicatorReceiver() :
+    ReceiverInterface<MPICommunicatorReceiver>()
 {
     return;
 }
 
-MPIEnvironmentTraits::MPIEnvironmentTraits( MPIEnvironmentTraits const & other)
+MPICommunicatorReceiver::MPICommunicatorReceiver( MPICommunicatorReceiver const & other) :
+    ReceiverInterface<MPICommunicatorReceiver>(other)
 {
     if (this != &other)
     {
@@ -33,17 +36,17 @@ MPIEnvironmentTraits::MPIEnvironmentTraits( MPIEnvironmentTraits const & other)
     return;
 }
 
-MPIEnvironmentTraits::MPIEnvironmentTraits( MPIEnvironmentTraits && other)
+MPICommunicatorReceiver::MPICommunicatorReceiver( MPICommunicatorReceiver && other) :
+    ReceiverInterface<MPICommunicatorReceiver>(std::move(other))
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method MPIEnvironmentTraits::MPIEnvironmentTraits  -----
+}
 
-
-MPIEnvironmentTraits::~MPIEnvironmentTraits()
+MPICommunicatorReceiver::~MPICommunicatorReceiver()
 {
     return;
 }
@@ -54,20 +57,21 @@ MPIEnvironmentTraits::~MPIEnvironmentTraits()
 
 //============================= OPERATORS ====================================
 
-MPIEnvironmentTraits& MPIEnvironmentTraits::operator= ( const MPIEnvironmentTraits &other )
+MPICommunicatorReceiver& MPICommunicatorReceiver::operator= ( const MPICommunicatorReceiver &other )
 {
     if (this != &other)
     {
+        ReceiverInterface<MPICommunicatorReceiver>::operator=(other);
 
     }
     return *this;
 } // assignment operator
 
-MPIEnvironmentTraits& MPIEnvironmentTraits::operator= ( MPIEnvironmentTraits && other )
+MPICommunicatorReceiver& MPICommunicatorReceiver::operator= ( MPICommunicatorReceiver && other )
 {
     if (this != &other)
     {
-
+        ReceiverInterface<MPICommunicatorReceiver>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

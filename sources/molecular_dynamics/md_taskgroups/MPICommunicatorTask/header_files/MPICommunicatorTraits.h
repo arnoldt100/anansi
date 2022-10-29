@@ -1,7 +1,7 @@
-#ifndef ANANSI_MPIEnvironmentTraits_INC
-#define ANANSI_MPIEnvironmentTraits_INC
+#ifndef  ANANSI_MPICommunicatorTraits_INC
+#define  ANANSI_MPICommunicatorTraits_INC
 
-//! @file MPIEnvironmentTraits.h
+//! @file MPICommunicatorTraits.h
 //!
 //! Brief description
 //!
@@ -19,27 +19,26 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
-#include "InterProcessCommEnv.h"
+#include "CommunicatorTask.h"
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
-#include "MPIEnvReceiver.h"
-
+#include "MPICommunicatorReceiver.h"
 
 namespace ANANSI
 {
 
-class MPIEnvironmentTraits 
+class MPICommunicatorTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        MPIEnvironmentTraits ();   // constructor
+        MPICommunicatorTraits ();   // constructor
 
-        MPIEnvironmentTraits (const MPIEnvironmentTraits & other);   // copy constructor
+        MPICommunicatorTraits (const MPICommunicatorTraits & other);   // copy constructor
 
-        MPIEnvironmentTraits (MPIEnvironmentTraits && other);   // copy-move constructor
+        MPICommunicatorTraits (MPICommunicatorTraits && other);   // copy-move constructor
 
-        ~MPIEnvironmentTraits ();  // destructor
+        ~MPICommunicatorTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -47,17 +46,18 @@ class MPIEnvironmentTraits
 
         // ====================  OPERATORS     =======================================
 
-        MPIEnvironmentTraits& operator= ( const MPIEnvironmentTraits &other ); // assignment operator
+        MPICommunicatorTraits& operator= ( const MPICommunicatorTraits &other ); // assignment operator
 
-        MPIEnvironmentTraits& operator= ( MPIEnvironmentTraits && other ); // assignment-move operator
-
+        MPICommunicatorTraits& operator= ( MPICommunicatorTraits && other ); // assignment-move operator
+        
         using abstract_products = MPL::mpl_typelist<
-                                                       InterProcessCommEnv
+                                                       CommunicatorTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<InterProcessCommEnv,MPIEnvReceiver>
+                                                       GenericMDTask<InterProcessCommEnv,MPICommunicatoReceiver>
                                                    >;
+
     protected:
         // ====================  METHODS       =======================================
 
@@ -68,9 +68,9 @@ class MPIEnvironmentTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class MPIEnvironmentTraits  -----
+}; // -----  end of class MPICommunicatorTraits  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_MPIEnvironmentTraits_INC
+#endif   // ----- #ifndef ANANSI_MPICommunicatorTraits_INC  ----- 

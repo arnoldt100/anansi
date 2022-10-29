@@ -61,8 +61,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpicommunicatortask_header_files
-        # header_files/MPICommunicatorReceiver.h
-        header_files/MPICommunicatorReceiverTraits.h )
+         header_files/MPICommunicatorReceiver.h
+         header_files/MPICommunicatorTraits.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -72,8 +72,16 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpicommunicatortask_implementation_files
-        # implementation_files/MPICommunicatorReceiver.cpp
-         implementation_files/MPICommunicatorReceiverTraits.cpp )
+         implementation_files/MPICommunicatorReceiver.cpp
+         implementation_files/MPICommunicatorTraits.cpp )
+
+    # -----------------------------------------------------
+    # Set various variables for include directories.
+    # 
+    # -----------------------------------------------------
+    get_target_property(my_tasks_include tasks tasks_include)
+    get_target_property(my_receiver_include receiver receiver_include )
+    get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -104,7 +112,19 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PRIVATE ${my_tasks_include}
+                           PRIVATE ${my_genericmdtask_include} 
+                           PRIVATE ${my_receiver_include} )
+
+#-----------------------------------------------------
+# Set the list of libraries to link against.         -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries(${target}
+                      PUBLIC tasks
+                      PUBLIC genericmdtask
+                      PUBLIC receiver)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
