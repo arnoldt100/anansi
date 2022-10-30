@@ -80,7 +80,8 @@
          header_files/CommunicatorIngredientTraits.h
          header_files/CommandLineArgumentsIngredientTraits.h
          header_files/InterProcessCommEnv.h
-         header_files/CommunicatorTask.h)
+         header_files/CommunicatorTask.h
+         header_files/ControlFile.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -100,7 +101,8 @@
          implementation_files/CommunicatorIngredientTraits.cpp
          implementation_files/CommandLineArgumentsIngredientTraits.cpp
          implementation_files/InterProcessCommEnv.cpp
-         implementation_files/CommunicatorTask.cpp)
+         implementation_files/CommunicatorTask.cpp
+         implementation_files/ControlFile.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
