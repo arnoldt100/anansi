@@ -36,6 +36,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
     mdCommEnvInvk_(nullptr),
+    mdWorldCommunicatorInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -69,6 +70,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
     mdCommEnvInvk_(nullptr),
+    mdWorldCommunicatorInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -171,8 +173,7 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
 
 
-void 
-AnansiMolecularDynamics::enableWorldCommunicator()
+void AnansiMolecularDynamics::enableWorldCommunicator()
 {
     std::unique_ptr<COMMUNICATOR::CommunicatorFactory> my_mpi_factory(new MPICommunicatorFactory);
     this->MpiWorldCommunicator_ = my_mpi_factory->createWorldCommunicator();

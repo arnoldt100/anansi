@@ -23,6 +23,8 @@
 #include "MPIEnvironment.h"
 #include "MPIEnvReceiver.h"
 #include "MPIEnvironmentTraits.h"
+#include "MPICommunicatorReceiver.h"
+#include "MPICommunicatorTraits.h"
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
@@ -142,7 +144,12 @@ class AnansiMolecularDynamics final : public Simulation
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<MPIEnvironmentTraits::abstract_products,
                                                    MPIEnvironmentTraits::concrete_products>
-                                                  > mdCommEnvInvk_;
+                       > mdCommEnvInvk_;
+
+        std::shared_ptr<ANANSI::GenericTaskInvoker<MPICommunicatorTraits::abstract_products,
+                                                   MPICommunicatorTraits::concrete_products>
+
+                       > mdWorldCommunicatorInvk_;
 
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;
