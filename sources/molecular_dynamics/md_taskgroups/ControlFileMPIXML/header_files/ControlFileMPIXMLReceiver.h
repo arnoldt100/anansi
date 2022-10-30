@@ -1,7 +1,7 @@
-#ifndef ANANSI_MPICommunicatorReceiver_INC
-#define ANANSI_MPICommunicatorReceiver_INC
+#ifndef  ANANSI_ControlFileMPIXMLReceiver_INC
+#define  ANANSI_ControlFileMPIXMLReceiver_INC
 
-//! @file MPICommunicatorReceiver.h
+//! @file ControlFileMPIXMLReceiver.h
 //!
 //! Brief description
 //!
@@ -23,18 +23,18 @@
 namespace ANANSI
 {
 
-class MPICommunicatorReceiver :  public RECEIVER::ReceiverInterface<MPICommunicatorReceiver>
+class ControlFileMPIXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileMPIXMLReceiver>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        MPICommunicatorReceiver ();   // constructor
+        ControlFileMPIXMLReceiver ();   // constructor
 
-        MPICommunicatorReceiver (const MPICommunicatorReceiver & other);   // copy constructor
+        ControlFileMPIXMLReceiver (const ControlFileMPIXMLReceiver & other);   // copy constructor
 
-        MPICommunicatorReceiver (MPICommunicatorReceiver && other);   // copy-move constructor
+        ControlFileMPIXMLReceiver (ControlFileMPIXMLReceiver && other);   // copy-move constructor
 
-        ~MPICommunicatorReceiver ();  // destructor
+        ~ControlFileMPIXMLReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -53,9 +53,9 @@ class MPICommunicatorReceiver :  public RECEIVER::ReceiverInterface<MPICommunica
 
         // ====================  OPERATORS     =======================================
 
-        MPICommunicatorReceiver& operator= ( const MPICommunicatorReceiver &other ); // assignment operator
+        ControlFileMPIXMLReceiver& operator= ( const ControlFileMPIXMLReceiver &other ); // assignment operator
 
-        MPICommunicatorReceiver& operator= ( MPICommunicatorReceiver && other ); // assignment-move operator
+        ControlFileMPIXMLReceiver& operator= ( ControlFileMPIXMLReceiver && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -67,26 +67,26 @@ class MPICommunicatorReceiver :  public RECEIVER::ReceiverInterface<MPICommunica
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class MPICommunicatorReceiver  -----
+}; // -----  end of class ControlFileMPIXMLReceiver  -----
 
 template<typename... Types>
-void MPICommunicatorReceiver::disableReceiver(Types... args)
+void ControlFileMPIXMLReceiver::disableReceiver(Types... args)
 {
     return;
 }
 
 template<typename... Types>
-void MPICommunicatorReceiver::receiverDoAction(Types... args)
+void ControlFileMPIXMLReceiver::receiverDoAction(Types... args)
 {
     return;
 }
 
 template<typename... Types>
-void MPICommunicatorReceiver::receiverUndoAction(Types... args)
+void ControlFileMPIXMLReceiver::receiverUndoAction(Types... args)
 {
     return;
 }
 
 }; // namespace ANANSI
 
-#endif // ANANSI_MPICommunicatorReceiver_INC
+#endif   // ----- #ifndef ANANSI_ControlFileMPIXMLReceiver_INC  ----- 

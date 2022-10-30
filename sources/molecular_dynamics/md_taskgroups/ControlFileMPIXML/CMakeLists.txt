@@ -1,16 +1,17 @@
-# This CMakeLists.txt file creates the library libmpicommunicatortask.a
+# This CMakeLists.txt file creates the library libcontrolfilempixmltask.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# mpicommunicatortask_header_files or mpicommunicatortask_implementation_files.
+# controlfilempixmltask_header_files or controlfilempixmltask_implementation_files.
 #
-# The target for the library is mpicommunicatortask.
+# The target for the library is controlfilempixmltask.
 #
-# The following properties are set for the target mpicommunicatortask.
+# The following properties are set for the target controlfilempixmltask.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #
-# mpicommunicatortask_include           ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                         ${mpicommunicatortask_header_files}                 The list of headers files associated with this library.
+# controlfilempixmltask_include             ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+# PUBLIC_HEADER                         ${controlfilempixmltask_header_files}                   The list of headers files associated with this librarry.
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -22,7 +23,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "mpicommunicatortask")
+    set(my_project_name "controlfilempixmltask")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -35,7 +36,7 @@
     # Define the property name for the include directory.
     # 
     #-----------------------------------------------------
-    set(my_target_include_property_name "{target}_include" )
+    set(my_target_include_property_name "controlfilempixmltask_include")
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -60,9 +61,9 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (mpicommunicatortask_header_files
-         header_files/MPICommunicatorReceiver.h
-         header_files/MPICommunicatorTraits.h )
+    set (controlfilempixmltask_header_files
+         header_files/ControlFileMPIXMLReceiver.h
+         header_files/ControlFileMPIXMLTraits.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -71,9 +72,9 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (mpicommunicatortask_implementation_files
-         implementation_files/MPICommunicatorReceiver.cpp
-         implementation_files/MPICommunicatorTraits.cpp )
+    set (controlfilempixmltask_implementation_files
+         implementation_files/ControlFileMPIXMLReceiver.cpp
+         implementation_files/ControlFileMPIXMLTraits.cpp )
 
     # -----------------------------------------------------
     # Set various variables for include directories.
@@ -83,6 +84,7 @@
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
 
+    
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
@@ -104,7 +106,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${mpicommunicatortask_header_files} ${mpicommunicatortask_implementation_files} )
+    PRIVATE ${controlfilempixmltask_header_files} ${controlfilempixmltask_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -112,7 +114,7 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_tasks_include}
                            PRIVATE ${my_genericmdtask_include} 
                            PRIVATE ${my_receiver_include} )
@@ -138,7 +140,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${mpicommunicatortask_header_files}" )
+                      PUBLIC_HEADER "${controlfilempixmltask_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 

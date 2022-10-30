@@ -19,6 +19,7 @@
     add_subdirectory(MPICommunicatorTask)
     add_subdirectory(MPIEnvTask)
     add_subdirectory(ConsoleLoggingTask)
+    add_subdirectory(ControlFileMPIXML)
     add_subdirectory(AnansiMDTaskFactory)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

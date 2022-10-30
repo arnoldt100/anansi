@@ -36,7 +36,7 @@
     # Define the property name for the include directory.
     # 
     #-----------------------------------------------------
-    set(my_target_include_property_name "mpienvtask_include" )
+    set(my_target_include_property_name "mpienvtask_include")
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
