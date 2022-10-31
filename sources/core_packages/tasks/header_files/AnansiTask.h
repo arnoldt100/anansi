@@ -47,7 +47,7 @@ class AnansiTask
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
-        void doAction(const std::vector<std::string> & commands );
+        void doAction(const std::vector<std::string> & flags );
         
         void undoAction(const std::vector<std::string> & commands );
 

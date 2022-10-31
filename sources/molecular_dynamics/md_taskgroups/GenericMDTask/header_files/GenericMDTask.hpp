@@ -84,7 +84,7 @@ class GenericMDTask : public BaseClass
             this->bindReceivers_(args...);
         }
 
-        void doAction_(const std::vector<std::string> & commands) override
+        void doAction_(const std::vector<std::string> & flags) override
         {
             this->receiver_->action();
             return;
