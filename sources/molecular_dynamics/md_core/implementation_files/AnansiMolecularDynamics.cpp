@@ -202,6 +202,16 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     //  Create the MPI comunicator invoker and add the mpi task object.
     // 
     // ----------------------------------------------------
+    std::shared_ptr<GenericTaskInvokerFactory<MPICommunicatorTraits::abstract_products,
+                                              MPICommunicatorTraits::concrete_products>
+                   > mdMPICommInvkFactory_ = 
+        std::make_shared<GenericTaskInvokerFactory<MPICommunicatorTraits::abstract_products,
+                                                   MPICommunicatorTraits::concrete_products>
+                        >();
+
+    this->mdWorldCommunicatorInvk_ = mdMPICommInvkFactory_->create_shared_ptr();
+
+    this->mdWorldCommunicatorInvk_->addCommand("world_communicator",mpi_communicator_cmd);
 
     return;
 }
