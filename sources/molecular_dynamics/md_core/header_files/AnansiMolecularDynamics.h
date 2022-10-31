@@ -160,10 +160,15 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
+
+        // These are the factories for various task objects.
         std::shared_ptr<MDAnansiTaskFactory<MPIEnvironmentTraits::abstract_products,
-                                            MPIEnvironmentTraits::concrete_products
-                                           >
-                       >mdAnansiMPITaskFactory_;
+                                            MPIEnvironmentTraits::concrete_products>
+                       >mdAnansiMPIEnvTaskFactory_;
+
+        std::shared_ptr<MDAnansiTaskFactory<MPICommunicatorTraits::abstract_products,
+                                            MPICommunicatorTraits::concrete_products>
+                       > mdAnansiMPICommunicatorTaskFactory_;
 
         // :TODO:09/27/2022 02:38:21 PM:: To be deprecated.
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
