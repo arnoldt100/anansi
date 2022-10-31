@@ -19,6 +19,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverInterface.hpp"
+#include "Communicator.h"
 
 namespace ANANSI
 {
@@ -66,6 +67,7 @@ class MPICommunicatorReceiver :  public RECEIVER::ReceiverInterface<MPICommunica
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
 
 }; // -----  end of class MPICommunicatorReceiver  -----
 
