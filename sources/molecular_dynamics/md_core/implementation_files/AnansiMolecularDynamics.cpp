@@ -202,6 +202,7 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
 
     this->mdWorldCommunicatorInvk_ = mdMPICommInvkFactory_->create_shared_ptr();
 
+
     // ----------------------------------------------------
     //  Create the mpi comunicator receiver.
     // 
@@ -221,6 +222,8 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // 
     // ---------------------------------------------------
     this->mdWorldCommunicatorInvk_->addCommand("world_communicator",mpi_communicator_cmd);
+
+    MPICommunicatorInvokerUtility::addMPITasks(this->mdWorldCommunicatorInvk_,mpi_communicator_recv);
 
     return;
 }
