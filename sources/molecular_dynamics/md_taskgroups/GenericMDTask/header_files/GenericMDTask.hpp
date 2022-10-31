@@ -134,7 +134,7 @@ class GenericMDTask : public BaseClass
         template <typename firstArgType, typename... Types>
         void bindReceivers_(firstArgType & firstarg, Types &... args)
         {
-            this->bindAReceiver_(firstarg);
+           this->bindAReceiver_(firstarg);
         }
 
 

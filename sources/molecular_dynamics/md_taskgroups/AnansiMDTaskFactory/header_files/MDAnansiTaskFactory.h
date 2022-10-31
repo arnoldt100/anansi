@@ -193,8 +193,8 @@ class MDAnansiTaskFactory
 
 
     public: 
-        template <typename T, typename... Types>
-        std::shared_ptr<AnansiTask> create_shared_ptr(Types &... args) const
+        template <typename T, typename W>
+        std::shared_ptr<AnansiTask> create_shared_ptr(W  & arg) const
         {
             constexpr auto index = MDAnansiTaskFactory::findIndex_<T>();
             using abstract_product_t = abstract_product_at_<index>;
@@ -203,13 +203,13 @@ class MDAnansiTaskFactory
             std::shared_ptr<abstract_product_t> product_ptr(this->mdAnansiTaskFactory_->template Create<abstract_product_t>());
 
             std::shared_ptr<abstract_product_t> p_ptr = 
-                this->bindReceivers_<concrete_product_t,abstract_product_t,Types...>(product_ptr, args...);
+                this->bindReceivers_<concrete_product_t,abstract_product_t,W>(product_ptr, arg);
 
             return p_ptr;
         }
 
-        template <typename T, typename... Types>
-        std::unique_ptr<AnansiTask> create_unique_ptr(Types &... args) const
+        template <typename T, typename W>
+        std::unique_ptr<AnansiTask> create_unique_ptr(W & arg) const
         {
             constexpr auto index = MDAnansiTaskFactory::findIndex_<T>();
             using abstract_product_t = abstract_product_at_<index>;
@@ -218,7 +218,7 @@ class MDAnansiTaskFactory
             std::unique_ptr<abstract_product_t> product_ptr(this->mdAnansiTaskFactory_->template Create<abstract_product_t>());
 
             std::unique_ptr<abstract_product_t> p_ptr = 
-                this->bindReceivers_<concrete_product_t,abstract_product_t,Types...>(product_ptr, args...);
+                this->bindReceivers_<concrete_product_t,abstract_product_t,W>(product_ptr, arg);
 
             return p_ptr;
         }

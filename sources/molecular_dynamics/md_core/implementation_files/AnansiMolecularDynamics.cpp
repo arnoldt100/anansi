@@ -204,29 +204,17 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
 
 
     // ----------------------------------------------------
-    //  Create the mpi comunicator receiver.
+    //  Create an mpi comunicator.
     // 
     // ----------------------------------------------------
-    std::shared_ptr<ANANSI::MPICommunicatorReceiver> mpi_communicator_recv =
-        std::make_shared<ANANSI::MPICommunicatorReceiver>();
-    
     std::shared_ptr<COMMUNICATOR::Communicator> tmp_world_comm = my_mpi_factory->createWorldCommunicator();
-    mpi_communicator_recv->enable(tmp_world_comm); 
-
-    // ----------------------------------------------------
-    //  Create the mpi task object and bind the receiver to it.
-    // 
-    // ----------------------------------------------------
-    std::shared_ptr<ANANSI::AnansiTask> mpi_communicator_cmd = 
-        this->mdAnansiMPICommunicatorTaskFactory_->create_shared_ptr<CommunicatorTask>(mpi_communicator_recv);
 
     // ---------------------------------------------------
-    // Add the task object/command to the invoker.
+    // Call the utility function that adds the MPI tasks/commands to the
+    // invoker.
     // 
     // ---------------------------------------------------
-    this->mdWorldCommunicatorInvk_->addCommand("world_communicator",mpi_communicator_cmd);
-
-    MPICommunicatorInvokerUtility::addMPITasks(this->mdWorldCommunicatorInvk_,mpi_communicator_recv);
+    MPICommunicatorInvokerUtility::addMPITasks(this->mdWorldCommunicatorInvk_,tmp_world_comm);
 
     return;
 }
