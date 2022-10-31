@@ -19,6 +19,7 @@
 #include "MDSimulationStateFactory.h"
 #include "TaskInterfaceUtilities.hpp"
 #include "GenericTaskInvokerFactory.hpp"
+#include "MPICommunicatorInvokerUtility.h"
 
 namespace ANANSI {
 

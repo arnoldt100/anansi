@@ -61,6 +61,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpicommunicatortask_header_files
+         header_files/MPICommunicatorInvokerUtility.h
          header_files/MPICommunicatorReceiver.h
          header_files/MPICommunicatorTraits.h )
 
@@ -72,6 +73,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mpicommunicatortask_implementation_files
+         implementation_files/MPICommunicatorInvokerUtility.cpp
          implementation_files/MPICommunicatorReceiver.cpp
          implementation_files/MPICommunicatorTraits.cpp )
 
