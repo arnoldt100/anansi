@@ -53,17 +53,24 @@ class MPICommunicatorInvokerUtility
         static void addMPITasks(INVK_t & invoker, std::shared_ptr<COMMUNICATOR::Communicator> & communicator)
         {
             // // ----------------------------------------------------
+            // // Create the receiver.
+            // //
+            // // ----------------------------------------------------
+            //  ...... some code to create/enable the receiver.
+            //
+            // // ----------------------------------------------------
             // //  Create the mpi task object and bind the receiver to it.
             // // 
             // // ----------------------------------------------------
             // std::shared_ptr<ANANSI::AnansiTask> mpi_communicator_cmd = 
-            //     this->mdAnansiMPICommunicatorTaskFactory_->create_shared_ptr<CommunicatorTask>(mpi_communicator_recv);
+            //     this->mdAnansiMPICommunicatorTaskFactory_->create_shared_ptr<CommunicatorTask>(receiver);
 
             // // ---------------------------------------------------
             // // Add the task object/command to the invoker.
             // // 
             // // ---------------------------------------------------
             // this->mdWorldCommunicatorInvk_->addCommand("world_communicator",mpi_communicator_cmd);
+
             return;
         }
 
