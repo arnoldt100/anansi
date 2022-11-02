@@ -1,6 +1,6 @@
 # This CMakeLists.txt file creates the library libmpicommunicatortask.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# mpicommunicatortask_header_files or mpicommunicatortask_implementation_files.
+# initmpienvtask_header_files or initmpienvtask_implementation_files.
 #
 # The target for the library is mpicommunicatortask.
 #
@@ -10,7 +10,7 @@
 #----------------------------------------------------------------------------------------------------------------------------
 #
 # mpicommunicatortask_include           ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                         ${mpicommunicatortask_header_files}                 The list of headers files associated with this library.
+# PUBLIC_HEADER                         ${initmpienvtask_header_files}                 The list of headers files associated with this library.
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -22,7 +22,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "mpicommunicatortask")
+    set(my_project_name "initmpienvtask")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -60,10 +60,10 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (mpicommunicatortask_header_files
-         header_files/MPICommunicatorInvokerUtility.h
-         header_files/MPICommunicatorReceiver.h
-         header_files/MPICommunicatorTraits.h )
+    set (initmpienvtask_header_files
+         header_files/InitMPIEnvTaskInvokerUtility.h
+         header_files/InitMPIEnvTaskReceiver.h
+         header_files/InitMPIEnvTaskTraits.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -72,10 +72,10 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (mpicommunicatortask_implementation_files
-         implementation_files/MPICommunicatorInvokerUtility.cpp
-         implementation_files/MPICommunicatorReceiver.cpp
-         implementation_files/MPICommunicatorTraits.cpp )
+    set (initmpienvtask_implementation_files
+         implementation_files/InitMPIEnvTaskInvokerUtility.cpp
+         implementation_files/InitMPIEnvTaskReceiver.cpp
+         implementation_files/InitMPIEnvTaskTraits.cpp )
 
     # -----------------------------------------------------
     # Set various variables for include directories.
@@ -107,7 +107,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${mpicommunicatortask_header_files} ${mpicommunicatortask_implementation_files} )
+    PRIVATE ${initmpienvtask_header_files} ${initmpienvtask_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -143,7 +143,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${mpicommunicatortask_header_files}" )
+                      PUBLIC_HEADER "${initmpienvtask_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
