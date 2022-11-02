@@ -1,7 +1,7 @@
-#ifndef  ANANSI_MPICommunicatorInvokerUtility_INC
-#define  ANANSI_MPICommunicatorInvokerUtility_INC
+#ifndef  ANANSI_InitMPIEnvInvokerUtility_INC
+#define  ANANSI_InitMPIEnvInvokerUtility_INC
 
-//! @file MPICommunicatorInvokerUtility.h
+//! @file InitMPIEnvInvokerUtility.h
 //!
 //! Brief description
 //!
@@ -24,18 +24,18 @@
 namespace ANANSI
 {
 
-class MPICommunicatorInvokerUtility
+class InitMPIEnvInvokerUtility
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        MPICommunicatorInvokerUtility ();   // constructor
+        InitMPIEnvInvokerUtility ();   // constructor
 
-        MPICommunicatorInvokerUtility (const MPICommunicatorInvokerUtility & other);   // copy constructor
+        InitMPIEnvInvokerUtility (const InitMPIEnvInvokerUtility & other);   // copy constructor
 
-        MPICommunicatorInvokerUtility (MPICommunicatorInvokerUtility && other);   // copy-move constructor
+        InitMPIEnvInvokerUtility (InitMPIEnvInvokerUtility && other);   // copy-move constructor
 
-        ~MPICommunicatorInvokerUtility ();  // destructor
+        ~InitMPIEnvInvokerUtility ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -43,9 +43,9 @@ class MPICommunicatorInvokerUtility
 
         // ====================  OPERATORS     =======================================
 
-        MPICommunicatorInvokerUtility& operator= ( const MPICommunicatorInvokerUtility &other ); // assignment operator
+        InitMPIEnvInvokerUtility& operator= ( const InitMPIEnvInvokerUtility &other ); // assignment operator
 
-        MPICommunicatorInvokerUtility& operator= ( MPICommunicatorInvokerUtility && other ); // assignment-move operator
+        InitMPIEnvInvokerUtility& operator= ( InitMPIEnvInvokerUtility && other ); // assignment-move operator
 
         // ====================  STATIC  METHODS =======================================
 
@@ -63,7 +63,7 @@ class MPICommunicatorInvokerUtility
             // // 
             // // ----------------------------------------------------
             // std::shared_ptr<ANANSI::AnansiTask> mpi_communicator_cmd = 
-            //     this->mdAnansiMPICommunicatorTaskFactory_->create_shared_ptr<CommunicatorTask>(receiver);
+            //     this->mdAnansiInitMPIEnvTaskFactory_->create_shared_ptr<CommunicatorTask>(receiver);
 
             // // ---------------------------------------------------
             // // Add the task object/command to the invoker.
@@ -84,9 +84,9 @@ class MPICommunicatorInvokerUtility
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class MPICommunicatorInvokerUtility  -----
+}; // -----  end of class InitMPIEnvInvokerUtility  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_MPICommunicatorInvokerUtility_INC  ----- 
+#endif   // ----- #ifndef ANANSI_InitMPIEnvInvokerUtility_INC  ----- 

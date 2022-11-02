@@ -1,7 +1,7 @@
-#ifndef  ANANSI_MPICommunicatorTraits_INC
-#define  ANANSI_MPICommunicatorTraits_INC
+#ifndef  ANANSI_InitMPIEnvTraits_INC
+#define  ANANSI_InitMPIEnvTraits_INC
 
-//! @file MPICommunicatorTraits.h
+//! @file InitMPIEnvTraits.h
 //!
 //! Brief description
 //!
@@ -22,23 +22,23 @@
 #include "CommunicatorTask.h"
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
-#include "MPICommunicatorReceiver.h"
+#include "InitMPIEnvReceiver.h"
 
 namespace ANANSI
 {
 
-class MPICommunicatorTraits
+class InitMPIEnvTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        MPICommunicatorTraits ();   // constructor
+        InitMPIEnvTraits ();   // constructor
 
-        MPICommunicatorTraits (const MPICommunicatorTraits & other);   // copy constructor
+        InitMPIEnvTraits (const InitMPIEnvTraits & other);   // copy constructor
 
-        MPICommunicatorTraits (MPICommunicatorTraits && other);   // copy-move constructor
+        InitMPIEnvTraits (InitMPIEnvTraits && other);   // copy-move constructor
 
-        ~MPICommunicatorTraits ();  // destructor
+        ~InitMPIEnvTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -46,16 +46,16 @@ class MPICommunicatorTraits
 
         // ====================  OPERATORS     =======================================
 
-        MPICommunicatorTraits& operator= ( const MPICommunicatorTraits &other ); // assignment operator
+        InitMPIEnvTraits& operator= ( const InitMPIEnvTraits &other ); // assignment operator
 
-        MPICommunicatorTraits& operator= ( MPICommunicatorTraits && other ); // assignment-move operator
+        InitMPIEnvTraits& operator= ( InitMPIEnvTraits && other ); // assignment-move operator
         
         using abstract_products = MPL::mpl_typelist<
                                                        CommunicatorTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<CommunicatorTask,MPICommunicatorReceiver>
+                                                       GenericMDTask<CommunicatorTask,InitMPIEnvReceiver>
                                                    >;
 
     protected:
@@ -68,9 +68,9 @@ class MPICommunicatorTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class MPICommunicatorTraits  -----
+}; // -----  end of class InitMPIEnvTraits  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_MPICommunicatorTraits_INC  ----- 
+#endif   // ----- #ifndef ANANSI_InitMPIEnvTraits_INC  ----- 

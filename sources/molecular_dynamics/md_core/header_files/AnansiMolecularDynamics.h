@@ -21,8 +21,8 @@
 #include "DefineVisitableMacro.h"
 #include "BaseVisitable.hpp"
 #include "MPIEnvironment.h"
-#include "MPIEnvReceiver.h"
-#include "MPIEnvironmentTraits.h"
+#include "InitMPIEnvReceiver.h"
+#include "InitMPIEnvTraits.h"
 #include "MPICommunicatorReceiver.h"
 #include "MPICommunicatorTraits.h"
 #include "CommandLineArguments.h"
@@ -142,8 +142,8 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::AnansiTask> consoleLogger_;
 
 
-        std::shared_ptr<ANANSI::GenericTaskInvoker<MPIEnvironmentTraits::abstract_products,
-                                                   MPIEnvironmentTraits::concrete_products>
+        std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTraits::abstract_products,
+                                                   InitMPIEnvTraits::concrete_products>
                        > mdCommEnvInvk_;
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<MPICommunicatorTraits::abstract_products,
@@ -162,8 +162,8 @@ class AnansiMolecularDynamics final : public Simulation
 
 
         // These are the factories for various task objects.
-        std::shared_ptr<MDAnansiTaskFactory<MPIEnvironmentTraits::abstract_products,
-                                            MPIEnvironmentTraits::concrete_products>
+        std::shared_ptr<MDAnansiTaskFactory<InitMPIEnvTraits::abstract_products,
+                                            InitMPIEnvTraits::concrete_products>
                        >mdAnansiMPIEnvTaskFactory_;
 
         std::shared_ptr<MDAnansiTaskFactory<MPICommunicatorTraits::abstract_products,

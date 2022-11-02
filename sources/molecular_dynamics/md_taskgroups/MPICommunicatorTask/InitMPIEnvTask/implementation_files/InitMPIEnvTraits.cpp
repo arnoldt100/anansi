@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPICommunicatorTraits.h"
+#include "InitMPIEnvTraits.h"
 
 namespace ANANSI {
 
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MPICommunicatorTraits::MPICommunicatorTraits()
+InitMPIEnvTraits::InitMPIEnvTraits()
 {
     return;
 }
 
-MPICommunicatorTraits::MPICommunicatorTraits( MPICommunicatorTraits const & other)
+InitMPIEnvTraits::InitMPIEnvTraits( InitMPIEnvTraits const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ MPICommunicatorTraits::MPICommunicatorTraits( MPICommunicatorTraits const & othe
     return;
 }
 
-MPICommunicatorTraits::MPICommunicatorTraits( MPICommunicatorTraits && other)
+InitMPIEnvTraits::InitMPIEnvTraits( InitMPIEnvTraits && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method MPICommunicatorTraits::MPICommunicatorTraits  -----
+}		// -----  end of method InitMPIEnvTraits::InitMPIEnvTraits  -----
 
 
-MPICommunicatorTraits::~MPICommunicatorTraits()
+InitMPIEnvTraits::~InitMPIEnvTraits()
 {
     return;
 }
@@ -54,7 +54,7 @@ MPICommunicatorTraits::~MPICommunicatorTraits()
 
 //============================= OPERATORS ====================================
 
-MPICommunicatorTraits& MPICommunicatorTraits::operator= ( const MPICommunicatorTraits &other )
+InitMPIEnvTraits& InitMPIEnvTraits::operator= ( const InitMPIEnvTraits &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ MPICommunicatorTraits& MPICommunicatorTraits::operator= ( const MPICommunicatorT
     return *this;
 } // assignment operator
 
-MPICommunicatorTraits& MPICommunicatorTraits::operator= ( MPICommunicatorTraits && other )
+InitMPIEnvTraits& InitMPIEnvTraits::operator= ( InitMPIEnvTraits && other )
 {
     if (this != &other)
     {

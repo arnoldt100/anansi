@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPICommunicatorInvokerUtility.h"
+#include "InitMPIEnvInvokerUtility.h"
 
 namespace ANANSI {
 
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MPICommunicatorInvokerUtility::MPICommunicatorInvokerUtility()
+InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility()
 {
     return;
 }
 
-MPICommunicatorInvokerUtility::MPICommunicatorInvokerUtility( MPICommunicatorInvokerUtility const & other)
+InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility( InitMPIEnvInvokerUtility const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ MPICommunicatorInvokerUtility::MPICommunicatorInvokerUtility( MPICommunicatorInv
     return;
 }
 
-MPICommunicatorInvokerUtility::MPICommunicatorInvokerUtility( MPICommunicatorInvokerUtility && other)
+InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility( InitMPIEnvInvokerUtility && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method MPICommunicatorInvokerUtility::MPICommunicatorInvokerUtility  -----
+}		// -----  end of method InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility  -----
 
 
-MPICommunicatorInvokerUtility::~MPICommunicatorInvokerUtility()
+InitMPIEnvInvokerUtility::~InitMPIEnvInvokerUtility()
 {
     return;
 }
@@ -54,7 +54,7 @@ MPICommunicatorInvokerUtility::~MPICommunicatorInvokerUtility()
 
 //============================= OPERATORS ====================================
 
-MPICommunicatorInvokerUtility& MPICommunicatorInvokerUtility::operator= ( const MPICommunicatorInvokerUtility &other )
+InitMPIEnvInvokerUtility& InitMPIEnvInvokerUtility::operator= ( const InitMPIEnvInvokerUtility &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ MPICommunicatorInvokerUtility& MPICommunicatorInvokerUtility::operator= ( const 
     return *this;
 } // assignment operator
 
-MPICommunicatorInvokerUtility& MPICommunicatorInvokerUtility::operator= ( MPICommunicatorInvokerUtility && other )
+InitMPIEnvInvokerUtility& InitMPIEnvInvokerUtility::operator= ( InitMPIEnvInvokerUtility && other )
 {
     if (this != &other)
     {
