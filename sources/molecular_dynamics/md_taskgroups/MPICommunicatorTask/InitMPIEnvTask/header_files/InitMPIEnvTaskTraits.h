@@ -19,7 +19,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
-#include "CommunicatorTask.h"
+#include "InterProcessCommEnv.h"
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
 #include "InitMPIEnvTaskReceiver.h"
@@ -51,11 +51,11 @@ class InitMPIEnvTaskTraits
         InitMPIEnvTaskTraits& operator= ( InitMPIEnvTaskTraits && other ); // assignment-move operator
         
         using abstract_products = MPL::mpl_typelist<
-                                                       CommunicatorTask
+                                                       InterProcessCommEnv
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<CommunicatorTask,InitMPIEnvTaskReceiver>
+                                                       GenericMDTask<InterProcessCommEnv,InitMPIEnvTaskReceiver>
                                                    >;
 
     protected:

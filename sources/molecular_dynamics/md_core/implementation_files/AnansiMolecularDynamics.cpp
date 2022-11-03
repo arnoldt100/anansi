@@ -19,7 +19,8 @@
 #include "MDSimulationStateFactory.h"
 #include "TaskInterfaceUtilities.hpp"
 #include "GenericTaskInvokerFactory.hpp"
-#include "MPICommunicatorInvokerUtility.h"
+#include "InterProcessCommEnv.h"
+// #include "MPICommunicatorInvokerUtility.h"
 
 namespace ANANSI {
 
@@ -37,7 +38,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
     mdCommEnvInvk_(nullptr),
-    mdWorldCommunicatorInvk_(nullptr),
+    // mdWorldCommunicatorInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -72,7 +73,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
     mdCommEnvInvk_(nullptr),
-    mdWorldCommunicatorInvk_(nullptr),
+    // mdWorldCommunicatorInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -102,7 +103,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
 
     // this->mdAnansiMPICommunicatorTaskFactory_ = std::make_shared<MDAnansiTaskFactory<MPICommunicatorTraits::abstract_products,
     //                                                                                  MPICommunicatorTraits::concrete_products>
-                                                                 >();
+    //                                                             >();
 
     // :TODO:10/11/2022 01:36:08 PM:: Refactor to use a Invoker.
     //this->consoleLogger_ = this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<LoggingTask>();
@@ -153,7 +154,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> mpi_environment_cmd = 
-         this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
+          this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
     
     // ---------------------------------------------------
     // Add the task object/command to the invoker.
@@ -186,35 +187,35 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 
 void AnansiMolecularDynamics::enableWorldCommunicator()
 {
-    std::unique_ptr<COMMUNICATOR::CommunicatorFactory> my_mpi_factory(new MPICommunicatorFactory);
-    this->MpiWorldCommunicator_ = my_mpi_factory->createWorldCommunicator();
+    // std::unique_ptr<COMMUNICATOR::CommunicatorFactory> my_mpi_factory(new MPICommunicatorFactory);
+    // this->MpiWorldCommunicator_ = my_mpi_factory->createWorldCommunicator();
 
-    // ----------------------------------------------------
-    //  Create the MPI comunicator invoker.
-    // 
-    // ----------------------------------------------------
-    std::shared_ptr<GenericTaskInvokerFactory<MPICommunicatorTraits::abstract_products,
-                                              MPICommunicatorTraits::concrete_products>
-                   > mdMPICommInvkFactory_ = 
-        std::make_shared<GenericTaskInvokerFactory<MPICommunicatorTraits::abstract_products,
-                                                   MPICommunicatorTraits::concrete_products>
-                        >();
+    // // ----------------------------------------------------
+    // //  Create the MPI comunicator invoker.
+    // // 
+    // // ----------------------------------------------------
+    // std::shared_ptr<GenericTaskInvokerFactory<MPICommunicatorTraits::abstract_products,
+    //                                           MPICommunicatorTraits::concrete_products>
+    //                > mdMPICommInvkFactory_ = 
+    //     std::make_shared<GenericTaskInvokerFactory<MPICommunicatorTraits::abstract_products,
+    //                                                MPICommunicatorTraits::concrete_products>
+    //                     >();
 
-    this->mdWorldCommunicatorInvk_ = mdMPICommInvkFactory_->create_shared_ptr();
+    // this->mdWorldCommunicatorInvk_ = mdMPICommInvkFactory_->create_shared_ptr();
 
 
-    // ----------------------------------------------------
-    //  Create an mpi comunicator.
-    // 
-    // ----------------------------------------------------
-    std::shared_ptr<COMMUNICATOR::Communicator> tmp_world_comm = my_mpi_factory->createWorldCommunicator();
+    // // ----------------------------------------------------
+    // //  Create an mpi comunicator.
+    // // 
+    // // ----------------------------------------------------
+    // std::shared_ptr<COMMUNICATOR::Communicator> tmp_world_comm = my_mpi_factory->createWorldCommunicator();
 
-    // ---------------------------------------------------
-    // Call the utility function that adds the MPI tasks/commands to the
-    // invoker.
-    // 
-    // ---------------------------------------------------
-    MPICommunicatorInvokerUtility::addMPITasks(this->mdWorldCommunicatorInvk_,tmp_world_comm);
+    // // ---------------------------------------------------
+    // // Call the utility function that adds the MPI tasks/commands to the
+    // // invoker.
+    // // 
+    // // ---------------------------------------------------
+    // MPICommunicatorInvokerUtility::addMPITasks(this->mdWorldCommunicatorInvk_,tmp_world_comm);
 
     return;
 }

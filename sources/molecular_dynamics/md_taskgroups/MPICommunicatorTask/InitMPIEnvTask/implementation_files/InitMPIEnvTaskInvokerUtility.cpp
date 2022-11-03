@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitMPIEnvInvokerTaskUtility.h"
+#include "InitMPIEnvTaskInvokerUtility.h"
 
 namespace ANANSI {
 
