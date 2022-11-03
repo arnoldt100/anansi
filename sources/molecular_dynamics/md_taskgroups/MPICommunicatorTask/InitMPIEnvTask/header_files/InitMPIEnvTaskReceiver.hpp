@@ -1,7 +1,7 @@
-#ifndef ANANSI_InitMPIEnvReceiver_INC
-#define ANANSI_InitMPIEnvReceiver_INC
+#ifndef ANANSI_InitMPIEnvTaskReceiver_INC
+#define ANANSI_InitMPIEnvTaskReceiver_INC
 
-//! @file InitMPIEnvReceiver.h
+//! @file InitMPIEnvTaskReceiver.h
 //!
 //! Brief description
 //!
@@ -24,18 +24,18 @@
 namespace ANANSI
 {
 
-class InitMPIEnvReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvReceiver>
+class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        InitMPIEnvReceiver ();   // constructor
+        InitMPIEnvTaskReceiver ();   // constructor
 
-        InitMPIEnvReceiver (const InitMPIEnvReceiver & other);   // copy constructor
+        InitMPIEnvTaskReceiver (const InitMPIEnvTaskReceiver & other);   // copy constructor
 
-        InitMPIEnvReceiver (InitMPIEnvReceiver && other);   // copy-move constructor
+        InitMPIEnvTaskReceiver (InitMPIEnvTaskReceiver && other);   // copy-move constructor
 
-        ~InitMPIEnvReceiver ();  // destructor
+        ~InitMPIEnvTaskReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -54,9 +54,9 @@ class InitMPIEnvReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvReceive
 
         // ====================  OPERATORS     =======================================
 
-        InitMPIEnvReceiver& operator= ( const InitMPIEnvReceiver &other ); // assignment operator
+        InitMPIEnvTaskReceiver& operator= ( const InitMPIEnvTaskReceiver &other ); // assignment operator
 
-        InitMPIEnvReceiver& operator= ( InitMPIEnvReceiver && other ); // assignment-move operator
+        InitMPIEnvTaskReceiver& operator= ( InitMPIEnvTaskReceiver && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -69,22 +69,22 @@ class InitMPIEnvReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvReceive
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
 
-}; // -----  end of class InitMPIEnvReceiver  -----
+}; // -----  end of class InitMPIEnvTaskReceiver  -----
 
 template<typename... Types>
-void InitMPIEnvReceiver::disableReceiver(Types... args)
+void InitMPIEnvTaskReceiver::disableReceiver(Types... args)
 {
     return;
 }
 
 template<typename... Types>
-void InitMPIEnvReceiver::receiverDoAction(Types... args)
+void InitMPIEnvTaskReceiver::receiverDoAction(Types... args)
 {
     return;
 }
 
 template<typename... Types>
-void InitMPIEnvReceiver::receiverUndoAction(Types... args)
+void InitMPIEnvTaskReceiver::receiverUndoAction(Types... args)
 {
     this->mpiEnvironment_->disableEnvironment();
     return;
@@ -92,4 +92,4 @@ void InitMPIEnvReceiver::receiverUndoAction(Types... args)
 
 }; // namespace ANANSI
 
-#endif // ANANSI_InitMPIEnvReceiver_INC
+#endif // ANANSI_InitMPIEnvTaskReceiver_INC

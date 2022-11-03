@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitMPIEnvTraits.h"
+#include "InitMPIEnvTaskTraits.h"
 
 namespace ANANSI {
 
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-InitMPIEnvTraits::InitMPIEnvTraits()
+InitMPIEnvTaskTraits::InitMPIEnvTaskTraits()
 {
     return;
 }
 
-InitMPIEnvTraits::InitMPIEnvTraits( InitMPIEnvTraits const & other)
+InitMPIEnvTaskTraits::InitMPIEnvTaskTraits( InitMPIEnvTaskTraits const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ InitMPIEnvTraits::InitMPIEnvTraits( InitMPIEnvTraits const & other)
     return;
 }
 
-InitMPIEnvTraits::InitMPIEnvTraits( InitMPIEnvTraits && other)
+InitMPIEnvTaskTraits::InitMPIEnvTaskTraits( InitMPIEnvTaskTraits && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method InitMPIEnvTraits::InitMPIEnvTraits  -----
+}		// -----  end of method InitMPIEnvTaskTraits::InitMPIEnvTaskTraits  -----
 
 
-InitMPIEnvTraits::~InitMPIEnvTraits()
+InitMPIEnvTaskTraits::~InitMPIEnvTaskTraits()
 {
     return;
 }
@@ -54,7 +54,7 @@ InitMPIEnvTraits::~InitMPIEnvTraits()
 
 //============================= OPERATORS ====================================
 
-InitMPIEnvTraits& InitMPIEnvTraits::operator= ( const InitMPIEnvTraits &other )
+InitMPIEnvTaskTraits& InitMPIEnvTaskTraits::operator= ( const InitMPIEnvTaskTraits &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ InitMPIEnvTraits& InitMPIEnvTraits::operator= ( const InitMPIEnvTraits &other )
     return *this;
 } // assignment operator
 
-InitMPIEnvTraits& InitMPIEnvTraits::operator= ( InitMPIEnvTraits && other )
+InitMPIEnvTaskTraits& InitMPIEnvTaskTraits::operator= ( InitMPIEnvTaskTraits && other )
 {
     if (this != &other)
     {

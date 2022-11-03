@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitMPIEnvReceiver.h"
+#include "InitMPIEnvTaskReceiver.h"
 
 namespace ANANSI {
 
@@ -20,16 +20,16 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-InitMPIEnvReceiver::InitMPIEnvReceiver() :
-    ReceiverInterface<InitMPIEnvReceiver>(),
+InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
+    ReceiverInterface<InitMPIEnvTaskReceiver>(),
     mpiEnvironment_(nullptr)
 
 {
     return;
 }
 
-InitMPIEnvReceiver::InitMPIEnvReceiver( InitMPIEnvReceiver const & other) :
-    ReceiverInterface<InitMPIEnvReceiver>(other),
+InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver const & other) :
+    ReceiverInterface<InitMPIEnvTaskReceiver>(other),
     mpiEnvironment_(other.mpiEnvironment_)
 {
     if (this != &other)
@@ -39,8 +39,8 @@ InitMPIEnvReceiver::InitMPIEnvReceiver( InitMPIEnvReceiver const & other) :
     return;
 }
 
-InitMPIEnvReceiver::InitMPIEnvReceiver( InitMPIEnvReceiver && other) :
-    ReceiverInterface<InitMPIEnvReceiver>(std::move(other)),
+InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver && other) :
+    ReceiverInterface<InitMPIEnvTaskReceiver>(std::move(other)),
     mpiEnvironment_(std::move(other.mpiEnvironment_))
 {
     if (this != &other)
@@ -50,7 +50,7 @@ InitMPIEnvReceiver::InitMPIEnvReceiver( InitMPIEnvReceiver && other) :
     return;
 }
 
-InitMPIEnvReceiver::~InitMPIEnvReceiver()
+InitMPIEnvTaskReceiver::~InitMPIEnvTaskReceiver()
 {
     return;
 }
@@ -61,21 +61,21 @@ InitMPIEnvReceiver::~InitMPIEnvReceiver()
 
 //============================= OPERATORS ====================================
 
-InitMPIEnvReceiver& InitMPIEnvReceiver::operator= ( const InitMPIEnvReceiver &other )
+InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( const InitMPIEnvTaskReceiver &other )
 {
     if (this != &other)
     {
-        ReceiverInterface<InitMPIEnvReceiver>::operator=(other);
+        ReceiverInterface<InitMPIEnvTaskReceiver>::operator=(other);
         this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
     }
     return *this;
 } // assignment operator
 
-InitMPIEnvReceiver& InitMPIEnvReceiver::operator= ( InitMPIEnvReceiver && other )
+InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiver && other )
 {
     if (this != &other)
     {
-        ReceiverInterface<InitMPIEnvReceiver>::operator=(std::move(other));
+        ReceiverInterface<InitMPIEnvTaskReceiver>::operator=(std::move(other));
         this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
     }
     return *this;
@@ -103,7 +103,7 @@ InitMPIEnvReceiver& InitMPIEnvReceiver::operator= ( InitMPIEnvReceiver && other 
 
 //============================= MUTATORS =====================================
 template<>
-void InitMPIEnvReceiver::enableReceiver(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
+void InitMPIEnvTaskReceiver::enableReceiver(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
 {
     this->mpiEnvironment_ = arg;
     return;

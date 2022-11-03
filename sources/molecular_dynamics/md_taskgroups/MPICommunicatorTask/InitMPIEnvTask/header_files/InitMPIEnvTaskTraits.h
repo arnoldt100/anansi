@@ -1,7 +1,7 @@
 #ifndef  ANANSI_InitMPIEnvTraits_INC
 #define  ANANSI_InitMPIEnvTraits_INC
 
-//! @file InitMPIEnvTraits.h
+//! @file InitMPIEnvTaskTraits.h
 //!
 //! Brief description
 //!
@@ -22,23 +22,23 @@
 #include "CommunicatorTask.h"
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
-#include "InitMPIEnvReceiver.h"
+#include "InitMPIEnvTaskReceiver.h"
 
 namespace ANANSI
 {
 
-class InitMPIEnvTraits
+class InitMPIEnvTaskTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        InitMPIEnvTraits ();   // constructor
+        InitMPIEnvTaskTraits ();   // constructor
 
-        InitMPIEnvTraits (const InitMPIEnvTraits & other);   // copy constructor
+        InitMPIEnvTaskTraits (const InitMPIEnvTaskTraits & other);   // copy constructor
 
-        InitMPIEnvTraits (InitMPIEnvTraits && other);   // copy-move constructor
+        InitMPIEnvTaskTraits (InitMPIEnvTaskTraits && other);   // copy-move constructor
 
-        ~InitMPIEnvTraits ();  // destructor
+        ~InitMPIEnvTaskTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -46,16 +46,16 @@ class InitMPIEnvTraits
 
         // ====================  OPERATORS     =======================================
 
-        InitMPIEnvTraits& operator= ( const InitMPIEnvTraits &other ); // assignment operator
+        InitMPIEnvTaskTraits& operator= ( const InitMPIEnvTaskTraits &other ); // assignment operator
 
-        InitMPIEnvTraits& operator= ( InitMPIEnvTraits && other ); // assignment-move operator
+        InitMPIEnvTaskTraits& operator= ( InitMPIEnvTaskTraits && other ); // assignment-move operator
         
         using abstract_products = MPL::mpl_typelist<
                                                        CommunicatorTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<CommunicatorTask,InitMPIEnvReceiver>
+                                                       GenericMDTask<CommunicatorTask,InitMPIEnvTaskReceiver>
                                                    >;
 
     protected:
@@ -68,7 +68,7 @@ class InitMPIEnvTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class InitMPIEnvTraits  -----
+}; // -----  end of class InitMPIEnvTaskTraits  -----
 
 
 }; // namespace ANANSI

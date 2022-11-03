@@ -95,8 +95,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
     // Initialize all factories.
-    this->mdAnansiMPIEnvTaskFactory_ = std::make_shared<MDAnansiTaskFactory<InitMPIEnvTraits::abstract_products,
-                                                                            InitMPIEnvTraits::concrete_products>
+    this->mdAnansiMPIEnvTaskFactory_ = std::make_shared<MDAnansiTaskFactory<InitMPIEnvTaskTraits::abstract_products,
+                                                                            InitMPIEnvTaskTraits::concrete_products>
                                                        >();
 
 
@@ -129,11 +129,11 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     //  Create the invoker.
     // 
     // ---------------------------------------------------
-    std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTraits::abstract_products,
-                                              InitMPIEnvTraits::concrete_products>
+    std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
+                                              InitMPIEnvTaskTraits::concrete_products>
                    > mdCommEnvInvkFactory_ = 
-        std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTraits::abstract_products,
-                                                   InitMPIEnvTraits::concrete_products>
+        std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
+                                                   InitMPIEnvTaskTraits::concrete_products>
                         >();
 
     this->mdCommEnvInvk_ = mdCommEnvInvkFactory_->create_shared_ptr();
@@ -144,7 +144,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
     mpi_environment->addMember(this->commandLineArguments_);
-    std::shared_ptr<ANANSI::InitMPIEnvReceiver> mpi_environment_receiver= std::make_shared<ANANSI::InitMPIEnvReceiver>();
+    std::shared_ptr<ANANSI::InitMPIEnvTaskReceiver> mpi_environment_receiver= std::make_shared<ANANSI::InitMPIEnvTaskReceiver>();
     mpi_environment_receiver->enable(mpi_environment); 
 
     // ---------------------------------------------------
