@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitMPIEnvInvokerUtility.h"
+#include "InitMPIEnvInvokerTaskUtility.h"
 
 namespace ANANSI {
 
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility()
+InitMPIEnvInvokerTaskUtility::InitMPIEnvInvokerTaskUtility()
 {
     return;
 }
 
-InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility( InitMPIEnvInvokerUtility const & other)
+InitMPIEnvInvokerTaskUtility::InitMPIEnvInvokerTaskUtility( InitMPIEnvInvokerTaskUtility const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility( InitMPIEnvInvokerUtility con
     return;
 }
 
-InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility( InitMPIEnvInvokerUtility && other)
+InitMPIEnvInvokerTaskUtility::InitMPIEnvInvokerTaskUtility( InitMPIEnvInvokerTaskUtility && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method InitMPIEnvInvokerUtility::InitMPIEnvInvokerUtility  -----
+}		// -----  end of method InitMPIEnvInvokerTaskUtility::InitMPIEnvInvokerTaskUtility  -----
 
 
-InitMPIEnvInvokerUtility::~InitMPIEnvInvokerUtility()
+InitMPIEnvInvokerTaskUtility::~InitMPIEnvInvokerTaskUtility()
 {
     return;
 }
@@ -54,7 +54,7 @@ InitMPIEnvInvokerUtility::~InitMPIEnvInvokerUtility()
 
 //============================= OPERATORS ====================================
 
-InitMPIEnvInvokerUtility& InitMPIEnvInvokerUtility::operator= ( const InitMPIEnvInvokerUtility &other )
+InitMPIEnvInvokerTaskUtility& InitMPIEnvInvokerTaskUtility::operator= ( const InitMPIEnvInvokerTaskUtility &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ InitMPIEnvInvokerUtility& InitMPIEnvInvokerUtility::operator= ( const InitMPIEnv
     return *this;
 } // assignment operator
 
-InitMPIEnvInvokerUtility& InitMPIEnvInvokerUtility::operator= ( InitMPIEnvInvokerUtility && other )
+InitMPIEnvInvokerTaskUtility& InitMPIEnvInvokerTaskUtility::operator= ( InitMPIEnvInvokerTaskUtility && other )
 {
     if (this != &other)
     {

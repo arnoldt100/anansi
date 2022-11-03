@@ -1,7 +1,7 @@
-#ifndef  ANANSI_InitMPIEnvInvokerUtility_INC
-#define  ANANSI_InitMPIEnvInvokerUtility_INC
+#ifndef  ANANSI_InitMPIEnvInvokerTaskUtility_INC
+#define  ANANSI_InitMPIEnvInvokerTaskUtility_INC
 
-//! @file InitMPIEnvInvokerUtility.h
+//! @file InitMPIEnvInvokerTaskUtility.h
 //!
 //! Brief description
 //!
@@ -24,18 +24,18 @@
 namespace ANANSI
 {
 
-class InitMPIEnvInvokerUtility
+class InitMPIEnvInvokerTaskUtility
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        InitMPIEnvInvokerUtility ();   // constructor
+        InitMPIEnvInvokerTaskUtility ();   // constructor
 
-        InitMPIEnvInvokerUtility (const InitMPIEnvInvokerUtility & other);   // copy constructor
+        InitMPIEnvInvokerTaskUtility (const InitMPIEnvInvokerTaskUtility & other);   // copy constructor
 
-        InitMPIEnvInvokerUtility (InitMPIEnvInvokerUtility && other);   // copy-move constructor
+        InitMPIEnvInvokerTaskUtility (InitMPIEnvInvokerTaskUtility && other);   // copy-move constructor
 
-        ~InitMPIEnvInvokerUtility ();  // destructor
+        ~InitMPIEnvInvokerTaskUtility ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -43,9 +43,9 @@ class InitMPIEnvInvokerUtility
 
         // ====================  OPERATORS     =======================================
 
-        InitMPIEnvInvokerUtility& operator= ( const InitMPIEnvInvokerUtility &other ); // assignment operator
+        InitMPIEnvInvokerTaskUtility& operator= ( const InitMPIEnvInvokerTaskUtility &other ); // assignment operator
 
-        InitMPIEnvInvokerUtility& operator= ( InitMPIEnvInvokerUtility && other ); // assignment-move operator
+        InitMPIEnvInvokerTaskUtility& operator= ( InitMPIEnvInvokerTaskUtility && other ); // assignment-move operator
 
         // ====================  STATIC  METHODS =======================================
 
@@ -84,9 +84,9 @@ class InitMPIEnvInvokerUtility
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class InitMPIEnvInvokerUtility  -----
+}; // -----  end of class InitMPIEnvInvokerTaskUtility  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_InitMPIEnvInvokerUtility_INC  ----- 
+#endif   // ----- #ifndef ANANSI_InitMPIEnvInvokerTaskUtility_INC  ----- 

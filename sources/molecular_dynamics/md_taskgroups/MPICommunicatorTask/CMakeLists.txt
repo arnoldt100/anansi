@@ -24,4 +24,5 @@
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(InitMPIEnvTask)
+add_subdirectory(InitCommunicatorTask)
 add_subdirectory(FreeCommunicatorTask)
