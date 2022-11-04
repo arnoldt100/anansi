@@ -24,7 +24,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "InitWorldCommunicatorTaskTraits.h"
-#include "InitCommunicatorTaskReceiver.h"
+#include "InitWorldCommunicatorTaskReceiver.h"
 
 namespace ANANSI
 {
@@ -57,7 +57,7 @@ class InitWorldCommunicatorTaskTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<CommunicatorTask,InitCommunicatorTaskReceiver>
+                                                       GenericMDTask<CommunicatorTask,InitWorldCommunicatorTaskReceiver>
                                                    >;
     protected:
         // ====================  METHODS       =======================================

@@ -1,5 +1,5 @@
-#ifndef  ANANSI_InitCommunicatorTaskReceiver_INC
-#define  ANANSI_InitCommunicatorTaskReceiver_INC
+#ifndef  ANANSI_InitWorldCommunicatorTaskReceiver_INC
+#define  ANANSI_InitWorldCommunicatorTaskReceiver_INC
 
 //! @file __filename__
 //!
@@ -26,18 +26,18 @@
 namespace ANANSI
 {
 
-class InitCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitCommunicatorTaskReceiver>
+class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        InitCommunicatorTaskReceiver ();   // constructor
+        InitWorldCommunicatorTaskReceiver ();   // constructor
 
-        InitCommunicatorTaskReceiver (const InitCommunicatorTaskReceiver & other);   // copy constructor
+        InitWorldCommunicatorTaskReceiver (const InitWorldCommunicatorTaskReceiver & other);   // copy constructor
 
-        InitCommunicatorTaskReceiver (InitCommunicatorTaskReceiver && other);   // copy-move constructor
+        InitWorldCommunicatorTaskReceiver (InitWorldCommunicatorTaskReceiver && other);   // copy-move constructor
 
-        ~InitCommunicatorTaskReceiver ();  // destructor
+        ~InitWorldCommunicatorTaskReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -56,9 +56,9 @@ class InitCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitComm
 
         // ====================  OPERATORS     =======================================
 
-        InitCommunicatorTaskReceiver& operator= ( const InitCommunicatorTaskReceiver &other ); // assignment operator
+        InitWorldCommunicatorTaskReceiver& operator= ( const InitWorldCommunicatorTaskReceiver &other ); // assignment operator
 
-        InitCommunicatorTaskReceiver& operator= ( InitCommunicatorTaskReceiver && other ); // assignment-move operator
+        InitWorldCommunicatorTaskReceiver& operator= ( InitWorldCommunicatorTaskReceiver && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -71,26 +71,26 @@ class InitCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitComm
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
 
-}; // -----  end of class InitCommunicatorTaskReceiver  -----
+}; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
 
 template<typename... Types>
-void InitCommunicatorTaskReceiver::disableReceiver(Types... args)
+void InitWorldCommunicatorTaskReceiver::disableReceiver(Types... args)
 {
     return;
 }
 
 template<typename... Types>
-void InitCommunicatorTaskReceiver::receiverDoAction(Types... args)
+void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types... args)
 {
     return;
 }
 
 template<typename... Types>
-void InitCommunicatorTaskReceiver::receiverUndoAction(Types... args)
+void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types... args)
 {
     return;
 }
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_InitCommunicatorTaskReceiver_INC  ----- 
+#endif   // ----- #ifndef ANANSI_InitWorldCommunicatorTaskReceiver_INC  ----- 
