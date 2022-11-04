@@ -66,7 +66,7 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( const InitMPIEnvTask
     if (this != &other)
     {
         ReceiverInterface<InitMPIEnvTaskReceiver>::operator=(other);
-        this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
+        this->mpiEnvironment_ = other.mpiEnvironment_;
     }
     return *this;
 } // assignment operator

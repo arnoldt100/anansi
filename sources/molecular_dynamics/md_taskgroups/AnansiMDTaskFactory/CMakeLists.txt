@@ -74,7 +74,7 @@
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
     get_target_property(my_consoleloggingtask_include consoleloggingtask consoleloggingtask_include)
-    get_target_property(my_initmpienvtask_include initmpienvtask mpienvtask_include)
+    get_target_property(my_initmpienvtask_include initmpienvtask initmpienvtask_include)
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
 

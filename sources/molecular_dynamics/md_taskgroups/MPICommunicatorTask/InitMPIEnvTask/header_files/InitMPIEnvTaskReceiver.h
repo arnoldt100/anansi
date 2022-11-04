@@ -80,6 +80,7 @@ void InitMPIEnvTaskReceiver::disableReceiver(Types... args)
 template<typename... Types>
 void InitMPIEnvTaskReceiver::receiverDoAction(Types... args)
 {
+    this->mpiEnvironment_->enableEnvironment();
     return;
 }
 
