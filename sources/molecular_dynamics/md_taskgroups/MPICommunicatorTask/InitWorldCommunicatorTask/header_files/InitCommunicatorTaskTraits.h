@@ -1,7 +1,7 @@
-#ifndef  ANANSI_InitCommunicatorTaskTraits_INC
-#define  ANANSI_InitCommunicatorTaskTraits_INC
+#ifndef  ANANSI_InitWorldCommunicatorTaskTraits_INC
+#define  ANANSI_InitWorldCommunicatorTaskTraits_INC
 
-//! @file InitCommunicatorTaskTraits.h
+//! @file InitWorldCommunicatorTaskTraits.h
 //!
 //! Brief description
 //!
@@ -23,24 +23,24 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitCommunicatorTaskTraits.h"
+#include "InitWorldCommunicatorTaskTraits.h"
 #include "InitCommunicatorTaskReceiver.h"
 
 namespace ANANSI
 {
 
-class InitCommunicatorTaskTraits
+class InitWorldCommunicatorTaskTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        InitCommunicatorTaskTraits ();   // constructor
+        InitWorldCommunicatorTaskTraits ();   // constructor
 
-        InitCommunicatorTaskTraits (const InitCommunicatorTaskTraits & other);   // copy constructor
+        InitWorldCommunicatorTaskTraits (const InitWorldCommunicatorTaskTraits & other);   // copy constructor
 
-        InitCommunicatorTaskTraits (InitCommunicatorTaskTraits && other);   // copy-move constructor
+        InitWorldCommunicatorTaskTraits (InitWorldCommunicatorTaskTraits && other);   // copy-move constructor
 
-        ~InitCommunicatorTaskTraits ();  // destructor
+        ~InitWorldCommunicatorTaskTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -48,9 +48,9 @@ class InitCommunicatorTaskTraits
 
         // ====================  OPERATORS     =======================================
 
-        InitCommunicatorTaskTraits& operator= ( const InitCommunicatorTaskTraits &other ); // assignment operator
+        InitWorldCommunicatorTaskTraits& operator= ( const InitWorldCommunicatorTaskTraits &other ); // assignment operator
 
-        InitCommunicatorTaskTraits& operator= ( InitCommunicatorTaskTraits && other ); // assignment-move operator
+        InitWorldCommunicatorTaskTraits& operator= ( InitWorldCommunicatorTaskTraits && other ); // assignment-move operator
 
         using abstract_products = MPL::mpl_typelist<
                                                        CommunicatorTask
@@ -69,9 +69,9 @@ class InitCommunicatorTaskTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class InitCommunicatorTaskTraits  -----
+}; // -----  end of class InitWorldCommunicatorTaskTraits  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_InitCommunicatorTaskTraits_INC  ----- 
+#endif   // ----- #ifndef ANANSI_InitWorldCommunicatorTaskTraits_INC  ----- 

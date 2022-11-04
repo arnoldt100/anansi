@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitCommunicatorTaskTraits.h"
+#include "InitWorldCommunicatorTaskTraits.h"
 
 namespace ANANSI {
 
@@ -20,12 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-InitCommunicatorTaskTraits::InitCommunicatorTaskTraits()
+InitWorldCommunicatorTaskTraits::InitWorldCommunicatorTaskTraits()
 {
     return;
 }
 
-InitCommunicatorTaskTraits::InitCommunicatorTaskTraits( InitCommunicatorTaskTraits const & other)
+InitWorldCommunicatorTaskTraits::InitWorldCommunicatorTaskTraits( InitWorldCommunicatorTaskTraits const & other)
 {
     if (this != &other)
     {
@@ -34,17 +34,17 @@ InitCommunicatorTaskTraits::InitCommunicatorTaskTraits( InitCommunicatorTaskTrai
     return;
 }
 
-InitCommunicatorTaskTraits::InitCommunicatorTaskTraits( InitCommunicatorTaskTraits && other)
+InitWorldCommunicatorTaskTraits::InitWorldCommunicatorTaskTraits( InitWorldCommunicatorTaskTraits && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method InitCommunicatorTaskTraits::InitCommunicatorTaskTraits  -----
+}		// -----  end of method InitWorldCommunicatorTaskTraits::InitWorldCommunicatorTaskTraits  -----
 
 
-InitCommunicatorTaskTraits::~InitCommunicatorTaskTraits()
+InitWorldCommunicatorTaskTraits::~InitWorldCommunicatorTaskTraits()
 {
     return;
 }
@@ -55,7 +55,7 @@ InitCommunicatorTaskTraits::~InitCommunicatorTaskTraits()
 
 //============================= OPERATORS ====================================
 
-InitCommunicatorTaskTraits& InitCommunicatorTaskTraits::operator= ( const InitCommunicatorTaskTraits &other )
+InitWorldCommunicatorTaskTraits& InitWorldCommunicatorTaskTraits::operator= ( const InitWorldCommunicatorTaskTraits &other )
 {
     if (this != &other)
     {
@@ -64,7 +64,7 @@ InitCommunicatorTaskTraits& InitCommunicatorTaskTraits::operator= ( const InitCo
     return *this;
 } // assignment operator
 
-InitCommunicatorTaskTraits& InitCommunicatorTaskTraits::operator= ( InitCommunicatorTaskTraits && other )
+InitWorldCommunicatorTaskTraits& InitWorldCommunicatorTaskTraits::operator= ( InitWorldCommunicatorTaskTraits && other )
 {
     if (this != &other)
     {
