@@ -166,9 +166,9 @@ class AnansiMolecularDynamics final : public Simulation
                                             InitMPIEnvTaskTraits::concrete_products>
                        >mdAnansiMPIEnvTaskFactory_;
 
-        // std::shared_ptr<MDAnansiTaskFactory<MPICommunicatorTraits::abstract_products,
-        //                                     MPICommunicatorTraits::concrete_products>
-        //                > mdAnansiMPICommunicatorTaskFactory_;
+        std::shared_ptr<MDAnansiTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                            InitWorldCommunicatorTaskTraits::concrete_products>
+                       > mdAnansiInitWorldCommunicatorTaskFactory_;
 
         // :TODO:09/27/2022 02:38:21 PM:: To be deprecated.
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
