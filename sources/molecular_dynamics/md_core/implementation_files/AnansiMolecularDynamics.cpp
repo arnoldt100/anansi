@@ -38,7 +38,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
     mdCommEnvInvk_(nullptr),
-    // mdWorldCommunicatorInvk_(nullptr),
+    mdWorldCommunicatorInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -73,7 +73,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(nullptr),
     consoleLogger_(nullptr),
     mdCommEnvInvk_(nullptr),
-    // mdWorldCommunicatorInvk_(nullptr),
+    mdWorldCommunicatorInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -82,7 +82,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdPerformSimulation_(nullptr),
     mdTerminateSimulation_(nullptr),
     mdAnansiMPIEnvTaskFactory_(nullptr),
-    // mdAnansiMPICommunicatorTaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -187,6 +186,40 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 
 void AnansiMolecularDynamics::enableWorldCommunicator()
 {
+    // ---------------------------------------------------
+    // Create the invoker for the task InitWorldCommunicatorTask 
+    // 
+    // ---------------------------------------------------
+    std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                              InitWorldCommunicatorTaskTraits::concrete_products>
+                   > mdWorldCommunicatorInvk_ = 
+        std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                                   InitWorldCommunicatorTaskTraits::concrete_products>
+                        >();
+
+
+    // ---------------------------------------------------
+    //  Create the receiver and enable it.
+    // 
+    // ---------------------------------------------------
+    
+    // ---------------------------------------------------
+    //  Create the task object and bind the 
+    //  receiver to it.
+    // 
+    // ---------------------------------------------------
+    
+    // ---------------------------------------------------
+    // Add the task object/command to the invoker.
+    // 
+    // ---------------------------------------------------
+   
+    // ---------------------------------------------------
+    // Use the invoker to initialize the world communicator.
+    // 
+    // ---------------------------------------------------
+
+
     // std::unique_ptr<COMMUNICATOR::CommunicatorFactory> my_mpi_factory(new MPICommunicatorFactory);
     // this->MpiWorldCommunicator_ = my_mpi_factory->createWorldCommunicator();
 

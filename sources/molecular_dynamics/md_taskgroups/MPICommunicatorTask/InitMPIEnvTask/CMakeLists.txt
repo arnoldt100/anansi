@@ -61,7 +61,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (initmpienvtask_header_files
-         header_files/InitMPIEnvTaskInvokerUtility.h
          header_files/InitMPIEnvTaskReceiver.h
          header_files/InitMPIEnvTaskTraits.h )
 
@@ -73,7 +72,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (initmpienvtask_implementation_files
-         implementation_files/InitMPIEnvTaskInvokerUtility.cpp
          implementation_files/InitMPIEnvTaskReceiver.cpp
          implementation_files/InitMPIEnvTaskTraits.cpp )
 
