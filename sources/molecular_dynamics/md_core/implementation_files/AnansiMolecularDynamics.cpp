@@ -131,12 +131,12 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
                                               InitMPIEnvTaskTraits::concrete_products>
-                   > mdCommEnvInvkFactory_ = 
+                   > mdCommEnvInvkFactory = 
         std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
                                                    InitMPIEnvTaskTraits::concrete_products>
                         >();
 
-    this->mdCommEnvInvk_ = mdCommEnvInvkFactory_->create_shared_ptr();
+    this->mdCommEnvInvk_ = mdCommEnvInvkFactory->create_shared_ptr();
 
     // ---------------------------------------------------
     //  Create the mpi environment receiver and enable it.
@@ -192,17 +192,21 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // ---------------------------------------------------
     std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                               InitWorldCommunicatorTaskTraits::concrete_products>
-                   > mdWorldCommunicatorInvk_ = 
+                   > mdWorldCommunicatorInvkFactory = 
         std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                    InitWorldCommunicatorTaskTraits::concrete_products>
                         >();
 
+    this->mdWorldCommunicatorInvk_ = mdWorldCommunicatorInvkFactory->create_shared_ptr();
 
     // ---------------------------------------------------
     //  Create the receiver and enable it.
     // 
     // ---------------------------------------------------
-    
+    std::shared_ptr<InitWorldCommunicatorTaskReceiver> mpi_world_commm_receiver
+        = std::make_shared<InitWorldCommunicatorTaskReceiver>();
+    mpi_world_commm_receiver->enable(this->MpiWorldCommunicator_);
+
     // ---------------------------------------------------
     //  Create the task object and bind the 
     //  receiver to it.
@@ -285,26 +289,27 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 void
 AnansiMolecularDynamics::readSimulationControlFile ()
 {
-    // The control file option is mandatory. If the option is not present, then we set the MD status
-    // as "COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
-    // Otherwise we process/parse the control file.
-    const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
+    // :TODO:11/04/2022 04:02:42 PM:: This method is to be rewritten with the command patterns.
+    // // The control file option is mandatory. If the option is not present, then we set the MD status
+    // // as "COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
+    // // Otherwise we process/parse the control file.
+    // const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
 
-    if (file_name == SimulationParameters::OPTION_NOT_FOUND )
-    {
-        return;
-    }
+    // if (file_name == SimulationParameters::OPTION_NOT_FOUND )
+    // {
+    //     return;
+    // }
 
-    // Create the control file parser and process the control file.
-    ANANSI::MPICommunicatorFactory a_communicator_factory;
-    std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
-    StandardFileParserFactory file_parser_factory;
-    std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
-    std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
-                                                                          file_name,
-                                                                          std::move(a_communicator));
+    // // Create the control file parser and process the control file.
+    // ANANSI::MPICommunicatorFactory a_communicator_factory;
+    // std::shared_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
+    // StandardFileParserFactory file_parser_factory;
+    // std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
+    // std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
+    //                                                                       file_name,
+    //                                                                       std::move(a_communicator));
 
-    control_file->readFile();
+    // control_file->readFile();
 
     return;
 }   /* -----  end of method AnansiMolecularDynamics::readSimulationControlFile_  ----- */

@@ -138,7 +138,7 @@ class AnansiMolecularDynamics final : public Simulation
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments commandLineArguments_;
         ANANSI::SimulationParameters simulationParameters_;
-        std::unique_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
+        std::shared_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
         std::shared_ptr<ANANSI::AnansiTask> consoleLogger_;
 
 

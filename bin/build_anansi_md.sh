@@ -36,6 +36,6 @@ cmake ${ANANSI_TOP_LEVEL}/sources \
       -DCMAKE_INSTALL_PREFIX=${ANANSI_INSTALL_PREFIX} \
       -DCMAKE_BUILD_TYPE=Debug
 
-make
+make -j 2
 
 make install
