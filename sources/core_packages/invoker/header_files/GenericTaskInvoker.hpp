@@ -80,9 +80,6 @@ class GenericTaskInvoker
             return;
         }
 
-        //! Enables the communication run-time environment.
-        //!
-        //! @return void
         void doTask(std::vector<LABEL_t> const & command_keys)
         {
             const std::vector<std::string> flags = {"default"};
@@ -93,12 +90,9 @@ class GenericTaskInvoker
             return;
         }
 
-        //! Disables the communication run-time environment.
-        //!
-        //! @return void
         void undoTask(std::vector<LABEL_t> const & command_keys) 
         {
-            const std::vector<LABEL_t> flags = {"default"};
+            const std::vector<std::string> flags = {"default"};
             for (auto key : command_keys)
             {
                 (this->commandSlots_.at(key))->undoAction(flags);

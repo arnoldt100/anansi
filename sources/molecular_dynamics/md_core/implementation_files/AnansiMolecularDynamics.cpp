@@ -129,12 +129,18 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     //  Create the invoker.
     // 
+    // All command for this invoker will have labels that are of type
+    // std::string. 
     // ---------------------------------------------------
+    using MY_LABEL_TYPE = std::string;
+
     std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
-                                              InitMPIEnvTaskTraits::concrete_products>
+                                              InitMPIEnvTaskTraits::concrete_products,
+                                              MY_LABEL_TYPE>
                    > mdCommEnvInvkFactory = 
         std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
-                                                   InitMPIEnvTaskTraits::concrete_products>
+                                                   InitMPIEnvTaskTraits::concrete_products,
+                                                   MY_LABEL_TYPE>
                         >();
 
     this->mdCommEnvInvk_ = mdCommEnvInvkFactory->create_shared_ptr();
@@ -147,6 +153,12 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     mpi_environment->addMember(this->commandLineArguments_);
     std::shared_ptr<ANANSI::InitMPIEnvTaskReceiver> mpi_environment_receiver= std::make_shared<ANANSI::InitMPIEnvTaskReceiver>();
     mpi_environment_receiver->enable(mpi_environment); 
+    
+    // ---------------------------------------------------
+    // Get the label for the receiver
+    // 
+    // ---------------------------------------------------
+    auto my_label = mpi_environment_receiver->getTaskLabel(); 
 
     // ---------------------------------------------------
     //  Create the mpi environment task object and bind the 
@@ -160,7 +172,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
-    this->mdCommEnvInvk_->addCommand("mpi_environment",mpi_environment_cmd);
+    this->mdCommEnvInvk_->addCommand(my_label,mpi_environment_cmd);
 
     // ---------------------------------------------------
     // Use the invoker to initialize the communication environment.
@@ -190,7 +202,10 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // ---------------------------------------------------
     // Create the invoker for the task InitWorldCommunicatorTask 
     // 
+    // All receivers for this invoker will have labels that are of type
+    // std::string. 
     // ---------------------------------------------------
+
     using MY_LABEL_TYPE = std::string;
 
     std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
