@@ -55,20 +55,12 @@ class ReceiverInterface
 
         // ====================  ACCESSORS     =======================================
         
-        //! Provides access to the CRTP derived class "Derived."
-        //!
-        //! @return A reference to a constant CRTP derived class "Derived".
-        Derived const & asDerived() const
-        {
-            return *static_cast<Derived const*>(this);
-        }
-
         // ====================  MUTATORS      =======================================
 
         //! Provides access to the CRTP derived class "Derived."
         //!
         //! @return A reference to the CRTP derived class.
-        Derived& asDerived()
+        Derived& asDerived_()
         {
             return *static_cast<Derived*>(this);
         }
@@ -81,17 +73,17 @@ class ReceiverInterface
 
         void disable()
         {
-            asDerived().disableReceiver();
+            asDerived_().disableReceiver();
         }
 
         void action()
         {
-            asDerived().receiverDoAction();
+            asDerived_().receiverDoAction();
         }
 
         void undoAction()
         {
-            asDerived().receiverUndoAction();
+            asDerived_().receiverUndoAction();
         }
 
         // ====================  OPERATORS     =======================================
@@ -121,10 +113,20 @@ class ReceiverInterface
 
     private:
         // ====================  METHODS       =======================================
+        
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to a constant CRTP derived class "Derived".
+        Derived const & asDerived_() const
+        {
+            return *static_cast<Derived const*>(this);
+        }
+        
+        
         template<typename FirstArgType, typename... Types>
         void enable_(FirstArgType & firstArg, Types &... args)
         {
-            asDerived().enableReceiver(firstArg);
+            asDerived_().enableReceiver(firstArg);
             this->enable_(args...);
         }
 
