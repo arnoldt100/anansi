@@ -27,6 +27,11 @@ namespace ANANSI
 class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>
 {
     public:
+
+        // ====================  STATIC       =======================================
+
+        inline static const RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE TASKLABEL = "mpi_environment";
+
         // ====================  LIFECYCLE     =======================================
 
         InitMPIEnvTaskReceiver ();   // constructor
@@ -38,6 +43,8 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         ~InitMPIEnvTaskReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+
+        RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
 
         // ====================  MUTATORS      =======================================
         template<typename T>

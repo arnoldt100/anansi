@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -22,10 +23,21 @@
 namespace RECEIVER
 {
 
-template<typename Derived>
+template<typename Derived,
+         typename LABEL_T = std::string
+        >
 class ReceiverInterface
 {
     public:
+
+        // ====================  ALiases       =======================================
+        
+        //! Defines the label type for the task.
+        //!
+        //! The label type will be the key type for the command button
+        //! in the invoker.
+        using TASK_LABEL_TYPE = LABEL_T;
+
         // ====================  LIFECYCLE     =======================================
 
         ReceiverInterface ()   // constructor
@@ -54,16 +66,13 @@ class ReceiverInterface
         virtual ~ReceiverInterface ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
-        
-        // ====================  MUTATORS      =======================================
-
-        //! Provides access to the CRTP derived class "Derived."
-        //!
-        //! @return A reference to the CRTP derived class.
-        Derived& asDerived_()
+       
+        TASK_LABEL_TYPE getTaskLabel () const
         {
-            return *static_cast<Derived*>(this);
+            return asDerived_().receiverGetTaskLabel();
         }
+
+        // ====================  MUTATORS      =======================================
 
         template<typename... Types>
         void enable(Types &... args)
@@ -116,6 +125,14 @@ class ReceiverInterface
         
         //! Provides access to the CRTP derived class "Derived."
         //!
+        //! @return A reference to the CRTP derived class.
+        Derived& asDerived_()
+        {
+            return *static_cast<Derived*>(this);
+        }
+
+        //! Provides access to the CRTP derived class "Derived."
+        //!
         //! @return A reference to a constant CRTP derived class "Derived".
         Derived const & asDerived_() const
         {
@@ -139,8 +156,10 @@ class ReceiverInterface
 
 }; // -----  end of class ReceiverInterface  -----
 
-template <typename Derived>
-ReceiverInterface<Derived>::~ReceiverInterface ()  // destructor
+template <typename Derived, 
+          typename LABEL_T
+         >
+ReceiverInterface<Derived,LABEL_T>::~ReceiverInterface ()  // destructor
 {
     return;
 }

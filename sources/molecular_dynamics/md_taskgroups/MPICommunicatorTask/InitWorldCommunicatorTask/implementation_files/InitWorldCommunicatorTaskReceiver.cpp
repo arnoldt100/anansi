@@ -19,17 +19,18 @@ namespace ANANSI {
 /////////////////////////////// PUBLIC ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
+
 //============================= LIFECYCLE ====================================
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver() :
-    ReceiverInterface<InitWorldCommunicatorTaskReceiver>(),
+    RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(),
     communicator_(nullptr)
 {
     return;
 }
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldCommunicatorTaskReceiver const & other) :
-    ReceiverInterface<InitWorldCommunicatorTaskReceiver>(other),
+    RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(other),
     communicator_(other.communicator_)
 {
     if (this != &other)
@@ -40,7 +41,7 @@ InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldC
 }
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldCommunicatorTaskReceiver && other) :
-    ReceiverInterface<InitWorldCommunicatorTaskReceiver>(std::move(other)),
+    RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(std::move(other)),
     communicator_(std::move(other.communicator_))
 {
     if (this != &other)
@@ -57,6 +58,10 @@ InitWorldCommunicatorTaskReceiver::~InitWorldCommunicatorTaskReceiver()
 }
 
 //============================= ACCESSORS ====================================
+RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE InitWorldCommunicatorTaskReceiver::receiverGetTaskLabel() const
+{
+    return  InitWorldCommunicatorTaskReceiver::TASKLABEL;
+}
 
 //============================= MUTATORS =====================================
 
@@ -66,7 +71,7 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 {
     if (this != &other)
     {
-        ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(other);
+        RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(other);
         this->communicator_ = other.communicator_;
     }
     return *this;
@@ -76,7 +81,7 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 {
     if (this != &other)
     {
-        ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(std::move(other));
+        RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(std::move(other));
         this->communicator_ = std::move(other.communicator_);
     }
     return *this;

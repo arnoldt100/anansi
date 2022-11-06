@@ -29,6 +29,10 @@ namespace ANANSI
 class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>
 {
     public:
+        // ====================  STATIC       =======================================
+
+        inline static const RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL = "mpi_corld_communicator";
+
         // ====================  LIFECYCLE     =======================================
 
         InitWorldCommunicatorTaskReceiver ();   // constructor
@@ -40,6 +44,8 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         ~InitWorldCommunicatorTaskReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+
+        RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
 
         // ====================  MUTATORS      =======================================
         template<typename T>
