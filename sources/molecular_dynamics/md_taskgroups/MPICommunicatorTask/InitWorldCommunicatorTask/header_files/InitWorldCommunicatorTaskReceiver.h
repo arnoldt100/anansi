@@ -21,6 +21,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Communicator.h"
+#include "MPICommunicatorFactory.h"
 #include "ReceiverInterface.hpp"
 
 namespace ANANSI
@@ -80,19 +81,21 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 }; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::disableReceiver(Types... args)
-{
-    return;
-}
-
-template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types... args)
 {
+    ANANSI::MPICommunicatorFactory a_communicator_factory;
+    this->communicator_ =  a_communicator_factory.createWorldCommunicator();
     return;
 }
 
 template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types... args)
+{
+    return;
+}
+
+template<typename... Types>
+void InitWorldCommunicatorTaskReceiver::disableReceiver(Types... args)
 {
     return;
 }
