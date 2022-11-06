@@ -11,6 +11,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -24,7 +25,9 @@
 namespace ANANSI
 {
 
-template <typename AbstractProductsTypeList,typename ConcreteProductsTypeList>
+template <typename AbstractProductsTypeList,
+          typename ConcreteProductsTypeList,
+          typename LABEL_t = std::string>
 class GenericTaskInvokerFactory
 {
     public:
@@ -60,19 +63,37 @@ class GenericTaskInvokerFactory
 
         // ====================  ACCESSORS     =======================================
         template < typename... Types>
-        std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>
+        std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,
+                        ConcreteProductsTypeList,
+                        LABEL_t
+                       >
         > create_shared_ptr(Types &... args) const
         {
-            std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>> p_ptr = 
-                std::make_shared<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>>(args...);
+            std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,
+                                               ConcreteProductsTypeList,
+                                               LABEL_t>
+                           > p_ptr = 
+                std::make_shared<GenericTaskInvoker<AbstractProductsTypeList,
+                                                    ConcreteProductsTypeList,
+                                                    LABEL_t>
+                                >(args...);
             return p_ptr;
         }
 
         template <typename... Types>
-        std::unique_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>> create_unique_ptr(Types &... args) const
+        std::unique_ptr<GenericTaskInvoker<AbstractProductsTypeList,
+                                           ConcreteProductsTypeList,
+                                           LABEL_t>
+                       > create_unique_ptr(Types &... args) const
         {
-            std::unique_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>> p_ptr = 
-                std::make_unique<GenericTaskInvoker<AbstractProductsTypeList,ConcreteProductsTypeList>>(args...);
+            std::unique_ptr<GenericTaskInvoker<AbstractProductsTypeList,
+                                               ConcreteProductsTypeList,
+                                               LABEL_t>
+                           > p_ptr = 
+                std::make_unique<GenericTaskInvoker<AbstractProductsTypeList,
+                                                    ConcreteProductsTypeList,
+                                                    LABEL_t>
+                                >(args...);
             return p_ptr;
         }
 

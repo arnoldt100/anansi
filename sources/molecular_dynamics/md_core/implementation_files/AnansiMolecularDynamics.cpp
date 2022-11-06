@@ -102,8 +102,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
 
 
     this->mdAnansiInitWorldCommunicatorTaskFactory_ = std::make_shared<MDAnansiTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                                                     InitWorldCommunicatorTaskTraits::concrete_products>
-                                                                >();
+                                                                                           InitWorldCommunicatorTaskTraits::concrete_products>
+                                                                      >();
 
     // :TODO:10/11/2022 01:36:08 PM:: Refactor to use a Invoker.
     //this->consoleLogger_ = this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<LoggingTask>();
@@ -191,11 +191,15 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // Create the invoker for the task InitWorldCommunicatorTask 
     // 
     // ---------------------------------------------------
+    using MY_LABEL_TYPE = std::string;
+
     std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                              InitWorldCommunicatorTaskTraits::concrete_products>
+                                              InitWorldCommunicatorTaskTraits::concrete_products,
+                                              MY_LABEL_TYPE>
                    > mdWorldCommunicatorInvkFactory = 
         std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                   InitWorldCommunicatorTaskTraits::concrete_products>
+                                                   InitWorldCommunicatorTaskTraits::concrete_products,
+                                                   MY_LABEL_TYPE>
                         >();
 
     this->mdWorldCommunicatorInvk_ = mdWorldCommunicatorInvkFactory->create_shared_ptr();
@@ -207,6 +211,12 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     std::shared_ptr<InitWorldCommunicatorTaskReceiver> mpi_init_world_commm_receiver
         = std::make_shared<InitWorldCommunicatorTaskReceiver>();
     mpi_init_world_commm_receiver->enable(this->MpiWorldCommunicator_);
+
+    // ---------------------------------------------------
+    //  Get the label for this receiver.   
+    // 
+    // ---------------------------------------------------
+    const auto tmp_label = mpi_init_world_commm_receiver->getTaskLabel();
 
     // ---------------------------------------------------
     //  Create the task object and bind the 

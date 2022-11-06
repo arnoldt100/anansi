@@ -33,7 +33,10 @@ namespace ANANSI
 //! The Invoker for the communication environment.
 //!
 //! Invoking the enable method enables the communication run-time environment.
-template<typename AbstractProductsTypeList,typename ConcreteProductsTypeList>
+template<typename AbstractProductsTypeList,
+         typename ConcreteProductsTypeList, 
+         typename LABEL_t=std::string>
+
 class GenericTaskInvoker
 {
     public:
@@ -70,7 +73,7 @@ class GenericTaskInvoker
         //! Adds a task to the invoker.
         //!
         //! @return void
-        void addCommand(std::string const & key,
+        void addCommand(LABEL_t const & key,
                      std::shared_ptr<ANANSI::AnansiTask> aCommand) 
         {
         	this->commandSlots_[key] = aCommand;
@@ -80,7 +83,7 @@ class GenericTaskInvoker
         //! Enables the communication run-time environment.
         //!
         //! @return void
-        void doTask(std::vector<std::string> const & command_keys)
+        void doTask(std::vector<LABEL_t> const & command_keys)
         {
             const std::vector<std::string> flags = {"default"};
             for (auto & key : command_keys)
@@ -93,9 +96,9 @@ class GenericTaskInvoker
         //! Disables the communication run-time environment.
         //!
         //! @return void
-        void undoTask(std::vector<std::string> const & command_keys) 
+        void undoTask(std::vector<LABEL_t> const & command_keys) 
         {
-            const std::vector<std::string> flags = {"default"};
+            const std::vector<LABEL_t> flags = {"default"};
             for (auto key : command_keys)
             {
                 (this->commandSlots_.at(key))->undoAction(flags);
@@ -134,7 +137,7 @@ class GenericTaskInvoker
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::map <std::string,std::shared_ptr<ANANSI::AnansiTask>> commandSlots_;
+        std::map <LABEL_t,std::shared_ptr<ANANSI::AnansiTask>> commandSlots_;
 
 }; // -----  end of class GenericTaskInvoker  -----
 
