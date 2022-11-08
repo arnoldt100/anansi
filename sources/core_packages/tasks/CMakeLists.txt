@@ -76,7 +76,6 @@
          header_files/LoggingTask.h
          header_files/TransferIngredients.hpp
          header_files/Ingredients.hpp
-         header_files/CommunicatorIngredientTraits.h
          header_files/InterProcessCommEnv.h
          header_files/CommunicatorTask.h
          header_files/ControlFile.h)
@@ -95,7 +94,6 @@
          implementation_files/LoggingTask.cpp
          implementation_files/TransferIngredients.cpp
          implementation_files/Ingredients.cpp
-         implementation_files/CommunicatorIngredientTraits.cpp
          implementation_files/InterProcessCommEnv.cpp
          implementation_files/CommunicatorTask.cpp
          implementation_files/ControlFile.cpp)
