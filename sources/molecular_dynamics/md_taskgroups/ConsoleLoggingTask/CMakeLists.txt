@@ -64,8 +64,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (consoleloggingtask_header_files
-         header_files/ConsoleLoggingTask.h
-         header_files/ConsoleLoggingTaskIngredients.h )
+         header_files/ConsoleLoggingTask.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -75,8 +74,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (consoleloggingtask_implementation_files
-         implementation_files/ConsoleLoggingTask.cpp
-         implementation_files/ConsoleLoggingTaskIngredients.cpp )
+         implementation_files/ConsoleLoggingTask.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
