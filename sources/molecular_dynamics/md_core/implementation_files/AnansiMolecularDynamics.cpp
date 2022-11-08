@@ -178,8 +178,8 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Use the invoker to initialize the communication environment.
     // 
     // ---------------------------------------------------
-    const std::vector<std::string> commands = {"mpi_environment"};
-    this->mdCommEnvInvk_->doTask(commands);
+    const std::vector<std::string> command_labels = {"mpi_environment"};
+    this->mdCommEnvInvk_->doTask(command_labels);
     return;
 }
 
@@ -190,8 +190,8 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
     // Use the invoker to initialize the communication environment.
     // 
     // ---------------------------------------------------
-    const std::vector<std::string> commands = {"mpi_environment"};
-    this->mdCommEnvInvk_->undoTask(commands);
+    const std::vector<std::string> command_labels = {"mpi_environment"};
+    this->mdCommEnvInvk_->undoTask(command_labels);
     return;
 
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
@@ -245,14 +245,14 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
-    this->mdWorldCommunicatorInvk_->addCommand("mpi_world_communicator",mpi_init_world_communicator_cmd);
+    this->mdWorldCommunicatorInvk_->addCommand(tmp_label,mpi_init_world_communicator_cmd);
    
     // ---------------------------------------------------
     // Use the invoker to initialize the world communicator.
     // 
     // ---------------------------------------------------
-    const std::vector<std::string> commands = {"mpi_world_communicator"};
-    this->mdWorldCommunicatorInvk_->doTask(commands);
+    const std::vector<std::string> command_labels = {"mpi_world_communicator"};
+    this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
     return;
 }
@@ -261,11 +261,9 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
 void 
 AnansiMolecularDynamics::disableWorldCommunicator()
 {
-    const std::vector<std::string> commands = {"mpi_world_communicator"};
-    this->mdWorldCommunicatorInvk_->undoTask(commands);
+    const std::vector<std::string> command_labels = {"mpi_world_communicator"};
+    this->mdWorldCommunicatorInvk_->undoTask(command_labels);
 
-    // this->MpiWorldCommunicator_->freeCommunicator();
-    // this->MpiWorldCommunicator_.reset();
     return;
 }
 

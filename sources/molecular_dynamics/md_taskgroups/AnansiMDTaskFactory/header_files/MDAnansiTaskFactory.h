@@ -97,19 +97,19 @@ class MDAnansiTaskFactory
     private:
         // ====================  TYPE ALIASES  =======================================  
 
-        using abstract_products_ = AbstractProductsTypeList; 
+        using abstract_tasks_ = AbstractProductsTypeList; 
+        using concrete_tasks_ = ConcreteProductsTypeList;
 
-        using concrete_products_ = ConcreteProductsTypeList;
-
-        template<std::size_t T>
-        using abstract_product_at_ = MPL::mpl_at_c<abstract_products_,T>;
 
         template<std::size_t T>
-        using concrete_product_at_ = MPL::mpl_at_c<concrete_products_,T>;
+        using abstract_task_at_ = MPL::mpl_at_c<abstract_tasks_,T>;
 
-        using abstract_factory_ = MPL::AbstractFactory<abstract_products_>;
+        template<std::size_t T>
+        using concrete_task_at_ = MPL::mpl_at_c<concrete_tasks_,T>;
 
-        using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_products_>;
+        using abstract_factory_ = MPL::AbstractFactory<abstract_tasks_>;
+
+        using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_tasks_>;
 
         template<class Base,class Derived>
         using my_is_base_of_ = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
@@ -119,9 +119,9 @@ class MDAnansiTaskFactory
         static constexpr std::size_t findIndex_()
         {
             using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
-                                                MPL::mpl_size<abstract_products_>::value>;
+                                                MPL::mpl_size<abstract_tasks_>::value>;
 
-            using R = MPL::mpl_transform<my_is_base_of_,abstract_products_,list_base>;
+            using R = MPL::mpl_transform<my_is_base_of_,abstract_tasks_,list_base>;
             
             using my_index = MPL::mpl_find<R,MPL::mpl_true_type>;
 
@@ -193,32 +193,30 @@ class MDAnansiTaskFactory
 
 
     public: 
-        template <typename T, typename W>
-        std::shared_ptr<AnansiTask> create_shared_ptr(W  & arg) const
+        template <typename abstract_task_t, typename receiver_t>
+        std::shared_ptr<AnansiTask> create_shared_ptr(receiver_t  & a_receiver) const
         {
-            constexpr auto index = MDAnansiTaskFactory::findIndex_<T>();
-            using abstract_product_t = abstract_product_at_<index>;
-            using concrete_product_t = concrete_product_at_<index>;
+            constexpr auto index = MDAnansiTaskFactory::findIndex_<abstract_task_t>();
+            using concrete_task_t = concrete_task_at_<index>;
 
-            std::shared_ptr<abstract_product_t> product_ptr(this->mdAnansiTaskFactory_->template Create<abstract_product_t>());
+            std::shared_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
 
-            std::shared_ptr<abstract_product_t> p_ptr = 
-                this->bindReceivers_<concrete_product_t,abstract_product_t,W>(product_ptr, arg);
+            std::shared_ptr<abstract_task_t> p_ptr = 
+                this->bindReceivers_<concrete_task_t,abstract_task_t,receiver_t>(task_ptr, a_receiver);
 
             return p_ptr;
         }
 
-        template <typename T, typename W>
-        std::unique_ptr<AnansiTask> create_unique_ptr(W & arg) const
+        template <typename abstract_task_t, typename receiver_t>
+        std::unique_ptr<AnansiTask> create_unique_ptr(receiver_t & a_receiver) const
         {
-            constexpr auto index = MDAnansiTaskFactory::findIndex_<T>();
-            using abstract_product_t = abstract_product_at_<index>;
-            using concrete_product_t = concrete_product_at_<index>;
+            constexpr auto index = MDAnansiTaskFactory::findIndex_<abstract_task_t>();
+            using concrete_task_t = concrete_task_at_<index>;
 
-            std::unique_ptr<abstract_product_t> product_ptr(this->mdAnansiTaskFactory_->template Create<abstract_product_t>());
+            std::unique_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
 
-            std::unique_ptr<abstract_product_t> p_ptr = 
-                this->bindReceivers_<concrete_product_t,abstract_product_t,W>(product_ptr, arg);
+            std::unique_ptr<abstract_task_t> p_ptr = 
+                this->bindReceivers_<concrete_task_t,abstract_task_t,receiver_t>(task_ptr, a_receiver);
 
             return p_ptr;
         }

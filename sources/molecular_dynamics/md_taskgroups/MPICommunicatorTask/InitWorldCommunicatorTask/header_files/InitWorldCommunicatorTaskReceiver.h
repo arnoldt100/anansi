@@ -1,7 +1,7 @@
 #ifndef  ANANSI_InitWorldCommunicatorTaskReceiver_INC
 #define  ANANSI_InitWorldCommunicatorTaskReceiver_INC
 
-//! @file __filename__
+//! @file InitWorldCommunicatorTaskReceiver.h
 //!
 //! Brief description
 //!
@@ -32,7 +32,8 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
     public:
         // ====================  STATIC       =======================================
 
-        inline static const RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL = "mpi_corld_communicator";
+        inline static const RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            "mpi_corld_communicator";
 
         // ====================  LIFECYCLE     =======================================
 
@@ -91,6 +92,8 @@ void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types... args)
 template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types... args)
 {
+    this->communicator_->freeCommunicator();
+    this->communicator_.reset();
     return;
 }
 
