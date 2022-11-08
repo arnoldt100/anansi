@@ -1,5 +1,6 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef  ANANSI_DefaultFunctorImpl_INC
+#define  ANANSI_DefaultFunctorImpl_INC
+
 //! @file DefaultFunctorImpl.h
 //!
 //! Brief description
@@ -64,4 +65,4 @@ class DefaultFunctorImpl
 
 }; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif   // ----- #ifndef ANANSI_DefaultFunctorImpl_INC  ----- 

@@ -18,8 +18,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-// #include "InterProcessCommEnv.h"
 #include "MPLAliases.hpp"
+#include "AbstractFactoryUtilities.hpp"
 #include "AbstractFactory.hpp"
 #include "ConcreteFactory.hpp"
 #include "AnansiTask.h"
@@ -35,28 +35,14 @@ class MDAnansiTaskFactory
 
         MDAnansiTaskFactory () :  // constructor
             mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
+
         {
             return;
         }
 
-        MDAnansiTaskFactory (const MDAnansiTaskFactory & other) :  // copy constructor
-            mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
-        {
-            if (this != &other)
-            {
-                
-            }
-            return;
-        }
+        MDAnansiTaskFactory (const MDAnansiTaskFactory & other) = delete;  // copy constructor
 
-        MDAnansiTaskFactory (MDAnansiTaskFactory && other)   // copy-move constructor
-        {
-            if (this != &other)
-            {
-                
-            }
-            return;
-        }		// -----  end of method MDAnansiTaskFactory::MDAnansiTaskFactory  -----
+        MDAnansiTaskFactory (MDAnansiTaskFactory && other) = delete;  // copy-move constructor
 
         ~MDAnansiTaskFactory ()  // destructor
         {
@@ -69,27 +55,12 @@ class MDAnansiTaskFactory
 
         // ====================  OPERATORS     =======================================
 
-        MDAnansiTaskFactory& operator= ( const MDAnansiTaskFactory &other ) // assignment operator
-        {
-            if (this != &other)
-            {
-        
-            }
-            return *this;
-        } // assignment operator
+        MDAnansiTaskFactory& operator= ( const MDAnansiTaskFactory &other ) = delete; // assignment operator
 
-
-        MDAnansiTaskFactory& operator= ( MDAnansiTaskFactory && other ) // assignment-move operator
-        {
-            if (this != &other)
-            {
-                mdAnansiTaskFactory_ = std::move(other.mdAnansiTaskFactory_);
-            }
-            return *this;
-        } // assignment-move operator
-
+        MDAnansiTaskFactory& operator= ( MDAnansiTaskFactory && other ) = delete; // assignment-move operator
 
     protected:
+        
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
@@ -113,21 +84,6 @@ class MDAnansiTaskFactory
 
         template<class Base,class Derived>
         using my_is_base_of_ = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
-
-        // ====================  STATIC METHODS       ================================
-        template <typename T>
-        static constexpr std::size_t findIndex_()
-        {
-            using list_base = MPL::mpl_repeat_c<MPL::mpl_typelist<T>, 
-                                                MPL::mpl_size<abstract_tasks_>::value>;
-
-            using R = MPL::mpl_transform<my_is_base_of_,abstract_tasks_,list_base>;
-            
-            using my_index = MPL::mpl_find<R,MPL::mpl_true_type>;
-
-            return my_index::value;
-        } 
-
 
         // ====================  METHODS       =======================================
 
@@ -196,7 +152,7 @@ class MDAnansiTaskFactory
         template <typename abstract_task_t, typename receiver_t>
         std::shared_ptr<AnansiTask> create_shared_ptr(receiver_t  & a_receiver) const
         {
-            constexpr auto index = MDAnansiTaskFactory::findIndex_<abstract_task_t>();
+            constexpr auto index = MPL::AbstractFactoryUtilities<AbstractProductsTypeList,ConcreteProductsTypeList>:: template findIndex<abstract_task_t>();
             using concrete_task_t = concrete_task_at_<index>;
 
             std::shared_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
@@ -210,7 +166,7 @@ class MDAnansiTaskFactory
         template <typename abstract_task_t, typename receiver_t>
         std::unique_ptr<AnansiTask> create_unique_ptr(receiver_t & a_receiver) const
         {
-            constexpr auto index = MDAnansiTaskFactory::findIndex_<abstract_task_t>();
+            constexpr auto index = MPL::AbstractFactoryUtilities<AbstractProductsTypeList,ConcreteProductsTypeList>:: template findIndex<abstract_task_t>();
             using concrete_task_t = concrete_task_at_<index>;
 
             std::unique_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());

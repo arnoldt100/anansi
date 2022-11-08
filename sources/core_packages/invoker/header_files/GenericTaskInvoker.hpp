@@ -74,7 +74,7 @@ class GenericTaskInvoker
         //!
         //! @return void
         void addCommand(LABEL_t const & key,
-                     std::shared_ptr<ANANSI::AnansiTask> aCommand) 
+                        std::shared_ptr<ANANSI::AnansiTask> aCommand)
         {
         	this->commandSlots_[key] = aCommand;
             return;
