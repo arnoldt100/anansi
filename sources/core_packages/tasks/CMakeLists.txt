@@ -74,7 +74,6 @@
          header_files/TaskInterface.hpp
          header_files/TaskInterfaceUtilities.hpp
          header_files/LoggingTask.h
-         header_files/TransferIngredients.hpp
          header_files/Ingredients.hpp
          header_files/InterProcessCommEnv.h
          header_files/CommunicatorTask.h
@@ -92,7 +91,6 @@
          implementation_files/TaskInterface.cpp
          implementation_files/TaskInterfaceUtilities.cpp
          implementation_files/LoggingTask.cpp
-         implementation_files/TransferIngredients.cpp
          implementation_files/Ingredients.cpp
          implementation_files/InterProcessCommEnv.cpp
          implementation_files/CommunicatorTask.cpp

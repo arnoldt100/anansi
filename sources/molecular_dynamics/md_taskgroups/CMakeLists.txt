@@ -13,11 +13,10 @@
     include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake")
     verify_md_taskgroups_build_prerequisites_are_met()
 
-    # configure the ingredients and tasks.
+    # Configure the tasks.
     add_subdirectory(GenericMDTask)
     add_subdirectory(Ingredients)
     add_subdirectory(MPICommunicatorTask)
-    add_subdirectory(ConsoleLoggingTask)
     add_subdirectory(ControlFileMPIXML)
     add_subdirectory(AnansiMDTaskFactory)
 
