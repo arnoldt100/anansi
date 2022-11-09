@@ -15,7 +15,6 @@
 
     # Configure the tasks.
     add_subdirectory(GenericMDTask)
-    add_subdirectory(Ingredients)
     add_subdirectory(MPICommunicatorTask)
     add_subdirectory(ControlFileMPIXML)
     add_subdirectory(AnansiMDTaskFactory)
