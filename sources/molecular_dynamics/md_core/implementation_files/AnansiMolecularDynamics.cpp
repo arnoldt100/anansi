@@ -17,7 +17,6 @@
 #include "BuilderControlFileParser.h"
 #include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
-#include "TaskInterfaceUtilities.hpp"
 #include "GenericTaskInvokerFactory.hpp"
 #include "InterProcessCommEnv.h"
 // #include "MPICommunicatorInvokerUtility.h"
@@ -269,14 +268,12 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
 void AnansiMolecularDynamics::enableConsoleLogger()
 {
-	// TODO: Refactor according to new TaskInterface composite pattern.
     return;
 }
 
 void
 AnansiMolecularDynamics::disableConsoleLogger()
 {
-	// TODO: Refactor according to new TaskInterface composite pattern.
     return;
 }
 
