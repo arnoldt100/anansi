@@ -33,7 +33,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  STATIC       =======================================
 
         inline static const RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            "mpi_corld_communicator";
+            "mpi_world_communicator";
 
         // ====================  LIFECYCLE     =======================================
 
