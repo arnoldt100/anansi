@@ -97,8 +97,7 @@ add_library( ${target} STATIC
 # 
 # ----------------------------------------------------
 add_dependencies(${target}
-                 initmpienvtask
-                 consoleloggingtask)
+                 initmpienvtask)
 
 #-----------------------------------------------------
 #                                                    -

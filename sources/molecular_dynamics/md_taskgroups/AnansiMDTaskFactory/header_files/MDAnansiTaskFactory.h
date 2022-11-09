@@ -85,6 +85,10 @@ class MDAnansiTaskFactory
         template<class Base,class Derived>
         using my_is_base_of_ = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
 
+        template<typename abstract_task_t>
+        using my_concrete_task_t = 
+        typename MPL::AbstractFactoryUtilities<AbstractProductsTypeList,ConcreteProductsTypeList>:: template corresponding_concrete_task<abstract_task_t>;
+
         // ====================  METHODS       =======================================
 
         // :TODO:10/11/2022 05:05:10 PM:: These asConcreteTask_ and asAbstractTask_ should
@@ -127,7 +131,6 @@ class MDAnansiTaskFactory
             return p_ptr;
         }
 
-
         // :TODO:10/11/2022 05:07:01 PM::  These bindReceivers_ should be in another pacakge.
         template<typename concrete_task_t, typename abstract_task_t,typename... Types>
         std::shared_ptr<abstract_task_t> bindReceivers_(std::shared_ptr<abstract_task_t> & product, Types &... args) const
@@ -152,13 +155,12 @@ class MDAnansiTaskFactory
         template <typename abstract_task_t, typename receiver_t>
         std::shared_ptr<AnansiTask> create_shared_ptr(receiver_t  & a_receiver) const
         {
-            constexpr auto index = MPL::AbstractFactoryUtilities<AbstractProductsTypeList,ConcreteProductsTypeList>:: template findIndex<abstract_task_t>();
-            using concrete_task_t = concrete_task_at_<index>;
-
             std::shared_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
 
             std::shared_ptr<abstract_task_t> p_ptr = 
-                this->bindReceivers_<concrete_task_t,abstract_task_t,receiver_t>(task_ptr, a_receiver);
+                this->bindReceivers_<my_concrete_task_t<abstract_task_t>,
+                                     abstract_task_t,
+                                     receiver_t>(task_ptr, a_receiver);
 
             return p_ptr;
         }
@@ -166,13 +168,13 @@ class MDAnansiTaskFactory
         template <typename abstract_task_t, typename receiver_t>
         std::unique_ptr<AnansiTask> create_unique_ptr(receiver_t & a_receiver) const
         {
-            constexpr auto index = MPL::AbstractFactoryUtilities<AbstractProductsTypeList,ConcreteProductsTypeList>:: template findIndex<abstract_task_t>();
-            using concrete_task_t = concrete_task_at_<index>;
 
             std::unique_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
 
             std::unique_ptr<abstract_task_t> p_ptr = 
-                this->bindReceivers_<concrete_task_t,abstract_task_t,receiver_t>(task_ptr, a_receiver);
+                this->bindReceivers_<my_concrete_task_t<abstract_task_t>,
+                                     abstract_task_t,
+                                     receiver_t>(task_ptr, a_receiver);
 
             return p_ptr;
         }
