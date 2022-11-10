@@ -23,6 +23,7 @@
 #include "AbstractFactory.hpp"
 #include "ConcreteFactory.hpp"
 #include "AnansiTask.h"
+#include "AnansiTaskUtilities.hpp"
 
 namespace ANANSI
 {
@@ -71,19 +72,8 @@ class MDAnansiTaskFactory
         using abstract_tasks_ = AbstractProductsTypeList; 
         using concrete_tasks_ = ConcreteProductsTypeList;
 
-
-        template<std::size_t T>
-        using abstract_task_at_ = MPL::mpl_at_c<abstract_tasks_,T>;
-
-        template<std::size_t T>
-        using concrete_task_at_ = MPL::mpl_at_c<concrete_tasks_,T>;
-
         using abstract_factory_ = MPL::AbstractFactory<abstract_tasks_>;
-
         using concrete_factory_ = MPL::ConcreteFactory<abstract_factory_,concrete_tasks_>;
-
-        template<class Base,class Derived>
-        using my_is_base_of_ = typename MPL::mpl_bool< MPL::mpl_is_base_of<Base,Derived>::value >;
 
         template<typename abstract_task_t>
         using my_concrete_task_t = 
@@ -135,6 +125,8 @@ class MDAnansiTaskFactory
         template<typename concrete_task_t, typename abstract_task_t,typename... Types>
         std::shared_ptr<abstract_task_t> bindReceivers_(std::shared_ptr<abstract_task_t> & product, Types &... args) const
         {
+            AnansiTaskUtilities<abstract_task_t,concrete_task_t> atu;
+
             std::shared_ptr<concrete_task_t> p_concrete = this->asConcreteTask_<concrete_task_t,abstract_task_t>(product);
             p_concrete->bindReceivers(args...);
             std::shared_ptr<abstract_task_t> p_abstract = this->asAbstractTask_<concrete_task_t,abstract_task_t>(p_concrete);

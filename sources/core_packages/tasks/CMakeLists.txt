@@ -71,6 +71,7 @@
     #-----------------------------------------------------
     set (tasks_header_files
          header_files/AnansiTask.h
+         header_files/AnansiTaskUtilities.hpp
          header_files/LoggingTask.h
          header_files/InterProcessCommEnv.h
          header_files/CommunicatorTask.h
@@ -85,6 +86,7 @@
     #-----------------------------------------------------
     set (tasks_implementation_files
          implementation_files/AnansiTask.cpp
+         implementation_files/AnansiTaskUtilities.cpp
          implementation_files/LoggingTask.cpp
          implementation_files/InterProcessCommEnv.cpp
          implementation_files/CommunicatorTask.cpp
