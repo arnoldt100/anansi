@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -22,7 +23,7 @@
 namespace ANANSI
 {
 
-template <typename AbstractProductsTypeList, typename ConcreteProductsTypeLists>
+template <typename abstract_task_t, typename concrete_task_t>
 class AnansiTaskUtilities
 {
     public:
@@ -57,6 +58,39 @@ class AnansiTaskUtilities
         }
 
         // ====================  ACCESSORS     =======================================
+        static std::shared_ptr<abstract_task_t> asAbstractTask(std::shared_ptr<concrete_task_t> & aTask) 
+        {
+            return std::static_pointer_cast<abstract_task_t>(aTask);
+        }
+
+        static std::unique_ptr<abstract_task_t> asAbstractTask(std::unique_ptr<concrete_task_t> & aTask)
+        {
+            abstract_task_t* tmp_ptr = dynamic_cast<concrete_task_t*>(aTask.get());
+            std::unique_ptr<abstract_task_t> p_ptr(nullptr);
+            if ( tmp_ptr != nullptr)
+            {
+                aTask.release();
+                p_ptr.reset(tmp_ptr);
+            }
+            return p_ptr;
+        }
+
+        static std::shared_ptr<concrete_task_t> asConcreteTask(std::shared_ptr<abstract_task_t> & aTask) 
+        {
+            return std::static_pointer_cast<concrete_task_t>(aTask);
+        }
+        
+        static std::unique_ptr<concrete_task_t> asConcreteTask_(std::unique_ptr<abstract_task_t> & aTask)
+        {
+            concrete_task_t* tmp_ptr = dynamic_cast<concrete_task_t*>(aTask.get());
+            std::unique_ptr<concrete_task_t> p_ptr(nullptr);
+            if ( tmp_ptr != nullptr)
+            {
+                aTask.release();
+                p_ptr.reset(tmp_ptr);
+            }
+            return p_ptr;
+        }
 
         // ====================  MUTATORS      =======================================
 
