@@ -58,40 +58,28 @@ class AnansiTaskUtilities
         }
 
         // ====================  ACCESSORS     =======================================
-        static std::shared_ptr<abstract_task_t> asAbstractTask(std::shared_ptr<concrete_task_t> & aTask) 
+
+        template<typename... Types>
+        static std::shared_ptr<abstract_task_t> bindReceiverToTask(std::shared_ptr<abstract_task_t> & product, Types &... args)
         {
-            return std::static_pointer_cast<abstract_task_t>(aTask);
+            std::shared_ptr<concrete_task_t> p_concrete = 
+                AnansiTaskUtilities<abstract_task_t,concrete_task_t>::asConcreteTask_(product);
+            p_concrete->bindReceivers(args...);
+            std::shared_ptr<abstract_task_t> p_abstract = 
+                AnansiTaskUtilities<abstract_task_t,concrete_task_t>::asAbstractTask_(p_concrete);
+            return p_abstract;
         }
 
-        static std::unique_ptr<abstract_task_t> asAbstractTask(std::unique_ptr<concrete_task_t> & aTask)
+        template<typename... Types>
+        static std::unique_ptr<abstract_task_t> bindReceiverToTask(std::unique_ptr<abstract_task_t> & product, Types &... args)
         {
-            abstract_task_t* tmp_ptr = dynamic_cast<concrete_task_t*>(aTask.get());
-            std::unique_ptr<abstract_task_t> p_ptr(nullptr);
-            if ( tmp_ptr != nullptr)
-            {
-                aTask.release();
-                p_ptr.reset(tmp_ptr);
-            }
-            return p_ptr;
+            std::unique_ptr<concrete_task_t> p_concrete = 
+                AnansiTaskUtilities<abstract_task_t,concrete_task_t>::asConcreteTask_(product);
+            p_concrete->bindReceivers(args...);
+            std::unique_ptr<abstract_task_t> p_abstract = 
+                AnansiTaskUtilities<abstract_task_t,concrete_task_t>::asAbstractTask_(p_concrete);
+            return p_abstract;
         }
-
-        static std::shared_ptr<concrete_task_t> asConcreteTask(std::shared_ptr<abstract_task_t> & aTask) 
-        {
-            return std::static_pointer_cast<concrete_task_t>(aTask);
-        }
-        
-        static std::unique_ptr<concrete_task_t> asConcreteTask_(std::unique_ptr<abstract_task_t> & aTask)
-        {
-            concrete_task_t* tmp_ptr = dynamic_cast<concrete_task_t*>(aTask.get());
-            std::unique_ptr<concrete_task_t> p_ptr(nullptr);
-            if ( tmp_ptr != nullptr)
-            {
-                aTask.release();
-                p_ptr.reset(tmp_ptr);
-            }
-            return p_ptr;
-        }
-
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -121,7 +109,43 @@ class AnansiTaskUtilities
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        
+
         // ====================  METHODS       =======================================
+        
+        static std::shared_ptr<abstract_task_t> asAbstractTask_(std::shared_ptr<concrete_task_t> & aTask) 
+        {
+            return std::static_pointer_cast<abstract_task_t>(aTask);
+        }
+
+        static std::unique_ptr<abstract_task_t> asAbstractTask_(std::unique_ptr<concrete_task_t> & aTask)
+        {
+            abstract_task_t* tmp_ptr = dynamic_cast<concrete_task_t*>(aTask.get());
+            std::unique_ptr<abstract_task_t> p_ptr(nullptr);
+            if ( tmp_ptr != nullptr)
+            {
+                aTask.release();
+                p_ptr.reset(tmp_ptr);
+            }
+            return p_ptr;
+        }
+
+        static std::shared_ptr<concrete_task_t> asConcreteTask_(std::shared_ptr<abstract_task_t> & aTask) 
+        {
+            return std::static_pointer_cast<concrete_task_t>(aTask);
+        }
+        
+        static std::unique_ptr<concrete_task_t> asConcreteTask_(std::unique_ptr<abstract_task_t> & aTask)
+        {
+            concrete_task_t* tmp_ptr = dynamic_cast<concrete_task_t*>(aTask.get());
+            std::unique_ptr<concrete_task_t> p_ptr(nullptr);
+            if ( tmp_ptr != nullptr)
+            {
+                aTask.release();
+                p_ptr.reset(tmp_ptr);
+            }
+            return p_ptr;
+        }
 
         // ====================  DATA MEMBERS  =======================================
 

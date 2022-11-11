@@ -84,67 +84,6 @@ class MDAnansiTaskFactory
 
         // ====================  METHODS       =======================================
 
-        // :TODO:10/11/2022 05:05:10 PM:: These asConcreteTask_ and asAbstractTask_ should
-        // be in another package as utilities. 
-        // template<typename concrete_task_t, typename abstract_task_t>
-        // std::shared_ptr<concrete_task_t> asConcreteTask_(std::shared_ptr<abstract_task_t> & aTask) const
-        // {
-        //     return std::static_pointer_cast<concrete_task_t>(aTask);
-        // }
-
-        // template<typename concrete_task_t, typename abstract_task_t>
-        // std::unique_ptr<concrete_task_t> asConcreteTask_(std::unique_ptr<abstract_task_t> & aTask) const
-        // {
-        //     concrete_task_t* tmp_ptr = dynamic_cast<concrete_task_t*>(aTask.get());
-        //     std::unique_ptr<concrete_task_t> p_ptr(nullptr);
-        //     if ( tmp_ptr != nullptr)
-        //     {
-        //         aTask.release();
-        //         p_ptr.reset(tmp_ptr);
-        //     }
-        //     return p_ptr;
-        // }
-
-        // template<typename concrete_task_t, typename abstract_task_t>
-        // std::shared_ptr<abstract_task_t> asAbstractTask_(std::shared_ptr<concrete_task_t> & aTask) const
-        // {
-        //     return std::static_pointer_cast<abstract_task_t>(aTask);
-        // }
-        // 
-        // template<typename concrete_task_t, typename abstract_task_t>
-        // std::unique_ptr<abstract_task_t> asAbstractTask_(std::unique_ptr<concrete_task_t> & aTask) const
-        // {
-        //     abstract_task_t* tmp_ptr = dynamic_cast<concrete_task_t*>(aTask.get());
-        //     std::unique_ptr<abstract_task_t> p_ptr(nullptr);
-        //     if ( tmp_ptr != nullptr)
-        //     {
-        //         aTask.release();
-        //         p_ptr.reset(tmp_ptr);
-        //     }
-        //     return p_ptr;
-        // }
-
-        // :TODO:10/11/2022 05:07:01 PM::  These bindReceivers_ should be in another package.
-        template<typename concrete_task_t, typename abstract_task_t,typename... Types>
-        std::shared_ptr<abstract_task_t> bindReceivers_(std::shared_ptr<abstract_task_t> & product, Types &... args) const
-        {
-
-            std::shared_ptr<concrete_task_t> p_concrete = ATU<abstract_task_t,concrete_task_t>::asConcreteTask(product);
-            p_concrete->bindReceivers(args...);
-            std::shared_ptr<abstract_task_t> p_abstract = ATU<abstract_task_t,concrete_task_t>::asAbstractTask(p_concrete);
-            return p_abstract;
-        }
-
-        template<typename concrete_task_t, typename abstract_task_t,typename... Types>
-        std::unique_ptr<abstract_task_t> bindReceivers_(std::unique_ptr<abstract_task_t> & product, Types &... args) const
-        {
-            std::unique_ptr<concrete_task_t> p_concrete = ATU<abstract_task_t,concrete_task_t>::asConcreteTask(product);
-            p_concrete->bindReceivers(args...);
-            std::unique_ptr<abstract_task_t> p_abstract = ATU<abstract_task_t,concrete_task_t>::asAbstractTask(p_concrete);
-            return p_abstract;
-        }
-
-
     public: 
         template <typename abstract_task_t, typename receiver_t>
         std::shared_ptr<AnansiTask> create_shared_ptr(receiver_t  & a_receiver) const
@@ -152,9 +91,9 @@ class MDAnansiTaskFactory
             std::shared_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
 
             std::shared_ptr<abstract_task_t> p_ptr = 
-                this->bindReceivers_<my_concrete_task_t<abstract_task_t>,
-                                     abstract_task_t,
-                                     receiver_t>(task_ptr, a_receiver);
+                ATU<abstract_task_t,
+                    my_concrete_task_t<abstract_task_t>
+                   >::bindReceiverToTask(task_ptr,a_receiver);
 
             return p_ptr;
         }
@@ -162,13 +101,12 @@ class MDAnansiTaskFactory
         template <typename abstract_task_t, typename receiver_t>
         std::unique_ptr<AnansiTask> create_unique_ptr(receiver_t & a_receiver) const
         {
-
             std::unique_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
 
             std::unique_ptr<abstract_task_t> p_ptr = 
-                this->bindReceivers_<my_concrete_task_t<abstract_task_t>,
-                                     abstract_task_t,
-                                     receiver_t>(task_ptr, a_receiver);
+                ATU<abstract_task_t,
+                    my_concrete_task_t<abstract_task_t>
+                   >::bindReceiverToTask(task_ptr,a_receiver);
 
             return p_ptr;
         }
