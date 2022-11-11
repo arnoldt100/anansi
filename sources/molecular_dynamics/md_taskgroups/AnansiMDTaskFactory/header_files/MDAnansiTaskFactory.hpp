@@ -1,7 +1,7 @@
 #ifndef  ANANSI_MDAnansiTaskFactory_INC
 #define  ANANSI_MDAnansiTaskFactory_INC
 
-//! @file MDAnansiTaskFactory.h
+//! @file MDAnansiTaskFactory.hpp
 //!
 //! This files implements the Anansi task factory. The factory
 //! use the object factory design pattern.

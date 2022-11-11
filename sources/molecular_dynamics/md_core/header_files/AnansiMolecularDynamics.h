@@ -30,7 +30,7 @@
 #include "Communicator.h"
 #include "RegistryAnansiMDStatus.h"
 #include "SimulationState.h"
-#include "MDAnansiTaskFactory.h"
+#include "MDAnansiTaskFactory.hpp"
 #include "AnansiTask.h"
 
 // Includes for invoking the communication environment.

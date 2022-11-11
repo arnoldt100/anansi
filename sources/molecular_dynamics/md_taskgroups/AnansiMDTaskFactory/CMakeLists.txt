@@ -55,7 +55,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdanansitaskfactory_header_files
-         header_files/MDAnansiTaskFactory.h )
+         header_files/MDAnansiTaskFactory.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
