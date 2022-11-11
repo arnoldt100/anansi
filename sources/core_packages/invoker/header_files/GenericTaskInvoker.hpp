@@ -32,7 +32,10 @@ namespace ANANSI
 
 //! The Invoker for the communication environment.
 //!
-//! Invoking the enable method enables the communication run-time environment.
+//! Brief description
+//!
+//! Detailed description
+
 template<typename AbstractProductsTypeList,
          typename ConcreteProductsTypeList, 
          typename LABEL_t=std::string>

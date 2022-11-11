@@ -78,10 +78,9 @@ class GenericMDTask : public BaseClass
             std::cout << "FunctorImplType::ResultType operator stud call";
         }
         
-        template <typename... Types>
-        void bindReceivers(Types &... args)
+        void bindReceiver(std::shared_ptr<ReceiverType> & arg)
         {
-            this->bindReceivers_(args...);
+            this->receiver_ = arg;
         }
 
         void doAction_(const std::vector<std::string> & flags) override
@@ -126,17 +125,6 @@ class GenericMDTask : public BaseClass
 
     private:
         // ====================  METHODS       =======================================
-        void bindAReceiver_(std::shared_ptr<ReceiverType> & arg)
-        {
-            this->receiver_ = arg;
-        }
-
-        template <typename firstArgType, typename... Types>
-        void bindReceivers_(firstArgType & firstarg, Types &... args)
-        {
-           this->bindAReceiver_(firstarg);
-        }
-
 
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<FunctorImplType> funcImpl_;

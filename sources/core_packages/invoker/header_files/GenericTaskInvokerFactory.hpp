@@ -3,9 +3,7 @@
 
 //! @file GenericTaskInvokerFactory.hpp
 //!
-//! Brief description
-//!
-//! Detailed description
+//! A factory class for building GenericTaskInvoker.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
