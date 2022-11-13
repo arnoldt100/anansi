@@ -46,7 +46,14 @@ class __classname__
             return;
         }
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        __classname__ (__classname__ && other)   // copy-move constructor
+        {
+            if (this != &other)
+            {
+        
+            }
+            return;
+        }
 
         virtual ~__classname__ ();  // destructor
         {
