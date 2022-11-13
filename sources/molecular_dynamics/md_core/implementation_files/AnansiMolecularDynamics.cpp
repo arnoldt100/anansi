@@ -19,7 +19,6 @@
 #include "MDSimulationStateFactory.h"
 #include "GenericTaskInvokerFactory.hpp"
 #include "InterProcessCommEnv.h"
-// #include "MPICommunicatorInvokerUtility.h"
 
 namespace ANANSI {
 
@@ -252,6 +251,20 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // ---------------------------------------------------
     const std::vector<std::string> command_labels = {"mpi_world_communicator"};
     this->mdWorldCommunicatorInvk_->doTask(command_labels);
+
+    // ---------------------------------------------------
+    // The code below is just for testing modifying a task.
+    // 
+    // ---------------------------------------------------
+    
+    // Create a new world communicator.
+    ANANSI::MPICommunicatorFactory a_communicator_factory;
+    std::shared_ptr<COMMUNICATOR::Communicator> my_world_communicator(nullptr);
+    my_world_communicator = a_communicator_factory.createWorldCommunicator();
+
+    // Call invoker method to modify task.
+    std::string my_label("mpi_world_communicator");
+    this->mdWorldCommunicatorInvk_->modifyTask(my_label,my_world_communicator);
 
     return;
 }

@@ -103,6 +103,12 @@ class GenericTaskInvoker
             return;
         }
 
+        template <typename... T>
+        void modifyTask(LABEL_t & command_key, T &... args)
+        {
+            //PickUpHere//
+            return;
+        }
 
         // ====================  OPERATORS     =======================================
 
