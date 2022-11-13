@@ -28,8 +28,8 @@ namespace ANANSI
 //        Class:  GenericReceiverFactory
 //  Description:  
 //  =====================================================================================
-template<typename AbstractTasksTypeList,
-         typename ConcreteTasksTypeList>
+template<typename AbstractTasksTypeList=int,
+         typename ConcreteTasksTypeList=int>
 class GenericReceiverFactory
 {
     public:
@@ -66,7 +66,7 @@ class GenericReceiverFactory
         }
 
         template<typename ReceiverType>
-        static std::unique_ptr<ReceiverType> createSharedReceiver()
+        static std::unique_ptr<ReceiverType> createUniqueReceiver()
         { 
             std::unique_ptr<ReceiverType> a_receiver
                 = std::make_unique<ReceiverType>();

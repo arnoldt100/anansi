@@ -151,7 +151,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
     mpi_environment->addMember(this->commandLineArguments_);
-    std::shared_ptr<ANANSI::InitMPIEnvTaskReceiver> mpi_environment_receiver= std::make_shared<ANANSI::InitMPIEnvTaskReceiver>();
+    auto mpi_environment_receiver= ANANSI::GenericReceiverFactory<>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
     mpi_environment_receiver->enable(mpi_environment); 
     
     // ---------------------------------------------------
@@ -223,8 +223,7 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     //  Create the receiver and enable it.
     // 
     // ---------------------------------------------------
-    std::shared_ptr<InitWorldCommunicatorTaskReceiver> mpi_init_world_commm_receiver
-        = std::make_shared<InitWorldCommunicatorTaskReceiver>();
+    auto mpi_init_world_commm_receiver = ANANSI::GenericReceiverFactory<>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
     mpi_init_world_commm_receiver->enable(this->MpiWorldCommunicator_);
 
     // ---------------------------------------------------
