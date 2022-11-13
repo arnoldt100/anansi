@@ -70,6 +70,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (tasks_header_files
+         header_files/AnansiTaskParameters.h
          header_files/AnansiTask.h
          header_files/AnansiTaskUtilities.hpp
          header_files/LoggingTask.h
@@ -85,6 +86,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (tasks_implementation_files
+         implementation_files/AnansiTaskParameters.cpp
          implementation_files/AnansiTask.cpp
          implementation_files/AnansiTaskUtilities.cpp
          implementation_files/LoggingTask.cpp

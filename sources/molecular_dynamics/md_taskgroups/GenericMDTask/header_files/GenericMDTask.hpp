@@ -130,6 +130,9 @@ class GenericMDTask : public BaseClass
         std::shared_ptr<FunctorImplType> funcImpl_;
         std::shared_ptr<ReceiverType> receiver_;
 
+        //PickUpHere//
+        std::size_t taskIndex; 
+
 }; // -----  end of class GenericMDTask  -----
 
 }; // namespace ANANSI
