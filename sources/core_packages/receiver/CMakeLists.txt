@@ -69,7 +69,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (receiver_header_files
-         header_files/ReceiverInterface.hpp )
+         header_files/ReceiverInterface.hpp 
+         header_files/GenericReceiverFactory.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -79,7 +80,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (receiver_implementation_files
-         implementation_files/ReceiverInterface.cpp )
+         implementation_files/ReceiverInterface.cpp
+         implementation_files/GenericReceiverFactory.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
