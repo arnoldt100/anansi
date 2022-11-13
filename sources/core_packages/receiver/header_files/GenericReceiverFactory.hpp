@@ -10,6 +10,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -26,6 +28,8 @@ namespace ANANSI
 //        Class:  GenericReceiverFactory
 //  Description:  
 //  =====================================================================================
+template<typename AbstractTasksTypeList,
+         typename ConcreteTasksTypeList>
 class GenericReceiverFactory
 {
     public:
@@ -50,6 +54,23 @@ class GenericReceiverFactory
         ~GenericReceiverFactory ()  // destructor
         {
             return;
+        }
+
+        // ====================  STATIC        =======================================
+        template<typename ReceiverType>
+        static std::shared_ptr<ReceiverType> createSharedReceiver()
+        { 
+            std::shared_ptr<ReceiverType> a_receiver
+                = std::make_shared<ReceiverType>();
+            return a_receiver;
+        }
+
+        template<typename ReceiverType>
+        static std::unique_ptr<ReceiverType> createSharedReceiver()
+        { 
+            std::unique_ptr<ReceiverType> a_receiver
+                = std::make_unique<ReceiverType>();
+            return a_receiver;
         }
 
         // ====================  ACCESSORS     =======================================

@@ -39,7 +39,6 @@ namespace ANANSI
 template<typename AbstractProductsTypeList,
          typename ConcreteProductsTypeList, 
          typename LABEL_t=std::string>
-
 class GenericTaskInvoker
 {
     public:
@@ -106,7 +105,6 @@ class GenericTaskInvoker
         template <typename... T>
         void modifyTask(LABEL_t & command_key, T &... args)
         {
-            //PickUpHere//
             return;
         }
 

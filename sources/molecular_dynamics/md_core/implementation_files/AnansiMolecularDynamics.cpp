@@ -19,6 +19,8 @@
 #include "MDSimulationStateFactory.h"
 #include "GenericTaskInvokerFactory.hpp"
 #include "InterProcessCommEnv.h"
+#include "GenericReceiverFactory.hpp"
+#include "InitMPIEnvTaskReceiver.h"
 
 namespace ANANSI {
 

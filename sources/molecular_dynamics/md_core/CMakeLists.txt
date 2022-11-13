@@ -60,6 +60,7 @@
     get_target_property(my_initworldcommunicatortask_include initworldcommunicatortask initworldcommunicatortask_include)
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
     get_target_property(my_invoker_include invoker invoker_include )
+    get_target_property(my_receiver_include receiver receiver_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -165,7 +166,8 @@ target_include_directories( "${md_core_target}"
                             PRIVATE "${my_invoker_include}"
                             PRIVATE "${my_generic_abstract_factory_include}"
                             PRIVATE "${my_foreach_loop_include}" 
-                            PRIVATE "${my_mdanansitaskfactory_include}" )
+                            PRIVATE "${my_mdanansitaskfactory_include}"
+                            PRIVATE "{my_receiver_include}" )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -189,6 +191,7 @@ target_link_libraries("${md_core_target}"
                       PUBLIC generic_abstract_factory
                       PUBLIC generic_foreach_loop
                       PUBLIC mdanansitaskfactory
+                      PUBLIC receiver
                       PUBLIC "${Boost_LIBRARIES}" )
 
 #-----------------------------------------------------

@@ -21,7 +21,6 @@
 #include "DefineVisitableMacro.h"
 #include "BaseVisitable.hpp"
 #include "MPIEnvironment.h"
-#include "InitMPIEnvTaskReceiver.h"
 #include "InitMPIEnvTaskTraits.h"
 #include "InitWorldCommunicatorTaskReceiver.h"
 #include "InitWorldCommunicatorTaskTraits.h"
