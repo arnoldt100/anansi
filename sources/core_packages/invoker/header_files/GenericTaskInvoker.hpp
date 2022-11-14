@@ -105,6 +105,9 @@ class GenericTaskInvoker
         template <typename... T>
         void modifyTask(LABEL_t & command_key, T &... args)
         {
+            // Get the concrete task index of the command that corrsponds ot key.
+            const auto concrete_index = (this->commandSlots_.at(command_key))->taskIndex();
+
             return;
         }
 

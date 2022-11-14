@@ -50,6 +50,12 @@ AnansiTask::~AnansiTask()
 
 //============================= ACCESSORS ====================================
 
+AnansiTaskParameters::task_size_t AnansiTask::taskIndex() const
+{
+    return this->taskIndex_();
+}
+
+
 //============================= MUTATORS =====================================
 void AnansiTask::doAction(const std::vector<std::string> & flags )
 {
