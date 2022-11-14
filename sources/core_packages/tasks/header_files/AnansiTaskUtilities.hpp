@@ -50,7 +50,7 @@ class AnansiTaskUtilities
                 
             }
             return;
-        }		// -----  end of method __classname__::__classname__  -----
+        }		// -----  end of method AnansiTaskUtilities::AnansiTaskUtilities -----
 
         ~AnansiTaskUtilities ()  // destructor
         {
@@ -59,23 +59,24 @@ class AnansiTaskUtilities
 
         // ====================  ACCESSORS     =======================================
 
-        template<typename Receiver_t>
-        static std::shared_ptr<abstract_task_t> bindReceiverToTask(std::shared_ptr<abstract_task_t> & product, Receiver_t & arg)
+        template<typename index_t, typename Receiver_t >
+        static std::shared_ptr<abstract_task_t> bindReceiverToTask(std::shared_ptr<abstract_task_t> & product,
+                                                                   Receiver_t & arg)
         {
             std::shared_ptr<concrete_task_t> p_concrete = 
                 AnansiTaskUtilities<abstract_task_t,concrete_task_t>::asConcreteTask_(product);
-            p_concrete->bindReceiver(arg);
+            p_concrete->template bindReceiver<index_t>(arg);
             std::shared_ptr<abstract_task_t> p_abstract = 
                 AnansiTaskUtilities<abstract_task_t,concrete_task_t>::asAbstractTask_(p_concrete);
             return p_abstract;
         }
 
-        template<typename Receiver_t>
+        template<typename index_t,typename Receiver_t>
         static std::unique_ptr<abstract_task_t> bindReceiverToTask(std::unique_ptr<abstract_task_t> & product, Receiver_t & arg)
         {
             std::unique_ptr<concrete_task_t> p_concrete = 
                 AnansiTaskUtilities<abstract_task_t,concrete_task_t>::asConcreteTask_(product);
-            p_concrete->bindReceiver(arg);
+            p_concrete-> template bindReceiver<index_t>(arg);
             std::unique_ptr<abstract_task_t> p_abstract = 
                 AnansiTaskUtilities<abstract_task_t,concrete_task_t>::asAbstractTask_(p_concrete);
             return p_abstract;

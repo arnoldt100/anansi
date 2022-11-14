@@ -71,6 +71,10 @@ class GenericMDTask : public BaseClass
 
 
         // ====================  ACCESSORS     =======================================
+        AnansiTaskParameters::task_size_t taskIndex_() const
+        {
+            return this->taskConcreteTypeListIndex_;
+        }
 
         // ====================  MUTATORS      =======================================
         template<typename... T>
@@ -79,9 +83,11 @@ class GenericMDTask : public BaseClass
             std::cout << "FunctorImplType::ResultType operator stud call";
         }
         
+        template<typename index_t>
         void bindReceiver(std::shared_ptr<ReceiverType> & arg)
         {
             this->receiver_ = arg;
+            this->taskConcreteTypeListIndex_ = index_t::value;
         }
 
         void doAction_(const std::vector<std::string> & flags) override
@@ -130,7 +136,7 @@ class GenericMDTask : public BaseClass
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<FunctorImplType> funcImpl_;
         std::shared_ptr<ReceiverType> receiver_;
-        AnansiTaskParameters::task_size_t taskIndex; 
+        AnansiTaskParameters::task_size_t taskConcreteTypeListIndex_; 
 
 
 }; // -----  end of class GenericMDTask  -----

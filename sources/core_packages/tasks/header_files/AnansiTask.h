@@ -23,6 +23,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTaskParameters.h"
 
 namespace ANANSI
 {
@@ -46,10 +47,14 @@ class AnansiTask
 
         // ====================  ACCESSORS     =======================================
 
+        AnansiTaskParameters::task_size_t taskIndex() const;
+
         // ====================  MUTATORS      =======================================
         void doAction(const std::vector<std::string> & flags );
         
         void undoAction(const std::vector<std::string> & commands );
+
+
 
         // ====================  OPERATORS     =======================================
 
@@ -63,8 +68,12 @@ class AnansiTask
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        // ====================  ACCESSORS     =======================================
+        
+        virtual AnansiTaskParameters::task_size_t taskIndex_() const = 0;
 
         // ====================  MUTATORS      =======================================
+        
         virtual void doAction_(const std::vector<std::string> & commands) = 0;
         
         virtual void undoAction_(const std::vector<std::string> & commands) = 0;

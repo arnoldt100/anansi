@@ -88,12 +88,16 @@ class MDAnansiTaskFactory
         template <typename abstract_task_t, typename receiver_t>
         std::shared_ptr<AnansiTask> create_shared_ptr(receiver_t  & a_receiver) const
         {
+            // The sequence index of the concrete product is the same as the sequence of
+            // the abstract product.
+            using concrete_index_t = MPL::mpl_find<AbstractProductsTypeList,abstract_task_t>;
+
             std::shared_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
 
             std::shared_ptr<abstract_task_t> p_ptr = 
                 ATU<abstract_task_t,
                     my_concrete_task_t<abstract_task_t>
-                   >::bindReceiverToTask(task_ptr,a_receiver);
+                   >:: template bindReceiverToTask<concrete_index_t,receiver_t>(task_ptr,a_receiver);
 
             return p_ptr;
         }
@@ -101,12 +105,16 @@ class MDAnansiTaskFactory
         template <typename abstract_task_t, typename receiver_t>
         std::unique_ptr<AnansiTask> create_unique_ptr(receiver_t & a_receiver) const
         {
+            // The sequence index of the concrete product is the same as the sequence of
+            // the abstract product.
+            using concrete_index_t = MPL::mpl_find<AbstractProductsTypeList,abstract_task_t>;
+
             std::unique_ptr<abstract_task_t> task_ptr(this->mdAnansiTaskFactory_->template Create<abstract_task_t>());
 
             std::unique_ptr<abstract_task_t> p_ptr = 
                 ATU<abstract_task_t,
                     my_concrete_task_t<abstract_task_t>
-                   >::bindReceiverToTask(task_ptr,a_receiver);
+                   >:: template bindReceiverToTask<concrete_index_t,receiver_t>(task_ptr,a_receiver);
 
             return p_ptr;
         }
