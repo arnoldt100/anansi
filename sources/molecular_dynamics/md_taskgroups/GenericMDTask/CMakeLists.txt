@@ -38,6 +38,12 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "genericmdtask_include" )
 
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_tasks_include tasks tasks_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -105,7 +111,15 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_tasks_include} )
+
+#-----------------------------------------------------
+# The libraries to use when linking to target.       -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries( ${target}
+                       PUBLIC tasks)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

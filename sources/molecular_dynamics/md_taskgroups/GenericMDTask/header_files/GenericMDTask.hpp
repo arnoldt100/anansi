@@ -21,6 +21,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTaskParameters.h"
 #include "DefaultFunctorImpl.h"
 
 namespace ANANSI
@@ -129,9 +130,8 @@ class GenericMDTask : public BaseClass
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<FunctorImplType> funcImpl_;
         std::shared_ptr<ReceiverType> receiver_;
+        AnansiTaskParameters::task_size_t taskIndex; 
 
-        //PickUpHere//
-        std::size_t taskIndex; 
 
 }; // -----  end of class GenericMDTask  -----
 
