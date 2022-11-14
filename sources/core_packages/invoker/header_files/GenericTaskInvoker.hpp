@@ -26,6 +26,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiTask.h"
+#include "MPLAliases.hpp"
 
 namespace ANANSI
 {
@@ -108,6 +109,11 @@ class GenericTaskInvoker
             // Get the concrete task index of the command that corrsponds ot key.
             const auto concrete_index = (this->commandSlots_.at(command_key))->taskIndex();
 
+            auto task_abstract = this->commandSlots_.at(command_key);
+
+            using nm_products_t = MPL::mpl_size<ConcreteProductsTypeList>;
+
+
             return;
         }
 
@@ -138,8 +144,11 @@ class GenericTaskInvoker
 
         using concrete_products_ = ConcreteProductsTypeList;
 
-        // ====================  METHODS       =======================================
-
+        // ====================  MUTATORS      =======================================
+       
+        //PickUpHere//
+        // Create a genric for loop.
+        
         // ====================  DATA MEMBERS  =======================================
         std::map <LABEL_t,std::shared_ptr<ANANSI::AnansiTask>> commandSlots_;
 
