@@ -69,6 +69,7 @@
     #-----------------------------------------------------
     set (invoker_header_files
         header_files/GenericTaskInvoker.hpp
+        header_files/GenericTaskInvokerUtilities.hpp
         header_files/GenericTaskInvokerFactory.hpp )
 
     #-----------------------------------------------------
@@ -80,6 +81,7 @@
     #-----------------------------------------------------
     set (invoker_implementation_files
          implementation_files/GenericTaskInvoker.cpp
+         implementation_files/GenericTaskInvokerUtilities.cpp
          implementation_files/GenericTaskInvokerFactory.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

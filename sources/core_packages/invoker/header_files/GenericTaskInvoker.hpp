@@ -109,9 +109,15 @@ class GenericTaskInvoker
             // Get the concrete task index of the command that corrsponds ot key.
             const auto concrete_index = (this->commandSlots_.at(command_key))->taskIndex();
 
-            auto task_abstract = this->commandSlots_.at(command_key);
+            auto abstract_task = this->commandSlots_.at(command_key);
 
             using nm_products_t = MPL::mpl_size<ConcreteProductsTypeList>;
+
+            if ( not (0 <= concrete_index <= nm_products_t::value-1 ) )
+            {
+                 // :TODO:11/15/2022 10:00:29 AM:: Abort program
+                 // for a nonrecoverable error has occured. 
+            }
 
 
             return;
