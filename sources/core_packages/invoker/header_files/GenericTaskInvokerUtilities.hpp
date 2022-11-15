@@ -66,7 +66,7 @@ class GenericTaskInvokerUtilities
             using mx_elements = MPL::mpl_size<ConcreteTasksTypeList>; 
             using zero_t = MPL::mpl_size<MPL::mpl_typelist<>>;
             constexpr auto next_alpha = alpha + 1;
-            if constexpr ( (zero_t::value <= alpha) and (alpha <= mx_elements::value - 1) )
+            if constexpr ( (zero_t::value <= alpha) and (alpha < mx_elements::value) )
             {
                 if (alpha == concrete_index)
                 {
