@@ -55,7 +55,7 @@ class __classname__
             return;
         }
 
-        virtual ~__classname__ ();  // destructor
+        virtual ~__classname__ ()  // destructor
         {
         	// TODO Auto-generated destructor stub
             return;
