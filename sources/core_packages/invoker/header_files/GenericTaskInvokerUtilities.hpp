@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,6 +19,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
 
 namespace ANANSI
 {
@@ -50,11 +52,35 @@ class GenericTaskInvokerUtilities
             return;
         }
 
-        virtual ~GenericTaskInvokerUtilities ()  // destructor
+        ~GenericTaskInvokerUtilities ()  // destructor
         {
             return;
         }
 
+        // ====================  STATIC        =======================================
+        template<typename ConcreteTasksTypeList,
+                 MPL::mpl_size_type alpha,
+                 typename index_t = MPL::mpl_size_type>
+        static void castAbstractTaskToConcreteTask( const index_t concrete_index)
+        {
+            using mx_elements = MPL::mpl_size<ConcreteTasksTypeList>; 
+            using zero_t = MPL::mpl_size<MPL::mpl_typelist<>>;
+            constexpr auto next_alpha = alpha + 1;
+            if constexpr ( (zero_t::value <= alpha) and (alpha <= mx_elements::value - 1) )
+            {
+                if (alpha == concrete_index)
+                {
+                    std::cout << "Casting abstract task to concrete task at index " << alpha << "." << std::endl;
+                }
+                else
+                {
+                    GenericTaskInvokerUtilities::castAbstractTaskToConcreteTask<ConcreteTasksTypeList,
+                                                                                next_alpha>(concrete_index);
+                }     
+            }
+
+            return;
+        } 
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================

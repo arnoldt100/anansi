@@ -26,6 +26,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiTask.h"
+#include "GenericTaskInvokerUtilities.hpp"
 #include "MPLAliases.hpp"
 
 namespace ANANSI
@@ -104,21 +105,25 @@ class GenericTaskInvoker
         }
 
         template <typename... T>
-        void modifyTask(LABEL_t & command_key, T &... args)
+        void modifyTask(const LABEL_t & command_key, T &... args)
         {
             // Get the concrete task index of the command that corrsponds ot key.
-            const auto concrete_index = (this->commandSlots_.at(command_key))->taskIndex();
+            auto concrete_index = (this->commandSlots_.at(command_key))->taskIndex();
 
             auto abstract_task = this->commandSlots_.at(command_key);
 
             using nm_products_t = MPL::mpl_size<ConcreteProductsTypeList>;
 
-            if ( not (0 <= concrete_index <= nm_products_t::value-1 ) )
+            using zero_t = MPL::mpl_size<MPL::mpl_typelist<>>;
+
+            if ( not ((0 <= concrete_index ) and (concrete_index <= nm_products_t::value-1)) )
             {
                  // :TODO:11/15/2022 10:00:29 AM:: Abort program
                  // for a nonrecoverable error has occured. 
             }
 
+            GenericTaskInvokerUtilities::castAbstractTaskToConcreteTask<ConcreteProductsTypeList,
+                                                                        zero_t::value>(concrete_index);
 
             return;
         }
