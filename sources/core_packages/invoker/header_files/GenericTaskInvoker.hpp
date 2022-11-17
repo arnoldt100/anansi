@@ -104,26 +104,31 @@ class GenericTaskInvoker
             return;
         }
 
-        template <typename... T>
-        void modifyTask(const LABEL_t & command_key, T &... args)
+        template <typename... ReceiverArgsTypes>
+        void modifyTask(const LABEL_t & command_key, ReceiverArgsTypes &... args)
         {
-            // Get the concrete task index of the command that corrsponds ot key.
-            auto concrete_index = (this->commandSlots_.at(command_key))->taskIndex();
+            
+            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
 
-            auto abstract_task = this->commandSlots_.at(command_key);
+            const auto concrete_index = 
+                static_cast<MPL::mpl_size_type>(this->commandSlots_.at(command_key)->taskIndex());
 
-            using nm_products_t = MPL::mpl_size<ConcreteProductsTypeList>;
+            constexpr auto nm_products = 
+                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
 
-            using zero_t = MPL::mpl_size<MPL::mpl_typelist<>>;
+            std::shared_ptr<ANANSI::AnansiTask> & abstract_task = this->commandSlots_.at(command_key);
 
-            if ( not ((0 <= concrete_index ) and (concrete_index <= nm_products_t::value-1)) )
+            if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
             {
                  // :TODO:11/15/2022 10:00:29 AM:: Abort program
                  // for a nonrecoverable error has occured. 
             }
 
             GenericTaskInvokerUtilities::castAbstractTaskToConcreteTask<ConcreteProductsTypeList,
-                                                                        zero_t::value>(concrete_index);
+                                                                        zero,
+                                                                        ReceiverArgsTypes...>(concrete_index,
+                                                                                              abstract_task,
+                                                                                              args...);
 
             return;
         }

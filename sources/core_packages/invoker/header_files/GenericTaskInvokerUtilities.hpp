@@ -11,6 +11,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,6 +20,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTask.h"
 #include "MPLAliases.hpp"
 
 namespace ANANSI
@@ -60,13 +62,15 @@ class GenericTaskInvokerUtilities
         // ====================  STATIC        =======================================
         template<typename ConcreteTasksTypeList,
                  MPL::mpl_size_type alpha,
-                 typename index_t = MPL::mpl_size_type>
-        static void castAbstractTaskToConcreteTask( const index_t concrete_index)
+                 typename... ReceiverArgsTypes>
+        static void castAbstractTaskToConcreteTask( const MPL::mpl_size_type concrete_index,
+                                                    std::shared_ptr<ANANSI::AnansiTask> & abstract_task,
+                                                    ReceiverArgsTypes &... receiver_args)
         {
-            using mx_elements = MPL::mpl_size<ConcreteTasksTypeList>; 
-            using zero_t = MPL::mpl_size<MPL::mpl_typelist<>>;
+            constexpr auto mx_elements = MPL::mpl_size<ConcreteTasksTypeList>::value; 
+            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
             constexpr auto next_alpha = alpha + 1;
-            if constexpr ( (zero_t::value <= alpha) and (alpha < mx_elements::value) )
+            if constexpr ( (zero <= alpha) and (alpha < mx_elements) )
             {
                 if (alpha == concrete_index)
                 {
@@ -75,7 +79,10 @@ class GenericTaskInvokerUtilities
                 else
                 {
                     GenericTaskInvokerUtilities::castAbstractTaskToConcreteTask<ConcreteTasksTypeList,
-                                                                                next_alpha>(concrete_index);
+                                                                                next_alpha,
+                                                                                ReceiverArgsTypes...>(concrete_index,
+                                                                                                      abstract_task,
+                                                                                                      receiver_args...);
                 }     
             }
 
