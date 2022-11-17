@@ -90,13 +90,13 @@ class GenericMDTask : public BaseClass
             this->taskConcreteTypeListIndex_ = index_t::value;
         }
 
-        void doAction_(const std::vector<std::string> & flags) override
+        void doConcreteTaskAction(const std::vector<std::string> & flags) override
         {
             this->receiver_->action();
             return;
         }
 
-        void undoAction_(const std::vector<std::string> & flags) override
+        void undoConcreteTaskAction(const std::vector<std::string> & flags) override
         {
             this->receiver_->undoAction();
             return;

@@ -74,9 +74,9 @@ class AnansiTask
 
         // ====================  MUTATORS      =======================================
         
-        virtual void doAction_(const std::vector<std::string> & commands) = 0;
+        virtual void doConcreteTaskAction(const std::vector<std::string> & commands) = 0;
         
-        virtual void undoAction_(const std::vector<std::string> & commands) = 0;
+        virtual void undoConcreteTaskAction(const std::vector<std::string> & commands) = 0;
 
         // ====================  DATA MEMBERS  =======================================
 

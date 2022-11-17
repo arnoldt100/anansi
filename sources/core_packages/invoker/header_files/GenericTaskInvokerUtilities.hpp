@@ -21,6 +21,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiTask.h"
+#include "AnansiTaskUtilities.hpp"
 #include "MPLAliases.hpp"
 
 namespace ANANSI
@@ -74,7 +75,10 @@ class GenericTaskInvokerUtilities
             {
                 if (alpha == concrete_index)
                 {
-                    std::cout << "Casting abstract task to concrete task at index " << alpha << "." << std::endl;
+                    using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,alpha>;
+                    std::shared_ptr<concrete_task_t> p_concrete = 
+                        AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(abstract_task);
+                    std::cout << "Casted abstract task to concrete task at index " << alpha << "." << std::endl;
                 }
                 else
                 {
