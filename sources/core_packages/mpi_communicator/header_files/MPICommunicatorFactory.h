@@ -61,6 +61,9 @@ private:
     std::unique_ptr<COMMUNICATOR::Communicator>
      createWorldCommunicator_() const override;
 
+    std::unique_ptr<COMMUNICATOR::Communicator>
+     createNullWorldCommunicator_() const override;
+
      std::unique_ptr<COMMUNICATOR::Communicator>
      cloneCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
 

@@ -70,7 +70,6 @@ void InitWorldCommunicatorTaskReceiver::receiverModifyMyself(std::shared_ptr<COM
 {
     // We need to modify the undelying resource
     *(this->communicator_) = std::move(*arg);
-    
     return;
 }
 

@@ -92,6 +92,14 @@ std::unique_ptr<COMMUNICATOR::Communicator> MPICommunicatorFactory::createWorldC
     return aCommunicator;
 }
 
+std::unique_ptr<COMMUNICATOR::Communicator> MPICommunicatorFactory::createNullWorldCommunicator_() const
+{
+    std::unique_ptr<COMMUNICATOR::Communicator> aCommunicator = 
+        std::make_unique<ANANSI::MPICommunicator>();
+
+    return aCommunicator;
+}
+
 std::unique_ptr<COMMUNICATOR::Communicator> 
 MPICommunicatorFactory::cloneCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & otherCommunicator) const
 {

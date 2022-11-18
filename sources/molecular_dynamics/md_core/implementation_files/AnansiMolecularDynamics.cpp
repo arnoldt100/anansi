@@ -227,7 +227,7 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // ---------------------------------------------------
     auto mpi_init_world_commm_receiver = ANANSI::GenericReceiverFactory<>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
 
-    this->MpiWorldCommunicator_ = a_communicator_factory.createWorldCommunicator();
+    this->MpiWorldCommunicator_ = a_communicator_factory.createNullWorldCommunicator();
     mpi_init_world_commm_receiver->enable(this->MpiWorldCommunicator_);
 
     // ---------------------------------------------------
@@ -254,24 +254,8 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // Use the invoker to initialize the world communicator.
     // 
     // ---------------------------------------------------
-    // const std::vector<std::string> command_labels = {"mpi_world_communicator"};
-    // this->mdWorldCommunicatorInvk_->doTask(command_labels);
-
-    // ---------------------------------------------------
-    // The code below is just for testing modifying a task.
-    // 
-    // ---------------------------------------------------
-    
-    // Create a new world communicator.
-    std::shared_ptr<COMMUNICATOR::Communicator> my_world_communicator(nullptr);
-    my_world_communicator = a_communicator_factory.createWorldCommunicator();
-
-    const std::string new_host_name("NewHostName");
-    COMMUNICATOR::resetHostName(my_world_communicator,new_host_name);
-
-    // Call invoker method to modify task.
-    std::string my_label("mpi_world_communicator");
-    this->mdWorldCommunicatorInvk_->modifyTask(my_label,my_world_communicator);
+    const std::vector<std::string> command_labels = {"mpi_world_communicator"};
+    this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
     return;
 }

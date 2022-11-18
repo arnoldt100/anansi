@@ -57,7 +57,6 @@ MPICommunicator::MPICommunicator() :
     return;
 }
 
-
 MPICommunicator::MPICommunicator(MPICommunicator && other)
 {
     if ( this != &other)

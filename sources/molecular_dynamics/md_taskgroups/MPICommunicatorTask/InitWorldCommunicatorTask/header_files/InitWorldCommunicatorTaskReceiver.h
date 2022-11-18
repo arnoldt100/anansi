@@ -88,7 +88,8 @@ template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types... args)
 {
     ANANSI::MPICommunicatorFactory a_communicator_factory;
-    this->communicator_ =  a_communicator_factory.createWorldCommunicator();
+    std::shared_ptr<COMMUNICATOR::Communicator> tmp_comm = a_communicator_factory.createWorldCommunicator();
+    this->receiverModifyMyself(tmp_comm);
     return;
 }
 
