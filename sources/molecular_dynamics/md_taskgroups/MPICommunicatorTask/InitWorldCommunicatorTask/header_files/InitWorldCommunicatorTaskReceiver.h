@@ -62,6 +62,9 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         template<typename... Types>
         void receiverUndoAction(Types... args);
 
+        template<typename T>
+        void receiverModifyMyself(T & arg);
+
         // ====================  OPERATORS     =======================================
 
         InitWorldCommunicatorTaskReceiver& operator= ( const InitWorldCommunicatorTaskReceiver &other ); // assignment operator

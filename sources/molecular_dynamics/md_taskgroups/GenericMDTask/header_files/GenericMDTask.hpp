@@ -90,6 +90,13 @@ class GenericMDTask : public BaseClass
             this->taskConcreteTypeListIndex_ = index_t::value;
         }
 
+        template<typename... T>
+        void modifyReceiver(T &... args)
+        {
+            this->receiver_->modifyReceiver(args...);
+            return;
+        }
+
         void doConcreteTaskAction(const std::vector<std::string> & flags) override
         {
             this->receiver_->action();

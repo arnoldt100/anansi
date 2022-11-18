@@ -78,21 +78,32 @@ class ReceiverInterface
         void enable(Types &... args)
         {
             this->enable_(args...);
+            return;
         }
 
         void disable()
         {
             asDerived_().disableReceiver();
+            return;
         }
 
         void action()
         {
             asDerived_().receiverDoAction();
+            return;
         }
 
         void undoAction()
         {
             asDerived_().receiverUndoAction();
+            return;
+        }
+
+        template<typename... T>
+        void modifyReceiver(T &... args)
+        {
+            this->modifyReceiver_(args...);
+            return;
         }
 
         // ====================  OPERATORS     =======================================
@@ -152,6 +163,17 @@ class ReceiverInterface
             return;
         }
 
+        template<typename FirstArgType, typename... Types>
+        void modifyReceiver_(FirstArgType & firstArg, Types &... args)
+        {
+            asDerived_().receiverModifyMyself(firstArg);
+            this->modifyReceiver_(args...);
+        }
+
+        void modifyReceiver_()
+        {
+            return;
+        }
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class ReceiverInterface  -----

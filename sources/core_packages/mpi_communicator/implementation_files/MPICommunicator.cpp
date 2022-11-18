@@ -122,6 +122,13 @@ MPICommunicator::freeCommunicator_()
     return;
 }
 
+void
+MPICommunicator::resetName_(const std::string & name)
+{
+    this->_hostname = name;
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 
@@ -136,9 +143,24 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
         other._mpiCommunicator = MPI_COMM_NULL;
         other._hostname = std::string(MPICommunicator::HOSTNAME_NOT_DEFINED);
     }
+    else
+    {
+        // :TODO:11/18/2022 04:00:49 PM:: Write some error handling code.
+    }
     return *this;
 }
 
+MPICommunicator& MPICommunicator::operator=(Communicator && other) 
+{
+    if (this != &other )
+    {
+        if (auto* other1 = dynamic_cast<MPICommunicator*>(&other))
+        {
+            *this = std::move(*other1);
+        }
+    }
+    return *this;
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

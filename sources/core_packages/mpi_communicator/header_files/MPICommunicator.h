@@ -55,6 +55,8 @@ public:
 
     MPICommunicator& operator=(MPICommunicator && other);
 
+    MPICommunicator& operator=(Communicator && other) override;
+
 private:
     //===== ACCESSORS ======
     std::size_t
@@ -119,6 +121,9 @@ private:
     // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
     void 
     _createSubcommunicator(const std::string & tag) final override;
+
+    void
+    resetName_(const std::string & name) final override;
 
     //===== STATIC METHODS ======
     static void

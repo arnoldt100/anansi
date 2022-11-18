@@ -78,6 +78,7 @@ class GenericTaskInvokerUtilities
                     using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,alpha>;
                     std::shared_ptr<concrete_task_t> p_concrete = 
                         AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(abstract_task);
+                    p_concrete->modifyReceiver(receiver_args...);
                     std::cout << "Casted abstract task to concrete task at index " << alpha << "." << std::endl;
                 }
                 else

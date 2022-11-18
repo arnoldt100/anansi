@@ -206,6 +206,8 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // std::string. 
     // ---------------------------------------------------
 
+    MPICommunicatorFactory a_communicator_factory;
+
     using MY_LABEL_TYPE = std::string;
 
     std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
@@ -224,6 +226,8 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // 
     // ---------------------------------------------------
     auto mpi_init_world_commm_receiver = ANANSI::GenericReceiverFactory<>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
+
+    this->MpiWorldCommunicator_ = a_communicator_factory.createWorldCommunicator();
     mpi_init_world_commm_receiver->enable(this->MpiWorldCommunicator_);
 
     // ---------------------------------------------------
@@ -250,8 +254,8 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // Use the invoker to initialize the world communicator.
     // 
     // ---------------------------------------------------
-    const std::vector<std::string> command_labels = {"mpi_world_communicator"};
-    this->mdWorldCommunicatorInvk_->doTask(command_labels);
+    // const std::vector<std::string> command_labels = {"mpi_world_communicator"};
+    // this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
     // ---------------------------------------------------
     // The code below is just for testing modifying a task.
@@ -259,9 +263,11 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // ---------------------------------------------------
     
     // Create a new world communicator.
-    ANANSI::MPICommunicatorFactory a_communicator_factory;
     std::shared_ptr<COMMUNICATOR::Communicator> my_world_communicator(nullptr);
     my_world_communicator = a_communicator_factory.createWorldCommunicator();
+
+    const std::string new_host_name("NewHostName");
+    COMMUNICATOR::resetHostName(my_world_communicator,new_host_name);
 
     // Call invoker method to modify task.
     std::string my_label("mpi_world_communicator");
@@ -270,13 +276,11 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     return;
 }
 
-
 void 
 AnansiMolecularDynamics::disableWorldCommunicator()
 {
     const std::vector<std::string> command_labels = {"mpi_world_communicator"};
     this->mdWorldCommunicatorInvk_->undoTask(command_labels);
-
     return;
 }
 

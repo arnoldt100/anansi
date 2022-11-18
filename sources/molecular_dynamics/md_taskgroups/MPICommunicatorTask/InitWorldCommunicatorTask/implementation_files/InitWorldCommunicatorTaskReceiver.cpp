@@ -65,6 +65,15 @@ RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE 
 
 //============================= MUTATORS =====================================
 
+template<>
+void InitWorldCommunicatorTaskReceiver::receiverModifyMyself(std::shared_ptr<COMMUNICATOR::Communicator> & arg)
+{
+    // We need to modify the undelying resource
+    *(this->communicator_) = std::move(*arg);
+    
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= ( const InitWorldCommunicatorTaskReceiver &other )
