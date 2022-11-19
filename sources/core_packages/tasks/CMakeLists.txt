@@ -73,7 +73,7 @@
          header_files/AnansiTaskParameters.h
          header_files/AnansiTask.h
          header_files/AnansiTaskUtilities.hpp
-         header_files/LoggingTask.h
+         header_files/ConsoleLoggingTask.h
          header_files/InterProcessCommEnv.h
          header_files/CommunicatorTask.h
          header_files/ControlFile.h)
@@ -89,7 +89,7 @@
          implementation_files/AnansiTaskParameters.cpp
          implementation_files/AnansiTask.cpp
          implementation_files/AnansiTaskUtilities.cpp
-         implementation_files/LoggingTask.cpp
+         implementation_files/ConsoleLoggingTask.cpp
          implementation_files/InterProcessCommEnv.cpp
          implementation_files/CommunicatorTask.cpp
          implementation_files/ControlFile.cpp)
