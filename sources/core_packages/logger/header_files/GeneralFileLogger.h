@@ -12,27 +12,26 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "AnansiTask.h"
 
 namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  GeneralLogger
+//        Class:  GeneralFileLogger
 //  Description:  
 //  =====================================================================================
-class GeneralLogger
+class GeneralFileLogger
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        GeneralLogger (); // constructor
+        GeneralFileLogger (); // constructor
 
-        GeneralLogger (const GeneralLogger & other); // copy constructor
+        GeneralFileLogger (const GeneralFileLogger & other); // copy constructor
 
-        GeneralLogger (GeneralLogger && other); // copy-move constructor
+        GeneralFileLogger (GeneralFileLogger && other); // copy-move constructor
 
-        virtual ~GeneralLogger ()=0; // destructor
+        virtual ~GeneralFileLogger ()=0; // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -40,9 +39,9 @@ class GeneralLogger
 
         // ====================  OPERATORS     =======================================
 
-        GeneralLogger& operator= ( const GeneralLogger &other ); // assignment operator
+        GeneralFileLogger& operator= ( const GeneralFileLogger &other ); // assignment operator
 
-        GeneralLogger& operator= ( GeneralLogger && other ); // assignment-move operator
+        GeneralFileLogger& operator= ( GeneralFileLogger && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -54,7 +53,7 @@ class GeneralLogger
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class GeneralLogger  -----
+}; // -----  end of class GeneralFileLogger  -----
 
 
 }; // namespace ANANSI

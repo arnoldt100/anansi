@@ -20,14 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ConsoleLogger::ConsoleLogger() :
-    Logger()
+ConsoleLogger::ConsoleLogger()
 {
     return;
 }
 
-ConsoleLogger::ConsoleLogger( ConsoleLogger const & other) :
-   Logger(other) 
+ConsoleLogger::ConsoleLogger( ConsoleLogger const & other)
 {
     if (this != &other)
     {
@@ -36,8 +34,7 @@ ConsoleLogger::ConsoleLogger( ConsoleLogger const & other) :
     return;
 }
 
-ConsoleLogger::ConsoleLogger( ConsoleLogger && other) : 
-    Logger(std::move(other))
+ConsoleLogger::ConsoleLogger( ConsoleLogger && other)
 {
     if (this != &other)
     {
@@ -61,7 +58,6 @@ ConsoleLogger& ConsoleLogger::operator=( const ConsoleLogger &other )
 {
     if (this != &other)
     {
-        Logger::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -70,7 +66,6 @@ ConsoleLogger& ConsoleLogger::operator=( ConsoleLogger && other )
 {
     if (this != &other)
     {
-        Logger::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
@@ -94,11 +89,11 @@ ConsoleLogger& ConsoleLogger::operator=( ConsoleLogger && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void ConsoleLogger::logMessage_(const std::string message) const 
-{
-    BOOST_LOG_TRIVIAL(info) << message;
-    return;
-}
+// void ConsoleLogger::logMessage_(const std::string message) const 
+// {
+//     BOOST_LOG_TRIVIAL(info) << message;
+//     return;
+// }
 
 //============================= MUTATORS =====================================
 

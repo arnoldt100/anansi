@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "GeneralLogger.h"
+#include "GeneralFileLogger.h"
 
 namespace ANANSI {
 
@@ -20,12 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-GeneralLogger::GeneralLogger()
+GeneralFileLogger::GeneralFileLogger()
 {
     return;
 }
 
-GeneralLogger::GeneralLogger( GeneralLogger const & other)
+GeneralFileLogger::GeneralFileLogger( GeneralFileLogger const & other)
 {
     if (this != &other)
     {
@@ -34,16 +34,16 @@ GeneralLogger::GeneralLogger( GeneralLogger const & other)
     return;
 }
 
-GeneralLogger::GeneralLogger( GeneralLogger && other)
+GeneralFileLogger::GeneralFileLogger( GeneralFileLogger && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method GeneralLogger::GeneralLogger  -----
+}		// -----  end of method GeneralFileLogger::GeneralFileLogger  -----
 
-GeneralLogger::~GeneralLogger()
+GeneralFileLogger::~GeneralFileLogger()
 {
     return;
 }
@@ -54,7 +54,7 @@ GeneralLogger::~GeneralLogger()
 
 //============================= OPERATORS ====================================
 
-GeneralLogger& GeneralLogger::operator= ( const GeneralLogger &other )
+GeneralFileLogger& GeneralFileLogger::operator= ( const GeneralFileLogger &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ GeneralLogger& GeneralLogger::operator= ( const GeneralLogger &other )
     return *this;
 } // assignment operator
 
-GeneralLogger& GeneralLogger::operator= ( GeneralLogger && other )
+GeneralFileLogger& GeneralFileLogger::operator= ( GeneralFileLogger && other )
 {
     if (this != &other)
     {

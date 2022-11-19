@@ -14,7 +14,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Logger.h"
 
         namespace logging = boost::log;
         namespace sinks = boost::log::sinks;
@@ -30,7 +29,7 @@ namespace ANANSI
 //        Class:  ConsoleLogger
 //  Description:  
 //  =====================================================================================
-class ConsoleLogger : public ANANSI::Logger
+class ConsoleLogger
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -70,7 +69,7 @@ class ConsoleLogger : public ANANSI::Logger
     private:
 
         // ====================  METHODS       =======================================
-        void logMessage_(const std::string message) const override;
+        // void logMessage_(const std::string message) const override;
 
         // ====================  DATA MEMBERS  =======================================
 
