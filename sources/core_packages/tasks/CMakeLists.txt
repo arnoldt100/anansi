@@ -74,6 +74,7 @@
          header_files/AnansiTask.h
          header_files/AnansiTaskUtilities.hpp
          header_files/ConsoleLoggingTask.h
+         header_files/PrimaryFileLoggingTask.h
          header_files/InterProcessCommEnv.h
          header_files/CommunicatorTask.h
          header_files/ControlFile.h)
@@ -90,6 +91,7 @@
          implementation_files/AnansiTask.cpp
          implementation_files/AnansiTaskUtilities.cpp
          implementation_files/ConsoleLoggingTask.cpp
+         implementation_files/PrimaryFileLoggingTask.cpp
          implementation_files/InterProcessCommEnv.cpp
          implementation_files/CommunicatorTask.cpp
          implementation_files/ControlFile.cpp)
