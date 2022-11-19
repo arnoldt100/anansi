@@ -1,16 +1,16 @@
-# This CMakeLists.txt file creates the library lib__library__.a
+# This CMakeLists.txt file creates the library libwritetexttoconsoletask.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# initworldcommunicatortask_header_files or initworldcommunicatortask_implementation_files.
+# writetexttoconsoletask_header_files or writetexttoconsoletask_implementation_files.
 #
-# The target for the library is initworldcommunicatortask.
+# The target for the library is writetexttoconsoletask.
 #
-# The following properties are set for the target initworldcommunicatortask.
+# The following properties are set for the target writetexttoconsoletask.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #
-# initworldcommunicatortask_include     ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                         ${initworldcommunicatortask_header_files}           The list of headers files associated with this librarry.
+# writetexttoconsoletask_include        ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+# PUBLIC_HEADER                         ${writetexttoconsoletask_header_files}              The list of headers files associated with this librarry.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -23,7 +23,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "initworldcommunicatortask")
+    set(my_project_name "writetexttoconsoletask")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -35,8 +35,11 @@
     #-----------------------------------------------------
     # Define the property name for the include directory.
     # 
+    # We use the function "target_include_property_name" to define the property
+    # name.
     #-----------------------------------------------------
-    set(my_target_include_property_name "${target}_include" )
+    target_include_property_name("${target}")
+    set(my_target_include_property_name "${target}_include_property_name" )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -61,9 +64,9 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (initworldcommunicatortask_header_files
-         header_files/InitWorldCommunicatorTaskReceiver.h
-         header_files/InitWorldCommunicatorTaskTraits.h)
+    set (writetexttoconsoletask_header_files
+         header_files/WriteTextToConsoleTaskReceiver.h
+         header_files/WriteTextToConsoleTaskTraits.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -72,9 +75,9 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (initworldcommunicatortask_implementation_files
-         implementation_files/InitWorldCommunicatorTaskReceiver.cpp
-         implementation_files/InitWorldCommunicatorTaskTraits.cpp )
+    set (writetexttoconsoletask_implementation_files
+         implementation_files/WriteTextToConsoleTaskReceiver.cpp
+         implementation_files/WriteTextToConsoleTaskTraits.cpp )
 
     # -----------------------------------------------------
     # Set various variables for include directories.
@@ -106,7 +109,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${initworldcommunicatortask_header_files} ${initworldcommunicatortask_implementation_files} )
+    PRIVATE ${writetexttoconsoletask_header_files} ${writetexttoconsoletask_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -138,11 +141,11 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${initworldcommunicatortask_header_files}" )
+                      PUBLIC_HEADER "${writetexttoconsoletask_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${md_taskgroups_install_include_directory} )
+         ARCHIVE DESTINATION <where to install library> 
+         PUBLIC_HEADER DESTINATION <where to install headers> )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

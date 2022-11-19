@@ -1,24 +1,10 @@
 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-    # ----------------------------------------------------
-    # Verify the prerequisites for configuring package
-    # md_taskgroups are satisfied.
-    # 
-    # ----------------------------------------------------
-    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake")
-    verify_md_taskgroups_build_prerequisites_are_met()
-
-    # Configure the tasks.
-    add_subdirectory(GenericMDTask)
-    add_subdirectory(MPICommunicatorTask)
-    add_subdirectory(ControlFileMPIXML)
-    add_subdirectory(AnansiMDTaskFactory)
-    add_subdirectory(TextConsoleLoggingTasks)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -26,3 +12,9 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+
+#-----------------------------------------------------
+# Add the subdirectory for creating the unit tests.  -
+#                                                    -
+#-----------------------------------------------------
+add_subdirectory(WriteTextToConsole)
