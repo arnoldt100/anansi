@@ -30,36 +30,13 @@ class __classname__
     public:
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ ()   // constructor
-        {
-        	// TODO Auto-generated constructor stub
-            return;
-        }
+        __classname__ ();   // constructor
 
-        __classname__ (const __classname__ & other)   // copy constructor
-        {
-        	// TODO Auto-generated constructor stub
-            if (this != &other)
-            {
-                
-            }
-            return;
-        }
+        __classname__ (const __classname__ & other);   // copy constructor
 
-        __classname__ (__classname__ && other)   // copy-move constructor
-        {
-            if (this != &other)
-            {
-        
-            }
-            return;
-        }
+        __classname__ (__classname__ && other);   // copy-move constructor
 
-        virtual ~__classname__ ()  // destructor
-        {
-        	// TODO Auto-generated destructor stub
-            return;
-        }
+        virtual ~__classname__ ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -67,23 +44,9 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ) // assignment operator
-        {
-            if (this != &other)
-            {
-        
-            }
-            return *this;
-        } // assignment operator
+        __classname__& operator= ( const __classname__ &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ) // assignment-move operator
-        {
-            if (this != &other)
-            {
-        
-            }
-            return *this;
-        } // assignment operator
+        __classname__& operator= ( __classname__ && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
