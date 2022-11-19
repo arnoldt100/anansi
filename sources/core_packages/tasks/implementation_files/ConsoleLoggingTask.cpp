@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "LoggingTask.h"
+#include "ConsoleLoggingTask.h"
 
 namespace ANANSI {
 
@@ -20,13 +20,13 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-LoggingTask::LoggingTask() :
+ConsoleLoggingTask::ConsoleLoggingTask() :
     AnansiTask()
 {
     return;
 }
 
-LoggingTask::LoggingTask( LoggingTask const & other) :
+ConsoleLoggingTask::ConsoleLoggingTask( ConsoleLoggingTask const & other) :
     AnansiTask(other)
 {
     if (this != &other)
@@ -36,7 +36,7 @@ LoggingTask::LoggingTask( LoggingTask const & other) :
     return;
 }
 
-LoggingTask::LoggingTask( LoggingTask && other) :
+ConsoleLoggingTask::ConsoleLoggingTask( ConsoleLoggingTask && other) :
     AnansiTask(std::move(other))
 {
     if (this != &other)
@@ -44,10 +44,10 @@ LoggingTask::LoggingTask( LoggingTask && other) :
         
     }
     return;
-}		// -----  end of method LoggingTask::LoggingTask  -----
+}		// -----  end of method ConsoleLoggingTask::ConsoleLoggingTask  -----
 
 
-LoggingTask::~LoggingTask()
+ConsoleLoggingTask::~ConsoleLoggingTask()
 {
     return;
 }
@@ -58,7 +58,7 @@ LoggingTask::~LoggingTask()
 
 //============================= OPERATORS ====================================
 
-LoggingTask& LoggingTask::operator= ( const LoggingTask &other )
+ConsoleLoggingTask& ConsoleLoggingTask::operator= ( const ConsoleLoggingTask &other )
 {
     if (this != &other)
     {
@@ -67,7 +67,7 @@ LoggingTask& LoggingTask::operator= ( const LoggingTask &other )
     return *this;
 } // assignment operator
 
-LoggingTask& LoggingTask::operator= ( LoggingTask && other )
+ConsoleLoggingTask& ConsoleLoggingTask::operator= ( ConsoleLoggingTask && other )
 {
     if (this != &other)
     {

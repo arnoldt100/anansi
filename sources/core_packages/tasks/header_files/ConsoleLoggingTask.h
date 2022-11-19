@@ -1,6 +1,6 @@
 #ifndef ANANSI_LoggingTask_INC
 #define ANANSI_LoggingTask_INC
-//! @file LoggingTask.h
+//! @file ConsoleLoggingTask.h
 //!
 //! The base class for the logging tasks. 
 
@@ -20,18 +20,18 @@
 namespace ANANSI
 {
 
-class LoggingTask : public AnansiTask
+class ConsoleLoggingTask : public AnansiTask
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        LoggingTask ();   // constructor
+        ConsoleLoggingTask ();   // constructor
 
-        LoggingTask (const LoggingTask & other);   // copy constructor
+        ConsoleLoggingTask (const ConsoleLoggingTask & other);   // copy constructor
 
-        LoggingTask (LoggingTask && other);   // copy-move constructor
+        ConsoleLoggingTask (ConsoleLoggingTask && other);   // copy-move constructor
 
-        virtual ~LoggingTask ()=0;  // destructor
+        virtual ~ConsoleLoggingTask ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -39,9 +39,9 @@ class LoggingTask : public AnansiTask
 
         // ====================  OPERATORS     =======================================
 
-        LoggingTask& operator= ( const LoggingTask &other ); // assignment operator
+        ConsoleLoggingTask& operator= ( const ConsoleLoggingTask &other ); // assignment operator
 
-        LoggingTask& operator= ( LoggingTask && other ); // assignment-move operator
+        ConsoleLoggingTask& operator= ( ConsoleLoggingTask && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -53,7 +53,7 @@ class LoggingTask : public AnansiTask
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class LoggingTask  -----
+}; // -----  end of class ConsoleLoggingTask  -----
 
 
 }; // namespace ANANSI
