@@ -67,7 +67,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (logger_header_files
-         header_files/Logger.h
+         header_files/GeneralFileLogger.h
          header_files/ConsoleLogger.h )
 
     #-----------------------------------------------------
@@ -78,7 +78,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (logger_implementation_files
-         implementation_files/Logger.cpp
+         implementation_files/GeneralFileLogger.cpp
          implementation_files/ConsoleLogger.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

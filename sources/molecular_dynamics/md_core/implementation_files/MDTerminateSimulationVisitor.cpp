@@ -44,10 +44,21 @@ MDTerminateSimulationVisitor::~MDTerminateSimulationVisitor()
 //============================= ACCESSORS ====================================
 void MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
-    std::cout << "MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
+    // ---------------------------------------------------
+    // The make logger task is disabled.
+    // 
+    // ---------------------------------------------------
+    a_sim.disableMainLoggerTask();
 
-    a_sim.disableConsoleLogger();
+    // ---------------------------------------------------
+    // The world communicator task object is now disabled.
+    // ---------------------------------------------------
     a_sim.disableWorldCommunicator();
+    
+    // ---------------------------------------------------
+    // The communication environment must be disabled last for many other tasks
+    // are dependent on the communication environment.  
+    // ---------------------------------------------------
     a_sim.disableCommunicationEnvironment();
 
     return;

@@ -263,13 +263,13 @@ AnansiMolecularDynamics::disableWorldCommunicator()
     return;
 }
 
-void AnansiMolecularDynamics::enableConsoleLogger()
+void AnansiMolecularDynamics::enableMainLoggerTask()
 {
     return;
 }
 
 void
-AnansiMolecularDynamics::disableConsoleLogger()
+AnansiMolecularDynamics::disableMainLoggerTask()
 {
     return;
 }

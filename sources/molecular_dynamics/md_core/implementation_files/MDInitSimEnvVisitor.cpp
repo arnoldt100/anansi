@@ -45,13 +45,22 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     std::cout << "Visit(AnansiMolecularDynamics&)" << std::endl;
 
-    // Initializing the communication environment.
+    // ---------------------------------------------------
+    // The comunication environment must be first enabled for many other tasks
+    // are dependent on the communication environment.  
+    // ---------------------------------------------------
     a_sim.enableCommunicationEnvironment();
+    
+    // ---------------------------------------------------
+    // The world communicator task object is now enabled.
+    // ---------------------------------------------------
     a_sim.enableWorldCommunicator();
 
-    // Enable the console logger.
-    a_sim.enableConsoleLogger();
-
+    // ---------------------------------------------------
+    // The main logger task object is now enabled.
+    // 
+    // ---------------------------------------------------
+    a_sim.enableMainLoggerTask();
 
     return;
 }
