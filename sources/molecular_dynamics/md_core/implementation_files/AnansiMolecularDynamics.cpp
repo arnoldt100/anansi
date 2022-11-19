@@ -36,7 +36,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     commandLineArguments_(),
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
-    consoleLogger_(nullptr),
     mdCommEnvInvk_(nullptr),
     mdWorldCommunicatorInvk_(nullptr),
     mdState_(nullptr),
@@ -71,7 +70,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     commandLineArguments_(COMMANDLINE::CommandLineArguments(argc,argv)),
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
-    consoleLogger_(nullptr),
     mdCommEnvInvk_(nullptr),
     mdWorldCommunicatorInvk_(nullptr),
     mdState_(nullptr),
@@ -104,9 +102,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdAnansiInitWorldCommunicatorTaskFactory_ = std::make_shared<MDAnansiTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                                            InitWorldCommunicatorTaskTraits::concrete_products>
                                                                       >();
-
-    // :TODO:10/11/2022 01:36:08 PM:: Refactor to use a Invoker.
-    //this->consoleLogger_ = this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<LoggingTask>();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
