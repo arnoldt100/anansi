@@ -101,11 +101,6 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-template<>
-void WriteTextToConsoleTaskReceiver::enableReceiver()
-{
-    return;
-}
 
 //============================= OPERATORS ====================================
 
