@@ -50,6 +50,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
 
         // ====================  MUTATORS      =======================================
+        
         template<typename T>
         void enableReceiver(T & arg);
 

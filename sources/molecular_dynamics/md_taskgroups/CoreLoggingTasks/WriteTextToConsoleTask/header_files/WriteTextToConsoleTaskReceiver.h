@@ -1,6 +1,7 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
-//! @file __filename__
+#ifndef  ANANSI_WriteTextToConsoleTaskReceiver_INC
+#define  ANANSI_WriteTextToConsoleTaskReceiver_INC
+
+//! @file WriteTextToConsoleTaskReceiver.h
 //!
 //! Brief description
 //!
@@ -9,7 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,45 +19,56 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ReceiverInterface.hpp"
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  __classname__
-//  Description:  
-//  =====================================================================================
-class __classname__ : public __derivedclass__
+class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>
 {
     public:
+        
+        // ====================  STATIC       =======================================
+
+        inline static const RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            "write_text_to_console";
+
         // ====================  LIFECYCLE     =======================================
 
-        //--------------------------------------------------------------------------------------
-        //       Class:  __classname__
-        //      Method:  __classname__ :: __classname__
-        // Description:  
-        // 
-        //  Parameters: 
-        //
-        //      Return:
-        //--------------------------------------------------------------------------------------
-        __classname__ ();   // constructor
+        WriteTextToConsoleTaskReceiver ();   // constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        WriteTextToConsoleTaskReceiver (const WriteTextToConsoleTaskReceiver & other);   // copy constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        WriteTextToConsoleTaskReceiver (WriteTextToConsoleTaskReceiver && other);   // copy-move constructor
 
-        virtual ~__classname__ ();  // destructor
+        ~WriteTextToConsoleTaskReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
+        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
+
         // ====================  MUTATORS      =======================================
+        
+        template<typename T>
+        void enableReceiver(T & arg);
+
+        template<typename... Types>
+        void disableReceiver(Types... args);
+
+        template<typename... Types>
+        void receiverDoAction(Types... args);
+
+        template<typename... Types>
+        void receiverUndoAction(Types... args);
+
+        template<typename T>
+        void receiverModifyMyself(T & arg);
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        WriteTextToConsoleTaskReceiver& operator= ( const WriteTextToConsoleTaskReceiver &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        WriteTextToConsoleTaskReceiver& operator= ( WriteTextToConsoleTaskReceiver && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -68,9 +80,26 @@ class __classname__ : public __derivedclass__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
+template<typename... Types>
+void WriteTextToConsoleTaskReceiver::receiverDoAction(Types... args)
+{
+    return;
+}
 
-}; // namespace __NAMESPACE__
+template<typename... Types>
+void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types... args)
+{
+    return;
+}
 
-#endif // __filepreprocessordefine__
+template<typename... Types>
+void WriteTextToConsoleTaskReceiver::disableReceiver(Types... args)
+{
+    return;
+}
+
+}; // namespace ANANSI
+
+#endif   // ----- #ifndef ANANSI_WriteTextToConsoleTaskReceiver_INC  ----- 

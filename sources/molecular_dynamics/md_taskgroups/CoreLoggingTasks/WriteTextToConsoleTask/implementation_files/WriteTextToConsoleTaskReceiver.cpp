@@ -10,9 +10,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "__filename__.h"
+#include "WriteTextToConsoleTaskReceiver.h"
 
-namespace __NAMESPACE__ {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -20,17 +20,15 @@ namespace __NAMESPACE__ {
 
 //============================= LIFECYCLE ====================================
 
-__classname__::__classname__() :
-    __derivedclass__()
+WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
+    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
-__classname__::__classname__( __classname__ const & other) :
-   __derivedclass__(other) 
+WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver const & other) :
+    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
         
@@ -38,45 +36,46 @@ __classname__::__classname__( __classname__ const & other) :
     return;
 }
 
-__classname__::__classname__( __classname__ && other) : 
-    __derivedclass__(std::move(other))
+WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
+    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other))
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method __classname__::__classname__  -----
+}		// -----  end of method WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver  -----
 
 
-__classname__::~__classname__()
+WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 
 //============================= ACCESSORS ====================================
 
+RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::receiverGetTaskLabel() const
+{
+    return  WriteTextToConsoleTaskReceiver::TASKLABEL;
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-__classname__& __classname__::operator=( const __classname__ &other )
+WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( const WriteTextToConsoleTaskReceiver &other )
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
-        __derivedclass__::operator=(other);
+        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(other);
     }
     return *this;
 } // assignment operator
 
-__classname__& __classname__::operator=( __classname__ && other )
+WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( WriteTextToConsoleTaskReceiver && other )
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
-        __derivedclass__::operator=(std::move(other));
+        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
@@ -102,8 +101,13 @@ __classname__& __classname__::operator=( __classname__ && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+template<>
+void WriteTextToConsoleTaskReceiver::enableReceiver()
+{
+    return;
+}
 
 //============================= OPERATORS ====================================
 
 
-} // namespace __NAMESPACE__
+} // namespace ANANSI
