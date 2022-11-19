@@ -17,5 +17,5 @@
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(CoreLoggingTasksTraits)
-# add_subdirectory(WriteTextToConsole)
+add_subdirectory(WriteTextToConsole)
+# add_subdirectory(CoreLoggingTasksTraits)
