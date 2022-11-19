@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Logger.h"
+#include "GeneralLogger.h"
 
 namespace ANANSI {
 
@@ -20,12 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-Logger::Logger()
+GeneralLogger::GeneralLogger()
 {
     return;
 }
 
-Logger::Logger( Logger const & other)
+GeneralLogger::GeneralLogger( GeneralLogger const & other)
 {
     if (this != &other)
     {
@@ -34,32 +34,27 @@ Logger::Logger( Logger const & other)
     return;
 }
 
-Logger::Logger( Logger && other)
+GeneralLogger::GeneralLogger( GeneralLogger && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method Logger::Logger  -----
+}		// -----  end of method GeneralLogger::GeneralLogger  -----
 
-
-Logger::~Logger()
+GeneralLogger::~GeneralLogger()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-void Logger::logMessage(const std::string message) const
-{
-    this->logMessage_(message);
-}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-Logger& Logger::operator= ( const Logger &other )
+GeneralLogger& GeneralLogger::operator= ( const GeneralLogger &other )
 {
     if (this != &other)
     {
@@ -68,7 +63,7 @@ Logger& Logger::operator= ( const Logger &other )
     return *this;
 } // assignment operator
 
-Logger& Logger::operator= ( Logger && other )
+GeneralLogger& GeneralLogger::operator= ( GeneralLogger && other )
 {
     if (this != &other)
     {

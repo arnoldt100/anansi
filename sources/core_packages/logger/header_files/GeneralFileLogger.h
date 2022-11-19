@@ -4,7 +4,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,37 +12,37 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTask.h"
 
 namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  Logger
+//        Class:  GeneralLogger
 //  Description:  
 //  =====================================================================================
-class Logger
+class GeneralLogger
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        Logger (); // constructor
+        GeneralLogger (); // constructor
 
-        Logger (const Logger & other); // copy constructor
+        GeneralLogger (const GeneralLogger & other); // copy constructor
 
-        Logger (Logger && other); // copy-move constructor
+        GeneralLogger (GeneralLogger && other); // copy-move constructor
 
-        virtual ~Logger ()=0; // destructor
+        virtual ~GeneralLogger ()=0; // destructor
 
         // ====================  ACCESSORS     =======================================
-        void logMessage(const std::string message) const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        Logger& operator= ( const Logger &other ); // assignment operator
+        GeneralLogger& operator= ( const GeneralLogger &other ); // assignment operator
 
-        Logger& operator= ( Logger && other ); // assignment-move operator
+        GeneralLogger& operator= ( GeneralLogger && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -52,11 +51,10 @@ class Logger
 
     private:
         // ====================  METHODS       =======================================
-        virtual void logMessage_(const std::string message) const =0;
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class Logger  -----
+}; // -----  end of class GeneralLogger  -----
 
 
 }; // namespace ANANSI
