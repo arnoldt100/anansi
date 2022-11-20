@@ -136,6 +136,8 @@ class AnansiMolecularDynamics final : public Simulation
         // To be depracated.
         void setGlobalISEStatus_() final override;
 
+        void enableConsoleLoggingTask_();
+
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments commandLineArguments_;
         ANANSI::SimulationParameters simulationParameters_;

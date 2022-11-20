@@ -272,6 +272,8 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
 void AnansiMolecularDynamics::enableCoreLoggingTasks()
 {
+    this->enableConsoleLoggingTask_();
+
     return;
 }
 
@@ -468,6 +470,12 @@ void AnansiMolecularDynamics::terminateSimulationEnvironment_()
 
     return;
 }      // -----  end of method AnansiMolecularDynamics::terminateSimulationEnvironment_  -----
+
+
+void AnansiMolecularDynamics::enableConsoleLoggingTask_()
+{
+    return;
+}
 
 void 
 AnansiMolecularDynamics::setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
