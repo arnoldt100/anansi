@@ -137,6 +137,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       simulation_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD "${simulation_cxx_standard}"
                       PUBLIC_HEADER "${simulation_header_files}" )
 
 install( TARGETS ${target}

@@ -133,6 +133,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD "${md_taskgroups_cxx_standard}"
                       PUBLIC_HEADER "${genericmdtask_header_files}" )
 
 install( TARGETS ${target}

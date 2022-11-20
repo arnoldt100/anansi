@@ -144,6 +144,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       mdanansitaskfactory_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD "${md_taskgroups_cxx_standard}"
                       PUBLIC_HEADER "${mdanansitaskfactory_header_files}" )
 
 install( TARGETS ${target}

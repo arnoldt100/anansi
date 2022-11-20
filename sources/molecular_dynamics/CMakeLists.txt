@@ -43,7 +43,6 @@ add_subdirectory(md_taskgroups)
 package_config_end_delimiter("md_taskgroups" "${molecular_dynamics_logfilepath}")
 
 
-
 # ----------------------------------------------------
 # This section configures the md_core package.
 # 
@@ -63,7 +62,6 @@ add_subdirectory(md_core)
 
 package_config_end_delimiter("md_core" "${molecular_dynamics_logfilepath}")
 
-
 # ----------------------------------------------------
 # This section configures the md_main package.
 # 
@@ -80,4 +78,5 @@ enable_building_md_main_package("${molecular_dynamics_install_lib_directory}"
 add_subdirectory(md_main)
 
 package_config_end_delimiter("md_main" "${molecular_dynamics_logfilepath}")
+
 
