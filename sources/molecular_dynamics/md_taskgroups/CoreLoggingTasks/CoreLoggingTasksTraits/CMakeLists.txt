@@ -1,16 +1,16 @@
-# This CMakeLists.txt file creates the library libcoreloggingtasktraits.a
+# This CMakeLists.txt file creates the library libcoreloggingtaskstraits.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# coreloggingtasktraits_header_files or coreloggingtasktraits_implementation_files.
+# coreloggingtaskstraits_header_files or coreloggingtaskstraits_implementation_files.
 #
-# The target for the library is coreloggingtasktraits.
+# The target for the library is coreloggingtaskstraits.
 #
-# The following properties are set for the target coreloggingtasktraits.
+# The following properties are set for the target coreloggingtaskstraits.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #
-# coreloggingtasktraits_include        ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                         ${coreloggingtasktraits_header_files}              The list of headers files associated with this librarry.
+# coreloggingtaskstraits_include        ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+# PUBLIC_HEADER                         ${coreloggingtaskstraits_header_files}              The list of headers files associated with this librarry.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -23,7 +23,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "coreloggingtasktraits")
+    set(my_project_name "coreloggingtaskstraits")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -64,8 +64,8 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (coreloggingtasktraits_header_files
-         header_files/CoreLoggingTaskTraits.h)
+    set (coreloggingtaskstraits_header_files
+         header_files/CoreLoggingTasksTraits.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -74,8 +74,8 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (coreloggingtasktraits_implementation_files
-         implementation_files/CoreLoggingTaskTraits.cpp )
+    set (coreloggingtaskstraits_implementation_files
+         implementation_files/CoreLoggingTasksTraits.cpp )
 
     # -----------------------------------------------------
     # Set various variables for include directories.
@@ -106,7 +106,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${coreloggingtasktraits_header_files} ${coreloggingtasktraits_implementation_files} )
+    PRIVATE ${coreloggingtaskstraits_header_files} ${coreloggingtaskstraits_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -139,7 +139,7 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      PUBLIC_HEADER "${coreloggingtasktraits_header_files}" )
+                      PUBLIC_HEADER "${coreloggingtaskstraits_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
