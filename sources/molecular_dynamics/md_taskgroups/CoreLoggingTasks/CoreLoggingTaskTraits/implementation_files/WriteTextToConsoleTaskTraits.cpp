@@ -1,4 +1,3 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -10,9 +9,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "__filename__.h"
+#include "WriteTextToConsoleTaskTraits.h"
 
-namespace __NAMESPACE__ {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -20,15 +19,13 @@ namespace __NAMESPACE__ {
 
 //============================= LIFECYCLE ====================================
 
-__classname__::__classname__()
+WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
-__classname__::__classname__( __classname__ const & other)
+WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits( WriteTextToConsoleTaskTraits const & other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
         
@@ -36,20 +33,18 @@ __classname__::__classname__( __classname__ const & other)
     return;
 }
 
-__classname__::__classname__( __classname__ && other)
+WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits( WriteTextToConsoleTaskTraits && other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method __classname__::__classname__  -----
+}		// -----  end of method WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits  -----
 
 
-__classname__::~__classname__()
+WriteTextToConsoleTaskTraits::~WriteTextToConsoleTaskTraits()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 
@@ -59,7 +54,7 @@ __classname__::~__classname__()
 
 //============================= OPERATORS ====================================
 
-__classname__& __classname__::operator= ( const __classname__ &other )
+WriteTextToConsoleTaskTraits& WriteTextToConsoleTaskTraits::operator= ( const WriteTextToConsoleTaskTraits &other )
 {
     if (this != &other)
     {
@@ -68,7 +63,7 @@ __classname__& __classname__::operator= ( const __classname__ &other )
     return *this;
 } // assignment operator
 
-__classname__& __classname__::operator= ( __classname__ && other )
+WriteTextToConsoleTaskTraits& WriteTextToConsoleTaskTraits::operator= ( WriteTextToConsoleTaskTraits && other )
 {
     if (this != &other)
     {
@@ -102,4 +97,4 @@ __classname__& __classname__::operator= ( __classname__ && other )
 //============================= OPERATORS ====================================
 
 
-} // namespace __NAMESPACE__
+} // namespace ANANSI

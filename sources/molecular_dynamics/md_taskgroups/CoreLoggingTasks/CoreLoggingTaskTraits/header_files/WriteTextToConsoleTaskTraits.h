@@ -1,6 +1,6 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
-//! @file __filename__
+#ifndef ANANSI_WriteTextToConsoleTaskTraits_INC
+#define ANANSI_WriteTextToConsoleTaskTraits_INC
+//! @file WriteTextToConsoleTaskTraits.h
 //!
 //! Brief description
 //!
@@ -17,26 +17,28 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
+#include "WriteTextToConsoleTaskReceiver.h"
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  __classname__
+//        Class:  WriteTextToConsoleTaskTraits
 //  Description:  
 //  =====================================================================================
-class __classname__
+class WriteTextToConsoleTaskTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ ();   // constructor
+        WriteTextToConsoleTaskTraits ();   // constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        WriteTextToConsoleTaskTraits (const WriteTextToConsoleTaskTraits & other);   // copy constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        WriteTextToConsoleTaskTraits (WriteTextToConsoleTaskTraits && other);   // copy-move constructor
 
-        virtual ~__classname__ ();  // destructor
+        ~WriteTextToConsoleTaskTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +46,9 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        WriteTextToConsoleTaskTraits& operator= ( const WriteTextToConsoleTaskTraits &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        WriteTextToConsoleTaskTraits& operator= ( WriteTextToConsoleTaskTraits && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -58,9 +60,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class WriteTextToConsoleTaskTraits  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif // ANANSI_WriteTextToConsoleTaskTraits_INC
