@@ -136,6 +136,7 @@ class AnansiMolecularDynamics final : public Simulation
         // To be depracated.
         void setGlobalISEStatus_() final override;
 
+        template<typename T>
         void enableConsoleLoggingTask_();
 
         /* ====================  DATA MEMBERS  ======================================= */

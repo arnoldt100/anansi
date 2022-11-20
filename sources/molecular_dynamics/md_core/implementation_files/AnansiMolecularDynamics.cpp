@@ -24,6 +24,16 @@
 
 namespace ANANSI {
 
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PRIVATE //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//============================= ACCESSORS ====================================
+template<>
+void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string>()
+{
+    return;
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -270,13 +280,6 @@ AnansiMolecularDynamics::disableWorldCommunicator()
     return;
 }
 
-void AnansiMolecularDynamics::enableCoreLoggingTasks()
-{
-    this->enableConsoleLoggingTask_();
-
-    return;
-}
-
 void
 AnansiMolecularDynamics::disableMainLoggerTask()
 {
@@ -323,6 +326,36 @@ void AnansiMolecularDynamics::readInitialConfiguration()
     std::cout << "Reading initial configuration" << std::endl;
 }
 
+void AnansiMolecularDynamics::enableCoreLoggingTasks()
+{
+    // ---------------------------------------------------
+    // Create the invoker for the task CoreLoggingTasksTraits 
+    // 
+    // All receivers for this invoker will have labels that are of type
+    // std::string. 
+    // ---------------------------------------------------
+    using MY_LABEL_TYPE = std::string;
+
+    std::shared_ptr<GenericTaskInvokerFactory<CoreLoggingTasksTraits::abstract_products,
+                                              CoreLoggingTasksTraits::concrete_products,
+                                              MY_LABEL_TYPE>
+                   > mdAnansiCoreLoggingTaskFactory = 
+        std::make_shared<GenericTaskInvokerFactory<CoreLoggingTasksTraits::abstract_products,
+                                                   CoreLoggingTasksTraits::concrete_products,
+                                                   MY_LABEL_TYPE>
+                        >();
+
+     this->mdCoreLoggingInvk_ = mdAnansiCoreLoggingTaskFactory->create_shared_ptr();
+
+
+    // ---------------------------------------------------
+    // Enable the Console logger.
+    // 
+    // ---------------------------------------------------
+    this->enableConsoleLoggingTask_<MY_LABEL_TYPE>();
+
+    return;
+}
 
 //============================= OPERATORS ====================================
 
@@ -470,12 +503,6 @@ void AnansiMolecularDynamics::terminateSimulationEnvironment_()
 
     return;
 }      // -----  end of method AnansiMolecularDynamics::terminateSimulationEnvironment_  -----
-
-
-void AnansiMolecularDynamics::enableConsoleLoggingTask_()
-{
-    return;
-}
 
 void 
 AnansiMolecularDynamics::setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
