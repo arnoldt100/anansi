@@ -24,6 +24,8 @@
 #include "InitMPIEnvTaskTraits.h"
 #include "InitWorldCommunicatorTaskReceiver.h"
 #include "InitWorldCommunicatorTaskTraits.h"
+#include "CoreLoggingTasksTraits.h"
+#include "WriteTextToConsoleTaskReceiver.h"
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
@@ -67,7 +69,7 @@ class AnansiMolecularDynamics final : public Simulation
         void enableWorldCommunicator();
         void disableWorldCommunicator();
 
-        void enableMainLoggerTask();
+        void enableCoreLoggingTasks();
         void disableMainLoggerTask();
 
         void saveCommandLineOptionParameters();
@@ -149,6 +151,10 @@ class AnansiMolecularDynamics final : public Simulation
 
                        > mdWorldCommunicatorInvk_;
 
+        std::shared_ptr<ANANSI::GenericTaskInvoker<CoreLoggingTasksTraits::abstract_products,
+                                                   CoreLoggingTasksTraits::concrete_products>
+                       > mdCoreLoggingInvk_;
+
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;
         std::shared_ptr<ANANSI::SimulationState> mdNullSimulationState_;
@@ -167,6 +173,10 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<MDAnansiTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                             InitWorldCommunicatorTaskTraits::concrete_products>
                        > mdAnansiInitWorldCommunicatorTaskFactory_;
+
+        std::shared_ptr<MDAnansiTaskFactory<CoreLoggingTasksTraits::abstract_products,
+                                            CoreLoggingTasksTraits::concrete_products>
+                       > mdAnansiCoreLoggingTaskFactory_;
 
         // :TODO:09/27/2022 02:38:21 PM:: To be deprecated.
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;

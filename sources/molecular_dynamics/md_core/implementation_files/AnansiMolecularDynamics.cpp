@@ -38,6 +38,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     MpiWorldCommunicator_(nullptr),
     mdCommEnvInvk_(nullptr),
     mdWorldCommunicatorInvk_(nullptr),
+    mdCoreLoggingInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -47,6 +48,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdTerminateSimulation_(nullptr),
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
+    mdAnansiCoreLoggingTaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -72,6 +74,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     MpiWorldCommunicator_(nullptr),
     mdCommEnvInvk_(nullptr),
     mdWorldCommunicatorInvk_(nullptr),
+    mdCoreLoggingInvk_(nullptr),
     mdState_(nullptr),
     mdNullSimulationState_(nullptr),
     mdInitSimEnv_(nullptr),
@@ -81,6 +84,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdTerminateSimulation_(nullptr),
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
+    mdAnansiCoreLoggingTaskFactory_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -102,6 +106,9 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdAnansiInitWorldCommunicatorTaskFactory_ = std::make_shared<MDAnansiTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                                            InitWorldCommunicatorTaskTraits::concrete_products>
                                                                       >();
+    this->mdAnansiCoreLoggingTaskFactory_ = std::make_shared<MDAnansiTaskFactory<CoreLoggingTasksTraits::abstract_products,
+                                                                                 CoreLoggingTasksTraits::concrete_products>
+                                                            >();
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -263,7 +270,7 @@ AnansiMolecularDynamics::disableWorldCommunicator()
     return;
 }
 
-void AnansiMolecularDynamics::enableMainLoggerTask()
+void AnansiMolecularDynamics::enableCoreLoggingTasks()
 {
     return;
 }

@@ -58,6 +58,8 @@
     get_target_property(my_mdanansitaskfactory_include mdanansitaskfactory mdanansitaskfactory_include )
     get_target_property(my_initmpienvtask_include initmpienvtask initmpienvtask_include )
     get_target_property(my_initworldcommunicatortask_include initworldcommunicatortask initworldcommunicatortask_include)
+    get_target_property(my_writetexttoconsoletask_include writetexttoconsoletask writetexttoconsoletask_include )
+    get_target_property(my_coreloggingtaskstraits_include coreloggingtaskstraits coreloggingtaskstraits_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
     get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_receiver_include receiver receiver_include )
@@ -167,7 +169,9 @@ target_include_directories( "${md_core_target}"
                             PRIVATE "${my_generic_abstract_factory_include}"
                             PRIVATE "${my_foreach_loop_include}" 
                             PRIVATE "${my_mdanansitaskfactory_include}"
-                            PRIVATE "{my_receiver_include}" )
+                            PRIVATE "${my_receiver_include}"
+                            PRIVATE "${my_coreloggingtaskstraits_include}"
+                            PRIVATE "${my_writetexttoconsoletask_include}" )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -192,6 +196,8 @@ target_link_libraries("${md_core_target}"
                       PUBLIC generic_foreach_loop
                       PUBLIC mdanansitaskfactory
                       PUBLIC receiver
+                      PUBLIC writetexttoconsoletask
+                      PUBLIC coreloggingtaskstraits
                       PUBLIC "${Boost_LIBRARIES}" )
 
 #-----------------------------------------------------

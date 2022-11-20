@@ -18,15 +18,13 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
+#include "ConsoleLoggingTask.h"
+#include "GenericMDTask.hpp"
 #include "WriteTextToConsoleTaskReceiver.h"
 
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  CoreLoggingTasksTraits
-//  Description:  
-//  =====================================================================================
 class CoreLoggingTasksTraits
 {
     public:
@@ -49,7 +47,16 @@ class CoreLoggingTasksTraits
         CoreLoggingTasksTraits& operator= ( const CoreLoggingTasksTraits &other ); // assignment operator
 
         CoreLoggingTasksTraits& operator= ( CoreLoggingTasksTraits && other ); // assignment-move operator
+        
+        // ====================  ALIASES       =======================================
 
+        using abstract_products = MPL::mpl_typelist<
+                                                        ConsoleLoggingTask
+                                                   >;
+
+        using concrete_products = MPL::mpl_typelist<
+                                                        GenericMDTask<ConsoleLoggingTask,WriteTextToConsoleTaskReceiver>
+                                                   >;
     protected:
         // ====================  METHODS       =======================================
 

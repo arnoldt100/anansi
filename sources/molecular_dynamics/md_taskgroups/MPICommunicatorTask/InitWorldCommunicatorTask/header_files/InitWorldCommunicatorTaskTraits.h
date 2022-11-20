@@ -10,10 +10,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include "MPLAliases.hpp"
-#include "CommunicatorTask.h"
-#include "GenericMDTask.hpp"
-#include "DefaultFunctorImpl.h"
 
 
 //--------------------------------------------------------//
@@ -23,7 +19,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitWorldCommunicatorTaskTraits.h"
+#include "MPLAliases.hpp"
+#include "CommunicatorTask.h"
+#include "GenericMDTask.hpp"
 #include "InitWorldCommunicatorTaskReceiver.h"
 
 namespace ANANSI
@@ -52,6 +50,8 @@ class InitWorldCommunicatorTaskTraits
 
         InitWorldCommunicatorTaskTraits& operator= ( InitWorldCommunicatorTaskTraits && other ); // assignment-move operator
 
+        // ====================  ALIASES       =======================================
+        
         using abstract_products = MPL::mpl_typelist<
                                                        CommunicatorTask
                                                    >;

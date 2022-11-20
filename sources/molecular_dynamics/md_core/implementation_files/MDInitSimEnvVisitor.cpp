@@ -57,10 +57,10 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
     a_sim.enableWorldCommunicator();
 
     // ---------------------------------------------------
-    // The main logger task object is now enabled.
+    // The core logging tasks are enabled.
     // 
     // ---------------------------------------------------
-    a_sim.enableMainLoggerTask();
+    a_sim.enableCoreLoggingTasks();
 
     return;
 }

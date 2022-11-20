@@ -21,8 +21,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Communicator.h"
-#include "MPICommunicatorFactory.h"
 #include "ReceiverInterface.hpp"
+#include "MPICommunicatorFactory.h"
 
 namespace ANANSI
 {
