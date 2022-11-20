@@ -18,4 +18,4 @@
 #                                                    -
 #-----------------------------------------------------
 add_subdirectory(WriteTextToConsoleTask)
-# add_subdirectory(CoreLoggingTasksTraits)
+add_subdirectory(CoreLoggingTasksTraits)
