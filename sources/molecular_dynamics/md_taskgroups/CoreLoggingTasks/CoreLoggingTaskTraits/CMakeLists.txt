@@ -65,7 +65,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (coreloggingtasktraits_header_files
-         header_files/WriteTextToConsoleTaskTraits.h)
+         header_files/CoreLoggingTaskTraits.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -75,7 +75,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (coreloggingtasktraits_implementation_files
-         implementation_files/WriteTextToConsoleTaskTraits.cpp )
+         implementation_files/CoreLoggingTaskTraits.cpp )
 
     # -----------------------------------------------------
     # Set various variables for include directories.
