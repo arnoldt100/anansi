@@ -1,6 +1,6 @@
-#ifndef ANANSI_WriteTextToConsoleTaskTraits_INC
-#define ANANSI_WriteTextToConsoleTaskTraits_INC
-//! @file WriteTextToConsoleTaskTraits.h
+#ifndef ANANSI_CoreLoggingTaskTraits_INC
+#define ANANSI_CoreLoggingTaskTraits_INC
+//! @file CoreLoggingTaskTraits.h
 //!
 //! Brief description
 //!
@@ -24,21 +24,21 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  WriteTextToConsoleTaskTraits
+//        Class:  CoreLoggingTaskTraits
 //  Description:  
 //  =====================================================================================
-class WriteTextToConsoleTaskTraits
+class CoreLoggingTaskTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        WriteTextToConsoleTaskTraits ();   // constructor
+        CoreLoggingTaskTraits ();   // constructor
 
-        WriteTextToConsoleTaskTraits (const WriteTextToConsoleTaskTraits & other);   // copy constructor
+        CoreLoggingTaskTraits (const CoreLoggingTaskTraits & other);   // copy constructor
 
-        WriteTextToConsoleTaskTraits (WriteTextToConsoleTaskTraits && other);   // copy-move constructor
+        CoreLoggingTaskTraits (CoreLoggingTaskTraits && other);   // copy-move constructor
 
-        ~WriteTextToConsoleTaskTraits ();  // destructor
+        ~CoreLoggingTaskTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -46,9 +46,9 @@ class WriteTextToConsoleTaskTraits
 
         // ====================  OPERATORS     =======================================
 
-        WriteTextToConsoleTaskTraits& operator= ( const WriteTextToConsoleTaskTraits &other ); // assignment operator
+        CoreLoggingTaskTraits& operator= ( const CoreLoggingTaskTraits &other ); // assignment operator
 
-        WriteTextToConsoleTaskTraits& operator= ( WriteTextToConsoleTaskTraits && other ); // assignment-move operator
+        CoreLoggingTaskTraits& operator= ( CoreLoggingTaskTraits && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -60,9 +60,9 @@ class WriteTextToConsoleTaskTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class WriteTextToConsoleTaskTraits  -----
+}; // -----  end of class CoreLoggingTaskTraits  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_WriteTextToConsoleTaskTraits_INC
+#endif // ANANSI_CoreLoggingTaskTraits_INC

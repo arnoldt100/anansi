@@ -83,6 +83,7 @@
     # -----------------------------------------------------
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
+    get_target_property(my_writetexttoconsoletask_include writetexttoconsoletask writetexttoconsoletask_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -113,7 +114,9 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PRIVATE ${my_genericmdtask_include}
+                           PRIVATE ${my_writetexttoconsoletask_include})
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -121,7 +124,8 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries(${target}
                       PUBLIC tasks
-                      PUBLIC genericmdtask)
+                      PUBLIC genericmdtask
+                      PUBLIC writetexttoconsoletask)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

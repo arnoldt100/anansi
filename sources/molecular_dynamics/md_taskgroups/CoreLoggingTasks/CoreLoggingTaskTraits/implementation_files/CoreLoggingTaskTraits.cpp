@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WriteTextToConsoleTaskTraits.h"
+#include "CoreLoggingTaskTraits.h"
 
 namespace ANANSI {
 
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits()
+CoreLoggingTaskTraits::CoreLoggingTaskTraits()
 {
     return;
 }
 
-WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits( WriteTextToConsoleTaskTraits const & other)
+CoreLoggingTaskTraits::CoreLoggingTaskTraits( CoreLoggingTaskTraits const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits( WriteTextToConsoleTa
     return;
 }
 
-WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits( WriteTextToConsoleTaskTraits && other)
+CoreLoggingTaskTraits::CoreLoggingTaskTraits( CoreLoggingTaskTraits && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method WriteTextToConsoleTaskTraits::WriteTextToConsoleTaskTraits  -----
+}		// -----  end of method CoreLoggingTaskTraits::CoreLoggingTaskTraits  -----
 
 
-WriteTextToConsoleTaskTraits::~WriteTextToConsoleTaskTraits()
+CoreLoggingTaskTraits::~CoreLoggingTaskTraits()
 {
     return;
 }
@@ -54,7 +54,7 @@ WriteTextToConsoleTaskTraits::~WriteTextToConsoleTaskTraits()
 
 //============================= OPERATORS ====================================
 
-WriteTextToConsoleTaskTraits& WriteTextToConsoleTaskTraits::operator= ( const WriteTextToConsoleTaskTraits &other )
+CoreLoggingTaskTraits& CoreLoggingTaskTraits::operator= ( const CoreLoggingTaskTraits &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ WriteTextToConsoleTaskTraits& WriteTextToConsoleTaskTraits::operator= ( const Wr
     return *this;
 } // assignment operator
 
-WriteTextToConsoleTaskTraits& WriteTextToConsoleTaskTraits::operator= ( WriteTextToConsoleTaskTraits && other )
+CoreLoggingTaskTraits& CoreLoggingTaskTraits::operator= ( CoreLoggingTaskTraits && other )
 {
     if (this != &other)
     {
