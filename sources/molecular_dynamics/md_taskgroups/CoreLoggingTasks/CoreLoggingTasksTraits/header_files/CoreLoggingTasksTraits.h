@@ -1,6 +1,6 @@
-#ifndef ANANSI_CoreLoggingTaskTraits_INC
-#define ANANSI_CoreLoggingTaskTraits_INC
-//! @file CoreLoggingTaskTraits.h
+#ifndef ANANSI_CoreLoggingTasksTraits_INC
+#define ANANSI_CoreLoggingTasksTraits_INC
+//! @file CoreLoggingTasksTraits.h
 //!
 //! Brief description
 //!
@@ -24,21 +24,21 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  CoreLoggingTaskTraits
+//        Class:  CoreLoggingTasksTraits
 //  Description:  
 //  =====================================================================================
-class CoreLoggingTaskTraits
+class CoreLoggingTasksTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        CoreLoggingTaskTraits ();   // constructor
+        CoreLoggingTasksTraits ();   // constructor
 
-        CoreLoggingTaskTraits (const CoreLoggingTaskTraits & other);   // copy constructor
+        CoreLoggingTasksTraits (const CoreLoggingTasksTraits & other);   // copy constructor
 
-        CoreLoggingTaskTraits (CoreLoggingTaskTraits && other);   // copy-move constructor
+        CoreLoggingTasksTraits (CoreLoggingTasksTraits && other);   // copy-move constructor
 
-        ~CoreLoggingTaskTraits ();  // destructor
+        ~CoreLoggingTasksTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -46,9 +46,9 @@ class CoreLoggingTaskTraits
 
         // ====================  OPERATORS     =======================================
 
-        CoreLoggingTaskTraits& operator= ( const CoreLoggingTaskTraits &other ); // assignment operator
+        CoreLoggingTasksTraits& operator= ( const CoreLoggingTasksTraits &other ); // assignment operator
 
-        CoreLoggingTaskTraits& operator= ( CoreLoggingTaskTraits && other ); // assignment-move operator
+        CoreLoggingTasksTraits& operator= ( CoreLoggingTasksTraits && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -60,9 +60,9 @@ class CoreLoggingTaskTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class CoreLoggingTaskTraits  -----
+}; // -----  end of class CoreLoggingTasksTraits  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_CoreLoggingTaskTraits_INC
+#endif // ANANSI_CoreLoggingTasksTraits_INC

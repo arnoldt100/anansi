@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "CoreLoggingTaskTraits.h"
+#include "CoreLoggingTasksTraits.h"
 
 namespace ANANSI {
 
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-CoreLoggingTaskTraits::CoreLoggingTaskTraits()
+CoreLoggingTasksTraits::CoreLoggingTasksTraits()
 {
     return;
 }
 
-CoreLoggingTaskTraits::CoreLoggingTaskTraits( CoreLoggingTaskTraits const & other)
+CoreLoggingTasksTraits::CoreLoggingTasksTraits( CoreLoggingTasksTraits const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ CoreLoggingTaskTraits::CoreLoggingTaskTraits( CoreLoggingTaskTraits const & othe
     return;
 }
 
-CoreLoggingTaskTraits::CoreLoggingTaskTraits( CoreLoggingTaskTraits && other)
+CoreLoggingTasksTraits::CoreLoggingTasksTraits( CoreLoggingTasksTraits && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method CoreLoggingTaskTraits::CoreLoggingTaskTraits  -----
+}		// -----  end of method CoreLoggingTasksTraits::CoreLoggingTasksTraits  -----
 
 
-CoreLoggingTaskTraits::~CoreLoggingTaskTraits()
+CoreLoggingTasksTraits::~CoreLoggingTasksTraits()
 {
     return;
 }
@@ -54,7 +54,7 @@ CoreLoggingTaskTraits::~CoreLoggingTaskTraits()
 
 //============================= OPERATORS ====================================
 
-CoreLoggingTaskTraits& CoreLoggingTaskTraits::operator= ( const CoreLoggingTaskTraits &other )
+CoreLoggingTasksTraits& CoreLoggingTasksTraits::operator= ( const CoreLoggingTasksTraits &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ CoreLoggingTaskTraits& CoreLoggingTaskTraits::operator= ( const CoreLoggingTaskT
     return *this;
 } // assignment operator
 
-CoreLoggingTaskTraits& CoreLoggingTaskTraits::operator= ( CoreLoggingTaskTraits && other )
+CoreLoggingTasksTraits& CoreLoggingTasksTraits::operator= ( CoreLoggingTasksTraits && other )
 {
     if (this != &other)
     {
