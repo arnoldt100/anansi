@@ -36,13 +36,17 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
                                                        >(
     std::shared_ptr<ANANSI::GenericTaskInvoker<CoreLoggingTasksTraits::abstract_products,
                                                CoreLoggingTasksTraits::concrete_products>
-                   > & core_logging_invoker)
+                   > & core_logging_invoker,
+    std::shared_ptr<COMMUNICATOR::Communicator> & a_communicator )
 {
     // ---------------------------------------------------
     // Create the receiver and enable it.
     // 
     // ---------------------------------------------------
+    auto console_logger_receiver =
+        ANANSI::GenericReceiverFactory<>::createSharedReceiver<ANANSI::WriteTextToConsoleTaskReceiver>();
 
+    // The receiver contains the world communicator.
     
     // ---------------------------------------------------
     // Get the label for the reciever.
@@ -384,7 +388,8 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
     this->enableConsoleLoggingTask_<MY_LABEL_TYPE,
                                     CoreLoggingTasksTraits::abstract_products,
                                     CoreLoggingTasksTraits::concrete_products
-                                   >(this->mdCoreLoggingInvk_);
+                                   >(this->mdCoreLoggingInvk_,
+                                     this->MpiWorldCommunicator_);
 
     return;
 }

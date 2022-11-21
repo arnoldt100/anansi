@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 #include <memory>
 
 //--------------------------------------------------------//
@@ -19,6 +20,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Communicator.h"
 #include "ReceiverInterface.hpp"
 
 namespace ANANSI
@@ -79,6 +81,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 

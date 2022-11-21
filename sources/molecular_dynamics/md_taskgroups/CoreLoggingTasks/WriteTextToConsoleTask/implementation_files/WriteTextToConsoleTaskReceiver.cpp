@@ -1,7 +1,7 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -21,13 +21,15 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
-    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>()
+    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
+    communicator_(nullptr)
 {
     return;
 }
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver const & other) :
-    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(other)
+    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(other),
+    communicator_(other.communicator_)
 {
     if (this != &other)
     {
@@ -37,7 +39,8 @@ WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConso
 }
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
-    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other))
+    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
+    communicator_(std::move(other.communicator_))
 {
     if (this != &other)
     {
@@ -67,6 +70,7 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( const
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(other);
+        this->communicator_ = other.communicator_;
     }
     return *this;
 } // assignment operator
@@ -76,6 +80,7 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(std::move(other));
+        this->communicator_ = std::move(other.communicator_);
     }
     return *this;
 } // assignment-move operator
@@ -101,6 +106,13 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+
+template<>
+void WriteTextToConsoleTaskReceiver::enableReceiver(std::shared_ptr<COMMUNICATOR::Communicator> & arg)
+{
+    this->communicator_ = arg;
+    return;
+}
 
 //============================= OPERATORS ====================================
 

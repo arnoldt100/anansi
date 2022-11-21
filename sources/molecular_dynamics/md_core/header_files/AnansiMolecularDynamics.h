@@ -136,12 +136,13 @@ class AnansiMolecularDynamics final : public Simulation
         // To be depracated.
         void setGlobalISEStatus_() final override;
 
-        template<typename T,
-                 typename abstract_products,
-                 typename concrete_products>
-        void enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<CoreLoggingTasksTraits::abstract_products,
-                                                                                   CoreLoggingTasksTraits::concrete_products>
-                                                       > & core_logging_invoker);
+        template<typename Label_t,
+                 typename abstract_products_typelist,
+                 typename concrete_products_typelist>
+        void enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
+                                                                                   concrete_products_typelist>
+                                                       > & core_logging_invoker,
+                                        std::shared_ptr<COMMUNICATOR::Communicator> & a_communicator );
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments commandLineArguments_;
