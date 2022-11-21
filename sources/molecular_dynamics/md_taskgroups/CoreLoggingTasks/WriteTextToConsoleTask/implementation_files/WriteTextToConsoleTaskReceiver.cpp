@@ -22,14 +22,16 @@ namespace ANANSI {
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
-    communicator_(nullptr)
+    communicator_(nullptr),
+    messageContainer_(nullptr)
 {
     return;
 }
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver const & other) :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(other),
-    communicator_(other.communicator_)
+    communicator_(other.communicator_),
+    messageContainer_(other.messageContainer_)
 {
     if (this != &other)
     {
@@ -40,7 +42,8 @@ WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConso
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
-    communicator_(std::move(other.communicator_))
+    communicator_(std::move(other.communicator_)),
+    messageContainer_(std::move(other.messageContainer_))
 {
     if (this != &other)
     {

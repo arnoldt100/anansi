@@ -22,6 +22,7 @@
 //--------------------------------------------------------//
 #include "Communicator.h"
 #include "ReceiverInterface.hpp"
+#include "ConsoleMessageContainer.h"
 
 namespace ANANSI
 {
@@ -82,6 +83,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
+	std::shared_ptr<ConsoleMessageContainer> messageContainer_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 

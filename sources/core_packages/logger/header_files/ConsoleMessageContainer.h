@@ -1,5 +1,5 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef ANANSI_ConsoleMessageContainer_INC
+#define ANANSI_ConsoleMessageContainer_INC
 //! @file ConsoleMessageContainer.h
 //!
 //! Brief description
@@ -25,7 +25,7 @@ namespace ANANSI
 //        Class:  ConsoleMessageContainer
 //  Description:  
 //  =====================================================================================
-class ConsoleMessageContainer
+class ConsoleMessageContainer final
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -36,7 +36,7 @@ class ConsoleMessageContainer
 
         ConsoleMessageContainer (ConsoleMessageContainer && other);   // copy-move constructor
 
-        virtual ~ConsoleMessageContainer ();  // destructor
+        ~ConsoleMessageContainer ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -63,4 +63,4 @@ class ConsoleMessageContainer
 
 }; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif // ANANSI_ConsoleMessageContainer_INC
