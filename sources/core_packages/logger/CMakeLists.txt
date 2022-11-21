@@ -67,6 +67,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (logger_header_files
+        headder_files/ConsoleMessageContainer.h
          header_files/GeneralFileLogger.h
          header_files/ConsoleLogger.h )
 
@@ -78,6 +79,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (logger_implementation_files
+        implementation_files/ConsoleMessageContainer.cpp
          implementation_files/GeneralFileLogger.cpp
          implementation_files/ConsoleLogger.cpp )
 
