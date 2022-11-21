@@ -46,7 +46,8 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
     auto console_logger_receiver =
         ANANSI::GenericReceiverFactory<>::createSharedReceiver<ANANSI::WriteTextToConsoleTaskReceiver>();
 
-    // The receiver contains the world communicator.
+    // The console receiver contains the a communicator.
+    console_logger_receiver->enable(a_communicator);
     
     // ---------------------------------------------------
     // Get the label for the reciever.
