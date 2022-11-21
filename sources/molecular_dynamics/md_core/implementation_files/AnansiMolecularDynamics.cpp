@@ -30,8 +30,37 @@ namespace ANANSI {
 
 //============================= ACCESSORS ====================================
 template<>
-void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string>()
+void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
+                                                        CoreLoggingTasksTraits::abstract_products,
+                                                        CoreLoggingTasksTraits::concrete_products
+                                                       >(
+    std::shared_ptr<ANANSI::GenericTaskInvoker<CoreLoggingTasksTraits::abstract_products,
+                                               CoreLoggingTasksTraits::concrete_products>
+                   > & core_logging_invoker)
 {
+    // ---------------------------------------------------
+    // Create the receiver and enable it.
+    // 
+    // ---------------------------------------------------
+
+    
+    // ---------------------------------------------------
+    // Get the label for the reciever.
+    // 
+    // ---------------------------------------------------
+
+
+    // ---------------------------------------------------
+    // Create task object and bind to receiver.
+    // 
+    // ---------------------------------------------------
+
+
+    // ---------------------------------------------------
+    // Add the task object/command to the invoker.
+    // 
+    // ---------------------------------------------------
+
     return;
 }
 
@@ -218,7 +247,6 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // std::string. 
     // ---------------------------------------------------
 
-    MPICommunicatorFactory a_communicator_factory;
 
     using MY_LABEL_TYPE = std::string;
 
@@ -237,9 +265,10 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     //  Create the receiver and enable it.
     // 
     // ---------------------------------------------------
-    auto mpi_init_world_commm_receiver = ANANSI::GenericReceiverFactory<>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
-
+    MPICommunicatorFactory a_communicator_factory;
     this->MpiWorldCommunicator_ = a_communicator_factory.createNullWorldCommunicator();
+    
+    auto mpi_init_world_commm_receiver = ANANSI::GenericReceiverFactory<>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
     mpi_init_world_commm_receiver->enable(this->MpiWorldCommunicator_);
 
     // ---------------------------------------------------
@@ -352,7 +381,10 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
     // Enable the Console logger.
     // 
     // ---------------------------------------------------
-    this->enableConsoleLoggingTask_<MY_LABEL_TYPE>();
+    this->enableConsoleLoggingTask_<MY_LABEL_TYPE,
+                                    CoreLoggingTasksTraits::abstract_products,
+                                    CoreLoggingTasksTraits::concrete_products
+                                   >(this->mdCoreLoggingInvk_);
 
     return;
 }
