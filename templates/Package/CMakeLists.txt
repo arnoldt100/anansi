@@ -37,7 +37,7 @@
     # name.
     #-----------------------------------------------------
     target_include_property_name("${target}")
-    set(my_target_include_property_name "${target}_include_property_name" )
+    set(my_target_include_property_name "${target}_include" )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
