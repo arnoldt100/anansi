@@ -386,9 +386,8 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
     // Enable the Console logger.
     // 
     // ---------------------------------------------------
-    
-    MPICommunicatorFactory a_communicator_factory;
-    auto tmp_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
+    std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>(); 
+    auto tmp_communicator = a_communicator_factory->cloneCommunicator(this->MpiWorldCommunicator_);
     this->enableConsoleLoggingTask_<MY_LABEL_TYPE,
                                     CoreLoggingTasksTraits::abstract_products,
                                     CoreLoggingTasksTraits::concrete_products
