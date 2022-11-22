@@ -99,6 +99,7 @@ class GenericMDTask : public BaseClass
 
         void doConcreteTaskAction(const std::vector<std::string> & flags) const override
         {
+
             this->receiver_->action();
             return;
         }
@@ -142,7 +143,7 @@ class GenericMDTask : public BaseClass
 
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<FunctorImplType> funcImpl_;
-        mutable std::shared_ptr<ReceiverType> receiver_;
+        std::shared_ptr<ReceiverType> receiver_;
         AnansiTaskParameters::task_size_t taskConcreteTypeListIndex_; 
 
 

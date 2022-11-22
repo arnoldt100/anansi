@@ -23,13 +23,13 @@
     #                                                    -
     #-----------------------------------------------------
     set(my_project_name "initmpienvtask")
-    project(${my_project_name})
+    project("${my_project_name}")
 
     #-----------------------------------------------------
     # Define the target name.                            -
     #                                                    -
     #-----------------------------------------------------
-    set(target ${my_project_name})
+    set(target "${my_project_name}")
 
     #-----------------------------------------------------
     # Define the property name for the include directory.
@@ -140,7 +140,7 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      initmpienvtask_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       CXX_STANDARD "${md_taskgroups_cxx_standard}"
                       PUBLIC_HEADER "${initmpienvtask_header_files}" )
 
