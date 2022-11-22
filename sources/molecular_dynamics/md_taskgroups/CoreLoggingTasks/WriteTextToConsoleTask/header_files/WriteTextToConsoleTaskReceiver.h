@@ -59,10 +59,10 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         void disableReceiver(Types... args);
 
         template<typename... Types>
-        void receiverDoAction(Types... args);
+        void receiverDoAction(Types & ... args);
 
         template<typename... Types>
-        void receiverUndoAction(Types... args);
+        void receiverUndoAction(Types & ... args);
 
         template<typename T>
         void receiverModifyMyself(T & arg);
@@ -88,13 +88,13 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::receiverDoAction(Types... args)
+void WriteTextToConsoleTaskReceiver::receiverDoAction(Types & ... args)
 {
     return;
 }
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types... args)
+void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types & ... args)
 {
     return;
 }
