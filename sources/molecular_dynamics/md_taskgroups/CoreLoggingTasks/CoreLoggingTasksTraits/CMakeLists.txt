@@ -39,7 +39,7 @@
     # name.
     #-----------------------------------------------------
     target_include_property_name("${target}")
-    set(my_target_include_property_name "${target}_include_property_name" )
+    set(my_target_include_property_name "${target}_include" )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -82,6 +82,7 @@
     # 
     # -----------------------------------------------------
     get_target_property(my_tasks_include tasks tasks_include)
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_writetexttoconsoletask_include writetexttoconsoletask writetexttoconsoletask_include)
 
@@ -116,6 +117,7 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
                            PRIVATE ${my_genericmdtask_include}
+                           PRIVATE ${my_typelist_aliases_include}
                            PRIVATE ${my_writetexttoconsoletask_include})
 
 #-----------------------------------------------------
@@ -124,6 +126,7 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries(${target}
                       PUBLIC tasks
+                      PUBLIC typelist_aliases
                       PUBLIC genericmdtask
                       PUBLIC writetexttoconsoletask)
 

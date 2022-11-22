@@ -82,10 +82,8 @@
     # Set various variables for include directories.
     # 
     # -----------------------------------------------------
-    get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_logger_include logger logger_include)
     get_target_property(my_receiver_include receiver receiver_include )
-    # get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_communicator_include communicator communicator_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -127,9 +125,7 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC tasks
                       PUBLIC logger
-                      PUBLIC genericmdtask
                       PUBLIC receiver
                       PUBLIC communicator)
 

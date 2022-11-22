@@ -37,6 +37,14 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "${target}_include" )
 
+    # ----------------------------------------------------
+    # Verify that all initmpienvtask build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/initmpienvtask_build_prerequisites.cmake")
+    verify_initmpienvtask_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -141,12 +149,12 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       initmpienvtask_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD "${md_taskgroups_cxx_standard}"
+                      CXX_STANDARD "${initmpienvtask_cxx_standard}"
                       PUBLIC_HEADER "${initmpienvtask_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${md_taskgroups_install_include_directory} )
+         ARCHIVE DESTINATION ${initmpienvtask_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${initmpienvtask_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
