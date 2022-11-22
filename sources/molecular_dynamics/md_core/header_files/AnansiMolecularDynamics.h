@@ -142,7 +142,7 @@ class AnansiMolecularDynamics final : public Simulation
         void enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
                                                                                    concrete_products_typelist>
                                                        > & core_logging_invoker,
-                                        std::shared_ptr<COMMUNICATOR::Communicator> & a_communicator );
+                                        std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator );
 
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments commandLineArguments_;

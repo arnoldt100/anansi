@@ -23,22 +23,11 @@ namespace ANANSI {
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
     communicator_(nullptr),
-    messageContainer_(nullptr)
+    messageContainer_()
 {
     return;
 }
 
-WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver const & other) :
-    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(other),
-    communicator_(other.communicator_),
-    messageContainer_(other.messageContainer_)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
@@ -67,16 +56,6 @@ RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE Wri
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( const WriteTextToConsoleTaskReceiver &other )
-{
-    if (this != &other)
-    {
-        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(other);
-        this->communicator_ = other.communicator_;
-    }
-    return *this;
-} // assignment operator
 
 WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( WriteTextToConsoleTaskReceiver && other )
 {
@@ -111,9 +90,9 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 //============================= MUTATORS =====================================
 
 template<>
-void WriteTextToConsoleTaskReceiver::enableReceiver(std::shared_ptr<COMMUNICATOR::Communicator> & arg)
+void WriteTextToConsoleTaskReceiver::enableReceiver(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
 {
-    this->communicator_ = arg;
+    this->communicator_ = std::move(arg);
     return;
 }
 

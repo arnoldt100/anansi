@@ -37,7 +37,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
     std::shared_ptr<ANANSI::GenericTaskInvoker<CoreLoggingTasksTraits::abstract_products,
                                                CoreLoggingTasksTraits::concrete_products>
                    > & core_logging_invoker,
-    std::shared_ptr<COMMUNICATOR::Communicator> & a_communicator )
+    std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator )
 {
     // ---------------------------------------------------
     // Create the receiver and enable it.
@@ -386,11 +386,14 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
     // Enable the Console logger.
     // 
     // ---------------------------------------------------
+    
+    MPICommunicatorFactory a_communicator_factory;
+    auto tmp_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
     this->enableConsoleLoggingTask_<MY_LABEL_TYPE,
                                     CoreLoggingTasksTraits::abstract_products,
                                     CoreLoggingTasksTraits::concrete_products
                                    >(this->mdCoreLoggingInvk_,
-                                     this->MpiWorldCommunicator_);
+                                     tmp_communicator);
 
     return;
 }

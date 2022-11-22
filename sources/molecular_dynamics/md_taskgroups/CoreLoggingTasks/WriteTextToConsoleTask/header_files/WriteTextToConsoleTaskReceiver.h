@@ -40,7 +40,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         WriteTextToConsoleTaskReceiver ();   // constructor
 
-        WriteTextToConsoleTaskReceiver (const WriteTextToConsoleTaskReceiver & other);   // copy constructor
+        WriteTextToConsoleTaskReceiver (const WriteTextToConsoleTaskReceiver & other) = delete;   // copy constructor
 
         WriteTextToConsoleTaskReceiver (WriteTextToConsoleTaskReceiver && other);   // copy-move constructor
 
@@ -69,7 +69,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  OPERATORS     =======================================
 
-        WriteTextToConsoleTaskReceiver& operator= ( const WriteTextToConsoleTaskReceiver &other ); // assignment operator
+        WriteTextToConsoleTaskReceiver& operator= ( const WriteTextToConsoleTaskReceiver &other ) = delete; // assignment operator
 
         WriteTextToConsoleTaskReceiver& operator= ( WriteTextToConsoleTaskReceiver && other ); // assignment-move operator
 
@@ -82,8 +82,8 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
-	std::shared_ptr<ConsoleMessageContainer> messageContainer_;
+        std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
+	    std::unique_ptr<ConsoleMessageContainer> messageContainer_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 

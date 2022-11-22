@@ -149,7 +149,7 @@ class ReceiverInterface
         {
             return *static_cast<Derived const*>(this);
         }
-        
+
         
         template<typename FirstArgType, typename... Types>
         void enable_(FirstArgType & firstArg, Types &... args)
