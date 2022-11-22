@@ -74,6 +74,18 @@ class ReceiverInterface
 
         // ====================  MUTATORS      =======================================
 
+        void action() 
+        {
+            asDerived_().receiverDoAction();
+            return;
+        }
+
+        void undoAction()
+        {
+            asDerived_().receiverUndoAction();
+            return;
+        }
+
         template<typename... Types>
         void enable(Types &... args)
         {
@@ -84,18 +96,6 @@ class ReceiverInterface
         void disable()
         {
             asDerived_().disableReceiver();
-            return;
-        }
-
-        void action()
-        {
-            asDerived_().receiverDoAction();
-            return;
-        }
-
-        void undoAction()
-        {
-            asDerived_().receiverUndoAction();
             return;
         }
 
@@ -137,7 +137,7 @@ class ReceiverInterface
         //! Provides access to the CRTP derived class "Derived."
         //!
         //! @return A reference to the CRTP derived class.
-        Derived& asDerived_()
+        Derived& asDerived_() 
         {
             return *static_cast<Derived*>(this);
         }

@@ -57,7 +57,7 @@ AnansiTaskParameters::task_size_t AnansiTask::taskIndex() const
 
 
 //============================= MUTATORS =====================================
-void AnansiTask::doAction(const std::vector<std::string> & flags )
+void AnansiTask::doAction(const std::vector<std::string> & flags ) const
 {
     this->doConcreteTaskAction(flags);
     return;

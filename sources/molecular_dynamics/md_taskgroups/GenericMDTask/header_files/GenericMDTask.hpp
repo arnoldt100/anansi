@@ -82,7 +82,7 @@ class GenericMDTask : public BaseClass
         {
             std::cout << "FunctorImplType::ResultType operator stud call";
         }
-        
+
         template<typename index_t>
         void bindReceiver(std::shared_ptr<ReceiverType> & arg)
         {
@@ -97,7 +97,7 @@ class GenericMDTask : public BaseClass
             return;
         }
 
-        void doConcreteTaskAction(const std::vector<std::string> & flags) override
+        void doConcreteTaskAction(const std::vector<std::string> & flags) const override
         {
             this->receiver_->action();
             return;
@@ -142,7 +142,7 @@ class GenericMDTask : public BaseClass
 
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<FunctorImplType> funcImpl_;
-        std::shared_ptr<ReceiverType> receiver_;
+        mutable std::shared_ptr<ReceiverType> receiver_;
         AnansiTaskParameters::task_size_t taskConcreteTypeListIndex_; 
 
 

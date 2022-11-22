@@ -50,7 +50,7 @@ class AnansiTask
         AnansiTaskParameters::task_size_t taskIndex() const;
 
         // ====================  MUTATORS      =======================================
-        void doAction(const std::vector<std::string> & flags );
+        void doAction(const std::vector<std::string> & flags ) const;
         
         void undoAction(const std::vector<std::string> & commands );
 
@@ -74,7 +74,7 @@ class AnansiTask
 
         // ====================  MUTATORS      =======================================
         
-        virtual void doConcreteTaskAction(const std::vector<std::string> & commands) = 0;
+        virtual void doConcreteTaskAction(const std::vector<std::string> & commands) const= 0;
         
         virtual void undoConcreteTaskAction(const std::vector<std::string> & commands) = 0;
 

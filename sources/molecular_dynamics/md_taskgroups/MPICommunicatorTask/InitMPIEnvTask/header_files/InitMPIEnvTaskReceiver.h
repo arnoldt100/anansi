@@ -51,13 +51,13 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         void enableReceiver(T & arg);
 
         template<typename... Types>
-        void disableReceiver(Types... args);
+        void disableReceiver(Types &...  args);
 
         template<typename... Types>
-        void receiverDoAction(Types... args);
+        void receiverDoAction(Types &... args);
 
         template<typename... Types>
-        void receiverUndoAction(Types... args);
+        void receiverUndoAction(Types &... args);
 
         // ====================  OPERATORS     =======================================
 
@@ -79,20 +79,20 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 }; // -----  end of class InitMPIEnvTaskReceiver  -----
 
 template<typename... Types>
-void InitMPIEnvTaskReceiver::disableReceiver(Types... args)
+void InitMPIEnvTaskReceiver::disableReceiver(Types &...  args)
 {
     return;
 }
 
 template<typename... Types>
-void InitMPIEnvTaskReceiver::receiverDoAction(Types... args)
+void InitMPIEnvTaskReceiver::receiverDoAction(Types &... args)
 {
     this->mpiEnvironment_->enableEnvironment();
     return;
 }
 
 template<typename... Types>
-void InitMPIEnvTaskReceiver::receiverUndoAction(Types... args)
+void InitMPIEnvTaskReceiver::receiverUndoAction(Types &... args)
 {
     this->mpiEnvironment_->disableEnvironment();
     return;

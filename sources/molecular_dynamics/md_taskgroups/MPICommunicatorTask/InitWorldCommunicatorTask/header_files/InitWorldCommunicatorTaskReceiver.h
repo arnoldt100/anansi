@@ -55,13 +55,13 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         void enableReceiver(T & arg);
 
         template<typename... Types>
-        void disableReceiver(Types... args);
+        void disableReceiver(Types &...  args);
 
         template<typename... Types>
-        void receiverDoAction(Types... args);
+        void receiverDoAction(Types & ...  args);
 
         template<typename... Types>
-        void receiverUndoAction(Types... args);
+        void receiverUndoAction(Types &... args);
 
         template<typename T>
         void receiverModifyMyself(T & arg);
@@ -86,7 +86,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 }; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types... args)
+void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types &...  args)
 {
     ANANSI::MPICommunicatorFactory a_communicator_factory;
     std::shared_ptr<COMMUNICATOR::Communicator> tmp_comm = a_communicator_factory.createWorldCommunicator();
@@ -95,7 +95,7 @@ void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types... args)
 }
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types... args)
+void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types &... args)
 {
     this->communicator_->freeCommunicator();
     this->communicator_.reset();
@@ -103,7 +103,7 @@ void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types... args)
 }
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::disableReceiver(Types... args)
+void InitWorldCommunicatorTaskReceiver::disableReceiver(Types &...  args)
 {
     return;
 }

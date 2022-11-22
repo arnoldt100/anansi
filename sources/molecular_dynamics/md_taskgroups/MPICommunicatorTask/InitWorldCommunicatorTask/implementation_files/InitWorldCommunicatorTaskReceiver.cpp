@@ -105,6 +105,13 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 
 //============================= MUTATORS =====================================
 
+template<>
+void InitWorldCommunicatorTaskReceiver::enableReceiver(std::shared_ptr<COMMUNICATOR::Communicator> & arg)
+{
+    this->communicator_ = arg;
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////
@@ -116,13 +123,6 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-
-template<>
-void InitWorldCommunicatorTaskReceiver::enableReceiver(std::shared_ptr<COMMUNICATOR::Communicator> & arg)
-{
-    this->communicator_ = arg;
-    return;
-}
 
 //============================= OPERATORS ====================================
 
