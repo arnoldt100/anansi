@@ -122,11 +122,11 @@ class GenericTaskInvoker
                  // for a nonrecoverable error has occured. 
             }
 
-            GenericTaskInvokerUtilities::castAbstractTaskToConcreteTask<ConcreteProductsTypeList,
-                                                                        zero,
-                                                                        ReceiverArgsTypes...>(concrete_index,
-                                                                                              abstract_task,
-                                                                                              args...);
+            GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,
+                                                            zero,
+                                                            ReceiverArgsTypes...>(concrete_index,
+                                                                                  abstract_task,
+                                                                                  args...);
 
             return;
         }

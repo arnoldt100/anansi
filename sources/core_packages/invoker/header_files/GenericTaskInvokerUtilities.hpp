@@ -64,9 +64,9 @@ class GenericTaskInvokerUtilities
         template<typename ConcreteTasksTypeList,
                  MPL::mpl_size_type alpha,
                  typename... ReceiverArgsTypes>
-        static void castAbstractTaskToConcreteTask( const MPL::mpl_size_type concrete_index,
-                                                    std::shared_ptr<ANANSI::AnansiTask> & abstract_task,
-                                                    ReceiverArgsTypes &... receiver_args)
+        static void modifyTaskReceiver( const MPL::mpl_size_type concrete_index,
+                                        std::shared_ptr<ANANSI::AnansiTask> & abstract_task,
+                                        ReceiverArgsTypes &... receiver_args)
         {
             constexpr auto mx_elements = MPL::mpl_size<ConcreteTasksTypeList>::value; 
             constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
@@ -83,11 +83,11 @@ class GenericTaskInvokerUtilities
                 }
                 else
                 {
-                    GenericTaskInvokerUtilities::castAbstractTaskToConcreteTask<ConcreteTasksTypeList,
-                                                                                next_alpha,
-                                                                                ReceiverArgsTypes...>(concrete_index,
-                                                                                                      abstract_task,
-                                                                                                      receiver_args...);
+                    GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteTasksTypeList,
+                                                                    next_alpha,
+                                                                    ReceiverArgsTypes...>(concrete_index,
+                                                                                          abstract_task,
+                                                                                          receiver_args...);
                 }     
             }
 

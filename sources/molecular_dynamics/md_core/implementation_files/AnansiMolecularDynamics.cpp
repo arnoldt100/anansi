@@ -53,6 +53,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
     // Get the label for the reciever.
     // 
     // ---------------------------------------------------
+    auto my_label = console_logger_receiver->getTaskLabel();
 
     // ---------------------------------------------------
     // Create task object and bind to receiver.
