@@ -1,3 +1,6 @@
+# Files ending with ~, e.g. foo.cpp~
+*~
+
 # Prerequisites
 *.d
 

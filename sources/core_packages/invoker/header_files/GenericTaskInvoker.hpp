@@ -75,8 +75,6 @@ class GenericTaskInvoker
         // ====================  MUTATORS      =======================================
 
         //! Adds a task to the invoker.
-        //!
-        //! @return void
         void addCommand(LABEL_t const & key,
                         std::shared_ptr<ANANSI::AnansiTask> aCommand)
         {

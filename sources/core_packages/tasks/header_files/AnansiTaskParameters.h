@@ -1,7 +1,7 @@
 #ifndef  ANANSI_AnansiTaskParameters_INC
 #define  ANANSI_AnansiTaskParameters_INC
 
-//! @file __filename__
+//! @file AnansiTaskParameters.h
 //!
 //! Brief description
 //!

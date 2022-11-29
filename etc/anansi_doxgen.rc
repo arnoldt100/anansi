@@ -909,14 +909,42 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 
+
 INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/AnansiMDTaskFactory/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/AnansiMDTaskFactory/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/CoreLoggingTasksTraits/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/CoreLoggingTasksTraits/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/WriteTextToConsoleTask/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/WriteTextToConsoleTask/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/GenericMDTask/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/GenericMDTask/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/MPICommunicatorTask/InitMPIEnvTask/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/MPICommunicatorTask/InitMPIEnvTask/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/MPICommunicatorTask/InitWorldCommunicatorTask/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/MPICommunicatorTask/InitWorldCommunicatorTask/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/invoker/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/invoker/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/logger/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/logger/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/mpi_communicator/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/mpi_communicator/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/receiver/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/receiver/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_parameters/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_parameters/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_state/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_state/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation/header_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/task_group/header_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/task_group/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/implementation_files \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto 
 
 

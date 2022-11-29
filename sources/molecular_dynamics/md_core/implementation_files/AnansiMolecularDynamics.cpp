@@ -54,12 +54,10 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
     // 
     // ---------------------------------------------------
 
-
     // ---------------------------------------------------
     // Create task object and bind to receiver.
     // 
     // ---------------------------------------------------
-
 
     // ---------------------------------------------------
     // Add the task object/command to the invoker.

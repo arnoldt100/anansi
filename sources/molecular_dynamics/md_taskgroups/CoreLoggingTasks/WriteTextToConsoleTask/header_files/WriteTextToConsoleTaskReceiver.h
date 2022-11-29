@@ -50,6 +50,12 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
 
+        template<typename... Types>
+        void receiverDoAction(Types & ... args) const;
+
+        template<typename... Types>
+        void receiverUndoAction(Types & ... args) const ;
+
         // ====================  MUTATORS      =======================================
         
         template<typename T>
@@ -57,12 +63,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         template<typename... Types>
         void disableReceiver(Types... args);
-
-        template<typename... Types>
-        void receiverDoAction(Types & ... args);
-
-        template<typename... Types>
-        void receiverUndoAction(Types & ... args);
 
         template<typename T>
         void receiverModifyMyself(T & arg);
@@ -83,18 +83,18 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  DATA MEMBERS  =======================================
         std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
-	    std::unique_ptr<ConsoleMessageContainer> messageContainer_;
+	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::receiverDoAction(Types & ... args)
+void WriteTextToConsoleTaskReceiver::receiverDoAction(Types & ... args) const
 {
     return;
 }
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types & ... args)
+void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types & ... args) const
 {
     return;
 }

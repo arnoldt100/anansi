@@ -52,19 +52,19 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  MUTATORS      =======================================
         
         template<typename T>
-        void enableReceiver(T & arg);
+        void enableReceiver(T & arg) const;
 
         template<typename... Types>
-        void disableReceiver(Types &...  args);
+        void disableReceiver(Types &...  args) const;
 
         template<typename... Types>
-        void receiverDoAction(Types & ...  args);
+        void receiverDoAction(Types & ...  args) const;
 
         template<typename... Types>
-        void receiverUndoAction(Types &... args);
+        void receiverUndoAction(Types &... args) const;
 
         template<typename T>
-        void receiverModifyMyself(T & arg);
+        void receiverModifyMyself(T & arg) const;
 
         // ====================  OPERATORS     =======================================
 
@@ -81,12 +81,12 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
+        mutable std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
 
 }; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types &...  args)
+void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types &...  args) const
 {
     ANANSI::MPICommunicatorFactory a_communicator_factory;
     std::shared_ptr<COMMUNICATOR::Communicator> tmp_comm = a_communicator_factory.createWorldCommunicator();
@@ -95,7 +95,7 @@ void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types &...  args)
 }
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types &... args)
+void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types &... args) const
 {
     this->communicator_->freeCommunicator();
     this->communicator_.reset();
@@ -103,7 +103,7 @@ void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types &... args)
 }
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::disableReceiver(Types &...  args)
+void InitWorldCommunicatorTaskReceiver::disableReceiver(Types &...  args) const
 {
     return;
 }
