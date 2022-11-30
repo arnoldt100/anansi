@@ -21,6 +21,7 @@
 #include "InterProcessCommEnv.h"
 #include "GenericReceiverFactory.hpp"
 #include "InitMPIEnvTaskReceiver.h"
+#include "ConsoleMessageContainer.h"
 
 namespace ANANSI {
 
@@ -59,11 +60,23 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
     // Create task object and bind to receiver.
     // 
     // ---------------------------------------------------
+    std::shared_ptr<ANANSI::AnansiTask> console_logger_cmd = 
+        this->mdAnansiCoreLoggingTaskFactory_->create_shared_ptr<ConsoleLoggingTask>(console_logger_receiver);
 
     // ---------------------------------------------------
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
+    core_logging_invoker->addCommand(my_label,console_logger_cmd);
+
+    // ---------------------------------------------------
+    // Log to console that the Console Logger is enabled.
+    // 
+    // ---------------------------------------------------
+    std::string sender{"A processor."};
+    std::string message{"The console logger is enabled."};
+    auto message_packet = std::make_unique<ConsoleMessageContainer>(message,sender);  
+    core_logging_invoker->modifyTask(my_label,message_packet);
 
     return;
 }
@@ -211,7 +224,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> mpi_environment_cmd = 
-          this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
+        this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
     
     // ---------------------------------------------------
     // Add the task object/command to the invoker.

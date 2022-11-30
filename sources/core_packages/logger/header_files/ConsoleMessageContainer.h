@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -30,11 +31,14 @@ class ConsoleMessageContainer final
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ConsoleMessageContainer ();   // constructor
+        explicit ConsoleMessageContainer ();   // constructor
 
-        ConsoleMessageContainer (const ConsoleMessageContainer & other);   // copy constructor
+        explicit ConsoleMessageContainer (std::string const & message,
+                                          std::string const & sender);   // constructor
 
-        ConsoleMessageContainer (ConsoleMessageContainer && other);   // copy-move constructor
+        explicit ConsoleMessageContainer (const ConsoleMessageContainer & other);   // copy constructor
+
+        explicit ConsoleMessageContainer (ConsoleMessageContainer && other);   // copy-move constructor
 
         ~ConsoleMessageContainer ();  // destructor
 
@@ -57,6 +61,8 @@ class ConsoleMessageContainer final
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::string message_;
+        std::string sender_;
 
 }; // -----  end of class ConsoleMessageContainer  -----
 

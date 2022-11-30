@@ -76,6 +76,13 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+template<>
+void WriteTextToConsoleTaskReceiver::receiverModifyMyself(
+        std::unique_ptr<ConsoleMessageContainer> & message_container)
+{
+    this->messageContainer_ = std::move(message_container);
+    return;
+}
 
 //============================= OPERATORS ====================================
 
