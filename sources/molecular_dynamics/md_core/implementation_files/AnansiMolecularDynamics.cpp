@@ -51,7 +51,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
     console_logger_receiver->enable(a_communicator);
     
     // ---------------------------------------------------
-    // Get the label for the reciever.
+    // Get the label for the receiver.
     // 
     // ---------------------------------------------------
     auto my_label = console_logger_receiver->getTaskLabel();
@@ -329,8 +329,15 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 }
 
 void
-AnansiMolecularDynamics::disableMainLoggerTask()
+AnansiMolecularDynamics::disableCoreLoggingTasks()
 {
+    // ---------------------------------------------------
+    // Disable the Console logger.
+    // 
+    // ---------------------------------------------------
+    const std::vector<std::string> command_labels = {"write_text_to_console"};
+    this->mdCoreLoggingInvk_->undoTask(command_labels);
+
     return;
 }
 

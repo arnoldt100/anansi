@@ -64,6 +64,13 @@ RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE InitMPIEnvT
 
 //============================= MUTATORS =====================================
 
+template<>
+void InitMPIEnvTaskReceiver::enableReceiver(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
+{
+    this->mpiEnvironment_ = arg;
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( const InitMPIEnvTaskReceiver &other )
@@ -107,12 +114,6 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-template<>
-void InitMPIEnvTaskReceiver::enableReceiver(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
-{
-    this->mpiEnvironment_ = arg;
-    return;
-}
 
 //============================= OPERATORS ====================================
 

@@ -46,18 +46,22 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
 
+        template<typename... Types>
+        void receiverDoAction(Types &... args) const;
+
+        template<typename... Types>
+        void receiverUndoAction(Types &... args) const;
+
         // ====================  MUTATORS      =======================================
+
         template<typename T>
         void enableReceiver(T & arg);
 
         template<typename... Types>
         void disableReceiver(Types &...  args);
 
-        template<typename... Types>
-        void receiverDoAction(Types &... args);
-
-        template<typename... Types>
-        void receiverUndoAction(Types &... args);
+        template<typename T>
+        void receiverModifyMyself(T & arg);
 
         // ====================  OPERATORS     =======================================
 
@@ -74,7 +78,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
+        mutable std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
 
 }; // -----  end of class InitMPIEnvTaskReceiver  -----
 
@@ -85,14 +89,14 @@ void InitMPIEnvTaskReceiver::disableReceiver(Types &...  args)
 }
 
 template<typename... Types>
-void InitMPIEnvTaskReceiver::receiverDoAction(Types &... args)
+void InitMPIEnvTaskReceiver::receiverDoAction(Types &... args) const
 {
     this->mpiEnvironment_->enableEnvironment();
     return;
 }
 
 template<typename... Types>
-void InitMPIEnvTaskReceiver::receiverUndoAction(Types &... args)
+void InitMPIEnvTaskReceiver::receiverUndoAction(Types &... args) const
 {
     this->mpiEnvironment_->disableEnvironment();
     return;

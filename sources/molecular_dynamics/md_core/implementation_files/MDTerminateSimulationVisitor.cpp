@@ -45,10 +45,10 @@ MDTerminateSimulationVisitor::~MDTerminateSimulationVisitor()
 void MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     // ---------------------------------------------------
-    // The make logger task is disabled.
+    // The core logging tasks are disabled.
     // 
     // ---------------------------------------------------
-    a_sim.disableMainLoggerTask();
+    a_sim.disableCoreLoggingTasks();
 
     // ---------------------------------------------------
     // The world communicator task object is now disabled.

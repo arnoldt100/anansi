@@ -49,22 +49,22 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
 
-        // ====================  MUTATORS      =======================================
-        
-        template<typename T>
-        void enableReceiver(T & arg) const;
-
-        template<typename... Types>
-        void disableReceiver(Types &...  args) const;
-
         template<typename... Types>
         void receiverDoAction(Types & ...  args) const;
 
         template<typename... Types>
         void receiverUndoAction(Types &... args) const;
 
+        // ====================  MUTATORS      =======================================
+        
         template<typename T>
-        void receiverModifyMyself(T & arg) const;
+        void enableReceiver(T & arg);
+
+        template<typename... Types>
+        void disableReceiver(Types &...  args);
+
+        template<typename T>
+        void receiverModifyMyself(T & arg);
 
         // ====================  OPERATORS     =======================================
 
@@ -90,7 +90,7 @@ void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types &...  args) const
 {
     ANANSI::MPICommunicatorFactory a_communicator_factory;
     std::shared_ptr<COMMUNICATOR::Communicator> tmp_comm = a_communicator_factory.createWorldCommunicator();
-    this->receiverModifyMyself(tmp_comm);
+    *(this->communicator_) = std::move(*tmp_comm);
     return;
 }
 
@@ -103,7 +103,7 @@ void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types &... args) cons
 }
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::disableReceiver(Types &...  args) const
+void InitWorldCommunicatorTaskReceiver::disableReceiver(Types &...  args) 
 {
     return;
 }

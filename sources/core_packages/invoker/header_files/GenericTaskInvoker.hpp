@@ -119,7 +119,7 @@ class GenericTaskInvoker
             if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
             {
                  // :TODO:11/15/2022 10:00:29 AM:: Abort program
-                 // for a nonrecoverable error has occured. 
+                 // for a nonrecoverable error has occurred.
             }
 
             GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,

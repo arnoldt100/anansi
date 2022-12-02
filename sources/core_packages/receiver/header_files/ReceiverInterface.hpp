@@ -72,19 +72,19 @@ class ReceiverInterface
             return asDerived_().receiverGetTaskLabel();
         }
 
-        // ====================  MUTATORS      =======================================
-
-        void action() 
+        void action() const
         {
             asDerived_().receiverDoAction();
             return;
         }
 
-        void undoAction()
+        void undoAction() const
         {
             asDerived_().receiverUndoAction();
             return;
         }
+
+        // ====================  MUTATORS      =======================================
 
         template<typename... Types>
         void enable(Types &... args)
@@ -150,7 +150,6 @@ class ReceiverInterface
             return *static_cast<Derived const*>(this);
         }
 
-        
         template<typename FirstArgType, typename... Types>
         void enable_(FirstArgType & firstArg, Types &... args)
         {

@@ -70,7 +70,7 @@ class AnansiMolecularDynamics final : public Simulation
         void disableWorldCommunicator();
 
         void enableCoreLoggingTasks();
-        void disableMainLoggerTask();
+        void disableCoreLoggingTasks();
 
         void saveCommandLineOptionParameters();
 

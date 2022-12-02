@@ -7,7 +7,7 @@
 # The following properties are set for the target initworldcommunicatortask.
 #
 #   Property                            Value                                               Description
-#----------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------------
 #
 # initworldcommunicatortask_include     ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
 # PUBLIC_HEADER                         ${initworldcommunicatortask_header_files}           The list of headers files associated with this librarry.

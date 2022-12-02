@@ -54,7 +54,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         void receiverDoAction(Types & ... args) const;
 
         template<typename... Types>
-        void receiverUndoAction(Types & ... args) const ;
+        void receiverUndoAction(Types & ... args) const;
 
         // ====================  MUTATORS      =======================================
         
@@ -82,7 +82,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
+        mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
@@ -99,9 +99,11 @@ void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types & ... args) const
     return;
 }
 
+
 template<typename... Types>
 void WriteTextToConsoleTaskReceiver::disableReceiver(Types... args)
 {
+    // Disable the communicator.
     return;
 }
 

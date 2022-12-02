@@ -72,7 +72,7 @@
 # that are critical for building and deploying.      -
 #-----------------------------------------------------
 set(anansi_top_level "$ENV{ANANSI_TOP_LEVEL}") 
-set(anansi_cxx_standard 17)
+set(anansi_cxx_standard 20)
 set(anansi_cmake_cxx_compiler "$ENV{ANANSI_CMAKE_CXX_COMPILER}")
 set(anansi_cmake_c_compiler "$ENV{ANANSI_CMAKE_C_COMPILER}")
 set(anansi_install_prefix "$ENV{ANANSI_INSTALL_PREFIX}")
