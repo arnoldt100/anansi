@@ -1,36 +1,33 @@
-#ifndef  test___target___INC
-#define  test___target___INC
+
+#ifndef  ANANSI_test_receiver_INC
+#define  ANANSI_test_receiver_INC
+
+//! @file test_receiver.h
+//!
+//! Runs unit tests for Receiver interface.
+
+#define BOOST_TEST_MODULE Receiver Interface Tests
+#define BOOST_TEST_NO_MAIN
+#define BOOST_TEST_ALTERNATIVE_INIT_API
 
 
-#define BOOST_TEST_MODULE __testmodulename__
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
 
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
 
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Namespaces       -----------------//
+//--------------------------------------------------------//
 namespace utf = boost::unit_test;
 
-class __classname__Fixture 
-{
-    public:
-        __classname__Fixture()
-        {
-           return; 
-        }
-
-        ~__classname__Fixture()
-        {
-           return; 
-        }
-
-        void setup()
-        {
-            std::cout << "setup of __classname__Fixture." << std::endl;
-        }
-
-        void teardown()
-        {
-            std::cout << "teardown of __classname__Fixture." << std::endl;
-        }
-};
-
-#endif   // ----- #ifndef test___target___INC  ----- 
+#endif   // ----- #ifndef ANANSI_test_receiver_INC  ----- 
