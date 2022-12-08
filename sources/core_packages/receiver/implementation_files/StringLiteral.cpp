@@ -9,10 +9,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "test_receiver.h"
-#include "test_stringliteraltraits.h"
+#include "StringLiteral.hpp"
 
-namespace ANANSI {
+namespace STRINGLITERAL {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -51,16 +50,4 @@ namespace ANANSI {
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
-
-
-
-BOOST_AUTO_TEST_SUITE(TEST_STRINGLITERALTRAITS)
-
-BOOST_AUTO_TEST_CASE(char_array_size)
-{
-    ANANSI::verify_valid_char_array_size();
-}
-
-BOOST_AUTO_TEST_SUITE_END()
-
+} // namespace STRINGLITERAL

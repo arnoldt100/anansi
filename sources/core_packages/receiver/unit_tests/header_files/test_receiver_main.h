@@ -1,6 +1,5 @@
-
-#ifndef  ANANSI_test_receiver_INC
-#define  ANANSI_test_receiver_INC
+#ifndef  ANANSI_test_receiver_main_INC
+#define  ANANSI_test_receiver_main_INC
 
 //! @file test_receiver.h
 //!
@@ -18,7 +17,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/test/unit_test.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -29,4 +28,4 @@
 //--------------------------------------------------------//
 namespace utf = boost::unit_test;
 
-#endif   // ----- #ifndef ANANSI_test_receiver_INC  ----- 
+#endif   // ----- #ifndef ANANSI_test_receiver_main_INC  ----- 

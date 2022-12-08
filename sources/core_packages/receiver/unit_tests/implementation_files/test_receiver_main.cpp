@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "test_receiver.h"
+#include "test_receiver_main.h"
 #include "test_stringliteraltraits.h"
 
 namespace ANANSI {
@@ -53,8 +53,6 @@ namespace ANANSI {
 
 } // namespace ANANSI
 
-
-
 BOOST_AUTO_TEST_SUITE(TEST_STRINGLITERALTRAITS)
 
 BOOST_AUTO_TEST_CASE(char_array_size)
@@ -64,3 +62,7 @@ BOOST_AUTO_TEST_CASE(char_array_size)
 
 BOOST_AUTO_TEST_SUITE_END()
 
+int main(int argc,char* argv[], char* envp[])
+{
+    return utf::unit_test_main(init_unit_test,argc,argv);
+}
