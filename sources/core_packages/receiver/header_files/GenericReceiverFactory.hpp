@@ -28,8 +28,8 @@ namespace ANANSI
 //        Class:  GenericReceiverFactory
 //  Description:  
 //  =====================================================================================
-template<typename AbstractTasksTypeList=int,
-         typename ConcreteTasksTypeList=int>
+template<typename AbstractTasksTypeList,
+         typename ConcreteTasksTypeList>
 class GenericReceiverFactory
 {
     public:
