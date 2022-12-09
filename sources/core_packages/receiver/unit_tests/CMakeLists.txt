@@ -53,9 +53,15 @@
     #-----------------------------------------------------
     set (receiver_unit_tests_implementation_files
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver_main.cpp 
-        # ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver.cpp 
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_stringliteraltraits.cpp
         )
+
+    #-----------------------------------------------------
+    # Get the include paths. 
+    #
+    #-----------------------------------------------------
+    get_target_property(my_reciever_include receiver receiver_include) 
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -82,7 +88,7 @@
     #-----------------------------------------------------
     target_sources(${target}
         PRIVATE ${receiver_unit_tests_header_files}
-                ${receiver_unit_tests_implementation_files} )
+        PRIVATE ${receiver_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
@@ -90,6 +96,7 @@
     #-----------------------------------------------------
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                               PRIVATE ${my_reciever_include}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
@@ -98,7 +105,8 @@
     # (2) libreceiver.a                                  -
     #                                                    -
     #-----------------------------------------------------
-    target_link_libraries(${target}
+    target_link_libraries(${target} 
+                          PRIVATE receiver
                           PRIVATE ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------

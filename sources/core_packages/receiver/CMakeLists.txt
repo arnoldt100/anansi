@@ -106,7 +106,8 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${receiver_header_files} ${receiver_implementation_files} )
+    PRIVATE ${receiver_header_files} 
+    PRIVATE ${receiver_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
