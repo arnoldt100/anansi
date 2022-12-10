@@ -1,5 +1,5 @@
-#ifndef  StringLiteral_INC
-#define  StringLiteral_INC
+#ifndef  ANANSI_StringLiteral_INC
+#define  ANANSI_StringLiteral_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -20,7 +20,7 @@
 namespace STRINGLITERAL
 {
 
-template <std::size_t LABEL_SIZE=StringLiteralTraits::MAX_LABEL_SIZE> 
+template <std::size_t LABEL_SIZE=StringLiteralTraits::MAX_NM_CHARS> 
 class StringLiteral
 {
     public:
@@ -145,4 +145,4 @@ class StringLiteral
 
 }; // namespace STRINGLITERAL
 
-#endif   // ----- #ifndef StringLiteral_INC  ----- 
+#endif   // ----- #ifndef ANANSI_StringLiteral_INC  ----- 

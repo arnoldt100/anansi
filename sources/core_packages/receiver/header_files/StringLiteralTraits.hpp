@@ -18,7 +18,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace ANANSI
+namespace STRINGLITERAL
+
 {
 
 
@@ -56,6 +57,6 @@ class StringLiteralTraits
 }; // -----  end of class StringLiteralTraits  -----
 
 
-}; // namespace ANANSI
+}; // namespace STRINGLITERAL
 
 #endif // ANANSI_StringLiteralTraits_INC
