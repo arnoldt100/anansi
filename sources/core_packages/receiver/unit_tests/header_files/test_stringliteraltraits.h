@@ -18,8 +18,7 @@
 namespace ANANSI
 {
 
-void verify_valid_char_array_size();
-
+    void verify_valid_char_array_size();
 
 }; /* namespace ANANSI */
 

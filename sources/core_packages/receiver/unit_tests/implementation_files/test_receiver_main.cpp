@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 #include "test_receiver_main.h"
 #include "test_stringliteraltraits.h"
+#include "test_stringliteral_relationship_operators.h"
 
 namespace ANANSI {
 

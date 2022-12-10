@@ -40,7 +40,7 @@
     #-----------------------------------------------------
     set (receiver_unit_tests_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_receiver_main.h
-        #  ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_receiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_stringliteral_relationship_operators.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_stringliteraltraits.h
         )
 
@@ -53,6 +53,7 @@
     #-----------------------------------------------------
     set (receiver_unit_tests_implementation_files
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver_main.cpp 
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_stringliteral_relationship_operators.h
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_stringliteraltraits.cpp
         )
 
