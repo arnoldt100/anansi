@@ -30,7 +30,7 @@ class StringLiteralTestFixture
     public:
         constexpr static std::size_t MY_SIZE = 100;
         constexpr static char LETTER_A[MY_SIZE]  = {"A"};
-        constexpr static char letter_b[MY_SIZE]  = {"B"};
+        constexpr static char LETTER_B[MY_SIZE]  = {"B"};
 
         // ====================  LIFECYCLE     =======================================
 

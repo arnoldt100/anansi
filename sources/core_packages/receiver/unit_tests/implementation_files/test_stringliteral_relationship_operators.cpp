@@ -15,11 +15,6 @@
 namespace ANANSI 
 {
 
-    void verify_relationship_operator_equal()
-    {
-        BOOST_TEST(1 < 0, "StringLiterals not equal.");
-    }
-
 } // namespace ANANSI
 
 

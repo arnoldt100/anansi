@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 #include "test_receiver_main.h"
 #include "test_stringliteraltraits.h"
+#include "StringLiteralTestFixture.h"
 #include "test_stringliteral_relationship_operators.h"
 
 namespace ANANSI {
@@ -52,7 +53,7 @@ namespace ANANSI {
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+}; // namespace ANANSI
 
 BOOST_AUTO_TEST_SUITE(TEST_STRINGLITERALTRAITS)
 
@@ -65,11 +66,12 @@ BOOST_AUTO_TEST_SUITE_END()
 
 
 
-BOOST_AUTO_TEST_SUITE(TEST_STRINGLITERAL)
+BOOST_FIXTURE_TEST_SUITE(TEST_STRINGLITERAL_RELATIONSHIP_OPERATORS,
+                         ANANSI::StringLiteralTestFixture)
 
     BOOST_AUTO_TEST_CASE(relationship_operators)
     {
-        ANANSI::verify_relationship_operator_equal();
+        ANANSI::verify_relationship_operator_equal(a,b);
     }
 
 BOOST_AUTO_TEST_SUITE_END()
