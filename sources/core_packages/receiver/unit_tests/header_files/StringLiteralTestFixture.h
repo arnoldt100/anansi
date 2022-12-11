@@ -1,14 +1,13 @@
-#ifndef  ANANSI_StringLiteralTraits_INC
-#define  ANANSI_StringLiteralTraits_INC
+#ifndef ANANSI_STRINGLITERAL_FIXTURES_INC
+#define ANANSI_STRINGLITERAL_FIXTURES_INC
 
-//!@ file StringLiteralTraits.hpp
+//! @file stringliteral_fixtures.h
 //!
-//! This class stores additional information for the StringLiteral classr.
+//! Provides test case for the StringLiteral tests.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <cstddef>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -17,32 +16,37 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "StringLiteral.hpp"
 
-namespace STRINGLITERAL
-
+namespace ANANSI
 {
 
-
-    
-class StringLiteralTraits
+// =====================================================================================
+//        Class:  StringLiteralTestFixture
+//  Description:  
+//  =====================================================================================
+class StringLiteralTestFixture
 {
     public:
-        // ====================  LIFECYCLE     =======================================
-
-        //! The size of the char[] array in class StringLiteral.
-        //! 
-        //! The class StringLiteral has a class data attribute that is of
-        //! length char[StringLiteralTraits::MAX_NM_CHARS]. Not this includes
-        //! the null character '\0'.
-        constexpr static std::size_t MAX_NM_CHARS = 100;
+        constexpr static std::size_t MY_SIZE = 100;
+        constexpr static char LETTER_A[MY_SIZE]  = {"A"};
+        constexpr static char letter_b[MY_SIZE]  = {"B"};
 
         // ====================  LIFECYCLE     =======================================
+
+        StringLiteralTestFixture ();   // constructor
+
+        ~StringLiteralTestFixture ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
+
+        // ====================  DATA MEMBERS  =======================================
+        STRINGLITERAL::StringLiteral<MY_SIZE> a;
+        STRINGLITERAL::StringLiteral<MY_SIZE> b;
 
     protected:
         // ====================  METHODS       =======================================
@@ -54,9 +58,9 @@ class StringLiteralTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class StringLiteralTraits  -----
+}; // -----  end of class StringLiteralTestFixture  -----
 
 
-}; // namespace STRINGLITERAL
+}; // namespace ANANSI
 
-#endif // ANANSI_StringLiteralTraits_INC
+#endif // ANANSI_STRINGLITERAL_FIXTURES_INC
