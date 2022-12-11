@@ -72,6 +72,11 @@ BOOST_FIXTURE_TEST_SUITE(TEST_STRINGLITERAL_RELATIONSHIP_OPERATORS,
     BOOST_AUTO_TEST_CASE(relationship_operators)
     {
         ANANSI::verify_relationship_operator_equal(a,b);
+        ANANSI::verify_relationship_operator_notequal(a,b);
+        ANANSI::verify_relationship_operator_greaterthan(a,b);
+        ANANSI::verify_relationship_operator_greaterequalthan(a,b);
+        ANANSI::verify_relationship_operator_lessthan(a,b);
+        ANANSI::verify_relationship_operator_lessequalthan(a,b);
     }
 
 BOOST_AUTO_TEST_SUITE_END()
