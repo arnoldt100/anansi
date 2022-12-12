@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "StringLiteralTestFixture.h"
+#include "TaskLabelTestFixture.h"
 
 namespace ANANSI
 {
@@ -21,14 +21,14 @@ namespace ANANSI
 
 //============================= LIFECYCLE ====================================
 
-StringLiteralTestFixture::StringLiteralTestFixture() :
+TaskLabelTestFixture::TaskLabelTestFixture() :
     a(LETTER_A,0),
     b(LETTER_B,1)
 {
     return;
 }
 
-StringLiteralTestFixture::~StringLiteralTestFixture()
+TaskLabelTestFixture::~TaskLabelTestFixture()
 {
     return;
 }

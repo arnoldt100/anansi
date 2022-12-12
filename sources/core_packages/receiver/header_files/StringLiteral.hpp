@@ -1,5 +1,5 @@
-#ifndef  ANANSI_StringLiteral_INC
-#define  ANANSI_StringLiteral_INC
+#ifndef  ANANSI_TaskLabel_INC
+#define  ANANSI_TaskLabel_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -15,24 +15,24 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "StringLiteralTraits.hpp"
+#include "TaskLabelTraits.hpp"
 
-namespace STRINGLITERAL
+namespace ANANSI
 {
 
-template <std::size_t LABEL_SIZE=StringLiteralTraits::MAX_NM_CHARS> 
-class StringLiteral
+template <std::size_t LABEL_SIZE=TaskLabelTraits::MAX_NM_CHARS> 
+class TaskLabel
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        constexpr StringLiteral () :  // constructor
+        constexpr TaskLabel () :  // constructor
             value_()
         {
             return;
         }
 
-        constexpr StringLiteral ( const char (&str)[LABEL_SIZE], const int index ) :  // constructor
+        constexpr TaskLabel ( const char (&str)[LABEL_SIZE], const int index ) :  // constructor
             value_{},
             index_(index)
         {
@@ -47,7 +47,7 @@ class StringLiteral
         }
 
         // ====================  ACCESSORS     =======================================
-        constexpr void printStringLiteral() const
+        constexpr void printTaskLabel() const
         {
             std::cout << this->value_ << std::endl;
             return;
@@ -63,7 +63,7 @@ class StringLiteral
         // ====================  OPERATORS     =======================================
 
         // ====================  RELATIONSHIP OPERATORS ==============================
-        constexpr bool operator<(StringLiteral const &rhs) const
+        constexpr bool operator<(TaskLabel const &rhs) const
         {
             bool retvalue = {false};
             const std::string str_rhs(rhs.value_);
@@ -75,7 +75,7 @@ class StringLiteral
             return retvalue;
         }
         
-        constexpr bool operator<=(StringLiteral const &rhs) const
+        constexpr bool operator<=(TaskLabel const &rhs) const
         {
             bool retvalue = {false};
             const std::string str_rhs(rhs.value_);
@@ -87,7 +87,7 @@ class StringLiteral
             return retvalue;
         }
 
-        constexpr bool operator>=(StringLiteral const &rhs) const
+        constexpr bool operator>=(TaskLabel const &rhs) const
         {
             bool retvalue = {false};
             const std::string str_rhs(rhs.value_);
@@ -99,12 +99,12 @@ class StringLiteral
             return retvalue;
         }
 
-        constexpr bool operator>(StringLiteral const &rhs) const
+        constexpr bool operator>(TaskLabel const &rhs) const
         {
             return (rhs < *this);
         }
 
-        constexpr bool operator==(StringLiteral const &rhs) const
+        constexpr bool operator==(TaskLabel const &rhs) const
         {
             bool retvalue{false};
             const std::string str_rhs(rhs.value_);
@@ -116,7 +116,7 @@ class StringLiteral
             return retvalue;
         }
 
-        constexpr bool operator!=(StringLiteral const &rhs) const
+        constexpr bool operator!=(TaskLabel const &rhs) const
         {
             bool retvalue{true};
             if ( *this == rhs)
@@ -140,9 +140,9 @@ class StringLiteral
         char value_[LABEL_SIZE];
         const int index_;
 
-}; // -----  end of class StringLiteral  -----
+}; // -----  end of class TaskLabel  -----
 
 
-}; // namespace STRINGLITERAL
+}; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_StringLiteral_INC  ----- 
+#endif   // ----- #ifndef ANANSI_TaskLabel_INC  ----- 

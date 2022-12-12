@@ -9,8 +9,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "test_stringliteral_relationship_operators.h"
-#include "StringLiteral.hpp"
+#include "test_tasklabel_relationship_operators.h"
+#include "TaskLabel.hpp"
 
 namespace ANANSI 
 {

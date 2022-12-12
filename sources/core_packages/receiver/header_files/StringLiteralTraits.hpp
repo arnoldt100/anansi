@@ -1,9 +1,9 @@
-#ifndef  ANANSI_StringLiteralTraits_INC
-#define  ANANSI_StringLiteralTraits_INC
+#ifndef  ANANSI_TaskLabelTraits_INC
+#define  ANANSI_TaskLabelTraits_INC
 
-//!@ file StringLiteralTraits.hpp
+//!@ file TaskLabelTraits.hpp
 //!
-//! This class stores additional information for the StringLiteral classr.
+//! This file s.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -18,21 +18,22 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace STRINGLITERAL
+namespace ANANSI
 
 {
 
 
     
-class StringLiteralTraits
+//! This class stores additional information for the TaskLabel class.
+class TaskLabelTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //! The size of the char[] array in class StringLiteral.
+        //! The size of the char[] array in class TaskLabel.
         //! 
-        //! The class StringLiteral has a class data attribute that is of
-        //! length char[StringLiteralTraits::MAX_NM_CHARS]. Not this includes
+        //! The class TaskLabel has a class data attribute that is of
+        //! length char[TaskLabelTraits::MAX_NM_CHARS]. Not this includes
         //! the null character '\0'.
         constexpr static std::size_t MAX_NM_CHARS = 100;
 
@@ -54,9 +55,9 @@ class StringLiteralTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class StringLiteralTraits  -----
+}; // -----  end of class TaskLabelTraits  -----
 
 
-}; // namespace STRINGLITERAL
+}; // namespace ANANSI
 
-#endif // ANANSI_StringLiteralTraits_INC
+#endif // ANANSI_TaskLabelTraits_INC

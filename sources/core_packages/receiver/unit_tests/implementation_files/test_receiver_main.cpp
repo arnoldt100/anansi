@@ -10,9 +10,9 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "test_receiver_main.h"
-#include "test_stringliteraltraits.h"
-#include "StringLiteralTestFixture.h"
-#include "test_stringliteral_relationship_operators.h"
+#include "test_tasklabeltraits.h"
+#include "TaskLabelTestFixture.h"
+#include "test_tasklabel_relationship_operators.h"
 
 namespace ANANSI {
 
@@ -55,7 +55,7 @@ namespace ANANSI {
 
 }; // namespace ANANSI
 
-BOOST_AUTO_TEST_SUITE(TEST_STRINGLITERALTRAITS)
+BOOST_AUTO_TEST_SUITE(TEST_TASKLABELTRAITS)
 
     BOOST_AUTO_TEST_CASE(char_array_size)
     {
@@ -66,8 +66,8 @@ BOOST_AUTO_TEST_SUITE_END()
 
 
 
-BOOST_FIXTURE_TEST_SUITE(TEST_STRINGLITERAL_RELATIONSHIP_OPERATORS,
-                         ANANSI::StringLiteralTestFixture)
+BOOST_FIXTURE_TEST_SUITE(TEST_TASKLABEL_RELATIONSHIP_OPERATORS,
+                         ANANSI::TaskLabelTestFixture)
 
     BOOST_AUTO_TEST_CASE(relationship_operators)
     {

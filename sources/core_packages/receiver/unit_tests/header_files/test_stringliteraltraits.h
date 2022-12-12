@@ -1,6 +1,6 @@
 
-#ifndef  test_stringliteraltraits_INC
-#define  test_stringliteraltraits_INC
+#ifndef  test_tasklabeltraits_INC
+#define  test_tasklabeltraits_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -22,4 +22,4 @@ namespace ANANSI
 
 }; /* namespace ANANSI */
 
-#endif   // ----- #ifndef test_stringliteraltraits_INC  ----- 
+#endif   // ----- #ifndef test_tasklabeltraits_INC  ----- 

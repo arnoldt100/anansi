@@ -1,9 +1,9 @@
-#ifndef ANANSI_STRINGLITERAL_FIXTURES_INC
-#define ANANSI_STRINGLITERAL_FIXTURES_INC
+#ifndef ANANSI_TASKLABEL_FIXTURES_INC
+#define ANANSI_TASKLABEL_FIXTURES_INC
 
-//! @file stringliteral_fixtures.h
+//! @file TasklabelTestFixtures.h
 //!
-//! Provides test case for the StringLiteral tests.
+//! Provides test case for the TaskLabel tests.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -16,16 +16,16 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "StringLiteral.hpp"
+#include "TaskLabel.hpp"
 
 namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  StringLiteralTestFixture
+//        Class:  TaskLabelTestFixture
 //  Description:  
 //  =====================================================================================
-class StringLiteralTestFixture
+class TaskLabelTestFixture
 {
     public:
         constexpr static std::size_t MY_SIZE = 100;
@@ -34,9 +34,9 @@ class StringLiteralTestFixture
 
         // ====================  LIFECYCLE     =======================================
 
-        StringLiteralTestFixture ();   // constructor
+        TaskLabelTestFixture ();   // constructor
 
-        ~StringLiteralTestFixture ();  // destructor
+        ~TaskLabelTestFixture ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -45,8 +45,8 @@ class StringLiteralTestFixture
         // ====================  OPERATORS     =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        STRINGLITERAL::StringLiteral<MY_SIZE> a;
-        STRINGLITERAL::StringLiteral<MY_SIZE> b;
+        ANANSI::TaskLabel<MY_SIZE> a;
+        ANANSI::TaskLabel<MY_SIZE> b;
 
     protected:
         // ====================  METHODS       =======================================
@@ -58,9 +58,9 @@ class StringLiteralTestFixture
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class StringLiteralTestFixture  -----
+}; // -----  end of class TaskLabelTestFixture  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_STRINGLITERAL_FIXTURES_INC
+#endif // ANANSI_TASKLABEL_FIXTURES_INC

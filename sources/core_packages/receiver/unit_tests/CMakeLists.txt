@@ -40,9 +40,9 @@
     #-----------------------------------------------------
     set (receiver_unit_tests_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_receiver_main.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StringLiteralTestFixture.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_stringliteral_relationship_operators.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_stringliteraltraits.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/TaskLabelTestFixture.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_tasklabel_relationship_operators.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_tasklabeltraits.h
         )
 
 
@@ -54,9 +54,9 @@
     #-----------------------------------------------------
     set (receiver_unit_tests_implementation_files
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver_main.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StringLiteralTestFixture.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_stringliteral_relationship_operators.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_stringliteraltraits.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/TaskLabelTestFixture.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_tasklabel_relationship_operators.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_tasklabeltraits.cpp
         )
 
     #-----------------------------------------------------
