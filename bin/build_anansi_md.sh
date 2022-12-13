@@ -4,7 +4,7 @@
 # Define the Anansi buld directory.                  -
 #                                                    -
 #-----------------------------------------------------
-anansi_cmake_build_dir="anansi_cmake_build_dir"
+anansi_cmake_build_dir="build"
 
 #-----------------------------------------------------
 # Define a log file                                  -
@@ -31,6 +31,7 @@ mkdir ${anansi_cmake_build_dir}
 cd ${anansi_cmake_build_dir}
 
 cmake ${ANANSI_TOP_LEVEL}/sources \
+      -DCMAKE_EXPORT_COMPILE_COMMANDS=1 \
       -DCMAKE_CXX_COMPILER=${ANANSI_CMAKE_CXX_COMPILER} \
       -DCMAKE_C_COMPILER=${ANANSI_CMAKE_C_COMPILER} \
       -DCMAKE_INSTALL_PREFIX=${ANANSI_INSTALL_PREFIX} \
