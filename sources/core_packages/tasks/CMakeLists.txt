@@ -72,6 +72,8 @@
     set (tasks_header_files
          header_files/AnansiTaskParameters.h
          header_files/AnansiTask.h
+         header_files/TaskLabelTraits.hpp
+         header_files/TaskLabel.hpp
          header_files/AnansiTaskUtilities.hpp
          header_files/ConsoleLoggingTask.h
          header_files/PrimaryFileLoggingTask.h
@@ -89,6 +91,8 @@
     set (tasks_implementation_files
          implementation_files/AnansiTaskParameters.cpp
          implementation_files/AnansiTask.cpp
+         implementation_files/TaskLabelTraits.cpp
+         implementation_files/TaskLabel.cpp
          implementation_files/AnansiTaskUtilities.cpp
          implementation_files/ConsoleLoggingTask.cpp
          implementation_files/PrimaryFileLoggingTask.cpp
@@ -165,4 +169,4 @@ install( TARGETS ${target}
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-# add_subdirectory(unit_tests)
+add_subdirectory(unit_tests)

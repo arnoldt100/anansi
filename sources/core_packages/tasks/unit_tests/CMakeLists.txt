@@ -8,7 +8,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "__target___unit_tests")
+    set(my_project_name "tasklabel_unit_tests")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -27,34 +27,47 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # Here we define the sources and header files associated          @
-# with the __target___unit_test target.                           @
+# with the tasklabel_unit_test target.                            @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # __target___unit_tests_header_files                 -
+    # tasklabel_unit_tests_header_files                  -
     # with the target header files.                      -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test___target__.h )
+    set (tasklabel_unit_tests_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_tasks_main.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/TaskLabelTestFixture.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_tasklabel_relationship_operators.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_tasklabeltraits.h )
 
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # __target___unit_tests_implementation_files         -
+    # tasklabel_unit_tests_implementation_files          -
     # associated with target implementation files.       -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test___target__.cpp )
+    set (tasklabel_unit_tests_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_tasks_main.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/TaskLabelTestFixture.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_tasklabel_relationship_operators.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_tasklabeltraits.cpp
+        )
+
+    #-----------------------------------------------------
+    # Get the include paths. 
+    #
+    #-----------------------------------------------------
+    get_target_property(my_reciever_include tasks tasks_include) 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the implementation and header files associated  @
-# with the __target___unit_tests target.                          @
+# with the tasklabel_unit_tests target.                           @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -75,45 +88,45 @@
     #                                                    -
     #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${__target___unit_tests_header_files}
-                ${__target___unit_tests_implementation_files} )
+        PRIVATE ${tasklabel_unit_tests_header_files}
+        PRIVATE ${tasklabel_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property( <cla>_include_dir __target__ __target___include )
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                               PRIVATE ${<cla>_include_dir}
+                               PRIVATE ${my_reciever_include}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
     # (1) Boost libraries                                -
-    # (2) lib__target__.a                    -
+    # (2) libtasklabel.a                                 -
     #                                                    -
     #-----------------------------------------------------
-    target_link_libraries(${target}
-                          PRIVATE __target__ ${Boost_LIBRARIES} )
+    target_link_libraries(${target} 
+                          PRIVATE tasks
+                          PRIVATE ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # __target___unit_tests.                 -
+    # tasklabel_unit_tests.                              -
     #                                                    -
     #-----------------------------------------------------
-    set_target_properties( ${target}
-                           PROPERTIES
-                           PUBLIC_HEADER "${__target___unit_tests_header_files}" )
+    set_target_properties( ${target} PROPERTIES
+                           CXX_STANDARD ${tasks_cxx_standard}
+                           PUBLIC_HEADER "${tasklabel_unit_tests_header_files}" )
 
     #-----------------------------------------------------
     # Here we define the installations rules for         -
-    # this target __target___unit_tests.                 -
+    # this target tasklabel_unit_tests.                  -
     #                                                    -
     #-----------------------------------------------------
     install( TARGETS ${target}
-             RUNTIME DESTINATION ${anansi_install_bin_directory} 
-             PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
+             RUNTIME DESTINATION ${tasks_install_lib_library_directory} 
+             PUBLIC_HEADER DESTINATION ${tasks_install_lib_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

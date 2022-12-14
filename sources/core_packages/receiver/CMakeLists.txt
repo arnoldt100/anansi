@@ -69,8 +69,6 @@
     #-----------------------------------------------------
     set (receiver_header_files
          header_files/ReceiverInterface.hpp
-         header_files/TaskLabelTraits.hpp
-         header_files/TaskLabel.hpp
          header_files/GenericReceiverFactory.hpp)
 
     #-----------------------------------------------------
@@ -82,8 +80,6 @@
     #-----------------------------------------------------
     set (receiver_implementation_files
          implementation_files/ReceiverInterface.cpp
-         implementation_files/TaskLabelTraits.cpp
-         implementation_files/TaskLabel.cpp
          implementation_files/GenericReceiverFactory.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -141,4 +137,5 @@ install( TARGETS ${target}
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-add_subdirectory(unit_tests)
+# TODO::Renable unit tests.
+# add_subdirectory(unit_tests)
