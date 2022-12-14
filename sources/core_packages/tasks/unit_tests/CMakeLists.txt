@@ -8,7 +8,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "tasklabel_unit_tests")
+    set(my_project_name "tasks_unit_tests")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -27,18 +27,18 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # Here we define the sources and header files associated          @
-# with the tasklabel_unit_test target.                            @
+# with the tasks_unit_test target.                                @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # tasklabel_unit_tests_header_files                  -
+    # tasks_unit_tests_header_files                      -
     # with the target header files.                      -
     #                                                    -
     #-----------------------------------------------------
-    set (tasklabel_unit_tests_header_files
+    set (tasks_unit_tests_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_tasks_main.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/TaskLabelTestFixture.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_tasklabel_relationship_operators.h
@@ -47,11 +47,11 @@
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # tasklabel_unit_tests_implementation_files          -
+    # tasks_unit_tests_implementation_files          -
     # associated with target implementation files.       -
     #                                                    -
     #-----------------------------------------------------
-    set (tasklabel_unit_tests_implementation_files
+    set (tasks_unit_tests_implementation_files
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_tasks_main.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/TaskLabelTestFixture.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_tasklabel_relationship_operators.cpp
@@ -67,7 +67,7 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the implementation and header files associated  @
-# with the tasklabel_unit_tests target.                           @
+# with the tasks_unit_tests target.                               @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -88,8 +88,8 @@
     #                                                    -
     #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${tasklabel_unit_tests_header_files}
-        PRIVATE ${tasklabel_unit_tests_implementation_files} )
+        PRIVATE ${tasks_unit_tests_header_files}
+        PRIVATE ${tasks_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
@@ -103,7 +103,7 @@
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
     # (1) Boost libraries                                -
-    # (2) libtasklabel.a                                 -
+    # (2) libtasks.a                                     -
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target} 
@@ -112,16 +112,16 @@
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # tasklabel_unit_tests.                              -
+    # tasks_unit_tests.                                  -
     #                                                    -
     #-----------------------------------------------------
     set_target_properties( ${target} PROPERTIES
                            CXX_STANDARD ${tasks_cxx_standard}
-                           PUBLIC_HEADER "${tasklabel_unit_tests_header_files}" )
+                           PUBLIC_HEADER "${tasks_unit_tests_header_files}" )
 
     #-----------------------------------------------------
     # Here we define the installations rules for         -
-    # this target tasklabel_unit_tests.                  -
+    # this target tasks_unit_tests.                      -
     #                                                    -
     #-----------------------------------------------------
     install( TARGETS ${target}

@@ -10,9 +10,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "test_receiver_main.h"
-#include "test_tasklabeltraits.h"
-#include "TaskLabelTestFixture.h"
-#include "test_tasklabel_relationship_operators.h"
 
 namespace ANANSI {
 
@@ -66,8 +63,7 @@ BOOST_AUTO_TEST_SUITE(TEST_TASKLABELTRAITS)
 
 BOOST_AUTO_TEST_SUITE_END()
 
-
-nt main(int argc,char* argv[], char* envp[])
+int main(int argc,char* argv[], char* envp[])
 {
     return utf::unit_test_main(init_unit_test,argc,argv);
 }

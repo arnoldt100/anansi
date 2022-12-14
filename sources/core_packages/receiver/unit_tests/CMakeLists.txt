@@ -8,7 +8,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "tasklabel_unit_tests")
+    set(my_project_name "receiver_unit_tests")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -27,41 +27,41 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # Here we define the sources and header files associated          @
-# with the tasklabel_unit_test target.                            @
+# with the receiver_unit_test target.                             @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # tasklabel_unit_tests_header_files                   -
+    # receiver_unit_tests_header_files                   -
     # with the target header files.                      -
     #                                                    -
     #-----------------------------------------------------
-    set (tasklabel_unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_tasklabel_main.h)
+    set (receiver_unit_tests_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_receiver_main.h)
 
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # tasklabel_unit_tests_implementation_files           -
+    # receiver_unit_tests_implementation_files           -
     # associated with target implementation files.       -
     #                                                    -
     #-----------------------------------------------------
-    set (tasklabel_unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_tasklabel_main.cpp)
+    set (receiver_unit_tests_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver_main.cpp)
 
     #-----------------------------------------------------
     # Get the include paths. 
     #
     #-----------------------------------------------------
-    get_target_property(my_reciever_include tasklabel tasklabel_include) 
+    get_target_property(my_reciever_include receiver receiver_include) 
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the implementation and header files associated  @
-# with the tasklabel_unit_tests target.                            @
+# with the receiver_unit_tests target.                            @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -82,8 +82,8 @@
     #                                                    -
     #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${tasklabel_unit_tests_header_files}
-        PRIVATE ${tasklabel_unit_tests_implementation_files} )
+        PRIVATE ${receiver_unit_tests_header_files}
+        PRIVATE ${receiver_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
@@ -97,30 +97,30 @@
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
     # (1) Boost libraries                                -
-    # (2) libtasklabel.a                                  -
+    # (2) libreceiver.a                                  -
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target} 
-                          PRIVATE tasklabel
+                          PRIVATE receiver
                           PRIVATE ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # tasklabel_unit_tests.                               -
+    # receiver_unit_tests.                               -
     #                                                    -
     #-----------------------------------------------------
     set_target_properties( ${target} PROPERTIES
-                           CXX_STANDARD ${tasklabel_cxx_standard}
-                           PUBLIC_HEADER "${tasklabel_unit_tests_header_files}" )
+                           CXX_STANDARD ${receiver_cxx_standard}
+                           PUBLIC_HEADER "${receiver_unit_tests_header_files}" )
 
     #-----------------------------------------------------
     # Here we define the installations rules for         -
-    # this target tasklabel_unit_tests.                   -
+    # this target receiver_unit_tests.                   -
     #                                                    -
     #-----------------------------------------------------
     install( TARGETS ${target}
-             RUNTIME DESTINATION ${tasklabel_install_lib_library_directory} 
-             PUBLIC_HEADER DESTINATION ${tasklabel_install_lib_directory} )
+             RUNTIME DESTINATION ${receiver_install_lib_library_directory} 
+             PUBLIC_HEADER DESTINATION ${receiver_install_lib_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
