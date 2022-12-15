@@ -55,7 +55,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
     // Get the label for the receiver.
     // 
     // ---------------------------------------------------
-    auto my_label = console_logger_receiver->getTaskLabel();
+    const auto my_label = console_logger_receiver->getTaskLabel();
 
     // ---------------------------------------------------
     // Create task object and bind to receiver.
@@ -220,7 +220,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Get the label for the receiver
     // 
     // ---------------------------------------------------
-    auto my_label = mpi_environment_receiver->getTaskLabel(); 
+    const auto my_label = mpi_environment_receiver->getTaskLabel();
 
     // ---------------------------------------------------
     //  Create the mpi environment task object and bind the 

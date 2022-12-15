@@ -82,6 +82,7 @@
     # Set various variables for include directories.
     # 
     # -----------------------------------------------------
+    get_target_property(my_tasks_include tasks tasks_include) 
     get_target_property(my_logger_include logger logger_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_communicator_include communicator communicator_include)
@@ -116,6 +117,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_tasks_include}
                            PRIVATE ${my_logger_include}
                            PRIVATE ${my_receiver_include} 
                            PRIVATE ${my_communicator_include} )
@@ -125,6 +127,7 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
+                      PUBLIC tasks
                       PUBLIC logger
                       PUBLIC receiver
                       PUBLIC communicator)

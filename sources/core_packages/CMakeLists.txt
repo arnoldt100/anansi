@@ -43,6 +43,18 @@ enable_building_mouseion("${core_packages_minimum_cmake_version}"
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
 
 # ----------------------------------------------------
+# Here we define variables which indicate where to install the tasks
+# libraries, header files, and associated binaries.
+# 
+# ----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/tasks/cmake_macros_and_functions/tasks.cmake)
+enable_building_tasks_library( "${core_packages_install_lib_directory}"
+                                    "${core_packages_install_include_directory}"
+                                    "${core_packages_install_bin_directory}" 
+                                    "${core_packages_cxx_standard}" )
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tasks)
+
+# ----------------------------------------------------
 # Call the macro that enables build the receiver target and add the receiver
 # package.
 # 
@@ -138,18 +150,6 @@ enable_building_logger_library( "${core_packages_install_lib_directory}"
                                 "${core_packages_install_bin_directory}" 
                                 "${core_packages_cxx_standard}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
-
-# ----------------------------------------------------
-# Here we define variables which indicate where to install the tasks
-# libraries, header files, and associated binaries.
-# 
-# ----------------------------------------------------
-include( ${CMAKE_CURRENT_SOURCE_DIR}/tasks/cmake_macros_and_functions/tasks.cmake)
-enable_building_tasks_library( "${core_packages_install_lib_directory}"
-                                    "${core_packages_install_include_directory}"
-                                    "${core_packages_install_bin_directory}" 
-                                    "${core_packages_cxx_standard}" )
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tasks)
 
 #-----------------------------------------------------
 # Call the macro that enables build the invoker target and add the invoker

@@ -46,6 +46,13 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "receiver_include" )
 
+    # ----------------------------------------------------
+    # Get the properties of various other targets that 
+    # receiver depend on.
+    # 
+    # ----------------------------------------------------
+    get_target_property(my_tasks_include tasks tasks_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -112,7 +119,8 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_tasks_include})
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
