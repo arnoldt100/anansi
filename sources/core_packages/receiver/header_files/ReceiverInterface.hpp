@@ -25,7 +25,7 @@ namespace RECEIVER
 {
 
 template<typename Derived,
-         typename LABEL_T = std::string
+         typename LABEL_T = ANANSI::TaskLabel<> 
         >
 class ReceiverInterface
 {
