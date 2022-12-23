@@ -27,7 +27,8 @@ class TaskLabel
         // ====================  LIFECYCLE     =======================================
 
         constexpr TaskLabel () :  // constructor
-            value_()
+            value_(),
+            index_(0)
         {
             return;
         }

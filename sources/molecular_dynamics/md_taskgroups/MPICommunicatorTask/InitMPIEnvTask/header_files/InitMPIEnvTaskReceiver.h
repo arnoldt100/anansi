@@ -20,6 +20,8 @@
 //--------------------------------------------------------//
 #include "ReceiverInterface.hpp"
 #include "MPIEnvironment.h"
+#include "TaskLabel.hpp"
+#include "TaskLabelTraits.hpp"
 
 namespace ANANSI
 {
@@ -30,7 +32,10 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  STATIC       =======================================
 
-        inline static const RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE TASKLABEL = "mpi_environment";
+        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = {'m', 'p', 'i', '_', 'e', 'n', 'v', 'i', 'r', 'o', 'n', 'm', 'e', 'n', 't'};
+
+        inline static const 
+        RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE TASKLABEL(tmpstr,0);
 
         // ====================  LIFECYCLE     =======================================
 

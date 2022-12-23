@@ -306,7 +306,7 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> mpi_init_world_communicator_cmd = 
-             this->mdAnansiInitWorldCommunicatorTaskFactory_->create_shared_ptr<CommunicatorTask>(mpi_init_world_commm_receiver);
+            this->mdAnansiInitWorldCommunicatorTaskFactory_->create_shared_ptr<CommunicatorTask>(mpi_init_world_commm_receiver);
 
     // ---------------------------------------------------
     // Add the task object/command to the invoker.
