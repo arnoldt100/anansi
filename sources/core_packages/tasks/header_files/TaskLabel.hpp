@@ -39,7 +39,7 @@ class TaskLabel
         {
             if (str[0] != '\0')
             {
-                for (int ip{0}; ip < LABEL_SIZE; ++ip)
+                for (decltype(LABEL_SIZE) ip{0}; ip < LABEL_SIZE; ++ip)
                 {
                     this->value_[ip] = str[ip];
                 }
