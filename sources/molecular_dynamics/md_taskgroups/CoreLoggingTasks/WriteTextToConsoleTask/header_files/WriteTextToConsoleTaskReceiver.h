@@ -34,10 +34,11 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         
         // ====================  STATIC       =======================================
 
-        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = {'w','r','i', 't', 'e', '_', 't', 'e', 'x', 't', '_', 't', 'o', '_', 'c','o', 'n', 's', 'o', 'l', 'e'};
+        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+            {'w','r','i', 't', 'e', '_', 't', 'e', 'x', 't', '_', 't', 'o', '_', 'c','o', 'n', 's', 'o', 'l', 'e'};
 
-        inline static const 
-        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL(WriteTextToConsoleTaskReceiver::tmpstr,0);
+        static const 
+        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL;
 
         // ====================  LIFECYCLE     =======================================
 

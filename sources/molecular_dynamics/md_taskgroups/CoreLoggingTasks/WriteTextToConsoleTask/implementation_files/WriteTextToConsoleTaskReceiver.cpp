@@ -20,6 +20,11 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
+const RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::TASKLABEL  = 
+    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(
+            WriteTextToConsoleTaskReceiver::tmpstr,0);
+
+
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
     communicator_(nullptr),

@@ -23,6 +23,9 @@
 #include "Communicator.h"
 #include "ReceiverInterface.hpp"
 #include "MPICommunicatorFactory.h"
+#include "TaskLabel.hpp"
+#include "TaskLabelTraits.hpp"
+
 
 namespace ANANSI
 {
@@ -32,8 +35,10 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
     public:
         // ====================  STATIC       =======================================
 
-        inline static const RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            "mpi_world_communicator";
+        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+          {'m','p','i','_', 'w', 'o', 'r', 'l', 'd', '_', 'c', 'o','m', 'm', 'u', 'n', 'i', 'c', 'a', 't', 'o', 'r'};
+
+        static const RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL;
 
         // ====================  LIFECYCLE     =======================================
 

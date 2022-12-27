@@ -21,6 +21,10 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
+
+const RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
+  RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE(InitWorldCommunicatorTaskReceiver::tmpstr,0);
+
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver() :
     RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(),
     communicator_(nullptr)
