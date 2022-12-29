@@ -195,8 +195,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // All command for this invoker will have labels that are of type
     // std::string. 
     // ---------------------------------------------------
-    using MY_LABEL_TYPE = std::string;
-
     std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
                                               InitMPIEnvTaskTraits::concrete_products>
                    > mdCommEnvInvkFactory = 
@@ -240,7 +238,10 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Use the invoker to initialize the communication environment.
     // 
     // ---------------------------------------------------
-    const std::vector<std::string> command_labels = {"mpi_environment"};
+    const std::vector< 
+                       std::remove_const<decltype(my_label)>::type
+                     > command_labels = {my_label};
+
     this->mdCommEnvInvk_->doTask(command_labels);
     return;
 }
@@ -252,7 +253,12 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
     // Use the invoker to initialize the communication environment.
     // 
     // ---------------------------------------------------
-    const std::vector<std::string> command_labels = {"mpi_environment"};
+    constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = {
+        'm','p', 'i', '_','e','n','v','i','r','o','n','m','e','n','t'
+    };
+
+    const std::vector<ANANSI::TaskLabel<>> command_labels = {ANANSI::TaskLabel<>(tmpstr,0)};
+
     this->mdCommEnvInvk_->undoTask(command_labels);
     return;
 
@@ -267,9 +273,6 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // All receivers for this invoker will have labels that are of type
     // std::string. 
     // ---------------------------------------------------
-
-
-    using MY_LABEL_TYPE = std::string;
 
     std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                               InitWorldCommunicatorTaskTraits::concrete_products>
@@ -316,7 +319,11 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // Use the invoker to initialize the world communicator.
     // 
     // ---------------------------------------------------
-    const std::vector<std::string> command_labels = {"mpi_world_communicator"};
+    constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+    {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
+
+    const std::vector<ANANSI::TaskLabel<>> command_labels = {ANANSI::TaskLabel<>(tmpstr,0)};
+
     this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
     return;
@@ -325,7 +332,11 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
 void 
 AnansiMolecularDynamics::disableWorldCommunicator()
 {
-    const std::vector<std::string> command_labels = {"mpi_world_communicator"};
+    constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+    {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
+
+    const std::vector<ANANSI::TaskLabel<>> command_labels = {ANANSI::TaskLabel<>(tmpstr,0)};
+
     this->mdWorldCommunicatorInvk_->undoTask(command_labels);
     return;
 }
@@ -337,9 +348,13 @@ AnansiMolecularDynamics::disableCoreLoggingTasks()
     // Disable the Console logger.
     // 
     // ---------------------------------------------------
-    const std::vector<std::string> command_labels = {"write_text_to_console"};
-    this->mdCoreLoggingInvk_->undoTask(command_labels);
+    constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = {
+       'w','r','i','t','e','_','t','e','x','t','_','t','o','_','c','o','n','s','o','l','e'
+    };
 
+    const std::vector<ANANSI::TaskLabel<>> command_labels = {ANANSI::TaskLabel<>(tmpstr,0)};
+
+    this->mdCoreLoggingInvk_->undoTask(command_labels);
     return;
 }
 
@@ -407,8 +422,7 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
     // ---------------------------------------------------
     std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>(); 
     auto tmp_communicator = a_communicator_factory->cloneCommunicator(this->MpiWorldCommunicator_);
-    this->enableConsoleLoggingTask_<MY_LABEL_TYPE,
-                                    CoreLoggingTasksTraits::abstract_products,
+    this->enableConsoleLoggingTask_<CoreLoggingTasksTraits::abstract_products,
                                     CoreLoggingTasksTraits::concrete_products
                                    >(this->mdCoreLoggingInvk_,
                                      tmp_communicator);
