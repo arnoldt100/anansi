@@ -291,14 +291,27 @@ MPICommunicator::_getCommunicatorRank() const
 COMMUNICATOR::Communicator*
 MPICommunicator::_duplicateCommunicator() const 
 {
-	// First make a duplicate of the communicator
-	MPI_Comm mpi_comm_duplicate;
-	auto mpi_return_code = MPI_Comm_dup(_mpiCommunicator,&mpi_comm_duplicate);
+  MPICommunicator* aMPICommunicator = nullptr;
 
-    // We now form the new MPICommunicator.
-    MPICommunicator* aMPICommunicator = 
-        new MPICommunicator(mpi_comm_duplicate,this->_hostname);
-
+  try 
+  {
+	    MPI_Comm mpi_comm_duplicate;
+	    const auto mpi_return_code = MPI_Comm_dup(_mpiCommunicator,&mpi_comm_duplicate);
+      
+      if (mpi_return_code != MPI_SUCCESS)
+      {
+        throw ANANSI::MPIGenericException();
+      }
+    
+      // We now form the new MPICommunicator.
+      aMPICommunicator = 
+          new MPICommunicator(mpi_comm_duplicate,this->_hostname);
+  }
+  catch (ANANSI::MPIGenericException const & my_mpi_exception) 
+  {
+        std::cout << my_mpi_exception.what() << std::endl;
+        std::abort();
+  }
     return aMPICommunicator;
 }
 

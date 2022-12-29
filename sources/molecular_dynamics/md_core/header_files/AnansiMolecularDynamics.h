@@ -137,8 +137,7 @@ class AnansiMolecularDynamics final : public Simulation
         // To be depracated.
         void setGlobalISEStatus_() final override;
 
-        template<typename Label_t,
-                 typename abstract_products_typelist,
+        template<typename abstract_products_typelist,
                  typename concrete_products_typelist>
         void enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
                                                                                    concrete_products_typelist>

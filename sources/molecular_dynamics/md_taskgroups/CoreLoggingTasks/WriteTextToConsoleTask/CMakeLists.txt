@@ -65,7 +65,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (writetexttoconsoletask_header_files
-         header_files/WriteTextToConsoleTaskReceiver.h )
+         header_files/WriteTextToConsoleTaskReceiver.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -75,7 +75,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (writetexttoconsoletask_implementation_files
-         implementation_files/WriteTextToConsoleTaskReceiver.cpp )
+         implementation_files/WriteTextToConsoleTaskReceiver.cpp)
 
 
     # -----------------------------------------------------

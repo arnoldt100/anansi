@@ -19,13 +19,15 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "GenericTaskInvoker.hpp"
+#include "TaskLabel.hpp"
 
 namespace ANANSI
 {
 
 template <typename AbstractProductsTypeList,
           typename ConcreteProductsTypeList,
-          typename LABEL_t = std::string>
+          typename LABEL_t = ANANSI::TaskLabel<>
+         > 
 class GenericTaskInvokerFactory
 {
     public:

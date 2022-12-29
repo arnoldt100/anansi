@@ -31,8 +31,7 @@ namespace ANANSI {
 
 //============================= ACCESSORS ====================================
 template<>
-void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
-                                                        CoreLoggingTasksTraits::abstract_products,
+void AnansiMolecularDynamics::enableConsoleLoggingTask_<CoreLoggingTasksTraits::abstract_products,
                                                         CoreLoggingTasksTraits::concrete_products
                                                        >(
     std::shared_ptr<ANANSI::GenericTaskInvoker<CoreLoggingTasksTraits::abstract_products,
@@ -77,8 +76,11 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<std::string,
     std::string sender{"A processor."};
     std::string message{"The console logger is enabled."};
     auto message_packet = std::make_unique<ConsoleMessageContainer>(message,sender);  
+
     core_logging_invoker->modifyTask(my_label,message_packet);
-    const std::vector<std::string> command_labels = {my_label};
+    const std::vector<
+                       std::remove_const<decltype(my_label)>::type
+                     > command_labels = {my_label};
     core_logging_invoker->doTask(command_labels);
 
     return;
@@ -196,12 +198,10 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     using MY_LABEL_TYPE = std::string;
 
     std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
-                                              InitMPIEnvTaskTraits::concrete_products,
-                                              MY_LABEL_TYPE>
+                                              InitMPIEnvTaskTraits::concrete_products>
                    > mdCommEnvInvkFactory = 
         std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
-                                                   InitMPIEnvTaskTraits::concrete_products,
-                                                   MY_LABEL_TYPE>
+                                                   InitMPIEnvTaskTraits::concrete_products>
                         >();
 
     this->mdCommEnvInvk_ = mdCommEnvInvkFactory->create_shared_ptr();
@@ -272,12 +272,10 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     using MY_LABEL_TYPE = std::string;
 
     std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                              InitWorldCommunicatorTaskTraits::concrete_products,
-                                              MY_LABEL_TYPE>
+                                              InitWorldCommunicatorTaskTraits::concrete_products>
                    > mdWorldCommunicatorInvkFactory = 
         std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                   InitWorldCommunicatorTaskTraits::concrete_products,
-                                                   MY_LABEL_TYPE>
+                                                   InitWorldCommunicatorTaskTraits::concrete_products>
                         >();
 
     this->mdWorldCommunicatorInvk_ = mdWorldCommunicatorInvkFactory->create_shared_ptr();
@@ -288,7 +286,7 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // ---------------------------------------------------
     MPICommunicatorFactory a_communicator_factory;
     this->MpiWorldCommunicator_ = a_communicator_factory.createNullWorldCommunicator();
-    
+
     auto mpi_init_world_commm_receiver = ANANSI::GenericReceiverFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                         InitWorldCommunicatorTaskTraits::concrete_products>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
 
@@ -393,15 +391,11 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
     // All receivers for this invoker will have labels that are of type
     // std::string. 
     // ---------------------------------------------------
-    using MY_LABEL_TYPE = std::string;
-
     std::shared_ptr<GenericTaskInvokerFactory<CoreLoggingTasksTraits::abstract_products,
-                                              CoreLoggingTasksTraits::concrete_products,
-                                              MY_LABEL_TYPE>
+                                              CoreLoggingTasksTraits::concrete_products>
                    > mdAnansiCoreLoggingTaskFactory = 
         std::make_shared<GenericTaskInvokerFactory<CoreLoggingTasksTraits::abstract_products,
-                                                   CoreLoggingTasksTraits::concrete_products,
-                                                   MY_LABEL_TYPE>
+                                                   CoreLoggingTasksTraits::concrete_products>
                         >();
 
      this->mdCoreLoggingInvk_ = mdAnansiCoreLoggingTaskFactory->create_shared_ptr();
