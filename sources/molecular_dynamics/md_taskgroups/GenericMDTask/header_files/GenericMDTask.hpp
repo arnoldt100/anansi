@@ -112,6 +112,7 @@ class GenericMDTask : public BaseClass
 
         void disableConcreteTask(const std::vector<std::string> & flags) override
         {
+            this->receiver_->disable();
             return;
         }
 
