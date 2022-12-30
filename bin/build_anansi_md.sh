@@ -4,13 +4,19 @@
 # Define the Anansi buld directory.                  -
 #                                                    -
 #-----------------------------------------------------
-anansi_cmake_build_dir="build"
+declare -r anansi_cmake_build_dir="build"
+
+#-----------------------------------------------------
+# The number of make threads.                        -
+#                                                    -
+#-----------------------------------------------------
+declare -r -i NM_MAKE_THREADS=2
 
 #-----------------------------------------------------
 # Define a log file                                  -
 #                                                    -
 #-----------------------------------------------------
-log_file="${ANANSI_TOP_LEVEL}/anansi_log.txt"
+declare -r log_file="${ANANSI_TOP_LEVEL}/anansi_log.txt"
 
 #-----------------------------------------------------
 # No edits should be needed below this line.         -
@@ -36,6 +42,6 @@ cmake ${ANANSI_TOP_LEVEL}/sources \
       -DCMAKE_INSTALL_PREFIX=${ANANSI_INSTALL_PREFIX} \
       -DCMAKE_BUILD_TYPE=Debug
 
-make 
+make -j ${NM_MAKE_THREADS}
 
 make install

@@ -110,6 +110,11 @@ class GenericMDTask : public BaseClass
             return;
         }
 
+        void disableConcreteTask(const std::vector<std::string> & flags) override
+        {
+            return;
+        }
+
         // ====================  OPERATORS     =======================================
 
         GenericMDTask& operator= (const GenericMDTask &other) // assignment operator

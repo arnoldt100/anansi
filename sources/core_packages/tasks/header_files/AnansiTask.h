@@ -52,9 +52,9 @@ class AnansiTask
         // ====================  MUTATORS      =======================================
         void doAction(const std::vector<std::string> & flags ) const;
         
-        void undoAction(const std::vector<std::string> & commands );
+        void undoAction(const std::vector<std::string> & flags );
 
-
+        void disableTask(const std::vector<std::string> & flags);
 
         // ====================  OPERATORS     =======================================
 
@@ -74,9 +74,11 @@ class AnansiTask
 
         // ====================  MUTATORS      =======================================
         
-        virtual void doConcreteTaskAction(const std::vector<std::string> & commands) const= 0;
+        virtual void doConcreteTaskAction(const std::vector<std::string> & flags) const = 0;
         
-        virtual void undoConcreteTaskAction(const std::vector<std::string> & commands) = 0;
+        virtual void undoConcreteTaskAction(const std::vector<std::string> & flags) = 0;
+
+        virtual void disableConcreteTask(const std::vector<std::string> & flags) =0;
 
         // ====================  DATA MEMBERS  =======================================
 

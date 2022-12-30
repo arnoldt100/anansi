@@ -108,6 +108,7 @@ template<typename... Types>
 void WriteTextToConsoleTaskReceiver::disableReceiver(Types... args)
 {
     // Disable the communicator.
+    this->communicator_->freeCommunicator();
     return;
 }
 
