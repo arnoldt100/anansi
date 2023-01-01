@@ -24,6 +24,8 @@ template <std::size_t LABEL_SIZE=TaskLabelTraits::MAX_NM_CHARS>
 class TaskLabel
 {
     public:
+        using LABEL_SIZE=TaskLabelTraits::MAX_NM_CHARS;
+
         // ====================  LIFECYCLE     =======================================
 
         constexpr TaskLabel () :  // constructor
