@@ -259,7 +259,7 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 
     const std::vector<ANANSI::TaskLabel<>> command_labels = {ANANSI::TaskLabel<>(tmpstr,0)};
 
-    this->mdCommEnvInvk_->undoTask(command_labels);
+    this->mdCommEnvInvk_->disableTask(command_labels);
     return;
 
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
@@ -337,7 +337,7 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 
     const std::vector<ANANSI::TaskLabel<>> command_labels = {ANANSI::TaskLabel<>(tmpstr,0)};
 
-    this->mdWorldCommunicatorInvk_->undoTask(command_labels);
+    this->mdWorldCommunicatorInvk_->disableTask(command_labels);
     return;
 }
 
@@ -354,7 +354,7 @@ AnansiMolecularDynamics::disableCoreLoggingTasks()
 
     const std::vector<ANANSI::TaskLabel<>> command_labels = {ANANSI::TaskLabel<>(tmpstr,0)};
 
-    this->mdCoreLoggingInvk_->undoTask(command_labels);
+    this->mdCoreLoggingInvk_->disableTask(command_labels);
     return;
 }
 
@@ -363,7 +363,7 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 {
     this->simulationParameters_ = SimulationParametersFactory::create(this->commandLineArguments_);
     return;
-}      /* -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- */
+}      // -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- 
 
 void
 AnansiMolecularDynamics::readSimulationControlFile ()

@@ -102,14 +102,15 @@ void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types &...  args) const
 template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types &... args) const
 {
-    this->communicator_->freeCommunicator();
-    this->communicator_.reset();
+    // This class doesn't have an undo action.
     return;
 }
 
 template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::disableReceiver(Types &...  args) 
 {
+    this->communicator_->freeCommunicator();
+    this->communicator_.reset();
     return;
 }
 

@@ -90,6 +90,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 template<typename... Types>
 void InitMPIEnvTaskReceiver::disableReceiver(Types &...  args)
 {
+    this->mpiEnvironment_->disableEnvironment();
     return;
 }
 
@@ -103,7 +104,7 @@ void InitMPIEnvTaskReceiver::receiverDoAction(Types &... args) const
 template<typename... Types>
 void InitMPIEnvTaskReceiver::receiverUndoAction(Types &... args) const
 {
-    this->mpiEnvironment_->disableEnvironment();
+    // This class doesn't have an action to undo. 
     return;
 }
 
