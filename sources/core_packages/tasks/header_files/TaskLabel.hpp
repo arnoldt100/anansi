@@ -20,20 +20,13 @@
 namespace ANANSI
 {
 
-template <std::size_t LABEL_SIZE=TaskLabelTraits::MAX_NM_CHARS> 
+using LABEL_SIZE=TaskLabelTraits::MAX_NM_CHARS;
+
 class TaskLabel
 {
     public:
-        using LABEL_SIZE=TaskLabelTraits::MAX_NM_CHARS;
-
         // ====================  LIFECYCLE     =======================================
-
-        constexpr TaskLabel () :  // constructor
-            value_(),
-            index_(0)
-        {
-            return;
-        }
+        constexpr TaskLabel ():
 
         constexpr TaskLabel ( const char (&str)[LABEL_SIZE], const int index ) :  // constructor
             value_{},
