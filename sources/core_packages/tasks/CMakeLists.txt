@@ -144,7 +144,6 @@ target_link_libraries( ${target}
                        PUBLIC command_line_arguments
                        PUBLIC communicator
                        PUBLIC generic_object_factory) 
-                       # PUBLIC logger)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -22,8 +22,8 @@ namespace ANANSI
 //============================= LIFECYCLE ====================================
 
 TaskLabelTestFixture::TaskLabelTestFixture() :
-    a(LETTER_A,0),
-    b(LETTER_B,1)
+    a(LETTER_A),
+    b(LETTER_B)
 {
     return;
 }

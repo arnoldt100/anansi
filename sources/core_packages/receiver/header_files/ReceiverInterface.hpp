@@ -24,9 +24,7 @@
 namespace RECEIVER
 {
 
-template<typename Derived,
-         typename LABEL_T = ANANSI::TaskLabel<> 
-        >
+template<typename Derived>
 class ReceiverInterface
 {
     public:
@@ -37,16 +35,13 @@ class ReceiverInterface
         //!
         //! The label type will be the key type for the command button
         //! in the invoker.
-        using TASK_LABEL_TYPE = ANANSI::TaskLabel<>;
+        using TASK_LABEL_TYPE = ANANSI::TaskLabel;
 
         // ====================  LIFECYCLE     =======================================
 
-        ReceiverInterface ()   // constructor
-        {
-            return;
-        }
+        ReceiverInterface ();
 
-        ReceiverInterface (const ReceiverInterface & other)   // copy constructor
+        ReceiverInterface (const ReceiverInterface & other);   // copy constructor
         {
             if (this != &other)
             {

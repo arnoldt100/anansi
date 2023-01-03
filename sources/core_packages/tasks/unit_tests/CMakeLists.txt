@@ -17,6 +17,13 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_tasks_include tasks tasks_include )
+
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -98,6 +105,7 @@
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                                PRIVATE ${my_reciever_include}
+                               PRIVATE ${my_tasks_include}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
@@ -107,8 +115,8 @@
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target} 
-                          PRIVATE tasks
-                          PRIVATE ${Boost_LIBRARIES} )
+        PUBLIC tasks
+        PUBLIC ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -

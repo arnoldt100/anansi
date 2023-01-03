@@ -16,6 +16,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "TaskLabelTraits.hpp"
 #include "TaskLabel.hpp"
 
 namespace ANANSI
@@ -28,7 +29,7 @@ namespace ANANSI
 class TaskLabelTestFixture
 {
     public:
-        constexpr static std::size_t MY_SIZE = 100;
+        constexpr static std::size_t MY_SIZE = TaskLabelTraits::MAX_NM_CHARS;
         constexpr static char LETTER_A[MY_SIZE]  = {"A"};
         constexpr static char LETTER_B[MY_SIZE]  = {"B"};
 
@@ -45,8 +46,8 @@ class TaskLabelTestFixture
         // ====================  OPERATORS     =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        ANANSI::TaskLabel<MY_SIZE> a;
-        ANANSI::TaskLabel<MY_SIZE> b;
+        ANANSI::TaskLabel a;
+        ANANSI::TaskLabel b;
 
     protected:
         // ====================  METHODS       =======================================
