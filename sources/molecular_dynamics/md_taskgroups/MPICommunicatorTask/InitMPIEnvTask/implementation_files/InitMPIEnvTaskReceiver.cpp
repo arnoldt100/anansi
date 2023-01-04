@@ -22,7 +22,7 @@ namespace ANANSI {
 
     
 const RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE InitMPIEnvTaskReceiver::TASKLABEL =
-    RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE(InitMPIEnvTaskReceiver::tmpstr,0);
+    RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE(InitMPIEnvTaskReceiver::tmpstr);
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
     ReceiverInterface<InitMPIEnvTaskReceiver>(),

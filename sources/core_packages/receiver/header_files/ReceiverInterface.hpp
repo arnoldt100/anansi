@@ -39,9 +39,12 @@ class ReceiverInterface
 
         // ====================  LIFECYCLE     =======================================
 
-        ReceiverInterface ();
+        ReceiverInterface ()
+        {
+            return;
+        }
 
-        ReceiverInterface (const ReceiverInterface & other);   // copy constructor
+        ReceiverInterface (const ReceiverInterface & other)   // copy constructor
         {
             if (this != &other)
             {
@@ -173,10 +176,8 @@ class ReceiverInterface
 
 }; // -----  end of class ReceiverInterface  -----
 
-template <typename Derived, 
-          typename LABEL_T
-         >
-ReceiverInterface<Derived,LABEL_T>::~ReceiverInterface ()  // destructor
+template <typename Derived>
+ReceiverInterface<Derived>::~ReceiverInterface ()  // destructor
 {
     return;
 }

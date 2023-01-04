@@ -41,7 +41,7 @@ namespace ANANSI
 
 template<typename AbstractProductsTypeList,
          typename ConcreteProductsTypeList, 
-         typename LABEL_t=ANANSI::TaskLabel<>
+         typename LABEL_t=ANANSI::TaskLabel
         >
 class GenericTaskInvoker
 {

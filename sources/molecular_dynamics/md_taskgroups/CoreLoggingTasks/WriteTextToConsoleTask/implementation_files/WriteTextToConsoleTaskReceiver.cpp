@@ -22,7 +22,7 @@ namespace ANANSI {
 
 const RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::TASKLABEL  = 
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(
-            WriteTextToConsoleTaskReceiver::tmpstr,0);
+            WriteTextToConsoleTaskReceiver::tmpstr);
 
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
