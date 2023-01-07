@@ -3,10 +3,10 @@
 
 //! @file AnansiTask.h
 //!
-//! The base class for the tasks in Anansi.
-//
-//! This class is needed for the Abstract Factory Pattern as 
-//! descriped in *Modern C++ design: Generic Programming and Design Patterns
+//! This file contains the declaration for the class AnansiTask.
+//!
+//! Class AnansiTask is needed for the Abstract Factory Pattern as 
+//! described in *Modern C++ design: Generic Programming and Design Patterns
 //! Applied* by Andrei Alexandrescu.
 
 
@@ -32,6 +32,8 @@ namespace ANANSI
 //        Class:  AnansiTask
 //  Description:  
 //  =====================================================================================
+
+//! The base class for the tasks in Anansi.
 class AnansiTask
 {
     public:
@@ -47,11 +49,25 @@ class AnansiTask
 
         // ====================  ACCESSORS     =======================================
 
+        //! Returns the location of concrete task with respect to the concrete typelist.
         AnansiTaskParameters::task_size_t taskIndex() const;
 
         // ====================  MUTATORS      =======================================
+        
+        //! Executes the task.
+        //!
+        //! The flags parameter can be used for any purpose in the derived classes.
+        //! 
+        //! @param [in] flags  A list of string flags.
         void doAction(const std::vector<std::string> & flags ) const;
         
+        //! Undoes the task execution.
+        //!
+        //! Some tasks actions can't be undone and such tasks 
+        //! will simply execute empty function calls in the derived classes.
+        //! The flags parameter can be used for any purpose in the derived classes.
+        //! 
+        //! @param [in] flags  A list of string flags.
         void undoAction(const std::vector<std::string> & flags );
 
         void disableTask(const std::vector<std::string> & flags);

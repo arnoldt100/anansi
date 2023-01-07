@@ -51,12 +51,6 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<CoreLoggingTasksTraits::
     console_logger_receiver->enable(a_communicator);
     
     // ---------------------------------------------------
-    // Get the label for the receiver.
-    // 
-    // ---------------------------------------------------
-    const auto my_label = console_logger_receiver->getTaskLabel();
-
-    // ---------------------------------------------------
     // Create task object and bind to receiver.
     // 
     // ---------------------------------------------------
@@ -67,6 +61,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<CoreLoggingTasksTraits::
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
+    const auto my_label = console_logger_receiver->getTaskLabel();
     core_logging_invoker->addCommand(my_label,console_logger_cmd);
 
     // ---------------------------------------------------

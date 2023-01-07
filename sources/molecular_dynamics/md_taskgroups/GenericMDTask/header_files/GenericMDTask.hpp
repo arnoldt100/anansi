@@ -99,7 +99,6 @@ class GenericMDTask : public BaseClass
 
         void doConcreteTaskAction(const std::vector<std::string> & flags) const override
         {
-
             this->receiver_->action();
             return;
         }
