@@ -2,9 +2,7 @@
 #define ANANSI_GenericMDTask_INC
 //! @file GenericMDTask.hpp
 //!
-//! Brief description
-//!
-//! Detailed description
+//! This file contains the declaration for GenericMDTask.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -27,6 +25,11 @@
 namespace ANANSI
 {
 
+//! This template class is the blueprint for all concrete tasks.
+//!
+//! @tparam BaseClass The base class for the concrete task
+//! @tparam ReceiverType The type of the concrete task receiver.
+//! @tparam FunctorImplType Not presently used.
 template <typename BaseClass,
           typename ReceiverType,
           typename FunctorImplType = DefaultFunctorImpl>
@@ -83,35 +86,52 @@ class GenericMDTask : public BaseClass
             std::cout << "FunctorImplType::ResultType operator stud call";
         }
 
-        template<typename index_t>
-        void bindReceiver(std::shared_ptr<ReceiverType> & arg)
-        {
-            this->receiver_ = arg;
-            this->taskConcreteTypeListIndex_ = index_t::value;
-        }
-
-        template<typename... T>
-        void modifyReceiver(T &... args)
-        {
-            this->receiver_->modifyReceiver(args...);
-            return;
-        }
-
+        //! Performs the concrete task.
+        //!
+        //! @param [in] flags Used for any purpose in the concrete class
         void doConcreteTaskAction(const std::vector<std::string> & flags) const override
         {
             this->receiver_->action();
             return;
         }
 
+        //! Undoes the concrete task.
+        //!
+        //! @param [in] flags Used for any purpose in the concrete class
         void undoConcreteTaskAction(const std::vector<std::string> & flags) override
         {
             this->receiver_->undoAction();
             return;
         }
 
+        //! Disables the concrete task.
+        //!
+        //! @param [in] flags Used for any purpose in the concrete class
         void disableConcreteTask(const std::vector<std::string> & flags) override
         {
             this->receiver_->disable();
+            return;
+        }
+
+        //! Binds the receiver to the concrete task.
+        //!
+        //! @tparam index_t Not used at the time.
+        //! @param [in] recv The receiver to bind to the concrete task
+        template<typename index_t>
+        void bindReceiver(std::shared_ptr<ReceiverType> & recv)
+        {
+            this->receiver_ = recv;
+            this->taskConcreteTypeListIndex_ = index_t::value;
+        }
+
+        //! Modifies the receiver of the concrete task
+        //!
+        //! @tparam T A template parameter of values for modifying the receiver.
+        //! param  ...args  The values for modifying the receiver 
+        template<typename... T>
+        void modifyReceiver(T &... args)
+        {
+            this->receiver_->modifyReceiver(args...);
             return;
         }
 

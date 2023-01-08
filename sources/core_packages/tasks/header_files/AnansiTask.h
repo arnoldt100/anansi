@@ -9,7 +9,6 @@
 //! described in *Modern C++ design: Generic Programming and Design Patterns
 //! Applied* by Andrei Alexandrescu.
 
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -33,7 +32,10 @@ namespace ANANSI
 //  Description:  
 //  =====================================================================================
 
-//! The base class for the tasks in Anansi.
+//! The base interface class for the tasks in Anansi.
+//!
+//! The interfaces of AnansiTask are nonvirtual and public, while the implementations
+//! are nonpublic and virtual (see Template design pattern).
 class AnansiTask
 {
     public:
@@ -70,6 +72,14 @@ class AnansiTask
         //! @param [in] flags  A list of string flags.
         void undoAction(const std::vector<std::string> & flags );
 
+        //! Disables the task execution,
+        //!
+        //! After diabling a task the following behavoir is expected:
+        //! 
+        //! Any future calls to doAction, undoAction, taskIndex task will 
+        //! have undefined effects.
+        //! 
+        //! Any future calls to disableTask will have a null effect.
         void disableTask(const std::vector<std::string> & flags);
 
         // ====================  OPERATORS     =======================================
