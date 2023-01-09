@@ -3,9 +3,7 @@
 
 //! @file WriteTextToConsoleTaskReceiver.h
 //!
-//! Brief description
-//!
-//! Detailed description
+//! Contains the declaration for WriteTextToConsoleTaskReceiver.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -88,6 +86,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  DATA MEMBERS  =======================================
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
+        mutable int results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
@@ -102,7 +101,6 @@ void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types & ... args) const
 {
     return;
 }
-
 
 template<typename... Types>
 void WriteTextToConsoleTaskReceiver::disableReceiver(Types... args)

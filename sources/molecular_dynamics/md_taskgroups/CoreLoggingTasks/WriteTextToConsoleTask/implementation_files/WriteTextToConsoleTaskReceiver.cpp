@@ -28,16 +28,17 @@ const RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TY
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
     communicator_(nullptr),
-    messageContainer_()
+    messageContainer_(),
+    results_(0)
 {
     return;
 }
 
-
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
     communicator_(std::move(other.communicator_)),
-    messageContainer_(std::move(other.messageContainer_))
+    messageContainer_(std::move(other.messageContainer_)),
+    results_(std::move(other.results_))
 {
     if (this != &other)
     {
@@ -68,6 +69,8 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
     {
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(std::move(other));
         this->communicator_ = std::move(other.communicator_);
+        this->messageContainer_ = std::move(other.messageContainer_);
+        this->results_ = std::move(other.results_);
     }
     return *this;
 } // assignment-move operator

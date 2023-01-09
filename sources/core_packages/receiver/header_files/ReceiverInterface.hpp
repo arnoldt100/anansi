@@ -156,7 +156,7 @@ class ReceiverInterface
             this->enable_(args...);
         }
 
-        void enable_()
+        void enable_() const
         {
             return;
         }
@@ -168,7 +168,7 @@ class ReceiverInterface
             this->modifyReceiver_(args...);
         }
 
-        void modifyReceiver_()
+        void modifyReceiver_() const
         {
             return;
         }
