@@ -140,7 +140,7 @@ class GenericMDTask : public BaseClass
         //!
         auto getResults()
         {
-            return this->receiver->getReceiverResults();
+            return;
         }
         
         // ====================  OPERATORS     =======================================

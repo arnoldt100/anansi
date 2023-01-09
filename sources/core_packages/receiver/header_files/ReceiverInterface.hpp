@@ -168,6 +168,12 @@ class ReceiverInterface
             this->modifyReceiver_(args...);
         }
 
+        void modifyReceiver_()
+        {
+            return;
+        }
+
+
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class ReceiverInterface  -----
