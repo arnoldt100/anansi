@@ -139,7 +139,6 @@ class GenericTaskInvoker
                                                             ReceiverArgsTypes...>(concrete_index,
                                                                                   abstract_task,
                                                                                   args...);
-
             return;
         }
 

@@ -135,6 +135,14 @@ class GenericMDTask : public BaseClass
             return;
         }
 
+        //! Gets the result of doConcreteTaskAction.
+        //!
+        //!
+        auto getResults()
+        {
+            return this->receiver->getReceiverResults();
+        }
+        
         // ====================  OPERATORS     =======================================
 
         GenericMDTask& operator= (const GenericMDTask &other) // assignment operator
