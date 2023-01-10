@@ -33,18 +33,6 @@ InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver() :
     return;
 }
 
-InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldCommunicatorTaskReceiver const & other) :
-    RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(other),
-    communicator_(other.communicator_),
-    results_(other.results_)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}
-
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldCommunicatorTaskReceiver && other) :
     RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(std::move(other)),
     communicator_(std::move(other.communicator_))
@@ -79,16 +67,6 @@ void InitWorldCommunicatorTaskReceiver::receiverModifyMyself(std::shared_ptr<COM
 }
 
 //============================= OPERATORS ====================================
-
-InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= ( const InitWorldCommunicatorTaskReceiver &other )
-{
-    if (this != &other)
-    {
-        RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(other);
-        this->communicator_ = other.communicator_;
-    }
-    return *this;
-} // assignment operator
 
 InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= ( InitWorldCommunicatorTaskReceiver && other )
 {

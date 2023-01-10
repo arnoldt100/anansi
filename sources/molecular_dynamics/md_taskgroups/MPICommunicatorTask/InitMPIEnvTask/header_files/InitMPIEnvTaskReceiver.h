@@ -42,7 +42,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         InitMPIEnvTaskReceiver ();   // constructor
 
-        InitMPIEnvTaskReceiver (const InitMPIEnvTaskReceiver & other);   // copy constructor
+        InitMPIEnvTaskReceiver (const InitMPIEnvTaskReceiver & other) = delete;   // copy constructor
 
         InitMPIEnvTaskReceiver (InitMPIEnvTaskReceiver && other);   // copy-move constructor
 
@@ -71,7 +71,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  OPERATORS     =======================================
 
-        InitMPIEnvTaskReceiver& operator= ( const InitMPIEnvTaskReceiver &other ); // assignment operator
+        InitMPIEnvTaskReceiver& operator= ( const InitMPIEnvTaskReceiver &other ) = delete; // assignment operator
 
         InitMPIEnvTaskReceiver& operator= ( InitMPIEnvTaskReceiver && other ); // assignment-move operator
 

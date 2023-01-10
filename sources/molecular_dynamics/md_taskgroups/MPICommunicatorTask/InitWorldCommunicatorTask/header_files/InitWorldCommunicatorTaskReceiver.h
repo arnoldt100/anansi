@@ -46,7 +46,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         InitWorldCommunicatorTaskReceiver ();   // constructor
 
-        InitWorldCommunicatorTaskReceiver (const InitWorldCommunicatorTaskReceiver & other);   // copy constructor
+        InitWorldCommunicatorTaskReceiver (const InitWorldCommunicatorTaskReceiver & other) = delete;   // copy constructor
 
         InitWorldCommunicatorTaskReceiver (InitWorldCommunicatorTaskReceiver && other);   // copy-move constructor
 
@@ -75,7 +75,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  OPERATORS     =======================================
 
-        InitWorldCommunicatorTaskReceiver& operator= ( const InitWorldCommunicatorTaskReceiver &other ); // assignment operator
+        InitWorldCommunicatorTaskReceiver& operator= ( const InitWorldCommunicatorTaskReceiver &other ) = delete; // assignment operator
 
         InitWorldCommunicatorTaskReceiver& operator= ( InitWorldCommunicatorTaskReceiver && other ); // assignment-move operator
 
