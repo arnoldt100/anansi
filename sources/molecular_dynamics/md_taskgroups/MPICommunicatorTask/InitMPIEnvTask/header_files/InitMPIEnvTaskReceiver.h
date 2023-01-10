@@ -29,6 +29,7 @@ namespace ANANSI
 class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>
 {
     public:
+        using receiver_result_t = int;
 
         // ====================  STATIC       =======================================
 
@@ -84,6 +85,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  DATA MEMBERS  =======================================
         mutable std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
+        mutable receiver_result_t results_;
 
 }; // -----  end of class InitMPIEnvTaskReceiver  -----
 

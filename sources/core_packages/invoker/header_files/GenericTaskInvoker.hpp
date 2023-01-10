@@ -126,7 +126,7 @@ class GenericTaskInvoker
             constexpr auto nm_products = 
                 static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
 
-            std::shared_ptr<ANANSI::AnansiTask> & abstract_task = this->commandSlots_.at(command_key);
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(command_key);
 
             if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
             {
@@ -137,11 +137,34 @@ class GenericTaskInvoker
             GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,
                                                             zero,
                                                             ReceiverArgsTypes...>(concrete_index,
-                                                                                  abstract_task,
+                                                                                  task,
                                                                                   args...);
             return;
         }
 
+        auto getTaskResults(const LABEL_t & command_key)
+        {
+            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
+
+            const auto concrete_index = 
+                static_cast<MPL::mpl_size_type>(this->commandSlots_.at(command_key)->taskIndex());
+
+            constexpr auto nm_products = 
+                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
+
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(command_key);
+
+            if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
+            {
+                 // :TODO:11/15/2022 10:00:29 AM:: Abort program
+                 // for a nonrecoverable error has occurred.
+            }
+
+            return GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
+                                                                       zero>(concrete_index,
+                                                                             task);
+        }
+        
         // ====================  OPERATORS     =======================================
 
         GenericTaskInvoker& operator= ( const GenericTaskInvoker &other )=delete; // assignment operator

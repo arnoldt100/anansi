@@ -33,6 +33,8 @@ namespace ANANSI
 class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>
 {
     public:
+        using receiver_result_t = int;
+
         // ====================  STATIC       =======================================
 
         static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
@@ -87,6 +89,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  DATA MEMBERS  =======================================
         mutable std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
+        mutable receiver_result_t results_;
 
 }; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
 

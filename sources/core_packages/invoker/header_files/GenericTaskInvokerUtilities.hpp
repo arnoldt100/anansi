@@ -65,19 +65,20 @@ class GenericTaskInvokerUtilities
                  MPL::mpl_size_type alpha,
                  typename... ReceiverArgsTypes>
         static void modifyTaskReceiver( const MPL::mpl_size_type concrete_index,
-                                        std::shared_ptr<ANANSI::AnansiTask> & abstract_task,
+                                        std::shared_ptr<ANANSI::AnansiTask> & task,
                                         ReceiverArgsTypes &... receiver_args)
         {
             constexpr auto mx_elements = MPL::mpl_size<ConcreteTasksTypeList>::value; 
             constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
             constexpr auto next_alpha = alpha + 1;
+
             if constexpr ( (zero <= alpha) and (alpha < mx_elements) )
             {
                 if (alpha == concrete_index)
                 {
                     using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,alpha>;
                     std::shared_ptr<concrete_task_t> p_concrete = 
-                        AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(abstract_task);
+                        AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
                     p_concrete->modifyReceiver(receiver_args...);
                     std::cout << "Casted abstract task to concrete task at index " << alpha << "." << std::endl;
                 }
@@ -86,13 +87,35 @@ class GenericTaskInvokerUtilities
                     GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteTasksTypeList,
                                                                     next_alpha,
                                                                     ReceiverArgsTypes...>(concrete_index,
-                                                                                          abstract_task,
+                                                                                          task,
                                                                                           receiver_args...);
                 }     
             }
 
             return;
         } 
+
+        template<typename ConcreteTasksTypeList,
+                 MPL::mpl_size_type alpha>
+        static auto getTaskReceiverResults(const MPL::mpl_size_type concrete_index,
+                                        std::shared_ptr<ANANSI::AnansiTask> & task)
+        {
+            constexpr auto mx_elements = MPL::mpl_size<ConcreteTasksTypeList>::value; 
+            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
+            constexpr auto next_alpha = alpha + 1;
+            if constexpr ( (zero <= alpha) and (alpha < mx_elements) )
+            {
+                if (alpha == concrete_index)
+                {
+                }
+                else
+                {
+                }
+            }
+
+            return true;
+        }
+
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================

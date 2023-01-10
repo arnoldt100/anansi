@@ -83,6 +83,11 @@ class ReceiverInterface
             return;
         }
 
+        auto getResults() const
+        {
+            return asDerived_().receiverGetResults();
+        }
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>

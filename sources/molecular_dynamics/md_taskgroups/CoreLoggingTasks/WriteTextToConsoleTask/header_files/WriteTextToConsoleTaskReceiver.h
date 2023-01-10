@@ -29,7 +29,9 @@ namespace ANANSI
 class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>
 {
     public:
-        
+       
+        using receiver_result_t = int;
+
         // ====================  STATIC       =======================================
 
         static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
@@ -57,6 +59,8 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
+
+        auto receiverGetResults() const;
 
         // ====================  MUTATORS      =======================================
         
@@ -86,7 +90,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  DATA MEMBERS  =======================================
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
-        mutable int results_;
+        mutable receiver_result_t results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 

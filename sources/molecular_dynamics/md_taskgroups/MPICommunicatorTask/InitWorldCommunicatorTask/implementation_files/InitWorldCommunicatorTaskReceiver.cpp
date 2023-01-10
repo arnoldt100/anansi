@@ -27,14 +27,16 @@ const RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver() :
     RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(),
-    communicator_(nullptr)
+    communicator_(nullptr),
+    results_(0)
 {
     return;
 }
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldCommunicatorTaskReceiver const & other) :
     RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(other),
-    communicator_(other.communicator_)
+    communicator_(other.communicator_),
+    results_(other.results_)
 {
     if (this != &other)
     {
@@ -94,6 +96,7 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
     {
         RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(std::move(other));
         this->communicator_ = std::move(other.communicator_);
+        this->results_ = std::move(other.results_);
     }
     return *this;
 } // assignment-move operator

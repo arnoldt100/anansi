@@ -26,14 +26,16 @@ const RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE InitM
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
     ReceiverInterface<InitMPIEnvTaskReceiver>(),
-    mpiEnvironment_(nullptr)
+    mpiEnvironment_(nullptr),
+    results_(0)
 {
     return;
 }
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver const & other) :
     ReceiverInterface<InitMPIEnvTaskReceiver>(other),
-    mpiEnvironment_(other.mpiEnvironment_)
+    mpiEnvironment_(other.mpiEnvironment_),
+    results_(other.results_)
 {
     if (this != &other)
     {
@@ -44,7 +46,8 @@ InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver const & o
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver && other) :
     ReceiverInterface<InitMPIEnvTaskReceiver>(std::move(other)),
-    mpiEnvironment_(std::move(other.mpiEnvironment_))
+    mpiEnvironment_(std::move(other.mpiEnvironment_)),
+    results_(std::move(other.results_))
 {
     if (this != &other)
     {

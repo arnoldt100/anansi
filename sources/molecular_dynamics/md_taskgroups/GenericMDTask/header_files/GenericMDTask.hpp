@@ -79,7 +79,21 @@ class GenericMDTask : public BaseClass
             return this->taskConcreteTypeListIndex_;
         }
 
+        //! Gets the result of doConcreteTaskAction.
+        //!
+        //! Returns a shared_ptr of the receiver results.  The calling function
+        //! shares ownership of the receiver results via a shared_ptr.
+        std::shared_ptr<typename ReceiverType::receiver_result_t> shareRecieverResults() const
+        {
+            // TODO:: Tue 10 Jan 2023 11:01:56 AM EST :: To be implemented.
+            // For now returns an nullptr.
+            std::shared_ptr my_ptr = std::make_shared<ReceiverType::receiver_result_t>();
+            return my_ptr;
+        }
+
         // ====================  MUTATORS      =======================================
+
+        //! This method is mot used, but a simple placeholder.
         template<typename... T>
         typename FunctorImplType::ResultType operator()(T &... args)
         {
@@ -137,12 +151,18 @@ class GenericMDTask : public BaseClass
 
         //! Gets the result of doConcreteTaskAction.
         //!
-        //!
-        auto getResults()
+        //! Returns  a unique_ptr of the receiver results, The calling function
+        //! takes ownership of the receiver results via a unique_ptr. This also
+        //! means any future references to the receiver results by this task is
+        //! undefined,
+        std::unique_ptr<typename ReceiverType::receiver_result_t> getReceiverResults() 
         {
-            return;
+            // TODO:: Tue 10 Jan 2023 11:01:57 AM EST :: To be implemented.
+            // For now returns an nullptr.
+            std::unique_ptr my_ptr = std::make_unique<ReceiverType::receiver_result_t>();
+            return my_ptr;
         }
-        
+
         // ====================  OPERATORS     =======================================
 
         GenericMDTask& operator= (const GenericMDTask &other) // assignment operator

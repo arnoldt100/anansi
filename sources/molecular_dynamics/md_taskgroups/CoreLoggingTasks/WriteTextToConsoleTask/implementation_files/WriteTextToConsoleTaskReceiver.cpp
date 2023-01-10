@@ -59,6 +59,11 @@ RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE Wri
     return  WriteTextToConsoleTaskReceiver::TASKLABEL;
 }
 
+auto WriteTextToConsoleTaskReceiver::receiverGetResults() const
+{
+    return results_;
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
