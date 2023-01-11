@@ -160,11 +160,17 @@ class GenericTaskInvoker
                  // for a nonrecoverable error has occurred.
             }
 
-            return GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
-                                                                       zero>(concrete_index,
-                                                                             task);
+            GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
+                                                                zero>(concrete_index,
+                                                                      task);
+
+            using return_t = std::remove_reference<decltype(this->commandSlots_[command_key])>::type;
+
+            return_t my_return_value{nullptr};
+
+            return my_return_value;
         }
-        
+       
         // ====================  OPERATORS     =======================================
 
         GenericTaskInvoker& operator= ( const GenericTaskInvoker &other )=delete; // assignment operator
@@ -194,9 +200,6 @@ class GenericTaskInvoker
 
         // ====================  MUTATORS      =======================================
        
-        //PickUpHere//
-        // Create a genric for loop.
-        
         // ====================  DATA MEMBERS  =======================================
         std::map <LABEL_t,std::shared_ptr<ANANSI::AnansiTask>> commandSlots_;
 

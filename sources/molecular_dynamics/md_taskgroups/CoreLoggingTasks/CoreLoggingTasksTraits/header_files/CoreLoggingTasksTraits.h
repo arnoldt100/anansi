@@ -57,6 +57,15 @@ class CoreLoggingTasksTraits
         using concrete_products = MPL::mpl_typelist<
                                                         GenericMDTask<ConsoleLoggingTask,WriteTextToConsoleTaskReceiver>
                                                    >;
+
+        using receiver_results_t = MPL::mpl_typelist <
+                                                         WriteTextToConsoleTaskReceiver::receiver_result_t 
+                                                     >;
+
+        static constexpr auto LABELS = std::array{
+                                                    WriteTextToConsoleTaskReceiver::TASKLABEL
+                                                 };
+
     protected:
         // ====================  METHODS       =======================================
 

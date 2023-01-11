@@ -20,10 +20,10 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-const RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::TASKLABEL  = 
-    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(
-            WriteTextToConsoleTaskReceiver::tmpstr);
-
+// const RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::TASKLABEL  = 
+//     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(
+//             WriteTextToConsoleTaskReceiver::tmpstr);
+// 
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
@@ -54,10 +54,10 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::receiverGetTaskLabel() const
-{
-    return  WriteTextToConsoleTaskReceiver::TASKLABEL;
-}
+// constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::receiverGetTaskLabel() const
+// {
+//     return  WriteTextToConsoleTaskReceiver::TASKLABEL;
+// }
 
 auto WriteTextToConsoleTaskReceiver::receiverGetResults() const
 {

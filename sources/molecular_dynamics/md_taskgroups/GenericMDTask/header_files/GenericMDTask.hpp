@@ -35,6 +35,8 @@ template <typename BaseClass,
           typename FunctorImplType = DefaultFunctorImpl>
 class GenericMDTask : public BaseClass  
 {
+    using task_result_t = typename ReceiverType::receiver_result_t;
+
     public:
         // ====================  LIFECYCLE     =======================================
 

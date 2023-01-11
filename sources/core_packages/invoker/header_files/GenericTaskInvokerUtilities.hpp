@@ -80,7 +80,6 @@ class GenericTaskInvokerUtilities
                     std::shared_ptr<concrete_task_t> p_concrete = 
                         AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
                     p_concrete->modifyReceiver(receiver_args...);
-                    std::cout << "Casted abstract task to concrete task at index " << alpha << "." << std::endl;
                 }
                 else
                 {
@@ -103,17 +102,25 @@ class GenericTaskInvokerUtilities
             constexpr auto mx_elements = MPL::mpl_size<ConcreteTasksTypeList>::value; 
             constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
             constexpr auto next_alpha = alpha + 1;
+            int ret_val = 0;
             if constexpr ( (zero <= alpha) and (alpha < mx_elements) )
             {
                 if (alpha == concrete_index)
                 {
+                    using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,alpha>;
+
+                    std::shared_ptr<concrete_task_t> p_concrete = 
+                        AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
+
+                    using return_t = std::remove_reference<decltype(*p_concrete)>::type;
+                    ret_val = concrete_index;
                 }
                 else
                 {
                 }
             }
 
-            return true;
+            return ret_val;
         }
 
         // ====================  ACCESSORS     =======================================

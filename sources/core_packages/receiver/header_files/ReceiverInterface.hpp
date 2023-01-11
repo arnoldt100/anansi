@@ -11,6 +11,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <string>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -66,7 +67,7 @@ class ReceiverInterface
 
         // ====================  ACCESSORS     =======================================
        
-        TASK_LABEL_TYPE getTaskLabel () const
+        constexpr TASK_LABEL_TYPE getTaskLabel () const
         {
             return asDerived_().receiverGetTaskLabel();
         }
@@ -81,11 +82,6 @@ class ReceiverInterface
         {
             asDerived_().receiverUndoAction();
             return;
-        }
-
-        auto getResults() const
-        {
-            return asDerived_().receiverGetResults();
         }
 
         // ====================  MUTATORS      =======================================
@@ -108,6 +104,11 @@ class ReceiverInterface
         {
             this->modifyReceiver_(args...);
             return;
+        }
+
+        auto getResults() const
+        {
+            return asDerived_().receiverGetResults();
         }
 
         // ====================  OPERATORS     =======================================
@@ -141,7 +142,7 @@ class ReceiverInterface
         //! Provides access to the CRTP derived class "Derived."
         //!
         //! @return A reference to the CRTP derived class.
-        Derived& asDerived_() 
+        constexpr Derived& asDerived_() 
         {
             return *static_cast<Derived*>(this);
         }
@@ -149,7 +150,7 @@ class ReceiverInterface
         //! Provides access to the CRTP derived class "Derived."
         //!
         //! @return A reference to a constant CRTP derived class "Derived".
-        Derived const & asDerived_() const
+        constexpr Derived const & asDerived_() const
         {
             return *static_cast<Derived const*>(this);
         }

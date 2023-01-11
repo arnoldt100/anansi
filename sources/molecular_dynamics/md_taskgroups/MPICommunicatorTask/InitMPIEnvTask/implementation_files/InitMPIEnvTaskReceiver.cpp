@@ -56,6 +56,11 @@ RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE InitMPIEnvT
     return  InitMPIEnvTaskReceiver::TASKLABEL;
 }
 
+auto InitMPIEnvTaskReceiver::receiverGetResults() const
+{
+    return results_;
+}
+
 //============================= MUTATORS =====================================
 
 template<>

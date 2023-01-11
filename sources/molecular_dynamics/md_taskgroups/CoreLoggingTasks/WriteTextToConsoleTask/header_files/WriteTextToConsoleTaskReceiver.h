@@ -37,8 +37,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
             {'w','r','i', 't', 'e', '_', 't', 'e', 'x', 't', '_', 't', 'o', '_', 'c','o', 'n', 's', 'o', 'l', 'e'};
 
-        static const 
-        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL;
+        static constexpr 
+        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(WriteTextToConsoleTaskReceiver::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -52,7 +53,10 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  ACCESSORS     =======================================
 
-        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
+        constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
+        {
+            return  WriteTextToConsoleTaskReceiver::TASKLABEL;
+        }
 
         template<typename... Types>
         void receiverDoAction(Types & ... args) const;

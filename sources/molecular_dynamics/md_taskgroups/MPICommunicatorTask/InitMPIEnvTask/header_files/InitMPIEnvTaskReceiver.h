@@ -58,6 +58,8 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         template<typename... Types>
         void receiverUndoAction(Types &... args) const;
 
+        auto receiverGetResults() const;
+
         // ====================  MUTATORS      =======================================
 
         template<typename T>
