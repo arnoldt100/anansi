@@ -25,9 +25,15 @@ enable_building_initmpienvtask_package("${md_taskgroups_install_lib_directory}"
                                        "${md_taskgroups_cxx_standard}"
                                        "${md_taskgroups_logfilepath}")
 
-add_subdirectory(InitMPIEnvTask)
 
 package_config_end_delimiter("initmpienvtask" "${md_taskgroups_logfilepath}")
+
+
+#---------------------------------------------------
+#The section configures initmpienvtask package.
+#
+#---------------------------------------------------
+add_subdirectory(InitMPIEnvTask)
 
 #---------------------------------------------------
 #The section configures the initworldcommunicatortask package.
