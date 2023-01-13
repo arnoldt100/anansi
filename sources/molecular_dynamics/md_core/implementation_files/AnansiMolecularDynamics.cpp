@@ -61,7 +61,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
-    const auto my_label = console_logger_receiver->getTaskLabel();
+    constexpr auto my_label = ANANSI::WriteTextToConsoleTaskReceiver::TASKLABEL;
     core_logging_invoker->addCommand(my_label,console_logger_cmd);
 
     // ---------------------------------------------------
