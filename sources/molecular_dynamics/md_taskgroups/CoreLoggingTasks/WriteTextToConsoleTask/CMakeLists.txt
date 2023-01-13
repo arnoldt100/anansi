@@ -65,7 +65,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (writetexttoconsoletask_header_files
-         header_files/WriteTextToConsoleTaskReceiver.h)
+         header_files/WriteTextToConsoleTaskReceiver.h
+         header_files/WriteTextToConsoleTaskTraits.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -75,7 +76,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (writetexttoconsoletask_implementation_files
-         implementation_files/WriteTextToConsoleTaskReceiver.cpp)
+         implementation_files/WriteTextToConsoleTaskReceiver.cpp
+         implementation_files/WriteTextToConsoleTaskTraits.cpp)
 
 
     # -----------------------------------------------------
@@ -86,6 +88,7 @@
     get_target_property(my_logger_include logger logger_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_communicator_include communicator communicator_include)
+    get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -120,7 +123,8 @@ target_include_directories(${target}
                            PRIVATE ${my_tasks_include}
                            PRIVATE ${my_logger_include}
                            PRIVATE ${my_receiver_include} 
-                           PRIVATE ${my_communicator_include} )
+                           PRIVATE ${my_communicator_include}
+                           PRIVATE ${my_genericmdtask_include})
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -130,7 +134,8 @@ target_link_libraries(${target}
                       PUBLIC tasks
                       PUBLIC logger
                       PUBLIC receiver
-                      PUBLIC communicator)
+                      PUBLIC communicator
+                      PUBLIC genericmdtask)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

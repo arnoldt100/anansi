@@ -1,6 +1,6 @@
-#ifndef ANANSI_CoreLoggingTasksTraits_INC
-#define ANANSI_CoreLoggingTasksTraits_INC
-//! @file CoreLoggingTasksTraits.h
+#ifndef ANANSI_WriteTextToConsoleTaskTraits_INC
+#define ANANSI_WriteTextToConsoleTaskTraits_INC
+//! @file WriteTextToConsoleTaskTraits.h
 //!
 //! Brief description
 //!
@@ -25,18 +25,18 @@
 namespace ANANSI
 {
 
-class CoreLoggingTasksTraits
+class WriteTextToConsoleTaskTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        CoreLoggingTasksTraits ();   // constructor
+        WriteTextToConsoleTaskTraits ();   // constructor
 
-        CoreLoggingTasksTraits (const CoreLoggingTasksTraits & other);   // copy constructor
+        WriteTextToConsoleTaskTraits (const WriteTextToConsoleTaskTraits & other);   // copy constructor
 
-        CoreLoggingTasksTraits (CoreLoggingTasksTraits && other);   // copy-move constructor
+        WriteTextToConsoleTaskTraits (WriteTextToConsoleTaskTraits && other);   // copy-move constructor
 
-        ~CoreLoggingTasksTraits ();  // destructor
+        ~WriteTextToConsoleTaskTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +44,9 @@ class CoreLoggingTasksTraits
 
         // ====================  OPERATORS     =======================================
 
-        CoreLoggingTasksTraits& operator= ( const CoreLoggingTasksTraits &other ); // assignment operator
+        WriteTextToConsoleTaskTraits& operator= ( const WriteTextToConsoleTaskTraits &other ); // assignment operator
 
-        CoreLoggingTasksTraits& operator= ( CoreLoggingTasksTraits && other ); // assignment-move operator
+        WriteTextToConsoleTaskTraits& operator= ( WriteTextToConsoleTaskTraits && other ); // assignment-move operator
         
         // ====================  ALIASES       =======================================
 
@@ -76,9 +76,9 @@ class CoreLoggingTasksTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class CoreLoggingTasksTraits  -----
+}; // -----  end of class WriteTextToConsoleTaskTraits  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_CoreLoggingTasksTraits_INC
+#endif // ANANSI_WriteTextToConsoleTaskTraits_INC

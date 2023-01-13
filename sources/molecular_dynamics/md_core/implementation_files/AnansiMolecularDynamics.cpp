@@ -31,11 +31,11 @@ namespace ANANSI {
 
 //============================= ACCESSORS ====================================
 template<>
-void AnansiMolecularDynamics::enableConsoleLoggingTask_<CoreLoggingTasksTraits::abstract_products,
-                                                        CoreLoggingTasksTraits::concrete_products
+void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTraits::abstract_products,
+                                                        WriteTextToConsoleTaskTraits::concrete_products
                                                        >(
-    std::shared_ptr<ANANSI::GenericTaskInvoker<CoreLoggingTasksTraits::abstract_products,
-                                               CoreLoggingTasksTraits::concrete_products>
+    std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
+                                               WriteTextToConsoleTaskTraits::concrete_products>
                    > & core_logging_invoker,
     std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator )
 {
@@ -44,8 +44,8 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<CoreLoggingTasksTraits::
     // 
     // ---------------------------------------------------
     auto console_logger_receiver =
-        ANANSI::GenericReceiverFactory<CoreLoggingTasksTraits::abstract_products,
-                                       CoreLoggingTasksTraits::concrete_products>::createSharedReceiver<ANANSI::WriteTextToConsoleTaskReceiver>();
+        ANANSI::GenericReceiverFactory<WriteTextToConsoleTaskTraits::abstract_products,
+                                       WriteTextToConsoleTaskTraits::concrete_products>::createSharedReceiver<ANANSI::WriteTextToConsoleTaskReceiver>();
 
     // The console receiver contains the a communicator.
     console_logger_receiver->enable(a_communicator);
@@ -163,8 +163,8 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdAnansiInitWorldCommunicatorTaskFactory_ = std::make_shared<MDAnansiTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                                            InitWorldCommunicatorTaskTraits::concrete_products>
                                                                       >();
-    this->mdAnansiCoreLoggingTaskFactory_ = std::make_shared<MDAnansiTaskFactory<CoreLoggingTasksTraits::abstract_products,
-                                                                                 CoreLoggingTasksTraits::concrete_products>
+    this->mdAnansiCoreLoggingTaskFactory_ = std::make_shared<MDAnansiTaskFactory<WriteTextToConsoleTaskTraits::abstract_products,
+                                                                                 WriteTextToConsoleTaskTraits::concrete_products>
                                                             >();
 
     // Change the state to Null.
@@ -397,16 +397,16 @@ void AnansiMolecularDynamics::readInitialConfiguration()
 void AnansiMolecularDynamics::enableCoreLoggingTasks()
 {
     // ---------------------------------------------------
-    // Create the invoker for the task CoreLoggingTasksTraits 
+    // Create the invoker for the task WriteTextToConsoleTaskTraits 
     // 
     // All receivers for this invoker will have labels that are of type
     // std::string. 
     // ---------------------------------------------------
-    std::shared_ptr<GenericTaskInvokerFactory<CoreLoggingTasksTraits::abstract_products,
-                                              CoreLoggingTasksTraits::concrete_products>
+    std::shared_ptr<GenericTaskInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,
+                                              WriteTextToConsoleTaskTraits::concrete_products>
                    > mdAnansiCoreLoggingTaskFactory = 
-        std::make_shared<GenericTaskInvokerFactory<CoreLoggingTasksTraits::abstract_products,
-                                                   CoreLoggingTasksTraits::concrete_products>
+        std::make_shared<GenericTaskInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,
+                                                   WriteTextToConsoleTaskTraits::concrete_products>
                         >();
 
      this->mdCoreLoggingInvk_ = mdAnansiCoreLoggingTaskFactory->create_shared_ptr();
@@ -418,8 +418,8 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
     // ---------------------------------------------------
     std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>(); 
     auto tmp_communicator = a_communicator_factory->cloneCommunicator(this->MpiWorldCommunicator_);
-    this->enableConsoleLoggingTask_<CoreLoggingTasksTraits::abstract_products,
-                                    CoreLoggingTasksTraits::concrete_products
+    this->enableConsoleLoggingTask_<WriteTextToConsoleTaskTraits::abstract_products,
+                                    WriteTextToConsoleTaskTraits::concrete_products
                                    >(this->mdCoreLoggingInvk_,
                                      tmp_communicator);
 
