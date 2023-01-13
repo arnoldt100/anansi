@@ -59,6 +59,15 @@ class InitWorldCommunicatorTaskTraits
         using concrete_products = MPL::mpl_typelist<
                                                        GenericMDTask<CommunicatorTask,InitWorldCommunicatorTaskReceiver>
                                                    >;
+
+        using receiver_results_t = MPL::mpl_typelist <
+                                                         InitWorldCommunicatorTaskReceiver::receiver_result_t 
+                                                     >;
+
+        static constexpr auto LABELS = std::array{
+                                                    InitWorldCommunicatorTaskReceiver::TASKLABEL
+                                                 };
+
     protected:
         // ====================  METHODS       =======================================
 

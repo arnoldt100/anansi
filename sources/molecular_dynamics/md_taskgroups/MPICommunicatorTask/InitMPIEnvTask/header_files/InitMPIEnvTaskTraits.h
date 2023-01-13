@@ -58,6 +58,13 @@ class InitMPIEnvTaskTraits
                                                        GenericMDTask<InterProcessCommEnv,InitMPIEnvTaskReceiver>
                                                    >;
 
+        using receiver_results_t = MPL::mpl_typelist <
+                                                         InitMPIEnvTaskReceiver::receiver_result_t 
+                                                     >;
+
+        static constexpr auto LABELS = std::array{
+                                                    InitMPIEnvTaskReceiver::TASKLABEL
+                                                 };
     protected:
         // ====================  METHODS       =======================================
 
