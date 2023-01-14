@@ -44,8 +44,8 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
     // 
     // ---------------------------------------------------
     auto console_logger_receiver =
-        ANANSI::GenericReceiverFactory<WriteTextToConsoleTaskTraits::abstract_products,
-                                       WriteTextToConsoleTaskTraits::concrete_products>::createSharedReceiver<ANANSI::WriteTextToConsoleTaskReceiver>();
+        RECEIVER::GenericReceiverFactory<WriteTextToConsoleTaskTraits::abstract_products,
+                                         WriteTextToConsoleTaskTraits::concrete_products>::createSharedReceiver<ANANSI::WriteTextToConsoleTaskReceiver>();
 
     // The console receiver contains the a communicator.
     console_logger_receiver->enable(a_communicator);
@@ -206,8 +206,8 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
     mpi_environment->addMember(this->commandLineArguments_);
-    auto mpi_environment_receiver = ANANSI::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
-                                                                   InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
+    auto mpi_environment_receiver = RECEIVER::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
+                                                                     InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
     mpi_environment_receiver->enable(mpi_environment); 
     
     // ---------------------------------------------------
@@ -286,8 +286,8 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     MPICommunicatorFactory a_communicator_factory;
     this->MpiWorldCommunicator_ = a_communicator_factory.createNullWorldCommunicator();
 
-    auto mpi_init_world_commm_receiver = ANANSI::GenericReceiverFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                                        InitWorldCommunicatorTaskTraits::concrete_products>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
+    auto mpi_init_world_commm_receiver = RECEIVER::GenericReceiverFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                                                          InitWorldCommunicatorTaskTraits::concrete_products>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
 
     mpi_init_world_commm_receiver->enable(this->MpiWorldCommunicator_);
 

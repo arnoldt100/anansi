@@ -43,7 +43,6 @@
     #-----------------------------------------------------
     get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
     get_target_property(my_comm_include communicator communicator_include)
-    # get_target_property(my_logger_include logger logger_include)
     get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

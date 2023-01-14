@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "GenericReceiverFactory.hpp"
+#include "ReceiverUtilities.hpp"
 
 namespace RECEIVER {
 
@@ -20,11 +20,58 @@ namespace RECEIVER {
 
 //============================= LIFECYCLE ====================================
 
+ReceiverUtilities::ReceiverUtilities()
+{
+    return;
+}
+
+ReceiverUtilities::ReceiverUtilities( ReceiverUtilities const & other)
+{
+    if (this != &other)
+    {
+        
+    }
+    return;
+}
+
+ReceiverUtilities::ReceiverUtilities( ReceiverUtilities && other)
+{
+    if (this != &other)
+    {
+        
+    }
+    return;
+}		// -----  end of method ReceiverUtilities::ReceiverUtilities  -----
+
+
+ReceiverUtilities::~ReceiverUtilities()
+{
+    return;
+}
+
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
+
+ReceiverUtilities& ReceiverUtilities::operator= ( const ReceiverUtilities &other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment operator
+
+ReceiverUtilities& ReceiverUtilities::operator= ( ReceiverUtilities && other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

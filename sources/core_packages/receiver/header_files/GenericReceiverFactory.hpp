@@ -1,5 +1,5 @@
-#ifndef  ANANSI_GenericReceiverFactory_INC
-#define  ANANSI_GenericReceiverFactory_INC
+#ifndef  RECEIVER_GenericReceiverFactory_INC
+#define  RECEIVER_GenericReceiverFactory_INC
 
 //! @file GenericReceiverFactory.hpp
 //!
@@ -21,7 +21,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace ANANSI
+namespace RECEIVER
 {
 
 // =====================================================================================
@@ -110,6 +110,6 @@ class GenericReceiverFactory
 }; // -----  end of class GenericReceiverFactory  -----
 
 
-}; // namespace ANANSI
+}; // namespace RECEIVER
 
-#endif   // ----- #ifndef ANANSI_GenericReceiverFactory_INC  ----- 
+#endif   // ----- #ifndef RECEIVER_GenericReceiverFactory_INC  ----- 

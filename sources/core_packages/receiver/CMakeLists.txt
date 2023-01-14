@@ -75,6 +75,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (receiver_header_files
+         header_files/ReceiverUtilities.hpp
          header_files/ReceiverInterface.hpp
          header_files/GenericReceiverFactory.hpp)
 
@@ -86,6 +87,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (receiver_implementation_files
+         implementation_files/ReceiverUtilities.cpp
          implementation_files/ReceiverInterface.cpp
          implementation_files/GenericReceiverFactory.cpp)
 
