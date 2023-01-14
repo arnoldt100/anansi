@@ -170,7 +170,39 @@ class GenericTaskInvoker
 
             return my_return_value;
         }
-       
+      
+        template<LABEL_t COMMAND_KEY>
+        auto getTaskResults1()
+        {
+            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
+
+            const auto concrete_index = 
+                static_cast<MPL::mpl_size_type>(this->commandSlots_.at(COMMAND_KEY)->taskIndex());
+
+            constexpr auto nm_products = 
+                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
+
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
+
+            if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
+            {
+                 // :TODO:11/15/2022 10:00:29 AM:: Abort program
+                 // for a nonrecoverable error has occurred.
+            }
+
+            GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
+                                                                zero>(concrete_index,
+                                                                      task);
+
+            // TODO :: Fri 13 Jan 2023 06:28:24 PM EST :: Replace this with call that will get return
+            // type for corresponding receiver.
+            using return_t = std::remove_reference<decltype(this->commandSlots_[COMMAND_KEY])>::type;
+
+            return_t my_return_value{nullptr};
+
+            return my_return_value;
+        }
+
         // ====================  OPERATORS     =======================================
 
         GenericTaskInvoker& operator= ( const GenericTaskInvoker &other )=delete; // assignment operator
