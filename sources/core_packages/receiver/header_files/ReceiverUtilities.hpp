@@ -1,5 +1,5 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef RECEIVER_ReceiverUtilities_INC
+#define RECEIVER_ReceiverUtilities_INC
 //! @file ReceiverUtilities.hpp
 
 //--------------------------------------------------------//
@@ -83,4 +83,4 @@ class ReceiverUtilities
 
 }; // namespace RECEIVER
 
-#endif // __filepreprocessordefine__
+#endif // RECEIVER_ReceiverUtilities_INC

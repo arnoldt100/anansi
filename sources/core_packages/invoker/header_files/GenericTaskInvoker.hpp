@@ -175,6 +175,9 @@ class GenericTaskInvoker
         template<LABEL_t COMMAND_KEY>
         auto getTaskResults1()
         {
+            // auto my_tmp_ru = RECEIVER::ReceiverUtilities();
+            // auto tmp_rt = my_tmp_ru::foo<ConcreteProductsTypeList,COMMAND_KEY>();
+
             constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
 
             const auto concrete_index = 
@@ -182,6 +185,8 @@ class GenericTaskInvoker
 
             constexpr auto nm_products = 
                 static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
+
+            int my_return_value = RECEIVER::ReceiverUtilities::foo<ConcreteProductsTypeList,COMMAND_KEY>();
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
 
@@ -191,6 +196,7 @@ class GenericTaskInvoker
                  // for a nonrecoverable error has occurred.
             }
 
+            
             GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
                                                                 zero>(concrete_index,
                                                                       task);
@@ -200,7 +206,6 @@ class GenericTaskInvoker
             // using return_t = std::remove_reference<decltype(this->commandSlots_[COMMAND_KEY])>::type;
             using return_t = std::remove_reference<decltype(RECEIVER::ReceiverUtilities::foo<ConcreteProductsTypeList,COMMAND_KEY>())>::type;
 
-            int my_return_value=1;
 
             return my_return_value;
         }
