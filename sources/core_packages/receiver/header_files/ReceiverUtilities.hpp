@@ -14,6 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "TaskLabel.hpp" 
+#include "MPLAliases.hpp"
 
 namespace RECEIVER
 {
@@ -22,15 +23,28 @@ namespace RECEIVER
 //        Class:  ReceiverUtilities
 //  Description:  
 //  =====================================================================================
+
+template<typename L>
+class F
+{
+    public:
+        constexpr static ANANSI::TaskLabel value = L::TASKLABEL; 
+};
+
 class ReceiverUtilities
 {
     public:
         // ====================  LIFECYCLE     =======================================
+
         template<typename ConcreteProductTypeList,
                  ANANSI::TaskLabel MY_LABEL>
         static constexpr auto foo()
         {
-            int ret_val = 1;
+            using LIST_SIZE_t = MPL::mpl_size<ConcreteProductTypeList>;
+            using INTEGER_SEQUENCE_t = MPL::mpl_iota<LIST_SIZE_t>;
+            using TL_SEQUENCE_t = MPL::mpl_apply<F,ConcreteProductTypeList>;
+
+            int ret_val = LIST_SIZE_t::value;
             return ret_val;
         }
 

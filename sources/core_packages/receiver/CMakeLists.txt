@@ -52,6 +52,7 @@
     # 
     # ----------------------------------------------------
     get_target_property(my_tasks_include tasks tasks_include)
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -122,8 +123,16 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_typelist_aliases_include}
                            PRIVATE ${my_tasks_include})
 
+#-----------------------------------------------------
+# The libraries to use when linking to target.       -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries( ${target}
+                       PUBLIC tasks
+                       PUBLIC typelist_aliases )
 #-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -
