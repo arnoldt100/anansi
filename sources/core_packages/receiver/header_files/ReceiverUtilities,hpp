@@ -14,6 +14,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "TaskLabel.hpp"
 
 namespace RECEIVER
 {
@@ -25,6 +26,14 @@ namespace RECEIVER
 class ReceiverUtilities
 {
     public:
+        // ====================  STATIC        =======================================
+        template<typename ConcreteProductTypelist, 
+                 ANANSI::TaskLabel my_label >
+        std::size_t foo()
+        {
+            return static_cast<std::size_t>(99);
+        }
+
         // ====================  LIFECYCLE     =======================================
 
         ReceiverUtilities ();   // constructor
