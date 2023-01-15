@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "TaskLabel.hpp" 
 
 namespace RECEIVER
 {
@@ -24,6 +25,15 @@ namespace RECEIVER
 class ReceiverUtilities
 {
     public:
+        // ====================  LIFECYCLE     =======================================
+        template<typename ConcreteProductTypeList,
+                 ANANSI::TaskLabel MY_LABEL>
+        static constexpr auto foo()
+        {
+            int ret_val = 1;
+            return ret_val;
+        }
+
         // ====================  LIFECYCLE     =======================================
 
         ReceiverUtilities ();   // constructor

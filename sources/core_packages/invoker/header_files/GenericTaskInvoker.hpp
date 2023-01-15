@@ -196,10 +196,11 @@ class GenericTaskInvoker
                                                                       task);
 
             // TODO :: Fri 13 Jan 2023 06:28:24 PM EST :: Replace this with call that will get return
-            // type for corresponding receiver.
-            using return_t = std::remove_reference<decltype(this->commandSlots_[COMMAND_KEY])>::type;
+            // type for corresponding receiver of the COMMAND_KEY.
+            // using return_t = std::remove_reference<decltype(this->commandSlots_[COMMAND_KEY])>::type;
+            using return_t = std::remove_reference<decltype(RECEIVER::ReceiverUtilities::foo<ConcreteProductsTypeList,COMMAND_KEY>())>::type;
 
-            return_t my_return_value{nullptr};
+            int my_return_value=1;
 
             return my_return_value;
         }
