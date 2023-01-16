@@ -19,6 +19,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "TaskLabel.hpp"
 #include "AnansiTaskParameters.h"
 #include "DefaultFunctorImpl.h"
 
@@ -28,16 +29,20 @@ namespace ANANSI
 //! This template class is the blueprint for all concrete tasks.
 //!
 //! @tparam BaseClass The base class for the concrete task
-//! @tparam ReceiverType The type of the concrete task receiver.
-//! @tparam FunctorImplType Not presently used.
-template <typename BaseClass,
-          typename ReceiverType,
-          typename FunctorImplType = DefaultFunctorImpl>
+//! @tparam Receiver The type of the concrete task receiver.
+//! @tparam FunctorImpl Not presently used.
+template <class BaseClass,
+          class Receiver,
+          class FunctorImpl = DefaultFunctorImpl>
 class GenericMDTask : public BaseClass  
 {
-    using task_result_t = typename ReceiverType::receiver_result_t;
+    using task_result_t = typename Receiver::receiver_result_t;
 
     public:
+        // ====================  STATIC       =======================================
+        static constexpr ANANSI::TaskLabel TASKLABEL =
+            Receiver::TASKLABEL;
+
         // ====================  LIFECYCLE     =======================================
 
         GenericMDTask ()  : // constructor
@@ -84,11 +89,11 @@ class GenericMDTask : public BaseClass
         //!
         //! Returns a shared_ptr of the receiver results.  The calling function
         //! shares ownership of the receiver results via a shared_ptr.
-        std::shared_ptr<typename ReceiverType::receiver_result_t> shareRecieverResults() const
+        std::shared_ptr<typename Receiver::receiver_result_t> shareRecieverResults() const
         {
             // TODO:: Tue 10 Jan 2023 11:01:56 AM EST :: To be implemented.
             // For now returns an nullptr.
-            std::shared_ptr my_ptr = std::make_shared<ReceiverType::receiver_result_t>();
+            std::shared_ptr my_ptr = std::make_shared<Receiver::receiver_result_t>();
             return my_ptr;
         }
 
@@ -96,9 +101,9 @@ class GenericMDTask : public BaseClass
 
         //! This method is mot used, but a simple placeholder.
         template<typename... T>
-        typename FunctorImplType::ResultType operator()(T &... args)
+        typename FunctorImpl::ResultType operator()(T &... args)
         {
-            std::cout << "FunctorImplType::ResultType operator stud call";
+            std::cout << "FunctorImpl::ResultType operator stud call";
         }
 
         //! Performs the concrete task.
@@ -133,7 +138,7 @@ class GenericMDTask : public BaseClass
         //! @tparam index_t Not used at the time.
         //! @param [in] recv The receiver to bind to the concrete task
         template<typename index_t>
-        void bindReceiver(std::shared_ptr<ReceiverType> & recv)
+        void bindReceiver(std::shared_ptr<Receiver> & recv)
         {
             this->receiver_ = recv;
             this->taskConcreteTypeListIndex_ = index_t::value;
@@ -156,11 +161,11 @@ class GenericMDTask : public BaseClass
         //! takes ownership of the receiver results via a unique_ptr. This also
         //! means any future references to the receiver results by this task is
         //! undefined,
-        std::unique_ptr<typename ReceiverType::receiver_result_t> getReceiverResults() 
+        std::unique_ptr<typename Receiver::receiver_result_t> getReceiverResults() 
         {
             // TODO:: Tue 10 Jan 2023 11:01:57 AM EST :: To be implemented.
             // For now returns an nullptr.
-            std::unique_ptr my_ptr = std::make_unique<ReceiverType::receiver_result_t>();
+            std::unique_ptr my_ptr = std::make_unique<Receiver::receiver_result_t>();
             return my_ptr;
         }
 
@@ -196,8 +201,8 @@ class GenericMDTask : public BaseClass
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::shared_ptr<FunctorImplType> funcImpl_;
-        std::shared_ptr<ReceiverType> receiver_;
+        std::shared_ptr<FunctorImpl> funcImpl_;
+        std::shared_ptr<Receiver> receiver_;
         AnansiTaskParameters::task_size_t taskConcreteTypeListIndex_; 
 
 
