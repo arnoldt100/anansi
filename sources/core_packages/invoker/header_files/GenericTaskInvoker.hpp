@@ -175,8 +175,8 @@ class GenericTaskInvoker
         template<LABEL_t COMMAND_KEY>
         auto getTaskResults1()
         {
-            // auto my_tmp_ru = RECEIVER::ReceiverUtilities();
-            // auto tmp_rt = my_tmp_ru::foo<ConcreteProductsTypeList,COMMAND_KEY>();
+            auto my_tmp_ru = RECEIVER::ReceiverUtilities();
+            auto tmp_rt = my_tmp_ru.foo<ConcreteProductsTypeList,COMMAND_KEY>();
 
             constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
 

@@ -117,6 +117,7 @@ class TaskLabel
             return retvalue;
         }
         // ====================  STATIC        =======================================
+        char value_[TaskLabelTraits::MAX_NM_CHARS];
 
     protected:
         // ====================  METHODS       =======================================
@@ -127,7 +128,6 @@ class TaskLabel
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        char value_[TaskLabelTraits::MAX_NM_CHARS];
 
 }; // -----  end of class TaskLabel  -----
 
