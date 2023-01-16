@@ -53,7 +53,6 @@ class GenericMDTask : public BaseClass
         {
             if (this != &other)
             {
-                
             }
             return;
         }
