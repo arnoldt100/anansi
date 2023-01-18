@@ -1,5 +1,6 @@
 #ifndef RECEIVER_ReceiverUtilities_INC
 #define RECEIVER_ReceiverUtilities_INC
+
 //! @file ReceiverUtilities.hpp
 
 //--------------------------------------------------------//
@@ -32,12 +33,55 @@ class F
         constexpr static ANANSI::TaskLabel value = L::TASKLABEL; 
 };
 
-template<ANANSI::TaskLabel T>
-class G
+// The primary template case.
+template <typename TList, 
+          int LabelIndex, 
+          ANANSI::TaskLabel label>
+class IndexOfLabel;
+
+// The specialization for not finding the label. The typelist is empty.
+template <int LabelIndex, 
+          ANANSI::TaskLabel label>
+class IndexOfLabel<MPL::mpl_typelist<>, LabelIndex, label>
 {
     public :
-        constexpr static ANANSI::TaskLabel value = T;
+       enum {value = -1};
 };
+
+// The specialization for the 0'th iteration of the search.
+template <typename TList, 
+          ANANSI::TaskLabel label>
+class IndexOfLabel<TList, 0, label>
+{
+    using mp_front=MPL::mpl_front<TList>;
+    using mp_rest=MPL::mpl_rest<TList>;
+    using label_index = MPL::mpl_int<0>; 
+    using next_label_index = MPL::mpl_int<label_index::value + 1>;
+
+    // private:
+    //     enum { my_index = mp_front.value == label ? label_index::value : IndexOfLabel<mp_rest,next_label_index,label>::value};
+    // public :
+    //     enum {value = my_index};
+};
+
+// The specialization for the i'th iteration of the search.
+template <typename TList, 
+          int LabelIndex,
+          ANANSI::TaskLabel label>
+class IndexOfLabel<TList, LabelIndex, label>
+{
+    using mp_front=MPL::mpl_front<TList>;
+    using mp_rest=MPL::mpl_rest<TList>;
+};
+
+
+// template<ANANSI::TaskLabel T>
+// class G
+// {
+//     public :
+//         constexpr static ANANSI::TaskLabel value = T;
+// };
+
 
 
 class ReceiverUtilities
@@ -45,23 +89,31 @@ class ReceiverUtilities
     public:
         // ====================  LIFECYCLE     =======================================
 
+        //! Gets the result type for the concrete task that has label MY_LABEL.
+        //!
+        //! @tparam ConcreteProductTypeList A typelist of concrete tasks.
+        //! MY_LABEL The label we seek  to match in the concrete tasks.
         template<typename ConcreteProductTypeList,
                  ANANSI::TaskLabel MY_LABEL>
         static auto foo()
         {
-            using LIST_SIZE_t = MPL::mpl_size<ConcreteProductTypeList>;
-            using INTEGER_SEQUENCE_t = MPL::mpl_iota<LIST_SIZE_t>;
-            using Q = MPL::mpl_repeat_c<G<MY_LABEL>,LIST_SIZE_t::value> ;
 
-
+            // This typelist is the type t<C...>
             using TL_SEQUENCE_t = MPL::mpl_apply<F,ConcreteProductTypeList>;
             TL_SEQUENCE_t tmp_sequence_label;
+
+            // This typelist is type G<MY_LABEL> repeated for LIST_SIZE_t::value times 
+            // using LIST_SIZE_t = MPL::mpl_size<ConcreteProductTypeList>;
+            // < G<MY_LABEL>, G<MY_LABEL>, .... , G<MY_LABEL> >
+            //using MY_LABEL_SEQEUNCE = MPL::mpl_repeat_c<G<MY_LABEL>,LIST_SIZE_t::value> ;
+
+            // ---- // 
             std::cout << "label value: " << tmp_sequence_label.value.value_ << std::endl;
-            
+           
             using zero_element_t = MPL::mpl_at_c<TL_SEQUENCE_t,0>;
             zero_element_t tmp_label;
 
-            int ret_val = LIST_SIZE_t::value;
+            int ret_val = 10;
             return ret_val;
         }
 
