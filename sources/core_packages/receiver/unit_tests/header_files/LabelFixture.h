@@ -1,9 +1,7 @@
-#ifndef ANANSI_TASKLABEL_FIXTURES_INC
-#define ANANSI_TASKLABEL_FIXTURES_INC
+#ifndef __filepreprocessordefine__
+#define __filepreprocessordefine__
 
-//! @file TasklabelTestFixtures.h
-//!
-//! Provides test case for the TaskLabel tests.
+//! @file LabelFixture.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -16,34 +14,24 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "TaskLabelTraits.hpp"
-#include "TaskLabel.hpp"
 
-namespace ANANSI
+namespace RECEIVER
 {
 
-class TaskLabelTestFixture
+class LabelFixture
 {
     public:
-        constexpr static std::size_t MY_SIZE = TaskLabelTraits::MAX_NM_CHARS;
-        constexpr static char LETTER_A[MY_SIZE]  = {"A"};
-        constexpr static char LETTER_B[MY_SIZE]  = {"B"};
-
         // ====================  LIFECYCLE     =======================================
 
-        TaskLabelTestFixture ();   // constructor
+        LabelFixture ();   // constructor
 
-        ~TaskLabelTestFixture ();  // destructor
+        ~LabelFixture ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
-
-        // ====================  DATA MEMBERS  =======================================
-        ANANSI::TaskLabel a;
-        ANANSI::TaskLabel b;
 
     protected:
         // ====================  METHODS       =======================================
@@ -55,9 +43,9 @@ class TaskLabelTestFixture
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class TaskLabelTestFixture  -----
+}; // -----  end of class LabelFixture  -----
 
 
-}; // namespace ANANSI
+}; // namespace RECEIVER
 
-#endif // ANANSI_TASKLABEL_FIXTURES_INC
+#endif // __filepreprocessordefine__

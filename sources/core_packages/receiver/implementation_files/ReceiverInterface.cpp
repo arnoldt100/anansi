@@ -50,4 +50,4 @@ namespace RECEIVER {
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+} // namespace RECEIVER

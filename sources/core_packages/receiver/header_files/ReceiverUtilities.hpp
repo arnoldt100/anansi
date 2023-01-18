@@ -39,7 +39,7 @@ template <typename TList,
           ANANSI::TaskLabel label>
 class IndexOfLabel;
 
-// The specialization for not finding the label. The typelist is empty.
+// The partial specialization for not finding the label. The typelist is empty.
 template <int LabelIndex, 
           ANANSI::TaskLabel label>
 class IndexOfLabel<MPL::mpl_typelist<>, LabelIndex, label>
@@ -48,7 +48,7 @@ class IndexOfLabel<MPL::mpl_typelist<>, LabelIndex, label>
        enum {value = -1};
 };
 
-// The specialization for the 0'th iteration of the search.
+// The partial specialization for the 0'th iteration of the search.
 template <typename TList, 
           ANANSI::TaskLabel label>
 class IndexOfLabel<TList, 0, label>
@@ -64,7 +64,7 @@ class IndexOfLabel<TList, 0, label>
     //     enum {value = my_index};
 };
 
-// The specialization for the i'th iteration of the search.
+// The partial specialization for the i'th iteration of the search.
 template <typename TList, 
           int LabelIndex,
           ANANSI::TaskLabel label>

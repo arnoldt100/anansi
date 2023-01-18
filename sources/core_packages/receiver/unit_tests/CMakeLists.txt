@@ -17,6 +17,15 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    # ----------------------------------------------------
+    # Get the properties of various other targets that 
+    # receiver depend on.
+    # 
+    # ----------------------------------------------------
+    get_target_property(my_receiver_include receiver receiver_include)
+    get_target_property(my_tasks_include tasks tasks_include)
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -39,8 +48,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (receiver_unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_receiver_main.h)
-
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_receiver_main.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/LabelFixture.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -49,14 +58,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (receiver_unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver_main.cpp)
-
-    #-----------------------------------------------------
-    # Get the include paths. 
-    #
-    #-----------------------------------------------------
-    get_target_property(my_reciever_include receiver receiver_include) 
-
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver_main.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/LabelFixture.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -91,6 +94,7 @@
     #-----------------------------------------------------
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                               PRIVATE ${my_typelist_aliases_include}
                                PRIVATE ${my_reciever_include}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
@@ -101,8 +105,9 @@
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target} 
-                          PRIVATE receiver
-                          PRIVATE ${Boost_LIBRARIES} )
+                          PUBLIC receiver
+                          PUBLIC typelist_aliases
+                          PUBLIC ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -

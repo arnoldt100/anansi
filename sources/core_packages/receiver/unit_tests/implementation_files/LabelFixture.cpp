@@ -10,7 +10,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "LabelFixture.h"
-#include "test_receiver_main.h"
 
 namespace RECEIVER {
 
@@ -19,6 +18,16 @@ namespace RECEIVER {
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= LIFECYCLE ====================================
+
+LabelFixture::LabelFixture()
+{
+    return;
+}
+
+LabelFixture::~LabelFixture()
+{
+    return;
+}
 
 //============================= ACCESSORS ====================================
 
@@ -51,20 +60,4 @@ namespace RECEIVER {
 //============================= OPERATORS ====================================
 
 
-}; // namespace RECEIVER
-
-BOOST_AUTO_TEST_SUITE(TEST_TASKLABELTRAITS)
-
-    BOOST_AUTO_TEST_CASE(char_array_size)
-    {
-        auto a = 1;
-        auto b = 1;
-        BOOST_TEST( a == b);
-    }
-
-BOOST_AUTO_TEST_SUITE_END()
-
-int main(int argc,char* argv[], char* envp[])
-{
-    return utf::unit_test_main(init_unit_test,argc,argv);
-}
+} // namespace RECEIVER
