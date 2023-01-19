@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "LabelFixture.h"
+#include "TaskLabelContainerFixture.h"
 
 namespace RECEIVER {
 
@@ -19,12 +19,12 @@ namespace RECEIVER {
 
 //============================= LIFECYCLE ====================================
 
-LabelFixture::LabelFixture()
+TaskLabelContainerFixture::TaskLabelContainerFixture()
 {
     return;
 }
 
-LabelFixture::~LabelFixture()
+TaskLabelContainerFixture::~TaskLabelContainerFixture()
 {
     return;
 }

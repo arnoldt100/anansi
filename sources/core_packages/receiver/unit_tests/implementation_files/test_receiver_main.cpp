@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "LabelFixture.h"
+#include "TaskLabelContainerFixture.h"
 #include "test_receiver_main.h"
 
 namespace RECEIVER {
