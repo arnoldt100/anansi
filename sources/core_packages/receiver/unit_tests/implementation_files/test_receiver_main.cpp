@@ -10,6 +10,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "TaskLabelContainerFixture.h"
+#include "test_receiver_utilities.h"
 #include "test_receiver_main.h"
 
 namespace RECEIVER {

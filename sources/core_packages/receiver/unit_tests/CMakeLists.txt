@@ -49,6 +49,7 @@
     #-----------------------------------------------------
     set (receiver_unit_tests_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_receiver_main.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_receiver_utilities.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/TaskLabelContainerFixture.h)
 
     #-----------------------------------------------------
@@ -59,6 +60,7 @@
     #-----------------------------------------------------
     set (receiver_unit_tests_implementation_files
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver_main.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_receiver_utilities.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/TaskLabelContainerFixture.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
