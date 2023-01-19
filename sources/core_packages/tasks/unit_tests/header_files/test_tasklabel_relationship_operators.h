@@ -1,5 +1,5 @@
-#ifndef test_tasklabel_relationship_operators
-#define test_tasklabel_relationship_operators
+#ifndef test_tasklabel_relationship_operators_INC
+#define test_tasklabel_relationship_operators_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -68,4 +68,4 @@ namespace ANANSI
     }
 } // namespace ANANSI
 
-#endif // ---- test_tasklabel_relationship_operators ----
+#endif // ---- test_tasklabel_relationship_operators_INC ----
