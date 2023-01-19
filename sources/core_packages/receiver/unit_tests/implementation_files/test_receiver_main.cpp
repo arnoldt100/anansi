@@ -64,6 +64,13 @@ BOOST_AUTO_TEST_SUITE(TEST_TASKLABELTRAITS)
 
 BOOST_AUTO_TEST_SUITE_END()
 
+
+BOOST_FIXTURE_TEST_SUITE(TEST_TASKLABELTRAITS,
+                         RECEIVER::TaskLabelContainerFixture)
+
+BOOST_AUTO_TEST_SUITE_END()
+
+
 int main(int argc,char* argv[], char* envp[])
 {
     return utf::unit_test_main(init_unit_test,argc,argv);
