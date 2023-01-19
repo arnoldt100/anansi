@@ -27,7 +27,7 @@ namespace RECEIVER
 //  =====================================================================================
 
 template<typename L>
-class F
+class TaskLabelContainer
 {
     public:
         constexpr static ANANSI::TaskLabel value = L::TASKLABEL; 
@@ -99,7 +99,7 @@ class ReceiverUtilities
         {
 
             // This typelist is the type t<C...>
-            using TL_SEQUENCE_t = MPL::mpl_apply<F,ConcreteProductTypeList>;
+            using TL_SEQUENCE_t = MPL::mpl_apply<TaskLabelContainer,ConcreteProductTypeList>;
             TL_SEQUENCE_t tmp_sequence_label;
 
             // This typelist is type G<MY_LABEL> repeated for LIST_SIZE_t::value times 
