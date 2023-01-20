@@ -34,7 +34,7 @@ class TaskLabelContainer
 };
 
 // The primary template case. This class is called by the 
-// 
+// program. 
 template <typename TList, 
           ANANSI::TaskLabel label>
 class IndexOfLabel

@@ -61,12 +61,23 @@ class TaskLabelContainerFixture
             {'E'} ;
         using ConcreteE = TestConcreteTask<E>; 
 
+        // Defining type ConcreteTaskE 
+        constexpr static char F[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
+            {'F'} ;
+        using ConcreteNotInList = TestConcreteTask<F>; 
+
         // Defining a typelist.
         using LabelTypelist = MPL::mpl_typelist<ConcreteA,
                                                 ConcreteB,
                                                 ConcreteC,
                                                 ConcreteD,
                                                 ConcreteE >;
+
+        // Defining a typelist.
+        using SingleLabelATypelist = MPL::mpl_typelist<ConcreteA>;
+
+        // Defining a typelist.
+        using EmptyLabelTypelist = MPL::mpl_typelist<>;
 
         // ====================  LIFECYCLE     =======================================
 

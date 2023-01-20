@@ -59,7 +59,11 @@ BOOST_FIXTURE_TEST_SUITE(TEST_INDEX_OF,
 
     BOOST_AUTO_TEST_CASE(IndexOF_test)
     {
-        RECEIVER::verify_index_of<TaskLabelContainerFixture::LabelTypelist>(); 
+        RECEIVER::verify_index_at_front<TaskLabelContainerFixture::LabelTypelist>(); 
+        RECEIVER::verify_index_at_middle<TaskLabelContainerFixture::LabelTypelist>(); 
+        RECEIVER::verify_index_at_end<TaskLabelContainerFixture::LabelTypelist>(); 
+        RECEIVER::verify_index_for_no_match<TaskLabelContainerFixture::LabelTypelist>(); 
+        RECEIVER::verify_index_for_empty_list<TaskLabelContainerFixture::EmptyLabelTypelist>(); 
     }
 
 BOOST_AUTO_TEST_SUITE_END()
