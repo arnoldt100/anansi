@@ -18,6 +18,7 @@
 namespace RECEIVER
 {
 
+    void verify_IndexOfLabel ();
 
 
 }; // namespace RECEIVER
