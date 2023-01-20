@@ -9,9 +9,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "TaskLabelContainerFixture.h"
-#include "test_receiver_utilities.h"
 #include "test_receiver_main.h"
+#include "test_receiver_utilities.h"
 
 namespace RECEIVER {
 
@@ -54,12 +53,11 @@ namespace RECEIVER {
 
 }; // namespace RECEIVER
 
-BOOST_FIXTURE_TEST_SUITE(TEST_TASKLABELTRAITS,
-                         RECEIVER::TaskLabelContainerFixture)
+BOOST_AUTO_TEST_SUITE(TEST_INDEX_OF)
 
-    BOOST_AUTO_TEST_CASE(index_of_label)
+    BOOST_AUTO_TEST_CASE(IndexOF_test)
     {
-        RECEIVER::verify_IndexOfLabel();
+        RECEIVER::verify_index_of(); 
     }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -1,4 +1,4 @@
-    #ifndef RECEIVER_TaskLabelContainerFixture_INC
+#ifndef RECEIVER_TaskLabelContainerFixture_INC
 #define RECEIVER_TaskLabelContainerFixture_INC
 
 
@@ -24,17 +24,17 @@
 namespace RECEIVER
 {
 
+template<ANANSI::TaskLabel T>
+class TestConcreteTask
+{
+    public:
+        constexpr static ANANSI::TaskLabel value = T; 
+};
+
 class TaskLabelContainerFixture
 {
     public:
         // ====================  STATIC        =======================================
-
-        template<ANANSI::TaskLabel T>
-        class TestConcreteTask
-        {
-            public:
-                constexpr static ANANSI::TaskLabel value = T; 
-        };
 
         // Defining type ConcreteTaskA 
         constexpr static char A[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
@@ -67,6 +67,8 @@ class TaskLabelContainerFixture
                                                 ConcreteC,
                                                 ConcreteD,
                                                 ConcreteE >;
+
+        int testmember;
 
         // ====================  LIFECYCLE     =======================================
 

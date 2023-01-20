@@ -10,17 +10,16 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/test/unit_test.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ReceiverUtilities.hpp"
 
-namespace RECEIVER
+namespace RECEIVER 
 {
-
-    void verify_IndexOfLabel ();
-
-
-}; // namespace RECEIVER
+    void verify_index_of();
+};
 
 #endif // test_receiver_utilities_INC

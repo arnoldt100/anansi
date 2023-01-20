@@ -1,4 +1,3 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -11,15 +10,12 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "test_receiver_utilities.h"
-#include <boost/test/unit_test.hpp>
 
-namespace RECEIVER {
-
-
-    void verify_IndexOfLabel ()
+namespace RECEIVER 
+{
+    void verify_index_of()
     {
-        BOOST_TEST(1 == 2, "IndexOfLabel test failed.");
-        return;
+        BOOST_TEST( 1 == 2, "Stud test for receiver package.");
     }
 
 } // namespace RECEIVER
