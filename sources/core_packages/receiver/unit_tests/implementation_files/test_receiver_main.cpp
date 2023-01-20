@@ -54,23 +54,15 @@ namespace RECEIVER {
 
 }; // namespace RECEIVER
 
-BOOST_AUTO_TEST_SUITE(TEST_TASKLABELTRAITS)
-
-    BOOST_AUTO_TEST_CASE(char_array_size)
-    {
-        auto a = 1;
-        auto b = 1;
-        BOOST_TEST( a == b);
-    }
-
-BOOST_AUTO_TEST_SUITE_END()
-
-
 BOOST_FIXTURE_TEST_SUITE(TEST_TASKLABELTRAITS,
                          RECEIVER::TaskLabelContainerFixture)
 
-BOOST_AUTO_TEST_SUITE_END()
+    BOOST_AUTO_TEST_CASE(index_of_label)
+    {
+        RECEIVER::verify_IndexOfLabel();
+    }
 
+BOOST_AUTO_TEST_SUITE_END()
 
 int main(int argc,char* argv[], char* envp[])
 {
