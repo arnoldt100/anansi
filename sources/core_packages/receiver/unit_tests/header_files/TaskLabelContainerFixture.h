@@ -68,8 +68,6 @@ class TaskLabelContainerFixture
                                                 ConcreteD,
                                                 ConcreteE >;
 
-        int testmember;
-
         // ====================  LIFECYCLE     =======================================
 
         TaskLabelContainerFixture ();   // constructor

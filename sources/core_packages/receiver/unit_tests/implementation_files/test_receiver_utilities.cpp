@@ -13,9 +13,5 @@
 
 namespace RECEIVER 
 {
-    void verify_index_of()
-    {
-        BOOST_TEST( 1 == 2, "Stud test for receiver package.");
-    }
 
 } // namespace RECEIVER

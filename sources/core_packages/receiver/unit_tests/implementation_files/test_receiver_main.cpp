@@ -59,7 +59,7 @@ BOOST_FIXTURE_TEST_SUITE(TEST_INDEX_OF,
 
     BOOST_AUTO_TEST_CASE(IndexOF_test)
     {
-        RECEIVER::verify_index_of(); 
+        RECEIVER::verify_index_of<TaskLabelContainerFixture::LabelTypelist>(); 
     }
 
 BOOST_AUTO_TEST_SUITE_END()

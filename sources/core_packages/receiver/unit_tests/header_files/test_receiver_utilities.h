@@ -19,7 +19,11 @@
 
 namespace RECEIVER 
 {
-    void verify_index_of();
+    template<typename TypeList>
+    void verify_index_of()
+    {
+        BOOST_TEST( 1 == 2, "Stud test for receiver package.");
+    }
 };
 
 #endif // test_receiver_utilities_INC
