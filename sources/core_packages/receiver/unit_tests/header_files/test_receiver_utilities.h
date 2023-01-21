@@ -22,30 +22,38 @@ namespace RECEIVER
     template<typename TypeList>
     void verify_index_at_front()
     {
+        using front_type = MPL::mpl_front<TypeList>;
+        IndexOfLabel<TypeList,front_type::value> MyIndexOf;
+
         BOOST_TEST( 1 == 2, "Stud test for front receiver package.");
     }
     
     template<typename TypeList>
     void verify_index_at_middle()
     {
+
+        using nm_types = MPL::mpl_size<TypeList>; 
         BOOST_TEST( 1 == 2, "Stud test for middle receiver package.");
     }
 
     template<typename TypeList>
     void verify_index_at_end()
     {
+        using nm_types = MPL::mpl_size<TypeList>; 
         BOOST_TEST( 1 == 2, "Stud test for end receiver package.");
     }
 
     template<typename TypeList>
     void verify_index_for_no_match()
     {
+        using nm_types = MPL::mpl_size<TypeList>; 
         BOOST_TEST( 1 == 2, "Stud test for no match receiver package.");
     }
 
     template<typename TypeList>
     void verify_index_for_empty_list()
     {
+        using nm_types = MPL::mpl_size<TypeList>; 
         BOOST_TEST( 1 == 2, "Stud test for no match receiver package.");
     }
 

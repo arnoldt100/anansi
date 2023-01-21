@@ -36,12 +36,13 @@ class TaskLabelContainer
 // The primary template case. This class is called by the 
 // program. 
 template <typename TList, 
-          ANANSI::TaskLabel label>
+          ANANSI::TaskLabel Key>
 class IndexOfLabel
 {
     public :
        enum {value = -1};
 };
+
 
 // The partial specialization for not finding the label. The typelist is empty.
 // template <int LabelIndex, 
@@ -104,7 +105,7 @@ class ReceiverUtilities
         //! @tparam ConcreteProductTypeList A typelist of concrete tasks.
         //! MY_LABEL The label we seek  to match in the concrete tasks.
         template<typename ConcreteProductTypeList,
-                 ANANSI::TaskLabel MY_LABEL>
+                 ANANSI::TaskLabel KEY>
         static auto foo()
         {
 
