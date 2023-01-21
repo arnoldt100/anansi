@@ -16,6 +16,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverUtilities.hpp"
+#include "TaskLabelContainerFixture.h"
 
 namespace RECEIVER 
 {
@@ -28,35 +29,27 @@ namespace RECEIVER
 
     //! Verifies IndexOfLabel computes for type located at front.
     //! 
-    //! If the TypeList is an empty typelist, then the computed index should be
-    //! -!, otherwise the computed index should be 0.
+    //! This is the primary template which handles the case for a non-empty TypeList.
     //!
     //! tparam TypeList A typelist of TaskLabelContainer.
     template<typename TypeList>
     void verify_index_at_front()
     {
         auto const correct_index = ( MPL::mpl_empty<TypeList>::value) ? -1 : 0;
-
-        if constexpr ( ! MPL::mpl_empty<TypeList>::value)
-        {
-            using front_type = MPL::mpl_front<TypeList>;
-        }
-        else
-        {
-            using front_type = MPL::mpl_typelist<>;
-        }
+        using front_type = MPL::mpl_front<TypeList>;
         IndexOfLabel<TypeList,front_type::value> MyIndexOf;
         auto const computed_index = MyIndexOf.value;
-    template<typename TypeList>
-    void verify_index_at_front()
         std::string message = error_message(computed_index,correct_index);
         BOOST_TEST( correct_index == computed_index, message.c_str());
+        return;
     }
-    template<typename TypeList>
-    void verify_index_at_front<>()
-    {
 
-    }
+    //! Verifies IndexOfLabel computes for type located at front.
+    //!
+    //! This is the specializtion template which handles the case for a empty TypeList.
+    //! tparam TypeList A typelist of TaskLabelContainer.
+    template <>
+    void verify_index_at_front<MPL::mpl_typelist<>>();
     
     //! Verifies IndexOfLabel computes for type located between the front and end.
     //! 

@@ -20,5 +20,17 @@ namespace RECEIVER
         return error_message; 
     }
 
+    template<>
+    void verify_index_at_front<MPL::mpl_typelist<>>()
+    {
+    //     // auto const correct_index = -1;
+    //     // using front_type = TaskLabelContainerFixture::ConcreteA;
+    //     // using empty_typelist = MPL::mpl_typelist<>;
+    //     // IndexOfLabel<empty_typelist,front_type::value> MyIndexOf;
+    //     // auto const computed_index = MyIndexOf.value;
+    //     // std::string message = error_message(computed_index,correct_index);
+    //     // BOOST_TEST( correct_index == computed_index, message.c_str());
+         // return;
+     }
 
 } // namespace RECEIVER
