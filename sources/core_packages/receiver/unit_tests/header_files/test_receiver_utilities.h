@@ -16,7 +16,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverUtilities.hpp"
-#include "TaskLabelContainerFixture.h"
 
 namespace RECEIVER 
 {
