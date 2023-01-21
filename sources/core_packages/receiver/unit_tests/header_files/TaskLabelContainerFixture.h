@@ -74,7 +74,7 @@ class TaskLabelContainerFixture
                                                 ConcreteE >;
 
         // Defining a typelist.
-        using SingleLabelATypelist = MPL::mpl_typelist<ConcreteA>;
+        using SingleLabelTypelist = MPL::mpl_typelist<ConcreteA>;
 
         // Defining a typelist.
         using EmptyLabelTypelist = MPL::mpl_typelist<>;
