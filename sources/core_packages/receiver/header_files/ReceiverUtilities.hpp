@@ -26,32 +26,62 @@ namespace RECEIVER
 //  Description:  
 //  =====================================================================================
 
+//! A utility class for aiding in searching the tasks typelist.
+//!
+//! This class sole function is to store the TaskLabel for a task type.
+//!
+//! @tparam L The TaskLabel type.
 template<typename L>
 class TaskLabelContainer
 {
     public:
+        //! Stores the TaskLabel of type L.
+        //! 
+        //! The type L must have a static member TASKLABEL.
         constexpr static ANANSI::TaskLabel value = L::TASKLABEL; 
 };
 
-// The primary template case. This class is called by the 
-// program. 
-template <typename TList, 
-          ANANSI::TaskLabel Key>
-class IndexOfLabel
+
+//! The primary template for searching
+//!
+//! This class is only invoked by classes "IndexOfLabel" and "IndexOfLabel_".
+template <typename TList,
+          ANANSI::TaskLabel label,
+          typename LabelIndex>
+class IndexOfLabel_
+{
+    using mp_front=MPL::mpl_front<TList>;
+    using mp_rest=MPL::mpl_rest<TList>;
+    using next_label_index = MPL::mpl_int<LabelIndex::value + 1>;
+
+    public :
+       enum {value = mp_front::value == label ? 100 : 200};
+};
+
+//! The specialization for an empty typelist.
+//!
+//! If the typelist is empty
+template <ANANSI::TaskLabel label,
+          typename LabelIndex>
+class IndexOfLabel_<MPL::mpl_typelist<>, label, LabelIndex>
 {
     public :
        enum {value = -1};
 };
 
+// The primary template case. 
+//
+//! This class is initially called by the program.
+template <typename TList, 
+          ANANSI::TaskLabel Key>
+class IndexOfLabel
+{
+    // For this initial iteration set label_index to MPL::mpl_int<0>
+    using label_index = MPL::mpl_int<0>; 
 
-// The partial specialization for not finding the label. The typelist is empty.
-// template <int LabelIndex, 
-//           ANANSI::TaskLabel label>
-// class IndexOfLabel<MPL::mpl_typelist<>, LabelIndex, label>
-// {
-//     public :
-//        enum {value = -1};
-// };
+    public :
+        enum { value = IndexOfLabel_<TList,Key,label_index>::value};
+};
 
 // The partial specialization for the 0'th iteration of the search.
 // template <typename TList, 
