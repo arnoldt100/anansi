@@ -41,9 +41,9 @@ namespace RECEIVER
     void verify_index_at_front()
     {
         // Providing a short description ot test and typelist.
-        std::string nm_types = std::to_string( MPL::mpl_size<TypeList>::value ); 
+        std::string typelist_size = std::to_string( MPL::mpl_size<TypeList>::value ); 
         std::string test_description = std::string("Verifies that IndexOfLabel can find front element in typelist.");
-        std::string typelist_description = std::string("Typelist with ") + nm_types + " element(s).";
+        std::string typelist_description = std::string("Typelist with ") + typelist_size + " element(s).";
 
         // The location in the typelist where the type should be located.
         // If the list is empty, then the correct location is -1, othewise 
