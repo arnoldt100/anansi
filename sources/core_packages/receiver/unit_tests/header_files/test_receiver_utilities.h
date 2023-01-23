@@ -29,8 +29,8 @@ namespace RECEIVER
     //! @return An error message.
     std::string error_message(int const computed_index, 
                               int const correct_index,
-                              const std::string_view test_description,
-                              const std::string_view typelist_description);
+                              const std::string test_description,
+                              const std::string typelist_description);
 
     //! Verifies IndexOfLabel computes for type located at front.
     //! 
@@ -40,8 +40,9 @@ namespace RECEIVER
     template<typename TypeList>
     void verify_index_at_front()
     {
-        std::string_view test_description = std::string_view("Verifies that IndexOfLabel can find front element in typelist.");
-        std::string_view typelist_description = std::string_view("Multiple element typeList");
+        // Providing a short description ot test and typelist.
+        std::string test_description = std::string("Verifies that IndexOfLabel can find front element in typelist.");
+        std::string typelist_description = std::string("Multiple element typeList");
 
         // The location in the typelist where the type should be located.
         // If the list is empty, then the correct location is -1, othewise 
@@ -56,7 +57,7 @@ namespace RECEIVER
         IndexOfLabel<TypeList,front_type::value> MyIndexOf;
         auto const computed_index = MyIndexOf.value;
 
-        // Run the Boost test to check the locaion.
+        // Run the Boost test to check the location.
         std::string message = error_message(computed_index,correct_index,test_description,typelist_description);
         BOOST_TEST( correct_index == computed_index, message.c_str());
         return;
