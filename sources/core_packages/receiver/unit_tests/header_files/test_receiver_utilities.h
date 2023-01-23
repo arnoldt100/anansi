@@ -19,12 +19,18 @@
 
 namespace RECEIVER 
 {
+
     //! Returns an error message for an incorrect computed index from IndexOfLabel.
     //! 
     //! @param[in] computed_index The index computed by the IndexOfLabel.
     //! @param[in] correct_index The correct index the IndexOfLabel should compute.
+    //! @param[in] test_description The description of the test.
+    //! @param[in] typelist_description The desciption of the typelist used for the test.
     //! @return An error message.
-    std::string error_message(int const computed_index, int const correct_index);
+    std::string error_message(int const computed_index, 
+                              int const correct_index,
+                              const std::string_view test_description,
+                              const std::string_view typelist_description);
 
     //! Verifies IndexOfLabel computes for type located at front.
     //! 
@@ -34,11 +40,24 @@ namespace RECEIVER
     template<typename TypeList>
     void verify_index_at_front()
     {
+        std::string_view test_description = std::string_view("Verifies that IndexOfLabel can find front element in typelist.");
+        std::string_view typelist_description = std::string_view("Multiple element typeList");
+
+        // The location in the typelist where the type should be located.
+        // If the list is empty, then the correct location is -1, othewise 
+        // the location should be 0.
         auto const correct_index = ( MPL::mpl_empty<TypeList>::value) ? -1 : 0;
+
+        // Get the front type in the typelist.
         using front_type = MPL::mpl_front<TypeList>;
+
+        // Compute the location of the front_type with 
+        // IndexOfLabel.
         IndexOfLabel<TypeList,front_type::value> MyIndexOf;
         auto const computed_index = MyIndexOf.value;
-        std::string message = error_message(computed_index,correct_index);
+
+        // Run the Boost test to check the locaion.
+        std::string message = error_message(computed_index,correct_index,test_description,typelist_description);
         BOOST_TEST( correct_index == computed_index, message.c_str());
         return;
     }
