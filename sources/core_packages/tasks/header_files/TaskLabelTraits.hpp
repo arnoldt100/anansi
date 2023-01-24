@@ -33,9 +33,9 @@ class TaskLabelTraits
         //! The size of the char[] array in class TaskLabel.
         //! 
         //! The class TaskLabel has a class data attribute that is of
-        //! length char[TaskLabelTraits::MAX_NM_CHARS]. Not this includes
+        //! length char[TaskLabelTraits::MAX_NM_CHARS]. Note this includes
         //! the null character '\0'.
-        constexpr static std::size_t MAX_NM_CHARS = 100;
+        constexpr static std::size_t MAX_NM_CHARS = 25;
 
         // ====================  LIFECYCLE     =======================================
 

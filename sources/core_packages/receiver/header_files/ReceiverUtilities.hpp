@@ -50,12 +50,14 @@ template <typename TList,
           typename LabelIndex>
 class IndexOfLabel_
 {
-    using mp_front=MPL::mpl_front<TList>;
-    using mp_rest=MPL::mpl_rest<TList>;
+    using T_front=MPL::mpl_front<TList>;
+    using T_rest=MPL::mpl_rest<TList>;
     using next_label_index = MPL::mpl_int<LabelIndex::value + 1>;
 
     public :
-       enum {value = mp_front::value == label ? 100 : 200};
+       enum {value = T_front::value == label ? LabelIndex::value : IndexOfLabel_<T_rest,
+                                                                            label,
+                                                                            next_label_index>::value };
 };
 
 //! The specialization for an empty typelist.

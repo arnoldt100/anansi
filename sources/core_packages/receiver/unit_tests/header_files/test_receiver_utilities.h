@@ -16,6 +16,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverUtilities.hpp"
+#include "TaskLabelContainerFixture.h"
 
 namespace RECEIVER 
 {
@@ -27,7 +28,7 @@ namespace RECEIVER
     //! @param[in] test_description The description of the test.
     //! @param[in] typelist_description The desciption of the typelist used for the test.
     //! @return An error message.
-    std::string error_message(int const computed_index, 
+    std::string index_of_label_error_message(int const computed_index, 
                               int const correct_index,
                               const std::string test_description,
                               const std::string typelist_description);
@@ -48,7 +49,8 @@ namespace RECEIVER
         // The location in the typelist where the type should be located.
         // If the list is empty, then the correct location is -1, othewise 
         // the location should be 0.
-        auto const correct_index = ( MPL::mpl_empty<TypeList>::value) ? -1 : 0;
+        auto const correct_index = 
+            ( MPL::mpl_empty<TypeList>::value) ? TaskLabelContainerFixture::correct_index_empty_typelist : TaskLabelContainerFixture::correct_index_at_front_tests;
 
         // Get the front type in the typelist.
         using front_type = MPL::mpl_front<TypeList>;
@@ -59,7 +61,7 @@ namespace RECEIVER
         auto const computed_index = MyIndexOf.value;
 
         // Run the Boost test to check the location.
-        std::string message = error_message(computed_index,correct_index,test_description,typelist_description);
+        std::string message = index_of_label_error_message(computed_index,correct_index,test_description,typelist_description);
         BOOST_TEST( correct_index == computed_index, message.c_str());
         return;
     }
@@ -67,7 +69,7 @@ namespace RECEIVER
     //! Verifies IndexOfLabel computes for type located at front.
     //!
     //! This is the specializtion template which handles the case for a empty TypeList.
-    //! tparam TypeList A typelist of TaskLabelContainer.
+    //! tparam TypeList An empty typelist of TaskLabelContainer.
     template <>
     void verify_index_at_front<MPL::mpl_typelist<>>();
     

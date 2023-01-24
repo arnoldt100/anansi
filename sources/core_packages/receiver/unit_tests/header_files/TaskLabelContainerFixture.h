@@ -80,6 +80,10 @@ class TaskLabelContainerFixture
         // Defining a typelist.
         using EmptyLabelTypelist = MPL::mpl_typelist<>;
 
+        static constexpr auto correct_index_at_front_tests = 0;
+        static constexpr auto correct_index_empty_typelist = -1;
+
+    
         // ====================  LIFECYCLE     =======================================
 
         TaskLabelContainerFixture ();   // constructor
