@@ -91,17 +91,21 @@ namespace RECEIVER
         // The variable correct_index  is the location in the typelist where
         // the type should be located. If the list is empty, then the correct
         // location is -1, othewise the location should be 0.
-        auto const correct_index = 
+        auto const correct_middle_index =
             ( MPL::mpl_empty<TypeList>::value) ? TaskLabelContainerFixture::correct_index_empty_typelist : TaskLabelContainerFixture::correct_index_at_middle_tests;
 
-        // using nm_types = MPL::mpl_size<TypeList>; 
-        // using middle_index = MPL::mpl_int<(nm_types::value - 1)/2>; 
-        // auto const correct_index = ( MPL::mpl_empty<TypeList>::value) ? -1 : middle_index::value;
+        // Get the middle type in the typelist.
+        using middle_type = MPL::mpl_at_c<TypeList,TaskLabelContainerFixture::correct_index_at_middle_tests>;
 
-        // using middle_type = MPL::mpl_at_c<TypeList,middle_index::value>;
+        // Compute the location of the middle_type with 
+        // IndexOfLabel.
+        IndexOfLabel<TypeList,middle_type::value> MyIndexOf;
+        auto const computed_middle_index = MyIndexOf.value;
 
-        // IndexOfLabel<TypeList,middle_type::value> MyIndexOf;
-        BOOST_TEST( 1 == 2, "Stud test for middle receiver package.");
+        // Run the Boost test to check the location.
+        std::string message = index_of_label_error_message(computed_middle_index,correct_middle_index,test_description,typelist_description);
+        BOOST_TEST( correct_middle_index == computed_middle_index, message.c_str());
+        return;
     }
 
     template<typename TypeList>
