@@ -82,7 +82,6 @@ class TaskLabelContainerFixture
 
         static constexpr auto correct_index_at_front_tests = 0;
         static constexpr auto correct_index_empty_typelist = -1;
-        static constexpr auto correct_index_at_middle_tests = 2;
 
     
         // ====================  LIFECYCLE     =======================================

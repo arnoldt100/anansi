@@ -88,14 +88,16 @@ namespace RECEIVER
         std::string test_description = std::string("Verifies that IndexOfLabel can find the middle element in typelist.");
         std::string typelist_description = std::string("Typelist with ") + typelist_size + " element(s).";
 
-        // The variable correct_index  is the location in the typelist where
+        // Define the variable 'midpoint'.
+        constexpr auto midpoint = MPL::mpl_size<TypeList>::value/2;
+
+        // The variable 'correct_index' is the location in the typelist where
         // the type should be located. If the list is empty, then the correct
-        // location is -1, othewise the location should be 0.
-        auto const correct_middle_index =
-            ( MPL::mpl_empty<TypeList>::value) ? TaskLabelContainerFixture::correct_index_empty_typelist : TaskLabelContainerFixture::correct_index_at_middle_tests;
+        // location is -1, othewise the location should be the MPL::mp_size<TypeList>::value/2.
+        auto const correct_middle_index = midpoint;
 
         // Get the middle type in the typelist.
-        using middle_type = MPL::mpl_at_c<TypeList,TaskLabelContainerFixture::correct_index_at_middle_tests>;
+        using middle_type = MPL::mpl_at_c<TypeList,midpoint>;
 
         // Compute the location of the middle_type with 
         // IndexOfLabel.
@@ -107,6 +109,17 @@ namespace RECEIVER
         BOOST_TEST( correct_middle_index == computed_middle_index, message.c_str());
         return;
     }
+
+    //! Verifies IndexOfLabel computes for type located between the front and end.
+    //! 
+    //! This specialized template handles the case for an empty typelist.
+    //! If the TypeList is an empty typelist, then the computed index should be
+    //! -!, otherwise the computed index should for a type located in the middle of the
+    //! of the typelist.
+    //!
+    //! tparam TypeList A typelist of TaskLabelContainer.
+    template<>
+    void verify_index_at_middle<MPL::mpl_typelist<>>();
 
     template<typename TypeList>
     void verify_index_at_end()
