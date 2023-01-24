@@ -46,9 +46,9 @@ namespace RECEIVER
         std::string test_description = std::string("Verifies that IndexOfLabel can find front element in typelist.");
         std::string typelist_description = std::string("Typelist with ") + typelist_size + " element(s).";
 
-        // The location in the typelist where the type should be located.
-        // If the list is empty, then the correct location is -1, othewise 
-        // the location should be 0.
+        // The variable correct_index  is the location in the typelist where
+        // the type should be located. If the list is empty, then the correct
+        // location is -1, othewise the location should be 0.
         auto const correct_index = 
             ( MPL::mpl_empty<TypeList>::value) ? TaskLabelContainerFixture::correct_index_empty_typelist : TaskLabelContainerFixture::correct_index_at_front_tests;
 
@@ -83,6 +83,17 @@ namespace RECEIVER
     template<typename TypeList>
     void verify_index_at_middle()
     {
+        // Providing a short description ot test and typelist.
+        std::string typelist_size = std::to_string( MPL::mpl_size<TypeList>::value ); 
+        std::string test_description = std::string("Verifies that IndexOfLabel can find the middle element in typelist.");
+        std::string typelist_description = std::string("Typelist with ") + typelist_size + " element(s).";
+
+        // The variable correct_index  is the location in the typelist where
+        // the type should be located. If the list is empty, then the correct
+        // location is -1, othewise the location should be 0.
+        auto const correct_index = 
+            ( MPL::mpl_empty<TypeList>::value) ? TaskLabelContainerFixture::correct_index_empty_typelist : TaskLabelContainerFixture::correct_index_at_middle_tests;
+
         // using nm_types = MPL::mpl_size<TypeList>; 
         // using middle_index = MPL::mpl_int<(nm_types::value - 1)/2>; 
         // auto const correct_index = ( MPL::mpl_empty<TypeList>::value) ? -1 : middle_index::value;
