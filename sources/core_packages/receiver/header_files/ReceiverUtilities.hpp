@@ -41,7 +41,6 @@ class TaskLabelContainer
         constexpr static ANANSI::TaskLabel value = L::TASKLABEL; 
 };
 
-
 //! The primary template for searching
 //!
 //! This class is only invoked by classes "IndexOfLabel" and "IndexOfLabel_".
@@ -56,8 +55,8 @@ class IndexOfLabel_
 
     public :
        enum {value = T_front::value == label ? LabelIndex::value : IndexOfLabel_<T_rest,
-                                                                            label,
-                                                                            next_label_index>::value };
+                                                                                label,
+                                                                                next_label_index>::value };
 };
 
 //! The specialization for an empty typelist.
@@ -84,39 +83,6 @@ class IndexOfLabel
     public :
         enum { value = IndexOfLabel_<TList,Key,label_index>::value};
 };
-
-// The partial specialization for the 0'th iteration of the search.
-// template <typename TList, 
-//           ANANSI::TaskLabel label>
-// class IndexOfLabel<TList, 0, label>
-// {
-//     using mp_front=MPL::mpl_front<TList>;
-//     using mp_rest=MPL::mpl_rest<TList>;
-//     using label_index = MPL::mpl_int<0>; 
-//     using next_label_index = MPL::mpl_int<label_index::value + 1>;
-// 
-//     // private:
-//     //     enum { my_index = mp_front.value == label ? label_index::value : IndexOfLabel<mp_rest,next_label_index,label>::value};
-//     // public :
-//     //     enum {value = my_index};
-// };
-
-// The partial specialization for the i'th iteration of the search.
-// template <typename TList, 
-//           int LabelIndex,
-//           ANANSI::TaskLabel label>
-// class IndexOfLabel<TList, LabelIndex, label>
-// {
-//     using mp_front=MPL::mpl_front<TList>;
-//     using mp_rest=MPL::mpl_rest<TList>;
-// 
-//     // private:
-//     //     enum { my_index = mp_front.value == label ? label_index::value : IndexOfLabel<mp_rest,next_label_index,label>::value};
-// 
-//     // public:
-//     //     enum {value = my_index};
-// 
-// };
 
 // template<ANANSI::TaskLabel T>
 // class G
