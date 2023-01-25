@@ -122,13 +122,6 @@ namespace RECEIVER
     void verify_index_at_middle<MPL::mpl_typelist<>>();
 
     template<typename TypeList>
-    void verify_index_at_end()
-    {
-        using nm_types = MPL::mpl_size<TypeList>; 
-        BOOST_TEST( 1 == 2, "Stud test for end receiver package.");
-    }
-
-    template<typename TypeList>
     void verify_index_for_no_match()
     {
         using nm_types = MPL::mpl_size<TypeList>; 
@@ -142,6 +135,14 @@ namespace RECEIVER
         BOOST_TEST( 1 == 2, "Stud test for no match receiver package.");
     }
 
+    template<typename TypeList>
+    void verify_index_at_end()
+    {
+        BOOST_TEST( 1 == 2, "Stud test for end receiver package.");
+    }
+
+    template<>
+    void verify_index_at_end<MPL::mpl_typelist<>>();
 };
 
 #endif // test_receiver_utilities_INC

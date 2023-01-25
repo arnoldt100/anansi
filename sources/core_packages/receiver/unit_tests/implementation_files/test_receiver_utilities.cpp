@@ -81,6 +81,12 @@ namespace RECEIVER
         return;
     }
 
+    template<>
+    void verify_index_at_end<MPL::mpl_typelist<>>()
+    {
+        BOOST_TEST( 1 == 2, "Stud test for end receiver package.");
+        return;
+    }
 
 
 } // namespace RECEIVER
