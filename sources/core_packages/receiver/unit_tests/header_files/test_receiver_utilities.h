@@ -137,6 +137,8 @@ namespace RECEIVER
     template<typename TypeList>
     void verify_index_at_end()
     {
+        using nm_types = MPL::mpl_size<TypeList>; 
+
         // Providing a short description ot test and typelist.
         std::string typelist_size = 
             std::to_string( MPL::mpl_size<TypeList>::value ); 
@@ -144,7 +146,26 @@ namespace RECEIVER
             std::string("Verifies that IndexOfLabel can find end element in typelist.");
         std::string typelist_description = 
             std::string("Typelist with ") + typelist_size + " element(s).";
-        BOOST_TEST( 1 == 2, "Stud test for end receiver package.");
+
+        // The variable correct_end_index is the location in the typelist where
+        // the type should be located. If the list is empty, then the correct
+        // location is -1, otherwise the location should be at the end.
+        auto constexpr correct_end_index = 
+            ( MPL::mpl_empty<TypeList>::value) ? TaskLabelContainerFixture::correct_index_empty_typelist : nm_types::value - 1;
+
+        // Get the type at the end.
+        using end_type = MPL::mpl_at_c<TypeList,correct_end_index>;
+
+        // Compute the location of the end_type with 
+        // IndexOfLabel.
+        constexpr IndexOfLabel<TypeList,end_type::value> MyIndexOf;
+        // auto constexpr computed_end_index = MyIndexOf.value;
+        auto constexpr computed_end_index = 2;
+
+        // Run the Boost test to check the location.
+        std::string message = index_of_label_error_message(computed_end_index,correct_end_index,test_description,typelist_description);
+        BOOST_TEST( correct_end_index == computed_end_index, message.c_str());
+        return;
     }
 
     //! Verifies IndexOfLabel computes for type located at the end.
