@@ -62,7 +62,7 @@ class TaskLabelContainerFixture
             {'E'} ;
         using ConcreteE = TestConcreteTask<E>; 
 
-        // Defining type ConcreteTaskE 
+        // Defining type ConcreteTaskF 
         constexpr static char F[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'F'} ;
         using ConcreteNotInList = TestConcreteTask<F>; 

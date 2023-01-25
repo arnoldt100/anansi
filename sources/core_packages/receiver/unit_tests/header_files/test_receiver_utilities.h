@@ -41,7 +41,7 @@ namespace RECEIVER
     template<typename TypeList>
     void verify_index_at_front()
     {
-        // Providing a short description ot test and typelist.
+        // Providing a short description of test and typelist.
         std::string typelist_size = std::to_string( MPL::mpl_size<TypeList>::value ); 
         std::string test_description = std::string("Verifies that IndexOfLabel can find front element in typelist.");
         std::string typelist_description = std::string("Typelist with ") + typelist_size + " element(s).";
@@ -84,7 +84,7 @@ namespace RECEIVER
     template<typename TypeList>
     void verify_index_at_middle()
     {
-        // Providing a short description ot test and typelist.
+        // Providing a short description of test and typelist.
         std::string typelist_size = std::to_string( MPL::mpl_size<TypeList>::value ); 
         std::string test_description = std::string("Verifies that IndexOfLabel can find the middle element in typelist.");
         std::string typelist_description = std::string("Typelist with ") + typelist_size + " element(s).";
@@ -119,13 +119,6 @@ namespace RECEIVER
     template<>
     void verify_index_at_middle<MPL::mpl_typelist<>>();
 
-    template<typename TypeList>
-    void verify_index_for_no_match()
-    {
-        using nm_types = MPL::mpl_size<TypeList>; 
-        BOOST_TEST( 1 == 2, "Stud test for no match receiver package.");
-    }
-
     //! Verifies IndexOfLabel computes for type located at the end.
     //! 
     //! This specialized template handles the case for an empty typelist.
@@ -139,7 +132,7 @@ namespace RECEIVER
     {
         using nm_types = MPL::mpl_size<TypeList>; 
 
-        // Providing a short description ot test and typelist.
+        // Providing a short description of test and typelist.
         std::string typelist_size = 
             std::to_string( MPL::mpl_size<TypeList>::value ); 
         std::string test_description = 
@@ -174,6 +167,41 @@ namespace RECEIVER
     //! tparam TypeList A typelist of TaskLabelContainer.
     template<>
     void verify_index_at_end<MPL::mpl_typelist<>>();
+
+    //! Verifies IndexOfLabel computes for type not located int the Typelist.
+    //! 
+    //! The computed index should be -! when no match type is found.
+    //!
+    //! tparam TypeList A typelist of TaskLabelContainer.
+    template<typename TypeList>
+    void verify_index_for_no_match ()
+    {
+        // Providing a short description of test and typelist.
+        std::string typelist_size = 
+            std::to_string( MPL::mpl_size<TypeList>::value ); 
+        std::string test_description = 
+            std::string("Verifies that IndexOfLabel can not find a non-matching element in typelist.");
+        std::string typelist_description = 
+            std::string("Typelist with ") + typelist_size + " element(s).";
+
+        // The variable correct_index is the location in the typelist where
+        // the type should be located. For a non-matching element the index 
+        // should be -1.
+        auto constexpr correct_index = TaskLabelContainerFixture::correct_index_empty_typelist;
+
+        // Create a dummy type to search for.
+        using non_matching_type = TaskLabelContainerFixture::ConcreteNotInList;
+
+        // Compute the location of the non_matching_type with 
+        // IndexOfLabel.
+        IndexOfLabel<TypeList,non_matching_type::value> MyIndexOf;
+        auto const computed_index = MyIndexOf.value;
+
+        // Run the Boost test to check the location.
+        std::string message = index_of_label_error_message(computed_index,correct_index,test_description,typelist_description);
+        BOOST_TEST( correct_index == computed_index, message.c_str());
+        return;
+    }
 };
 
 #endif // test_receiver_utilities_INC
