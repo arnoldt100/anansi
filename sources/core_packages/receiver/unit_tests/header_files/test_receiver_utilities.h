@@ -46,7 +46,7 @@ namespace RECEIVER
         std::string test_description = std::string("Verifies that IndexOfLabel can find front element in typelist.");
         std::string typelist_description = std::string("Typelist with ") + typelist_size + " element(s).";
 
-        // The variable correct_index  is the location in the typelist where
+        // The variable correct_index is the location in the typelist where
         // the type should be located. If the list is empty, then the correct
         // location is -1, othewise the location should be 0.
         auto const correct_index = 
@@ -69,6 +69,7 @@ namespace RECEIVER
     //! Verifies IndexOfLabel computes for type located at front.
     //!
     //! This is the specializtion template which handles the case for a empty TypeList.
+    //!
     //! tparam TypeList An empty typelist of TaskLabelContainer.
     template <>
     void verify_index_at_front<MPL::mpl_typelist<>>();
@@ -113,9 +114,6 @@ namespace RECEIVER
     //! Verifies IndexOfLabel computes for type located between the front and end.
     //! 
     //! This specialized template handles the case for an empty typelist.
-    //! If the TypeList is an empty typelist, then the computed index should be
-    //! -!, otherwise the computed index should for a type located in the middle of the
-    //! of the typelist.
     //!
     //! tparam TypeList A typelist of TaskLabelContainer.
     template<>
@@ -128,19 +126,32 @@ namespace RECEIVER
         BOOST_TEST( 1 == 2, "Stud test for no match receiver package.");
     }
 
-    template<typename TypeList>
-    void verify_index_for_empty_list()
-    {
-        using nm_types = MPL::mpl_size<TypeList>; 
-        BOOST_TEST( 1 == 2, "Stud test for no match receiver package.");
-    }
-
+    //! Verifies IndexOfLabel computes for type located at the end.
+    //! 
+    //! This specialized template handles the case for an empty typelist.
+    //! If the TypeList is an empty typelist, then the computed index should be
+    //! -!, otherwise the computed index should for a type located at the end of the
+    //! of the typelist.
+    //!
+    //! tparam TypeList A typelist of TaskLabelContainer.
     template<typename TypeList>
     void verify_index_at_end()
     {
+        // Providing a short description ot test and typelist.
+        std::string typelist_size = 
+            std::to_string( MPL::mpl_size<TypeList>::value ); 
+        std::string test_description = 
+            std::string("Verifies that IndexOfLabel can find end element in typelist.");
+        std::string typelist_description = 
+            std::string("Typelist with ") + typelist_size + " element(s).";
         BOOST_TEST( 1 == 2, "Stud test for end receiver package.");
     }
 
+    //! Verifies IndexOfLabel computes for type located at the end.
+    //! 
+    //! This specialized template handles the case for an empty typelist.
+    //!
+    //! tparam TypeList A typelist of TaskLabelContainer.
     template<>
     void verify_index_at_end<MPL::mpl_typelist<>>();
 };
