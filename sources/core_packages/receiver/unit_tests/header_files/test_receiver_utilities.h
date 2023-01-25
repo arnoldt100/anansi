@@ -159,8 +159,7 @@ namespace RECEIVER
         // Compute the location of the end_type with 
         // IndexOfLabel.
         constexpr IndexOfLabel<TypeList,end_type::value> MyIndexOf;
-        // auto constexpr computed_end_index = MyIndexOf.value;
-        auto constexpr computed_end_index = 2;
+        auto constexpr computed_end_index = MyIndexOf.value;
 
         // Run the Boost test to check the location.
         std::string message = index_of_label_error_message(computed_end_index,correct_end_index,test_description,typelist_description);
