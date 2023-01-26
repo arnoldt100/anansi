@@ -36,9 +36,11 @@ template <class BaseClass,
           class FunctorImpl = DefaultFunctorImpl>
 class GenericMDTask : public BaseClass  
 {
-    using task_result_t = typename Receiver::receiver_result_t;
 
     public:
+
+        using task_result_t = typename Receiver::receiver_result_t;
+
         // ====================  STATIC       =======================================
         static constexpr ANANSI::TaskLabel TASKLABEL =
             Receiver::TASKLABEL;

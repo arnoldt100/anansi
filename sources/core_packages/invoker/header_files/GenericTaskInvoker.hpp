@@ -1,12 +1,6 @@
 #ifndef ANANSI_GenericTaskInvoker_INC
 #define ANANSI_GenericTaskInvoker_INC
 //! @file GenericTaskInvoker.hpp
-//!
-//! The command (or task) invoker for the communication environment.
-//!
-//! The only tasks invoked are 
-//! * enable - enabling in communication environment
-//! * disable - disabling the communication environment
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -34,12 +28,11 @@
 namespace ANANSI
 {
 
-//! The Invoker for the communication environment.
+//! Invokes tassks actions.
 //!
-//! Brief description
-//!
-//! Detailed description
-
+//! @tparam AbstractProductsTypeList The abstract product typelist 
+//! @tparam ConcreteProductsTypeList The const product typelist 
+//! @tparam LABEL_t  The type of task label (button id)
 template<typename AbstractProductsTypeList,
          typename ConcreteProductsTypeList, 
          typename LABEL_t=ANANSI::TaskLabel
@@ -143,12 +136,12 @@ class GenericTaskInvoker
             return;
         }
 
+        //! Returns a copy of the results for task corresponding to COMMAND_KEY.
+        //!
+        //! @tparam COMMAND_KEY The label of the task for which we seek the results. 
         template<LABEL_t COMMAND_KEY>
-        auto getTaskResults1()
+        auto getTaskResults()
         {
-            auto my_tmp_ru = RECEIVER::ReceiverUtilities();
-            auto tmp_rt = my_tmp_ru.foo<ConcreteProductsTypeList,COMMAND_KEY>();
-
             // We compute the range of concrete products in ConcreteProductsTypeList.
             constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
             constexpr auto nm_products = 
@@ -157,7 +150,8 @@ class GenericTaskInvoker
             // This is the lcation of the corresponding concrete product in typelist 
             // ConcreteProductsTypeList that has tasklabel COMMAND_KEY.
             constexpr int concrete_index = 
-                RECEIVER::ReceiverUtilities::foo<ConcreteProductsTypeList,COMMAND_KEY>();
+                RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,
+                                                                   COMMAND_KEY>();
 
             // If the corresponding concrete product is not found then abort.
             if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
@@ -166,16 +160,13 @@ class GenericTaskInvoker
                  // for a nonrecoverable error has occurred.
             }
 
+            using return_t = 
+                std::remove_reference<decltype(RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,COMMAND_KEY>())>::type;
+
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
             
             GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
-                                                                zero>(concrete_index,
-                                                                      task);
-
-            // TODO :: Fri 13 Jan 2023 06:28:24 PM EST :: Replace this with call that will get return
-            // type for corresponding receiver of the COMMAND_KEY.
-            // using return_t = std::remove_reference<decltype(this->commandSlots_[COMMAND_KEY])>::type;
-            using return_t = std::remove_reference<decltype(RECEIVER::ReceiverUtilities::foo<ConcreteProductsTypeList,COMMAND_KEY>())>::type;
+                                                                concrete_index>(task);
 
 
             return concrete_index;

@@ -94,31 +94,24 @@ class GenericTaskInvokerUtilities
             return;
         } 
 
+        //! Returns the result of a concrete task.
+        //!
+        //! @tparam A typelist of concrete task types.
+        //! @tparam concrete_index The location of the concrete task type of task 
+        //! @param[in,out] task The concrete task of whose results we want,
         template<typename ConcreteTasksTypeList,
-                 MPL::mpl_size_type alpha>
-        static auto getTaskReceiverResults(const MPL::mpl_size_type concrete_index,
-                                        std::shared_ptr<ANANSI::AnansiTask> & task)
+                 MPL::mpl_size_type concrete_index>
+        static auto getTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> & task)
         {
-            constexpr auto mx_elements = MPL::mpl_size<ConcreteTasksTypeList>::value; 
-            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
-            constexpr auto next_alpha = alpha + 1;
-            int ret_val = 0;
-            if constexpr ( (zero <= alpha) and (alpha < mx_elements) )
-            {
-                if (alpha == concrete_index)
-                {
-                    using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,alpha>;
+            // Bookmark - stopping here -
+            using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,concrete_index>;
 
-                    std::shared_ptr<concrete_task_t> p_concrete = 
+            using return_t = concrete_task_t::task_result_t;
+
+            std::shared_ptr<concrete_task_t> p_concrete =
                         AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
 
-                    using return_t = std::remove_reference<decltype(*p_concrete)>::type;
-                    ret_val = concrete_index;
-                }
-                else
-                {
-                }
-            }
+           int ret_val = concrete_index;
 
             return ret_val;
         }

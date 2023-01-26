@@ -84,15 +84,6 @@ class IndexOfLabel
         enum { value = IndexOfLabel_<TList,Key,label_index>::value};
 };
 
-// template<ANANSI::TaskLabel T>
-// class G
-// {
-//     public :
-//         constexpr static ANANSI::TaskLabel value = T;
-// };
-
-
-
 class ReceiverUtilities
 {
     public:
@@ -104,7 +95,7 @@ class ReceiverUtilities
         //! MY_LABEL The label we seek  to match in the concrete tasks.
         template<typename ConcreteProductTypeList,
                  ANANSI::TaskLabel KEY>
-        constexpr static auto foo()
+        constexpr static auto getLocationInTypeList()
         {
             using TL_SEQUENCE_t = MPL::mpl_transform<TaskLabelContainer,ConcreteProductTypeList>;
             auto constexpr index = IndexOfLabel<TL_SEQUENCE_t,KEY>::value;
