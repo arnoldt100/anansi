@@ -22,10 +22,6 @@
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  ConsoleMessageContainer
-//  Description:  
-//  =====================================================================================
 class ConsoleMessageContainer final
 {
     public:
@@ -43,6 +39,9 @@ class ConsoleMessageContainer final
         ~ConsoleMessageContainer ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+
+        //! Returns the message in the container,
+        std::string getMessage() const;
 
         // ====================  MUTATORS      =======================================
 

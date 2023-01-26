@@ -64,6 +64,10 @@ ConsoleMessageContainer::~ConsoleMessageContainer()
 }
 
 //============================= ACCESSORS ====================================
+std::string ConsoleMessageContainer::getMessage() const
+{
+    return this->message_;
+}
 
 //============================= MUTATORS =====================================
 
