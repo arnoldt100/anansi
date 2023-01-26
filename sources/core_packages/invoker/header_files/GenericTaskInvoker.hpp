@@ -143,59 +143,30 @@ class GenericTaskInvoker
             return;
         }
 
-        auto getTaskResults(const LABEL_t & command_key)
-        {
-            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
-
-            const auto concrete_index = 
-                static_cast<MPL::mpl_size_type>(this->commandSlots_.at(command_key)->taskIndex());
-
-            constexpr auto nm_products = 
-                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
-
-            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(command_key);
-
-            if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
-            {
-                 // :TODO:11/15/2022 10:00:29 AM:: Abort program
-                 // for a nonrecoverable error has occurred.
-            }
-
-            GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
-                                                                zero>(concrete_index,
-                                                                      task);
-
-            using return_t = std::remove_reference<decltype(this->commandSlots_[command_key])>::type;
-
-            return_t my_return_value{nullptr};
-
-            return my_return_value;
-        }
-      
         template<LABEL_t COMMAND_KEY>
         auto getTaskResults1()
         {
             auto my_tmp_ru = RECEIVER::ReceiverUtilities();
             auto tmp_rt = my_tmp_ru.foo<ConcreteProductsTypeList,COMMAND_KEY>();
 
+            // We compute the range of concrete products in ConcreteProductsTypeList.
             constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
-
-            const auto concrete_index = 
-                static_cast<MPL::mpl_size_type>(this->commandSlots_.at(COMMAND_KEY)->taskIndex());
-
             constexpr auto nm_products = 
                 static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
 
-            int my_return_value = RECEIVER::ReceiverUtilities::foo<ConcreteProductsTypeList,COMMAND_KEY>();
+            // This is the lcation of the corresponding concrete product in typelist 
+            // ConcreteProductsTypeList that has tasklabel COMMAND_KEY.
+            constexpr int concrete_index = 
+                RECEIVER::ReceiverUtilities::foo<ConcreteProductsTypeList,COMMAND_KEY>();
 
-            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
-
+            // If the corresponding concrete product is not found then abort.
             if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
             {
                  // :TODO:11/15/2022 10:00:29 AM:: Abort program
                  // for a nonrecoverable error has occurred.
             }
 
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
             
             GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
                                                                 zero>(concrete_index,
@@ -207,7 +178,7 @@ class GenericTaskInvoker
             using return_t = std::remove_reference<decltype(RECEIVER::ReceiverUtilities::foo<ConcreteProductsTypeList,COMMAND_KEY>())>::type;
 
 
-            return my_return_value;
+            return concrete_index;
         }
 
         // ====================  OPERATORS     =======================================

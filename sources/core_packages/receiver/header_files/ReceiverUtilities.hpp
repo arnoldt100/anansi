@@ -104,21 +104,11 @@ class ReceiverUtilities
         //! MY_LABEL The label we seek  to match in the concrete tasks.
         template<typename ConcreteProductTypeList,
                  ANANSI::TaskLabel KEY>
-        static auto foo()
+        constexpr static auto foo()
         {
-
-            // This typelist is the type t<C...>
-            // using TL_SEQUENCE_t = MPL::mpl_apply<TaskLabelContainer,ConcreteProductTypeList>;
-            // TL_SEQUENCE_t tmp_sequence_label;
-
-            // // ---- // 
-            // std::cout << "label value: " << tmp_sequence_label.value.value_ << std::endl;
-           
-            // using zero_element_t = MPL::mpl_at_c<TL_SEQUENCE_t,0>;
-            // zero_element_t tmp_label;
-
-            int ret_val = 10;
-            return ret_val;
+            using TL_SEQUENCE_t = MPL::mpl_transform<TaskLabelContainer,ConcreteProductTypeList>;
+            auto constexpr index = IndexOfLabel<TL_SEQUENCE_t,KEY>::value;
+            return index;
         }
 
         // ====================  LIFECYCLE     =======================================
