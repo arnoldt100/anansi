@@ -101,6 +101,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 template<typename... Types>
 void WriteTextToConsoleTaskReceiver::receiverDoAction(Types & ... args) const
 {
+    const auto message = this->messageContainer_->getMessage();
+    std::cout << message << std::endl;
+    this->results_++;
     return;
 }
 
