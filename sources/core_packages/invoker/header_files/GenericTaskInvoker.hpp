@@ -136,7 +136,7 @@ class GenericTaskInvoker
             return;
         }
 
-        //! Returns a copy of the results for task corresponding to COMMAND_KEY.
+        //! Returns a copy of the results for the task corresponding to COMMAND_KEY.
         //!
         //! @tparam COMMAND_KEY The label of the task for which we seek the results. 
         template<LABEL_t COMMAND_KEY>
