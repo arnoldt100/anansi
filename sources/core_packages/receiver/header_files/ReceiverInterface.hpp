@@ -84,6 +84,11 @@ class ReceiverInterface
             return;
         }
 
+        auto getCopyOfResults() const
+        {
+            return asDerived_().receiverGetCopyOfResults();
+        }
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>
@@ -106,9 +111,14 @@ class ReceiverInterface
             return;
         }
 
-        auto getCopyOfResults() const
+        auto shareOwnershipOfResults()
         {
-            return asDerived_().receiverGetCopyOfResults();
+            return asDerived_().receiverShareOwnershipOfResults();
+        }
+
+        auto takeOwnershipOfResults()
+        {
+            return asDerived_().receiverTakeOwnershipOfResults();
         }
 
         // ====================  OPERATORS     =======================================

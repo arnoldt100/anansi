@@ -94,7 +94,7 @@ class GenericMDTask : public BaseClass
         //! reset to default values.
         Receiver::receiver_result_t getCopyOfResults() const
         {
-            typename Receiver::receiver_result_t results = this->receiver_->receiverGetCopyOfResults();
+            typename Receiver::receiver_result_t results = this->receiver_->getCopyOfResults();
             return results;
         }
 
@@ -162,10 +162,9 @@ class GenericMDTask : public BaseClass
         //! shares ownership of the receiver results via a shared_ptr.
         std::shared_ptr<typename Receiver::receiver_result_t> shareOwnershipOfResults()
         {
-            // TODO:: Tue 10 Jan 2023 11:01:56 AM EST :: To be implemented.
-            // For now returns an nullptr.
-            std::shared_ptr my_ptr = std::make_shared<Receiver::receiver_result_t>();
-            return my_ptr;
+            std::shared_ptr<typename Receiver::receiver_result_t> results = 
+                this->receiver_->shareOwnershipOfResults();
+            return results;
         }
 
         //! Gets the result of doConcreteTaskAction.
@@ -175,10 +174,9 @@ class GenericMDTask : public BaseClass
         //! resets to default values.
         std::unique_ptr<typename Receiver::receiver_result_t> takeOwnershipOfResults()
         {
-            // TODO:: Tue 10 Jan 2023 11:01:56 AM EST :: To be implemented.
-            // For now returns an nullptr.
-            std::unique_ptr my_ptr = std::make_unique<Receiver::receiver_result_t>();
-            return my_ptr;
+            std::unique_ptr<typename Receiver::receiver_result_t> results = 
+                this->receiver_->takeOwnershipOfResults();
+            return results;
         }
         // ====================  OPERATORS     =======================================
 
