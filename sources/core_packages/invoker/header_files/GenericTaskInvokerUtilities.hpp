@@ -61,6 +61,24 @@ class GenericTaskInvokerUtilities
         }
 
         // ====================  STATIC        =======================================
+
+        //! An alias for the concrete task type.
+        //!
+        //! @tparam ConcreteTasksTypeList A typelist of concrete task types.
+        //! @tparam concrete_index The location of the concrete type in ConcreteTasksTypeList we desire
+        template <typename ConcreteTasksTypeList,
+                  MPL::mpl_size_type concrete_index>
+        using CONCRETE_TASK_T = MPL::mpl_at_c<ConcreteTasksTypeList,concrete_index>;
+
+        //! An alias for the concrete task result type.
+        //!
+        //! @tparam ConcreteTasksTypeList A typelist of concrete task types.
+        //! @tparam concrete_index The location of the concrete type in ConcreteTasksTypeList we desire.
+        template <typename ConcreteTasksTypeList,
+                  MPL::mpl_size_type concrete_index>
+        using CONCRETE_TASK_RESULT_T = CONCRETE_TASK_T<ConcreteTasksTypeList,concrete_index>::task_result_t;
+
+        //! Modifies the receiver of the concrete type located at concrete_index. 
         template<typename ConcreteTasksTypeList,
                  MPL::mpl_size_type alpha,
                  typename... ReceiverArgsTypes>
@@ -101,9 +119,8 @@ class GenericTaskInvokerUtilities
         //! @param[in,out] task The concrete task of whose results we want,
         template<typename ConcreteTasksTypeList,
                  MPL::mpl_size_type concrete_index>
-        static auto getTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> & task)
+        static auto getCopyOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> & task)
         {
-            // Bookmark - stopping here -
             using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,concrete_index>;
 
             using return_t = concrete_task_t::task_result_t;

@@ -140,7 +140,7 @@ class GenericTaskInvoker
         //!
         //! @tparam COMMAND_KEY The label of the task for which we seek the results. 
         template<LABEL_t COMMAND_KEY>
-        auto getTaskResults()
+        auto getCopyOfTaskResults()
         {
             // We compute the range of concrete products in ConcreteProductsTypeList.
             constexpr auto nm_products = 
@@ -159,14 +159,10 @@ class GenericTaskInvoker
                  // for a nonrecoverable error has occurred.
             }
 
-            //! What is this doing?
-            using return_t = 
-                std::remove_reference<decltype(RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,COMMAND_KEY>())>::type;
-
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
             
-            auto results = GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
-                                                                concrete_index>(task);
+            auto results = GenericTaskInvokerUtilities::getCopyOfTaskReceiverResults<ConcreteProductsTypeList,
+                                                                                     concrete_index>(task);
             return results;
         }
 

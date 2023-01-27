@@ -54,9 +54,12 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-WriteTextToConsoleTaskReceiver::receiver_result_t WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
+std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 {
-    return results_;
+    auto tmp = results_;
+    std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> my_ptr;
+    my_ptr.reset(std::move(&tmp));
+    return my_ptr;
 }
 
 //============================= MUTATORS =====================================

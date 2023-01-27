@@ -92,9 +92,10 @@ class GenericMDTask : public BaseClass
         //! Returns a copy of the receiver results.  The calling function
         //! gets a copy results via a unique_ptr. The original results does not 
         //! reset to default values.
-        Receiver::receiver_result_t getCopyOfResults() const
+        std::unique_ptr<typename Receiver::receiver_result_t> getCopyOfResults() const
         {
-            typename Receiver::receiver_result_t results = this->receiver_->getCopyOfResults();
+            std::unique_ptr<typename Receiver::receiver_result_t> results = 
+                this->receiver_->getCopyOfResults();
             return results;
         }
 
@@ -104,7 +105,7 @@ class GenericMDTask : public BaseClass
         template<typename... T>
         typename FunctorImpl::ResultType operator()(T &... args)
         {
-            std::cout << "FunctorImpl::ResultType operator stud call";
+            std::cout << "FunctorImpl::ResultType operator stud call" << std::endl;
         }
 
         //! Performs the concrete task.
