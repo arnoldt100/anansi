@@ -106,9 +106,9 @@ class ReceiverInterface
             return;
         }
 
-        auto getResults() const
+        auto getCopyOfResults() const
         {
-            return asDerived_().receiverGetResults();
+            return asDerived_().receiverGetCopyOfResults();
         }
 
         // ====================  OPERATORS     =======================================

@@ -54,12 +54,7 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-// constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::receiverGetTaskLabel() const
-// {
-//     return  WriteTextToConsoleTaskReceiver::TASKLABEL;
-// }
-
-auto WriteTextToConsoleTaskReceiver::receiverGetResults() const
+WriteTextToConsoleTaskReceiver::receiver_result_t WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 {
     return results_;
 }

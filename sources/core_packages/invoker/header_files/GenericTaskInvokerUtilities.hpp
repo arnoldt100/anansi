@@ -94,7 +94,7 @@ class GenericTaskInvokerUtilities
             return;
         } 
 
-        //! Returns the result of a concrete task.
+        //! Returns a copy of the result of a concrete task.
         //!
         //! @tparam A typelist of concrete task types.
         //! @tparam concrete_index The location of the concrete task type of task 
@@ -111,7 +111,7 @@ class GenericTaskInvokerUtilities
             std::shared_ptr<concrete_task_t> p_concrete =
                         AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
 
-           int ret_val = concrete_index;
+           auto ret_val = p_concrete->getCopyOfResults();
 
             return ret_val;
         }

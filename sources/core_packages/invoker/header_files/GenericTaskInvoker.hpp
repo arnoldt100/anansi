@@ -143,7 +143,6 @@ class GenericTaskInvoker
         auto getTaskResults()
         {
             // We compute the range of concrete products in ConcreteProductsTypeList.
-            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
             constexpr auto nm_products = 
                 static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
 
@@ -154,22 +153,21 @@ class GenericTaskInvoker
                                                                    COMMAND_KEY>();
 
             // If the corresponding concrete product is not found then abort.
-            if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
+            if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
             {
                  // :TODO:11/15/2022 10:00:29 AM:: Abort program
                  // for a nonrecoverable error has occurred.
             }
 
+            //! What is this doing?
             using return_t = 
                 std::remove_reference<decltype(RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,COMMAND_KEY>())>::type;
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
             
-            GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
+            auto results = GenericTaskInvokerUtilities::getTaskReceiverResults<ConcreteProductsTypeList,
                                                                 concrete_index>(task);
-
-
-            return concrete_index;
+            return results;
         }
 
         // ====================  OPERATORS     =======================================
