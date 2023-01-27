@@ -72,7 +72,9 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
     std::string message{"The console logger is enabled."};
     auto message_packet = std::make_unique<ConsoleMessageContainer>(message,sender);  
 
-    core_logging_invoker->modifyTask(my_label,message_packet);
+    // core_logging_invoker->modifyTask(my_label,message_packet);
+    core_logging_invoker->modifyTask<my_label>(message_packet);
+
     const std::vector<
                        std::remove_const<decltype(my_label)>::type
                      > command_labels = {my_label};

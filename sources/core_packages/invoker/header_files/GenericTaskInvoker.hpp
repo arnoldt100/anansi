@@ -108,6 +108,7 @@ class GenericTaskInvoker
             return;
         }
 
+        //! To be deprecated.
         template <typename... ReceiverArgsTypes>
         void modifyTask(const LABEL_t & command_key, ReceiverArgsTypes &... args)
         {
@@ -133,6 +134,39 @@ class GenericTaskInvoker
                                                             ReceiverArgsTypes...>(concrete_index,
                                                                                   task,
                                                                                   args...);
+            return;
+        }
+
+
+        //! Modifies the receiver of the task that corresponds to label COMMAND_KEY.
+        //!
+        //! @tparam COMMAND_KEY The label of the task for which we seek the results. 
+        //! @tparam ReceiverArgsTypes A paramater pack of types of args,
+        //! @param[in,out]  args The parameter pack of arguments that used in modfying the receiver.
+        template <LABEL_t COMMAND_KEY,
+                  typename... ReceiverArgsTypes>
+        void modifyTask( ReceiverArgsTypes &... args)
+        {
+            // We compute the range of concrete products in ConcreteProductsTypeList.
+            constexpr auto nm_products = 
+                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
+
+            // This is the lcation of the corresponding concrete product in typelist 
+            // ConcreteProductsTypeList that has tasklabel COMMAND_KEY.
+            constexpr int concrete_index = 
+                RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,
+                                                                   COMMAND_KEY>();
+
+            // If the corresponding concrete product is not found then abort.
+            if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
+            {
+                 // :TODO:11/15/2022 10:00:29 AM:: Abort program
+                 // for a nonrecoverable error has occurred.
+            }
+
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
+
+            GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,concrete_index,ReceiverArgsTypes...>(task,args...);
             return;
         }
 

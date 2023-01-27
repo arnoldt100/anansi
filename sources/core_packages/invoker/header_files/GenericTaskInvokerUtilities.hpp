@@ -79,6 +79,7 @@ class GenericTaskInvokerUtilities
         using CONCRETE_TASK_RESULT_T = CONCRETE_TASK_T<ConcreteTasksTypeList,concrete_index>::task_result_t;
 
         //! Modifies the receiver of the concrete type located at concrete_index. 
+        //! To be deprecated.
         template<typename ConcreteTasksTypeList,
                  MPL::mpl_size_type alpha,
                  typename... ReceiverArgsTypes>
@@ -111,6 +112,20 @@ class GenericTaskInvokerUtilities
 
             return;
         } 
+        
+        //! Modifies the receiver of the concrete type located at concrete_index. 
+        template<typename ConcreteTasksTypeList,
+                 MPL::mpl_size_type index,
+                 typename... ReceiverArgsTypes>
+        static void modifyTaskReceiver( std::shared_ptr<ANANSI::AnansiTask> & task,
+                                        ReceiverArgsTypes &... receiver_args)
+        {
+            using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,index>;
+            std::shared_ptr<concrete_task_t> p_concrete = 
+                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
+            p_concrete->modifyReceiver(receiver_args...);
+            return;
+        }
 
         //! Returns a copy of the result of a concrete task.
         //!
