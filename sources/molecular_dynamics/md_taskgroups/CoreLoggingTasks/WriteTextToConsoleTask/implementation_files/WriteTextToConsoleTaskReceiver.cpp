@@ -56,9 +56,8 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 {
-    auto tmp = results_;
-    std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> my_ptr;
-    my_ptr.reset(std::move(&tmp));
+    std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> my_ptr =
+        std::make_unique<WriteTextToConsoleTaskReceiver::receiver_result_t>(this->results_);
     return my_ptr;
 }
 
