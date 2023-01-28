@@ -109,33 +109,33 @@ class GenericTaskInvoker
         }
 
         //! To be deprecated.
-        template <typename... ReceiverArgsTypes>
-        void modifyTask(const LABEL_t & command_key, ReceiverArgsTypes &... args)
-        {
-            
-            constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
+        // template <typename... ReceiverArgsTypes>
+        // void modifyTask(const LABEL_t & command_key, ReceiverArgsTypes &... args)
+        // {
+        //     
+        //     constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
 
-            const auto concrete_index = 
-                static_cast<MPL::mpl_size_type>(this->commandSlots_.at(command_key)->taskIndex());
+        //     const auto concrete_index = 
+        //         static_cast<MPL::mpl_size_type>(this->commandSlots_.at(command_key)->taskIndex());
 
-            constexpr auto nm_products = 
-                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
+        //     constexpr auto nm_products = 
+        //         static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
 
-            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(command_key);
+        //     std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(command_key);
 
-            if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
-            {
-                 // :TODO:11/15/2022 10:00:29 AM:: Abort program
-                 // for a nonrecoverable error has occurred.
-            }
+        //     if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
+        //     {
+        //          // :TODO:11/15/2022 10:00:29 AM:: Abort program
+        //          // for a nonrecoverable error has occurred.
+        //     }
 
-            GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,
-                                                            zero,
-                                                            ReceiverArgsTypes...>(concrete_index,
-                                                                                  task,
-                                                                                  args...);
-            return;
-        }
+        //     GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,
+        //                                                     zero,
+        //                                                     ReceiverArgsTypes...>(concrete_index,
+        //                                                                           task,
+        //                                                                           args...);
+        //     return;
+        // }
 
 
         //! Modifies the receiver of the task that corresponds to label COMMAND_KEY.
