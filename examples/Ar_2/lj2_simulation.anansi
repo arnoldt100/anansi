@@ -1,15 +1,24 @@
 <!-- This control file performs a nve simulation for -->
-<!-- a cluster of 2 Lennard Jones atoms.             -->
+<!-- a cluster of 2 Lennard-Jones atoms.             -->
 
-<!-- Specifcation for the units of the simulation. -->
+<!-- Specification for the units of the simulation. -->
 <units>real</units>
 
-<!-- Specifcation for the initial configuration of the system. -->
+<!-- Coordinate system and  compute decomposition. -->
+<topology> 
+    <lattice_type> Rectangular </lattice_type>
+    <units> nanometer </units>
+    <lattice_vectors> 10 10 10 </lattice_vectors>
+    <compute_units_distribution> 1 1 2 </compute_units_distribution>
+    <periodicity> non-periodic  non-periodic  non-periodic </periodicity>
+</topology> 
+
+<!-- Specification for the initial configuration of the system. -->
 <initial_configuration>
     <filename> ar2.initialconfiguration </filename>
 </initial_configuration>
 
-<!-- Specificaion of atomic/molecular topology --!>
+<!-- Specification of atomic/molecular topology --!>
 <topology>
 	<filename> ar2.topology </filename>
 </topology>
@@ -19,8 +28,13 @@
     <filename> ar2.hamiltonian </filename> 
 </Hamiltonian>
 
-<!-- Specifcation for the timestep. -->
-<timestep>
+<!-- Specification for the time step. -->
+<time_step>
     <value> 1.0 </value>
-    <units> femtoseconds </units>
-</timestep>
+    <units> femtosecond </units>
+</time_step>
+
+<!-- Specification for the number of time steps. -->
+<time_step>
+    <value> 100000 </value>
+</time_step>
