@@ -231,7 +231,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
-    this->mdCommEnvInvk_->addCommand(my_label,mpi_environment_cmd);
+    this->mdCommEnvInvk_->addTask(my_label,mpi_environment_cmd);
 
     // ---------------------------------------------------
     // Use the invoker to initialize the communication environment.
@@ -312,7 +312,7 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
-    this->mdWorldCommunicatorInvk_->addCommand(tmp_label,mpi_init_world_communicator_cmd);
+    this->mdWorldCommunicatorInvk_->addTask(tmp_label,mpi_init_world_communicator_cmd);
    
     // ---------------------------------------------------
     // Use the invoker to initialize the world communicator.

@@ -84,7 +84,7 @@ class GenericTaskInvoker
         //!
         //! @param[in] key The button id for the command.
         //! @param[in] aCommand The command/task to be added to the invoker.
-        void addCommand(LABEL_t const & key,
+        void addTask(LABEL_t const & key,
                         std::shared_ptr<ANANSI::AnansiTask> aCommand)
         {
         	this->commandSlots_[key] = aCommand;

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#  /usr/bin/env bash
 
 #-----------------------------------------------------
 # Define the Anansi buld directory.                  -
@@ -41,7 +41,7 @@ cmake ${ANANSI_TOP_LEVEL}/sources \
       -DCMAKE_C_COMPILER=${ANANSI_CMAKE_C_COMPILER} \
       -DCMAKE_INSTALL_PREFIX=${ANANSI_INSTALL_PREFIX} \
       -DCMAKE_BUILD_TYPE=Debug \
-      -DCMAKE_EXPORT_COMPILE_COMMANDS
+      -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 
 make -j ${NM_MAKE_THREADS}
 
