@@ -44,7 +44,6 @@ class AnansiMolecularDynamics final : public Simulation
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
-    
         AnansiMolecularDynamics ();  /* constructor */
 
         AnansiMolecularDynamics (int const & argc, char const *const *const & argv);  /* constructor */
