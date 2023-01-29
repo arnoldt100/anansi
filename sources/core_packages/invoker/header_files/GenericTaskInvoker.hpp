@@ -28,10 +28,20 @@
 namespace ANANSI
 {
 
-//! Invokes tassks actions.
+//! Stores tasks.
 //!
-//! @tparam AbstractProductsTypeList The abstract product typelist 
-//! @tparam ConcreteProductsTypeList The const product typelist 
+//! This non-copyable template class stores the tasks and facilitates various actions on the 
+//! stored tasks. These actions and a brief description are listed below:
+//!
+//! - addTask
+//! - disableTask
+//! - doTask
+//! - getCopyOfTaskResults
+//! - modifyTask
+//! - undoTask
+//!
+//! @tparam AbstractProductsTypeList A typelist of abstract tasks.
+//! @tparam ConcreteProductsTypeList A typelist of concrete tasks.
 //! @tparam LABEL_t  The type of task label (button id)
 template<typename AbstractProductsTypeList,
          typename ConcreteProductsTypeList, 
@@ -71,6 +81,9 @@ class GenericTaskInvoker
         // ====================  MUTATORS      =======================================
 
         //! Adds a task to the invoker.
+        //!
+        //! @param[in] key The button id for the command.
+        //! @param[in] aCommand The command/task to be added to the invoker.
         void addCommand(LABEL_t const & key,
                         std::shared_ptr<ANANSI::AnansiTask> aCommand)
         {
@@ -107,36 +120,6 @@ class GenericTaskInvoker
             }
             return;
         }
-
-        //! To be deprecated.
-        // template <typename... ReceiverArgsTypes>
-        // void modifyTask(const LABEL_t & command_key, ReceiverArgsTypes &... args)
-        // {
-        //     
-        //     constexpr auto zero = static_cast<MPL::mpl_size_type>( 0 );
-
-        //     const auto concrete_index = 
-        //         static_cast<MPL::mpl_size_type>(this->commandSlots_.at(command_key)->taskIndex());
-
-        //     constexpr auto nm_products = 
-        //         static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
-
-        //     std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(command_key);
-
-        //     if ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
-        //     {
-        //          // :TODO:11/15/2022 10:00:29 AM:: Abort program
-        //          // for a nonrecoverable error has occurred.
-        //     }
-
-        //     GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,
-        //                                                     zero,
-        //                                                     ReceiverArgsTypes...>(concrete_index,
-        //                                                                           task,
-        //                                                                           args...);
-        //     return;
-        // }
-
 
         //! Modifies the receiver of the task that corresponds to label COMMAND_KEY.
         //!
@@ -189,7 +172,7 @@ class GenericTaskInvoker
             // If the corresponding concrete product is not found then abort.
             if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
             {
-                 // :TODO:11/15/2022 10:00:29 AM:: Abort program
+                 // :TODO:11/15/2022 10:00:29 AM:: Abort program 
                  // for a nonrecoverable error has occurred.
             }
 

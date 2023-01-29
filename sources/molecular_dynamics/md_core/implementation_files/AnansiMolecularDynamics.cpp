@@ -62,7 +62,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
     // 
     // ---------------------------------------------------
     constexpr auto my_label = ANANSI::WriteTextToConsoleTaskReceiver::TASKLABEL;
-    core_logging_invoker->addCommand(my_label,console_logger_cmd);
+    core_logging_invoker->addTask(my_label,console_logger_cmd);
 
     // ---------------------------------------------------
     // Log to console that the Console Logger is enabled.
