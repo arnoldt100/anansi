@@ -62,8 +62,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (controlfilempixmltask_header_files
-         header_files/ControlFileMPIXMLReceiver.h
-         header_files/ControlFileMPIXMLTraits.h )
+         header_files/ControlFileXMLReceiver.h
+         header_files/ControlFileXMLTraits.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -73,8 +73,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (controlfilempixmltask_implementation_files
-         implementation_files/ControlFileMPIXMLReceiver.cpp
-         implementation_files/ControlFileMPIXMLTraits.cpp )
+         implementation_files/ControlFileXMLReceiver.cpp
+         implementation_files/ControlFileXMLTraits.cpp )
 
     # -----------------------------------------------------
     # Set various variables for include directories.
