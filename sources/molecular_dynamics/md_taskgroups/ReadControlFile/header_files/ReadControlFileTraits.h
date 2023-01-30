@@ -1,8 +1,8 @@
 
-#ifndef  ANANSI_ControlFileMPIXMLTraits_INC
-#define  ANANSI_ControlFileMPIXMLTraits_INC
+#ifndef  ANANSI_ReadControlFileTraits_INC
+#define  ANANSI_ReadControlFileTraits_INC
 
-//! @file ControlFileMPIXMLTraits.h
+//! @file ReadControlFileTraits.h
 //!
 //! Brief description
 //!
@@ -28,18 +28,18 @@
 namespace ANANSI
 {
 
-class ControlFileMPIXMLTraits
+class ReadControlFileTraits
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ControlFileMPIXMLTraits ();   // constructor
+        ReadControlFileTraits ();   // constructor
 
-        ControlFileMPIXMLTraits (const ControlFileMPIXMLTraits & other);   // copy constructor
+        ReadControlFileTraits (const ReadControlFileTraits & other);   // copy constructor
 
-        ControlFileMPIXMLTraits (ControlFileMPIXMLTraits && other);   // copy-move constructor
+        ReadControlFileTraits (ReadControlFileTraits && other);   // copy-move constructor
 
-        ~ControlFileMPIXMLTraits ();  // destructor
+        ~ReadControlFileTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -47,9 +47,9 @@ class ControlFileMPIXMLTraits
 
         // ====================  OPERATORS     =======================================
 
-        ControlFileMPIXMLTraits& operator= ( const ControlFileMPIXMLTraits &other ); // assignment operator
+        ReadControlFileTraits& operator= ( const ReadControlFileTraits &other ); // assignment operator
 
-        ControlFileMPIXMLTraits& operator= ( ControlFileMPIXMLTraits && other ); // assignment-move operator
+        ReadControlFileTraits& operator= ( ReadControlFileTraits && other ); // assignment-move operator
 
         using abstract_products = MPL::mpl_typelist<
                                                        ControlFile
@@ -68,9 +68,9 @@ class ControlFileMPIXMLTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class ControlFileMPIXMLTraits  -----
+}; // -----  end of class ReadControlFileTraits  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_ControlFileMPIXMLTraits_INC  ----- 
+#endif   // ----- #ifndef ANANSI_ReadControlFileTraits_INC  ----- 

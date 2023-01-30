@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFileMPIXMLTraits.h"
+#include "ReadControlFileTraits.h"
 
 namespace ANANSI {
 
@@ -20,20 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlFileMPIXMLTraits::ControlFileMPIXMLTraits() 
+ReadControlFileTraits::ReadControlFileTraits() 
 {
     return;
 }
 
-ControlFileMPIXMLTraits::ControlFileMPIXMLTraits( ControlFileMPIXMLTraits const & other) 
-{
-    if (this != &other)
-    {
-    }
-    return;
-}
-
-ControlFileMPIXMLTraits::ControlFileMPIXMLTraits( ControlFileMPIXMLTraits && other) 
+ReadControlFileTraits::ReadControlFileTraits( ReadControlFileTraits const & other) 
 {
     if (this != &other)
     {
@@ -41,7 +33,15 @@ ControlFileMPIXMLTraits::ControlFileMPIXMLTraits( ControlFileMPIXMLTraits && oth
     return;
 }
 
-ControlFileMPIXMLTraits::~ControlFileMPIXMLTraits()
+ReadControlFileTraits::ReadControlFileTraits( ReadControlFileTraits && other) 
+{
+    if (this != &other)
+    {
+    }
+    return;
+}
+
+ReadControlFileTraits::~ReadControlFileTraits()
 {
     return;
 }
@@ -52,7 +52,7 @@ ControlFileMPIXMLTraits::~ControlFileMPIXMLTraits()
 
 //============================= OPERATORS ====================================
 
-ControlFileMPIXMLTraits& ControlFileMPIXMLTraits::operator= ( const ControlFileMPIXMLTraits &other )
+ReadControlFileTraits& ReadControlFileTraits::operator= ( const ReadControlFileTraits &other )
 {
     if (this != &other)
     {
@@ -60,7 +60,7 @@ ControlFileMPIXMLTraits& ControlFileMPIXMLTraits::operator= ( const ControlFileM
     return *this;
 } // assignment operator
 
-ControlFileMPIXMLTraits& ControlFileMPIXMLTraits::operator= ( ControlFileMPIXMLTraits && other )
+ReadControlFileTraits& ReadControlFileTraits::operator= ( ReadControlFileTraits && other )
 {
     if (this != &other)
     {
