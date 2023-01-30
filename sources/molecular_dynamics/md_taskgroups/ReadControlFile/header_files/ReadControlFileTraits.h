@@ -23,7 +23,7 @@
 #include "ControlFile.h"
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
-#include "ControlFileMPIXMLReceiver.h"
+#include "ControlFileXMLReceiver.h"
 
 namespace ANANSI
 {
@@ -56,7 +56,7 @@ class ReadControlFileTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<ControlFile,ControlFileMPIXMLReceiver>
+                                                       GenericMDTask<ControlFile,ControlFileXMLReceiver>
                                                    >;
     protected:
         // ====================  METHODS       =======================================
