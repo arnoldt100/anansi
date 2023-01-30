@@ -16,7 +16,7 @@
     # Configure the tasks.
     add_subdirectory(GenericMDTask)
     add_subdirectory(MPICommunicatorTask)
-    add_subdirectory(ControlFileMPIXML)
+    add_subdirectory(ReadControlFile)
     add_subdirectory(AnansiMDTaskFactory)
     add_subdirectory(CoreLoggingTasks)
 
