@@ -1,7 +1,7 @@
-#ifndef  ANANSI_ControlFileMPIXMLReceiver_INC
-#define  ANANSI_ControlFileMPIXMLReceiver_INC
+#ifndef  ANANSI_ControlFileXML_INC
+#define  ANANSI_ControlFileXML_INC
 
-//! @file ControlFileMPIXMLReceiver.h
+//! @file ControlFileXMLReceiver.h
 //!
 //! Brief description
 //!
@@ -23,18 +23,18 @@
 namespace ANANSI
 {
 
-class ControlFileMPIXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileMPIXMLReceiver>
+class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLReceiver>
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ControlFileMPIXMLReceiver ();   // constructor
+        ControlFileXMLReceiver ();   // constructor
 
-        ControlFileMPIXMLReceiver (const ControlFileMPIXMLReceiver & other);   // copy constructor
+        ControlFileXMLReceiver (const ControlFileXMLReceiver & other);   // copy constructor
 
-        ControlFileMPIXMLReceiver (ControlFileMPIXMLReceiver && other);   // copy-move constructor
+        ControlFileXMLReceiver (ControlFileXMLReceiver && other);   // copy-move constructor
 
-        ~ControlFileMPIXMLReceiver ();  // destructor
+        ~ControlFileXMLReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -53,9 +53,9 @@ class ControlFileMPIXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFil
 
         // ====================  OPERATORS     =======================================
 
-        ControlFileMPIXMLReceiver& operator= ( const ControlFileMPIXMLReceiver &other ); // assignment operator
+        ControlFileXMLReceiver& operator= ( const ControlFileXMLReceiver &other ); // assignment operator
 
-        ControlFileMPIXMLReceiver& operator= ( ControlFileMPIXMLReceiver && other ); // assignment-move operator
+        ControlFileXMLReceiver& operator= ( ControlFileXMLReceiver && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -67,26 +67,26 @@ class ControlFileMPIXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFil
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class ControlFileMPIXMLReceiver  -----
+}; // -----  end of class ControlFileXMLReceiver  -----
 
 template<typename... Types>
-void ControlFileMPIXMLReceiver::disableReceiver(Types... args)
+void ControlFileXMLReceiver::disableReceiver(Types... args)
 {
     return;
 }
 
 template<typename... Types>
-void ControlFileMPIXMLReceiver::receiverDoAction(Types... args)
+void ControlFileXMLReceiver::receiverDoAction(Types... args)
 {
     return;
 }
 
 template<typename... Types>
-void ControlFileMPIXMLReceiver::receiverUndoAction(Types... args)
+void ControlFileXMLReceiver::receiverUndoAction(Types... args)
 {
     return;
 }
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_ControlFileMPIXMLReceiver_INC  ----- 
+#endif   // ----- #ifndef ANANSI_ControlFileXML_INC  ----- 

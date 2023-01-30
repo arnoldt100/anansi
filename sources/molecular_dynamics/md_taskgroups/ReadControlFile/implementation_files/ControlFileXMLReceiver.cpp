@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFileMPIXMLReceiver.h"
+#include "ControlFileXMLReceiver.h"
 
 namespace ANANSI {
 
@@ -20,24 +20,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlFileMPIXMLReceiver::ControlFileMPIXMLReceiver() :
-    ReceiverInterface<ControlFileMPIXMLReceiver>()
+ControlFileXMLReceiver::ControlFileXMLReceiver() :
+    ReceiverInterface<ControlFileXMLReceiver>()
 {
     return;
 }
 
-ControlFileMPIXMLReceiver::ControlFileMPIXMLReceiver( ControlFileMPIXMLReceiver const & other) :
-    ReceiverInterface<ControlFileMPIXMLReceiver>(other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}
-
-ControlFileMPIXMLReceiver::ControlFileMPIXMLReceiver( ControlFileMPIXMLReceiver && other) :
-    ReceiverInterface<ControlFileMPIXMLReceiver>(std::move(other))
+ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver const & other) :
+    ReceiverInterface<ControlFileXMLReceiver>(other)
 {
     if (this != &other)
     {
@@ -46,7 +36,17 @@ ControlFileMPIXMLReceiver::ControlFileMPIXMLReceiver( ControlFileMPIXMLReceiver 
     return;
 }
 
-ControlFileMPIXMLReceiver::~ControlFileMPIXMLReceiver()
+ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver && other) :
+    ReceiverInterface<ControlFileXMLReceiver>(std::move(other))
+{
+    if (this != &other)
+    {
+        
+    }
+    return;
+}
+
+ControlFileXMLReceiver::~ControlFileXMLReceiver()
 {
     return;
 }
@@ -57,21 +57,21 @@ ControlFileMPIXMLReceiver::~ControlFileMPIXMLReceiver()
 
 //============================= OPERATORS ====================================
 
-ControlFileMPIXMLReceiver& ControlFileMPIXMLReceiver::operator= ( const ControlFileMPIXMLReceiver &other )
+ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( const ControlFileXMLReceiver &other )
 {
     if (this != &other)
     {
-        ReceiverInterface<ControlFileMPIXMLReceiver>::operator=(other);
+        ReceiverInterface<ControlFileXMLReceiver>::operator=(other);
 
     }
     return *this;
 } // assignment operator
 
-ControlFileMPIXMLReceiver& ControlFileMPIXMLReceiver::operator= ( ControlFileMPIXMLReceiver && other )
+ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiver && other )
 {
     if (this != &other)
     {
-        ReceiverInterface<ControlFileMPIXMLReceiver>::operator=(std::move(other));
+        ReceiverInterface<ControlFileXMLReceiver>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
