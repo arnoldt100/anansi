@@ -33,6 +33,7 @@ namespace ANANSI
 class ReadControlFileTraits
 {
     public:
+
         // ====================  LIFECYCLE     =======================================
 
         ReadControlFileTraits ();   // constructor

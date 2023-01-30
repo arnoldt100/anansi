@@ -63,6 +63,21 @@ std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToCo
 
 //============================= MUTATORS =====================================
 
+template<>
+void WriteTextToConsoleTaskReceiver::receiverModifyMyself(
+        std::unique_ptr<ConsoleMessageContainer> & message_container)
+{
+    this->messageContainer_ = std::move(message_container);
+    return;
+}
+
+template<>
+void WriteTextToConsoleTaskReceiver::enableReceiver(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
+{
+    this->communicator_ = std::move(arg);
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( WriteTextToConsoleTaskReceiver && other )
@@ -86,13 +101,6 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-template<>
-void WriteTextToConsoleTaskReceiver::receiverModifyMyself(
-        std::unique_ptr<ConsoleMessageContainer> & message_container)
-{
-    this->messageContainer_ = std::move(message_container);
-    return;
-}
 
 //============================= OPERATORS ====================================
 
@@ -105,13 +113,6 @@ void WriteTextToConsoleTaskReceiver::receiverModifyMyself(
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-
-template<>
-void WriteTextToConsoleTaskReceiver::enableReceiver(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
-{
-    this->communicator_ = std::move(arg);
-    return;
-}
 
 //============================= OPERATORS ====================================
 

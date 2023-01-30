@@ -21,23 +21,15 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFileMPICommReceiver::ControlFileMPICommReceiver() :
-    ReceiverInterface<ControlFileMPICommReceiver>()
+    ReceiverInterface<ControlFileMPICommReceiver>(),
+    results_(0)
 {
-    return;
-}
-
-ControlFileMPICommReceiver::ControlFileMPICommReceiver( ControlFileMPICommReceiver const & other) :
-    ReceiverInterface<ControlFileMPICommReceiver>(other)
-{
-    if (this != &other)
-    {
-        
-    }
     return;
 }
 
 ControlFileMPICommReceiver::ControlFileMPICommReceiver( ControlFileMPICommReceiver && other) :
-    ReceiverInterface<ControlFileMPICommReceiver>(std::move(other))
+    ReceiverInterface<ControlFileMPICommReceiver>(std::move(other)),
+    results_(std::move(other.results_))
 {
     if (this != &other)
     {
@@ -53,25 +45,37 @@ ControlFileMPICommReceiver::~ControlFileMPICommReceiver()
 
 //============================= ACCESSORS ====================================
 
+std::unique_ptr<ControlFileMPICommReceiver::receiver_result_t> ControlFileMPICommReceiver::receiverGetCopyOfResults() const
+{
+    std::unique_ptr<ControlFileMPICommReceiver::receiver_result_t> my_ptr =
+        std::make_unique<ControlFileMPICommReceiver::receiver_result_t>(this->results_);
+    return my_ptr;
+}
+
 //============================= MUTATORS =====================================
 
-//============================= OPERATORS ====================================
-
-ControlFileMPICommReceiver& ControlFileMPICommReceiver::operator= ( const ControlFileMPICommReceiver &other )
+template<>
+void ControlFileMPICommReceiver::enableReceiver(int & alpha)
 {
-    if (this != &other)
-    {
-        ReceiverInterface<ControlFileMPICommReceiver>::operator=(other);
+    return;
+}
 
-    }
-    return *this;
-} // assignment operator
+template<>
+void ControlFileMPICommReceiver::receiverModifyMyself(int & alpha)
+{
+    return;
+}
+
+
+
+//============================= OPERATORS ====================================
 
 ControlFileMPICommReceiver& ControlFileMPICommReceiver::operator= ( ControlFileMPICommReceiver && other )
 {
     if (this != &other)
     {
         ReceiverInterface<ControlFileMPICommReceiver>::operator=(std::move(other));
+        this->results_ = std::move(other.results_);
     }
     return *this;
 } // assignment-move operator

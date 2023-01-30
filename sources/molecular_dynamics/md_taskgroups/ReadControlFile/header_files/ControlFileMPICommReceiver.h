@@ -20,6 +20,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverInterface.hpp"
+#include "TaskLabel.hpp"
 
 namespace ANANSI
 {
@@ -27,6 +28,17 @@ namespace ANANSI
 class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>
 {
     public:
+        using receiver_result_t = int;
+
+        // ====================  STATIC       =======================================
+
+        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+            {'c','o','m','m','u', 'n','i','c','a','t','e','_','c','o','n','t','r','o','l','_','f','i','l','e'};
+
+        static constexpr 
+        RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>::TASK_LABEL_TYPE(ControlFileMPICommReceiver::tmpstr);
+
         // ====================  LIFECYCLE     =======================================
 
         ControlFileMPICommReceiver ();   // constructor
@@ -39,6 +51,19 @@ class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFi
 
         // ====================  ACCESSORS     =======================================
 
+        constexpr RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
+        {
+            return  ControlFileMPICommReceiver::TASKLABEL;
+        }
+
+        template<typename... Types>
+        void receiverDoAction(Types &... args) const;
+
+        template<typename... Types>
+        void receiverUndoAction(Types & ... args) const;
+
+        std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
+
         // ====================  MUTATORS      =======================================
         template<typename T>
         void enableReceiver(T & arg);
@@ -46,11 +71,8 @@ class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFi
         template<typename... Types>
         void disableReceiver(Types... args);
 
-        template<typename... Types>
-        void receiverDoAction(Types... args);
-
-        template<typename... Types>
-        void receiverUndoAction(Types... args);
+        template<typename T>
+        void receiverModifyMyself(T & arg);
 
         // ====================  OPERATORS     =======================================
 
@@ -67,23 +89,24 @@ class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFi
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        mutable receiver_result_t results_;
 
 }; // -----  end of class ControlFileMPICommReceiver  -----
 
 template<typename... Types>
+void ControlFileMPICommReceiver::receiverDoAction(Types & ... args) const
+{
+    return;
+}
+
+template<typename... Types>
+void ControlFileMPICommReceiver::receiverUndoAction(Types & ... args) const
+{
+    return;
+}
+
+template<typename... Types>
 void ControlFileMPICommReceiver::disableReceiver(Types... args)
-{
-    return;
-}
-
-template<typename... Types>
-void ControlFileMPICommReceiver::receiverDoAction(Types... args)
-{
-    return;
-}
-
-template<typename... Types>
-void ControlFileMPICommReceiver::receiverUndoAction(Types... args)
 {
     return;
 }
