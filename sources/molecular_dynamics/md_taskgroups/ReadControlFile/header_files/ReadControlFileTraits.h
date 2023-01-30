@@ -21,9 +21,11 @@
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
 #include "ControlFile.h"
+#include "ControlFileCommunicator.h"
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
 #include "ControlFileXMLReceiver.h"
+#include "ControlFileMPICommReceiver.h"
 
 namespace ANANSI
 {
@@ -52,11 +54,13 @@ class ReadControlFileTraits
         ReadControlFileTraits& operator= ( ReadControlFileTraits && other ); // assignment-move operator
 
         using abstract_products = MPL::mpl_typelist<
-                                                       ControlFile
+                                                       ControlFile,
+                                                       ControlFileCommunicator
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<ControlFile,ControlFileXMLReceiver>
+                                                       GenericMDTask<ControlFile,ControlFileXMLReceiver>,
+                                                       GenericMDTask<ControlFileCommunicator,ControlFileMPICommReceiver>
                                                    >;
     protected:
         // ====================  METHODS       =======================================
