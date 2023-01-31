@@ -367,16 +367,11 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 void
 AnansiMolecularDynamics::enableControlFile ()
 {
-    // :TODO:11/04/2022 04:02:42 PM:: This method is to be rewritten with the command patterns.
-    // // The control file option is mandatory. If the option is not present, then we set the MD status
-    // // as "COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
-    // // Otherwise we process/parse the control file.
-    // const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
-
-    // if (file_name == SimulationParameters::OPTION_NOT_FOUND )
-    // {
-    //     return;
-    // }
+    const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
+    if (file_name == SimulationParameters::OPTION_NOT_FOUND )
+    {
+        return;
+    }
 
     // // Create the control file parser and process the control file.
     // ANANSI::MPICommunicatorFactory a_communicator_factory;

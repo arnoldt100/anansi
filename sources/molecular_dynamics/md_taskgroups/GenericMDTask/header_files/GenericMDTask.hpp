@@ -82,12 +82,12 @@ class GenericMDTask : public BaseClass
 
 
         // ====================  ACCESSORS     =======================================
-        AnansiTaskParameters::task_size_t taskIndex_() const
+        AnansiTaskParameters::task_size_t taskIndex_() const override
         {
             return this->taskConcreteTypeListIndex_;
         }
 
-        //! Gets the result of doConcreteTaskAction.
+        //! Gets the result of getCopyOfResults
         //!
         //! Returns a copy of the receiver results.  The calling function
         //! gets a copy results via a unique_ptr. The original results does not 
@@ -157,7 +157,7 @@ class GenericMDTask : public BaseClass
             return;
         }
 
-        //! Gets the result of doConcreteTaskAction.
+        //! Gets the result of shareOwnershipOfResults
         //!
         //! Returns a shared_ptr of the receiver results.  The calling function
         //! shares ownership of the receiver results via a shared_ptr.
@@ -168,7 +168,7 @@ class GenericMDTask : public BaseClass
             return results;
         }
 
-        //! Gets the result of doConcreteTaskAction.
+        //! Gets the result of takeOwnershipOfResults
         //!
         //! Returns a unique_ptr of the receiver results.  The calling function
         //! takes ownership of the receiver results via a unique_ptr. The original results 
