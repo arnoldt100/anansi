@@ -1,15 +1,15 @@
 # This CMakeLists.txt file creates the library lib__library__.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# mdanansitaskfactory_header_files or mdanansitaskfactory_implementation_files.
+# mdanansiinvokerfactory_header_files or mdanansiinvokerfactory_implementation_files.
 #
-# The target for the library is mdanansitaskfactory.
+# The target for the library is mdanansiinvokerfactory.
 #
-# The following properties are set for the target mdanansitaskfactory.
+# The following properties are set for the target mdanansiinvokerfactory.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
-# mdanansitaskfactory_include           ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                         ${mdanansitaskfactory_header_files}                 The list of headers files associated with this library.
+# mdanansiinvokerfactory_include        ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+# PUBLIC_HEADER                         ${mdanansiinvokerfactory_header_files}              The list of headers files associated with this library.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -22,7 +22,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "mdanansitaskfactory")
+    set(my_project_name "mdanansiinvokerfactory")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -54,8 +54,8 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (mdanansitaskfactory_header_files
-         header_files/MDAnansiTaskFactory.hpp )
+    set (mdanansiinvokerfactory_header_files
+         header_files/MDAnansiInvokerFactory.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -64,8 +64,8 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (mdanansitaskfactory_implementation_files
-         implementation_files/MDAnansiTaskFactory.cpp )
+    set (mdanansiinvokerfactory_implementation_files
+         implementation_files/MDAnansiInvokerFactory.cpp )
 
     #-----------------------------------------------------
     # Set various variables for include directories.     -
@@ -105,7 +105,7 @@ add_dependencies(${target}
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${mdanansitaskfactory_header_files} ${mdanansitaskfactory_implementation_files} )
+    PRIVATE ${mdanansiinvokerfactory_header_files} ${mdanansiinvokerfactory_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -143,9 +143,9 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      mdanansitaskfactory_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      mdanansiinvokerfactory_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       CXX_STANDARD "${md_taskgroups_cxx_standard}"
-                      PUBLIC_HEADER "${mdanansitaskfactory_header_files}" )
+                      PUBLIC_HEADER "${mdanansiinvokerfactory_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 

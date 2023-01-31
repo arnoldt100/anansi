@@ -31,7 +31,7 @@
 #include "Communicator.h"
 #include "RegistryAnansiMDStatus.h"
 #include "SimulationState.h"
-#include "MDAnansiTaskFactory.hpp"
+#include "MDAnansiInvokerFactory.hpp"
 #include "AnansiTask.h"
 
 // Includes for invoking the communication environment.
@@ -174,15 +174,15 @@ class AnansiMolecularDynamics final : public Simulation
 
 
         // These are the factories for various invoker objects.
-        std::shared_ptr<MDAnansiTaskFactory<InitMPIEnvTaskTraits::abstract_products,
+        std::shared_ptr<MDAnansiInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
                                             InitMPIEnvTaskTraits::concrete_products>
                        >mdAnansiMPIEnvTaskFactory_;
 
-        std::shared_ptr<MDAnansiTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+        std::shared_ptr<MDAnansiInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                             InitWorldCommunicatorTaskTraits::concrete_products>
                        > mdAnansiInitWorldCommunicatorTaskFactory_;
 
-        std::shared_ptr<MDAnansiTaskFactory<WriteTextToConsoleTaskTraits::abstract_products,
+        std::shared_ptr<MDAnansiInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,
                                             WriteTextToConsoleTaskTraits::concrete_products>
                        > mdAnansiCoreLoggingTaskFactory_;
 

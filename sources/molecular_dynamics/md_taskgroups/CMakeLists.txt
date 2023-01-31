@@ -17,7 +17,7 @@
     add_subdirectory(GenericMDTask)
     add_subdirectory(MPICommunicatorTask)
     add_subdirectory(ReadControlFile)
-    add_subdirectory(AnansiMDTaskFactory)
+    add_subdirectory(AnansiMDInvokerFactory)
     add_subdirectory(CoreLoggingTasks)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

@@ -55,7 +55,7 @@
     get_target_property(my_mpicomm_include  mpi_communicator mpi_communicator_include)
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
-    get_target_property(my_mdanansitaskfactory_include mdanansitaskfactory mdanansitaskfactory_include )
+    get_target_property(my_mdanansiinvokerfactory_include mdanansiinvokerfactory mdanansiinvokerfactory_include )
     get_target_property(my_initmpienvtask_include initmpienvtask initmpienvtask_include )
     get_target_property(my_initworldcommunicatortask_include initworldcommunicatortask initworldcommunicatortask_include)
     get_target_property(my_writetexttoconsoletask_include writetexttoconsoletask writetexttoconsoletask_include )
@@ -167,7 +167,7 @@ target_include_directories( "${md_core_target}"
                             PRIVATE "${my_invoker_include}"
                             PRIVATE "${my_generic_abstract_factory_include}"
                             PRIVATE "${my_foreach_loop_include}" 
-                            PRIVATE "${my_mdanansitaskfactory_include}"
+                            PRIVATE "${my_mdanansiinvokerfactory_include}"
                             PRIVATE "${my_receiver_include}"
                             PRIVATE "${my_writetexttoconsoletask_include}" )
 
@@ -192,7 +192,7 @@ target_link_libraries("${md_core_target}"
                       PUBLIC invoker
                       PUBLIC generic_abstract_factory
                       PUBLIC generic_foreach_loop
-                      PUBLIC mdanansitaskfactory
+                      PUBLIC mdanansiinvokerfactory
                       PUBLIC receiver
                       PUBLIC writetexttoconsoletask
                       PUBLIC "${Boost_LIBRARIES}" )

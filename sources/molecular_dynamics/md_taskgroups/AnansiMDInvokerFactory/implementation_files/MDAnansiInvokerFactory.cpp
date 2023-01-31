@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MDAnansiTaskFactory.hpp"
+#include "MDAnansiInvokerFactory.hpp"
 
 namespace ANANSI {
 
