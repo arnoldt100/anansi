@@ -76,7 +76,7 @@ class GenericTaskInvokerUtilities
         //! @tparam concrete_index The location of the concrete type in ConcreteTasksTypeList we desire.
         template <typename ConcreteTasksTypeList,
                   MPL::mpl_size_type concrete_index>
-        using CONCRETE_TASK_RESULT_T = CONCRETE_TASK_T<ConcreteTasksTypeList,concrete_index>::task_result_t;
+        using CONCRETE_TASK_RESULT_T = typename CONCRETE_TASK_T<ConcreteTasksTypeList,concrete_index>::task_result_t;
 
         //! Modifies the receiver of the concrete type located at concrete_index. 
         //! To be deprecated.
