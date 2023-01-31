@@ -365,7 +365,7 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 }      // -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- 
 
 void
-AnansiMolecularDynamics::readSimulationControlFile ()
+AnansiMolecularDynamics::enableControlFile ()
 {
     // :TODO:11/04/2022 04:02:42 PM:: This method is to be rewritten with the command patterns.
     // // The control file option is mandatory. If the option is not present, then we set the MD status
@@ -392,6 +392,11 @@ AnansiMolecularDynamics::readSimulationControlFile ()
     return;
 }   /* -----  end of method AnansiMolecularDynamics::readSimulationControlFile_  ----- */
 
+void
+AnansiMolecularDynamics::disableControlFile ()
+{
+    return;
+}
 void AnansiMolecularDynamics::readInitialConfiguration()
 {
     std::cout << "Reading initial configuration" << std::endl;

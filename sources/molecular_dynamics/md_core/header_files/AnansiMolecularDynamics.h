@@ -74,7 +74,8 @@ class AnansiMolecularDynamics final : public Simulation
 
         void saveCommandLineOptionParameters();
 
-        void readSimulationControlFile();
+        void enableControlFile();
+        void disableControlFile();
 
         void readInitialConfiguration();
 

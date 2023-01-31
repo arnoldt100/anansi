@@ -45,7 +45,6 @@ MDInitInitialConditionsVisitor::~MDInitInitialConditionsVisitor()
 void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     std::cout << "MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
-    a_sim.readSimulationControlFile();
     a_sim.readInitialConfiguration(); 
     return;
 }

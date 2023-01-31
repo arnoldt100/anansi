@@ -62,6 +62,11 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
     // ---------------------------------------------------
     a_sim.enableCoreLoggingTasks();
 
+    // ---------------------------------------------------
+    // The read control file invoker is enabaled.
+    // ---------------------------------------------------
+    a_sim.enableControlFile();
+
     return;
 }
 
