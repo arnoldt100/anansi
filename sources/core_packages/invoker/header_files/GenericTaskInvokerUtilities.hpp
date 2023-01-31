@@ -138,12 +138,10 @@ class GenericTaskInvokerUtilities
         {
             using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,concrete_index>;
 
-            using return_t = concrete_task_t::task_result_t;
-
             std::shared_ptr<concrete_task_t> p_concrete =
                         AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
 
-           auto ret_val = p_concrete->getCopyOfResults();
+            auto ret_val = p_concrete->getCopyOfResults();
 
             return ret_val;
         }
