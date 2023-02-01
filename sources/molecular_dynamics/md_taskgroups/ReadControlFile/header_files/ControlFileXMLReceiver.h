@@ -89,8 +89,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-
         mutable int results_;
+        std::string controlFileName_;
+        int commID_;
 
 }; // -----  end of class ControlFileXMLReceiver  -----
 
