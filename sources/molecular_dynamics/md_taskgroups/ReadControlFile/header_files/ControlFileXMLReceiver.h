@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,6 +20,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverInterface.hpp"
+#include "TaskLabel.hpp"
 
 namespace ANANSI
 {
@@ -26,6 +28,16 @@ namespace ANANSI
 class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLReceiver>
 {
     public:
+
+        using receiver_result_t = int;
+
+        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+            {'r','e','a','d','_','c','o','n','t','r','o','l','_','f','i','l','e'};
+
+        static constexpr 
+        RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE(ControlFileXMLReceiver::tmpstr);
+
         // ====================  LIFECYCLE     =======================================
 
         ControlFileXMLReceiver ();   // constructor
@@ -37,6 +49,20 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         ~ControlFileXMLReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+       
+
+        constexpr RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
+        {
+            return  ControlFileXMLReceiver::TASKLABEL;
+        }
+
+        template<typename... Types>
+        void receiverDoAction(Types... args) const;
+
+        template<typename... Types>
+        void receiverUndoAction(Types... args) const;
+
+        std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
         template<typename T>
@@ -45,11 +71,8 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         template<typename... Types>
         void disableReceiver(Types... args);
 
-        template<typename... Types>
-        void receiverDoAction(Types... args);
-
-        template<typename... Types>
-        void receiverUndoAction(Types... args);
+        template<typename T>
+        void receiverModifyMyself(T & arg);
 
         // ====================  OPERATORS     =======================================
 
@@ -67,6 +90,8 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         // ====================  DATA MEMBERS  =======================================
 
+        mutable int results_;
+
 }; // -----  end of class ControlFileXMLReceiver  -----
 
 template<typename... Types>
@@ -76,13 +101,13 @@ void ControlFileXMLReceiver::disableReceiver(Types... args)
 }
 
 template<typename... Types>
-void ControlFileXMLReceiver::receiverDoAction(Types... args)
+void ControlFileXMLReceiver::receiverDoAction(Types... args) const
 {
     return;
 }
 
 template<typename... Types>
-void ControlFileXMLReceiver::receiverUndoAction(Types... args)
+void ControlFileXMLReceiver::receiverUndoAction(Types... args) const
 {
     return;
 }

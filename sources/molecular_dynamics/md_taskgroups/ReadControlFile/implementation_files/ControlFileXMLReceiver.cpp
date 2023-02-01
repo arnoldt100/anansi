@@ -21,13 +21,15 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFileXMLReceiver::ControlFileXMLReceiver() :
-    ReceiverInterface<ControlFileXMLReceiver>()
+    ReceiverInterface<ControlFileXMLReceiver>(),
+    results_(0)
 {
     return;
 }
 
 ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver const & other) :
-    ReceiverInterface<ControlFileXMLReceiver>(other)
+    ReceiverInterface<ControlFileXMLReceiver>(other),
+    results_(other.results_)
 {
     if (this != &other)
     {
@@ -37,7 +39,8 @@ ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver const & o
 }
 
 ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver && other) :
-    ReceiverInterface<ControlFileXMLReceiver>(std::move(other))
+    ReceiverInterface<ControlFileXMLReceiver>(std::move(other)),
+    results_(std::move(other.results_))
 {
     if (this != &other)
     {
@@ -53,6 +56,13 @@ ControlFileXMLReceiver::~ControlFileXMLReceiver()
 
 //============================= ACCESSORS ====================================
 
+std::unique_ptr<ControlFileXMLReceiver::receiver_result_t> ControlFileXMLReceiver::receiverGetCopyOfResults() const
+{
+    std::unique_ptr<ControlFileXMLReceiver::receiver_result_t> my_ptr =
+        std::make_unique<ControlFileXMLReceiver::receiver_result_t>(this->results_);
+    return my_ptr;
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -62,7 +72,6 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( const ControlFileXML
     if (this != &other)
     {
         ReceiverInterface<ControlFileXMLReceiver>::operator=(other);
-
     }
     return *this;
 } // assignment operator
