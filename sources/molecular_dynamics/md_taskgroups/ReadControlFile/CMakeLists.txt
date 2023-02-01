@@ -1,16 +1,16 @@
-# This CMakeLists.txt file creates the library libcontrolfilempixmltask.a
+# This CMakeLists.txt file creates the library libreadcontrolfile.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# controlfilempixmltask_header_files or controlfilempixmltask_implementation_files.
+# readcontrolfile_header_files or readcontrolfile_implementation_files.
 #
-# The target for the library is controlfilempixmltask.
+# The target for the library is readcontrolfile.
 #
-# The following properties are set for the target controlfilempixmltask.
+# The following properties are set for the target readcontrolfile.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #
-# controlfilempixmltask_include             ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                         ${controlfilempixmltask_header_files}                   The list of headers files associated with this librarry.
+# readcontrolfile_include             ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+# PUBLIC_HEADER                         ${readcontrolfile_header_files}                   The list of headers files associated with this librarry.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -23,7 +23,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "controlfilempixmltask")
+    set(my_project_name "readcontrolfile")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -36,7 +36,7 @@
     # Define the property name for the include directory.
     # 
     #-----------------------------------------------------
-    set(my_target_include_property_name "controlfilempixmltask_include")
+    set(my_target_include_property_name "readcontrolfile_include")
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -61,7 +61,7 @@
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (controlfilempixmltask_header_files
+    set (readcontrolfile_header_files
          header_files/ControlFileXMLReceiver.h
          header_files/ControlFileMPICommReceiver.h
          header_files/ReadControlFileTraits.h )
@@ -73,7 +73,7 @@
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (controlfilempixmltask_implementation_files
+    set (readcontrolfile_implementation_files
          implementation_files/ControlFileXMLReceiver.cpp
          implementation_files/ControlFileMPICommReceiver.cpp
          implementation_files/ReadControlFileTraits.cpp )
@@ -108,7 +108,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE ${controlfilempixmltask_header_files} ${controlfilempixmltask_implementation_files} )
+    PRIVATE ${readcontrolfile_header_files} ${readcontrolfile_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -143,7 +143,7 @@ enable_compile_warnings(${target})
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                       CXX_STANDARD "${md_taskgroups_cxx_standard}"
-                      PUBLIC_HEADER "${controlfilempixmltask_header_files}" )
+                      PUBLIC_HEADER "${readcontrolfile_header_files}" )
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 

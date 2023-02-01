@@ -22,10 +22,11 @@
 #include "BaseVisitable.hpp"
 #include "MPIEnvironment.h"
 #include "InitMPIEnvTaskTraits.h"
+#include "WriteTextToConsoleTaskReceiver.h"
 #include "InitWorldCommunicatorTaskReceiver.h"
+#include "ReadControlFileTraits.h"
 #include "InitWorldCommunicatorTaskTraits.h"
 #include "WriteTextToConsoleTaskTraits.h"
-#include "WriteTextToConsoleTaskReceiver.h"
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
@@ -175,16 +176,21 @@ class AnansiMolecularDynamics final : public Simulation
 
         // These are the factories for various invoker objects.
         std::shared_ptr<MDAnansiInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
-                                            InitMPIEnvTaskTraits::concrete_products>
+                                               InitMPIEnvTaskTraits::concrete_products>
                        >mdAnansiMPIEnvTaskFactory_;
 
         std::shared_ptr<MDAnansiInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                            InitWorldCommunicatorTaskTraits::concrete_products>
+                                               InitWorldCommunicatorTaskTraits::concrete_products>
                        > mdAnansiInitWorldCommunicatorTaskFactory_;
 
         std::shared_ptr<MDAnansiInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,
-                                            WriteTextToConsoleTaskTraits::concrete_products>
+                                               WriteTextToConsoleTaskTraits::concrete_products>
                        > mdAnansiCoreLoggingTaskFactory_;
+
+        std::shared_ptr<MDAnansiInvokerFactory<ReadControlFileTraits::abstract_products,
+                                               ReadControlFileTraits::concrete_products>
+                       > mdAnansiReadControlFileInvoker_;
+
 
         // :TODO:09/27/2022 02:38:21 PM:: To be deprecated.
         COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;

@@ -62,6 +62,7 @@
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
     get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_receiver_include receiver receiver_include )
+    get_target_property(my_readcontrolfile_include readcontrolfile readcontrolfile_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -169,6 +170,7 @@ target_include_directories( "${md_core_target}"
                             PRIVATE "${my_foreach_loop_include}" 
                             PRIVATE "${my_mdanansiinvokerfactory_include}"
                             PRIVATE "${my_receiver_include}"
+                            PRIVATE "${my_readcontrolfile_include}"
                             PRIVATE "${my_writetexttoconsoletask_include}" )
 
 #-----------------------------------------------------
@@ -194,6 +196,7 @@ target_link_libraries("${md_core_target}"
                       PUBLIC generic_foreach_loop
                       PUBLIC mdanansiinvokerfactory
                       PUBLIC receiver
+                      PUBLIC readcontrolfile
                       PUBLIC writetexttoconsoletask
                       PUBLIC "${Boost_LIBRARIES}" )
 

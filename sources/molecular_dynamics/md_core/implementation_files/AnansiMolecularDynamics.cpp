@@ -109,6 +109,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
+    mdAnansiReadControlFileInvoker_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -145,6 +146,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
+    mdAnansiReadControlFileInvoker_(nullptr),
     mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
     mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
 {
@@ -157,17 +159,19 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
-    // Initialize all factories.
+    // Initialize all invoker factories.
     this->mdAnansiMPIEnvTaskFactory_ = std::make_shared<MDAnansiInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
-                                                                            InitMPIEnvTaskTraits::concrete_products>
+                                                                               InitMPIEnvTaskTraits::concrete_products>
                                                        >();
 
-
     this->mdAnansiInitWorldCommunicatorTaskFactory_ = std::make_shared<MDAnansiInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                                                           InitWorldCommunicatorTaskTraits::concrete_products>
+                                                                                              InitWorldCommunicatorTaskTraits::concrete_products>
                                                                       >();
     this->mdAnansiCoreLoggingTaskFactory_ = std::make_shared<MDAnansiInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,
-                                                                                 WriteTextToConsoleTaskTraits::concrete_products>
+                                                                                    WriteTextToConsoleTaskTraits::concrete_products>
+                                                            >();
+    this->mdAnansiReadControlFileInvoker_ = std::make_shared<MDAnansiInvokerFactory<ReadControlFileTraits::abstract_products,
+                                                                                    ReadControlFileTraits::concrete_products>
                                                             >();
 
     // Change the state to Null.
