@@ -167,9 +167,11 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdAnansiInitWorldCommunicatorTaskFactory_ = std::make_shared<MDAnansiInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                                               InitWorldCommunicatorTaskTraits::concrete_products>
                                                                       >();
+
     this->mdAnansiCoreLoggingTaskFactory_ = std::make_shared<MDAnansiInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,
                                                                                     WriteTextToConsoleTaskTraits::concrete_products>
                                                             >();
+
     this->mdAnansiReadControlFileInvoker_ = std::make_shared<MDAnansiInvokerFactory<ReadControlFileTraits::abstract_products,
                                                                                     ReadControlFileTraits::concrete_products>
                                                             >();
