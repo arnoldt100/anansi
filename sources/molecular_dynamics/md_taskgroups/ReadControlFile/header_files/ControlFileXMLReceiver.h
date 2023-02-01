@@ -3,18 +3,19 @@
 
 //! @file ControlFileXMLReceiver.h
 //!
-//! Brief description
-//!
-//! Detailed description
+//! 
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <string>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -22,14 +23,15 @@
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
 
+
 namespace ANANSI
 {
 
+//! Ressposible for reading the control file.
 class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLReceiver>
 {
     public:
-
-        using receiver_result_t = int;
+        using receiver_result_t = boost::property_tree::ptree;
 
         static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','c','o','n','t','r','o','l','_','f','i','l','e'};
@@ -89,7 +91,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        mutable int results_;
+        mutable boost::property_tree::ptree results_;
         std::string controlFileName_;
         int commID_;
 
@@ -104,6 +106,10 @@ void ControlFileXMLReceiver::disableReceiver(Types... args)
 template<typename... Types>
 void ControlFileXMLReceiver::receiverDoAction(Types... args) const
 {
+    if (commID_ == 0)
+    {
+        std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction" << std::endl;
+    }
     return;
 }
 

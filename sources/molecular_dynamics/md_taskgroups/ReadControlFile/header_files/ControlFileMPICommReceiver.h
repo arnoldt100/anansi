@@ -10,10 +10,13 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -27,7 +30,7 @@ namespace ANANSI
 class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>
 {
     public:
-        using receiver_result_t = int;
+        using receiver_result_t = boost::property_tree::ptree;
 
         // ====================  STATIC       =======================================
 
@@ -88,13 +91,14 @@ class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFi
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        mutable receiver_result_t results_;
+        mutable boost::property_tree::ptree results_;
 
 }; // -----  end of class ControlFileMPICommReceiver  -----
 
 template<typename... Types>
 void ControlFileMPICommReceiver::receiverDoAction(Types & ... args) const
 {
+    std::cout << "Stub for ControlFileMPICommReceiver::receiverDoAction" << std::endl;
     return;
 }
 

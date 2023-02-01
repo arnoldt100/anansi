@@ -22,7 +22,7 @@ namespace ANANSI {
 
 ControlFileXMLReceiver::ControlFileXMLReceiver() :
     ReceiverInterface<ControlFileXMLReceiver>(),
-    results_(0),
+    results_(),
     controlFileName_(""),
     commID_(-1)
 {
@@ -75,6 +75,12 @@ template<>
 void ControlFileXMLReceiver::enableReceiver(std::string & arg)
 {
     this->controlFileName_ = arg;
+}
+
+template<>
+void ControlFileXMLReceiver::enableReceiver(int & arg)
+{
+    this->commID_ = arg;
 }
 //============================= OPERATORS ====================================
 

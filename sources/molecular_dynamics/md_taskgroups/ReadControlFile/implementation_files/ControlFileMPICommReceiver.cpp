@@ -22,14 +22,14 @@ namespace ANANSI {
 
 ControlFileMPICommReceiver::ControlFileMPICommReceiver() :
     ReceiverInterface<ControlFileMPICommReceiver>(),
-    results_(0)
+    results_()
 {
     return;
 }
 
 ControlFileMPICommReceiver::ControlFileMPICommReceiver( ControlFileMPICommReceiver && other) :
     ReceiverInterface<ControlFileMPICommReceiver>(std::move(other)),
-    results_(std::move(other.results_))
+    results_(other.results_)
 {
     if (this != &other)
     {
