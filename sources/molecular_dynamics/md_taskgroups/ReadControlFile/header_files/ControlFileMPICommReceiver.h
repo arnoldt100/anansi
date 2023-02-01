@@ -1,4 +1,3 @@
-
 #ifndef  ANANSI_ControlFileMPICommReceiver_INC
 #define  ANANSI_ControlFileMPICommReceiver_INC
 
