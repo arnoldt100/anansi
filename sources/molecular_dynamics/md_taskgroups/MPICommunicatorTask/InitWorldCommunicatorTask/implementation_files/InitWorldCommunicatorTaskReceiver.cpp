@@ -23,15 +23,14 @@ namespace ANANSI {
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver() :
     RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(),
-    communicator_(nullptr),
-    results_(0)
+    results_(nullptr)
 {
     return;
 }
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldCommunicatorTaskReceiver && other) :
     RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(std::move(other)),
-    communicator_(std::move(other.communicator_))
+    results_(std::move(other.results_))
 {
     if (this != &other)
     {
@@ -58,7 +57,7 @@ template<>
 void InitWorldCommunicatorTaskReceiver::receiverModifyMyself(std::shared_ptr<COMMUNICATOR::Communicator> & arg) 
 {
     // We need to modify the undelying resource
-    *(this->communicator_) = std::move(*arg);
+    *(this->results_) = std::move(*arg);
     return;
 }
 
@@ -69,7 +68,6 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(std::move(other));
-        this->communicator_ = std::move(other.communicator_);
         this->results_ = std::move(other.results_);
     }
     return *this;
@@ -83,12 +81,20 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 
 //============================= ACCESSORS ====================================
 
+std::unique_ptr<InitWorldCommunicatorTaskReceiver::receiver_result_t> InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults() const
+{
+    // TODO ::  Thu 02 Feb 2023 05:12:29 PM EST
+    // For now we return a null_ptr.
+    std::unique_ptr<InitWorldCommunicatorTaskReceiver::receiver_result_t> my_ptr;
+    return my_ptr;
+}
+
 //============================= MUTATORS =====================================
 
 template<>
-void InitWorldCommunicatorTaskReceiver::enableReceiver(std::shared_ptr<COMMUNICATOR::Communicator> & arg) 
+void InitWorldCommunicatorTaskReceiver::enableReceiver(std::unique_ptr<COMMUNICATOR::Communicator> & arg) 
 {
-    this->communicator_ = arg;
+    this->results_ = std::move(arg);
     return;
 }
 

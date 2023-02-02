@@ -2,10 +2,6 @@
 #define  ANANSI_InitWorldCommunicatorTaskReceiver_INC
 
 //! @file InitWorldCommunicatorTaskReceiver.h
-//!
-//! Brief description
-//!
-//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -30,15 +26,46 @@
 namespace ANANSI
 {
 
+//! InitWorldCommunicatorTaskReceiver creates a world communicator.
+//!
+//! Below is a summary of the critical methods of InitWorldCommunicatorTaskReceiver.
+//!
+//! This class is non-copyable for we need the communicator resource created by
+//! the class to be solely owned by the object.
+//!
+//! The method receiverModifyMyself modifies the data members of
+//! InitWorldCommunicatorTaskReceiver.
+//!
+//! The result of method receiverdoAction is the creation of the resource world
+//! communicator which the receiver owns by means of a unique_ptr. Invoking
+//! method receiverGetCopyOfResults returns a smart pointer that is a duplicate
+//! of the original world communicator resource.
+//!
+//! The result of method receiverUndoAction undoes the action of
+//! receiverdoAction. For actions that can't be undone this is null action,
+//! however in this case the world communicator is destroyed.
+//!
+//! Invoking method receiverGetCopyOfResults returns a smart pointer that is a
+//! duplicate of the original world communicator resource.
+//!
+//! Invoking method disableReceiver results in the destruction of the world
+//! communicator resource. After this call, all other calls will result in 
+//! an error being thrown.
 class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>
 {
+    private: 
+        using COMMUNICATOR_t = COMMUNICATOR::Communicator;
+
     public:
-        using receiver_result_t = int;
+        //! The type of the data member results_.
+        using receiver_result_t = std::unique_ptr<COMMUNICATOR_t>;
 
         // ====================  STATIC       =======================================
 
         static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
-          {'m','p','i','_', 'w', 'o', 'r', 'l', 'd', '_', 'c', 'o','m', 'm', 'u', 'n', 'i', 'c', 'a', 't', 'o', 'r'};
+          {'m','p','i','_', 
+           'w', 'o', 'r', 'l', 'd', '_', 
+           'c', 'o','m', 'm', 'u', 'n', 'i', 'c', 'a', 't', 'o', 'r'};
 
         static constexpr RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
             RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE(InitWorldCommunicatorTaskReceiver::tmpstr);
@@ -62,6 +89,8 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         template<typename... Types>
         void receiverUndoAction(Types &... args) const;
+
+        std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
         
@@ -89,7 +118,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        mutable std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
         mutable receiver_result_t results_;
 
 }; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
@@ -97,9 +125,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types &...  args) const
 {
-    ANANSI::MPICommunicatorFactory a_communicator_factory;
-    std::shared_ptr<COMMUNICATOR::Communicator> tmp_comm = a_communicator_factory.createWorldCommunicator();
-    *(this->communicator_) = std::move(*tmp_comm);
+    // This class doesn't have a do action implemented.
     return;
 }
 
@@ -113,8 +139,8 @@ void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types &... args) cons
 template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::disableReceiver(Types &...  args) 
 {
-    this->communicator_->freeCommunicator();
-    this->communicator_.reset();
+    this->results_->freeCommunicator();
+    this->results_.reset();
     return;
 }
 
