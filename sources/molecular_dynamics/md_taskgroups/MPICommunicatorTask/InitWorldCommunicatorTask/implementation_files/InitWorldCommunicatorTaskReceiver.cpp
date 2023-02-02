@@ -54,10 +54,10 @@ RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE 
 //============================= MUTATORS =====================================
 
 template<>
-void InitWorldCommunicatorTaskReceiver::receiverModifyMyself(std::shared_ptr<COMMUNICATOR::Communicator> & arg) 
+void InitWorldCommunicatorTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUNICATOR::Communicator> & arg) 
 {
-    // We need to modify the undelying resource
-    *(this->results_) = std::move(*arg);
+    // We need to modify the underlying resource
+    (this->results_) = std::move(arg);
     return;
 }
 
@@ -90,13 +90,6 @@ std::unique_ptr<InitWorldCommunicatorTaskReceiver::receiver_result_t> InitWorldC
 }
 
 //============================= MUTATORS =====================================
-
-template<>
-void InitWorldCommunicatorTaskReceiver::enableReceiver(std::unique_ptr<COMMUNICATOR::Communicator> & arg) 
-{
-    this->results_ = std::move(arg);
-    return;
-}
 
 //============================= OPERATORS ====================================
 

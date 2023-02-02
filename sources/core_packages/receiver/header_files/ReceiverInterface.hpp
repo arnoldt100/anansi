@@ -91,13 +91,6 @@ class ReceiverInterface
 
         // ====================  MUTATORS      =======================================
 
-        template<typename... Types>
-        void enable(Types &... args)
-        {
-            this->enable_(args...);
-            return;
-        }
-
         void disable()
         {
             asDerived_().disableReceiver();
@@ -163,18 +156,6 @@ class ReceiverInterface
         constexpr Derived const & asDerived_() const
         {
             return *static_cast<Derived const*>(this);
-        }
-
-        template<typename FirstArgType, typename... Types>
-        void enable_(FirstArgType & firstArg, Types &... args)
-        {
-            asDerived_().enableReceiver(firstArg);
-            this->enable_(args...);
-        }
-
-        void enable_() const
-        {
-            return;
         }
 
         template<typename FirstArgType, typename... Types>
