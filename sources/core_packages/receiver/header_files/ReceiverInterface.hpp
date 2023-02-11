@@ -1,11 +1,25 @@
 #ifndef RECEIVER_ReceiverInterface_INC
 #define RECEIVER_ReceiverInterface_INC
 //! @file ReceiverInterface.hpp
-//!
-//! An abstract base class that provides the interface for receiver objects.
-//!
-//! ReceiverInterface provides the interface for all receiver objects
-//! as found in the Command pattern.
+
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+#include <string>
+#include <memory>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "TaskLabel.hpp"
+
+namespace RECEIVER
+{
+ 
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -25,6 +39,35 @@
 namespace RECEIVER
 {
 
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+#include <string>
+#include <memory>
+
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "TaskLabel.hpp"
+
+namespace RECEIVER
+{
+
+//! An abstract base class that provides the interface for concrete receiver objects.
+//!
+//! ReceiverInterface provides the interface for all concrete receiver objects
+//! via the Curiously Recurring Template Pattern (CRTP). The class defines the 
+//! following methods:
+//! - getTaskLabel Returns the task label of the concrete receiver.
+//! - action Invokes the action command on the concrete receiver.
+//! - undoAction Invokes the undo action command on the concrete receiver.
+//! - getCopyOfResults Returns a copy of the results of the action of of the concrete receiver
+//! - disable After this is called, all other comamnds have an indeterminate effect.
+//! - modifyReceiver Modifies the concrete receiver.
 template<typename Derived>
 class ReceiverInterface
 {
@@ -67,6 +110,9 @@ class ReceiverInterface
 
         // ====================  ACCESSORS     =======================================
        
+        //! Returs the task label of the receiver.
+        //! 
+        //1 
         constexpr TASK_LABEL_TYPE getTaskLabel () const
         {
             return asDerived_().receiverGetTaskLabel();
