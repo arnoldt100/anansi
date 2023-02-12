@@ -63,9 +63,6 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  MUTATORS      =======================================
 
-        template<typename T>
-        void enableReceiver(T & arg);
-
         template<typename... Types>
         void disableReceiver(Types &...  args);
 

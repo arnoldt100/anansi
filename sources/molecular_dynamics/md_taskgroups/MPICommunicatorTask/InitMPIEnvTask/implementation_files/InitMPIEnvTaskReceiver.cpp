@@ -60,7 +60,7 @@ auto InitMPIEnvTaskReceiver::receiverGetResults() const
 //============================= MUTATORS =====================================
 
 template<>
-void InitMPIEnvTaskReceiver::enableReceiver(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
+void InitMPIEnvTaskReceiver::receiverModifyMyself(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
 {
     this->mpiEnvironment_ = arg;
     return;
