@@ -72,7 +72,7 @@ void WriteTextToConsoleTaskReceiver::receiverModifyMyself(
 }
 
 template<>
-void WriteTextToConsoleTaskReceiver::enableReceiver(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
+void WriteTextToConsoleTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
 {
     this->communicator_ = std::move(arg);
     return;

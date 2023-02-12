@@ -68,9 +68,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  MUTATORS      =======================================
         
-        template<typename T>
-        void enableReceiver(T & arg);
-
         template<typename... Types>
         void disableReceiver(Types... args);
 
@@ -93,7 +90,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  DATA MEMBERS  =======================================
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
-	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
+	      mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
         mutable receiver_result_t results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----

@@ -40,7 +40,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
     std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator )
 {
     // ---------------------------------------------------
-    // Create the receiver and enable it.
+    // Create the receiver and add the communicator.
     // 
     // ---------------------------------------------------
     auto console_logger_receiver =
@@ -48,7 +48,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
                                          WriteTextToConsoleTaskTraits::concrete_products>::createSharedReceiver<ANANSI::WriteTextToConsoleTaskReceiver>();
 
     // The console receiver contains the a communicator.
-    console_logger_receiver->enable(a_communicator);
+    console_logger_receiver->modifyReceiver(a_communicator);
     
     // ---------------------------------------------------
     // Create task object and bind to receiver.
@@ -217,7 +217,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     mpi_environment->addMember(this->commandLineArguments_);
     auto mpi_environment_receiver = RECEIVER::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
                                                                      InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
-    mpi_environment_receiver->enable(mpi_environment); 
+    mpi_environment_receiver->modifyReceiver(mpi_environment); 
     
     // ---------------------------------------------------
     // Get the label for the receiver
@@ -298,7 +298,7 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     auto mpi_init_world_commm_receiver = RECEIVER::GenericReceiverFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                           InitWorldCommunicatorTaskTraits::concrete_products>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
 
-    mpi_init_world_commm_receiver->enable(this->MpiWorldCommunicator_);
+    mpi_init_world_commm_receiver->modifyReceiver(this->MpiWorldCommunicator_);
 
     // ---------------------------------------------------
     //  Get the label for this receiver.   
