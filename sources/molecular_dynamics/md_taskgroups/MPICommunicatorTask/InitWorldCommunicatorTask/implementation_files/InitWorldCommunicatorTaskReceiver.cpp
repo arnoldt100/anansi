@@ -56,7 +56,6 @@ RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE 
 template<>
 void InitWorldCommunicatorTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUNICATOR::Communicator> & arg) 
 {
-    // We need to modify the underlying resource
     (this->results_) = std::move(arg);
     return;
 }

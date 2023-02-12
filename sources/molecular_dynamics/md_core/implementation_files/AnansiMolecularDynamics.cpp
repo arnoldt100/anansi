@@ -292,13 +292,15 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     //  Create the receiver and enable it.
     // 
     // ---------------------------------------------------
-    MPICommunicatorFactory a_communicator_factory;
-    this->MpiWorldCommunicator_ = a_communicator_factory.createNullWorldCommunicator();
+    std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>(); 
+    this->MpiWorldCommunicator_ = a_communicator_factory->createWorldCommunicator();
+    auto tmp_communicator = a_communicator_factory->cloneCommunicator(this->MpiWorldCommunicator_);
 
-    auto mpi_init_world_commm_receiver = RECEIVER::GenericReceiverFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                                          InitWorldCommunicatorTaskTraits::concrete_products>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
+    auto mpi_init_world_commm_receiver = 
+        RECEIVER::GenericReceiverFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                         InitWorldCommunicatorTaskTraits::concrete_products>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
 
-    mpi_init_world_commm_receiver->modifyReceiver(this->MpiWorldCommunicator_);
+    mpi_init_world_commm_receiver->modifyReceiver(tmp_communicator);
 
     // ---------------------------------------------------
     //  Get the label for this receiver.   
