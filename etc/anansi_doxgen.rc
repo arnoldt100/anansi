@@ -915,10 +915,8 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/AnansiMDTaskFactory/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/AnansiMDTaskFactory/header_files \
-                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/CoreLoggingTasksTraits/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/CoreLoggingTasksTraits/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/AnansiMDInvokerFactory/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/AnansiMDInvokerFactory/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/WriteTextToConsoleTask/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/WriteTextToConsoleTask/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/GenericMDTask/implementation_files \
