@@ -30,6 +30,8 @@ namespace RECEIVER
 //! - **action** Invokes the action command on the concrete receiver.
 //! - **undoAction** Invokes the undo action command on the concrete receiver.
 //! - **getCopyOfResults** Returns a copy of the results of the action of of the concrete receiver
+//! - **shareOwnershipOfResults** Shares ownership of results of the action of of the concrete receiver
+//! - **takeOwnershipOfResults** Takes sole ownership of results of the action of of the concrete receiver
 //! - **disable** After this is called, all other comamnds have an indeterminate effect.
 //! - **modifyReceiver** Modifies the concrete receiver.
 template<typename Derived>

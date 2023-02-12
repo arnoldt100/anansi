@@ -275,8 +275,6 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // ---------------------------------------------------
     // Create the invoker for the task InitWorldCommunicatorTask 
     // 
-    // All receivers for this invoker will have labels that are of type
-    // std::string. 
     // ---------------------------------------------------
 
     std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
