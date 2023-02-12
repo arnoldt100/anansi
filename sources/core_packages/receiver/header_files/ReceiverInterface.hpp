@@ -76,9 +76,7 @@ class ReceiverInterface
 
         // ====================  ACCESSORS     =======================================
        
-        //! Returs the task label of the receiver.
-        //! 
-        //1 
+        //! Returns the task label of the receiver.
         constexpr TASK_LABEL_TYPE getTaskLabel () const
         {
             return asDerived_().receiverGetTaskLabel();
@@ -96,6 +94,12 @@ class ReceiverInterface
             return;
         }
 
+        //! Returns a copy/clone of the action results.
+        //!
+        //! The results are copied/clone to and the results of the concrete 
+        //! reciever are not modified. If the results are not allowed to be 
+        //! copied, an execption is thrown and a default copy of the receiver
+        //! results is returned.
         auto getCopyOfResults() const
         {
             return asDerived_().receiverGetCopyOfResults();
@@ -116,12 +120,24 @@ class ReceiverInterface
             return;
         }
 
+        //! Returns a shared ownership of the action results.
+        //!
+        //! The results are shared via a shared_ptr.
+        //! If the results are not allowed to be shared,
+        //! an execption is thrown and a default instance of the receiver results  is
+        //! returned.
         auto shareOwnershipOfResults()
         {
             return asDerived_().receiverShareOwnershipOfResults();
         }
 
-        auto takeOwnershipOfResults()
+        //! Transfers ownership of the action results.
+        //!
+        //! The results are transferred (take ownership) via a uniqe_ptr, and
+        //! the concrete result receiver results are set to a default value. If
+        //! the results are not allowed to be transferred, an execption is
+        //! thrown and a default instance of the receiver results  is returned.
+        au!to takeOwnershipOfResults()
         {
             return asDerived_().receiverTakeOwnershipOfResults();
         }
