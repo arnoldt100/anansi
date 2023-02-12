@@ -931,6 +931,7 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/invoker/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/logger/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/logger/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/logger/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mpi_communicator/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mpi_communicator/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/receiver/header_files \
