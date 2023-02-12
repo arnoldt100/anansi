@@ -96,7 +96,7 @@ class ReceiverInterface
 
         //! Returns a copy/clone of the action results.
         //!
-        //! The results are copied/clone to and the results of the concrete 
+        //! The results are copied/clone to and unique_ptr and the results of the concrete 
         //! reciever are not modified. If the results are not allowed to be 
         //! copied, an execption is thrown and a default copy of the receiver
         //! results is returned.
@@ -137,7 +137,7 @@ class ReceiverInterface
         //! the concrete result receiver results are set to a default value. If
         //! the results are not allowed to be transferred, an execption is
         //! thrown and a default instance of the receiver results  is returned.
-        au!to takeOwnershipOfResults()
+        auto takeOwnershipOfResults()
         {
             return asDerived_().receiverTakeOwnershipOfResults();
         }

@@ -26,11 +26,20 @@
 namespace ANANSI
 {
 
+//! The action of the reciever is to write a message to stdout.
+//! 
+//! The message store in messageContainer_ is written to stdout. There are no
+//! results stored in the class and therfore all copying, sharing and
+//! trasferring of results will result in an exception being thrown.
 class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>
 {
     public:
        
+        //! The object type the smart pointer will manage,
         using receiver_result_t = int;
+
+        //! The type of smart pointer that manages the receiver's result.
+        using receiver_result_smart_pointer_t = std::unique_ptr<receiver_result_t>;
 
         // ====================  STATIC       =======================================
 
@@ -90,7 +99,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  DATA MEMBERS  =======================================
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
-	      mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
+	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
         mutable receiver_result_t results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----

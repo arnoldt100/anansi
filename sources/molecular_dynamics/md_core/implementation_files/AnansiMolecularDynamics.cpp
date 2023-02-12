@@ -337,12 +337,18 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
 void 
 AnansiMolecularDynamics::disableWorldCommunicator()
 {
-    constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
-    {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
+    if (this->mdWorldCommunicatorInvk_)
+    {
+        constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+        {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
+        const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
+        this->mdWorldCommunicatorInvk_->disableTask(command_labels);
+    }
 
-    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
-
-    this->mdWorldCommunicatorInvk_->disableTask(command_labels);
+    if (this->MpiWorldCommunicator_)
+    {
+        this->MpiWorldCommunicator_->freeCommunicator();
+    }
     return;
 }
 
