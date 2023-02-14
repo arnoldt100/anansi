@@ -28,7 +28,8 @@
 namespace ANANSI
 {
 
-template <typename AbstractProductsTypeList,typename ConcreteProductsTypeList>
+template <typename AbstractProductsTypeList,
+          typename ConcreteProductsTypeList>
 class MDAnansiInvokerFactory 
 {
     public:

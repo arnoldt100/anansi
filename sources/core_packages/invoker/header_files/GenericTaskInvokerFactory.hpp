@@ -64,10 +64,9 @@ class GenericTaskInvokerFactory
         // ====================  ACCESSORS     =======================================
         template < typename... Types>
         std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,
-                        ConcreteProductsTypeList,
-                        LABEL_t
-                       >
-        > create_shared_ptr(Types &... args) const
+                                           ConcreteProductsTypeList,
+                                           LABEL_t>
+                       > create_shared_ptr(Types &... args) const
         {
             std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,
                                                ConcreteProductsTypeList,
