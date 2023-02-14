@@ -1,7 +1,7 @@
-#ifndef  ANANSI_MDAnansiInvokerFactory_INC
-#define  ANANSI_MDAnansiInvokerFactory_INC
+#ifndef  ANANSI_GenericTaskFactory_INC
+#define  ANANSI_GenericTaskFactory_INC
 
-//! @file MDAnansiInvokerFactory.hpp
+//! @file GenericTaskFactory.hpp
 //!
 //! This files implements the Anansi task factory. The factory
 //! use the object factory design pattern.
@@ -30,23 +30,23 @@ namespace ANANSI
 
 template <typename AbstractProductsTypeList,
           typename ConcreteProductsTypeList>
-class MDAnansiInvokerFactory 
+class GenericTaskFactory 
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        MDAnansiInvokerFactory () :  // constructor
+        GenericTaskFactory () :  // constructor
             mdAnansiTaskFactory_(std::make_unique<concrete_factory_>())
 
         {
             return;
         }
 
-        MDAnansiInvokerFactory (const MDAnansiInvokerFactory & other) = delete;  // copy constructor
+        GenericTaskFactory (const GenericTaskFactory & other) = delete;  // copy constructor
 
-        MDAnansiInvokerFactory (MDAnansiInvokerFactory && other) = delete;  // copy-move constructor
+        GenericTaskFactory (GenericTaskFactory && other) = delete;  // copy-move constructor
 
-        ~MDAnansiInvokerFactory ()  // destructor
+        ~GenericTaskFactory ()  // destructor
         {
             return;
         }
@@ -57,9 +57,9 @@ class MDAnansiInvokerFactory
 
         // ====================  OPERATORS     =======================================
 
-        MDAnansiInvokerFactory& operator= ( const MDAnansiInvokerFactory &other ) = delete; // assignment operator
+        GenericTaskFactory& operator= ( const GenericTaskFactory &other ) = delete; // assignment operator
 
-        MDAnansiInvokerFactory& operator= ( MDAnansiInvokerFactory && other ) = delete; // assignment-move operator
+        GenericTaskFactory& operator= ( GenericTaskFactory && other ) = delete; // assignment-move operator
 
     protected:
         
@@ -124,9 +124,9 @@ class MDAnansiInvokerFactory
         // ====================  DATA MEMBERS  =======================================
         std::unique_ptr<concrete_factory_> mdAnansiTaskFactory_;
 
-}; // -----  end of class MDAnansiInvokerFactory  -----
+}; // -----  end of class GenericTaskFactory  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_MDAnansiInvokerFactory_INC  ----- 
+#endif   // ----- #ifndef ANANSI_GenericTaskFactory_INC  ----- 
