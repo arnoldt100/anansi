@@ -23,13 +23,13 @@ namespace RECEIVER
 //        Class:  ReceiverResultOwnershipPolicy
 //  Description:  
 //  =====================================================================================
-template <template <typename T > class ConcretePolicy, class RT>
+template <template <typename T > class ConcreteResultOwnershipPolicy, class RT>
 class ReceiverResultOwnershipPolicy
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        friend ConcretePolicy<RT>;
+        friend ConcreteResultOwnershipPolicy<RT>;
 
         ReceiverResultOwnershipPolicy ()   // constructor
         {
@@ -92,8 +92,8 @@ class ReceiverResultOwnershipPolicy
 
 }; // -----  end of class ReceiverResultOwnershipPolicy  -----
 
-template <template <typename T> class ConcretePolicy, class RT>
-ReceiverResultOwnershipPolicy<ConcretePolicy,RT>::~ReceiverResultOwnershipPolicy()
+template <template <typename T> class ConcreteResultOwnershipPolicy, class RT>
+ReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy,RT>::~ReceiverResultOwnershipPolicy()
 {
     return;
 }

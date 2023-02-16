@@ -27,7 +27,7 @@ namespace ANANSI
 //  Description:  
 //  =====================================================================================
 template <typename T>
-class TakeOwnershipPolicy
+class TakeOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TakeOwnershipPolicy, T>
 {
     public:
         // ====================  LIFECYCLE     =======================================
