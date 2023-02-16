@@ -1,5 +1,6 @@
 #ifndef RECEIVER_ReceiverResultOwnershipPolicy_INC
 #define RECEIVER_ReceiverResultOwnershipPolicy_INC
+
 //! @file ReceiverResultOwnershipPolicy.hpp
 //!
 //! The interface for the ownership policies.
@@ -87,6 +88,21 @@ class ReceiverResultOwnershipPolicy
 
     private:
         // ====================  METHODS       =======================================
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to the CRTP derived class.
+        constexpr ConcreteResultOwnershipPolicy<RT> & asDerived_() 
+        {
+            return *static_cast<ConcreteResultOwnershipPolicy<RT> *>(this);
+        }
+
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to a constant CRTP derived class "Derived".
+        constexpr ConcreteResultOwnershipPolicy<RT> const & asDerived_() const
+        {
+            return *static_cast<ConcreteResultOwnershipPolicy<RT> const*>(this);
+        }
 
         // ====================  DATA MEMBERS  =======================================
 
