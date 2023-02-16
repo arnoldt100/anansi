@@ -71,6 +71,8 @@
     set (genericmdtask_header_files
           header_files/GenericMDTask.hpp
           header_files/TakeOwnershipPolicy.hpp
+          header_files/ShareOwnershipPolicy.hpp
+          header_files/CopyOwnershipPolicy.hpp
           header_files/DefaultFunctorImpl.h )
 
     #-----------------------------------------------------
@@ -83,6 +85,8 @@
     set (genericmdtask_implementation_files
          implementation_files/GenericMDTask.cpp
          implementation_files/TakeOwnershipPolicy.cpp
+         implementation_files/ShareOwnershipPolicy.cpp
+         implementation_files/CopyOwnershipPolicy.cpp
          implementation_files/DefaultFunctorImpl.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
