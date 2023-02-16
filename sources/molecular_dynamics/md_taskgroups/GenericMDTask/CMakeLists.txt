@@ -43,6 +43,7 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_tasks_include tasks tasks_include)
+    get_target_property(my_receiver_include receiver receiver_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -69,6 +70,7 @@
     #-----------------------------------------------------
     set (genericmdtask_header_files
           header_files/GenericMDTask.hpp
+          header_files/TakeOwnershipPolicy.hpp
           header_files/DefaultFunctorImpl.h )
 
     #-----------------------------------------------------
@@ -80,6 +82,7 @@
     #-----------------------------------------------------
     set (genericmdtask_implementation_files
          implementation_files/GenericMDTask.cpp
+         implementation_files/TakeOwnershipPolicy.cpp
          implementation_files/DefaultFunctorImpl.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -112,14 +115,16 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_tasks_include} )
+                           PRIVATE ${my_tasks_include}
+                           PRIVATE ${my_receiver_include})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${target}
-                       PUBLIC tasks)
+                       PUBLIC tasks
+                       PUBLIC receiver)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
