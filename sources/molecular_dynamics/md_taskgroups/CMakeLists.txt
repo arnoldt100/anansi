@@ -14,6 +14,7 @@
     verify_md_taskgroups_build_prerequisites_are_met()
 
     # Configure the tasks.
+    add_subdirectory(MDOwnershipPolicies)
     add_subdirectory(GenericMDTask)
     add_subdirectory(MPICommunicatorTask)
     add_subdirectory(ReadControlFile)
