@@ -22,6 +22,7 @@
 #include "ReceiverInterface.hpp"
 #include "ConsoleMessageContainer.h"
 #include "TaskLabel.hpp"
+#include "TakeOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
@@ -103,7 +104,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  DATA MEMBERS  =======================================
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
-        mutable receiver_result_t results_;
+        mutable std::unique_ptr<receiver_result_t> results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
@@ -112,7 +113,8 @@ void WriteTextToConsoleTaskReceiver::receiverDoAction(Types & ... args) const
 {
     const auto message = this->messageContainer_->getMessage();
     std::cout << message << std::endl;
-    this->results_++;
+    *(this->results_) += 1;
+
     return;
 }
 

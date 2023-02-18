@@ -20,17 +20,13 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-// const RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE WriteTextToConsoleTaskReceiver::TASKLABEL  = 
-//     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(
-//             WriteTextToConsoleTaskReceiver::tmpstr);
-// 
-
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
     communicator_(nullptr),
     messageContainer_(),
-    results_(0)
+    results_(nullptr)
 {
+    this->results_ = std::make_unique<receiver_result_t>(0);
     return;
 }
 
@@ -57,7 +53,7 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 {
     std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> my_ptr =
-        std::make_unique<WriteTextToConsoleTaskReceiver::receiver_result_t>(this->results_);
+        std::make_unique<WriteTextToConsoleTaskReceiver::receiver_result_t>(*(this->results_));
     return my_ptr;
 }
 
