@@ -2,7 +2,9 @@
 #define RECEIVER_ReceiverResultOwnershipPolicy_INC
 //! @file ReceiverResultOwnershipPolicy.hpp
 //!
-//! The interface for the ownership policies.
+//! The interface for the ownership policies of receiver's results.
+//!
+//! The objects we operate on with respect to 
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -23,7 +25,8 @@ namespace RECEIVER
 //        Class:  ReceiverResultOwnershipPolicy
 //  Description:  
 //  =====================================================================================
-template <typename T>
+template <typename ConcreteOwnershipPolicy,
+          typename T>
 class ReceiverResultOwnershipPolicy
 {
     public:
@@ -58,9 +61,9 @@ class ReceiverResultOwnershipPolicy
 
         // ====================  MUTATORS      =======================================
 
-        T takeOwnership( T & thing) 
+        auto takeOwnership( T & thing) 
         {
-            return thing;
+            return asDerived_().takeOwnershipOfObject(thing);
         }
 
         T shareOwnership( T & thing) 
@@ -100,12 +103,30 @@ class ReceiverResultOwnershipPolicy
     private:
         // ====================  METHODS       =======================================
 
+        //! Provides access to the CRTP derived class "ConcreteOwnershipPolicy."
+        //!
+        //! @return A reference to the CRTP derived class.
+        constexpr ConcreteOwnershipPolicy& asDerived_() 
+        {
+            return *static_cast<ConcreteOwnershipPolicy*>(this);
+        }
+
+        //! Provides access to the CRTP derived class "ConcreteOwnershipPolicy."
+        //!
+        //! @return A reference to a constant CRTP derived class "ConcreteOwnershipPolicy".
+        constexpr ConcreteOwnershipPolicy const & asDerived_() const
+        {
+            return *static_cast<ConcreteOwnershipPolicy const*>(this);
+        }
+
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class ReceiverResultOwnershipPolicy  -----
 
 
-ReceiverResultOwnershipPolicy::~ReceiverResultOwnershipPolicy()
+template <typename ConcreteOwnershipPolicy,
+          typename T>
+ReceiverResultOwnershipPolicy<ConcreteOwnershipPolicy,T>::~ReceiverResultOwnershipPolicy()
 {
     return;
 }

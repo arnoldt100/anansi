@@ -61,6 +61,11 @@ class ReceiverResultOwnershipPolicy
 
         // ====================  MUTATORS      =======================================
 
+        auto takeOwnership ( RT & my_obj)
+        {
+            return asDerived_().ownObject(my_obj);
+        }
+
         // ====================  OPERATORS     =======================================
 
         ReceiverResultOwnershipPolicy& operator= ( const ReceiverResultOwnershipPolicy &other ) // assignment operator

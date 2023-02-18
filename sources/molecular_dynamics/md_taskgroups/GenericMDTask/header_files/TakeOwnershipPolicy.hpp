@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -31,6 +32,10 @@ class TakeOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TakeO
 {
     public:
         // ====================  LIFECYCLE     =======================================
+
+        using OBJ_TYPE = T;
+
+        using TOC_TYPE = std::unique_ptr<T>;
 
         TakeOwnershipPolicy ()   // constructor
         {
@@ -64,13 +69,19 @@ class TakeOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TakeO
 
         // ====================  MUTATORS      =======================================
 
+        std::unique_ptr<T> takeOwnershipOfObject( T & my_obj)
+        {
+            std::unique_ptr<T> owned_obj = std::move(my_obj);
+            return owned_obj; 
+        }
+
         // ====================  OPERATORS     =======================================
 
-        TakeOwnershipPolicy& operator= ( const TakeOwnershipPolicy &other ) // assignment operator
+        TakeOwnershipPolicy& operator= ( const TakeOwnershipPolicy &other) // assignment operator
         {
             if (this != &other)
             {
-        
+
             }
             return *this;
         } // assignment operator
