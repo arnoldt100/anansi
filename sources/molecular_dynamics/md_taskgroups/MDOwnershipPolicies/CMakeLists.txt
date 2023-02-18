@@ -67,7 +67,9 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdownershippolicies_header_files
-         <list of header files> )
+         header_files/CopyOwnershipPolicy.hpp  
+         header_files/ShareOwnershipPolicy.hpp
+         header_files/TakeOwnershipPolicy.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -77,7 +79,9 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdownershippolicies_implementation_files
-         <list of implementation files> )
+         implementation_files/CopyOwnershipPolicy.cpp  
+         implementation_files/ShareOwnershipPolicy.cpp
+         implementation_files/TakeOwnershipPolicy.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
