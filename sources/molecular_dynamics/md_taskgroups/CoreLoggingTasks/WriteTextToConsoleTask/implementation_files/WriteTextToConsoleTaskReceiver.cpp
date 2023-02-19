@@ -53,7 +53,7 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 {
    std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> my_ptr
-       = this->ownershipPolicy_.getCopyOwnershipOfObject(this->results_);
+       = this->ownershipPolicy_.copyOwnership(this->results_);
 
     return my_ptr;
 }
@@ -82,7 +82,7 @@ auto WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
 
 auto WriteTextToConsoleTaskReceiver::receiverTakeOwnershipOfResults()
 {
-     auto my_ptr = ownershipPolicy_.takeOwnershipOfObject(this->results_);
+     auto my_ptr = ownershipPolicy_.takeOwnership(this->results_);
      return my_ptr;   
 }
 
