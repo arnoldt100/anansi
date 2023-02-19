@@ -87,7 +87,9 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! An error is thrown if invoked.
         std::unique_ptr<T> takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
         {
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>();
+            const std::string my_err_mesage("The CopyOwnershipPolicy does not permit the receiver result to be taken over.");
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_mesage);
+
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
@@ -97,7 +99,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! An error is thrown if invoked.
         std::unique_ptr<T> takeOwnershipOfObject(std::shared_ptr<T> & my_obj)
         {
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>();
+            const std::string my_err_mesage("The CopyOwnershipPolicy does not permit the receiver result to be taken over.");
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_mesage);
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
@@ -107,7 +110,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! An error is thrown if invoked.
         std::unique_ptr<T> shareOwnershipOfObject(std::unique_ptr<T> & my_obj) 
         {
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>();
+            const std::string my_err_mesage("The CopyOwnershipPolicy does not permit the receiver result to be shared.");
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_mesage);
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
@@ -117,7 +121,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! An error is thrown if invoked.
         std::unique_ptr<T> shareOwnershipOfObject(std::shared_ptr<T> & my_obj)
         {
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>();
+            const std::string my_err_mesage("The CopyOwnershipPolicy does not permit the receiver result to be shared.");
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_mesage);
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
@@ -128,7 +133,6 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             if (this != &other)
             {
-        
             }
             return *this;
         } // assignment operator
@@ -138,7 +142,6 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             if (this != &other)
             {
-        
             }
             return *this;
        } // assignment-move operator
