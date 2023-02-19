@@ -2,9 +2,7 @@
 #define ANANSI_NullOwnershipPolicy_INC
 //! @file NullOwnershipPolicy.hpp
 //!
-//! Brief description
-//!
-//! Detailed description
+//! Contains the declaration for class NullOwnershipPolicy.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -18,15 +16,16 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  NullOwnershipPolicy
-//  Description:  
-//  =====================================================================================
+//! This class provides methods for implementing null actions receiver results.
+//!
+//!
+//!
 template <typename T>
 class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, T>
 {
@@ -69,7 +68,8 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
 
         // ====================  MUTATORS      =======================================
 
-        std::unique_ptr<T> takeOwnershipOfObject( T & my_obj)
+        //! Throws compile time error if invoked.
+        std::unique_ptr<T> takeOwnershipOfObject(T & my_obj)
         {
             std::unique_ptr<T> owned_obj = std::move(my_obj);
             return owned_obj; 
