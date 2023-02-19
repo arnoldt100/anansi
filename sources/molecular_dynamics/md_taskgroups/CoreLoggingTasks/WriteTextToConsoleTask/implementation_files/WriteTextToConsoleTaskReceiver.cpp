@@ -54,6 +54,8 @@ std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToCo
 {
     std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> my_ptr =
         std::make_unique<WriteTextToConsoleTaskReceiver::receiver_result_t>(*(this->results_));
+
+
     return my_ptr;
 }
 
@@ -72,6 +74,16 @@ void WriteTextToConsoleTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUN
 {
     this->communicator_ = std::move(arg);
     return;
+}
+
+std::shared_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
+{
+
+}
+
+std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverTakeOwnershipOfResults()
+{
+
 }
 
 //============================= OPERATORS ====================================
