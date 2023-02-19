@@ -9,6 +9,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string.h>
+#include <utility>
 #include <memory>
 
 //--------------------------------------------------------//
@@ -80,30 +82,42 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         }
         // ====================  MUTATORS      =======================================
 
-        //! Returns a unique_ptr of the receiver results.
+        //! The copy ownership does not allow an object to taken over.
+        //!
+        //! An error is thrown if invoked.
         std::unique_ptr<T> takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
         {
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>();
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
 
-        //! Returns a unique_ptr of the receiver results.
+        //! The copy ownership does not allow an object to taken over.
+        //!
+        //! An error is thrown if invoked.
         std::unique_ptr<T> takeOwnershipOfObject(std::shared_ptr<T> & my_obj)
         {
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>();
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
 
-        //! Returns a unique_ptr of the receiver results.
+        //! The copy ownership does not allow an object to shared.
+        //!
+        //! An error is thrown if invoked.
         std::unique_ptr<T> shareOwnershipOfObject(std::unique_ptr<T> & my_obj) 
         {
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>();
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
 
-        //! Returns a unique_ptr of the receiver results.
+        //! The copy ownership does not allow an object to shared.
+        //!
+        //! An error is thrown if invoked.
         std::unique_ptr<T> shareOwnershipOfObject(std::shared_ptr<T> & my_obj)
         {
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>();
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }

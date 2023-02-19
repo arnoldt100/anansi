@@ -6,6 +6,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
+#include <utility>
 #include <exception>
 
 //--------------------------------------------------------//
@@ -25,12 +27,20 @@ class ErrorOwnershipPolicy : public std::exception
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ErrorOwnershipPolicy ()   // constructor
+        ErrorOwnershipPolicy () : // constructor
+            errorMessage_()
         {
             return;
         }
 
-        ErrorOwnershipPolicy (const ErrorOwnershipPolicy & other)   // copy constructor
+        ErrorOwnershipPolicy ( std::string const & error_message) : // constructor
+            errorMessage_(error_message)
+        {
+            return;
+        }
+
+        ErrorOwnershipPolicy (const ErrorOwnershipPolicy & other) :  // copy constructor
+            errorMessage_(other.errorMessage_)
         {
             if (this != &other)
             {
@@ -39,8 +49,8 @@ class ErrorOwnershipPolicy : public std::exception
             return;
         }
 
-
-        ErrorOwnershipPolicy (ErrorOwnershipPolicy && other)   // copy-move constructor
+        ErrorOwnershipPolicy (ErrorOwnershipPolicy && other) :  // copy-move constructor
+            errorMessage_(std::move(other.errorMessage_))
         {
             if (this != &other)
             {
@@ -57,7 +67,7 @@ class ErrorOwnershipPolicy : public std::exception
         // ====================  ACCESSORS     =======================================
         const char* what() const noexcept
         {
-            return "Ownnership exception thown.";
+            return this->errorMessage_.c_str();
         }
 
 
@@ -69,6 +79,7 @@ class ErrorOwnershipPolicy : public std::exception
         {
             if (this != &other)
             {
+                this->errorMessage_ = other.errorMessage_;
             }
             return *this;
         } // assignment operator
@@ -77,6 +88,7 @@ class ErrorOwnershipPolicy : public std::exception
         {
             if (this != &other)
             {
+                this->errorMessage_(std::move(other.errorMessage_));
             }
             return *this;
         } // assignment-move operator
@@ -90,6 +102,7 @@ class ErrorOwnershipPolicy : public std::exception
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::string errorMessage_;
 
 }; // -----  end of class ErrorOwnershipPolicy  -----
 
