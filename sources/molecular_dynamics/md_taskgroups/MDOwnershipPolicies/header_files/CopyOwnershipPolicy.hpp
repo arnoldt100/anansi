@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -27,6 +28,7 @@ namespace ANANSI
 //        Class:  CopyOwnershipPolicy
 //  Description:  
 //  =====================================================================================
+//! This class provides methods for implementing copy actions receiver results.
 template <typename T>
 class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>
 {
@@ -63,8 +65,34 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
 
         // ====================  ACCESSORS     =======================================
 
+        //! Returns a unique_ptr of the receiver results.
+        std::unique_ptr<T> getCopyOwnershipOfObject(std::unique_ptr<T> & my_obj) const
+        {
+            std::unique_ptr<T> owned_obj;
+            return owned_obj; 
+        }
+
+        //! Returns a unique_ptr of the receiver results.
+        std::unique_ptr<T> getCopyOwnershipOfObject(std::shared_ptr<T> & my_obj) const
+        {
+            std::unique_ptr<T> owned_obj;
+            return owned_obj; 
+        }
         // ====================  MUTATORS      =======================================
 
+        //! Returns a unique_ptr of the receiver results.
+        std::unique_ptr<T> takeOwnershipOfObject(std::unique_ptr<T> & my_obj) const
+        {
+            std::unique_ptr<T> owned_obj;
+            return owned_obj; 
+        }
+
+        //! Returns a unique_ptr of the receiver results.
+        std::unique_ptr<T> takeOwnershipOfObject(std::shared_ptr<T> & my_obj) const
+        {
+            std::unique_ptr<T> owned_obj;
+            return owned_obj; 
+        }
         // ====================  OPERATORS     =======================================
 
         CopyOwnershipPolicy& operator= ( const CopyOwnershipPolicy &other ) // assignment operator

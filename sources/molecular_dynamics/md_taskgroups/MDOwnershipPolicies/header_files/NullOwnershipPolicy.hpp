@@ -23,18 +23,11 @@ namespace ANANSI
 {
 
 //! This class provides methods for implementing null actions receiver results.
-//!
-//!
-//!
 template <typename T>
 class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, T>
 {
     public:
         // ====================  LIFECYCLE     =======================================
-
-        using OBJ_TYPE = T;
-
-        using TOC_TYPE = std::unique_ptr<T>;
 
         NullOwnershipPolicy ()   // constructor
         {
@@ -73,6 +66,28 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! taken over.
         std::unique_ptr<T> takeOwnershipOfObject(T & my_obj)
+        {
+            throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>();
+            std::unique_ptr<T> owned_obj;
+            return owned_obj; 
+        }
+
+        //! Throws runtime error if invoked.
+        //!
+        //! The NullOwnershipPolicy doesn't allow the receiver results to be
+        //! shared.
+        std::unique_ptr<T> shareOwnershipOfObject(T & my_obj)
+        {
+            throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>();
+            std::unique_ptr<T> owned_obj;
+            return owned_obj; 
+        }
+        
+        //! Throws runtime error if invoked.
+        //!
+        //! The NullOwnershipPolicy doesn't allow the receiver results to be
+        //! copied.
+        std::unique_ptr<T> copyOwnershipOfObject(T & my_obj)
         {
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>();
             std::unique_ptr<T> owned_obj;

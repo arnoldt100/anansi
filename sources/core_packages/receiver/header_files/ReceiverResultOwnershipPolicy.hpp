@@ -8,6 +8,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -31,6 +32,10 @@ class ReceiverResultOwnershipPolicy
         // ====================  LIFECYCLE     =======================================
 
         friend ConcreteResultOwnershipPolicy<RT>;
+
+        using shared_type = std::shared_ptr<RT>;
+
+        using unique_type = std::unique_ptr<RT>;
 
         ReceiverResultOwnershipPolicy ()   // constructor
         {

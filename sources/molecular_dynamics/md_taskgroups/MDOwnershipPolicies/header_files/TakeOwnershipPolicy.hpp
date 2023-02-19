@@ -34,10 +34,6 @@ class TakeOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TakeO
     public:
         // ====================  LIFECYCLE     =======================================
 
-        using OBJ_TYPE = T;
-
-        using TOC_TYPE = std::unique_ptr<T>;
-
         TakeOwnershipPolicy ()   // constructor
         {
             return;
