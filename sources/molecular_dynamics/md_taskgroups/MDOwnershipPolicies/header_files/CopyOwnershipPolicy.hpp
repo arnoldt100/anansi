@@ -81,18 +81,33 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         // ====================  MUTATORS      =======================================
 
         //! Returns a unique_ptr of the receiver results.
-        std::unique_ptr<T> takeOwnershipOfObject(std::unique_ptr<T> & my_obj) const
+        std::unique_ptr<T> takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
         {
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
 
         //! Returns a unique_ptr of the receiver results.
-        std::unique_ptr<T> takeOwnershipOfObject(std::shared_ptr<T> & my_obj) const
+        std::unique_ptr<T> takeOwnershipOfObject(std::shared_ptr<T> & my_obj)
         {
             std::unique_ptr<T> owned_obj;
             return owned_obj; 
         }
+
+        //! Returns a unique_ptr of the receiver results.
+        std::unique_ptr<T> shareOwnershipOfObject(std::unique_ptr<T> & my_obj) 
+        {
+            std::unique_ptr<T> owned_obj;
+            return owned_obj; 
+        }
+
+        //! Returns a unique_ptr of the receiver results.
+        std::unique_ptr<T> shareOwnershipOfObject(std::shared_ptr<T> & my_obj)
+        {
+            std::unique_ptr<T> owned_obj;
+            return owned_obj; 
+        }
+
         // ====================  OPERATORS     =======================================
 
         CopyOwnershipPolicy& operator= ( const CopyOwnershipPolicy &other ) // assignment operator
