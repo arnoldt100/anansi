@@ -72,21 +72,29 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         // ====================  ACCESSORS     =======================================
 
         //! Returns a unique_ptr of the receiver results.
+        //!
+        //! The underlying object of the unique_ptr is copied to an object of
+        //! cop_unique_type and returned to the invoker.
         cop_unique_type getCopyOwnershipOfObject(std::unique_ptr<T> & my_obj) const
         {
-            std::unique_ptr<T> owned_obj;
+            T* tmp_obj = new T(*my_obj);
+            cop_unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
 
         //! Returns a unique_ptr of the receiver results.
+        //!
+        //! The underlying object of the shared_ptr is copied to an object of
+        //! cop_unique_type and returned to the invoker.
         cop_unique_type getCopyOwnershipOfObject(std::shared_ptr<T> & my_obj) const
         {
-            std::unique_ptr<T> owned_obj;
+            T* tmp_obj = new T(*my_obj);
+            cop_unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
         // ====================  MUTATORS      =======================================
 
-        //! The copy ownership does not allow an object to taken over.
+        //! The copy ownership policy does not allow an object to taken over.
         //!
         //! An error is thrown if invoked.
         cop_unique_type takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
