@@ -31,8 +31,8 @@ template <typename T>
 class TakeOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TakeOwnershipPolicy, T>
 {
     private:
-        using top_unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<TakeOwnershipPolicy, T>::unique_type;
-        using top_shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<TakeOwnershipPolicy, T>::shared_type;
+        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<TakeOwnershipPolicy, T>::unique_type;
+        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<TakeOwnershipPolicy, T>::shared_type;
 
     public:
         // ====================  LIFECYCLE     =======================================
@@ -70,22 +70,22 @@ class TakeOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TakeO
         //! Returns a unique_ptr of the receiver results.
         //!
         //! The underlying object of the unique_ptr is copied to an object of
-        //! top_unique_type and returned to the invoker.
-        top_unique_type getCopyOwnershipOfObject(std::unique_ptr<T> & my_obj) const
+        //! unique_type and returned to the invoker.
+        unique_type getCopyOwnershipOfObject(unique_type & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            top_unique_type owned_obj(tmp_obj);
+            unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
 
         //! Returns a unique_ptr of the receiver results.
         //!
         //! The underlying object of the shared_ptr is copied to an object of
-        //! top_unique_type and returned to the invoker.
-        top_unique_type getCopyOwnershipOfObject(std::shared_ptr<T> & my_obj) const
+        //! unique_type and returned to the invoker.
+        unique_type getCopyOwnershipOfObject(shared_type & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            top_unique_type owned_obj(tmp_obj);
+            unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
 
@@ -94,32 +94,32 @@ class TakeOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TakeO
         //! Returns a unique_ptr of the receiver results.
         //!
         //! The underlying object of the unique_ptr is taken over and moved to
-        //! an  object of top_unique_type and returned to the invoker.
-        top_unique_type takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
+        //! an  object of unique_type and returned to the invoker.
+        unique_type takeOwnershipOfObject(unique_type & my_obj)
         {
-            top_unique_type owned_obj = std::move(my_obj);
+            unique_type owned_obj = std::move(my_obj);
             return owned_obj; 
         }
 
         //! The take ownership policy doesn't allow a shared_ptr to be taken over.
         //!
         //! An error is thrown if invoked.
-        top_shared_type takeOwnershipOfObject(std::shared_ptr<T> & my_obj)
+        shared_type takeOwnershipOfObject(shared_type & my_obj)
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<TakeOwnershipPolicy>(my_err_message);
-            top_shared_type owned_obj;
+            shared_type owned_obj;
             return owned_obj; 
         }
 
         //! The take ownership does not allow an object to shared.
         //!
         //! An error is thrown if invoked.
-        top_shared_type shareOwnershipOfObject(std::unique_ptr<T> & my_obj) 
+        shared_type shareOwnershipOfObject(unique_type & my_obj) 
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<TakeOwnershipPolicy>(my_err_message);
-            top_shared_type owned_obj;
+            shared_type owned_obj;
             return owned_obj; 
         }
 

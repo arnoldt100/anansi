@@ -32,8 +32,8 @@ template <typename RT>
 class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>
 {
     private:
-        using nop_unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>::unique_type;
-        using nop_shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>::shared_type;
+        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>::unique_type;
+        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>::shared_type;
 
     public:
         // ====================  LIFECYCLE     =======================================
@@ -72,11 +72,11 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //!
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! copied.
-        std::unique_ptr<RT> copyOwnershipOfObject(std::unique_ptr<RT> & my_obj)
+        unique_type copyOwnershipOfObject(unique_type & my_obj)
         {
             const std::string my_error_message(copy_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
-            std::unique_ptr<RT> owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
 
@@ -84,11 +84,11 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //!
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! copied.
-        std::unique_ptr<RT> copyOwnershipOfObject(std::shared_ptr<RT> & my_obj)
+        unique_type copyOwnershipOfObject(shared_type & my_obj)
         {
             const std::string my_error_message(copy_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
-            std::unique_ptr<RT> owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
 
@@ -99,11 +99,11 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //!
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! taken over.
-        std::unique_ptr<RT> takeOwnershipOfObject(std::unique_ptr<RT> & my_obj)
+        unique_type takeOwnershipOfObject(unique_type & my_obj)
         {
             const std::string my_error_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
-            std::unique_ptr<RT> owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
 
@@ -111,11 +111,11 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //!
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! taken over.
-        std::unique_ptr<RT> takeOwnershipOfObject(std::shared_ptr<RT> & my_obj)
+        unique_type takeOwnershipOfObject(shared_type & my_obj)
         {
             const std::string my_error_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(take_error_message_);
-            std::unique_ptr<RT> owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
 
@@ -123,11 +123,11 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //!
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! shared.
-        std::unique_ptr<RT> shareOwnershipOfObject(std::shared_ptr<RT> & my_obj)
+        unique_type shareOwnershipOfObject(shared_type & my_obj)
         {
             const std::string my_error_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
-            std::unique_ptr<RT> owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
         
@@ -135,11 +135,11 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //!
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! shared.
-        std::unique_ptr<RT> shareOwnershipOfObject(std::unique_ptr<RT> & my_obj)
+        unique_type shareOwnershipOfObject(unique_type & my_obj)
         {
             const std::string my_error_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
-            std::unique_ptr<RT> owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
         
