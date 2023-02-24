@@ -31,8 +31,8 @@ template <typename T>
 class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>
 {
     private:
-        using sop_unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::unique_type;
-        using sop_shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::shared_type;
+        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::unique_type;
+        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::shared_type;
 
     public:
         // ====================  LIFECYCLE     =======================================
@@ -71,10 +71,10 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //!
         //! The underlying object of the unique_ptr is copied to an object of
         //! cop_unique_type and returned to the invoker.
-        sop_unique_type getCopyOwnershipOfObject(std::unique_ptr<T> & my_obj) const
+        unique_type getCopyOwnershipOfObject(std::unique_ptr<T> & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            sop_unique_type owned_obj(tmp_obj);
+            unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
 
@@ -82,10 +82,10 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //!
         //! The underlying object of the shared_ptr is copied to an object of
         //! cop_unique_type and returned to the invoker.
-        sop_unique_type getCopyOwnershipOfObject(std::shared_ptr<T> & my_obj) const
+        unique_type getCopyOwnershipOfObject(std::shared_ptr<T> & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            sop_unique_type owned_obj(tmp_obj);
+            unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
 
@@ -94,24 +94,39 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //! The share ownership policy does not allow an object to taken over.
         //!
         //! An error is thrown if invoked.
-        sop_unique_type takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
+        unique_type takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);
-            sop_unique_type owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
 
         //! The share ownership policy does not allow an object to taken over.
         //!
         //! An error is thrown if invoked.
-        sop_unique_type takeOwnershipOfObject(std::shared_ptr<T> & my_obj)
+        unique_type takeOwnershipOfObject(std::shared_ptr<T> & my_obj)
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);
-            sop_unique_type owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
+
+        shared_type shareOwnershipPolicy(shared_type & my_obj)
+        {
+            shared_type shared_obj = my_obj;
+            return shared_obj;
+        }
+
+        shared_type shareOwnershipPolicy(unique_type & my_obj)
+        {
+            const std::string my_err_message(share_error_message_);
+            throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);
+            shared_type shared_obj;
+            return shared_obj;
+        }
+
 
         // ====================  OPERATORS     =======================================
 
@@ -142,7 +157,10 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
     private:
         // ====================  STATIC       =======================================
         static constexpr std::string_view take_error_message_ = 
-            std::string_view("The ShareOwnershipPolicy does not permit the receiver result to be taken over.");
+            std::string_view("The ShareOwnershipPolicy does not permit a receiver result to be taken over.");
+
+        static constexpr std::string_view share_error_message_ = 
+            std::string_view("The ShareOwnershipPolicy does not permit a unique receiver result to be shared.");
 
         // ====================  METHODS       =======================================
 
