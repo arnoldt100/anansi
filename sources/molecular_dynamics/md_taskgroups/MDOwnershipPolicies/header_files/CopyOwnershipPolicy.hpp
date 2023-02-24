@@ -26,10 +26,6 @@
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  CopyOwnershipPolicy
-//  Description:  
-//  =====================================================================================
 //! This class provides methods for implementing copy actions receiver results.
 template <typename T>
 class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>
@@ -92,6 +88,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
             cop_unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
+
         // ====================  MUTATORS      =======================================
 
         //! The copy ownership policy does not allow an object to taken over.
