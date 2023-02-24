@@ -23,13 +23,14 @@
 namespace ANANSI
 {
 
-// =====================================================================================
-//        Class:  ShareOwnershipPolicy
-//  Description:  
-//  =====================================================================================
+//! This class provides methods for implementing share actions receiver results.
 template <typename T>
 class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>
 {
+    private:
+        using sop_unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::unique_type;
+        using sop_shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::shared_type;
+
     public:
         // ====================  LIFECYCLE     =======================================
 
@@ -63,7 +64,51 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
 
         // ====================  ACCESSORS     =======================================
 
+        //! Returns a unique_ptr of the receiver results.
+        //!
+        //! The underlying object of the unique_ptr is copied to an object of
+        //! cop_unique_type and returned to the invoker.
+        sop_unique_type getCopyOwnershipOfObject(std::unique_ptr<T> & my_obj) const
+        {
+            T* tmp_obj = new T(*my_obj);
+            sop_unique_type owned_obj(tmp_obj);
+            return owned_obj; 
+        }
+
+        //! Returns a unique_ptr of the receiver results.
+        //!
+        //! The underlying object of the shared_ptr is copied to an object of
+        //! cop_unique_type and returned to the invoker.
+        sop_unique_type getCopyOwnershipOfObject(std::shared_ptr<T> & my_obj) const
+        {
+            T* tmp_obj = new T(*my_obj);
+            sop_unique_type owned_obj(tmp_obj);
+            return owned_obj; 
+        }
+
         // ====================  MUTATORS      =======================================
+
+        //! The share ownership policy does not allow an object to taken over.
+        //!
+        //! An error is thrown if invoked.
+        sop_unique_type takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
+        {
+            const std::string my_err_message(take_error_message_);
+            throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);
+            sop_unique_type owned_obj;
+            return owned_obj; 
+        }
+
+        //! The share ownership policy does not allow an object to taken over.
+        //!
+        //! An error is thrown if invoked.
+        sop_unique_type takeOwnershipOfObject(std::shared_ptr<T> & my_obj)
+        {
+            const std::string my_err_message(take_error_message_);
+            throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);
+            sop_unique_type owned_obj;
+            return owned_obj; 
+        }
 
         // ====================  OPERATORS     =======================================
 
@@ -92,6 +137,10 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        // ====================  STATIC       =======================================
+        static constexpr std::string_view take_error_message_ = 
+            std::string_view("The ShareOwnershipPolicy does not permit the receiver result to be taken over.");
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
