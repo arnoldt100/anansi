@@ -152,7 +152,7 @@ class TakeOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TakeO
     private:
         // ====================  STATIC       =======================================
         static constexpr std::string_view shared_error_message_ = 
-            std::string_view("The TakeOwnershipPolicy does not permit the shared receiver result to be taken over.");
+            std::string_view("The TakeOwnershipPolicy does not permit a shared receiver result to be taken over.");
 
         // ====================  METHODS       =======================================
 

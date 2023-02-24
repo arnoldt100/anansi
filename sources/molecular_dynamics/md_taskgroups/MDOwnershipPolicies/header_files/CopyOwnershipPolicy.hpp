@@ -31,8 +31,8 @@ template <typename T>
 class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>
 {
     private:
-        using cop_unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::unique_type;
-        using cop_shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::shared_type;
+        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::unique_type;
+        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::shared_type;
 
     public:
         // ====================  LIFECYCLE     =======================================
@@ -70,22 +70,22 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! Returns a unique_ptr of the receiver results.
         //!
         //! The underlying object of the unique_ptr is copied to an object of
-        //! cop_unique_type and returned to the invoker.
-        cop_unique_type getCopyOwnershipOfObject(std::unique_ptr<T> & my_obj) const
+        //! unique_type and returned to the invoker.
+        unique_type getCopyOwnershipOfObject(unique_type & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            cop_unique_type owned_obj(tmp_obj);
+            unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
 
         //! Returns a unique_ptr of the receiver results.
         //!
         //! The underlying object of the shared_ptr is copied to an object of
-        //! cop_unique_type and returned to the invoker.
-        cop_unique_type getCopyOwnershipOfObject(std::shared_ptr<T> & my_obj) const
+        //! unique_type and returned to the invoker.
+        unique_type getCopyOwnershipOfObject(shared_type & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            cop_unique_type owned_obj(tmp_obj);
+            unique_type owned_obj(tmp_obj);
             return owned_obj; 
         }
 
@@ -94,44 +94,44 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! The copy ownership policy does not allow an object to taken over.
         //!
         //! An error is thrown if invoked.
-        cop_unique_type takeOwnershipOfObject(std::unique_ptr<T> & my_obj)
+        unique_type takeOwnershipOfObject(unique_type & my_obj)
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            cop_unique_type owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
 
         //! The copy ownership does not allow an object to taken over.
         //!
         //! An error is thrown if invoked.
-        cop_unique_type takeOwnershipOfObject(std::shared_ptr<T> & my_obj)
+        unique_type takeOwnershipOfObject(shared_type & my_obj)
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            cop_unique_type owned_obj;
+            unique_type owned_obj;
             return owned_obj; 
         }
 
         //! The copy ownership does not allow an object to shared.
         //!
         //! An error is thrown if invoked.
-        cop_shared_type shareOwnershipOfObject(std::unique_ptr<T> & my_obj) 
+        shared_type shareOwnershipOfObject(unique_type & my_obj) 
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            cop_shared_type owned_obj;
+            shared_type owned_obj;
             return owned_obj; 
         }
 
         //! The copy ownership does not allow an object to shared.
         //!
         //! An error is thrown if invoked.
-        cop_shared_type shareOwnershipOfObject(std::shared_ptr<T> & my_obj)
+        shared_type shareOwnershipOfObject(shared_type & my_obj)
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(shared_error_message_);
-            cop_shared_type owned_obj;
+            shared_type owned_obj;
             return owned_obj; 
         }
 
