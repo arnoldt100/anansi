@@ -64,34 +64,34 @@ class ReceiverResultOwnershipPolicy
 
         // ====================  ACCESSORS     =======================================
 
-        unique_type copyOwnership ( std::unique_ptr<RT> & my_obj) const
+        unique_type copyOwnership ( unique_type & my_obj) const
         {
             return asDerived_().getCopyOwnershipOfObject(my_obj);
         }
 
-        unique_type copyOwnership ( std::shared_ptr<RT> & my_obj) const
+        unique_type copyOwnership ( shared_type & my_obj) const
         {
             return asDerived_().getCopyOwnershipOfObject(my_obj);
         }
 
         // ====================  MUTATORS      =======================================
 
-        unique_type takeOwnership ( std::unique_ptr<RT> & my_obj)
+        unique_type takeOwnership ( unique_type & my_obj)
         {
             return asDerived_().takeOwnershipOfObject(my_obj);
         }
 
-        unique_type takeOwnership ( std::shared_ptr<RT> & my_obj)
+        unique_type takeOwnership ( shared_type & my_obj)
         {
             return asDerived_().takeOwnershipOfObject(my_obj);
         }
 
-        shared_type shareOwnership ( std::unique_ptr<RT> & my_obj)
+        shared_type shareOwnership ( unique_type & my_obj)
         {
             return asDerived_().shareOwnershipOfObject(my_obj);
         }
 
-        shared_type shareOwnership ( std::shared_ptr<RT> & my_obj)
+        shared_type shareOwnership ( shared_type & my_obj)
         {
             return asDerived_().shareOwnershipOfObject(my_obj);
         }
