@@ -70,7 +70,7 @@
          header_files/NullOwnershipPolicy.hpp  
          header_files/CopyOwnershipPolicy.hpp  
          header_files/ShareOwnershipPolicy.hpp
-         header_files/TakeOwnershipPolicy.hpp
+         header_files/TransferOwnershipPolicy.hpp
          header_files/ErrorOwnershipPolicy.hpp)
 
     #-----------------------------------------------------
@@ -84,7 +84,7 @@
          implementation_files/NullOwnershipPolicy.cpp  
          implementation_files/CopyOwnershipPolicy.cpp  
          implementation_files/ShareOwnershipPolicy.cpp
-         implementation_files/TakeOwnershipPolicy.cpp
+         implementation_files/TransferOwnershipPolicy.cpp
          implementation_files/ErrorOwnershipPolicy.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

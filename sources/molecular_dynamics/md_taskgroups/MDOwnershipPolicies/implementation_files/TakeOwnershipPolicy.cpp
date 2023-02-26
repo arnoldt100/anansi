@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "TakeOwnershipPolicy.hpp"
+#include "TransferOwnershipPolicy.hpp"
 
 namespace ANANSI {
 
