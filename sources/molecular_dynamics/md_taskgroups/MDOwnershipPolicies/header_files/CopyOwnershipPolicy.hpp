@@ -74,8 +74,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         unique_type getCopyOwnershipOfObject(unique_type & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            unique_type owned_obj(tmp_obj);
-            return owned_obj; 
+            unique_type unique_obj(tmp_obj);
+            return unique_obj; 
         }
 
         //! Returns a unique_ptr of the receiver results.
@@ -85,8 +85,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         unique_type getCopyOwnershipOfObject(shared_type & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            unique_type owned_obj(tmp_obj);
-            return owned_obj; 
+            unique_type unique_obj(tmp_obj);
+            return unique_obj; 
         }
 
         // ====================  MUTATORS      =======================================
@@ -98,8 +98,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            unique_type owned_obj;
-            return owned_obj; 
+            unique_type unique_obj;
+            return unique_obj; 
         }
 
         //! The copy ownership does not allow an object to taken over.
@@ -109,8 +109,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            unique_type owned_obj;
-            return owned_obj; 
+            unique_type unique_obj;
+            return unique_obj; 
         }
 
         //! The copy ownership does not allow an object to shared.
@@ -120,8 +120,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            shared_type owned_obj;
-            return owned_obj; 
+            shared_type shared_obj;
+            return shared_obj; 
         }
 
         //! The copy ownership does not allow an object to shared.
@@ -131,8 +131,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(shared_error_message_);
-            shared_type owned_obj;
-            return owned_obj; 
+            shared_type shared_obj;
+            return shared_obj; 
         }
 
         // ====================  OPERATORS     =======================================

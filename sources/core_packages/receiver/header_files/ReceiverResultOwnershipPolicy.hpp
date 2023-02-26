@@ -2,8 +2,6 @@
 #define RECEIVER_ReceiverResultOwnershipPolicy_INC
 
 //! @file ReceiverResultOwnershipPolicy.hpp
-//!
-//! The interface for the ownership policies.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -21,28 +19,28 @@
 namespace RECEIVER
 {
 
-// =====================================================================================
-//        Class:  ReceiverResultOwnershipPolicy
-//  Description:  
-//  =====================================================================================
-template <template <typename T > class ConcreteResultOwnershipPolicy, class RT>
+//! The interface class for the class policies that copy, share, and transfer of the receiver's result.
+//!
+//! This class uses the CRTP design pattern for implementing the interface of
+//! the receiver's result ownership policies. The derived class is 
+//! ConcreteResultOwnershipPolicy<UT>. There are a some class methods that are not sensible, but
+//! we let the concrete class make these methods illegal.
+//! 
+//! @tparam UT The underlying type of the receiver's result.
+//! @tparam ConcreteResultOwnershipPolicy<UT> The concrete ownership policy of the recievers result.
+template <template <typename T > class ConcreteResultOwnershipPolicy, class UT>
 class ReceiverResultOwnershipPolicy
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        friend ConcreteResultOwnershipPolicy<RT>;
+        //! The definition of a shared receiver's result.
+        using shared_type = std::shared_ptr<UT>;
 
-        using shared_type = std::shared_ptr<RT>;
+        //! The definition of a unique receiver's result.
+        using unique_type = std::unique_ptr<UT>;
 
-        using unique_type = std::unique_ptr<RT>;
-
-        ReceiverResultOwnershipPolicy ()   // constructor
-        {
-            return;
-        }
-
-        ReceiverResultOwnershipPolicy (const ReceiverResultOwnershipPolicy & other)   // copy constructor
+        ReceiverResultOwnershipPolicy (const ReceiverResultOwnershipPolicy & other)  // copy constructor
         {
             if (this != &other)
             {
@@ -64,36 +62,64 @@ class ReceiverResultOwnershipPolicy
 
         // ====================  ACCESSORS     =======================================
 
-        unique_type copyOwnership ( unique_type & my_obj) const
+        //! The copy interface definition for a unique_type receiver's result.
+        //!
+        //! The underlying object in a_receiver_result is to be copied.
+        //!
+        //! @param[in] a_receiver_result The receiver result to be copied.
+        //! @return A unique_type obtained by copying the underlying object in a_receiver_result.
+        unique_type copyReceiverResult ( unique_type const & a_receiver_result) const
         {
-            return asDerived_().getCopyOwnershipOfObject(my_obj);
+            return asDerived_().copyResult(a_receiver_result);
         }
 
-        unique_type copyOwnership ( shared_type & my_obj) const
+        //! The copy interface definition for a shared_type receiver's result.
+        //!
+        //! The underlying object in a_receiver_result is to be copied.
+        //!
+        //! @param[in] a_receiver_result The receiver result to be copied.
+        //! @return A unique_type obtained by copying the underlying object in a_receiver_result.
+        unique_type copyReceiverResult ( shared_type const & a_receiver_result) const
         {
-            return asDerived_().getCopyOwnershipOfObject(my_obj);
+            return asDerived_().copyResult(a_receiver_result);
         }
 
         // ====================  MUTATORS      =======================================
 
-        unique_type takeOwnership ( unique_type & my_obj)
+        //! The transfer ownership interface definition for a unique_type receiver's result.
+        //!
+        //! @param[in] a_receiver_result The receiver result to trasnfer ownership.
+        //! @return A unique_type obtained by transferring ownership of the underlying object in a_receiver_result.
+        unique_type transferOwnershipReceiverResult ( unique_type & a_receiver_result)
         {
-            return asDerived_().takeOwnershipOfObject(my_obj);
+            return asDerived_().transferOwnershipOfResult(a_receiver_result);
         }
 
-        unique_type takeOwnership ( shared_type & my_obj)
+        //! The transfer ownership interface definition for a shared_type receiver's result.
+        //!
+        //! @param[in] a_receiver_result The receiver result to trasnfer ownership.
+        //! @return A unique_type obtained by transferring ownership of the underlying object in a_receiver_result.
+        unique_type transferOwnershipReceiverResult ( shared_type & a_receiver_result)
         {
-            return asDerived_().takeOwnershipOfObject(my_obj);
+            return asDerived_().transferOwnershipOfResult(a_receiver_result);
         }
 
-        shared_type shareOwnership ( unique_type & my_obj)
+        //! The share ownership interface definition for a unique_type receiver's result.
+        //!
+        //! @param[in] a_receiver_result The receiver result to share ownership. 
+        //! @return A shared_type obtained by transferring ownership of the underlying object in a_receiver_result.
+        shared_type shareOwnershipReceiverResult ( unique_type & a_receiver_result)
         {
-            return asDerived_().shareOwnershipOfObject(my_obj);
+            return asDerived_().shareOwnershipOfResult(a_receiver_result);
         }
 
-        shared_type shareOwnership ( shared_type & my_obj)
+        //! The share ownership interface definition for a shared_type receiver's result.
+        //!
+        //! @param[in] a_receiver_result The receiver result to share ownership. 
+        //! @return A shared_type obtained by transferring ownership of the underlying object in a_receiver_result.
+        shared_type shareOwnershipReceiverResult ( shared_type & a_receiver_result)
         {
-            return asDerived_().shareOwnershipOfObject(my_obj);
+            return asDerived_().shareOwnershipOfResult(a_receiver_result);
         }
 
         // ====================  OPERATORS     =======================================
@@ -122,29 +148,41 @@ class ReceiverResultOwnershipPolicy
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        //! The following ensures that the CRTP doesn't use the wrong class.
+        //!
+        //! Only friends of this class can invoke the private  base class
+        //! constructor, Therefore incorrect code like 
+        //!   * class Derived1 : public Base<Derived2>
+        //! won't compile.
+        friend ConcreteResultOwnershipPolicy<UT>;
+        ReceiverResultOwnershipPolicy() // constructor
+        {
+            return;
+        }
+
         // ====================  METHODS       =======================================
         //! Provides access to the CRTP derived class "Derived."
         //!
         //! @return A reference to the CRTP derived class.
-        constexpr ConcreteResultOwnershipPolicy<RT> & asDerived_() 
+        constexpr ConcreteResultOwnershipPolicy<UT> & asDerived_() 
         {
-            return *static_cast<ConcreteResultOwnershipPolicy<RT> *>(this);
+            return *static_cast<ConcreteResultOwnershipPolicy<UT> *>(this);
         }
 
         //! Provides access to the CRTP derived class "Derived."
         //!
         //! @return A reference to a constant CRTP derived class "Derived".
-        constexpr ConcreteResultOwnershipPolicy<RT> const & asDerived_() const
+        constexpr ConcreteResultOwnershipPolicy<UT> const & asDerived_() const
         {
-            return *static_cast<ConcreteResultOwnershipPolicy<RT> const*>(this);
+            return *static_cast<ConcreteResultOwnershipPolicy<UT> const*>(this);
         }
 
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class ReceiverResultOwnershipPolicy  -----
 
-template <template <typename T> class ConcreteResultOwnershipPolicy, class RT>
-ReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy,RT>::~ReceiverResultOwnershipPolicy()
+template <template <typename T> class ConcreteResultOwnershipPolicy, class UT>
+ReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy,UT>::~ReceiverResultOwnershipPolicy()
 {
     return;
 }

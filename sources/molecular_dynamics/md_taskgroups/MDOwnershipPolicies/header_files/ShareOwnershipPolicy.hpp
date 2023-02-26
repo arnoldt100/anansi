@@ -74,8 +74,8 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         unique_type getCopyOwnershipOfObject(std::unique_ptr<T> & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            unique_type owned_obj(tmp_obj);
-            return owned_obj; 
+            unique_type unique_obj(tmp_obj);
+            return unique_obj; 
         }
 
         //! Returns a unique_ptr of the receiver results.
@@ -85,8 +85,8 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         unique_type getCopyOwnershipOfObject(std::shared_ptr<T> & my_obj) const
         {
             T* tmp_obj = new T(*my_obj);
-            unique_type owned_obj(tmp_obj);
-            return owned_obj; 
+            unique_type unique_obj(tmp_obj);
+            return unique_obj; 
         }
 
         // ====================  MUTATORS      =======================================
@@ -98,8 +98,8 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);
-            unique_type owned_obj;
-            return owned_obj; 
+            unique_type unique_obj;
+            return unique_obj; 
         }
 
         //! The share ownership policy does not allow an object to taken over.
@@ -109,8 +109,8 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);
-            unique_type owned_obj;
-            return owned_obj; 
+            unique_type unique_obj;
+            return unique_obj; 
         }
 
         shared_type shareOwnershipPolicy(shared_type & my_obj)
