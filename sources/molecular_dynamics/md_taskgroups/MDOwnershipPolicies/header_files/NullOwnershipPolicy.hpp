@@ -1,8 +1,6 @@
 #ifndef ANANSI_NullOwnershipPolicy_INC
 #define ANANSI_NullOwnershipPolicy_INC
 //! @file NullOwnershipPolicy.hpp
-//!
-//! Contains the declaration for class NullOwnershipPolicy.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -78,7 +76,7 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver's results to be
         //! copied.
         //!
-        //! @param [in] a_receiver_result The receiver result to be copied.
+        //! @param[in] a_receiver_result The receiver result to be copied.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         unique_type copyResult(unique_type const & a_receiver_result) const
         {
@@ -93,7 +91,7 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! copied.
         //!
-        //! @param [in] a_receiver_result The receiver result to be copied.
+        //! @param[in] a_receiver_result The receiver result to be copied.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         unique_type copyResult(shared_type const & a_receiver_result) const
         {
@@ -111,7 +109,7 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! taken over.
         //!
-        //! @param [in] a_receiver_result The receiver result to transfer its ownership.
+        //! @param[in] a_receiver_result The receiver result to transfer its ownership.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         unique_type transferOwnershipOfResult(unique_type & a_receiver_result)
         {
@@ -126,7 +124,7 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! taken over.
         //!
-        //! @param [in] a_receiver_result The receiver result to transfer its ownership.
+        //! @param[in] a_receiver_result The receiver result to transfer its ownership.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         unique_type transferOwnershipOfResult(shared_type & a_receiver_result)
         {
@@ -141,7 +139,7 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! shared.
         //!
-        //! @param [in] a_receiver_result The receiver result to share its ownership.
+        //! @param[in] a_receiver_result The receiver result to share its ownership.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         shared_type shareOwnershipOfObject(shared_type & a_receiver_result)
         {
@@ -156,7 +154,7 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! shared.
         //!
-        //! @param [in] a_receiver_result The receiver result to share its ownership.
+        //! @param[in] a_receiver_result The receiver result to share its ownership.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         shared_type shareOwnershipOfObject(unique_type & a_receiver_result)
         {

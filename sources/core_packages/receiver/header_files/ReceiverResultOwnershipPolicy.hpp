@@ -79,7 +79,7 @@ class ReceiverResultOwnershipPolicy
         //!
         //! @param[in] a_receiver_result The receiver result to be copied.
         //! @return A unique_type obtained by copying the underlying object in a_receiver_result.
-        unique_type copyReceiverResult ( shared_type const & a_receiver_result) const
+        unique_type copyReceiverResult(shared_type const & a_receiver_result) const
         {
             return asDerived_().copyResult(a_receiver_result);
         }
@@ -90,7 +90,7 @@ class ReceiverResultOwnershipPolicy
         //!
         //! @param[in] a_receiver_result The receiver result to trasnfer ownership.
         //! @return A unique_type obtained by transferring ownership of the underlying object in a_receiver_result.
-        unique_type transferOwnershipReceiverResult ( unique_type & a_receiver_result)
+        unique_type transferOwnershipReceiverResult(unique_type & a_receiver_result)
         {
             return asDerived_().transferOwnershipOfResult(a_receiver_result);
         }
@@ -99,7 +99,7 @@ class ReceiverResultOwnershipPolicy
         //!
         //! @param[in] a_receiver_result The receiver result to trasnfer ownership.
         //! @return A unique_type obtained by transferring ownership of the underlying object in a_receiver_result.
-        unique_type transferOwnershipReceiverResult ( shared_type & a_receiver_result)
+        unique_type transferOwnershipReceiverResult(shared_type & a_receiver_result)
         {
             return asDerived_().transferOwnershipOfResult(a_receiver_result);
         }
