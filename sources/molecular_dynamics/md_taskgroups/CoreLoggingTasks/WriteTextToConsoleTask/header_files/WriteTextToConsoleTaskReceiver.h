@@ -23,6 +23,7 @@
 #include "ConsoleMessageContainer.h"
 #include "TaskLabel.hpp"
 #include "CopyOwnershipPolicy.hpp"
+#include "NullOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
@@ -108,7 +109,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  DATA MEMBERS  =======================================
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
-        ANANSI::CopyOwnershipPolicy<receiver_result_t> ownershipPolicy_;
+        ANANSI::NullOwnershipPolicy<receiver_result_t> ownershipPolicy_;
 
         mutable std::unique_ptr<receiver_result_t> results_;
 
