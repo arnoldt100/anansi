@@ -1,12 +1,16 @@
-#ifndef ANANSI_CopyOwnershipPolicy_INC
-#define ANANSI_CopyOwnershipPolicy_INC
-//! @file CopyOwnershipPolicy.hpp
+#ifndef ANANSI_TransferCopyOwnershipPolicy_INC
+#define ANANSI_TransferCopyOwnershipPolicy_INC
+//! @file TransferCopyOwnershipPolicy.hpp
+//!
+//! Brief description
+//!
+//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <string.h>
-#include <utility>
+#include <memory>
 #include <memory>
 
 //--------------------------------------------------------//
@@ -22,29 +26,31 @@
 namespace ANANSI
 {
 
-//! This concrete policy class implements copy behaviours with respect to the receiver's's result.
+//! This concrete policy class implements trasnfer behaviours with respect to the receiver's's result.
 //! 
-//! The CopyOwnershipPolicy implements the following constraints
+//! The TransferCopyOwnershipPolicy implements the following constraints
 //! on the receiver's result:
-//! copying of receiver's result
-//! no sharing of ownership
-//! no transferring ownership
+//! copying
+//! no sharing 
+//! transferring ownership
+//!
+//! @tparam RT The underlying type of the receiver's result.
 template <typename T>
-class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>
+class TransferCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TransferCopyOwnershipPolicy, T>
 {
     private:
-        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::unique_type;
-        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::shared_type;
+        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<TransferCopyOwnershipPolicy, T>::unique_type;
+        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<TransferCopyOwnershipPolicy, T>::shared_type;
 
     public:
         // ====================  LIFECYCLE     =======================================
 
-        CopyOwnershipPolicy ()   // constructor
+        TransferCopyOwnershipPolicy ()   // constructor
         {
             return;
         }
 
-        CopyOwnershipPolicy (const CopyOwnershipPolicy & other)   // copy constructor
+        TransferCopyOwnershipPolicy (const TransferCopyOwnershipPolicy & other)   // copy constructor
         {
             if (this != &other)
             {
@@ -53,16 +59,16 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
             return;
         }
 
-        CopyOwnershipPolicy (CopyOwnershipPolicy && other)   // copy-move constructor
+        TransferCopyOwnershipPolicy (TransferCopyOwnershipPolicy && other)   // copy-move constructor
         {
             if (this != &other)
             {
                 
             }
             return;
-        }		// -----  end of method CopyOwnershipPolicy::CopyOwnershipPolicy  -----
+        }		// -----  end of method TransferCopyOwnershipPolicy::TransferCopyOwnershipPolicy  -----
 
-        ~CopyOwnershipPolicy ()
+        ~TransferCopyOwnershipPolicy ()
         {
             return;
         };  // destructor
@@ -75,7 +81,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! unique_type and returned to the invoker.
         //!
         //! @param[in] a_receiver_result The receiver result to be copied.
-        //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
+        //! @throws ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>
         unique_type copyResult(unique_type const & a_receiver_result) const
         {
             T* tmp_obj = new T(*a_receiver_result);
@@ -99,81 +105,74 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
 
         // ====================  MUTATORS      =======================================
 
-        //! Throws runtime error if invoked.
+        //! Returns a unique_ptr of the receiver results.
         //!
-        //! The CopyOwnershipPolicy doesn't allow the receiver results to be
-        //! taken over.
-        //!
-        //! @param[in] a_receiver_result The receiver result to transfer its ownership.
-        //! @throws ErrorOwnershipPolicy<CopyOwnershipPolicy>
-        unique_type transferOwnershipOfResult(unique_type & a_receiver_result)
+        //! The underlying object of the unique_ptr is taken over and moved to
+        //! an  object of unique_type and returned to the invoker.
+        unique_type transferOwnershipOfResult(unique_type & my_obj)
         {
-            const std::string my_err_message(take_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            unique_type unique_obj;
+            unique_type unique_obj = std::move(my_obj);
+            return unique_obj; 
+        }
+
+        //! The transfer ownership policy doesn't allow a shared_type to be taken over.
+        //!
+        //! An error is thrown if invoked.
+        unique_type transferOwnershipOfResult(shared_type & my_obj)
+        {
+            const std::string my_err_message(shared_error_message_);
+            throw ANANSI::ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>(my_err_message);
+            shared_type unique_obj;
             return unique_obj; 
         }
 
         //! Throws runtime error if invoked.
         //!
-        //! The CopyOwnershipPolicy doesn't allow the receiver results to be
-        //! taken over.
-        //!
-        //! @param[in] a_receiver_result The receiver result to transfer its ownership.
-        //! @throws ErrorOwnershipPolicy<CopyOwnershipPolicy>
-        unique_type transferOwnershipOfResult(shared_type & a_receiver_result)
-        {
-            const std::string my_err_message(take_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            unique_type unique_obj;
-            return unique_obj; 
-        }
-
-        //! Throws runtime error if invoked.
-        //!
-        //! The CopyOwnershipPolicy doesn't allow the receiver results to be
+        //! The TransferCopyOwnershipPolicy doesn't permit the receiver results to be
         //! shared.
         //!
         //! @param[in] a_receiver_result The receiver result to share its ownership.
-        //! @throws ErrorOwnershipPolicy<CopyOwnershipPolicy>
-        shared_type shareOwnershipOfResult(unique_type & a_receiver_result) 
+        //! @throws ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>
+        shared_type shareOwnershipReceiverResult(shared_type & my_obj) 
         {
             const std::string my_err_message(shared_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
+            throw ANANSI::ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>(my_err_message);
             shared_type shared_obj;
             return shared_obj; 
         }
 
         //! Throws runtime error if invoked.
         //!
-        //! The CopyOwnershipPolicy doesn't allow the receiver results to be
+        //! The TransferCopyOwnershipPolicy doesn't permit the receiver results to be
         //! shared.
         //!
         //! @param[in] a_receiver_result The receiver result to share its ownership.
-        //! @throws ErrorOwnershipPolicy<CopyOwnershipPolicy>
-        shared_type shareOwnershipOfResult(shared_type & a_receiver_result)
+        //! @throws ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>
+        shared_type shareOwnershipReceiverResult(unique_type & my_obj) 
         {
             const std::string my_err_message(shared_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(shared_error_message_);
+            throw ANANSI::ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>(my_err_message);
             shared_type shared_obj;
             return shared_obj; 
         }
 
         // ====================  OPERATORS     =======================================
 
-        CopyOwnershipPolicy& operator= ( const CopyOwnershipPolicy &other ) // assignment operator
+        TransferCopyOwnershipPolicy& operator= ( const TransferCopyOwnershipPolicy &other) // assignment operator
         {
             if (this != &other)
             {
+
             }
             return *this;
         } // assignment operator
 
 
-        CopyOwnershipPolicy& operator= ( CopyOwnershipPolicy && other ) // assignment-move operator
+        TransferCopyOwnershipPolicy& operator= ( TransferCopyOwnershipPolicy && other ) // assignment-move operator
         {
             if (this != &other)
             {
+        
             }
             return *this;
        } // assignment-move operator
@@ -186,18 +185,18 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
     private:
         // ====================  STATIC       =======================================
         static constexpr std::string_view shared_error_message_ = 
-            std::string_view("The CopyOwnershipPolicy does not permit the receiver result to be shared.");
+            std::string_view("The TransferCopyOwnershipPolicy does not permit sharing of a receiver result.");
 
         static constexpr std::string_view take_error_message_ = 
-            std::string_view("The CopyOwnershipPolicy does not permit the receiver result to be taken over.");
+            std::string_view("The TransferCopyOwnershipPolicy does not permit a shared_type receiver result to be taken over.");
 
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class CopyOwnershipPolicy  -----
+}; // -----  end of class TransferCopyOwnershipPolicy  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_CopyOwnershipPolicy_INC
+#endif // ANANSI_TransferCopyOwnershipPolicy_INC
