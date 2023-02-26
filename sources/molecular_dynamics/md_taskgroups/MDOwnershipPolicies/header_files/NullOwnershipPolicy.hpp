@@ -34,11 +34,10 @@ namespace ANANSI
 template <typename RT>
 class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>
 {
-    private:
+    public:
         using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>::unique_type;
         using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>::shared_type;
 
-    public:
         // ====================  LIFECYCLE     =======================================
 
         NullOwnershipPolicy ()   // constructor

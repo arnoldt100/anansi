@@ -111,7 +111,8 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
         ANANSI::NullOwnershipPolicy<receiver_result_t> ownershipPolicy_;
 
-        mutable std::unique_ptr<receiver_result_t> results_;
+        // mutable std::unique_ptr<receiver_result_t> results_;
+        mutable ANANSI::NullOwnershipPolicy<receiver_result_t>::unique_type results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 

@@ -38,11 +38,10 @@ namespace ANANSI
 template <typename T>
 class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>
 {
-    private:
+    public:
         using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::unique_type;
         using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::shared_type;
 
-    public:
         // ====================  LIFECYCLE     =======================================
 
         ShareOwnershipPolicy ()   // constructor
