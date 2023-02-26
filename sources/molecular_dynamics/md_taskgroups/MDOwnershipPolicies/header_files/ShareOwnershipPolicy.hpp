@@ -141,7 +141,7 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //!
         //! @param[in] a_receiver_result The receiver result to be shared in its ownership.
         //! returns shared_obj  A object of shared_type that shares a_receiver_result.
-        shared_type shareOwnershipPolicy(shared_type & a_receiver_result)
+        shared_type shareOwnershipReceiverResult(shared_type & a_receiver_result)
         {
             shared_type shared_obj = a_receiver_result;
             return shared_obj;
@@ -154,7 +154,7 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //!
         //! @param[in] a_receiver_result The receiver result to be shared in its
         //! ownership.
-        shared_type shareOwnershipPolicy(unique_type & my_obj)
+        shared_type shareOwnershipReceiverResult(unique_type & my_obj)
         {
             const std::string my_err_message(share_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);

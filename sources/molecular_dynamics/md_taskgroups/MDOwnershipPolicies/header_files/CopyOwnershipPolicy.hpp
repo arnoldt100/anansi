@@ -136,7 +136,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //!
         //! @param[in] a_receiver_result The receiver result to share its ownership.
         //! @throws ErrorOwnershipPolicy<CopyOwnershipPolicy>
-        shared_type shareOwnershipOfObject(unique_type & a_receiver_result) 
+        shared_type shareOwnershipOfResult(unique_type & a_receiver_result) 
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
@@ -151,7 +151,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //!
         //! @param[in] a_receiver_result The receiver result to share its ownership.
         //! @throws ErrorOwnershipPolicy<CopyOwnershipPolicy>
-        shared_type shareOwnershipOfObject(shared_type & a_receiver_result)
+        shared_type shareOwnershipOfResult(shared_type & a_receiver_result)
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(shared_error_message_);
