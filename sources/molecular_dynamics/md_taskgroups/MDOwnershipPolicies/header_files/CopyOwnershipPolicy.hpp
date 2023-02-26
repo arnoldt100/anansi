@@ -22,7 +22,7 @@
 namespace ANANSI
 {
 
-//! This concrete policy class implements behaviours with respect to the receiver's's result.
+//! This concrete policy class implements copy behaviours with respect to the receiver's's result.
 //! 
 //! The CopyOwnershipPolicy implements the following constraints
 //! on the receiver's result:
@@ -69,12 +69,13 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
 
         // ====================  ACCESSORS     =======================================
 
-        //! Returns a unique_ptr of the receiver results.
+        //! Returns a unique_type of the receiver results.
         //!
         //! The underlying object of the unique_ptr is copied to an object of
         //! unique_type and returned to the invoker.
         //!
         //! @param[in] a_receiver_result The receiver result to be copied.
+        //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
         unique_type copyResult(unique_type const & a_receiver_result) const
         {
             T* tmp_obj = new T(*a_receiver_result);
@@ -82,12 +83,13 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
             return unique_obj; 
         }
 
-        //! Returns a unique_ptr of the receiver results.
+        //! Returns a unique_type of the receiver results.
         //!
         //! The underlying object of the shared_ptr is copied to an object of
         //! unique_type and returned to the invoker.
         //!
         //! @param[in] a_receiver_result The receiver result to be copied.
+        //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
         unique_type copyResult(shared_type const & a_receiver_result) const
         {
             T* tmp_obj = new T(*a_receiver_result);

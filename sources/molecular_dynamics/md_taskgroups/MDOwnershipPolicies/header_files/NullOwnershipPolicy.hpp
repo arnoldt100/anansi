@@ -22,7 +22,7 @@
 namespace ANANSI
 {
 
-//! This concrete policy class implements behaviours with respect to the receiver's's result.
+//! This concrete policy class implements null behaviours with respect to the receiver's's result.
 //! 
 //! The NullOwnershipPolicy implements the following constraints
 //! on the receiver's result:
