@@ -82,7 +82,7 @@ auto WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
 
 auto WriteTextToConsoleTaskReceiver::receiverTakeOwnershipOfResults()
 {
-     auto my_ptr = ownershipPolicy_.transferOwnershipReceiverResult(this->results_);
+     auto my_ptr = ownershipPolicy_.copyReceiverResult(this->results_);
      return my_ptr;   
 }
 

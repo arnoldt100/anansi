@@ -16,6 +16,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "CopyResult.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
 
@@ -78,9 +79,10 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
         unique_type copyResult(unique_type const & a_receiver_result) const
         {
-            T* tmp_obj = new T(*a_receiver_result);
-            unique_type unique_obj(tmp_obj);
-            return unique_obj; 
+            // T* tmp_obj = new T(*a_receiver_result);
+            // unique_type unique_obj(tmp_obj);
+            // return unique_obj; 
+            return RECEIVER::CopyResult::operator()<T,unique_type,unique_type>(a_receiver_result);
         }
 
         //! Returns a unique_type of the receiver results.
@@ -92,9 +94,10 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
         unique_type copyResult(shared_type const & a_receiver_result) const
         {
-            T* tmp_obj = new T(*a_receiver_result);
-            unique_type unique_obj(tmp_obj);
-            return unique_obj; 
+            // T* tmp_obj = new T(*a_receiver_result);
+            // unique_type unique_obj(tmp_obj);
+            // return unique_obj; 
+            return RECEIVER::CopyResult::operator()<T,shared_type,unique_type>(a_receiver_result);
         }
 
         // ====================  MUTATORS      =======================================
