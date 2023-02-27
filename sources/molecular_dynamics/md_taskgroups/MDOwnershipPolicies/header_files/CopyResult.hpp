@@ -22,21 +22,21 @@ namespace RECEIVER
 {
 
 // =====================================================================================
-//        Class:  CopyResult
+//        Class:  Ownership1
 //  Description:  
 //  =====================================================================================
-class CopyResult
+class Ownership1
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        CopyResult ();   // constructor
+        Ownership1 ();   // constructor
 
-        CopyResult (const CopyResult & other);   // copy constructor
+        Ownership1 (const Ownership1 & other);   // copy constructor
 
-        CopyResult (CopyResult && other);   // copy-move constructor
+        Ownership1 (Ownership1 && other);   // copy-move constructor
 
-        ~CopyResult();  // destructor
+        ~Ownership1();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +44,9 @@ class CopyResult
 
         // ====================  OPERATORS     =======================================
 
-        CopyResult& operator= ( const CopyResult &other ); // assignment operator
+        Ownership1& operator= ( const Ownership1 &other ); // assignment operator
 
-        CopyResult& operator= ( CopyResult && other ); // assignment-move operator
+        Ownership1& operator= ( Ownership1 && other ); // assignment-move operator
 
         template <typename UnderLyingType,typename ResultType,typename CopiedType>
         CopiedType operator( )(ResultType const & result)
@@ -66,7 +66,7 @@ class CopyResult
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class CopyResult  -----
+}; // -----  end of class Ownership1  -----
 
 
 }; // namespace RECEIVER

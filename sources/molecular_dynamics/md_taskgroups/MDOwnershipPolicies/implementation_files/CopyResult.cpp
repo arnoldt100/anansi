@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "CopyResult.hpp"
+#include "Ownership1.hpp"
 
 namespace RECEIVER {
 
@@ -19,12 +19,12 @@ namespace RECEIVER {
 
 //============================= LIFECYCLE ====================================
 
-CopyResult::CopyResult()
+Ownership1::Ownership1()
 {
     return;
 }
 
-CopyResult::CopyResult( CopyResult const & other)
+Ownership1::Ownership1( Ownership1 const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ CopyResult::CopyResult( CopyResult const & other)
     return;
 }
 
-CopyResult::CopyResult( CopyResult && other)
+Ownership1::Ownership1( Ownership1 && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method CopyResult::CopyResult  -----
+}		// -----  end of method Ownership1::Ownership1  -----
 
 
-CopyResult::~CopyResult()
+Ownership1::~Ownership1()
 {
     return;
 }
@@ -54,7 +54,7 @@ CopyResult::~CopyResult()
 
 //============================= OPERATORS ====================================
 
-CopyResult& CopyResult::operator= ( const CopyResult &other )
+Ownership1& Ownership1::operator= ( const Ownership1 &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ CopyResult& CopyResult::operator= ( const CopyResult &other )
     return *this;
 } // assignment operator
 
-CopyResult& CopyResult::operator= ( CopyResult && other )
+Ownership1& Ownership1::operator= ( Ownership1 && other )
 {
     if (this != &other)
     {
