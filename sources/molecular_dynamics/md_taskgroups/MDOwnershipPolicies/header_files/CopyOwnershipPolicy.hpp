@@ -30,8 +30,9 @@ namespace ANANSI
 //! copying of receiver's result
 //! no sharing of ownership
 //! no transferring ownership
-template <typename T>
-class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>
+template < typename T,
+           template <typename S> class OwnershipPolicy=RECEIVER::Ownership1>
+class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, OwnershipPolicy, T>
 {
     public:
         using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::unique_type;

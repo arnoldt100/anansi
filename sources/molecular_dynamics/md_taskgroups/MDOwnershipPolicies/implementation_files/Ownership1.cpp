@@ -19,58 +19,11 @@ namespace RECEIVER {
 
 //============================= LIFECYCLE ====================================
 
-Ownership1::Ownership1()
-{
-    return;
-}
-
-Ownership1::Ownership1( Ownership1 const & other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}
-
-Ownership1::Ownership1( Ownership1 && other)
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}		// -----  end of method Ownership1::Ownership1  -----
-
-
-Ownership1::~Ownership1()
-{
-    return;
-}
-
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-Ownership1& Ownership1::operator= ( const Ownership1 &other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment operator
-
-Ownership1& Ownership1::operator= ( Ownership1 && other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

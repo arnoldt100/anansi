@@ -28,7 +28,9 @@ namespace RECEIVER
 //! 
 //! @tparam UT The underlying type of the receiver's result.
 //! @tparam ConcreteResultOwnershipPolicy<UT> The concrete ownership policy of the recievers result.
-template <template <typename T > class ConcreteResultOwnershipPolicy, class UT>
+template <template <typename T > class ConcreteResultOwnershipPolicy, 
+          template <typename T > class OwnernshipPolicy, 
+          class UT >
 class ReceiverResultOwnershipPolicy
 {
     public:
@@ -181,8 +183,10 @@ class ReceiverResultOwnershipPolicy
 
 }; // -----  end of class ReceiverResultOwnershipPolicy  -----
 
-template <template <typename T> class ConcreteResultOwnershipPolicy, class UT>
-ReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy,UT>::~ReceiverResultOwnershipPolicy()
+template <template <typename T > class ConcreteResultOwnershipPolicy, 
+          template <typename T > class OwnernshipPolicy, 
+          class UT >
+ReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy,OwnernshipPolicy,UT>::~ReceiverResultOwnershipPolicy()
 {
     return;
 }
