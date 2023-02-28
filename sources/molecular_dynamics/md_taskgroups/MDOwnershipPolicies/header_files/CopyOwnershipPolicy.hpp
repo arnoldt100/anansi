@@ -111,7 +111,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            unique_type unique_obj;
+            unique_type unique_obj(new T);
             return unique_obj; 
         }
 
@@ -126,7 +126,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             const std::string my_err_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            unique_type unique_obj;
+            unique_type unique_obj(new T);
             return unique_obj; 
         }
 
@@ -141,7 +141,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            shared_type shared_obj;
+            shared_type shared_obj(new T);
             return shared_obj; 
         }
 
@@ -156,7 +156,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         {
             const std::string my_err_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(shared_error_message_);
-            shared_type shared_obj;
+            shared_type shared_obj(new T);
             return shared_obj; 
         }
 

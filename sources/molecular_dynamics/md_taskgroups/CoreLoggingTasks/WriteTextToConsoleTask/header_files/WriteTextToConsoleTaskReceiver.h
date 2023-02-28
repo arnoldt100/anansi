@@ -40,6 +40,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         //! The object type the smart pointer will manage,
         using receiver_result_t = int;
 
+        template<typename T>
+        using OwnershipPolicy = Ownership1<T>;
+
         //! The type of smart pointer that manages the receiver's result.
         using receiver_result_smart_pointer_t = std::unique_ptr<receiver_result_t>;
 
@@ -78,7 +81,8 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
-        std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> receiverGetCopyOfResults() const;
+        // std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> receiverGetCopyOfResults() const;
+         OwnershipPolicy<receiver_result_t>::Uniquetype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
         
@@ -109,10 +113,11 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  DATA MEMBERS  =======================================
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
-        ANANSI::CopyOwnershipPolicy<receiver_result_t,Ownership1> ownershipPolicy_;
+        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
+
 
         // mutable std::unique_ptr<receiver_result_t> results_;
-        mutable  Ownership1<receiver_result_t>::Sharedtype results_;
+        mutable  OwnershipPolicy<receiver_result_t>::Sharedtype results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 

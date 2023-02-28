@@ -50,11 +50,10 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
+// std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
+WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Uniquetype WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 {
-   std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> my_ptr
-       = this->ownershipPolicy_.copyResult(this->results_);
-
+    OwnershipPolicy<receiver_result_t>::Uniquetype  my_ptr = this->ownershipPolicy_.copyResult(this->results_);
     return my_ptr;
 }
 

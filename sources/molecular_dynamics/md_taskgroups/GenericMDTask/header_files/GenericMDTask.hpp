@@ -92,7 +92,7 @@ class GenericMDTask : public BaseClass
         //! Returns a copy of the receiver results.  The calling function
         //! gets a copy results via a unique_ptr. The original results does not 
         //! reset to default values.
-        std::unique_ptr<typename Receiver::receiver_result_t> getCopyOfResults() const
+        auto getCopyOfResults() const
         {
             std::unique_ptr<typename Receiver::receiver_result_t> results = 
                 this->receiver_->getCopyOfResults();

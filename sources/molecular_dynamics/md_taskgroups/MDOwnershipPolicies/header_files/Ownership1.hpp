@@ -66,14 +66,14 @@ class Ownership1
         {
             Underlyingtype* tmp_obj = new Underlyingtype(*result);
             Uniquetype obj(tmp_obj);
-            return obj; 
+            return std::move(obj); 
         }
 
         template <typename Resulttype>
         static Uniquetype transfer(Resulttype const & result)
         {
             Uniquetype tmp_obj = std::move(result);
-            return tmp_obj; 
+            return std::move(tmp_obj); 
         }
 
         template <typename Resulttype>
