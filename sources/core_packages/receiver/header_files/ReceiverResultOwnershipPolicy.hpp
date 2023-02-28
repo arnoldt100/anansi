@@ -28,8 +28,8 @@ namespace RECEIVER
 //! 
 //! @tparam UT The underlying type of the receiver's result.
 //! @tparam ConcreteResultOwnershipPolicy<UT> The concrete ownership policy of the recievers result.
-template <template <typename T > class ConcreteResultOwnershipPolicy, 
-          template <typename T > class OwnernshipPolicy, 
+template <typename ConcreteResultOwnershipPolicy, 
+          template <typename> typename OwnernshipPolicy, 
           class UT >
 class ReceiverResultOwnershipPolicy
 {
@@ -37,10 +37,8 @@ class ReceiverResultOwnershipPolicy
         // ====================  LIFECYCLE     =======================================
 
         //! The definition of a shared receiver's result.
-        using shared_type = std::shared_ptr<UT>;
-
-        //! The definition of a unique receiver's result.
-        using unique_type = std::unique_ptr<UT>;
+        using shared_type = typename OwnernshipPolicy<UT>::Sharedtype;
+        using unique_type = typename OwnernshipPolicy<UT>::Uniquetype;
 
         ReceiverResultOwnershipPolicy (const ReceiverResultOwnershipPolicy & other)  // copy constructor
         {
@@ -156,7 +154,7 @@ class ReceiverResultOwnershipPolicy
         //! constructor, Therefore incorrect code like 
         //!   * class Derived1 : public Base<Derived2>
         //! won't compile.
-        friend ConcreteResultOwnershipPolicy<UT>;
+        friend ConcreteResultOwnershipPolicy;
         ReceiverResultOwnershipPolicy() // constructor
         {
             return;
@@ -166,25 +164,25 @@ class ReceiverResultOwnershipPolicy
         //! Provides access to the CRTP derived class "Derived."
         //!
         //! @return A reference to the CRTP derived class.
-        constexpr ConcreteResultOwnershipPolicy<UT> & asDerived_() 
+        constexpr ConcreteResultOwnershipPolicy & asDerived_() 
         {
-            return *static_cast<ConcreteResultOwnershipPolicy<UT> *>(this);
+            return *static_cast<ConcreteResultOwnershipPolicy *>(this);
         }
 
         //! Provides access to the CRTP derived class "Derived."
         //!
         //! @return A reference to a constant CRTP derived class "Derived".
-        constexpr ConcreteResultOwnershipPolicy<UT> const & asDerived_() const
+        constexpr ConcreteResultOwnershipPolicy const & asDerived_() const
         {
-            return *static_cast<ConcreteResultOwnershipPolicy<UT> const*>(this);
+            return *static_cast<ConcreteResultOwnershipPolicy const*>(this);
         }
 
         // ====================  DATA MEMBERS  =======================================
 
 }; // -----  end of class ReceiverResultOwnershipPolicy  -----
 
-template <template <typename T > class ConcreteResultOwnershipPolicy, 
-          template <typename T > class OwnernshipPolicy, 
+template <class ConcreteResultOwnershipPolicy, 
+          template <typename> typename OwnernshipPolicy, 
           class UT >
 ReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy,OwnernshipPolicy,UT>::~ReceiverResultOwnershipPolicy()
 {

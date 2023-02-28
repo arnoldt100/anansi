@@ -20,6 +20,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Ownership1.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
 
@@ -35,12 +36,15 @@ namespace ANANSI
 //! transferring ownership
 //!
 //! @tparam RT The underlying type of the receiver's result.
-template <typename T>
-class TransferOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TransferOwnershipPolicy, T>
+template < typename T,
+           template <typename> typename OwnershipPolicy = Ownership1 
+         >
+class TransferOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TransferOwnershipPolicy<T,OwnershipPolicy>, OwnershipPolicy, T>
 {
     private:
-        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<TransferOwnershipPolicy, T>::unique_type;
-        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<TransferOwnershipPolicy, T>::shared_type;
+        using basetype = RECEIVER::ReceiverResultOwnershipPolicy<TransferOwnershipPolicy<T,OwnershipPolicy>, OwnershipPolicy, T>;
+        using unique_type = typename basetype::unique_type;
+        using shared_type = typename basetype::shared_type;
 
     public:
         // ====================  LIFECYCLE     =======================================
@@ -113,7 +117,7 @@ class TransferOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<T
         //! an  object of unique_type and returned to the invoker.
         unique_type transferOwnershipOfResult(unique_type & my_obj)
         {
-            unique_type unique_obj = std::move(my_obj);
+            unique_type unique_obj = std::move(OwnershipPolicy<T>::transfer(my_obj));
             return unique_obj; 
         }
 

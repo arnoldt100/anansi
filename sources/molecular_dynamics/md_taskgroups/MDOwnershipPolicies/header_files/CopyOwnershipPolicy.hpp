@@ -31,12 +31,14 @@ namespace ANANSI
 //! no sharing of ownership
 //! no transferring ownership
 template < typename T,
-           template <typename S> class OwnershipPolicy=RECEIVER::Ownership1>
-class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, OwnershipPolicy, T>
+           template <typename> typename OwnershipPolicy = Ownership1 
+         >
+class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy<T,OwnershipPolicy>, OwnershipPolicy, T>
 {
     public:
-        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::unique_type;
-        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy, T>::shared_type;
+        using basetype = RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy<T,OwnershipPolicy>, OwnershipPolicy, T>;
+        using unique_type = typename basetype::unique_type;
+        using shared_type = typename basetype::shared_type;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -79,10 +81,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
         unique_type copyResult(unique_type const & a_receiver_result) const
         {
-            // T* tmp_obj = new T(*a_receiver_result);
-            // unique_type unique_obj(tmp_obj);
-            // return unique_obj; 
-            return RECEIVER::CopyResult::operator()<T,unique_type,unique_type>(a_receiver_result);
+            unique_type tmp_obj = std::move(OwnershipPolicy<T>::copy(a_receiver_result));
+            return tmp_obj;
         }
 
         //! Returns a unique_type of the receiver results.
@@ -94,13 +94,11 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
         unique_type copyResult(shared_type const & a_receiver_result) const
         {
-            // T* tmp_obj = new T(*a_receiver_result);
-            // unique_type unique_obj(tmp_obj);
-            // return unique_obj; 
-            return RECEIVER::CopyResult::operator()<T,shared_type,unique_type>(a_receiver_result);
+            unique_type tmp_obj = std::move(OwnershipPolicy<T>::copy(a_receiver_result));
+            return tmp_obj;
         }
 
-        // ====================  MUTATORS      =======================================
+        // // ====================  MUTATORS      =======================================
 
         //! Throws runtime error if invoked.
         //!
@@ -179,7 +177,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
             {
             }
             return *this;
-       } // assignment-move operator
+        } // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================

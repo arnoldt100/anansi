@@ -18,6 +18,7 @@
 //--------------------------------------------------------//
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
+#include "Ownership1.hpp"
 
 namespace ANANSI
 {
@@ -31,12 +32,15 @@ namespace ANANSI
 //! no transferring ownership
 //!
 //! @tparam RT The underlying type of the receiver's result.
-template <typename RT>
-class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>
+template <typename RT,
+           template <typename> typename OwnershipPolicy = Ownership1 
+         >
+class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy<RT,OwnershipPolicy>, OwnershipPolicy, RT>
 {
     public:
-        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>::unique_type;
-        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy, RT>::shared_type;
+        using basetype = RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy<RT,OwnershipPolicy>, OwnershipPolicy, RT>;
+        using unique_type = typename basetype::unique_type;
+        using shared_type = typename basetype::shared_type;
 
         // ====================  LIFECYCLE     =======================================
 

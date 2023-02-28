@@ -18,7 +18,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace RECEIVER
+namespace ANANSI
 {
 
 // =====================================================================================
@@ -83,7 +83,6 @@ class Ownership1
             return result;
         }
 
-
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
@@ -135,6 +134,6 @@ Ownership1<Underlyingtype>::~Ownership1()
 }
 
 
-}; // namespace RECEIVER
+}; // namespace ANANSI
 
 #endif // RECEIVER_Ownership1_INC

@@ -20,6 +20,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Ownership1.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
 
@@ -35,12 +36,15 @@ namespace ANANSI
 //! no transferring ownership
 //!
 //! @tparam RT The underlying type of the receiver's result.
-template <typename T>
-class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>
+template < typename RT,
+           template <typename> typename OwnershipPolicy = Ownership1 
+         >
+class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy<RT,OwnershipPolicy>, OwnershipPolicy, RT>
 {
     public:
-        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::unique_type;
-        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy, T>::shared_type;
+        using basetype = RECEIVER::ReceiverResultOwnershipPolicy<ShareOwnershipPolicy<RT,OwnershipPolicy>, OwnershipPolicy, RT>;
+        using unique_type = typename basetype::Uniquetype;
+        using shared_type = typename basetype::Sharedtype;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -80,7 +84,7 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //! copied.
         //!
         //! @param[in] a_receiver_result The receiver result to be copied.
-        //! @throws ErrorOwnershipPolicy<CopyOwnershipPolicy>
+        //! @throws ErrorOwnershipPolicy<ShareOwnershipPolicy>
         unique_type copyResult(unique_type & my_obj) const
         {
             const std::string my_error_message(copy_error_message_);
@@ -95,7 +99,7 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //! copied.
         //!
         //! @param[in] a_receiver_result The receiver result to be copied.
-        //! @throws ErrorOwnershipPolicy<CopyOwnershipPolicy>
+        //! @throws ErrorOwnershipPolicy<ShareOwnershipPolicy>
         unique_type copyResult(shared_type & my_obj) const
         {
             const std::string my_error_message(copy_error_message_);
@@ -142,7 +146,7 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //! returns shared_obj  A object of shared_type that shares a_receiver_result.
         shared_type shareOwnershipReceiverResult(shared_type & a_receiver_result)
         {
-            shared_type shared_obj = a_receiver_result;
+            shared_type shared_obj = OwnershipPolicy<RT>::share(a_receiver_result);
             return shared_obj;
         }
 

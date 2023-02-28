@@ -20,6 +20,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Ownership1.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
 
@@ -35,12 +36,15 @@ namespace ANANSI
 //! no transferring ownership
 //!
 //! @tparam RT The underlying type of the receiver's result.
-template <typename T>
-class ShareCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<ShareCopyOwnershipPolicy, T>
+template < typename RT,
+           template <typename> typename OwnershipPolicy = Ownership1 
+         >
+class ShareCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<ShareCopyOwnershipPolicy<RT,OwnershipPolicy>, OwnershipPolicy, RT>
 {
     public:
-        using unique_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareCopyOwnershipPolicy, T>::unique_type;
-        using shared_type = typename RECEIVER::ReceiverResultOwnershipPolicy<ShareCopyOwnershipPolicy, T>::shared_type;
+        using basetype = RECEIVER::ReceiverResultOwnershipPolicy<ShareCopyOwnershipPolicy<RT,OwnershipPolicy>, OwnershipPolicy, RT>;
+        using unique_type = typename basetype::unique_type;
+        using shared_type = typename basetype::shared_type;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -83,8 +87,7 @@ class ShareCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<
         //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
         unique_type copyResult(unique_type const & a_receiver_result) const
         {
-            T* tmp_obj = new T(*a_receiver_result);
-            unique_type unique_obj(tmp_obj);
+            unique_type unique_obj = std::move(OwnershipPolicy<RT>::copy(a_receiver_result));
             return unique_obj; 
         }
 
@@ -97,8 +100,7 @@ class ShareCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<
         //! returns unique_obj  A object of unique_type that is a copy a_receiver_result.
         unique_type copyResult(shared_type const & a_receiver_result) const
         {
-            T* tmp_obj = new T(*a_receiver_result);
-            unique_type unique_obj(tmp_obj);
+            unique_type unique_obj = std::move(OwnershipPolicy<RT>::copy(a_receiver_result));
             return unique_obj; 
         }
 
