@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ErrorOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
@@ -31,6 +32,10 @@ class Ownership1
     public:
          using Sharedtype = std::shared_ptr<Underlyingtype>;
          using Uniquetype = std::unique_ptr<Underlyingtype>;
+
+         using Sharetype = std::shared_ptr<Underlyingtype>;
+         using Copytype = std::unique_ptr<Underlyingtype>;
+         using Transfertype = std::unique_ptr<Underlyingtype>;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -81,6 +86,30 @@ class Ownership1
         {
             Sharedtype shared_obj = result;
             return result;
+        }
+
+        template <typename OwnershipPolicyType>
+        static Sharetype throwSharingError(std::string error_message)
+        {
+            throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
+            Sharetype tmp_obj(new Underlyingtype);
+            return tmp_obj;
+        }
+
+        template <typename OwnershipPolicyType>
+        static Copytype throwCopyingError(std::string error_message)
+        {
+            throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
+            Copytype tmp_obj(new Underlyingtype);
+            return std::move(tmp_obj);
+        }
+
+        template <typename OwnershipPolicyType>
+        static Transfertype throwTransferringError(std::string error_message)
+        {
+            throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
+            Transfertype tmp_obj(new Underlyingtype);
+            return std::move(tmp_obj);
         }
 
         // ====================  ACCESSORS     =======================================
