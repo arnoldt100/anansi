@@ -31,7 +31,7 @@ namespace RECEIVER
 //! - **undoAction** Invokes the undo action command on the concrete receiver.
 //! - **getCopyOfResults** Returns a copy of the results of the action of of the concrete receiver
 //! - **shareOwnershipOfResults** Shares ownership of results of the action of of the concrete receiver
-//! - **takeOwnershipOfResults** Takes sole ownership of results of the action of of the concrete receiver
+//! - **transferOwnershipOfResults** Transfers sole ownership of results of the action of of the concrete receiver
 //! - **disable** After this is called, all other comamnds have an indeterminate effect.
 //! - **modifyReceiver** Modifies the concrete receiver.
 template<typename Derived>
@@ -137,9 +137,9 @@ class ReceiverInterface
         //! the concrete result receiver results are set to a default value. If
         //! the results are not allowed to be transferred, an execption is
         //! thrown and a default instance of the receiver results  is returned.
-        auto takeOwnershipOfResults()
+        auto transferOwnershipOfResults()
         {
-            return asDerived_().receiverTakeOwnershipOfResults();
+            return asDerived_().receiverTransferOwnershipOfResults();
         }
 
         // ====================  OPERATORS     =======================================

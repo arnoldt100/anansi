@@ -90,7 +90,7 @@ class ReceiverResultOwnershipPolicy
         //!
         //! @param[in] a_receiver_result The receiver result to trasnfer ownership.
         //! @return A unique_type obtained by transferring ownership of the underlying object in a_receiver_result.
-        unique_type transferOwnershipReceiverResult(unique_type & a_receiver_result)
+        unique_type transferOwnershipOfReceiverResult(unique_type & a_receiver_result)
         {
             return asDerived_().transferOwnershipOfResult(a_receiver_result);
         }
@@ -99,7 +99,7 @@ class ReceiverResultOwnershipPolicy
         //!
         //! @param[in] a_receiver_result The receiver result to trasnfer ownership.
         //! @return A unique_type obtained by transferring ownership of the underlying object in a_receiver_result.
-        unique_type transferOwnershipReceiverResult(shared_type & a_receiver_result)
+        unique_type transferOwnershipOfReceiverResult(shared_type & a_receiver_result)
         {
             return asDerived_().transferOwnershipOfResult(a_receiver_result);
         }
@@ -108,7 +108,7 @@ class ReceiverResultOwnershipPolicy
         //!
         //! @param[in] a_receiver_result The receiver result to share ownership. 
         //! @return A shared_type obtained by transferring ownership of the underlying object in a_receiver_result.
-        shared_type shareOwnershipReceiverResult ( unique_type & a_receiver_result)
+        shared_type shareOwnershipOfReceiverResult ( unique_type & a_receiver_result)
         {
             return asDerived_().shareOwnershipOfResult(a_receiver_result);
         }
@@ -117,7 +117,7 @@ class ReceiverResultOwnershipPolicy
         //!
         //! @param[in] a_receiver_result The receiver result to share ownership. 
         //! @return A shared_type obtained by transferring ownership of the underlying object in a_receiver_result.
-        shared_type shareOwnershipReceiverResult ( shared_type & a_receiver_result)
+        shared_type shareOwnershipOfReceiverResult ( shared_type & a_receiver_result)
         {
             return asDerived_().shareOwnershipOfResult(a_receiver_result);
         }

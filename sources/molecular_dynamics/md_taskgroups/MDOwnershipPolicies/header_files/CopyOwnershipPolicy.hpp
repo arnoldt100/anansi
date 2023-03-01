@@ -155,7 +155,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         shared_type shareOwnershipOfResult(shared_type & a_receiver_result)
         {
             const std::string my_err_message(shared_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(shared_error_message_);
+            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
             shared_type shared_obj(new T);
             return shared_obj; 
         }

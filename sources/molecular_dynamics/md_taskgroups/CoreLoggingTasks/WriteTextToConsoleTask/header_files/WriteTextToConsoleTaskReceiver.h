@@ -81,8 +81,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
-        // std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> receiverGetCopyOfResults() const;
-         OwnershipPolicy<receiver_result_t>::Uniquetype receiverGetCopyOfResults() const;
+        OwnershipPolicy<receiver_result_t>::Uniquetype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
         
@@ -94,7 +93,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         auto receiverShareOwnershipOfResults();
 
-        auto receiverTakeOwnershipOfResults();
+        auto receiverTransferOwnershipOfResults();
 
         // ====================  OPERATORS     =======================================
 

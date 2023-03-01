@@ -76,13 +76,14 @@ void WriteTextToConsoleTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUN
 
 auto WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
 {
-
+    OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
 }
 
-auto WriteTextToConsoleTaskReceiver::receiverTakeOwnershipOfResults()
+auto WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults()
 {
-     auto my_ptr = ownershipPolicy_.copyReceiverResult(this->results_);
-     return my_ptr;   
+    OwnershipPolicy<receiver_result_t>::Uniquetype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
 }
 
 //============================= OPERATORS ====================================

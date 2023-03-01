@@ -132,7 +132,7 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         unique_type transferOwnershipOfResult(shared_type & a_receiver_result)
         {
             const std::string my_error_message(take_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(take_error_message_);
+            throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
             unique_type unique_obj;
             return unique_obj; 
         }

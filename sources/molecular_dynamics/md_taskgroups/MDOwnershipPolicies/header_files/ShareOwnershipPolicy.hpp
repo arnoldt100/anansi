@@ -135,7 +135,7 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         unique_type transferOwnershipOfResult(shared_type & a_receiver_result)
         {
             const std::string my_error_message(take_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(take_error_message_);
+            throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_error_message);
             unique_type unique_obj;
             return unique_obj; 
         }
