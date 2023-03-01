@@ -1,6 +1,6 @@
-#ifndef RECEIVER_Ownership1_INC
-#define RECEIVER_Ownership1_INC
-//! @file Ownership1.hpp
+#ifndef ANANSI_OwnershipImpl1_INC
+#define ANANSI_OwnershipImpl1_INC
+//! @file OwnershipImpl1.hpp
 //!
 //! Brief description
 //!
@@ -23,7 +23,7 @@ namespace ANANSI
 {
 
 template<typename Underlyingtype>
-class Ownership1
+class OwnershipImpl1
 {
     public:
          using Sharedtype = std::shared_ptr<Underlyingtype>;
@@ -35,12 +35,12 @@ class Ownership1
 
         // ====================  LIFECYCLE     =======================================
 
-        Ownership1 ()   // constructor
+        OwnershipImpl1 ()   // constructor
         {
             return;
         }
 
-        Ownership1( Ownership1 const & other)
+        OwnershipImpl1( OwnershipImpl1 const & other)
         {
             if (this != &other)
             {
@@ -49,16 +49,16 @@ class Ownership1
             return;
         }
 
-        Ownership1( Ownership1 && other)
+        OwnershipImpl1( OwnershipImpl1 && other)
         {
             if (this != &other)
             {
                 
             }
             return;
-        }		// -----  end of method Ownership1::Ownership1  -----
+        }		// -----  end of method OwnershipImpl1::OwnershipImpl1  -----
 
-        ~Ownership1();  // destructor
+        ~OwnershipImpl1();  // destructor
 
         // ====================  STATIC        =======================================
 
@@ -114,7 +114,7 @@ class Ownership1
 
         // ====================  OPERATORS     =======================================
 
-        Ownership1& operator= ( const Ownership1 &other )
+        OwnershipImpl1& operator= ( const OwnershipImpl1 &other )
         {
             if (this != &other)
             {
@@ -123,7 +123,7 @@ class Ownership1
             return *this;
         } // assignment operator
 
-        Ownership1& operator= ( Ownership1 && other )
+        OwnershipImpl1& operator= ( OwnershipImpl1 && other )
         {
             if (this != &other)
             {
@@ -150,10 +150,10 @@ class Ownership1
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class Ownership1  -----
+}; // -----  end of class OwnershipImpl1  -----
 
 template<typename Underlyingtype>
-Ownership1<Underlyingtype>::~Ownership1()
+OwnershipImpl1<Underlyingtype>::~OwnershipImpl1()
 {
     return;
 }
@@ -161,4 +161,4 @@ Ownership1<Underlyingtype>::~Ownership1()
 
 }; // namespace ANANSI
 
-#endif // RECEIVER_Ownership1_INC
+#endif // ANANSI_OwnershipImpl1_INC

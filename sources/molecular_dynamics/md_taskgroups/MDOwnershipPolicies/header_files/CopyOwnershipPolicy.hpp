@@ -16,7 +16,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Ownership1.hpp"
+#include "OwnershipImpl1.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
 
 namespace ANANSI
@@ -30,7 +30,7 @@ namespace ANANSI
 //! no sharing of ownership
 //! no transferring ownership
 template < typename T,
-           template <typename> typename OwnershipImpl = Ownership1 
+           template <typename> typename OwnershipImpl = OwnershipImpl1 
          >
 class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy<T,OwnershipImpl>, OwnershipImpl, T>
 {

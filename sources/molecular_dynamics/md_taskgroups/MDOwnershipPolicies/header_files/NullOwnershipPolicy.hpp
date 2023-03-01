@@ -18,7 +18,7 @@
 //--------------------------------------------------------//
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
-#include "Ownership1.hpp"
+#include "OwnershipImpl1.hpp"
 
 namespace ANANSI
 {
@@ -33,7 +33,7 @@ namespace ANANSI
 //!
 //! @tparam RT The underlying type of the receiver's result.
 template <typename RT,
-           template <typename> typename OwnershipPolicy = Ownership1 
+           template <typename> typename OwnershipPolicy = OwnershipImpl1 
          >
 class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicy<RT,OwnershipPolicy>, OwnershipPolicy, RT>
 {

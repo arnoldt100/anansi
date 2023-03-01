@@ -20,7 +20,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Ownership1.hpp"
+#include "OwnershipImpl1.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
 
@@ -37,7 +37,7 @@ namespace ANANSI
 //!
 //! @tparam RT The underlying type of the receiver's result.
 template < typename T,
-           template <typename> typename OwnershipPolicy = Ownership1 
+           template <typename> typename OwnershipPolicy = OwnershipImpl1 
          >
 class TransferOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<TransferOwnershipPolicy<T,OwnershipPolicy>, OwnershipPolicy, T>
 {

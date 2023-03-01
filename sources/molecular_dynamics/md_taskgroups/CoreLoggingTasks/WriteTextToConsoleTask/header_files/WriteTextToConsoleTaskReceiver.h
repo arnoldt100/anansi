@@ -22,7 +22,7 @@
 #include "ReceiverInterface.hpp"
 #include "ConsoleMessageContainer.h"
 #include "TaskLabel.hpp"
-#include "Ownership1.hpp"
+#include "OwnershipImpl1.hpp"
 #include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
@@ -41,7 +41,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         using receiver_result_t = int;
 
         template<typename T>
-        using OwnershipPolicy = Ownership1<T>;
+        using OwnershipPolicy = OwnershipImpl1<T>;
 
         //! The type of smart pointer that manages the receiver's result.
         using receiver_result_smart_pointer_t = std::unique_ptr<receiver_result_t>;
