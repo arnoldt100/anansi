@@ -38,6 +38,7 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         using basetype = RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy<T,OwnershipImpl>, OwnershipImpl, T>;
         using unique_type = typename basetype::unique_type;
         using shared_type = typename basetype::shared_type;
+        using transfer_type = typename basetype::transfer_type;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -123,10 +124,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         unique_type transferOwnershipOfResult(shared_type & a_receiver_result)
         {
             const std::string my_err_message(take_error_message_);
-
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            unique_type unique_obj(new T);
-            return unique_obj; 
+            unique_type tmp_obj = OwnershipImpl<T>:: template throwTransferringError<CopyOwnershipPolicy>(my_err_message);
+            return tmp_obj; 
         }
 
         //! Throws runtime error if invoked.
@@ -139,9 +138,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         shared_type shareOwnershipOfResult(unique_type & a_receiver_result) 
         {
             const std::string my_err_message(shared_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            shared_type shared_obj(new T);
-            return shared_obj; 
+            unique_type tmp_obj = OwnershipImpl<T>:: template throwSharingError<CopyOwnershipPolicy>(my_err_message);
+            return tmp_obj; 
         }
 
         //! Throws runtime error if invoked.
@@ -154,9 +152,8 @@ class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyO
         shared_type shareOwnershipOfResult(shared_type & a_receiver_result)
         {
             const std::string my_err_message(shared_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<CopyOwnershipPolicy>(my_err_message);
-            shared_type shared_obj(new T);
-            return shared_obj; 
+            shared_type tmp_obj = OwnershipImpl<T>:: template throwSharingError<CopyOwnershipPolicy>(my_err_message);
+            return tmp_obj; 
         }
 
         // ====================  OPERATORS     =======================================

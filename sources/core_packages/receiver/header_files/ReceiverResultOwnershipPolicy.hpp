@@ -39,6 +39,7 @@ class ReceiverResultOwnershipPolicy
         //! The definition of a shared receiver's result.
         using shared_type = typename OwnernshipPolicy<UT>::Sharedtype;
         using unique_type = typename OwnernshipPolicy<UT>::Uniquetype;
+        using transfer_type = typename OwnernshipPolicy<UT>::Transfertype;
 
         ReceiverResultOwnershipPolicy (const ReceiverResultOwnershipPolicy & other)  // copy constructor
         {
