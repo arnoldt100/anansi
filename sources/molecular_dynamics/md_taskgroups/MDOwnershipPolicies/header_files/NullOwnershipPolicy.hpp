@@ -32,6 +32,7 @@ namespace ANANSI
 //! no transferring ownership
 //!
 //! @tparam RT The underlying type of the receiver's result.
+//! @tparam OwnershipPolicy The implementation of copying, sharing and transferring the receiver's result.
 template <typename RT,
            template <typename> typename OwnershipPolicy = OwnershipImpl1 
          >
@@ -79,31 +80,17 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver's results to be
         //! copied.
         //!
+        //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to be copied.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
-        unique_type copyResult(unique_type const & a_receiver_result) const
+        template< typename W>
+        unique_type copyResult(W const & a_receiver_result) const
         {
             const std::string my_error_message(copy_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
             unique_type unique_obj;
             return unique_obj; 
         }
-
-        //! Throws runtime error if invoked.
-        //!
-        //! The NullOwnershipPolicy doesn't allow the receiver results to be
-        //! copied.
-        //!
-        //! @param[in] a_receiver_result The receiver result to be copied.
-        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
-        unique_type copyResult(shared_type const & a_receiver_result) const
-        {
-            const std::string my_error_message(copy_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
-            unique_type unique_obj;
-            return unique_obj; 
-        }
-
 
         // ====================  MUTATORS      =======================================
 
@@ -112,24 +99,11 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! taken over.
         //!
+        //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to transfer its ownership.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
-        unique_type transferOwnershipOfResult(unique_type & a_receiver_result)
-        {
-            const std::string my_error_message(take_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
-            unique_type unique_obj;
-            return unique_obj; 
-        }
-
-        //! Throws runtime error if invoked.
-        //!
-        //! The NullOwnershipPolicy doesn't allow the receiver results to be
-        //! taken over.
-        //!
-        //! @param[in] a_receiver_result The receiver result to transfer its ownership.
-        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
-        unique_type transferOwnershipOfResult(shared_type & a_receiver_result)
+        template<typename W>
+        unique_type transferOwnershipOfResult(W & a_receiver_result)
         {
             const std::string my_error_message(take_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
@@ -142,31 +116,18 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! shared.
         //!
+        //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to share its ownership.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
-        shared_type shareOwnershipOfResult(shared_type & a_receiver_result)
+        template<typename W>
+        shared_type shareOwnershipOfResult(W & a_receiver_result)
         {
             const std::string my_error_message(shared_error_message_);
             throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
             shared_type shared_obj;
             return shared_obj; 
         }
-        
-        //! Throws runtime error if invoked.
-        //!
-        //! The NullOwnershipPolicy doesn't allow the receiver results to be
-        //! shared.
-        //!
-        //! @param[in] a_receiver_result The receiver result to share its ownership.
-        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
-        shared_type shareOwnershipOfResult(unique_type & a_receiver_result)
-        {
-            const std::string my_error_message(shared_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<NullOwnershipPolicy>(my_error_message);
-            shared_type shared_obj;
-            return shared_obj; 
-        }
-        
+
         // ====================  OPERATORS     =======================================
 
         NullOwnershipPolicy& operator= ( const NullOwnershipPolicy &other) // assignment operator
@@ -177,7 +138,6 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
             }
             return *this;
         } // assignment operator
-
 
         NullOwnershipPolicy& operator= ( NullOwnershipPolicy && other ) // assignment-move operator
         {
