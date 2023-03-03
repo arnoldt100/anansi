@@ -26,9 +26,9 @@ namespace ANANSI
 //! 
 //! The CopyOwnershipPolicy implements the following constraints
 //! on the receiver's result:
-//! copying of receiver's result
-//! no sharing of ownership
-//! no transferring ownership
+//! * copying of receiver's result
+//! * no sharing of ownership
+//! * no transferring ownership
 //! @tparam RT The underlying type of the receiver's result.
 //! @tparam OwnershipImpl The implementation of copying, sharing and transferring the receiver's result.
 template < typename RT,

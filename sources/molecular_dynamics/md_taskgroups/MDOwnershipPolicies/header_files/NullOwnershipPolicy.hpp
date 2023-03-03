@@ -27,9 +27,9 @@ namespace ANANSI
 //! 
 //! The NullOwnershipPolicy implements the following constraints
 //! on the receiver's result:
-//! no copying
-//! no sharing 
-//! no transferring ownership
+//! * no copying
+//! * no sharing 
+//! * no transferring ownership
 //!
 //! @tparam RT The underlying type of the receiver's result.
 //! @tparam OwnershipImpl The implementation of copying, sharing and transferring the receiver's result.
@@ -85,7 +85,7 @@ class NullOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<NullO
         //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to be copied.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
-        template< typename W>
+        template<typename W>
         copy_type copyResult(W const & a_receiver_result) const
         {
             const std::string my_error_message(copy_error_message_);
