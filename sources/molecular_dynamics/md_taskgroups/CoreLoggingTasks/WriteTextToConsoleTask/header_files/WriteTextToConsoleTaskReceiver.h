@@ -81,7 +81,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
-        OwnershipPolicy<receiver_result_t>::Uniquetype receiverGetCopyOfResults() const;
+        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
         

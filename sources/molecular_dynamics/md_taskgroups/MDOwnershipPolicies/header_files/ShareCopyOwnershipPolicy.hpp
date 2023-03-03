@@ -42,13 +42,11 @@ template < typename RT,
 class ShareCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<ShareCopyOwnershipPolicy<RT,OwnershipImpl>, OwnershipImpl, RT>
 {
     public:
-        using basetype = RECEIVER::ReceiverResultOwnershipPolicy<ShareCopyOwnershipPolicy<RT,OwnershipImpl>, OwnershipImpl, RT>;
+        using basetype = RECEIVER::ReceiverResultOwnershipPolicy<ShareCopyOwnershipPolicy<RT,OwnershipImpl>,
+                                                                 OwnershipImpl, RT>;
         using copy_type = typename basetype::copy_type;
         using shared_type = typename basetype::shared_type;
         using transfer_type = typename basetype::transfer_type;
-        using is_share_copy_type_same = typename std::is_same<shared_type,copy_type>::value;
-        using is_share_transfer_type_same = typename std::is_same<shared_type,transfer_type>::value;
-        using is_copy_transfer_type_same = typename std::is_same<copy_type,transfer_type>::value;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -132,8 +130,7 @@ class ShareCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<
         //! copy_type or transfer_type.
         //!
         //! @tparam W The type of the receiver's result.
-        //! @param[in] a_receiver_result The receiver result to be shared in its
-        //! ownership.
+        //! @param[in] a_receiver_result The receiver result to be shared in its ownership.
         template<typename W,
                  typename = std::enable_if< std::is_same<W,copy_type>::value || std::is_same<W,transfer_type>::value> 
                 >

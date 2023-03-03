@@ -27,9 +27,6 @@ class OwnershipImpl1
 {
     public:
          using Sharedtype = std::shared_ptr<Underlyingtype>;
-         using Uniquetype = std::unique_ptr<Underlyingtype>;
-
-         using Sharetype = std::shared_ptr<Underlyingtype>;
          using Copytype = std::unique_ptr<Underlyingtype>;
          using Transfertype = std::unique_ptr<Underlyingtype>;
 
@@ -63,17 +60,17 @@ class OwnershipImpl1
         // ====================  STATIC        =======================================
 
         template <typename Resulttype>
-        static Uniquetype copy(Resulttype const & result)
+        static Copytype copy(Resulttype const & result)
         {
             Underlyingtype* tmp_obj = new Underlyingtype(*result);
-            Uniquetype obj(tmp_obj);
+            Copytype obj(tmp_obj);
             return std::move(obj); 
         }
 
         template <typename Resulttype>
-        static Uniquetype transfer(Resulttype const & result)
+        static Transfertype transfer(Resulttype const & result)
         {
-            Uniquetype tmp_obj = std::move(result);
+            Transfertype tmp_obj = std::move(result);
             return std::move(tmp_obj); 
         }
 
@@ -85,10 +82,10 @@ class OwnershipImpl1
         }
 
         template <typename OwnershipPolicyType>
-        static Sharetype throwSharingError(std::string error_message)
+        static Sharedtype throwSharingError(std::string error_message)
         {
             throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
-            Sharetype tmp_obj(new Underlyingtype);
+            Sharedtype tmp_obj(new Underlyingtype);
             return tmp_obj;
         }
 

@@ -51,9 +51,9 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 //============================= ACCESSORS ====================================
 
 // std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
-WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Uniquetype WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
+WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Copytype WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 {
-    OwnershipPolicy<receiver_result_t>::Uniquetype  my_ptr = this->ownershipPolicy_.copyResult(this->results_);
+    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyResult(this->results_);
     return my_ptr;
 }
 
@@ -82,7 +82,7 @@ auto WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
 
 auto WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults()
 {
-    OwnershipPolicy<receiver_result_t>::Uniquetype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    OwnershipPolicy<receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

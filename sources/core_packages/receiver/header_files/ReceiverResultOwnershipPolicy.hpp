@@ -36,7 +36,7 @@ class ReceiverResultOwnershipPolicy {
 public:
   // ====================  LIFECYCLE     =======================================
 
-  using shared_type = typename OwnernshipPolicy<UT>::Sharetype;
+  using shared_type = typename OwnernshipPolicy<UT>::Sharedtype;
   using copy_type = typename OwnernshipPolicy<UT>::Copytype;
   using transfer_type = typename OwnernshipPolicy<UT>::Transfertype;
 
