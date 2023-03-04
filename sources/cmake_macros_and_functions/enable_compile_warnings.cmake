@@ -23,5 +23,5 @@
 macro(enable_compile_warnings MY_TARGET)
 
     target_compile_options(${MY_TARGET}
-                           PRIVATE  $<$<CXX_COMPILER_ID:GNU>:-Wall>)
+                           PRIVATE  $<$<CXX_COMPILER_ID:GNU>:'-Wall -fconcepts'>)
 endmacro()

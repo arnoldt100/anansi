@@ -15,6 +15,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "OwnershipTypeRequirements.hpp"
 
 namespace RECEIVER {
 
@@ -31,13 +32,15 @@ namespace RECEIVER {
 //! @tparam ConcreteResultOwnershipPolicy<UT> The concrete ownership policy of
 //! the recievers result.
 template <typename ConcreteResultOwnershipPolicy,
-          template <typename> typename OwnernshipPolicy, class UT>
+          template <typename> typename OwnernshipPolicy, 
+          class UT>
+requires OwnershipTypeRequirements<OwnernshipPolicy<UT>>
 class ReceiverResultOwnershipPolicy {
 public:
   // ====================  LIFECYCLE     =======================================
 
-  using shared_type = typename OwnernshipPolicy<UT>::Sharedtype;
   using copy_type = typename OwnernshipPolicy<UT>::Copytype;
+  using shared_type = typename OwnernshipPolicy<UT>::Sharedtype;
   using transfer_type = typename OwnernshipPolicy<UT>::Transfertype;
 
   ReceiverResultOwnershipPolicy(

@@ -26,8 +26,8 @@ template<typename Underlyingtype>
 class OwnershipImpl1
 {
     public:
-         using Sharedtype = std::shared_ptr<Underlyingtype>;
          using Copytype = std::unique_ptr<Underlyingtype>;
+         using Sharedtype = std::shared_ptr<Underlyingtype>;
          using Transfertype = std::unique_ptr<Underlyingtype>;
 
         // ====================  LIFECYCLE     =======================================
