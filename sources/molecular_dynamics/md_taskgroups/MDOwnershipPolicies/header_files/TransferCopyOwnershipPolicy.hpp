@@ -85,22 +85,11 @@ class TransferCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPoli
         //! The underlying object of the copy_type is copied to an object of
         //! copy_type and returned to the invoker.
         //!
+        //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to be copied.
         //! @throws ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>
-        copy_type copyResult(copy_type const & a_receiver_result) const
-        {
-            copy_type tmp_obj = std::move(OwnershipPolicy<T>::copy(a_receiver_result));
-            return tmp_obj; 
-        }
-
-        //! Returns a copy_type of the receiver results.
-        //!
-        //! The underlying object of the shared_type is copied to an object of
-        //! copy_type and returned to the invoker.
-        //!
-        //! @param[in] a_receiver_result The receiver result to be copied.
-        //! returns unique_obj  A object of copy_type that is a copy a_receiver_result.
-        copy_type copyResult(shared_type const & a_receiver_result) const
+        template<typename W>
+        copy_type copyResult(W const & a_receiver_result) const
         {
             copy_type tmp_obj = std::move(OwnershipPolicy<T>::copy(a_receiver_result));
             return tmp_obj; 
@@ -116,7 +105,7 @@ class TransferCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPoli
         //! The underlying object of the unique_ptr is taken over and moved to
         //! an  object of transfer_type and returned to the invoker.
         template<typename W>
-        requires TransferCopyOwnershipPolicyTransferable<W,transfer_type>
+        requires TransferCopyOwnershipPolicyTransferable<W,transfer_type,copy_type>
         transfer_type transferOwnershipOfResult(W & a_receiver_result)
         {
             transfer_type tmp_obj = std::move(OwnershipPolicy<T>::transfer(a_receiver_result));
