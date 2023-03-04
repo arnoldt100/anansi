@@ -26,9 +26,6 @@ namespace ANANSI
 template< typename T, typename V,typename W>
 concept TransferCopyOwnershipPolicyTransferable = std::is_same<T,V>::value ||
                                                   std::is_same<T,W>::value;
-template< typename T, typename V,typename W>
-concept TransferCopyOwnershipPolicyCopyable = std::is_same<T,V>::value ||
-                                              std::is_same<T,W>::value;
 
 }; // namespace ANANSI
 
