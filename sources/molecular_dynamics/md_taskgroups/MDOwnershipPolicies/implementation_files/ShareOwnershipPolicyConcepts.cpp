@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ShareOwnershipPolicyConcepts.hpp"
+#include "TransferOwnershipPolicyConcepts.hpp"
 
 namespace ANANSI {
 

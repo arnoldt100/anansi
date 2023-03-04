@@ -23,6 +23,7 @@
 #include "OwnershipImpl1.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
+#include "TransferOwnershipPolicyConcepts.hpp"
 
 namespace ANANSI
 {
