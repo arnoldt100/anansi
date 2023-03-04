@@ -23,6 +23,7 @@
 #include "OwnershipImpl1.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
+#include "ShareOwnershipPolicyConcepts.hpp"
 
 namespace ANANSI
 {
@@ -115,29 +116,17 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
 
         //! Returns a  shared_type of the receiver's result,
         //!
-        //! @param[in] a_receiver_result The receiver result to be shared in its ownership.
-        //! returns shared_obj  A object of shared_type that shares a_receiver_result.
-        shared_type shareOwnershipReceiverResult(shared_type & a_receiver_result)
-        {
-            shared_type shared_obj = OwnershipPolicy<RT>::share(a_receiver_result);
-            return shared_obj;
-        }
-
-        //! Throws runtime error if invoked.
-        //!
-        //! The ShareOwnershipPolicy doesn't permit sharing of an object of
-        //! copy_type or transfer_type.
+        //! The template concept shareOwnershipReceiverResult 
+        //1 only permits trnasfers to shared_type.
         //!
         //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to be shared in its ownership.
-        template<typename W,
-                 typename = std::enable_if< std::is_same<W,copy_type>::value || std::is_same<W,transfer_type>::value> 
-                >
-        shared_type shareOwnershipReceiverResult(W & my_obj)
+        //! returns shared_obj  A object of shared_type that shares a_receiver_result.
+        template<typename W>
+        requires ShareOwnershipPolicyTransferable<W,shared_type> 
+        shared_type shareOwnershipReceiverResult(W & a_receiver_result)
         {
-            const std::string my_err_message(share_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<ShareOwnershipPolicy>(my_err_message);
-            shared_type shared_obj;
+            shared_type shared_obj = OwnershipPolicy<RT>::share(a_receiver_result);
             return shared_obj;
         }
 

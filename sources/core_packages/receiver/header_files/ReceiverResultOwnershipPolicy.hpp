@@ -157,6 +157,7 @@ private:
 
 template <class ConcreteResultOwnershipPolicy,
           template <typename> typename OwnernshipPolicy, class UT>
+requires OwnershipTypeRequirements<OwnernshipPolicy<UT>>
 ReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy, OwnernshipPolicy,
                               UT>::~ReceiverResultOwnershipPolicy() {
   return;
