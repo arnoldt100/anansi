@@ -117,7 +117,7 @@ class ShareOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<Shar
         //! Returns a  shared_type of the receiver's result,
         //!
         //! The template concept shareOwnershipReceiverResult 
-        //1 only permits trnasfers to shared_type.
+        //! only permits trnasfers of shared_type.
         //!
         //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to be shared in its ownership.
