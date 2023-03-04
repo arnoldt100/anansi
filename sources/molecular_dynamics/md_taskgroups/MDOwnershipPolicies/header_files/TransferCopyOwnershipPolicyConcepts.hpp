@@ -1,7 +1,7 @@
-#ifndef ANANSI_TransferOwnershipPolicyConcepts_INC
-#define ANANSI_TransferOwnershipPolicyConcepts_INC
+#ifndef ANANSI_TransferCopyOwnershipPolicyConcepts_INC
+#define ANANSI_TransferCopyOwnershipPolicyConcepts_INC
 
-//! @file TransferOwnershipPolicyConcepts.hpp
+//! @file TransferCopyOwnershipPolicyConcepts.hpp
 //!
 //! Brief description
 //!
@@ -23,14 +23,14 @@
 namespace ANANSI
 {
 
-template< typename T, typename V>
-concept TransferOwnershipPolicyTransferable = std::is_same<T,V>::value;
-
 template< typename T, typename V,typename W>
-concept TransferOwnershipPolicyCopyable = std::is_same<T,V>::value ||
-                                          std::is_same<T,W>::value;
+concept TransferCopyOwnershipPolicyTransferable = std::is_same<T,V>::value ||
+                                                  std::is_same<T,W>::value;
+template< typename T, typename V,typename W>
+concept TransferCopyOwnershipPolicyCopyable = std::is_same<T,V>::value ||
+                                              std::is_same<T,W>::value;
 
 }; // namespace ANANSI
 
-#endif // ANANSI_TransferOwnershipPolicyConcepts_INC
+#endif // ANANSI_TransferCopyOwnershipPolicyConcepts_INC
 

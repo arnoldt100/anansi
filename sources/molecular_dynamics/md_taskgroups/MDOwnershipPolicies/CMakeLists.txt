@@ -73,9 +73,11 @@
          header_files/ShareOwnershipPolicy.hpp
          header_files/ShareOwnershipPolicyConcepts.hpp
          header_files/ShareCopyOwnershipPolicy.hpp
+         header_files/ShareCopyOwnershipPolicyConcepts.hpp
          header_files/TransferOwnershipPolicy.hpp
          header_files/TransferOwnershipPolicyConcepts.hpp
          header_files/TransferCopyOwnershipPolicy.hpp
+         header_files/TransferCopyOwnershipPolicyConcepts.hpp
          header_files/ErrorOwnershipPolicy.hpp)
 
     #-----------------------------------------------------
@@ -92,9 +94,11 @@
          implementation_files/ShareOwnershipPolicy.cpp
          implementation_files/ShareOwnershipPolicyConcepts.cpp
          implementation_files/ShareCopyOwnershipPolicy.cpp
+         implementation_files/ShareCopyOwnershipPolicyConcepts.cpp
          implementation_files/TransferOwnershipPolicy.cpp
          implementation_files/TransferOwnershipPolicyConcepts.cpp
          implementation_files/TransferCopyOwnershipPolicy.cpp
+         implementation_files/TransferCopyOwnershipPolicyConcepts.cpp
          implementation_files/ErrorOwnershipPolicy.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

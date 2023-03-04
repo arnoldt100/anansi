@@ -23,7 +23,7 @@
 #include "OwnershipImpl1.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "ReceiverResultOwnershipPolicy.hpp"
-#include "ShareOwnershipPolicyConcepts.hpp"
+#include "ShareCopyOwnershipPolicyConcepts.hpp"
 
 namespace ANANSI
 {
@@ -123,7 +123,7 @@ class ShareCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<
         //! @param[in] a_receiver_result The receiver result to be shared in its ownership.
         //! returns shared_obj  A object of shared_type that shares a_receiver_result.
         template<typename W>
-        requires ShareOwnershipPolicyTransferable<W,shared_type> 
+        requires ShareCopyOwnershipPolicyShareable<W,shared_type> 
         shared_type shareOwnershipReceiverResult(W & a_receiver_result)
         {
             shared_type shared_obj = a_receiver_result;
