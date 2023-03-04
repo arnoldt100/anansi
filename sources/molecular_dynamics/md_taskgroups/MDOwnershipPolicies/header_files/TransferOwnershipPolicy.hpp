@@ -104,20 +104,11 @@ class TransferOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<T
         //!
         //! The underlying object of the unique_ptr is taken over and moved to
         //! an  object of transfer_type and returned to the invoker.
-        transfer_type transferOwnershipOfResult(transfer_type & my_obj)
+        template<typename W>
+        requires TransferOwnershipPolicyTransferable<W,transfer_type>
+        transfer_type transferOwnershipOfResult(W & my_obj)
         {
             transfer_type unique_obj = std::move(OwnershipPolicy<T>::transfer(my_obj));
-            return unique_obj; 
-        }
-
-        //! The transfer ownership policy doesn't allow a shared_type to be taken over.
-        //!
-        //! An error is thrown if invoked.
-        transfer_type transferOwnershipOfResult(shared_type & my_obj)
-        {
-            const std::string my_err_message(shared_error_message_);
-            throw ANANSI::ErrorOwnershipPolicy<TransferOwnershipPolicy>(my_err_message);
-            shared_type unique_obj;
             return unique_obj; 
         }
 
