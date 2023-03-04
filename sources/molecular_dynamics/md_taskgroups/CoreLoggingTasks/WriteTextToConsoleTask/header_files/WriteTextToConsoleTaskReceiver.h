@@ -116,7 +116,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
 
         // mutable std::unique_ptr<receiver_result_t> results_;
-        mutable  OwnershipPolicy<receiver_result_t>::Sharedtype results_;
+        mutable  OwnershipPolicy<receiver_result_t>::Transfertype results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
