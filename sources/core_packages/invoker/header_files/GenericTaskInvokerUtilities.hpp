@@ -70,7 +70,8 @@ class GenericTaskInvokerUtilities
         static void modifyTaskReceiver( std::shared_ptr<ANANSI::AnansiTask> & task,
                                         ReceiverArgsTypes &... receiver_args)
         {
-            using concrete_task_t = CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
+            using concrete_task_t = 
+                GenericTaskInvokerUtilities::CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
             std::shared_ptr<concrete_task_t> p_concrete = 
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
             p_concrete->modifyReceiver(receiver_args...);
@@ -86,7 +87,8 @@ class GenericTaskInvokerUtilities
                  MPL::mpl_size_type concrete_index>
         static auto getCopyOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> & task)
         {
-            using concrete_task_t = CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
+            using concrete_task_t = 
+                GenericTaskInvokerUtilities::CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
             std::shared_ptr<concrete_task_t> p_concrete =
                         AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
 
