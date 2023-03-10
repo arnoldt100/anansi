@@ -1,5 +1,5 @@
-#ifndef  ANANSI_TaskLabel_INC
-#define  ANANSI_TaskLabel_INC
+#ifndef  RECEIVER_TaskLabel_INC
+#define  RECEIVER_TaskLabel_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,7 +17,7 @@
 //--------------------------------------------------------//
 #include "TaskLabelTraits.hpp"
 
-namespace ANANSI
+namespace RECEIVER
 {
 
 
@@ -132,6 +132,6 @@ class TaskLabel
 }; // -----  end of class TaskLabel  -----
 
 
-}; // namespace ANANSI
+}; // namespace RECEIVER
 
-#endif   // ----- #ifndef ANANSI_TaskLabel_INC  ----- 
+#endif   // ----- #ifndef RECEIVER_TaskLabel_INC  ----- 

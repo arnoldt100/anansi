@@ -33,7 +33,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  STATIC       =======================================
 
-        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = {'m', 'p', 'i', '_', 'e', 'n', 'v', 'i', 'r', 'o', 'n', 'm', 'e', 'n', 't'};
+        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = {'m', 'p', 'i', '_', 'e', 'n', 'v', 'i', 'r', 'o', 'n', 'm', 'e', 'n', 't'};
 
         static constexpr 
         RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE TASKLABEL = 

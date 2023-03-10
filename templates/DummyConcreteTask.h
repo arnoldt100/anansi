@@ -31,7 +31,7 @@ class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
 
         // ====================  STATIC       =======================================
 
-        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
             {'d','u','m','m','y', '_','l','a','b','e','l'};
 
         static constexpr 

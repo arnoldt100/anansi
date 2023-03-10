@@ -12,7 +12,7 @@
 //--------------------------------------------------------//
 #include "TaskLabelTestFixture.h"
 
-namespace ANANSI
+namespace RECEIVER
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -64,4 +64,4 @@ TaskLabelTestFixture::~TaskLabelTestFixture()
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+} // namespace RECEIVER

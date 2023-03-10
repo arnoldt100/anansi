@@ -48,7 +48,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  STATIC       =======================================
 
-        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
             {'w','r','i', 't', 'e','_',
              't', 'e', 'x', 't', '_',
              't', 'o', '_',

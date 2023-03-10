@@ -14,7 +14,7 @@
 //--------------------------------------------------------//
 #include <boost/test/unit_test.hpp>
 
-namespace ANANSI
+namespace RECEIVER
 {
     template<typename T_a, typename T_b>
     void verify_relationship_operator_equal(const T_a & a, 
@@ -66,6 +66,6 @@ namespace ANANSI
         BOOST_TEST( (a <= b), "TaskLabels of \"A\" is supposed to be less than or equal to \"B\".");
         BOOST_TEST( ! (b <= a), "TaskLabels of \"B\" is supposed to greater than \"A\".");
     }
-} // namespace ANANSI
+} // namespace RECEIVER
 
 #endif // ---- test_tasklabel_relationship_operators_INC ----

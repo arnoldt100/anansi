@@ -12,9 +12,9 @@
 #include "test_tasklabel_relationship_operators.h"
 #include "TaskLabel.hpp"
 
-namespace ANANSI 
+namespace RECEIVER 
 {
 
-} // namespace ANANSI
+} // namespace RECEIVER
 
 

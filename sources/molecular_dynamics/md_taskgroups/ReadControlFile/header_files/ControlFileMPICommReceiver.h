@@ -34,7 +34,7 @@ class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFi
 
         // ====================  STATIC       =======================================
 
-        static constexpr char tmpstr[TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
             {'c','o','m','m','u', 'n','i','c','a','t','e','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
         static constexpr 

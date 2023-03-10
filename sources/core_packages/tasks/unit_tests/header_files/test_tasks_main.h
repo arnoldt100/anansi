@@ -1,5 +1,5 @@
-#ifndef  ANANSI_test_tasks_main_INC
-#define  ANANSI_test_tasks_main_INC
+#ifndef  RECEIVER_test_tasks_main_INC
+#define  RECEIVER_test_tasks_main_INC
 
 //! @file test_tasks_main.h
 //!
@@ -28,4 +28,4 @@
 //--------------------------------------------------------//
 namespace utf = boost::unit_test;
 
-#endif   // ----- #ifndef ANANSI_test_tasks_main_INC  ----- 
+#endif   // ----- #ifndef RECEIVER_test_tasks_main_INC  ----- 

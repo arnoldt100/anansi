@@ -15,11 +15,11 @@
 //--------------------------------------------------------//
 #include <boost/test/unit_test.hpp>
 
-namespace ANANSI
+namespace RECEIVER
 {
 
     void verify_valid_char_array_size();
 
-}; /* namespace ANANSI */
+}; /* namespace RECEIVER */
 
 #endif   // ----- #ifndef test_tasklabeltraits_INC  ----- 

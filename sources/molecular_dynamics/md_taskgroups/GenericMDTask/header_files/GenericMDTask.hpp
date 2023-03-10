@@ -42,7 +42,7 @@ class GenericMDTask : public BaseClass
         using task_result_t = typename Receiver::receiver_result_t;
 
         // ====================  STATIC       =======================================
-        static constexpr ANANSI::TaskLabel TASKLABEL =
+        static constexpr RECEIVER::TaskLabel TASKLABEL =
             Receiver::TASKLABEL;
 
         // ====================  LIFECYCLE     =======================================

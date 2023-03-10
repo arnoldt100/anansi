@@ -1,5 +1,5 @@
-#ifndef ANANSI_TASKLABEL_FIXTURES_INC
-#define ANANSI_TASKLABEL_FIXTURES_INC
+#ifndef RECEIVER_TASKLABEL_FIXTURES_INC
+#define RECEIVER_TASKLABEL_FIXTURES_INC
 
 //! @file TasklabelTestFixtures.h
 //!
@@ -19,7 +19,7 @@
 #include "TaskLabelTraits.hpp"
 #include "TaskLabel.hpp"
 
-namespace ANANSI
+namespace RECEIVER
 {
 
 class TaskLabelTestFixture
@@ -42,8 +42,8 @@ class TaskLabelTestFixture
         // ====================  OPERATORS     =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        ANANSI::TaskLabel a;
-        ANANSI::TaskLabel b;
+        RECEIVER::TaskLabel a;
+        RECEIVER::TaskLabel b;
 
     protected:
         // ====================  METHODS       =======================================
@@ -58,6 +58,6 @@ class TaskLabelTestFixture
 }; // -----  end of class TaskLabelTestFixture  -----
 
 
-}; // namespace ANANSI
+}; // namespace RECEIVER
 
-#endif // ANANSI_TASKLABEL_FIXTURES_INC
+#endif // RECEIVER_TASKLABEL_FIXTURES_INC

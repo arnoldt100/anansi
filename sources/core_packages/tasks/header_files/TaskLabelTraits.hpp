@@ -1,5 +1,5 @@
-#ifndef  ANANSI_TaskLabelTraits_INC
-#define  ANANSI_TaskLabelTraits_INC
+#ifndef  RECEIVER_TaskLabelTraits_INC
+#define  RECEIVER_TaskLabelTraits_INC
 
 //!@ file TaskLabelTraits.hpp
 //!
@@ -18,7 +18,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace ANANSI
+namespace RECEIVER
 
 {
 
@@ -58,6 +58,6 @@ class TaskLabelTraits
 }; // -----  end of class TaskLabelTraits  -----
 
 
-}; // namespace ANANSI
+}; // namespace RECEIVER
 
-#endif // ANANSI_TaskLabelTraits_INC
+#endif // RECEIVER_TaskLabelTraits_INC
