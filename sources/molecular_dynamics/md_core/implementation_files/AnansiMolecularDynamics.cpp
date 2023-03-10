@@ -80,7 +80,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
                      > command_labels = {my_label};
     core_logging_invoker->doTask(command_labels);
 
-    auto tmp_value = core_logging_invoker->getCopyOfTaskResults<my_label>();
+    auto tmp_value = core_logging_invoker->shareTaskResults<my_label>();
 
     return;
 }

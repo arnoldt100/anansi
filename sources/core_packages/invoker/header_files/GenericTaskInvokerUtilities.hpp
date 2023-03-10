@@ -23,6 +23,7 @@
 #include "AnansiTask.h"
 #include "AnansiTaskUtilities.hpp"
 #include "MPLAliases.hpp"
+#include "ReceiverUtilities.hpp"
 
 namespace ANANSI
 {
@@ -62,22 +63,14 @@ class GenericTaskInvokerUtilities
 
         // ====================  STATIC        =======================================
 
-        //! An alias for the concrete task type.
-        //!
-        //! @tparam ConcreteTasksTypeList A typelist of concrete task types.
-        //! @tparam concrete_index The location of the concrete type in ConcreteTasksTypeList we desire
-        template <typename ConcreteTasksTypeList,
-                  MPL::mpl_size_type concrete_index>
-        using CONCRETE_TASK_T = MPL::mpl_at_c<ConcreteTasksTypeList,concrete_index>;
-
         //! Modifies the receiver of the concrete type located at concrete_index. 
         template<typename ConcreteTasksTypeList,
-                 MPL::mpl_size_type index,
+                 MPL::mpl_size_type concrete_index,
                  typename... ReceiverArgsTypes>
         static void modifyTaskReceiver( std::shared_ptr<ANANSI::AnansiTask> & task,
                                         ReceiverArgsTypes &... receiver_args)
         {
-            using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,index>;
+            using concrete_task_t = CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
             std::shared_ptr<concrete_task_t> p_concrete = 
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
             p_concrete->modifyReceiver(receiver_args...);
@@ -93,8 +86,7 @@ class GenericTaskInvokerUtilities
                  MPL::mpl_size_type concrete_index>
         static auto getCopyOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> & task)
         {
-            using concrete_task_t = MPL::mpl_at_c<ConcreteTasksTypeList,concrete_index>;
-
+            using concrete_task_t = CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
             std::shared_ptr<concrete_task_t> p_concrete =
                         AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
 
@@ -133,6 +125,14 @@ class GenericTaskInvokerUtilities
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        //! An alias for the concrete task type located at position index.
+        //!
+        //! @tparam ConcreteTasksTypeList A typelist of concrete task types.
+        //! @tparam concrete_index The location of the concrete type in ConcreteTasksTypeList we desire
+        template <typename ConcreteTasksTypeList,
+                  MPL::mpl_size_type concrete_index>
+        using CONCRETE_TASK_TYPE_AT_INDEX_ = MPL::mpl_at_c<ConcreteTasksTypeList,concrete_index>;
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
