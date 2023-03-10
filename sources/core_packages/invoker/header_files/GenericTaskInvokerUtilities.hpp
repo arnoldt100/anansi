@@ -20,6 +20,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "TaskLabel.hpp"
 #include "AnansiTask.h"
 #include "AnansiTaskUtilities.hpp"
 #include "MPLAliases.hpp"
@@ -94,8 +95,28 @@ public:
     return ret_val;
   }
 
-  template <typename ConcreteProductsTypeList, int COMMAND_KEY>
-  static void verifyConcreteProductInTypeList() {}
+  template <typename ConcreteProductsTypeList, RECEIVER::TaskLabel COMMAND_KEY>
+  static void verifyConcreteProductInTypeList() {
+
+    // We compute the range of concrete products in ConcreteProductsTypeList.
+    constexpr auto nm_products = 
+        static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
+    
+    // This is the lcation of the corresponding concrete product in typelist 
+    // ConcreteProductsTypeList that has tasklabel COMMAND_KEY.
+    constexpr int concrete_index = 
+        RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,
+                                                           COMMAND_KEY>();
+    
+    // If the corresponding concrete product is not found then abort.
+    if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
+    {
+         // :TODO:11/15/2022 10:00:29 AM:: Abort program 
+         // for a nonrecoverable error has occurred.
+    }
+
+  }
+
   // ====================  ACCESSORS     =======================================
 
   // ====================  MUTATORS      =======================================
