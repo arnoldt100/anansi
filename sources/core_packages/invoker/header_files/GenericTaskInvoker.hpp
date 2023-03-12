@@ -130,26 +130,15 @@ class GenericTaskInvoker
                   typename... ReceiverArgsTypes>
         void modifyTask( ReceiverArgsTypes &... args)
         {
-            // We compute the range of concrete products in ConcreteProductsTypeList.
-            constexpr auto nm_products = 
-                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
 
-            // This is the lcation of the corresponding concrete product in typelist 
-            // ConcreteProductsTypeList that has tasklabel COMMAND_KEY.
-            constexpr int concrete_index = 
-                RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,
-                                                                   COMMAND_KEY>();
-
-            // If the corresponding concrete product is not found then abort.
-            if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
-            {
-                 // :TODO:11/15/2022 10:00:29 AM:: Abort program
-                 // for a nonrecoverable error has occurred.
-            }
+            GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteProductsTypeList,COMMAND_KEY>();
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
 
-            GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,concrete_index,ReceiverArgsTypes...>(task,args...);
+            GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,
+                                                            LABEL_t,
+                                                            COMMAND_KEY,
+                                                            ReceiverArgsTypes...>(task,args...);
             return;
         }
 

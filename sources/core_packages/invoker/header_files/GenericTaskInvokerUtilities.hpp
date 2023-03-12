@@ -61,10 +61,15 @@ public:
   // ====================  STATIC        =======================================
 
   //! Modifies the receiver of the concrete type located at concrete_index.
-  template <typename ConcreteTasksTypeList, MPL::mpl_size_type concrete_index,
+  template <typename ConcreteTasksTypeList, 
+            typename LABEL_t,
+            LABEL_t COMMAND_KEY,
             typename... ReceiverArgsTypes>
   static void modifyTaskReceiver(std::shared_ptr<ANANSI::AnansiTask> &task,
                                  ReceiverArgsTypes &...receiver_args) {
+    constexpr int concrete_index = 
+        RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,
+                                                           COMMAND_KEY>();
     using concrete_task_t =
         GenericTaskInvokerUtilities::CONCRETE_TASK_TYPE_AT_INDEX_<
             ConcreteTasksTypeList, concrete_index>;
