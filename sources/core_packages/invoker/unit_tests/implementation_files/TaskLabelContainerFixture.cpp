@@ -11,7 +11,7 @@
 //--------------------------------------------------------//
 #include "TaskLabelContainerFixture.h"
 
-namespace RECEIVER {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -60,4 +60,4 @@ TaskLabelContainerFixture::~TaskLabelContainerFixture()
 //============================= OPERATORS ====================================
 
 
-} // namespace RECEIVER
+} // namespace ANANSI

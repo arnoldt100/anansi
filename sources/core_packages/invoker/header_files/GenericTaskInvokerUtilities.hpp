@@ -74,7 +74,7 @@ class GenericTaskInvokerUtilities
                            ReceiverArgsTypes &...receiver_args)
         {
             constexpr int concrete_index =
-                RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+                ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
             using concrete_task_t =
                 GenericTaskInvokerUtilities::CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
             std::shared_ptr<concrete_task_t> p_concrete =
@@ -95,7 +95,7 @@ class GenericTaskInvokerUtilities
         getCopyOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
         {
             constexpr int concrete_index =
-                RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+                ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
             using concrete_task_t =
                 GenericTaskInvokerUtilities::CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
             std::shared_ptr<concrete_task_t> p_concrete =
@@ -118,7 +118,7 @@ class GenericTaskInvokerUtilities
             // This is the lcation of the corresponding concrete product in typelist
             // ConcreteTasksTypeList that has tasklabel COMMAND_LABEL.
             constexpr int concrete_index =
-                RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,
+                ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,
                 COMMAND_LABEL>();
 
             // If the corresponding concrete product is not found then abort.

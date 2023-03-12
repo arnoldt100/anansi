@@ -9,9 +9,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "test_receiver_utilities.h"
+#include "test_invoker_utilities.h"
 
-namespace RECEIVER 
+namespace ANANSI 
 {
     std::string index_of_label_error_message(int const computed_index, 
                               int const correct_index,
@@ -115,4 +115,4 @@ namespace RECEIVER
     }
 
 
-} // namespace RECEIVER
+} // namespace ANANSI

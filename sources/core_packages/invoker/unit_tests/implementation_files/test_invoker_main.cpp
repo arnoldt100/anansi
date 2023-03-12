@@ -9,11 +9,11 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "test_receiver_main.h"
-#include "test_receiver_utilities.h"
+#include "test_invoker_main.h"
+#include "test_invoker_utilities.h"
 #include "TaskLabelContainerFixture.h"
 
-namespace RECEIVER {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -52,7 +52,7 @@ namespace RECEIVER {
 //============================= OPERATORS ====================================
 
 
-}; // namespace RECEIVER
+}; // namespace ANANSI
 
 BOOST_FIXTURE_TEST_SUITE(TEST_INDEX_OF,
                          RECEIVER::TaskLabelContainerFixture)

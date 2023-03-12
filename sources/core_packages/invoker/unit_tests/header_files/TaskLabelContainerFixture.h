@@ -22,7 +22,7 @@
 #include "ReceiverUtilities.hpp"
 #include "MPLAliases.hpp"
 
-namespace RECEIVER
+namespace ANANSI
 {
 
 template<RECEIVER::TaskLabel T>
@@ -109,6 +109,6 @@ class TaskLabelContainerFixture
 }; // -----  end of class TaskLabelContainerFixture  -----
 
 
-}; // namespace RECEIVER
+}; // namespace ANANSI
 
-#endif // RECEIVER_TaskLabelContainerFixture_INC
+#endif // ANANSI_TaskLabelContainerFixture_INC

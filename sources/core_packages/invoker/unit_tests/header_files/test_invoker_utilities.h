@@ -1,7 +1,7 @@
-#ifndef test_receiver_utilities_INC
-#define test_receiver_utilities_INC
+#ifndef test_invoker_utilities_INC
+#define test_invoker_utilities_INC
 
-//! @file test_receiver_utilities.h
+//! @file test_invoker_utilities.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -18,7 +18,7 @@
 #include "ReceiverUtilities.hpp"
 #include "TaskLabelContainerFixture.h"
 
-namespace RECEIVER 
+namespace ANANSI 
 {
 
     //! Returns an error message for an incorrect computed index from IndexOfLabel.
@@ -202,6 +202,6 @@ namespace RECEIVER
         BOOST_TEST( correct_index == computed_index, message.c_str());
         return;
     }
-};
+}; // namespace ANANSI
 
 #endif // test_receiver_utilities_INC

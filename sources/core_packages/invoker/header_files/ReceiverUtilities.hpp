@@ -1,5 +1,5 @@
-#ifndef RECEIVER_ReceiverUtilities_INC
-#define RECEIVER_ReceiverUtilities_INC
+#ifndef ANANSI_ReceiverUtilities_INC
+#define ANANSI_ReceiverUtilities_INC
 
 //! @file ReceiverUtilities.hpp
 
@@ -18,7 +18,7 @@
 #include "TaskLabel.hpp" 
 #include "MPLAliases.hpp"
 
-namespace RECEIVER
+namespace ANANSI
 {
 
 // =====================================================================================
@@ -135,6 +135,6 @@ class ReceiverUtilities
 }; // -----  end of class ReceiverUtilities  -----
 
 
-}; // namespace RECEIVER
+}; // namespace ANANSI
 
-#endif // RECEIVER_ReceiverUtilities_INC
+#endif // ANANSI_ReceiverUtilities_INC
