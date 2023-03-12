@@ -21,7 +21,7 @@
 #include "AnansiTask.h"
 #include "GenericTaskInvokerUtilities.hpp"
 #include "MPLAliases.hpp"
-#include "TaskLabel.hpp" 
+#include "TaskLabel.hpp"
 #include "ReceiverUtilities.hpp"
 
 namespace ANANSI
@@ -29,7 +29,7 @@ namespace ANANSI
 
 //! Stores tasks.
 //!
-//! This non-copyable template class stores the tasks and facilitates various actions on the 
+//! This non-copyable template class stores the tasks and facilitates various actions on the
 //! stored tasks. These actions and a brief description are listed below:
 //!
 //! - addTask
@@ -44,9 +44,9 @@ namespace ANANSI
 //! @tparam ConcreteProductsTypeList A typelist of concrete tasks.
 //! @tparam LABEL_t  The type of task label (button id)
 template<typename AbstractProductsTypeList,
-         typename ConcreteProductsTypeList, 
+         typename ConcreteProductsTypeList,
          typename LABEL_t=RECEIVER::TaskLabel
-        >
+         >
 class GenericTaskInvoker
 {
     public:
@@ -65,7 +65,7 @@ class GenericTaskInvoker
         {
             if (this != &other)
             {
-                
+
             }
             return;
         }		// -----  end of method GenericTaskInvoker::GenericTaskInvoker  -----
@@ -84,14 +84,16 @@ class GenericTaskInvoker
         //!
         //! @param[in] key The button id for the command.
         //! @param[in] aCommand The command/task to be added to the invoker.
-        void addTask(LABEL_t const & key,
-                        std::shared_ptr<ANANSI::AnansiTask> aCommand)
+        void
+        addTask(LABEL_t const & key,
+                std::shared_ptr<ANANSI::AnansiTask> aCommand)
         {
-        	this->commandSlots_[key] = aCommand;
+            this->commandSlots_[key] = aCommand;
             return;
         }
 
-        void doTask(std::vector<LABEL_t> const & command_keys)
+        void
+        doTask(std::vector<LABEL_t> const & command_keys)
         {
             const std::vector<std::string> flags = {"default"};
             for (auto & key : command_keys)
@@ -101,7 +103,8 @@ class GenericTaskInvoker
             return;
         }
 
-        void undoTask(std::vector<LABEL_t> const & command_keys) 
+        void
+        undoTask(std::vector<LABEL_t> const & command_keys)
         {
             const std::vector<std::string> flags = {"default"};
             for (auto key : command_keys)
@@ -111,7 +114,8 @@ class GenericTaskInvoker
             return;
         }
 
-        void disableTask(std::vector<LABEL_t> const & command_keys)
+        void
+        disableTask(std::vector<LABEL_t> const & command_keys)
         {
             const std::vector<std::string> flags = {"default"};
             for (auto key : command_keys)
@@ -123,12 +127,13 @@ class GenericTaskInvoker
 
         //! Modifies the receiver of the task that corresponds to label COMMAND_KEY.
         //!
-        //! @tparam COMMAND_KEY The label of the task for which we seek the results. 
+        //! @tparam COMMAND_KEY The label of the task for which we seek the results.
         //! @tparam ReceiverArgsTypes A paramater pack of types of args,
         //! @param[in,out]  args The parameter pack of arguments that used in modfying the receiver.
         template <LABEL_t COMMAND_KEY,
                   typename... ReceiverArgsTypes>
-        void modifyTask( ReceiverArgsTypes &... args)
+        void
+        modifyTask( ReceiverArgsTypes &... args)
         {
 
             GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteProductsTypeList,COMMAND_KEY>();
@@ -136,80 +141,84 @@ class GenericTaskInvoker
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
 
             GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteProductsTypeList,
-                                                            LABEL_t,
-                                                            COMMAND_KEY,
-                                                            ReceiverArgsTypes...>(task,args...);
+                                        LABEL_t,
+                                        COMMAND_KEY,
+                                        ReceiverArgsTypes...>(task,args...);
             return;
         }
 
         //! Returns a copy of the results for the task corresponding to COMMAND_KEY.
         //!
-        //! @tparam COMMAND_KEY The label of the task for which we seek the results. 
+        //! @tparam COMMAND_KEY The label of the task for which we seek the results.
         template<LABEL_t COMMAND_KEY>
-        auto getCopyOfTaskResults()
+        auto
+        getCopyOfTaskResults()
         {
             // We compute the range of concrete products in ConcreteProductsTypeList.
-            constexpr auto nm_products = 
+            constexpr auto nm_products =
                 static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
 
-            // This is the lcation of the corresponding concrete product in typelist 
+            // This is the lcation of the corresponding concrete product in typelist
             // ConcreteProductsTypeList that has tasklabel COMMAND_KEY.
-            constexpr int concrete_index = 
+            constexpr int concrete_index =
                 RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,
-                                                                   COMMAND_KEY>();
+                COMMAND_KEY>();
 
             // If the corresponding concrete product is not found then abort.
             if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
             {
-                 // :TODO:11/15/2022 10:00:29 AM:: Abort program 
-                 // for a nonrecoverable error has occurred.
+                // :TODO:11/15/2022 10:00:29 AM:: Abort program
+                // for a nonrecoverable error has occurred.
             }
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
-            
+
             auto results = GenericTaskInvokerUtilities::getCopyOfTaskReceiverResults<ConcreteProductsTypeList,
-                                                                                     concrete_index>(task);
+                 concrete_index>(task);
             return results;
         }
 
         //! Shares the results for the task corresponding to COMMAND_KEY.
         //!
-        //! @tparam COMMAND_KEY The label of the task for which we seek the results. 
+        //! @tparam COMMAND_KEY The label of the task for which we seek the results.
         template<LABEL_t COMMAND_KEY>
-        auto shareTaskResults()
+        auto
+        shareTaskResults()
         {
             // We compute the range of concrete products in ConcreteProductsTypeList.
-            constexpr auto nm_products = 
+            constexpr auto nm_products =
                 static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteProductsTypeList>::value);
 
-            // This is the lcation of the corresponding concrete product in typelist 
+            // This is the lcation of the corresponding concrete product in typelist
             // ConcreteProductsTypeList that has tasklabel COMMAND_KEY.
-            constexpr int concrete_index = 
+            constexpr int concrete_index =
                 RECEIVER::ReceiverUtilities::getLocationInTypeList<ConcreteProductsTypeList,
-                                                                   COMMAND_KEY>();
+                COMMAND_KEY>();
 
             // If the corresponding concrete product is not found then abort.
             if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
             {
-                 // :TODO:11/15/2022 10:00:29 AM:: Abort program 
-                 // for a nonrecoverable error has occurred.
+                // :TODO:11/15/2022 10:00:29 AM:: Abort program
+                // for a nonrecoverable error has occurred.
             }
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_KEY);
 
             return 10;
         }
-        
+
 
         // ====================  OPERATORS     =======================================
 
-        GenericTaskInvoker& operator= ( const GenericTaskInvoker &other )=delete; // assignment operator
+        GenericTaskInvoker&
+        operator= ( const GenericTaskInvoker &other )=delete; // assignment operator
 
-        GenericTaskInvoker& operator= ( GenericTaskInvoker && other ) // assignment-move operator
+        GenericTaskInvoker&
+        operator= ( GenericTaskInvoker && other ) // assignment-move operator
         {
             if (this != &other)
             {
-                this->commandSlots_ = std::move(other.commandSlots_); 
+                this->commandSlots_ = std::move(other.commandSlots_);
             }
             return *this;
         } // assignment-move operator
@@ -222,14 +231,14 @@ class GenericTaskInvoker
 
     private:
 
-        // ====================  TYPE ALIASES  =======================================  
+        // ====================  TYPE ALIASES  =======================================
 
-        using abstract_products_ = AbstractProductsTypeList; 
+        using abstract_products_ = AbstractProductsTypeList;
 
         using concrete_products_ = ConcreteProductsTypeList;
 
         // ====================  MUTATORS      =======================================
-       
+
         // ====================  DATA MEMBERS  =======================================
         std::map <LABEL_t,std::shared_ptr<ANANSI::AnansiTask>> commandSlots_;
 
