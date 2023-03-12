@@ -8,7 +8,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "__target___unit_tests")
+    set(my_project_name "invoker_unit_tests")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -16,6 +16,15 @@
     #                                                    -
     #-----------------------------------------------------
     set(target ${my_project_name})
+
+    # ----------------------------------------------------
+    # Get the properties of various other targets that 
+    # invoker target  depends on.
+    # 
+    # ----------------------------------------------------
+    get_target_property(my_invoker_include invoker invoker_include)
+    get_target_property(my_tasks_include tasks tasks_include)
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -27,34 +36,37 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # Here we define the sources and header files associated          @
-# with the __target___unit_test target.                           @
+# with the invoker_unit_test target.                              @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # __target___unit_tests_header_files                 -
+    # invoker_unit_tests_header_files                    -
     # with the target header files.                      -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test___target__.h )
-
+    set (invoker_unit_tests_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_invoker_main.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_invoker_utilities.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/TaskLabelContainerFixture.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # __target___unit_tests_implementation_files         -
+    # invoker_unit_tests_implementation_files            -
     # associated with target implementation files.       -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test___target__.cpp )
+    set (invoker_unit_tests_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_invoker_main.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_invoker_utilities.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/TaskLabelContainerFixture.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the implementation and header files associated  @
-# with the __target___unit_tests target.                          @
+# with the invoker_unit_tests target.                             @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -75,45 +87,48 @@
     #                                                    -
     #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${__target___unit_tests_header_files}
-                ${__target___unit_tests_implementation_files} )
+        PRIVATE ${receiver_unit_tests_header_files}
+        PRIVATE ${receiver_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property( <cla>_include_dir __target__ __target___include )
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                               PRIVATE ${<cla>_include_dir}
+                               PRIVATE ${my_typelist_aliases_include}
+                               PRIVATE ${my_reciever_include}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
     # (1) Boost libraries                                -
-    # (2) lib__target__.a                    -
+    # (2) libreceiver.a                                  -
+    # (3) libtypelist_aliases.a                          -
     #                                                    -
     #-----------------------------------------------------
-    target_link_libraries(${target}
-                          PRIVATE __target__ ${Boost_LIBRARIES} )
+    target_link_libraries(${target} 
+                          PUBLIC receiver
+                          PUBLIC typelist_aliases
+                          PUBLIC ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # __target___unit_tests.                 -
+    # receiver_unit_tests.                               -
     #                                                    -
     #-----------------------------------------------------
-    set_target_properties( ${target}
-                           PROPERTIES
-                           PUBLIC_HEADER "${__target___unit_tests_header_files}" )
+    set_target_properties( ${target} PROPERTIES
+                           CXX_STANDARD ${receiver_cxx_standard}
+                           PUBLIC_HEADER "${receiver_unit_tests_header_files}" )
 
     #-----------------------------------------------------
     # Here we define the installations rules for         -
-    # this target __target___unit_tests.                 -
+    # this target receiver_unit_tests.                   -
     #                                                    -
     #-----------------------------------------------------
     install( TARGETS ${target}
-             RUNTIME DESTINATION ${anansi_install_bin_directory} 
-             PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
+             RUNTIME DESTINATION ${receiver_install_lib_library_directory} 
+             PUBLIC_HEADER DESTINATION ${receiver_install_lib_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
