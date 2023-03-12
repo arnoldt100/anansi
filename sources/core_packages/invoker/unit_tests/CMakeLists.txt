@@ -87,8 +87,8 @@
     #                                                    -
     #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${receiver_unit_tests_header_files}
-        PRIVATE ${receiver_unit_tests_implementation_files} )
+        PRIVATE ${invoker_unit_tests_header_files}
+        PRIVATE ${invoker_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
@@ -103,32 +103,32 @@
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
     # (1) Boost libraries                                -
-    # (2) libreceiver.a                                  -
+    # (2) libinvoker.a                                   -
     # (3) libtypelist_aliases.a                          -
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target} 
-                          PUBLIC receiver
+                          PUBLIC invoker
                           PUBLIC typelist_aliases
                           PUBLIC ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # receiver_unit_tests.                               -
+    # invoker_unit_tests.                                -
     #                                                    -
     #-----------------------------------------------------
     set_target_properties( ${target} PROPERTIES
-                           CXX_STANDARD ${receiver_cxx_standard}
-                           PUBLIC_HEADER "${receiver_unit_tests_header_files}" )
+                           CXX_STANDARD ${invoker_cxx_standard}
+                           PUBLIC_HEADER "${invoker_unit_tests_header_files}" )
 
     #-----------------------------------------------------
     # Here we define the installations rules for         -
-    # this target receiver_unit_tests.                   -
+    # this target invoker_unit_tests.                   -
     #                                                    -
     #-----------------------------------------------------
     install( TARGETS ${target}
-             RUNTIME DESTINATION ${receiver_install_lib_library_directory} 
-             PUBLIC_HEADER DESTINATION ${receiver_install_lib_directory} )
+             RUNTIME DESTINATION ${invoker_install_lib_library_directory} 
+             PUBLIC_HEADER DESTINATION ${invoker_install_lib_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
