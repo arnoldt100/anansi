@@ -12,7 +12,7 @@
 //--------------------------------------------------------//
 #include "ReceiverUtilities.hpp"
 
-namespace RECEIVER {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -98,4 +98,4 @@ ReceiverUtilities& ReceiverUtilities::operator= ( ReceiverUtilities && other )
 //============================= OPERATORS ====================================
 
 
-} // namespace RECEIVER
+} // namespace ANANSI
