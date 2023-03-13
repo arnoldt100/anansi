@@ -73,20 +73,17 @@ class GenericTaskInvokerUtilities
         modifyTaskReceiver(std::shared_ptr<ANANSI::AnansiTask> &task,
                            ReceiverArgsTypes &...receiver_args)
         {
-            constexpr int concrete_index =
-                ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
-            using concrete_task_t =
-                GenericTaskInvokerUtilities::CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
-            std::shared_ptr<concrete_task_t> p_concrete =
-                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
-            p_concrete->modifyReceiver(receiver_args...);
+            using concrete_task_type = 
+                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+            std::shared_ptr<concrete_task_type> concrete_task =
+                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
+            concrete_task->modifyReceiver(receiver_args...);
             return;
         }
 
         //! Returns a copy of the result of a concrete task.
         //!
         //! @tparam A typelist of concrete task types.
-        //! @tparam concrete_index The location of the concrete task type of task
         //! @param[in,out] task The concrete task of whose results we want,
         template <typename ConcreteTasksTypeList,
                   typename LABEL_t,
@@ -94,17 +91,39 @@ class GenericTaskInvokerUtilities
         static auto
         getCopyOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
         {
-            constexpr int concrete_index =
-                ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
-            using concrete_task_t =
-                GenericTaskInvokerUtilities::CONCRETE_TASK_TYPE_AT_INDEX_<ConcreteTasksTypeList,concrete_index>;
-            std::shared_ptr<concrete_task_t> p_concrete =
-                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_t>::asConcreteTask(task);
+            using concrete_task_type = 
+                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
-            auto ret_val = p_concrete->getCopyOfResults();
+            std::shared_ptr<concrete_task_type> concrete_task =
+                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
+
+            auto ret_val = concrete_task->getCopyOfResults();
 
             return ret_val;
         }
+
+
+        //! Returns a shared type of the result of a concrete task.
+        //!
+        //! @tparam A typelist of concrete task types.
+        //! @param[in,out] task The concrete task of whose results we want,
+        template <typename ConcreteTasksTypeList,
+                  typename LABEL_t,
+                  LABEL_t COMMAND_LABEL>
+        static auto
+        getShareOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
+        {
+            using concrete_task_type = 
+                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+
+            std::shared_ptr<concrete_task_type> concrete_task =
+                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
+
+            auto ret_val = concrete_task->shareOwnershipOfResults();
+
+            return ret_val;
+        }
+
 
         template <typename ConcreteTasksTypeList, RECEIVER::TaskLabel COMMAND_LABEL>
         static void

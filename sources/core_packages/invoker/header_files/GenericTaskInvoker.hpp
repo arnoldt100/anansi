@@ -171,26 +171,13 @@ class GenericTaskInvoker
         auto
         shareTaskResults()
         {
-            // We compute the range of concrete products in ConcreteTasksTypeList.
-            constexpr auto nm_products =
-                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteTasksTypeList>::value);
+            GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
 
-            // This is the lcation of the corresponding concrete product in typelist
-            // ConcreteTasksTypeList that has tasklabel COMMAND_LABEL.
-            constexpr int concrete_index =
-                ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,
-                COMMAND_LABEL>();
+            auto results = 
+                GenericTaskInvokerUtilities::getShareOfTaskReceiverResults<ConcreteTasksTypeList,LABEL_t,     
+                    COMMAND_LABEL>(task);
 
-            // If the corresponding concrete product is not found then abort.
-            if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
-            {
-                // :TODO:11/15/2022 10:00:29 AM:: Abort program
-                // for a nonrecoverable error has occurred.
-            }
-
-            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
-
-            return 10;
+            return results;
         }
 
 

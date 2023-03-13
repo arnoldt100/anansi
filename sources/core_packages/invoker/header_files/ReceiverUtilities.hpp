@@ -32,7 +32,7 @@ namespace ANANSI
 //!
 //! @tparam L The TaskLabel type.
 template<typename L>
-class TaskLabelContainer
+class TaskLabelContainer_
 {
     public:
         //! Stores the TaskLabel of type L.
@@ -97,10 +97,11 @@ class ReceiverUtilities
                  RECEIVER::TaskLabel KEY>
         constexpr static auto getLocationInTypeList()
         {
-            using TL_SEQUENCE_t = MPL::mpl_transform<TaskLabelContainer,ConcreteProductTypeList>;
+            using TL_SEQUENCE_t = MPL::mpl_transform<TaskLabelContainer_,ConcreteProductTypeList>;
             auto constexpr index = IndexOfLabel<TL_SEQUENCE_t,KEY>::value;
             return index;
         }
+
 
         // ====================  LIFECYCLE     =======================================
 
@@ -134,6 +135,18 @@ class ReceiverUtilities
 
 }; // -----  end of class ReceiverUtilities  -----
 
+template <typename ConcreteTasksTypeList,
+          typename LABEL_t,
+          LABEL_t COMMAND_LABEL>
+class
+ConcreteTypeForCorrespondingLabel 
+{
+    private:
+        static const int concreteindex_ =
+            ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+    public:
+        using concrete_type = MPL::mpl_at_c<ConcreteTasksTypeList,concreteindex_>;
+};
 
 }; // namespace ANANSI
 
