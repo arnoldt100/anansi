@@ -173,9 +173,11 @@ class GenericTaskInvoker
         {
             GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
 
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
+
             auto results = 
                 GenericTaskInvokerUtilities::getShareOfTaskReceiverResults<ConcreteTasksTypeList,LABEL_t,     
-                    COMMAND_LABEL>();
+                    COMMAND_LABEL>(task);
 
             return results;
         }

@@ -91,9 +91,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         template<typename T>
         void receiverModifyMyself(T & arg);
 
-        auto receiverShareOwnershipOfResults();
+        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
 
-        auto receiverTransferOwnershipOfResults();
+        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
 
         // ====================  OPERATORS     =======================================
 

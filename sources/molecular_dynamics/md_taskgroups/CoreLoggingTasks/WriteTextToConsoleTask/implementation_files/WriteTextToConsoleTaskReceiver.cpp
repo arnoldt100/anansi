@@ -74,13 +74,13 @@ void WriteTextToConsoleTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUN
     return;
 }
 
-auto WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
+WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Sharedtype WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
 {
     OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-auto WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults()
+WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Transfertype WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults()
 {
     OwnershipPolicy<receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
