@@ -175,7 +175,7 @@ class GenericTaskInvoker
 
             auto results = 
                 GenericTaskInvokerUtilities::getShareOfTaskReceiverResults<ConcreteTasksTypeList,LABEL_t,     
-                    COMMAND_LABEL>(task);
+                    COMMAND_LABEL>();
 
             return results;
         }

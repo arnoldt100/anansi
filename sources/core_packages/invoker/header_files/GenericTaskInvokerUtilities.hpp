@@ -66,7 +66,7 @@ class GenericTaskInvokerUtilities
 
         //! Modifies the receiver of the concrete type located at concrete_index.
         template <typename ConcreteTasksTypeList,
-                  typename LABEL_t,
+                  typename LABEL_t, 
                   LABEL_t COMMAND_LABEL,
                   typename... ReceiverArgsTypes>
         static void
