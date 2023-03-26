@@ -1,4 +1,4 @@
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# e@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
 #                                                                 @
@@ -30,6 +30,7 @@
     #                                                    -
     #-----------------------------------------------------
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_build_prerequisites.cmake" )
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_mpi.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_boost.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_log_message.cmake" )
@@ -85,6 +86,12 @@ set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 set(my_message "Start of configuring project anansi\n")
 log_message_to_file("${anansi_log_file}" "${my_message}")
 
+#-----------------------------------------------------
+# This section checks that MPI is available.         -
+#                                                    -
+#-----------------------------------------------------
+enable_mpi()
+    
 #-----------------------------------------------------
 # This section permits use to find the header files  -
 # and link against the BOOST library.                -
