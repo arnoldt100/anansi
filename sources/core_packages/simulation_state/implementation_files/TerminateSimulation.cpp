@@ -1,7 +1,9 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 #include <utility>
+#include <typeinfo>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -29,12 +31,20 @@ TerminateSimulation::TerminateSimulation() :
 TerminateSimulation::TerminateSimulation( TerminateSimulation const & other) :
     SimulationState()
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 TerminateSimulation::TerminateSimulation( TerminateSimulation && other) :
     SimulationState(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method TerminateSimulation::TerminateSimulation  -----
 
@@ -83,6 +93,10 @@ void TerminateSimulation::execute_(Simulation * const a_simulation) const
 
 void TerminateSimulation::Execute_(Simulation * const a_simulation) const 
 {
+    std::string message("This TerminateSimulation::Execute executes a stud command! \n"); 
+    message += "The simulation is type: ";
+    message += typeid(a_simulation).name(); 
+    std::cout << message.c_str() << std::endl << std::flush;
     return;
 };
 
