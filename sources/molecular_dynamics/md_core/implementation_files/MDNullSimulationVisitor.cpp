@@ -27,11 +27,19 @@ MDNullSimulationVisitor::MDNullSimulationVisitor()
 
 MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MDNullSimulationVisitor::MDNullSimulationVisitor  -----
 

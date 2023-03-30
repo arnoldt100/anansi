@@ -27,12 +27,20 @@ MDTerminateSimulationVisitor::MDTerminateSimulationVisitor()
 
 MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulationVisitor const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulationVisitor && other)
 {
     return;
+    if (this != &other)
+    {
+
+    }
 }		// -----  end of method MDTerminateSimulationVisitor::MDTerminateSimulationVisitor  -----
 
 

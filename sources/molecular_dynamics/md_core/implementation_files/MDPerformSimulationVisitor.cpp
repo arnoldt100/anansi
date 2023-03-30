@@ -27,11 +27,19 @@ MDPerformSimulationVisitor::MDPerformSimulationVisitor()
 
 MDPerformSimulationVisitor::MDPerformSimulationVisitor( MDPerformSimulationVisitor const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 MDPerformSimulationVisitor::MDPerformSimulationVisitor( MDPerformSimulationVisitor && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MDPerformSimulationVisitor::MDPerformSimulationVisitor  -----
 

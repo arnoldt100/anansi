@@ -27,11 +27,19 @@ MDProcessCmdLineVisitor::MDProcessCmdLineVisitor()
 
 MDProcessCmdLineVisitor::MDProcessCmdLineVisitor( MDProcessCmdLineVisitor const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 MDProcessCmdLineVisitor::MDProcessCmdLineVisitor( MDProcessCmdLineVisitor && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MDProcessCmdLineVisitor::MDProcessCmdLineVisitor  -----
 

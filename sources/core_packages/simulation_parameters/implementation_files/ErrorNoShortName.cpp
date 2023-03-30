@@ -25,8 +25,21 @@ ErrorNoShortName::ErrorNoShortName()
     return;
 }
 
+ErrorNoShortName::ErrorNoShortName( ErrorNoShortName const & other)
+{
+    if (this != &other)
+    {
+
+    }
+    return;
+}		/* -----  end of method ErrorNoShortName::ErrorNoShortName  ----- */
+
 ErrorNoShortName::ErrorNoShortName( ErrorNoShortName && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		/* -----  end of method ErrorNoShortName::ErrorNoShortName  ----- */
 

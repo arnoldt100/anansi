@@ -24,11 +24,23 @@ ErrorNoOptionDescription::ErrorNoOptionDescription()
     return;
 }
 
-ErrorNoOptionDescription::ErrorNoOptionDescription( ErrorNoOptionDescription && other)
+ErrorNoOptionDescription::ErrorNoOptionDescription( ErrorNoOptionDescription const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		/* -----  end of method ErrorNoOptionDescription::ErrorNoOptionDescription  ----- */
 
+ErrorNoOptionDescription::ErrorNoOptionDescription( ErrorNoOptionDescription && other)
+{
+    if (this != &other)
+    {
+
+    }
+    return;
+}		/* -----  end of method ErrorNoOptionDescription::ErrorNoOptionDescription  ----- */
 
 ErrorNoOptionDescription::~ErrorNoOptionDescription()
 {
