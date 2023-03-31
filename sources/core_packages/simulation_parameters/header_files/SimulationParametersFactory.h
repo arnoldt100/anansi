@@ -50,7 +50,6 @@ class SimulationParametersFactory
          */
         SimulationParametersFactory();                             /* constructor      */
 
-
         SimulationParametersFactory( const SimulationParametersFactory &other );   /* copy constructor */
 
         ~SimulationParametersFactory();                            /* destructor       */

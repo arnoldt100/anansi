@@ -185,6 +185,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${MPI_C_INCLUDE_DIRS}
                            PRIVATE ${my_command_line_arguments_include} 
                            PRIVATE ${my_receiver_include}
                            PRIVATE ${my_su_include}
@@ -200,6 +201,7 @@ target_include_directories(${target}
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
+                       PUBLIC MPI::MPI_C
                        PUBLIC receiver
                        PUBLIC command_line_arguments
                        PUBLIC Threads::Threads

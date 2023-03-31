@@ -28,12 +28,20 @@ MDSimulationStateFactory::MDSimulationStateFactory() :
 MDSimulationStateFactory::MDSimulationStateFactory( MDSimulationStateFactory const & other) :
     mdSimStateFactory_(std::make_unique<concrete_factory_>())
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MDSimulationStateFactory::MDSimulationStateFactory  -----
 
 MDSimulationStateFactory::MDSimulationStateFactory( MDSimulationStateFactory && other) :
-    mdSimStateFactory_(std::move(mdSimStateFactory_))
+    mdSimStateFactory_(std::move(other.mdSimStateFactory_))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MDSimulationStateFactory::MDSimulationStateFactory  -----
 

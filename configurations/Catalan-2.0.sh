@@ -13,7 +13,7 @@ fi
 # Define the c++ compiler.                           -
 #                                                    -
 #-----------------------------------------------------
-export ANANSI_CMAKE_CXX_COMPILER=mpiCC
+export ANANSI_CMAKE_CXX_COMPILER=mpic++
 
 #-----------------------------------------------------
 # Define the c compiler.                             -

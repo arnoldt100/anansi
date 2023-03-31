@@ -24,8 +24,21 @@ BuilderFileParser::BuilderFileParser()
     return;
 }
 
+BuilderFileParser::BuilderFileParser( BuilderFileParser const & other)
+{
+    if (this != &other)
+    {
+
+    }
+    return;
+}   // -----  end of method BuilderFileParser::BuilderFileParser  -----
+
 BuilderFileParser::BuilderFileParser( BuilderFileParser && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }   // -----  end of method BuilderFileParser::BuilderFileParser  -----
 

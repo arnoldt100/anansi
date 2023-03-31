@@ -43,11 +43,19 @@ class AnansiMDStateInt2Type
 
         AnansiMDStateInt2Type (const AnansiMDStateInt2Type & other)
         {
-            return;
+            if (this != &other)
+            {
+
+            }
+        return;
         }   // copy constructor
 
         AnansiMDStateInt2Type (AnansiMDStateInt2Type && other)
         {
+            if (this != &other)
+            {
+
+            }
             return;
         }   // copy-move constructor
 

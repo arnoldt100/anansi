@@ -22,6 +22,10 @@ SimulationParametersFactory::SimulationParametersFactory()
 
 SimulationParametersFactory::SimulationParametersFactory( const SimulationParametersFactory &other )
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 

@@ -26,11 +26,19 @@ MPIEnvironmentState::MPIEnvironmentState()
 
 MPIEnvironmentState::MPIEnvironmentState( MPIEnvironmentState const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 MPIEnvironmentState::MPIEnvironmentState( MPIEnvironmentState && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MPIEnvironmentState::MPIEnvironmentState  -----
 
