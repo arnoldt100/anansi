@@ -3,6 +3,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <typeinfo>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -28,11 +29,19 @@ SimulationState::SimulationState()
 
 SimulationState::SimulationState( SimulationState const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method SimulationState::SimulationState  -----
 
 SimulationState::SimulationState( SimulationState && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method SimulationState::SimulationState  -----
 
@@ -86,7 +95,9 @@ SimulationState& SimulationState::operator= ( SimulationState && other )
 void SimulationState::execute_(Simulation* const a_simulation) const
 {
     std::string message("This simulation state executes a stud command!");
-    std::cout << message.c_str() << std::endl;
+    std::cout << message.c_str() << std::endl << std::flush;
+    std::cout << "The simulation state is type: " << typeid(a_simulation).name() <<  std::endl << std::flush;
+
     return;
 }
 

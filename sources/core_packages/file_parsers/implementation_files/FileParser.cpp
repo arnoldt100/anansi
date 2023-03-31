@@ -24,8 +24,21 @@ FileParser::FileParser()
     return;
 }
 
+FileParser::FileParser( FileParser const & other)
+{
+    if (this != &other)
+    {
+
+    }
+    return;
+} 
+
 FileParser::FileParser( FileParser && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 } 
 

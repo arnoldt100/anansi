@@ -27,12 +27,20 @@ MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor()
 
 MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor && other)
 {
     return;
+    if (this != &other)
+    {
+
+    }
 }		// -----  end of method MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor  -----
 
 

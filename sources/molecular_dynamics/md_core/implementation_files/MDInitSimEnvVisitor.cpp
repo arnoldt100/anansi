@@ -27,11 +27,19 @@ MDInitSimEnvVisitor::MDInitSimEnvVisitor()
 
 MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MDInitSimEnvVisitor::MDInitSimEnvVisitor  -----
 

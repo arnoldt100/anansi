@@ -25,8 +25,21 @@ ErrorNoLongName::ErrorNoLongName()
     return;
 }
 
+ErrorNoLongName::ErrorNoLongName( ErrorNoLongName const & other)
+{
+    if (this != &other)
+    {
+
+    }
+    return;
+}		/* -----  end of method ErrorNoLongName::ErrorNoLongName  ----- */
+
 ErrorNoLongName::ErrorNoLongName( ErrorNoLongName && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		/* -----  end of method ErrorNoLongName::ErrorNoLongName  ----- */
 

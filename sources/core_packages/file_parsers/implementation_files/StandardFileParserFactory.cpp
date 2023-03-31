@@ -25,8 +25,21 @@ StandardFileParserFactory::StandardFileParserFactory()
     return;
 }
 
+StandardFileParserFactory::StandardFileParserFactory( StandardFileParserFactory const & other)
+{
+    if (this != &other)
+    {
+
+    }
+    return;
+}		// -----  end of method StandardFileParserFactory::StandardFileParserFactory  -----
+
 StandardFileParserFactory::StandardFileParserFactory( StandardFileParserFactory && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method StandardFileParserFactory::StandardFileParserFactory  -----
 

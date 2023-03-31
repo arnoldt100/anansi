@@ -2,6 +2,8 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <iostream>
+#include <typeinfo>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -29,12 +31,20 @@ InitSimEnv::InitSimEnv() :
 InitSimEnv::InitSimEnv( InitSimEnv const & other) :
     SimulationState()
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 InitSimEnv::InitSimEnv( InitSimEnv && other) :
     SimulationState(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method InitSimEnv::InitSimEnv  -----
 
@@ -84,6 +94,10 @@ void InitSimEnv::execute_(Simulation * const a_simulation) const
 void InitSimEnv::Execute_(Simulation * const a_simulation) const 
 {
     return;
+    std::string message("This InitSimEnv::Execute executes a stud command! \n"); 
+    message += "The simulation is type: ";
+    message += typeid(a_simulation).name(); 
+    std::cout << message.c_str() << std::endl << std::flush;
 };
 
 //============================= MUTATORS =====================================
