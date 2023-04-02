@@ -33,10 +33,13 @@
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_mpi.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_boost.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake" )
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_debug_flags.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_log_message.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_test_variable.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_package_configure_delimiter_comments.cmake") 
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_property_name_generator.cmake") 
+
+    enable_cache_debug_flags()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
