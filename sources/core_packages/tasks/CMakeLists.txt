@@ -153,6 +153,12 @@ target_link_libraries( ${target}
 enable_compile_warnings(${target})
 
 #-----------------------------------------------------
+# Enable debug code.
+#
+#-----------------------------------------------------
+enable_anansi_debug_flags(${target})
+
+#-----------------------------------------------------
 # Here we set the properties on target               -
 #                                                    -
 #-----------------------------------------------------

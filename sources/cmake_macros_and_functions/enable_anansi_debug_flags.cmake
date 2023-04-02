@@ -21,5 +21,5 @@
 macro(enable_anansi_debug_flags MY_TARGET)
 
     target_compile_options(${MY_TARGET}
-        PRIVATE $<${ENV{ANANSI_DEBUG_VALID_VALUES}:-DNDEBUG -DANANSI_DBG_VALID_VALUES>)
+        PRIVATE $<$ENV{ANANSI_DEBUG_VALID_VALUES}:-DANANSI_DBG_VALID_VALUES>)
 endmacro()
