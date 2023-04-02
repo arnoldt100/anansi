@@ -33,7 +33,6 @@ then
     rm -rf ${anansi_cmake_build_dir}
 fi
 mkdir ${anansi_cmake_build_dir}
-
 cd ${anansi_cmake_build_dir}
 
 cmake ${ANANSI_TOP_LEVEL}/sources \
@@ -41,7 +40,6 @@ cmake ${ANANSI_TOP_LEVEL}/sources \
       -DCMAKE_C_COMPILER=${ANANSI_CMAKE_C_COMPILER} \
       -DCMAKE_INSTALL_PREFIX=${ANANSI_INSTALL_PREFIX} \
       -DCMAKE_BUILD_TYPE=Debug \
-      -DDEBUG_VALID_VALUES=1 \
       -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 
 make -j ${NM_MAKE_THREADS}
