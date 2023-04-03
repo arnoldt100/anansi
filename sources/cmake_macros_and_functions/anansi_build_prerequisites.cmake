@@ -4,7 +4,7 @@
 #                                                    -
 #                                                    -
 #-----------------------------------------------------
-function(verify_key_environmental_are_set)
+function(verify_key_anansi_environmental_are_set)
 
     #-----------------------------------------------------
     # Verify environmental variable ANANSI_TOP_LEVEL is  -
@@ -92,6 +92,17 @@ function(verify_key_environmental_are_set)
     else()
         message( FATAL_ERROR "The environmental ANANSI_BOOST_TOP_LEVEL is not defined. This \
         variable defines the location to BOOST top level." )
+    endif()
+
+    #-----------------------------------------------------
+    # Verify environment variable                        -
+    # ANANSI_DEBUG_VALID_VALUES is defined.              -
+    #-----------------------------------------------------
+    if( DEFINED ENV{ANANSI_DEBUG_VALID_VALUES})
+        message("ANANSI_DEBUG_VALID_VALUES=$ENV{ANANSI_DEBUG_VALID_VALUES}")
+    else()
+        message( FATAL_ERROR "The environmental ANANSI_DEBUG_VALID_VALUES is not defined. This \
+        variable defines enables/disables debugging valid values for critical variable." )
     endif()
 
 endfunction()

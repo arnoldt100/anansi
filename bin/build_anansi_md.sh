@@ -33,7 +33,6 @@ then
     rm -rf ${anansi_cmake_build_dir}
 fi
 mkdir ${anansi_cmake_build_dir}
-
 cd ${anansi_cmake_build_dir}
 
 cmake ${ANANSI_TOP_LEVEL}/sources \

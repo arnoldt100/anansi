@@ -33,6 +33,7 @@
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_mpi.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_boost.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake" )
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_anansi_debug_flags.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_log_message.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_test_variable.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_package_configure_delimiter_comments.cmake") 
@@ -60,7 +61,7 @@
     # Check that key environmental variables are set.    -
     #                                                    -
     #-----------------------------------------------------
-    verify_key_environmental_are_set()
+    verify_key_anansi_environmental_are_set()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -81,6 +82,7 @@ set(anansi_install_bin_directory "$ENV{ANANSI_INSTALL_BIN_DIRECTORY}")
 set(anansi_install_include_directory "$ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY}")
 set(anansi_install_lib_directory "$ENV{ANANSI_INSTALL_LIB_DIRECTORY}")
 set(anansi_minimum_cmake_version "$ENV{ANANSI_MINIMUM_CMAKE_VERSION}")
+set(anansi_debug_valid_values"$ENV{ANANSI_DEBUG_VALID_VALUES}")
 set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 
 set(my_message "Start of configuring project anansi\n")
