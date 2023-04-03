@@ -1,5 +1,10 @@
 #! /usr/bin/env bash
 
+export ANANSI_OFF=0
+export ANANSI_ON=1
+export MOUSEION_OFF=0
+export MOUSEION_ON=1
+
 #-----------------------------------------------------
 # Define the top level directory of anansi           -
 #                                                    -
@@ -50,6 +55,13 @@ export ANANSI_INSTALL_LIB_DIRECTORY="${ANANSI_INSTALL_PREFIX}/lib"
 #                                                    -
 #-----------------------------------------------------
 export ANANSI_BOOST_TOP_LEVEL=${BOOST_TOP_LEVEL}
+
+#-----------------------------------------------------
+# Define the anansi debug environmental variables
+#
+#-----------------------------------------------------
+export ANANSI_DEBUG_VALID_VALUES=${ANANSI_ON}
+export MOUSEION_DEBUG_VALID_VALUES=${MOUSEION_ON}
 
 #-----------------------------------------------------
 # This anansi core configuration must be sourced.    -
