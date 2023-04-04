@@ -38,6 +38,14 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "${target}_include" )
 
+     # ----------------------------------------------------
+    # Verify that all initworldcommunicatortask build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/initworldcommunicatortask_build_prerequisites.cmake")
+    verify_initworldcommunicatortask_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
