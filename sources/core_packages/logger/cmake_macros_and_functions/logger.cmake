@@ -24,11 +24,13 @@
 macro ( enable_building_logger_library install_lib_directory
         install_include_directory
         install_bin_directory 
-        cxx_standard)
+        cxx_standard
+        logfile_path)
 
     set(logger_install_lib_directory ${install_lib_directory})
     set(logger_install_include_directory ${install_include_directory})
     set(logger_install_bin_directory ${install_bin_directory} )
     set(logger_cxx_standard ${cxx_standard} )
+    set(logger_logfilepath ${logfile_path} )
 endmacro()
 

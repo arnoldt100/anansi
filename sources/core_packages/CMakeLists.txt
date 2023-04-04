@@ -148,7 +148,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/logger/cmake_macros_and_functions/logger.cm
 enable_building_logger_library( "${core_packages_install_lib_directory}"
                                 "${core_packages_install_include_directory}"
                                 "${core_packages_install_bin_directory}" 
-                                "${core_packages_cxx_standard}" )
+                                "${core_packages_cxx_standard}"
+                                "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 
 #-----------------------------------------------------

@@ -43,6 +43,9 @@
     #-----------------------------------------------------
     get_target_property(my_comm_include communicator communicator_include)
 
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/logger_build_prerequisites.cmake")
+    verify_logger_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
