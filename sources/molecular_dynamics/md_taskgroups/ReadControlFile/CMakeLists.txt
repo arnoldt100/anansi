@@ -38,6 +38,13 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "readcontrolfile_include")
 
+    # ----------------------------------------------------
+    # Verify all readcontrolfile prerequisites are satisfied. 
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/readcontrolfile_build_prerequisites.cmake")
+    verify_readcontrolfile_build_prerequisites_are_met() 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -142,12 +149,12 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD "${md_taskgroups_cxx_standard}"
+                      CXX_STANDARD "${readcontrolfile_cxx_standard}"
                       PUBLIC_HEADER "${readcontrolfile_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${md_taskgroups_install_include_directory} )
+         ARCHIVE DESTINATION ${readcontrolfile_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${readcontrolfile_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
