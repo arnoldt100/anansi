@@ -38,12 +38,21 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "genericmdtask_include" )
 
+    # ----------------------------------------------------
+    # Verify that all genericmdtask build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/genericmdtask_build_prerequisites.cmake")
+    verify_genericmdtask_build_prerequisites_are_met()
+
     #-----------------------------------------------------
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include)
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
