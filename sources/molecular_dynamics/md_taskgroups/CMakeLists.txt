@@ -17,7 +17,7 @@
     add_subdirectory(MDOwnershipPolicies)
 
     # ----------------------------------------------------
-    #  This section configure target genericmdtask.
+    #  This section configures target genericmdtask.
     # 
     # ----------------------------------------------------
     package_config_begin_delimiter("genericmdtask" "${md_taskgroups_logfilepath}")
@@ -28,14 +28,55 @@
                                           "${md_taskgroups_install_bin_directory}"
                                           "${md_taskgroups_cxx_standard}"
                                           "${md_taskgroups_logfilepath}")
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
 
     add_subdirectory(GenericMDTask)
 
     package_config_end_delimiter("genericmdtask" "${md_taskgroups_logfilepath}")
 
+    # ----------------------------------------------------
+    #  This section configures targets in MPICommunicatorTask.
+    # 
+    # ----------------------------------------------------
     add_subdirectory(MPICommunicatorTask)
+
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+    # ----------------------------------------------------
+    #  This section configures target readcontrolfile.
+    # 
+    # ----------------------------------------------------
+    package_config_begin_delimiter("readcontrolfile" "${md_taskgroups_logfilepath}")
+
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/ReadControlFile/cmake_macros_and_functions/readcontrolfile.cmake )
     add_subdirectory(ReadControlFile)
+    enable_building_readcontrolfile_package("${md_taskgroups_install_lib_directory}"
+                                            "${md_taskgroups_install_include_directory}"
+                                            "${md_taskgroups_install_bin_directory}"
+                                            "${md_taskgroups_cxx_standard}"
+                                            "${md_taskgroups_logfilepath}")
+
+    package_config_end_delimiter("readcontrolfile" "${md_taskgroups_logfilepath}")
+    
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+    # ----------------------------------------------------
+    #  This section configures targets in CoreLoggingTasks
+    # 
+    # ----------------------------------------------------
+
     add_subdirectory(CoreLoggingTasks)
+
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
