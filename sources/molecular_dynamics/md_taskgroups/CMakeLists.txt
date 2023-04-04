@@ -22,7 +22,7 @@
 
     include( ${CMAKE_CURRENT_SOURCE_DIR}/MDOwnershipPolicies/cmake_macros_and_functions/mdownershippolicies.cmake )
 
-    enable_building_mdownershipolicies_package("${md_taskgroups_install_lib_directory}"
+    enable_building_mdownershippolicies_package("${md_taskgroups_install_lib_directory}"
                                                "${md_taskgroups_install_include_directory}"
                                                "${md_taskgroups_install_bin_directory}"
                                                "${md_taskgroups_cxx_standard}"
