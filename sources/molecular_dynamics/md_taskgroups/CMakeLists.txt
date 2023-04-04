@@ -50,13 +50,14 @@
                                           "${md_taskgroups_cxx_standard}"
                                           "${md_taskgroups_logfilepath}")
 
+    add_subdirectory(GenericMDTask)
+
     package_config_end_delimiter("genericmdtask" "${md_taskgroups_logfilepath}")
     # ----------------------------------------------------
     #  (End of section)
     # ----------------------------------------------------
 
 
-    add_subdirectory(GenericMDTask)
 
 
     # ----------------------------------------------------
