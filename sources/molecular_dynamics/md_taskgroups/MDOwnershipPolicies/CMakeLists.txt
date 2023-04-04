@@ -36,6 +36,15 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "${target}_include" )
 
+
+    # ----------------------------------------------------
+    # Verify that all mdownershippolicies build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mdownershippolicies_build_prerequisites.cmake)
+    verify_mdownershippolicies_build_prerequisites_are_met()
+
     # ----------------------------------------------------
     # 
     # Set various variables for include directories.
