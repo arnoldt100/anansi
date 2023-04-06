@@ -26,12 +26,16 @@ macro ( enable_building_mpi_communicator_library
         install_lib_directory
         install_include_directory
         install_bin_directory 
+        cmake_c_compiler
+        cmake_cxx_compiler
         cxx_standard
         logfilepath)
 
     set(mpi_communicator_install_lib_directory "${install_lib_directory}")
     set(mpi_communicator_install_include_directory "${install_include_directory}")
     set(mpi_communicator_install_bin_directory "${install_bin_directory}" )
+    set(mpi_communicator_cmake_cxx_compiler "${cmake_cxx_compiler}" )
+    set(mpi_communicator_cmake_c_compiler "${cmake_c_compiler}" )
     set(mpi_communicator_cxx_standard "${cxx_standard}" )
     set(mpi_communicator_logfilepath "${logfilepath}")
 endmacro()
