@@ -22,6 +22,12 @@ function(verify_invoker_build_prerequisites_are_met)
     # for consistency.
     anansi_test_variable_is_defined("invoker_logfilepath" "${invoker_logfilepath}")
 
+    # Verfying that variable 'invoker_cmake_c_compiler  ' is defined.
+    anansi_test_variable_is_defined("invoker_cmake_c_compiler"  "${invoker_logfilepath}")
+
+    # Verfying that variable 'invoker_cmake_cxx_compiler  ' is defined.
+    anansi_test_variable_is_defined("invoker_cmake_cxx_compiler"  "${invoker_logfilepath}")
+
     # Verfying that variable 'invoker_cxx_standard' is defined.
     anansi_test_variable_is_defined("invoker_cxx_standard"  "${invoker_logfilepath}")
 

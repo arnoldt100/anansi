@@ -169,6 +169,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/invoker/cmake_macros_and_functions/invoker.
 enable_building_invoker_package( "${core_packages_install_lib_directory}"
                                   "${core_packages_install_include_directory}"
                                   "${core_packages_install_bin_directory}" 
+                                  "${core_packages_cmake_c_compiler}" 
+                                  "${core_packages_cmake_cxx_compiler}" 
                                   "${core_packages_cxx_standard}"
                                   "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/invoker)

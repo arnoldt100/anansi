@@ -25,12 +25,17 @@
 macro ( enable_building_invoker_package install_lib_directory
         install_include_directory
         install_bin_directory 
+        cmake_c_compiler
+        cmake_cxx_compiler
         cxx_standard
         logfilepath)
 
     set(invoker_install_lib_directory ${install_lib_directory})
     set(invoker_install_include_directory ${install_include_directory})
     set(invoker_install_bin_directory ${install_bin_directory} )
+    set(invoker_cmake_c_compiler ${cmake_c_compiler} )
+    set(invoker_cmake_cxx_compiler ${cmake_cxx_compiler} )
+    set(invoker_cxx_standard ${cxx_standard} )
     set(invoker_cxx_standard ${cxx_standard} )
     set(invoker_logfilepath ${logfilepath})
 endmacro()
