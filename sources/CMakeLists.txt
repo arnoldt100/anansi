@@ -129,8 +129,7 @@ set(myvars "cxx_standard"
            "install_prefix" 
            "install_bin_directory" 
            "install_include_directory"
-           "install_include_directory" 
-           "logfilepath")
+           "install_include_directory" )
 
 generic_target_build_prerequisites( "core_packages" myvars )
 
