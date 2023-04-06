@@ -123,16 +123,6 @@ enable_building_core_packages_package("${anansi_minimum_cmake_version}"
                                       "${anansi_install_lib_directory}"
                                       "${anansi_log_file}")
 
-set(myvars "cxx_standard" 
-           "cmake_c_compiler"
-           "cmake_cxx_compiler"
-           "install_prefix" 
-           "install_bin_directory" 
-           "install_include_directory"
-           "install_include_directory" )
-
-generic_target_build_prerequisites( "core_packages" myvars )
-
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/core_packages")
 
 package_config_end_delimiter("core_packages" "${anansi_log_file}")

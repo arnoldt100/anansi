@@ -25,9 +25,17 @@ function(generic_target_build_prerequisites
         message( FATAL_ERROR "The variable ${target_name}_logfilepath is not defined.")
     endif()
 
+    set(my_message "Verifying package \"${target_name}\" build prerequisities are satisfied.")
+    log_message_to_file(${${target_name}_logfilepath} "---")
+    log_message_to_file(${${target_name}_logfilepath} ${my_message})
+
     foreach( tmp_prerequisite ${${prerequisite_list}})
         anansi_test_variable_is_defined( "${target_name}_${tmp_prerequisite}" "${${target_name}_logfilepath}" )
     endforeach()
+
+    set(my_message "Package \"${target_name}\" build prerequisities are satisfied.")
+    log_message_to_file( ${${target_name}_logfilepath} ${my_message} )
+    log_message_to_file( ${${target_name}_logfilepath} "---\n")
 
 
 

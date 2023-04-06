@@ -152,7 +152,7 @@ set_target_properties(${target} PROPERTIES
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${receiver_install_lib_library_directory} 
-         PUBLIC_HEADER DESTINATION ${receiver_install_lib_directory} )
+         PUBLIC_HEADER DESTINATION ${receiver_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

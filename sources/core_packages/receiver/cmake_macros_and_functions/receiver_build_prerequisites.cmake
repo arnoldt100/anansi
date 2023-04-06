@@ -31,6 +31,12 @@ function(verify_receiver_build_prerequisites_are_met)
     # Verfying that variable 'receiver_install_include_directory' is defined.
     anansi_test_variable_is_defined("receiver_install_include_directory"  "${receiver_logfilepath}")
 
+    # Verfying that variable 'receiver_cmake_c_compiler' is defined.
+    anansi_test_variable_is_defined("receiver_cmake_c_compiler"  "${receiver_logfilepath}")
+
+    # Verfying that variable 'receiver_cmake_cxx_compiler' is defined.
+    anansi_test_variable_is_defined("receiver_cmake_cxx_compiler"  "${receiver_logfilepath}")
+
     # Verfying that variable 'receiver_install_lib_directory' is defined.
     anansi_test_variable_is_defined("receiver_install_lib_directory"  "${receiver_logfilepath}")
 

@@ -50,8 +50,11 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
 include( ${CMAKE_CURRENT_SOURCE_DIR}/tasks/cmake_macros_and_functions/tasks.cmake)
 enable_building_tasks_library( "${core_packages_install_lib_directory}"
                                "${core_packages_install_include_directory}"
-                               "${core_packages_install_bin_directory}" 
-                               "${core_packages_cxx_standard}" )
+                               "${core_packages_install_bin_directory}"
+                               "${core_packages_cmake_c_compiler}"
+                               "${core_packages_cmake_cxx_compiler}"
+                               "${core_packages_cxx_standard}"
+                               "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tasks)
 
 # ----------------------------------------------------
@@ -60,9 +63,12 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tasks)
 # 
 # ----------------------------------------------------
 include( ${CMAKE_CURRENT_SOURCE_DIR}/receiver/cmake_macros_and_functions/receiver.cmake )
-enable_building_receiver_package( "${core_packages_install_lib_directory}"
+enable_building_receiver_package( 
+    "${core_packages_install_lib_directory}"
     "${core_packages_install_include_directory}"
     "${core_packages_install_bin_directory}" 
+    "${core_packages_cmake_c_compiler}"
+    "${core_packages_cmake_cxx_compiler}"
     "${core_packages_cxx_standard}"
     "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/receiver)

@@ -37,6 +37,17 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    # Verify that prerequisite variables are defined.
+    set (my_variable_prerequisites 
+        "install_lib_directory"
+        "install_include_directory"
+        "install_bin_directory"
+        "cmake_c_compiler"
+        "cmake_cxx_compiler"
+        "cxx_standard"
+        "logfilepath" )
+    generic_target_build_prerequisites("${my_project_name}"  my_variable_prerequisites )
+
     #-----------------------------------------------------
     # Set various variables for include directories.     -
     #                                                    -
@@ -169,7 +180,7 @@ set_target_properties(${target} PROPERTIES
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION "${tasks_install_lib_directory}" 
-         PUBLIC_HEADER DESTINATION "${tasks_install_lib_directory}" )
+         PUBLIC_HEADER DESTINATION "${tasks_install_include_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
