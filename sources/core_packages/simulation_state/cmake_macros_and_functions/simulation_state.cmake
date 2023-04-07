@@ -22,12 +22,16 @@
 macro ( enable_building_simulation_state_package install_lib_directory
         install_include_directory
         install_bin_directory 
+        cmake_c_compiler
+        cmake_cxx_compiler
         cxx_standard
         logfilepath)
 
     set(simulation_state_install_lib_directory ${install_lib_directory})
     set(simulation_state_install_include_directory ${install_include_directory})
     set(simulation_state_install_bin_directory ${install_bin_directory} )
+    set(simulation_state_cmake_c_compiler ${cmake_c_compiler} )
+    set(simulation_state_cmake_cxx_compiler ${cmake_cxx_compiler} )
     set(simulation_state_cxx_standard ${cxx_standard} )
     set(simulation_state_logfilepath ${logfilepath} )
 endmacro()

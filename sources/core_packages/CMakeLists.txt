@@ -97,6 +97,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/file_parsers/cmake_macros_and_functions/fil
 enable_building_file_parsers_package( "${core_packages_install_lib_directory}"
                                       "${core_packages_install_include_directory}"
                                       "${core_packages_install_bin_directory}" 
+                                      "${core_packages_cmake_c_compiler}"
+                                      "${core_packages_cmake_cxx_compiler}"
                                       "${core_packages_cxx_standard}"
                                       "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/file_parsers)
@@ -111,6 +113,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation_state/cmake_macros_and_functions
 enable_building_simulation_state_package( "${core_packages_install_lib_directory}"
                                           "${core_packages_install_include_directory}"
                                           "${core_packages_install_bin_directory}" 
+                                          "${core_packages_cmake_c_compiler}"
+                                          "${core_packages_cmake_cxx_compiler}"
                                           "${core_packages_cxx_standard}"
                                           "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_state)
