@@ -127,7 +127,7 @@
     #-----------------------------------------------------
     install( TARGETS ${target}
              RUNTIME DESTINATION ${receiver_install_lib_library_directory} 
-             PUBLIC_HEADER DESTINATION ${receiver_install_lib_directory} )
+             PUBLIC_HEADER DESTINATION ${receiver_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

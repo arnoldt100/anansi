@@ -128,7 +128,7 @@
     #-----------------------------------------------------
     install( TARGETS ${target}
              RUNTIME DESTINATION ${invoker_install_lib_library_directory} 
-             PUBLIC_HEADER DESTINATION ${invoker_install_lib_directory} )
+             PUBLIC_HEADER DESTINATION ${invoker_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

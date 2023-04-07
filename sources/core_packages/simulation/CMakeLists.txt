@@ -142,7 +142,7 @@ set_target_properties(${target} PROPERTIES
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${simulation_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION "${simulation_install_lib_directory}" )
+         PUBLIC_HEADER DESTINATION "${simulation_install_include_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

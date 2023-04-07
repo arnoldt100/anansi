@@ -230,10 +230,6 @@ install( TARGETS "${md_core_target}"
          ARCHIVE DESTINATION "${md_core_install_lib_directory}"
          PUBLIC_HEADER DESTINATION "${md_core_install_include_directory}" )
 
-set_target_properties("${md_core_target}" PROPERTIES
-                      md_core_include "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
-                      PUBLIC_HEADER "${md_core_header_files}" )
-
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -

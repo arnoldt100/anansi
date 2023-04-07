@@ -141,7 +141,7 @@ set_target_properties(${target} PROPERTIES
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION "${logger_install_lib_directory}" 
-         PUBLIC_HEADER DESTINATION "${logger_install_lib_directory}" )
+         PUBLIC_HEADER DESTINATION "${logger_install_include_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
