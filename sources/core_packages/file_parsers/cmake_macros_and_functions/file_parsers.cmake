@@ -26,12 +26,16 @@ macro ( enable_building_file_parsers_package
         install_lib_directory
         install_include_directory
         install_bin_directory 
+        cmake_c_compiler
+        cmake_cxx_compiler
         cxx_standard
         logfilepath)
 
     set(file_parsers_install_lib_directory "${install_lib_directory}")
     set(file_parsers_install_include_directory "${install_include_directory}")
     set(file_parsers_install_bin_directory "${install_bin_directory}" )
+    set(file_parsers_cmake_c_compiler "${cmake_c_compiler}" )
+    set(file_parsers_cmake_cxx_compiler "${cmake_cxx_compiler}" )
     set(file_parsers_cxx_standard "${cxx_standard}" )
     set(file_parsers_logfilepath "${logfilepath}")
 endmacro()

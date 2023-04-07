@@ -21,6 +21,12 @@ function(verify_file_parsers_build_prerequisites_are_met)
     # Again verfying that variable 'file_parsers_logfilepath' is defined ... repeated
     # for consistency.
     anansi_test_variable_is_defined("file_parsers_logfilepath" "${file_parsers_logfilepath}")
+    
+    # Verfying that variable 'file_parsers_cmake_c_compiler' is defined.
+    anansi_test_variable_is_defined("file_parsers_cmake_c_compiler"  "${file_parsers_logfilepath}")
+
+    # Verfying that variable 'file_parsers_cmake_cxx_compiler' is defined.
+    anansi_test_variable_is_defined("file_parsers_cmake_cxx_compiler"  "${file_parsers_logfilepath}")
 
     # Verfying that variable 'file_parsers_cxx_standard' is defined.
     anansi_test_variable_is_defined("file_parsers_cxx_standard"  "${file_parsers_logfilepath}")
