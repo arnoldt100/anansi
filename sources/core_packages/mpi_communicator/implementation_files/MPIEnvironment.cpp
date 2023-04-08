@@ -114,7 +114,7 @@ void MPIEnvironment::enable_()
             throw ANANSI::MPIInitializedException();
         }
 
-        int tmp_argc;
+        int tmp_argc=0;
         char** tmp_argv = nullptr;
         this->cmdLineArgs_.reformCommandLineArguments(tmp_argc,tmp_argv);
 

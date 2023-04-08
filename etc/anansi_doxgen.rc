@@ -908,15 +908,11 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-
-
 INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/AnansiMDInvokerFactory/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/AnansiMDInvokerFactory/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/WriteTextToConsoleTask/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/CoreLoggingTasks/WriteTextToConsoleTask/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/GenericMDTask/implementation_files \
@@ -936,8 +932,6 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mpi_communicator/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/receiver/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/receiver/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/receiver/unit_tests/header_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/receiver/unit_tests/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_parameters/header_files \
@@ -946,7 +940,10 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_state/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto 
+                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/implementation_files
+
 
 
 # This tag can be used to specify the character encoding of the source files
