@@ -80,7 +80,7 @@
 
     #-----------------------------------------------------
     # Here we define the variable
-    # md_core_library_headers associated
+    # md_core_header_files associated
     # with the molecular dynamics library
     # 
     #-----------------------------------------------------
@@ -223,7 +223,8 @@ enable_compile_warnings("${md_core_target}")
 #
 #-----------------------------------------------------
 set_target_properties("${md_core_target}" PROPERTIES 
-    PUBLIC_HEADER "${md_core_library_headers}" 
+    md_core_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+    PUBLIC_HEADER "${md_core_header_files}" 
     CXX_STANDARD "${md_core_cxx_standard}" )
 
 install( TARGETS "${md_core_target}"
