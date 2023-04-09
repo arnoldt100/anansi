@@ -109,9 +109,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
-    mdAnansiReadControlFileInvoker_(nullptr),
-    mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+    mdAnansiReadControlFileInvoker_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -146,9 +144,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
-    mdAnansiReadControlFileInvoker_(nullptr),
-    mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+    mdAnansiReadControlFileInvoker_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -462,61 +458,11 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-COMMUNICATOR::RegistryAnansiMDStatus AnansiMolecularDynamics::status_() const
-{
-    return this->mdStatus_;
-}
 
 bool AnansiMolecularDynamics::isHelpOnCommandLine_() const
 {
     const bool help_found = this->simulationParameters_.isCommandLineOptionPresent("help");
     return help_found;
-}
-
-bool AnansiMolecularDynamics::isISEStatusOkay_() const
-{
-    bool ret_value=false;
-    if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
-    {
-        ret_value = true;
-    }
-    else if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
-}
-
-bool AnansiMolecularDynamics::isISEGlobalStatusOkay_() const
-{
-    bool ret_value=false;
-    if (this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
-    {
-        ret_value = true;
-    }
-    else if ( this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
-}
-
-bool AnansiMolecularDynamics::isIICStatusOkay_() const
-{
-    bool ret_value=false;
-    if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
-    {
-        ret_value = true;
-    }
-    else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionInProgress )
-    {
-        ret_value = true;
-    }
-    else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
 }
 
 //============================= MUTATORS =====================================
@@ -587,28 +533,6 @@ void AnansiMolecularDynamics::terminateSimulationEnvironment_()
 
     return;
 }      // -----  end of method AnansiMolecularDynamics::terminateSimulationEnvironment_  -----
-
-void 
-AnansiMolecularDynamics::setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
-{
-    this->mdStatus_ = aStatus;
-    return;
-}
-
-void 
-AnansiMolecularDynamics::setGlobalISEStatus_()
-{
-    // We do a custom all reduction of the ISE status to get the
-    // global ISE status. 
-    const auto my_status = this->mdStatus_;
-    COMMUNICATOR::ISEReductionFunctor my_reduction_functor;
-
-    this->mdGlobalStatus_ = 
-        COMMUNICATOR::getGlobalStatusCustomReduction<COMMUNICATOR::RegistryAnansiMDStatus>(my_status,
-                                                     *(this->MpiWorldCommunicator_));
-    return;
-}
-
 
 //============================= OPERATORS ====================================
 

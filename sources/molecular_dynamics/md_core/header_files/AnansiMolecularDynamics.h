@@ -30,7 +30,6 @@
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
-#include "RegistryAnansiMDStatus.h"
 #include "SimulationState.h"
 #include "GenericTaskFactory.hpp"
 #include "AnansiTask.h"
@@ -102,15 +101,7 @@ class AnansiMolecularDynamics final : public Simulation
     private:
         /* ====================  ACCESSORS     ======================================= */
 
-        COMMUNICATOR::RegistryAnansiMDStatus status_() const final override;
-
         bool isHelpOnCommandLine_() const final override;
-
-        bool isISEStatusOkay_() const final override;
-
-        bool isISEGlobalStatusOkay_() const final override;
-
-        bool isIICStatusOkay_() const final override;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -131,12 +122,6 @@ class AnansiMolecularDynamics final : public Simulation
 
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment_() final override;
-
-        // To be depracated.
-        void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
-
-        // To be depracated.
-        void setGlobalISEStatus_() final override;
 
         template<typename abstract_products_typelist,
                  typename concrete_products_typelist>
@@ -191,12 +176,6 @@ class AnansiMolecularDynamics final : public Simulation
                                                ReadControlFileTraits::concrete_products>
                        > mdAnansiReadControlFileInvoker_;
 
-
-        // :TODO:09/27/2022 02:38:21 PM:: To be deprecated.
-        COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
-        
-        // :TODO:09/27/2022 02:39:21 PM:: To be deprecated.
-        COMMUNICATOR::RegistryAnansiMDStatus mdGlobalStatus_;
 
        /* ====================  STATIC        ======================================= */
 

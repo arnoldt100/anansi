@@ -28,7 +28,6 @@
 //--------------------------------------------------------//
 #include "DefineVisitableMacro.h"
 #include "BaseVisitable.hpp"
-#include "RegistryAnansiMDStatus.h"
 
 namespace ANANSI
 {
@@ -56,16 +55,6 @@ class Simulation : public MPL::BaseVisitable<>
         //! @param [in] message The message to print to stdout.
         void stud_function(std::string const & message) const;
 
-        bool isISEStatusOkay() const;
-
-        bool isISEGlobalStatusOkay() const;
-
-        bool isIICStatusOkay() const;
-
-        COMMUNICATOR::RegistryAnansiMDStatus status() const;
-
-        COMMUNICATOR::RegistryAnansiMDStatus globalStatus() const;
-        
         bool isHelpOnCommandLine() const;
 
         /* ====================  MUTATORS      ======================================= */
@@ -90,8 +79,6 @@ class Simulation : public MPL::BaseVisitable<>
         void terminateSimulationEnvironment();
 
         // This group of functions changes the status of the MD object.
-        void setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus);
-        void setGlobalISEStatus();
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -108,15 +95,8 @@ class Simulation : public MPL::BaseVisitable<>
 
     private:
         /* ====================  ACCESSORS     ======================================= */
-        virtual COMMUNICATOR::RegistryAnansiMDStatus status_() const;
 
         virtual bool isHelpOnCommandLine_() const=0;
-
-        virtual bool isISEStatusOkay_() const=0;
-
-        virtual bool isISEGlobalStatusOkay_() const=0;
-
-        virtual bool isIICStatusOkay_() const=0;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -136,10 +116,6 @@ class Simulation : public MPL::BaseVisitable<>
 
         // This group of functions terminates the simulation environment.
         virtual void terminateSimulationEnvironment_()=0;
-
-        // Set the status of the MD object.
-        virtual void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)=0;
-        virtual void setGlobalISEStatus_()=0;
 
         /* ====================  DATA MEMBERS  ======================================= */
 
