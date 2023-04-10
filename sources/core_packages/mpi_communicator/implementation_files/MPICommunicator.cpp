@@ -1,4 +1,3 @@
-
 /*
  * MPICommunicator.cpp
  *
@@ -315,8 +314,8 @@ MPICommunicator::_duplicateCommunicator() const
     return aMPICommunicator;
 }
 
-int
-MPICommunicator::_getMaximum(int const value) const 
+std::size_t
+MPICommunicator::_getMaximum(std::size_t const value) const 
 {
     std::vector<int> vec = {value};
     std::vector<int> vec_maximum;
@@ -344,11 +343,11 @@ MPICommunicator::_allGather(
         char const * aCString,
         const std::size_t aLengthMaximum,
         std::size_t & offset_size,
-        int* & start_offsets_ptr,
-        int* & end_offsets_ptr) const
+        std::size_t* & start_offsets_ptr,
+        std::size_t* & end_offsets_ptr) const
 {
 
-    MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     char* recv_buffer_ptr = nullptr;
 
     try 
@@ -357,7 +356,6 @@ MPICommunicator::_allGather(
                                                                         offset_size,
                                                                         aCString,
                                                                         aLengthMaximum);
-
 
         if ( start_offsets_ptr != nullptr )
         {
@@ -396,11 +394,11 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
                          char const * aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
-                         int* & start_offsets_ptr,
-                         int* & end_offsets_ptr ) const 
+                         std::size_t* & start_offsets_ptr,
+                         std::size_t* & end_offsets_ptr ) const 
 {
 
-    MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     char* recv_buffer_ptr = nullptr;
     try
     {
@@ -446,10 +444,10 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
                          const std::unique_ptr<char[]> & aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
-                         std::unique_ptr<int[]> & start_offsets,
-                         std::unique_ptr<int[]> & end_offsets) const 
+                         std::unique_ptr<std::size_t[]> & start_offsets,
+                         std::unique_ptr<std::size_t[]> & end_offsets) const 
 {
-    MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     std::unique_ptr<char[]> recv_buffer;
     try
     {
@@ -463,10 +461,10 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
 
         recv_buffer.reset(tmp_recieve_buffer);
 
-        int* tmp_start_offsets_ptr = my_int_array_factory.createArray(offset_size);
+        std::size_t* tmp_start_offsets_ptr = my_int_array_factory.createArray(offset_size);
         start_offsets.reset(tmp_start_offsets_ptr);
 
-        int* tmp_end_offsets_ptr = my_int_array_factory.createArray(offset_size);
+        std::size_t* tmp_end_offsets_ptr = my_int_array_factory.createArray(offset_size);
         end_offsets.reset(tmp_end_offsets_ptr);
 
         this->_calculateStartAndEndOffsets(offset_size,
@@ -498,27 +496,27 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
         ANANSI::MPIUtilityFunctions::same_rank(task_id_to_gather_data_on,this->_mpiCommunicator);
 
     // Get the maximum length of tag with respect to the communicator group.
-    const int slength = data_to_gather.length();
-    const int slength_maximum = this->_getMaximum(slength);
+    const std::size_t slength = data_to_gather.length();
+    const std::size_t slength_maximum = this->_getMaximum(slength);
 
     // Form and c string with length tag_length + 1, and 
     // then copy the tag in a c string.
-    const int slength_maximum_adj = slength_maximum  + 1;
+    const std::size_t slength_maximum_adj = slength_maximum  + 1;
     char* data_ptr = my_char_array_factory.createArray(data_to_gather,
                                                        slength_maximum_adj);
 
     std::unique_ptr<char[]> data(data_ptr);
 
     std::size_t offset_size;
-    std::unique_ptr<int[]> start_offsets;
-    std::unique_ptr<int[]> end_offsets;
+    std::unique_ptr<std::size_t[]> start_offsets;
+    std::unique_ptr<std::size_t[]> end_offsets;
     
     std::unique_ptr<char[]> all_data = this->_gather(task_id_to_gather_data_on,
                                                      data,
                                                      static_cast<std::size_t> (slength_maximum_adj),
                                                      offset_size,
                                                      start_offsets,
-                                                     end_offsets) ;
+                                                     end_offsets);
 
     // Form vector string array of the hostnames.
     std::vector<std::string> gathered_data;
@@ -577,10 +575,10 @@ void
 MPICommunicator::_calculateStartAndEndOffsets(
     const std::size_t & offset_size,
     const std::size_t & aLengthMaximum,
-    int* const & start_offsets_ptr,
-    int* const & end_offsets_ptr)
+    std::size_t* const & start_offsets_ptr,
+    std::size_t* const & end_offsets_ptr)
 {
-    for (std::size_t ip=0; ip < offset_size; ++ip)
+    for (std::size_t ip=static_cast<std::size_t>(0); ip < offset_size; ++ip)
     {
         start_offsets_ptr[ip] = aLengthMaximum*ip;
         end_offsets_ptr[ip] = aLengthMaximum*(ip+1) - 1;

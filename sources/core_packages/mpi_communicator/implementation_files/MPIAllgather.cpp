@@ -31,7 +31,7 @@ namespace ANANSI {
 
     // Get the size of the communicator group.
     int group_size;
-    int mpi_return_code = MPI_Comm_size(aCommunicator,&group_size);
+    auto mpi_return_code = MPI_Comm_size(aCommunicator,&group_size);
     if (mpi_return_code != MPI_SUCCESS)
     {
         throw ANANSI::MPICommSizeException();
@@ -44,8 +44,8 @@ namespace ANANSI {
     char* my_recv_buffer_ptr = my_char_array_factory.createArray(recv_buffer_size);
 
     // Do the allgather operation.
-    int my_recv_buffer_count = static_cast<std::size_t>(send_buffer_count);
-    int my_send_buffer_count = static_cast<std::size_t>(send_buffer_count);
+    auto my_recv_buffer_count = static_cast<std::size_t>(send_buffer_count);
+    auto my_send_buffer_count = static_cast<std::size_t>(send_buffer_count);
     MPI_Comm my_communicator = aCommunicator;
     mpi_return_code = MPI_Allgather(send_buffer_ptr,
                                     my_send_buffer_count,

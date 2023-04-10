@@ -1,10 +1,3 @@
-/*
- * MPIGather.cpp
- *
- *  Created on: 04/20/19
- *      Authors: Arnold Tharrington
- */
-
 #include "MPIGather.h"
 
 namespace ANANSI {
@@ -33,14 +26,14 @@ namespace ANANSI {
 
     // Get the size of the communicator group.
     int group_size;
-    int mpi_return_code = MPI_Comm_size(aCommunicator,&group_size);
+    auto mpi_return_code = MPI_Comm_size(aCommunicator,&group_size);
     if (mpi_return_code != MPI_SUCCESS)
     {
         throw ANANSI::MPICommSizeException();
     }
     nm_mpi_tasks = static_cast<std::size_t>(group_size);
 
-    // Declare the recv buffer and only on the mpi task to gather the 
+    // Declare the recv buffer and only on the mpi task to gather the
     // data do we allocate the recieve buffer.
     std::size_t recv_buffer_size = 0;
     char* my_recv_buffer_ptr = nullptr;
@@ -50,7 +43,8 @@ namespace ANANSI {
         my_recv_buffer_ptr = my_char_array_factory.createArray(recv_buffer_size);
     }
 
-    const int recv_buffer_count = send_buffer_count;
+    // Make the call MPI_Gather.
+    const auto recv_buffer_count = send_buffer_count;
     mpi_return_code  = MPI_Gather(send_buffer_ptr, 
                                   send_buffer_count, 
                                   MPI_DATA_TYPE<char>::value(),

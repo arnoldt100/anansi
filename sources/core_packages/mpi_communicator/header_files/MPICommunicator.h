@@ -68,31 +68,31 @@ private:
     COMMUNICATOR::Communicator*
     _duplicateCommunicator() const final override;
 
-    int
-     _getMaximum(int const value) const override;
+    std::size_t
+    _getMaximum(std::size_t const value) const override;
     
     char*
     _allGather(char const * aCString,
                const std::size_t aLengthMaximum,
                std::size_t & offset_size,
-               int* & start_offsets_ptr,
-               int* & end_offsets_ptr ) const final override;
+               std::size_t* & start_offsets_ptr,
+               std::size_t* & end_offsets_ptr ) const final override;
 
     char*
     _gather(const std::size_t task_id_gather_data,
             char const * aCString,
             const std::size_t aLengthMaximum,
             std::size_t & offset_size, 
-            int* & start_offsets_ptr,
-            int* & end_offsets_ptr) const final override;
+            std::size_t* & start_offsets_ptr,
+            std::size_t* & end_offsets_ptr) const final override;
 
-    virtual std::unique_ptr<char[]>
+    std::unique_ptr<char[]>
     _gather(const std::size_t task_id_gather_data,
             const std::unique_ptr<char[]> & aCString,
             const std::size_t aLengthMaximum,
             std::size_t & offset_size, 
-            std::unique_ptr<int[]> & start_offsets_ptr,
-            std::unique_ptr<int[]> & end_offsets_ptr) const final override;
+            std::unique_ptr<std::size_t[]> & start_offsets_ptr,
+            std::unique_ptr<std::size_t[]> & end_offsets_ptr) const final override;
 
 
     std::vector<std::string>
@@ -133,8 +133,8 @@ private:
     _calculateStartAndEndOffsets(
             const std::size_t & offset_size,
             const std::size_t & aLengthMaximum,
-            int* const & start_offsets_ptr,
-            int* const & end_offsets_ptr);
+            std::size_t* const & start_offsets_ptr,
+            std::size_t* const & end_offsets_ptr);
 
     //===== DATA MEMBERS ===
     MPI_Comm _mpiCommunicator;

@@ -114,11 +114,6 @@ void BuilderFileParser::_setFileName(const std::string)
 	return;
 }
 
-void BuilderFileParser::_setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
-{
-	return;
-}
-
 //============================= OPERATORS ====================================
 
 

@@ -69,7 +69,7 @@ namespace ANANSI
             // ====================  MUTATORS      =======================================
             virtual void _setFileName(const std::string file_name);
 
-            virtual void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator);
+            virtual void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator) = 0;
 
             virtual std::shared_ptr<FileParser> _getParser()=0;
 
