@@ -25,6 +25,8 @@ namespace ANANSI {
 
 //============================= OPERATORS ====================================
 
+//============================= STATIC    ====================================
+
  char* MPI_GATHER<char>::Gather(
     const int task_id_to_gather_data,
     const MPI_Comm aCommunicator,
