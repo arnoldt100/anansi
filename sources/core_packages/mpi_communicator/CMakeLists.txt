@@ -49,6 +49,7 @@
     get_target_property(my_su_include string_utilities string_utilities_include)
     get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include)
     get_target_property(my_cc_include counterclass counterclass_include)
+    get_target_property(my_debbugging_utilities_include debugging_utilities debugging_utilities_include)
 
     # ----------------------------------------------------
     #  Verify all build prerequisites are satisfied.
@@ -191,7 +192,8 @@ target_include_directories(${target}
                            PRIVATE ${my_su_include}
                            PRIVATE ${my_comm_include} 
                            PRIVATE ${my_mm_include}
-                           PRIVATE ${my_cc_include})
+                           PRIVATE ${my_cc_include}
+                           PRIVATE ${my_debbugging_utilities_include})
 
                        
 #-----------------------------------------------------
@@ -208,7 +210,8 @@ target_link_libraries( ${target}
                        PUBLIC string_utilities
                        PUBLIC communicator
                        PUBLIC memory_management 
-                       PUBLIC counterclass)
+                       PUBLIC counterclass
+                       PUBLIC debugging_utilities)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

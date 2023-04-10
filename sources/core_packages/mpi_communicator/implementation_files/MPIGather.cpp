@@ -1,3 +1,14 @@
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "AssertValidValueForType.hpp"
 #include "MPIGather.h"
 
 namespace ANANSI {
@@ -24,29 +35,44 @@ namespace ANANSI {
 
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
 
+    ANANSI::MasterSlaveIdentification<MPI_Comm> my_identity(aCommunicator,
+                                                            task_id_to_gather_data);
+
     // Get the size of the communicator group.
-    int group_size;
-    auto mpi_return_code = MPI_Comm_size(aCommunicator,&group_size);
+    int comm_group_size;
+    auto mpi_return_code = MPI_Comm_size(aCommunicator,&comm_group_size);
     if (mpi_return_code != MPI_SUCCESS)
     {
         throw ANANSI::MPICommSizeException();
     }
-    nm_mpi_tasks = static_cast<std::size_t>(group_size);
+    nm_mpi_tasks = static_cast<std::size_t>(comm_group_size);
 
     // Declare the recv buffer and only on the mpi task to gather the
     // data do we allocate the recieve buffer.
     std::size_t recv_buffer_size = 0;
     char* my_recv_buffer_ptr = nullptr;
-    if ( ANANSI::MPIUtilityFunctions::same_rank(task_id_to_gather_data,aCommunicator) )
-    {
-        recv_buffer_size = static_cast<std::size_t>(group_size*send_buffer_count);
-        my_recv_buffer_ptr = my_char_array_factory.createArray(recv_buffer_size);
-    }
 
-    // Make the call MPI_Gather.
-    const auto recv_buffer_count = send_buffer_count;
+    // Ensure it safe to cast recv_buffer_count and send_buffer_count to int.
+    #ifdef MOUSEION_DBG_VALID_VALUE
+    DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(send_buffer_count);
+    #endif
+    const auto send_buffer_count_as_int = static_cast<int>(send_buffer_count); 
+    const auto recv_buffer_count = send_buffer_count_as_int;
+    switch ( my_identity.getMyIdentity() )
+    {
+        case MASTER_SLAVE_IDENTITIES::master_mpi_task :
+            recv_buffer_size = static_cast<std::size_t>(comm_group_size)*send_buffer_count;
+            my_recv_buffer_ptr = my_char_array_factory.createArray(recv_buffer_size);
+            break;
+
+        case MASTER_SLAVE_IDENTITIES::slave_mpi_task :
+            // Do nothing
+            break;
+
+    };
+
     mpi_return_code  = MPI_Gather(send_buffer_ptr, 
-                                  send_buffer_count, 
+                                  send_buffer_count_as_int, 
                                   MPI_DATA_TYPE<char>::value(),
                                   my_recv_buffer_ptr,
                                   recv_buffer_count,
@@ -75,7 +101,7 @@ std::vector<int> MPI_GATHER<int>::Gather(
 
     // Get the size of the communicator group.
     int comm_group_size;
-    int mpi_return_code = MPI_Comm_size(aCommunicator,&comm_group_size);
+    auto mpi_return_code = MPI_Comm_size(aCommunicator,&comm_group_size);
     if (mpi_return_code != MPI_SUCCESS)
     {
         throw ANANSI::MPICommSizeException();
@@ -86,10 +112,16 @@ std::vector<int> MPI_GATHER<int>::Gather(
     std::size_t recv_buffer_size = 0;
     int* my_recv_buffer_ptr = nullptr;
 
+    // Ensure it is safe to cast recv_buffer_count and send_buffer_count to int.
+    #ifdef MOUSEION_DBG_VALID_VALUE
+    DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(send_buffer_count);
+    #endif
+    const auto send_buffer_count_as_int = static_cast<int>(send_buffer_count); 
+    const auto recv_buffer_count = send_buffer_count_as_int;
     switch ( my_identity.getMyIdentity() )
     {
         case MASTER_SLAVE_IDENTITIES::master_mpi_task :
-            recv_buffer_size = static_cast<std::size_t>(comm_group_size*send_buffer_count);
+            recv_buffer_size = static_cast<std::size_t>(comm_group_size)*send_buffer_count;
             my_recv_buffer_ptr = my_array_factory.createArray(recv_buffer_size);
             break;
 
@@ -98,12 +130,11 @@ std::vector<int> MPI_GATHER<int>::Gather(
             break;
     };
 
-    std::unique_ptr<int[]> my_recv_buffer(my_recv_buffer_ptr);
-    const int recv_buffer_count = send_buffer_count;
 
     // We now call the MPi_Gather.
+    std::unique_ptr<int[]> my_recv_buffer(my_recv_buffer_ptr);
     mpi_return_code  = MPI_Gather(send_buffer_ptr, 
-                                  send_buffer_count, 
+                                  send_buffer_count_as_int, 
                                   MPI_DATA_TYPE<int>::value(),
                                   my_recv_buffer.get(),
                                   recv_buffer_count,

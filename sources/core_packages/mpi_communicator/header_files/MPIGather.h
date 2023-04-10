@@ -35,23 +35,23 @@ template<>
 class MPI_GATHER<char>
 {
     public :
-      //! Gathers char arrays values on a group of processes.
-      //!
-      //! The value of send_buffer_length mus be the same on every processor in
-      //! the communicator group or undefined results will occur. The gathered
-      //! values returned only on processor with id 'task_id_to_gather_data'.
-      //!
-      //! @param [in] task_id_to_gather_data The id of the task to gather the data on.
-      //! @param [in] aCommunicator The MPI communicator handle
-      //! @param [out] nm_mpi_tasks The number of processes in the communicator group aCommunicator.
-      //! @param [in] send_buffer_ptr A buffer of char.
-      //! @param [in] send_buffer_length The length of send_buffer_ptr.
-      //! @returns A char array containing the gathered char array buffers.
-      static char *Gather(const int task_id_to_gather_data,
-                          const MPI_Comm aCommunicator,
-                          std::size_t &nm_mpi_tasks,
-                          char const *send_buffer_ptr,
-                          const std::size_t send_buffer_length);
+        //! Gathers char arrays values on a group of processes.
+        //!
+        //! The value of send_buffer_length must be the same on every processor in
+        //! the communicator group or undefined results will occur. The gathered
+        //! values returned only on processor with id 'task_id_to_gather_data'.
+        //!
+        //! @param [in] task_id_to_gather_data The id of the task to gather the data on.
+        //! @param [in] aCommunicator The MPI communicator handle
+        //! @param [out] nm_mpi_tasks The number of processes in the communicator group aCommunicator.
+        //! @param [in] send_buffer_ptr A buffer of char.
+        //! @param [in] send_buffer_length The length of send_buffer_ptr.
+        //! @returns A char array containing the gathered char array buffers.
+        static char *Gather(const int task_id_to_gather_data,
+                            const MPI_Comm aCommunicator,
+                            std::size_t &nm_mpi_tasks,
+                            char const *send_buffer_ptr,
+                            const std::size_t send_buffer_length);
 
 };
 
@@ -60,14 +60,22 @@ template<>
 class MPI_GATHER<int>
 {
     public :
-      //! Gathers int values on a group of processes.
-      //!
+        //! Gathers int values on a group of processes.
+        //!
+        //! The value of send_buffer_length must be the same on every processor in
+        //! the communicator group or undefined results will occur. The gathered
+        //! values returned only on processor with id 'task_id_to_gather_data'.
+        //!
+        //! @param [in] task_id_to_gather_data The id of the task to gather the data on.
+        //! @param [in] aCommunicator The MPI communicator handle
+        //! @param [out] nm_mpi_tasks The number of processes in the communicator group aCommunicator.
+        //! @param [in] send_buffer_ptr A buffer of int.
+        //! @returns A vector containing the gathered int values.
         static std::vector<int> Gather(
                 const int task_id_to_gather_data,
                 const MPI_Comm aCommunicator,
                 int const * send_buffer_ptr,
                 const std::size_t send_buffer_length);
-
 };
 
 } /* namespace ANANSI */
