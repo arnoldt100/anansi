@@ -55,7 +55,7 @@ namespace ANANSI {
     char* my_recv_buffer_ptr = nullptr;
 
     // Ensure it safe to cast recv_buffer_count and send_buffer_count to int.
-    #ifdef MOUSEION_DBG_VALID_VALUE
+    #ifdef ANANSI_DBG_VALID_VALUE
     DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(send_buffer_count);
     #endif
     const auto send_buffer_count_as_int = static_cast<int>(send_buffer_count); 
@@ -115,7 +115,7 @@ std::vector<int> MPI_GATHER<int>::Gather(
     int* my_recv_buffer_ptr = nullptr;
 
     // Ensure it is safe to cast recv_buffer_count and send_buffer_count to int.
-    #ifdef MOUSEION_DBG_VALID_VALUE
+    #ifdef ANANSI_DBG_VALID_VALUE
     DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(send_buffer_count);
     #endif
     const auto send_buffer_count_as_int = static_cast<int>(send_buffer_count); 

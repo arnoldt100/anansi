@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <cstddef>
 #include "mpi.h"
 
 //--------------------------------------------------------//
@@ -46,6 +47,18 @@ class MPI_DATA_TYPE<char>
 };
 
 template<>
+class MPI_DATA_TYPE<unsigned long>
+{
+
+    public:
+        MPI_DATA_TYPE();
+
+        ~MPI_DATA_TYPE();
+
+        static MPI_Datatype value();
+};
+
+template<>
 class MPI_DATA_TYPE<bool>
 {
 
@@ -56,6 +69,8 @@ class MPI_DATA_TYPE<bool>
 
         static MPI_Datatype value();
 };
+
+
 } /* namespace ANANSI */
 
 #endif /* ANANSI_MPIDATATYPE_ */

@@ -19,6 +19,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AssertValidValueForType.hpp"
 #include "MPICommunicator.h"
 #include "MPIInitException.h"
 #include "MPIGenericException.h"
@@ -181,16 +182,16 @@ MPICommunicator::_broadcastStdString(const std::string & str_to_bcast, const std
         // First broadcast the length of the string that is to be broadcasted.
         // The variable str_len1 is only properly defined on the communicator
         // with rank bcast_rank. 
-        const int str_len1 = str_to_bcast.length();
-        const std::size_t bcast_str_len = ANANSI::MPI_Broadcast<int>::Broadcast(str_len1, 
+        const std::size_t str_len1 = str_to_bcast.length();
+        const std::size_t bcast_str_len = ANANSI::MPI_Broadcast<std::size_t>::Broadcast(str_len1,
                                                                               this->_mpiCommunicator,
                                                                               bcast_rank);
 
         // Broadcast the string to all other ranks.
         ret_value = ANANSI::MPI_Broadcast<std::string>::Broadcast(str_to_bcast,
-                                                                        bcast_str_len,
-                                                                        this->_mpiCommunicator,
-                                                                        bcast_rank);
+                                                                  bcast_str_len,
+                                                                  this->_mpiCommunicator,
+                                                                  bcast_rank);
     }
     catch (ANANSI::ErrorMPIBroadcast<char> const & my_mpi_exception )
     {
@@ -317,15 +318,15 @@ MPICommunicator::_duplicateCommunicator() const
 std::size_t
 MPICommunicator::_getMaximum(std::size_t const value) const 
 {
-    std::vector<int> vec = {value};
-    std::vector<int> vec_maximum;
+    std::vector<std::size_t> vec = {value};
+    std::vector<std::size_t> vec_maximum;
 
     try 
     {
-      vec_maximum = ANANSI::MPI_ALLREDUCE<int,ANANSI::MPIReductionOperation::reduction_operation_type>::REDUCE(
-                                                this->_mpiCommunicator,
-                                                vec,
-                                                ANANSI::MPIReductionOperation::maximum);
+      vec_maximum = ANANSI::MPI_ALLREDUCE<std::size_t,ANANSI::MPIReductionOperation::reduction_operation_type>::REDUCE(
+                                          this->_mpiCommunicator,
+                                          vec,
+                                          ANANSI::MPIReductionOperation::maximum);
     }
     catch ( const  ANANSI::MPIAllReduceException & my_mpi_exception )
     {
@@ -398,15 +399,19 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
                          std::size_t* & end_offsets_ptr ) const 
 {
 
+
+    #ifdef ANANASI_DBD_VALID_VALUES
+    DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(task_id_to_gather_dat_on);
+    #endif
     MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     char* recv_buffer_ptr = nullptr;
     try
     {
-        recv_buffer_ptr = ANANSI::MPI_GATHER<char>::Gather(task_id_to_gather_dat_on,
-                                                  this->_mpiCommunicator,
-                                                  offset_size,
-                                                  aCString,
-                                                  aLengthMaximum);
+        recv_buffer_ptr = ANANSI::MPI_GATHER<char>::Gather(static_cast<int>(task_id_to_gather_dat_on),
+                                                           this->_mpiCommunicator,
+                                                           offset_size,
+                                                           aCString,
+                                                           aLengthMaximum);
 
         if ( start_offsets_ptr != nullptr )
         {
@@ -452,12 +457,15 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
     try
     {
         // Call the MPI_Gather for char arrays.
+        #ifdef ANANSI_DBG_VALID_VALUE
+        DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(task_id_to_gather_data_on);
+        #endif
         char* tmp_recieve_buffer =
-            ANANSI::MPI_GATHER<char>::Gather(task_id_to_gather_data_on,
-                                                   this->_mpiCommunicator,
-                                                   offset_size,
-                                                   aCString.get(),
-                                                   aLengthMaximum);
+            ANANSI::MPI_GATHER<char>::Gather(static_cast<int>(task_id_to_gather_data_on),
+                                             this->_mpiCommunicator,
+                                             offset_size,
+                                             aCString.get(),
+                                             aLengthMaximum);
 
         recv_buffer.reset(tmp_recieve_buffer);
 

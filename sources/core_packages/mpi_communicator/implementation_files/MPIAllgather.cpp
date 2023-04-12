@@ -51,7 +51,7 @@ namespace ANANSI {
     char* my_recv_buffer_ptr = my_char_array_factory.createArray(recv_buffer_size);
 
     // Ensure it safe to cast recv_buffer_count and send_buffer_count to int.
-    #ifdef MOUSEION_DBG_VALID_VALUE
+    #ifdef ANANSI_DBG_VALID_VALUE
     DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(send_buffer_count);
     #endif
     const auto send_buffer_count_as_int = static_cast<int>(send_buffer_count); 
