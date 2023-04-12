@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -54,11 +55,15 @@ class MPIEnvironmentState
         virtual ~MPIEnvironmentState ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
+        // ====================  ACCESSORS     =======================================
+        std::string currentState() const;
 
         // ====================  MUTATORS      =======================================
+
         void enable(MPIEnvironment* const mpi_environment);
 
         void disable(MPIEnvironment* const mpi_environment);
+
 
         // ====================  OPERATORS     =======================================
 
@@ -72,10 +77,16 @@ class MPIEnvironmentState
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        // ====================  MUTATORS      =======================================
-        virtual void enable_(MPIEnvironment* const mpi_environment);
 
-        virtual void disable_(MPIEnvironment* const mpi_environment);
+        // ====================  ACCESSORS     =======================================
+
+        virtual std::string currentState_() const =0;
+
+        // ====================  MUTATORS      =======================================
+
+        virtual void enable_(MPIEnvironment* const mpi_environment)=0;
+
+        virtual void disable_(MPIEnvironment* const mpi_environment)=0;
 
         // ====================  METHODS       =======================================
 

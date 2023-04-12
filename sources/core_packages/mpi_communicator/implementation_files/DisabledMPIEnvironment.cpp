@@ -96,11 +96,26 @@ DisabledMPIEnvironment& DisabledMPIEnvironment::operator= ( DisabledMPIEnvironme
 
 //============================= ACCESSORS ====================================
 
+std::string DisabledMPIEnvironment::currentState_() const
+{
+    return std::string(this->stateid_);
+}
+
 //============================= MUTATORS =====================================
 
 void DisabledMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
 {
-    throw ErrorInvalidMPIEnvironmentChange();
+    std::string_view const original_state(mpi_environment->currentMPIEnvironmentState().c_str());
+    std::string_view const action{"'Enable MPI Environment'"};
+    throw ErrorInvalidMPIEnvironmentChange(original_state,action);
+    return;
+}
+
+void DisabledMPIEnvironment::disable_(MPIEnvironment* const mpi_environment)
+{
+    std::string_view const original_state(mpi_environment->currentMPIEnvironmentState().c_str());
+    std::string_view const action{"'Disable MPI Environment'"};
+    throw ErrorInvalidMPIEnvironmentChange(original_state,action);
     return;
 }
 

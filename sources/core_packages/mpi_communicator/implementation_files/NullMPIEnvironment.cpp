@@ -12,7 +12,9 @@
 //--------------------------------------------------------//
 #include "NullMPIEnvironment.h"
 #include "EnabledMPIEnvironment.h"
+#include "DisabledMPIEnvironment.h"
 #include "MPIEnvironment.h"
+#include "ErrorInvalidMPIEnvironmentChange.h"
 
 namespace ANANSI {
 
@@ -97,6 +99,10 @@ NullMPIEnvironment& NullMPIEnvironment::operator=( NullMPIEnvironment && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+std::string NullMPIEnvironment::currentState_() const
+{
+    return std::string(this->stateid_);
+}
 
 //============================= MUTATORS =====================================
 
@@ -107,6 +113,13 @@ void NullMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
     return;
 }
 
+void NullMPIEnvironment::disable_(MPIEnvironment* const mpi_environment)
+{
+    std::string_view const original_state(mpi_environment->currentMPIEnvironmentState().c_str());
+    std::string_view const action{"'Disable MPI Environment'"};
+    throw ErrorInvalidMPIEnvironmentChange(original_state,action);
+    return;
+}
 //============================= OPERATORS ====================================
 
 

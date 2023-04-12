@@ -40,6 +40,8 @@ class MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironme
 
         /* ====================  ACCESSORS     ======================================= */
 
+        std::string currentMPIEnvironmentState() const;
+
         /* ====================  MUTATORS      ======================================= */
         template <typename T>
         void addMember( T & member);
@@ -47,7 +49,6 @@ class MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironme
         void enableEnvironment();
 
         void disableEnvironment();
-
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -69,6 +70,8 @@ class MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironme
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
+        /* ====================  ACCESSORS     ======================================= */
+
         /* ====================  MUTATORS      ======================================= */
         void enable_(int const & argc, char const * const * const & argv);
 

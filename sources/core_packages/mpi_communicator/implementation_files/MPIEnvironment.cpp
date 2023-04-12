@@ -53,6 +53,10 @@ MPIEnvironment::~MPIEnvironment()
 }
 
 //============================= ACCESSORS ====================================
+std::string MPIEnvironment::currentMPIEnvironmentState() const
+{
+    return this->mpistate_->currentState();
+}
 
 //============================= MUTATORS =====================================
 template <>
