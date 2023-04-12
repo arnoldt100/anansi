@@ -20,12 +20,16 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDProcessCmdLineVisitor::MDProcessCmdLineVisitor()
+MDProcessCmdLineVisitor::MDProcessCmdLineVisitor() :
+    MPL::BaseVisitor(),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>()
 {
     return;
 }
 
-MDProcessCmdLineVisitor::MDProcessCmdLineVisitor( MDProcessCmdLineVisitor const & other)
+MDProcessCmdLineVisitor::MDProcessCmdLineVisitor( MDProcessCmdLineVisitor const & other) :
+    MPL::BaseVisitor(other),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(other)
 {
     if (this != &other)
     {
@@ -34,7 +38,9 @@ MDProcessCmdLineVisitor::MDProcessCmdLineVisitor( MDProcessCmdLineVisitor const 
     return;
 }
 
-MDProcessCmdLineVisitor::MDProcessCmdLineVisitor( MDProcessCmdLineVisitor && other)
+MDProcessCmdLineVisitor::MDProcessCmdLineVisitor( MDProcessCmdLineVisitor && other) :
+    MPL::BaseVisitor(std::move(other)),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(std::move(other))
 {
     if (this != &other)
     {
@@ -65,7 +71,8 @@ MDProcessCmdLineVisitor& MDProcessCmdLineVisitor::operator= ( const MDProcessCmd
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(other);
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -74,7 +81,8 @@ MDProcessCmdLineVisitor& MDProcessCmdLineVisitor::operator= ( MDProcessCmdLineVi
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(std::move(other));
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

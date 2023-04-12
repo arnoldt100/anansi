@@ -20,12 +20,16 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor()
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor() :
+    MPL::BaseVisitor(),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>()
 {
     return;
 }
 
-MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor const & other)
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor const & other) :
+    MPL::BaseVisitor(other),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(other)
 {
     if (this != &other)
     {
@@ -34,7 +38,9 @@ MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialCon
     return;
 }
 
-MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor && other)
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor && other) :
+    MPL::BaseVisitor(std::move(other)),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(std::move(other))
 {
     return;
     if (this != &other)
@@ -65,7 +71,8 @@ MDInitInitialConditionsVisitor& MDInitInitialConditionsVisitor::operator= ( cons
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(other);
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -74,7 +81,8 @@ MDInitInitialConditionsVisitor& MDInitInitialConditionsVisitor::operator= ( MDIn
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(std::move(other));
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

@@ -64,14 +64,14 @@ class OwnershipImpl1
         {
             Underlyingtype* tmp_obj = new Underlyingtype(*result);
             Copytype obj(tmp_obj);
-            return std::move(obj); 
+            return obj; 
         }
 
         template <typename Resulttype>
         static Transfertype transfer(Resulttype const & result)
         {
             Transfertype tmp_obj = std::move(result);
-            return std::move(tmp_obj); 
+            return tmp_obj; 
         }
 
         template <typename Resulttype>
@@ -94,7 +94,7 @@ class OwnershipImpl1
         {
             throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
             Copytype tmp_obj(new Underlyingtype);
-            return std::move(tmp_obj);
+            return tmp_obj;
         }
 
         template <typename OwnershipPolicyType>
@@ -102,7 +102,7 @@ class OwnershipImpl1
         {
             throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
             Transfertype tmp_obj(new Underlyingtype);
-            return std::move(tmp_obj);
+            return tmp_obj;
         }
 
         // ====================  ACCESSORS     =======================================
