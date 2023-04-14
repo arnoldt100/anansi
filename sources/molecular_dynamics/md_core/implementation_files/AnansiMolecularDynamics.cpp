@@ -80,7 +80,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
                      > command_labels = {my_label};
     core_logging_invoker->doTask(command_labels);
 
-    auto tmp_value = core_logging_invoker->shareTaskResults<my_label>();
+    auto tmp_value = core_logging_invoker->getCopyOfTaskResults<my_label>();
 
     return;
 }
@@ -393,16 +393,12 @@ AnansiMolecularDynamics::enableControlFile ()
     // control_file->readFile();
 
     return;
-}   /* -----  end of method AnansiMolecularDynamics::readSimulationControlFile_  ----- */
+}   /* -----  end of method AnansiMolecularDynamics::enableControlFile ----- */
 
 void
 AnansiMolecularDynamics::disableControlFile ()
 {
     return;
-}
-void AnansiMolecularDynamics::readInitialConfiguration()
-{
-    std::cout << "Reading initial configuration" << std::endl;
 }
 
 void AnansiMolecularDynamics::enableCoreLoggingTasks()

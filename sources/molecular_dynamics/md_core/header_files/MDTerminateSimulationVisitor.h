@@ -1,5 +1,5 @@
-#ifndef  ANANSI_MDTerminateSimulationVisitor_INC
-#define  ANANSI_MDTerminateSimulationVisitor_INC
+#ifndef ANANSI_MDTerminateSimulationVisitor_INC
+#define ANANSI_MDTerminateSimulationVisitor_INC
 
 
 //--------------------------------------------------------//

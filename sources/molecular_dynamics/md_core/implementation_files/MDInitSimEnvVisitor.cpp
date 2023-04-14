@@ -58,7 +58,7 @@ MDInitSimEnvVisitor::~MDInitSimEnvVisitor()
 //============================= ACCESSORS ====================================
 void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
-    std::cout << "Visit(AnansiMolecularDynamics&)" << std::endl;
+    std::cout << "MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
 
     // ---------------------------------------------------
     // The comunication environment must be first enabled for many other tasks
@@ -73,7 +73,6 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 
     // ---------------------------------------------------
     // The core logging tasks are enabled.
-    // 
     // ---------------------------------------------------
     a_sim.enableCoreLoggingTasks();
 

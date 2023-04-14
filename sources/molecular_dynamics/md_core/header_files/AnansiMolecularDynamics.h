@@ -77,9 +77,6 @@ class AnansiMolecularDynamics final : public Simulation
         void enableControlFile();
         void disableControlFile();
 
-        void readInitialConfiguration();
-
-
         /* ====================  OPERATORS     ======================================= */
 
         AnansiMolecularDynamics&
