@@ -22,9 +22,10 @@ namespace ANANSI {
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
+    results_(nullptr),
+    ownershipPolicy_(),
     communicator_(nullptr),
-    messageContainer_(),
-    results_(nullptr)
+    messageContainer_()
 {
     this->results_ = std::make_unique<receiver_result_t>(0);
     return;
@@ -32,9 +33,10 @@ WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
+    results_(std::move(other.results_)),
+    ownershipPolicy_(),
     communicator_(std::move(other.communicator_)),
-    messageContainer_(std::move(other.messageContainer_)),
-    results_(std::move(other.results_))
+    messageContainer_(std::move(other.messageContainer_))
 {
     if (this != &other)
     {
@@ -50,10 +52,10 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-// std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Copytype WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
 {
-    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyResult(this->results_);
+    OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Copytype  my_ptr = 
+        this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
@@ -93,9 +95,10 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(std::move(other));
+        this->results_ = std::move(other.results_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->communicator_ = std::move(other.communicator_);
         this->messageContainer_ = std::move(other.messageContainer_);
-        this->results_ = std::move(other.results_);
     }
     return *this;
 } // assignment-move operator

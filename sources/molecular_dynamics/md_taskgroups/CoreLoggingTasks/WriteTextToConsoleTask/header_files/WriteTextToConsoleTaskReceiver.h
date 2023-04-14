@@ -9,7 +9,6 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
-#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -23,16 +22,26 @@
 #include "ConsoleMessageContainer.h"
 #include "TaskLabel.hpp"
 #include "OwnershipImpl1.hpp"
+
+// ---------------------------------------------------
+// Uncomment the ownership policies as required for 
+// class member ConcreteTaskReceiver::ownershipPolicy_.
+// For this class we select CopyOwnershipPolicy.hpp.
+// ---------------------------------------------------
+// #include "NullOwnershipPolicy.hpp"
+// #include "TransferOwnershipPolicy.hpp"
+// #include "ShareCopyOwnershipPolicy.hpp"
+// #include "TransferCopyOwnershipPolicy.hpp""
+// #include "ShareOwnershipPolicy.hpp"
 #include "CopyOwnershipPolicy.hpp"
+
 
 namespace ANANSI
 {
 
 //! The action of the reciever is to write a message to stdout.
 //! 
-//! The message store in messageContainer_ is written to stdout. There are no
-//! results stored in the class and therfore all copying, sharing and
-//! trasferring of results will result in an exception being thrown.
+//! The message store in messageContainer_ is written to stdout.
 class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>
 {
     public:
@@ -40,23 +49,28 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         //! The object type the smart pointer will manage,
         using receiver_result_t = int;
 
+    private:
         template<typename T>
         using OwnershipPolicy = OwnershipImpl1<T>;
 
-        //! The type of smart pointer that manages the receiver's result.
-        using receiver_result_smart_pointer_t = std::unique_ptr<receiver_result_t>;
-
-        // ====================  STATIC       =======================================
-
-        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr_[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
             {'w','r','i', 't', 'e','_',
              't', 'e', 'x', 't', '_',
              't', 'o', '_',
              'c','o', 'n', 's', 'o', 'l', 'e'};
 
+        mutable  OwnershipPolicy<receiver_result_t>::Transfertype results_;
+
+        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
+
+
+
+    public:
+        // ====================  STATIC       =======================================
+
         static constexpr 
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(WriteTextToConsoleTaskReceiver::tmpstr);
+            RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(WriteTextToConsoleTaskReceiver::tmpstr_);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -107,16 +121,12 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  DATA MEMBERS  =======================================
 
     private:
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
-        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
-
-
-        // mutable std::unique_ptr<receiver_result_t> results_;
-        mutable  OwnershipPolicy<receiver_result_t>::Transfertype results_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
