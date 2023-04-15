@@ -22,6 +22,7 @@ namespace ANANSI {
 
 ConcreteTaskReceiver::ConcreteTaskReceiver() :
     RECEIVER::ReceiverInterface<ConcreteTaskReceiver>(),
+    ownershipPolicy_(),
     results_(nullptr),
     base_(0)
 {
@@ -31,6 +32,7 @@ ConcreteTaskReceiver::ConcreteTaskReceiver() :
 
 ConcreteTaskReceiver::ConcreteTaskReceiver( ConcreteTaskReceiver && other) : 
     RECEIVER::ReceiverInterface<ConcreteTaskReceiver>(std::move(other)),
+    ownershipPolicy_(std::move(other.ownershipPolicy_)),
     results_(std::move(other.results_)),
     base_(std::move(base_))
 {
@@ -48,7 +50,6 @@ ConcreteTaskReceiver::~ConcreteTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-// std::unique_ptr<ConcreteTaskReceiver::receiver_result_t> ConcreteTaskReceiver::receiverGetCopyOfResults() const
 ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Copytype ConcreteTaskReceiver::receiverGetCopyOfResults() const
 {
     OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
@@ -88,6 +89,7 @@ ConcreteTaskReceiver& ConcreteTaskReceiver::operator=( ConcreteTaskReceiver && o
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<ConcreteTaskReceiver>::operator=(std::move(other));
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->results_ = std::move(other.results_);
         this->base_ = std::move(other.base_);
     }
@@ -117,6 +119,5 @@ ConcreteTaskReceiver& ConcreteTaskReceiver::operator=( ConcreteTaskReceiver && o
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
 
 } // namespace ANANSI

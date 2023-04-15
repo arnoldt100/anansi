@@ -82,9 +82,6 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         // ---------------------------------------------------
         mutable  OwnershipPolicy<receiver_result_t>::CopyType results_;
 
-
-
-
     public:
         // ====================  STATIC       =======================================
 
@@ -149,6 +146,11 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
 
 }; // -----  end of class ConcreteTaskReceiver  -----
 
+// ------------- //
+//  <Edit here>  //
+// ---------------------------------------------------
+// This method implements the action of the receiver.
+// ---------------------------------------------------
 template<typename... Types>
 void ConcreteTaskReceiver::receiverDoAction(Types & ... args) const
 {
@@ -157,17 +159,29 @@ void ConcreteTaskReceiver::receiverDoAction(Types & ... args) const
     return;
 }
 
+// ------------- //
+//  <Edit here>  //
+// ---------------------------------------------------
+// This method implements the undo action of the
+// receiver.
+// ---------------------------------------------------
 template<typename... Types>
 void ConcreteTaskReceiver::receiverUndoAction(Types & ... args) const
 {
     return;
 }
 
+// ------------- //
+//  <Edit here>  //
+// ---------------------------------------------------
+// This method frees resources acquired by the  
+// receiver. After the receiver is disabled, re-enabling 
+// the receiver and performing actions might lead to 
+// indeterminate results.
+// ---------------------------------------------------
 template<typename... Types>
 void ConcreteTaskReceiver::disableReceiver(Types... args)
 {
-    // Disable the communicator.
-    this->communicator_->freeCommunicator();
     return;
 }
 
