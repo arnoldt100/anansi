@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFileMPICommReceiver.h"
+#include "ControlFileXMLMPICommReceiver.h"
 
 namespace ANANSI {
 
@@ -20,15 +20,15 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlFileMPICommReceiver::ControlFileMPICommReceiver() :
-    ReceiverInterface<ControlFileMPICommReceiver>(),
+ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
+    ReceiverInterface<ControlFileXMLMPICommReceiver>(),
     results_()
 {
     return;
 }
 
-ControlFileMPICommReceiver::ControlFileMPICommReceiver( ControlFileMPICommReceiver && other) :
-    ReceiverInterface<ControlFileMPICommReceiver>(std::move(other)),
+ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver( ControlFileXMLMPICommReceiver && other) :
+    ReceiverInterface<ControlFileXMLMPICommReceiver>(std::move(other)),
     results_(other.results_)
 {
     if (this != &other)
@@ -38,30 +38,30 @@ ControlFileMPICommReceiver::ControlFileMPICommReceiver( ControlFileMPICommReceiv
     return;
 }
 
-ControlFileMPICommReceiver::~ControlFileMPICommReceiver()
+ControlFileXMLMPICommReceiver::~ControlFileXMLMPICommReceiver()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-std::unique_ptr<ControlFileMPICommReceiver::receiver_result_t> ControlFileMPICommReceiver::receiverGetCopyOfResults() const
+std::unique_ptr<ControlFileXMLMPICommReceiver::receiver_result_t> ControlFileXMLMPICommReceiver::receiverGetCopyOfResults() const
 {
-    std::unique_ptr<ControlFileMPICommReceiver::receiver_result_t> my_ptr =
-        std::make_unique<ControlFileMPICommReceiver::receiver_result_t>(this->results_);
+    std::unique_ptr<ControlFileXMLMPICommReceiver::receiver_result_t> my_ptr =
+        std::make_unique<ControlFileXMLMPICommReceiver::receiver_result_t>(this->results_);
     return my_ptr;
 }
 
 //============================= MUTATORS =====================================
 
 template<>
-void ControlFileMPICommReceiver::enableReceiver(int & alpha)
+void ControlFileXMLMPICommReceiver::enableReceiver(int & alpha)
 {
     return;
 }
 
 template<>
-void ControlFileMPICommReceiver::receiverModifyMyself(int & alpha)
+void ControlFileXMLMPICommReceiver::receiverModifyMyself(int & alpha)
 {
     return;
 }
@@ -70,11 +70,11 @@ void ControlFileMPICommReceiver::receiverModifyMyself(int & alpha)
 
 //============================= OPERATORS ====================================
 
-ControlFileMPICommReceiver& ControlFileMPICommReceiver::operator= ( ControlFileMPICommReceiver && other )
+ControlFileXMLMPICommReceiver& ControlFileXMLMPICommReceiver::operator= ( ControlFileXMLMPICommReceiver && other )
 {
     if (this != &other)
     {
-        ReceiverInterface<ControlFileMPICommReceiver>::operator=(std::move(other));
+        ReceiverInterface<ControlFileXMLMPICommReceiver>::operator=(std::move(other));
         this->results_ = std::move(other.results_);
     }
     return *this;

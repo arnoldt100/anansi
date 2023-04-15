@@ -1,7 +1,7 @@
-#ifndef  ANANSI_ControlFileMPICommReceiver_INC
-#define  ANANSI_ControlFileMPICommReceiver_INC
+#ifndef  ANANSI_ControlFileXMLMPICommReceiver_INC
+#define  ANANSI_ControlFileXMLMPICommReceiver_INC
 
-//! @file ControlFileMPICommReceiver.h
+//! @file ControlFileXMLMPICommReceiver.h
 //!
 //! Brief description
 //!
@@ -27,7 +27,7 @@
 namespace ANANSI
 {
 
-class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>
+class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>
 {
     public:
         using receiver_result_t = boost::property_tree::ptree;
@@ -38,24 +38,24 @@ class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFi
             {'c','o','m','m','u', 'n','i','c','a','t','e','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
         static constexpr 
-        RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>::TASK_LABEL_TYPE(ControlFileMPICommReceiver::tmpstr);
+        RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE(ControlFileXMLMPICommReceiver::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
-        ControlFileMPICommReceiver ();   // constructor
+        ControlFileXMLMPICommReceiver ();   // constructor
 
-        ControlFileMPICommReceiver (const ControlFileMPICommReceiver & other);   // copy constructor
+        ControlFileXMLMPICommReceiver (const ControlFileXMLMPICommReceiver & other);   // copy constructor
 
-        ControlFileMPICommReceiver (ControlFileMPICommReceiver && other);   // copy-move constructor
+        ControlFileXMLMPICommReceiver (ControlFileXMLMPICommReceiver && other);   // copy-move constructor
 
-        ~ControlFileMPICommReceiver ();  // destructor
+        ~ControlFileXMLMPICommReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
-        constexpr RECEIVER::ReceiverInterface<ControlFileMPICommReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
+        constexpr RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
         {
-            return  ControlFileMPICommReceiver::TASKLABEL;
+            return  ControlFileXMLMPICommReceiver::TASKLABEL;
         }
 
         template<typename... Types>
@@ -78,9 +78,9 @@ class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFi
 
         // ====================  OPERATORS     =======================================
 
-        ControlFileMPICommReceiver& operator= ( const ControlFileMPICommReceiver &other ); // assignment operator
+        ControlFileXMLMPICommReceiver& operator= ( const ControlFileXMLMPICommReceiver &other ); // assignment operator
 
-        ControlFileMPICommReceiver& operator= ( ControlFileMPICommReceiver && other ); // assignment-move operator
+        ControlFileXMLMPICommReceiver& operator= ( ControlFileXMLMPICommReceiver && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -93,27 +93,27 @@ class ControlFileMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFi
         // ====================  DATA MEMBERS  =======================================
         mutable boost::property_tree::ptree results_;
 
-}; // -----  end of class ControlFileMPICommReceiver  -----
+}; // -----  end of class ControlFileXMLMPICommReceiver  -----
 
 template<typename... Types>
-void ControlFileMPICommReceiver::receiverDoAction(Types & ... args) const
+void ControlFileXMLMPICommReceiver::receiverDoAction(Types & ... args) const
 {
-    std::cout << "Stub for ControlFileMPICommReceiver::receiverDoAction" << std::endl;
+    std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction" << std::endl;
     return;
 }
 
 template<typename... Types>
-void ControlFileMPICommReceiver::receiverUndoAction(Types & ... args) const
+void ControlFileXMLMPICommReceiver::receiverUndoAction(Types & ... args) const
 {
     return;
 }
 
 template<typename... Types>
-void ControlFileMPICommReceiver::disableReceiver(Types... args)
+void ControlFileXMLMPICommReceiver::disableReceiver(Types... args)
 {
     return;
 }
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_ControlFileMPICommReceiver_INC  ----- 
+#endif   // ----- #ifndef ANANSI_ControlFileXMLMPICommReceiver_INC  ----- 

@@ -25,7 +25,7 @@
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
 #include "ControlFileXMLReceiver.h"
-#include "ControlFileMPICommReceiver.h"
+#include "ControlFileXMLMPICommReceiver.h"
 
 namespace ANANSI
 {
@@ -61,7 +61,7 @@ class ReadControlFileTraits
 
         using concrete_products = MPL::mpl_typelist<
                                                        GenericMDTask<ControlFile,ControlFileXMLReceiver>,
-                                                       GenericMDTask<ControlFileCommunicator,ControlFileMPICommReceiver>
+                                                       GenericMDTask<ControlFileCommunicator,ControlFileXMLMPICommReceiver>
                                                    >;
     protected:
         // ====================  METHODS       =======================================
