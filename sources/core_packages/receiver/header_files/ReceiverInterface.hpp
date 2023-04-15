@@ -120,6 +120,12 @@ class ReceiverInterface
             return;
         }
 
+        template<typename T>
+        void enable(T & arg)
+        {
+            this->enable_(arg);
+        }
+
         //! Returns a shared ownership of the action results.
         //!
         //! The results are shared via a shared_ptr.
@@ -168,15 +174,7 @@ class ReceiverInterface
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        // ====================  METHODS       =======================================
-        
-        //! Provides access to the CRTP derived class "Derived."
-        //!
-        //! @return A reference to the CRTP derived class.
-        constexpr Derived& asDerived_() 
-        {
-            return *static_cast<Derived*>(this);
-        }
+        // ====================  ACCESSORS     =======================================
 
         //! Provides access to the CRTP derived class "Derived."
         //!
@@ -186,18 +184,35 @@ class ReceiverInterface
             return *static_cast<Derived const*>(this);
         }
 
-        template<typename FirstArgType, typename... Types>
-        void modifyReceiver_(FirstArgType & firstArg, Types &... args)
-        {
-            asDerived_().receiverModifyMyself(firstArg);
-            this->modifyReceiver_(args...);
-        }
-
         void modifyReceiver_() const
         {
             return;
         }
 
+        // ====================  MUTATORS      =======================================
+        
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to the CRTP derived class.
+        constexpr Derived& asDerived_() 
+        {
+            return *static_cast<Derived*>(this);
+        }
+
+        template<typename FirstArgType, typename... Types>
+        void modifyReceiver_(FirstArgType & firstArg, Types &... args)
+        {
+            asDerived_().receiverModifyMyself(firstArg);
+            this->modifyReceiver_(args...);
+            return;
+        }
+
+        template<typename T>
+        void enable_(T & arg)
+        {
+            this->enableReceiver(arg);
+            return;
+        }
 
         // ====================  DATA MEMBERS  =======================================
 

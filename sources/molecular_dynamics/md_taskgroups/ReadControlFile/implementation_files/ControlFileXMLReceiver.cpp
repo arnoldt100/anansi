@@ -21,32 +21,18 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFileXMLReceiver::ControlFileXMLReceiver() :
-    ReceiverInterface<ControlFileXMLReceiver>(),
-    results_(),
-    controlFileName_(""),
-    commID_(-1)
+    RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
+    ownershipPolicy_(),
+    results_(nullptr)
 {
-    return;
-}
-
-ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver const & other) :
-    ReceiverInterface<ControlFileXMLReceiver>(other),
-    results_(other.results_),
-    controlFileName_(other.controlFileName_),
-    commID_(other.commID_)
-{
-    if (this != &other)
-    {
-        
-    }
+    this->results_ = std::make_unique<receiver_result_t>(0);
     return;
 }
 
 ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver && other) :
-    ReceiverInterface<ControlFileXMLReceiver>(std::move(other)),
-    results_(std::move(other.results_)),
-    controlFileName_(std::move(other.controlFileName_)),
-    commID_(std::move(other.commID_))
+    RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(std::move(other)),
+    ownershipPolicy_(std::move(other.ownershipPolicy_)),
+    results_(std::move(other.results_))
 {
     if (this != &other)
     {
@@ -62,46 +48,34 @@ ControlFileXMLReceiver::~ControlFileXMLReceiver()
 
 //============================= ACCESSORS ====================================
 
-std::unique_ptr<ControlFileXMLReceiver::receiver_result_t> ControlFileXMLReceiver::receiverGetCopyOfResults() const
+ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype ControlFileXMLReceiver::receiverGetCopyOfResults() const
 {
-    std::unique_ptr<ControlFileXMLReceiver::receiver_result_t> my_ptr =
-        std::make_unique<ControlFileXMLReceiver::receiver_result_t>(this->results_);
+    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
 //============================= MUTATORS =====================================
 
-template<>
-void ControlFileXMLReceiver::enableReceiver(std::string & arg)
+ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Sharedtype ControlFileXMLReceiver::receiverShareOwnershipOfResults()
 {
-    this->controlFileName_ = arg;
+    OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
 }
 
-template<>
-void ControlFileXMLReceiver::enableReceiver(int & arg)
+ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype ControlFileXMLReceiver::receiverTransferOwnershipOfResults()
 {
-    this->commID_ = arg;
+    OwnershipPolicy<receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
 }
 //============================= OPERATORS ====================================
-
-ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( const ControlFileXMLReceiver &other )
-{
-    if (this != &other)
-    {
-        ReceiverInterface<ControlFileXMLReceiver>::operator=(other);
-        this->controlFileName_ = other.controlFileName_;
-        this->commID_ = other.commID_;
-    }
-    return *this;
-} // assignment operator
 
 ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiver && other )
 {
     if (this != &other)
     {
         ReceiverInterface<ControlFileXMLReceiver>::operator=(std::move(other));
-        this->controlFileName_ = std::move(other.controlFileName_);
-        this->commID_ = std::move(other.commID_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
+        this->results_ = std::move(other.results_);
     }
     return *this;
 } // assignment-move operator
