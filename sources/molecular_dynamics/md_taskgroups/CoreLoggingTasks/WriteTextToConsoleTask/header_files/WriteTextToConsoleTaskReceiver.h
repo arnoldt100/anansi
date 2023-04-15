@@ -53,15 +53,15 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         template<typename T>
         using OwnershipPolicy = OwnershipImpl1<T>;
 
+        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
+
         static constexpr char tmpstr_[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
             {'w','r','i', 't', 'e','_',
              't', 'e', 'x', 't', '_',
              't', 'o', '_',
              'c','o', 'n', 's', 'o', 'l', 'e'};
 
-        mutable  OwnershipPolicy<receiver_result_t>::Transfertype results_;
-
-        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
+        mutable  OwnershipPolicy<receiver_result_t>::Copytype results_;
 
 
 
