@@ -70,7 +70,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_header_files
          header_files/ControlFileXMLReceiver.h
-         header_files/ControlFileMPICommReceiver.h
+         header_files/ControlFileXMLMPICommReceiver.h
          header_files/ReadControlFileTraits.h )
 
     #-----------------------------------------------------
@@ -82,7 +82,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
          implementation_files/ControlFileXMLReceiver.cpp
-         implementation_files/ControlFileMPICommReceiver.cpp
+         implementation_files/ControlFileXMLMPICommReceiver.cpp
          implementation_files/ReadControlFileTraits.cpp )
 
     # -----------------------------------------------------
