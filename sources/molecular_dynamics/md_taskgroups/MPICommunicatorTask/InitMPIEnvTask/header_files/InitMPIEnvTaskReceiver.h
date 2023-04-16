@@ -51,9 +51,6 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  ACCESSORS     =======================================
 
-        template<typename... Types>
-        void receiverUndoAction(Types &... args) const;
-
         auto receiverGetResults() const;
 
         // ====================  MUTATORS      =======================================
@@ -75,6 +72,9 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         template<typename... Types>
         void receiverDoAction_(Types &... args) const;
+
+        template<typename... Types>
+        void receiverUndoAction_(Types &... args) const;
 
         constexpr RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
@@ -109,7 +109,7 @@ void InitMPIEnvTaskReceiver::receiverDoAction_(Types &... args) const
 }
 
 template<typename... Types>
-void InitMPIEnvTaskReceiver::receiverUndoAction(Types &... args) const
+void InitMPIEnvTaskReceiver::receiverUndoAction_(Types &... args) const
 {
     // This class doesn't have an action to undo. 
     return;

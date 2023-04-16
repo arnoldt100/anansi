@@ -84,9 +84,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  ACCESSORS     =======================================
 
-        template<typename... Types>
-        void receiverUndoAction(Types & ... args) const;
-
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
@@ -113,6 +110,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         template<typename... Types>
         void receiverDoAction_(Types &... args) const;
+
+        template<typename... Types>
+        void receiverUndoAction_(Types & ... args) const;
 
         constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
@@ -143,7 +143,7 @@ void WriteTextToConsoleTaskReceiver::receiverDoAction_(Types & ... args) const
 }
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types & ... args) const
+void WriteTextToConsoleTaskReceiver::receiverUndoAction_(Types & ... args) const
 {
     return;
 }

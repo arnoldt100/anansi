@@ -94,9 +94,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
        
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
-        template<typename... Types>
-        void receiverUndoAction(Types... args) const;
-
         // ====================  MUTATORS      =======================================
         template<typename T>
         void enableReceiver(T & arg);
@@ -122,6 +119,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         template<typename... Types>
         void receiverDoAction_(Types... args) const;
         
+        template<typename... Types>
+        void receiverUndoAction_(Types & ... args) const;
+
         constexpr RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  ControlFileXMLReceiver::TASKLABEL;
@@ -159,7 +159,7 @@ void ControlFileXMLReceiver::receiverDoAction_(Types... args) const
 }
 
 template<typename... Types>
-void ControlFileXMLReceiver::receiverUndoAction(Types... args) const
+void ControlFileXMLReceiver::receiverUndoAction_(Types &...  args) const
 {
     return;
 }

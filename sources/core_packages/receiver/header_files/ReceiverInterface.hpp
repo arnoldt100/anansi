@@ -53,6 +53,13 @@ class ReceiverInterface
                 return (derived.*fn)(args...);
             };
 
+            template<typename... Types>
+            static void undo_action(const Derived & derived, Types... args)
+            {
+                void (Derived::*fn)(Types... args) const = &accessor::receiverUndoAction_;
+                return (derived.*fn)(args...);
+            }
+
             //! Returns the task label of the receiver.
             constexpr static TASK_LABEL_TYPE get_task_label (const Derived & derived)
             {
@@ -107,8 +114,7 @@ class ReceiverInterface
        
         void undoAction() const
         {
-            asDerived_().receiverUndoAction();
-            return;
+            return accessor::undo_action(this->asDerived_());
         }
 
         //! Returns a copy/clone of the action results.

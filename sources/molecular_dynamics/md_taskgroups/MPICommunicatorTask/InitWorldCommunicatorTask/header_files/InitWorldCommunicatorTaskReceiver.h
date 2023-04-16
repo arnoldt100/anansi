@@ -41,9 +41,8 @@ namespace ANANSI
 //! method receiverGetCopyOfResults returns a smart pointer that is a duplicate
 //! of the original world communicator resource.
 //!
-//! The result of method receiverUndoAction undoes the action of
+//! The result of method receiverUndoAction_ undoes the action of
 //! receiverdoAction. For actions that can't be undone this is null action,
-//! however in this case the world communicator is destroyed.
 //!
 //! Invoking method receiverGetCopyOfResults returns a smart pointer that is a
 //! duplicate of the original world communicator resource.
@@ -82,9 +81,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  ACCESSORS     =======================================
 
-        template<typename... Types>
-        void receiverUndoAction(Types &... args) const;
-
         std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
@@ -106,6 +102,9 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  ACCESSORS     =======================================
         template<typename... Types>
         void receiverDoAction_(Types & ...  args) const;
+
+        template<typename... Types>
+        void receiverUndoAction_(Types &... args) const;
 
         constexpr RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
@@ -132,7 +131,7 @@ void InitWorldCommunicatorTaskReceiver::receiverDoAction_(Types &...  args) cons
 }
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::receiverUndoAction(Types &... args) const
+void InitWorldCommunicatorTaskReceiver::receiverUndoAction_(Types &... args) const
 {
     // This class doesn't have an undo action.
     return;

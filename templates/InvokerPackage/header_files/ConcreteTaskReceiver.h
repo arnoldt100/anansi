@@ -101,9 +101,6 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
 
         // ====================  ACCESSORS     =======================================
 
-        template<typename... Types>
-        void receiverUndoAction(Types & ... args) const;
-
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
@@ -132,6 +129,9 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         template<typename... Types>
         void receiverDoAction_(Types & ... args) const;
         
+        template<typename... Types>
+        void receiverUndoAction_(Types & ... args) const;
+
         constexpr RECEIVER::ReceiverInterface<ConcreteTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  ConcreteTaskReceiver::TASKLABEL;
@@ -171,9 +171,9 @@ void ConcreteTaskReceiver::enableReceiver(T & arg)
 // This method implements the action of the receiver.
 // ---------------------------------------------------
 template<typename... Types>
-void ConcreteTaskReceiver::receiverDoAction(Types & ... args) const
+void ConcreteTaskReceiver::receiverDoAction_(Types & ... args) const
 {
-    std::cout << "Stud message for method 'ConcreteTaskReceiver::receiverDoAction'." << std::endl;
+    std::cout << "Stud message for method 'ConcreteTaskReceiver::receiverDoAction_'." << std::endl;
     *(this->results_) += 1;
     return;
 }
@@ -185,7 +185,7 @@ void ConcreteTaskReceiver::receiverDoAction(Types & ... args) const
 // receiver.
 // ---------------------------------------------------
 template<typename... Types>
-void ConcreteTaskReceiver::receiverUndoAction(Types & ... args) const
+void ConcreteTaskReceiver::receiverUndoAction_(Types & ... args) const
 {
     return;
 }

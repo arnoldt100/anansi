@@ -53,9 +53,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         // ====================  ACCESSORS     =======================================
 
-        template<typename... Types>
-        void receiverUndoAction(Types & ... args) const;
-
         std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
@@ -80,6 +77,9 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         template<typename... Types>
         void receiverDoAction_(Types &... args) const;
+
+        template<typename... Types>
+        void receiverUndoAction_(Types & ... args) const;
 
         constexpr RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
@@ -107,7 +107,7 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 }
 
 template<typename... Types>
-void ControlFileXMLMPICommReceiver::receiverUndoAction(Types & ... args) const
+void ControlFileXMLMPICommReceiver::receiverUndoAction_(Types & ... args) const
 {
     return;
 }
