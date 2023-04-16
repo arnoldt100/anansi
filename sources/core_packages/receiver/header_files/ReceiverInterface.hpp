@@ -37,37 +37,20 @@ namespace RECEIVER
 template<typename Derived>
 class ReceiverInterface
 {
-    private : 
-        //! Provides access to the CRTP derived class "Derived."
-        //!
-        //! @return A reference to the CRTP derived class.
-        constexpr Derived& asDerived_() 
-        {
-            return *static_cast<Derived*>(this);
-        }
-
-        //! Provides access to the CRTP derived class "Derived."
-        //!
-        //! @return A reference to a constant CRTP derived class "Derived".
-        constexpr Derived const & asDerived_() const
-        {
-            return *static_cast<Derived const*>(this);
-        }
-
     public : 
         struct accessor : public Derived
         {
             template<typename... Types>
-            static void test_action(const Derived & derived, Types... args)
+            static void do_action(const Derived & derived, Types... args)
             {
-                void (Derived::*fn)(Types... args) const = &accessor::receiverDoAction;
+                void (Derived::*fn)(Types... args) const = &accessor::receiverDoAction_;
                 return (derived.*fn)(args...);
             };
         };
 
-       void derived_do_action() const
+       void doAction() const
        { 
-           return accessor::test_action(this->asDerived_());
+           return accessor::do_action(this->asDerived_());
        }
 
     public:
@@ -113,12 +96,6 @@ class ReceiverInterface
         constexpr TASK_LABEL_TYPE getTaskLabel () const
         {
             return asDerived_().receiverGetTaskLabel();
-        }
-
-        void action() const
-        {
-            asDerived_().receiverDoAction();
-            return;
         }
 
         void undoAction() const
@@ -205,6 +182,23 @@ class ReceiverInterface
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+
+    private : 
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to the CRTP derived class.
+        constexpr Derived& asDerived_() 
+        {
+            return *static_cast<Derived*>(this);
+        }
+
+        //! Provides access to the CRTP derived class "Derived."
+        //!
+        //! @return A reference to a constant CRTP derived class "Derived".
+        constexpr Derived const & asDerived_() const
+        {
+            return *static_cast<Derived const*>(this);
+        }
 
     private:
         // ====================  ACCESSORS     =======================================
