@@ -82,8 +82,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  ACCESSORS     =======================================
 
-        RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
-
         template<typename... Types>
         void receiverUndoAction(Types &... args) const;
 
@@ -108,6 +106,11 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  ACCESSORS     =======================================
         template<typename... Types>
         void receiverDoAction_(Types & ...  args) const;
+
+        constexpr RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        {
+            return  InitWorldCommunicatorTaskReceiver::TASKLABEL;
+        }
 
         // ====================  METHODS       =======================================
 

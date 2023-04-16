@@ -53,11 +53,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         // ====================  ACCESSORS     =======================================
 
-        constexpr RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
-        {
-            return  ControlFileXMLMPICommReceiver::TASKLABEL;
-        }
-
         template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
@@ -85,6 +80,12 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         template<typename... Types>
         void receiverDoAction_(Types &... args) const;
+
+        constexpr RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        {
+            return  ControlFileXMLMPICommReceiver::TASKLABEL;
+        }
+
 
         // ====================  METHODS       =======================================
 

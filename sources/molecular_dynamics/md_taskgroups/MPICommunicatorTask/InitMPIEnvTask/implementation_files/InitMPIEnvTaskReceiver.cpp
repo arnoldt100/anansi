@@ -47,11 +47,6 @@ InitMPIEnvTaskReceiver::~InitMPIEnvTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE InitMPIEnvTaskReceiver::receiverGetTaskLabel() const
-{
-    return  InitMPIEnvTaskReceiver::TASKLABEL;
-}
-
 auto InitMPIEnvTaskReceiver::receiverGetResults() const
 {
     return results_;

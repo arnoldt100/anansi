@@ -84,11 +84,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  ACCESSORS     =======================================
 
-        constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
-        {
-            return  WriteTextToConsoleTaskReceiver::TASKLABEL;
-        }
-
         template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
@@ -118,6 +113,11 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         template<typename... Types>
         void receiverDoAction_(Types &... args) const;
+
+        constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        {
+            return  WriteTextToConsoleTaskReceiver::TASKLABEL;
+        }
 
         // ====================  MUTATORS      =======================================
 

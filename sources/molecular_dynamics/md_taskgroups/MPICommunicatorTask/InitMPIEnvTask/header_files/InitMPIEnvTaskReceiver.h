@@ -51,8 +51,6 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  ACCESSORS     =======================================
 
-        RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
-
         template<typename... Types>
         void receiverUndoAction(Types &... args) const;
 
@@ -77,6 +75,11 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         template<typename... Types>
         void receiverDoAction_(Types &... args) const;
+
+        constexpr RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        {
+            return  InitMPIEnvTaskReceiver::TASKLABEL;
+        }
 
         // ====================  MUTATORS      =======================================
 

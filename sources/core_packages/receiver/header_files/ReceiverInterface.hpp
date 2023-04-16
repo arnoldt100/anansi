@@ -56,15 +56,15 @@ class ReceiverInterface
             //! Returns the task label of the receiver.
             constexpr static TASK_LABEL_TYPE get_task_label (const Derived & derived)
             {
-                constexpr TASK_LABEL_TYPE (Derived::*fn)() const = &accessor::receiverGetTaskLabel;
+                constexpr TASK_LABEL_TYPE (Derived::*fn)() const = &accessor::receiverGetTaskLabel_;
                 return (derived.*fn)();
             }
         };
 
-       void doAction() const
-       { 
-           return accessor::do_action(this->asDerived_());
-       }
+        void doAction() const
+        { 
+            return accessor::do_action(this->asDerived_());
+        }
 
         constexpr TASK_LABEL_TYPE getTaskLabel () const
         {
@@ -105,11 +105,6 @@ class ReceiverInterface
 
         // ====================  ACCESSORS     =======================================
        
-        // constexpr TASK_LABEL_TYPE getTaskLabel () const
-        // {
-        //     return asDerived_().receiverGetTaskLabel();
-        // }
-
         void undoAction() const
         {
             asDerived_().receiverUndoAction();

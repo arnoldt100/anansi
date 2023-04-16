@@ -101,11 +101,6 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
 
         // ====================  ACCESSORS     =======================================
 
-        constexpr RECEIVER::ReceiverInterface<ConcreteTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
-        {
-            return  ConcreteTaskReceiver::TASKLABEL;
-        }
-
         template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
@@ -137,6 +132,11 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         template<typename... Types>
         void receiverDoAction_(Types & ... args) const;
         
+        constexpr RECEIVER::ReceiverInterface<ConcreteTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        {
+            return  ConcreteTaskReceiver::TASKLABEL;
+        }
+
         // ====================  MUTATORS      =======================================
 
         // ====================  METHODS       =======================================

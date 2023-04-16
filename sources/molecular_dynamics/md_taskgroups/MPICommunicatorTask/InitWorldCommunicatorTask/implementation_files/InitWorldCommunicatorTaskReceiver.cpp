@@ -46,10 +46,6 @@ InitWorldCommunicatorTaskReceiver::~InitWorldCommunicatorTaskReceiver()
 }
 
 //============================= ACCESSORS ====================================
-RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE InitWorldCommunicatorTaskReceiver::receiverGetTaskLabel() const
-{
-    return  InitWorldCommunicatorTaskReceiver::TASKLABEL;
-}
 
 //============================= MUTATORS =====================================
 

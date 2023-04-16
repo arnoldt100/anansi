@@ -94,11 +94,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
        
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
-        constexpr RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
-        {
-            return  ControlFileXMLReceiver::TASKLABEL;
-        }
-
         template<typename... Types>
         void receiverUndoAction(Types... args) const;
 
@@ -126,6 +121,11 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         // ====================  ACCESSORS     =======================================
         template<typename... Types>
         void receiverDoAction_(Types... args) const;
+        
+        constexpr RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        {
+            return  ControlFileXMLReceiver::TASKLABEL;
+        }
 
         // ====================  MUTATORS      =======================================
 
