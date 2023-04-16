@@ -113,7 +113,7 @@ class GenericMDTask : public BaseClass
         //! @param [in] flags Used for any purpose in the concrete class
         void doConcreteTaskAction(const std::vector<std::string> & flags) const override
         {
-            this->receiver_->action();
+            this->receiver_->derived_do_action();
             return;
         }
 
