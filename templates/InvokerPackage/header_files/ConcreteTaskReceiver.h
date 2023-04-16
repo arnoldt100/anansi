@@ -107,14 +107,14 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         }
 
         template<typename... Types>
-        void receiverDoAction(Types & ... args) const;
-
-        template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
+        
+        template<typename T>
+        void enableReceiver(T & arg);
         
         template<typename... Types>
         void disableReceiver(Types... args);
@@ -133,18 +133,37 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         ConcreteTaskReceiver& operator= ( ConcreteTaskReceiver && other ); // assignment-move operator
 
     protected:
+        // ====================  ACCESSORS     =======================================
+        template<typename... Types>
+        void receiverDoAction_(Types & ... args) const;
+        
+        // ====================  MUTATORS      =======================================
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
     private:
 
-        // ====================  METHODS       =======================================
+        // ====================  ACCESSORS     =======================================
+
+        // ====================  MUTATORS      =======================================
 
         // ====================  DATA MEMBERS  =======================================
         int base_;
 
 }; // -----  end of class ConcreteTaskReceiver  -----
+
+// ------------- //
+//  <Edit here>  //
+// ---------------------------------------------------
+// This method enables the receiver to do action.
+// ---------------------------------------------------
+template<typename T>
+void ConcreteTaskReceiver::enableReceiver(T & arg)
+{
+    return;
+}
 
 // ------------- //
 //  <Edit here>  //

@@ -54,9 +54,6 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
 
         template<typename... Types>
-        void receiverDoAction(Types &... args) const;
-
-        template<typename... Types>
         void receiverUndoAction(Types &... args) const;
 
         auto receiverGetResults() const;
@@ -76,7 +73,12 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         InitMPIEnvTaskReceiver& operator= ( InitMPIEnvTaskReceiver && other ); // assignment-move operator
 
     protected:
-        // ====================  METHODS       =======================================
+        // ====================  ACCESSORS     =======================================
+
+        template<typename... Types>
+        void receiverDoAction_(Types &... args) const;
+
+        // ====================  MUTATORS      =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
@@ -97,7 +99,7 @@ void InitMPIEnvTaskReceiver::disableReceiver(Types &...  args)
 }
 
 template<typename... Types>
-void InitMPIEnvTaskReceiver::receiverDoAction(Types &... args) const
+void InitMPIEnvTaskReceiver::receiverDoAction_(Types &... args) const
 {
     this->mpiEnvironment_->enableEnvironment();
     return;

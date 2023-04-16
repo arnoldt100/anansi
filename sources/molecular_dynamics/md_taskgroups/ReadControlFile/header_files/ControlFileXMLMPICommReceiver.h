@@ -59,9 +59,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         }
 
         template<typename... Types>
-        void receiverDoAction(Types &... args) const;
-
-        template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
         std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
@@ -83,6 +80,12 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         ControlFileXMLMPICommReceiver& operator= ( ControlFileXMLMPICommReceiver && other ); // assignment-move operator
 
     protected:
+        
+        // ====================  ACCESSORS     =======================================
+
+        template<typename... Types>
+        void receiverDoAction_(Types &... args) const;
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
@@ -96,9 +99,9 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 }; // -----  end of class ControlFileXMLMPICommReceiver  -----
 
 template<typename... Types>
-void ControlFileXMLMPICommReceiver::receiverDoAction(Types & ... args) const
+void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
-    std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction" << std::endl;
+    std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
     return;
 }
 

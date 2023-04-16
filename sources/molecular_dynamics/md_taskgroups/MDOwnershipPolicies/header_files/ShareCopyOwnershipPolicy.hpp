@@ -124,7 +124,7 @@ class ShareCopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<
         //! returns shared_obj  A object of shared_type that shares a_receiver_result.
         template<typename W>
         requires ShareCopyOwnershipPolicyShareable<W,shared_type> 
-        shared_type shareOwnershipReceiverResult(W & a_receiver_result)
+        shared_type shareOwnershipOfResult(W & a_receiver_result)
         {
             shared_type shared_obj = a_receiver_result;
             return shared_obj;

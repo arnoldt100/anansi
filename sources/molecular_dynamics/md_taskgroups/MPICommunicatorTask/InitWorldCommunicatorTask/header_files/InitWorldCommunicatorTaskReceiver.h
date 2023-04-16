@@ -36,7 +36,7 @@ namespace ANANSI
 //! The method receiverModifyMyself modifies the data members of
 //! InitWorldCommunicatorTaskReceiver.
 //!
-//! The result of method receiverdoAction is the creation of the resource world
+//! The result of method receiverdoAction_ is the creation of the resource world
 //! communicator which the receiver owns by means of a unique_ptr. Invoking
 //! method receiverGetCopyOfResults returns a smart pointer that is a duplicate
 //! of the original world communicator resource.
@@ -85,9 +85,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const;
 
         template<typename... Types>
-        void receiverDoAction(Types & ...  args) const;
-
-        template<typename... Types>
         void receiverUndoAction(Types &... args) const;
 
         std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
@@ -107,6 +104,11 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         InitWorldCommunicatorTaskReceiver& operator= ( InitWorldCommunicatorTaskReceiver && other ); // assignment-move operator
 
     protected:
+
+        // ====================  ACCESSORS     =======================================
+        template<typename... Types>
+        void receiverDoAction_(Types & ...  args) const;
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
@@ -120,7 +122,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 }; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::receiverDoAction(Types &...  args) const
+void InitWorldCommunicatorTaskReceiver::receiverDoAction_(Types &...  args) const
 {
     // This class doesn't have a do action implemented.
     return;

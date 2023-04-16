@@ -90,9 +90,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         }
 
         template<typename... Types>
-        void receiverDoAction(Types & ... args) const;
-
-        template<typename... Types>
         void receiverUndoAction(Types & ... args) const;
 
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
@@ -116,7 +113,13 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         WriteTextToConsoleTaskReceiver& operator= ( WriteTextToConsoleTaskReceiver && other ); // assignment-move operator
 
     protected:
-        // ====================  METHODS       =======================================
+
+        // ====================  ACCESSORS     =======================================
+
+        template<typename... Types>
+        void receiverDoAction_(Types &... args) const;
+
+        // ====================  MUTATORS      =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
@@ -131,7 +134,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::receiverDoAction(Types & ... args) const
+void WriteTextToConsoleTaskReceiver::receiverDoAction_(Types & ... args) const
 {
     const auto message = this->messageContainer_->getMessage();
     std::cout << message << std::endl;

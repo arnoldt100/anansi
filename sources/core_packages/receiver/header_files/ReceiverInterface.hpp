@@ -38,6 +38,12 @@ template<typename Derived>
 class ReceiverInterface
 {
     public : 
+        //! Defines the label type for the task.
+        //!
+        //! The label type will be the key type for the command button
+        //! in the invoker.
+        using TASK_LABEL_TYPE = RECEIVER::TaskLabel;
+
         struct accessor : public Derived
         {
             template<typename... Types>
@@ -46,6 +52,13 @@ class ReceiverInterface
                 void (Derived::*fn)(Types... args) const = &accessor::receiverDoAction_;
                 return (derived.*fn)(args...);
             };
+
+            //! Returns the task label of the receiver.
+            constexpr static TASK_LABEL_TYPE get_task_label (const Derived & derived)
+            {
+                constexpr TASK_LABEL_TYPE (Derived::*fn)() const = &accessor::receiverGetTaskLabel;
+                return (derived.*fn)();
+            }
         };
 
        void doAction() const
@@ -53,16 +66,16 @@ class ReceiverInterface
            return accessor::do_action(this->asDerived_());
        }
 
+        constexpr TASK_LABEL_TYPE getTaskLabel () const
+        {
+           return accessor::get_task_label(this->asDerived_());
+        }
+        
+
     public:
 
         // ====================  ALiases       =======================================
         
-        //! Defines the label type for the task.
-        //!
-        //! The label type will be the key type for the command button
-        //! in the invoker.
-        using TASK_LABEL_TYPE = RECEIVER::TaskLabel;
-
         // ====================  LIFECYCLE     =======================================
 
         ReceiverInterface ()
@@ -92,11 +105,10 @@ class ReceiverInterface
 
         // ====================  ACCESSORS     =======================================
        
-        //! Returns the task label of the receiver.
-        constexpr TASK_LABEL_TYPE getTaskLabel () const
-        {
-            return asDerived_().receiverGetTaskLabel();
-        }
+        // constexpr TASK_LABEL_TYPE getTaskLabel () const
+        // {
+        //     return asDerived_().receiverGetTaskLabel();
+        // }
 
         void undoAction() const
         {

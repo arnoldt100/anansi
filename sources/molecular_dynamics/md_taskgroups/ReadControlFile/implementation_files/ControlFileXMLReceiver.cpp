@@ -48,12 +48,6 @@ ControlFileXMLReceiver::~ControlFileXMLReceiver()
 
 //============================= ACCESSORS ====================================
 
-ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype ControlFileXMLReceiver::receiverGetCopyOfResults() const
-{
-    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
-    return my_ptr;
-}
-
 //============================= MUTATORS =====================================
 
 ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Sharedtype ControlFileXMLReceiver::receiverShareOwnershipOfResults()
@@ -87,6 +81,13 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+
+ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype ControlFileXMLReceiver::receiverGetCopyOfResults() const
+{
+    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    return my_ptr;
+}
+
 
 //============================= MUTATORS =====================================
 

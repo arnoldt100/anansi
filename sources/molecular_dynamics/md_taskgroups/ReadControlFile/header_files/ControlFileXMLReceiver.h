@@ -55,9 +55,10 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
     public:
         using receiver_result_t = int;
 
-    private:
         template<typename T>
         using OwnershipPolicy = OwnershipImpl1<T>;
+
+    private:
 
         static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','c','o','n','t','r','o','l','_','f','i','l','e'};
@@ -91,6 +92,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         // ====================  ACCESSORS     =======================================
        
+        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         constexpr RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
         {
@@ -98,12 +100,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         }
 
         template<typename... Types>
-        void receiverDoAction(Types... args) const;
-
-        template<typename... Types>
         void receiverUndoAction(Types... args) const;
-
-        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
         template<typename T>
@@ -115,6 +112,10 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         template<typename T>
         void receiverModifyMyself(T & arg);
 
+        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
+
+        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
+    
         // ====================  OPERATORS     =======================================
 
         ControlFileXMLReceiver& operator= ( const ControlFileXMLReceiver &other ); // assignment operator
@@ -122,11 +123,17 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         ControlFileXMLReceiver& operator= ( ControlFileXMLReceiver && other ); // assignment-move operator
 
     protected:
-        // ====================  METHODS       =======================================
+        // ====================  ACCESSORS     =======================================
+        template<typename... Types>
+        void receiverDoAction_(Types... args) const;
+
+        // ====================  MUTATORS      =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        // ====================  ACCESSORS     =======================================
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
@@ -146,7 +153,7 @@ void ControlFileXMLReceiver::disableReceiver(Types... args)
 }
 
 template<typename... Types>
-void ControlFileXMLReceiver::receiverDoAction(Types... args) const
+void ControlFileXMLReceiver::receiverDoAction_(Types... args) const
 {
     return;
 }
