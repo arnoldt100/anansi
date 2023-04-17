@@ -60,14 +60,6 @@ void ControlFileXMLMPICommReceiver::enableReceiver(int & alpha)
     return;
 }
 
-template<>
-void ControlFileXMLMPICommReceiver::receiverModifyMyself(int & alpha)
-{
-    return;
-}
-
-
-
 //============================= OPERATORS ====================================
 
 ControlFileXMLMPICommReceiver& ControlFileXMLMPICommReceiver::operator= ( ControlFileXMLMPICommReceiver && other )

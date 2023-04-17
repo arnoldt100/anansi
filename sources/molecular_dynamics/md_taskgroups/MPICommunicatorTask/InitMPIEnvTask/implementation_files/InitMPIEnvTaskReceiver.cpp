@@ -54,13 +54,6 @@ auto InitMPIEnvTaskReceiver::receiverGetResults() const
 
 //============================= MUTATORS =====================================
 
-template<>
-void InitMPIEnvTaskReceiver::receiverModifyMyself(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
-{
-    this->mpiEnvironment_ = arg;
-    return;
-}
-
 //============================= OPERATORS ====================================
 
 InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiver && other )
@@ -83,6 +76,13 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+
+template<>
+void InitMPIEnvTaskReceiver::receiverModifyMyself_(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
+{
+    this->mpiEnvironment_ = arg;
+    return;
+}
 
 //============================= OPERATORS ====================================
 

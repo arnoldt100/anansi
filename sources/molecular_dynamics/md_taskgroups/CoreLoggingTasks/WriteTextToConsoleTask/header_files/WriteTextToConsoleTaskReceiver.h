@@ -86,9 +86,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  MUTATORS      =======================================
 
-        template<typename T>
-        void receiverModifyMyself(T & arg);
-
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
 
         OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
@@ -120,6 +117,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         template<typename... Types>
         void disableReceiver_(Types ...  args);
+
+        template<typename T>
+        void receiverModifyMyself_(T & arg);
 
         // ====================  DATA MEMBERS  =======================================
 

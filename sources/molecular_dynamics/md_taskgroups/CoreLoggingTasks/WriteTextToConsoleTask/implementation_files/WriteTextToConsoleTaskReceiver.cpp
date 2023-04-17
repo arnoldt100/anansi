@@ -54,21 +54,6 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= MUTATORS =====================================
 
-template<>
-void WriteTextToConsoleTaskReceiver::receiverModifyMyself(
-        std::unique_ptr<ConsoleMessageContainer> & message_container)
-{
-    this->messageContainer_ = std::move(message_container);
-    return;
-}
-
-template<>
-void WriteTextToConsoleTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
-{
-    this->communicator_ = std::move(arg);
-    return;
-}
-
 WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Sharedtype WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
 {
     OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
@@ -111,6 +96,22 @@ WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::
     return my_ptr;
 }
 //============================= MUTATORS =====================================
+
+template<>
+void WriteTextToConsoleTaskReceiver::receiverModifyMyself_(
+        std::unique_ptr<ConsoleMessageContainer> & message_container)
+{
+    this->messageContainer_ = std::move(message_container);
+    return;
+}
+
+
+template<>
+void WriteTextToConsoleTaskReceiver::receiverModifyMyself_(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
+{
+    this->communicator_ = std::move(arg);
+    return;
+}
 
 //============================= OPERATORS ====================================
 

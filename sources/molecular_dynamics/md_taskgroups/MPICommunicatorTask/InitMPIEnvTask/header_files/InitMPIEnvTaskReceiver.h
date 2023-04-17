@@ -55,9 +55,6 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  MUTATORS      =======================================
 
-        template<typename T>
-        void receiverModifyMyself(T & arg);
-
         // ====================  OPERATORS     =======================================
 
         InitMPIEnvTaskReceiver& operator= ( const InitMPIEnvTaskReceiver &other ) = delete; // assignment operator
@@ -82,6 +79,9 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         template<typename... Types>
         void disableReceiver_(Types &...  args);
+
+        template<typename T>
+        void receiverModifyMyself_(T & arg);
 
         // ====================  DATA MEMBERS  =======================================
 

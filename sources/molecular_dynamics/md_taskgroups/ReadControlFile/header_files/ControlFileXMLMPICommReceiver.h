@@ -59,9 +59,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         template<typename T>
         void enableReceiver(T & arg);
 
-        template<typename T>
-        void receiverModifyMyself(T & arg);
-
         // ====================  OPERATORS     =======================================
 
         ControlFileXMLMPICommReceiver& operator= ( const ControlFileXMLMPICommReceiver &other ); // assignment operator
@@ -87,6 +84,9 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         template<typename... Types>
         void disableReceiver_(Types... args);
+
+        template<typename T>
+        void receiverModifyMyself_(T & arg);
 
         // ====================  METHODS       =======================================
 

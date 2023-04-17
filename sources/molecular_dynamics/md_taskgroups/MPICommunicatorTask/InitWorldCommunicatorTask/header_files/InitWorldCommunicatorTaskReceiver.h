@@ -44,7 +44,7 @@ namespace ANANSI
 //! This class is non-copyable for we need the communicator resource created by
 //! the class to be solely owned by the object.
 //!
-//! The method receiverModifyMyself modifies the data members of
+//! The method receiverModifyMyself_ modifies the data members of
 //! InitWorldCommunicatorTaskReceiver.
 //!
 //! The result of method receiverdoAction_ is a null action.
@@ -102,9 +102,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  MUTATORS      =======================================
         
-        template<typename T>
-        void receiverModifyMyself(T & arg);
-
         // ====================  OPERATORS     =======================================
 
         InitWorldCommunicatorTaskReceiver& operator= ( const InitWorldCommunicatorTaskReceiver &other ) = delete; // assignment operator
@@ -131,6 +128,9 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         template<typename... Types>
         void disableReceiver_(Types &...  args);
+
+        template<typename T>
+        void receiverModifyMyself_(T & arg);
 
         // ====================  METHODS       =======================================
 

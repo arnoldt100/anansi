@@ -49,13 +49,6 @@ InitWorldCommunicatorTaskReceiver::~InitWorldCommunicatorTaskReceiver()
 
 //============================= MUTATORS =====================================
 
-template<>
-void InitWorldCommunicatorTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUNICATOR::Communicator> & arg) 
-{
-    (this->results_) = std::move(arg);
-    return;
-}
-
 //============================= OPERATORS ====================================
 
 InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= ( InitWorldCommunicatorTaskReceiver && other )
@@ -85,6 +78,12 @@ InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskRece
 
 //============================= MUTATORS =====================================
 
+template<>
+void InitWorldCommunicatorTaskReceiver::receiverModifyMyself_(std::unique_ptr<COMMUNICATOR::Communicator> & arg) 
+{
+    (this->results_) = std::move(arg);
+    return;
+}
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

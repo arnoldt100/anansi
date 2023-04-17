@@ -98,9 +98,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         template<typename T>
         void enableReceiver(T & arg);
 
-        template<typename T>
-        void receiverModifyMyself(T & arg);
-
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
 
         OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
@@ -128,6 +125,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         template<typename... Types>
         void disableReceiver_(Types... args);
+
+        template<typename T>
+        void receiverModifyMyself_(T & arg);
 
         // ====================  DATA MEMBERS  =======================================
 
