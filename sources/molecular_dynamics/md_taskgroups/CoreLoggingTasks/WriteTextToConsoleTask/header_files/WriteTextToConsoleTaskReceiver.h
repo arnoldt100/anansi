@@ -115,6 +115,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  MUTATORS      =======================================
 
+        template<typename T>
+        void enableReceiver_(T & arg);
+
         template<typename... Types>
         void disableReceiver_(Types ...  args);
 
@@ -144,6 +147,12 @@ void WriteTextToConsoleTaskReceiver::receiverDoAction_(Types & ... args) const
 
 template<typename... Types>
 void WriteTextToConsoleTaskReceiver::receiverUndoAction_(Types & ... args) const
+{
+    return;
+}
+
+template<typename T>
+void WriteTextToConsoleTaskReceiver::enableReceiver_(T & arg)
 {
     return;
 }
