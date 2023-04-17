@@ -100,9 +100,20 @@ ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::
 // Specializtion for modifying the ConcreteTaskReceiver::base_ data member.
 // ---------------------------------------------------
 template<>
-void ConcreteTaskReceiver::receiverModifyMyself( int & value)
+void ConcreteTaskReceiver::receiverModifyMyself_( int & value)
 {
     this->base_ = value;
+    return;
+}
+
+// ------------- //
+//  <Edit here>  //
+// ---------------------------------------------------
+// Specializtion for enabling the receiver.
+// ---------------------------------------------------
+template<>
+void ConcreteTaskReceiver::enableReceiver_( int & value)
+{
     return;
 }
 

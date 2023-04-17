@@ -103,9 +103,6 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
 
         // ====================  MUTATORS      =======================================
         
-        template<typename T>
-        void enableReceiver(T & arg);
-        
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
 
         OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
@@ -135,6 +132,8 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         template<typename... Types>
         void disableReceiver_(Types... args);
 
+        template<typename T>
+        void enableReceiver_(T & arg);
 
         template<typename T>
         void receiverModifyMyself_(T & arg);

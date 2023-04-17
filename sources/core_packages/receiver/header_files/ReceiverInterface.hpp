@@ -86,6 +86,13 @@ class ReceiverInterface
                 void (Derived::*fn)(T&) = &accessor::receiverModifyMyself_;
                 return (derived.*fn)(arg);
             }
+
+            template<typename T>
+            static void enable_receiver(Derived & derived, T & arg)
+            {
+                void (Derived::*fn)(T&) = &accessor::enableReceiver_;
+                return (derived.*fn)(arg);
+            }
         };
 
     public:
@@ -165,7 +172,7 @@ class ReceiverInterface
         template<typename T>
         void enable(T & arg)
         {
-            this->enable_(arg);
+            return accessor::enable_receiver(this->asDerived_());
         }
 
         //! Returns a shared ownership of the action results.
