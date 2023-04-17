@@ -79,6 +79,13 @@ class ReceiverInterface
                 void (Derived::*fn)(Types... args) = &accessor::disableReceiver_;
                 return (derived.*fn)(args...);
             }
+
+            template<typename T>
+            static void receiver_modify_myself(Derived & derived, T & arg)
+            {
+                void (Derived::*fn)(T&) = &accessor::receiverModifyMyself_;
+                return (derived.*fn)(arg);
+            }
         };
 
     public:
@@ -238,7 +245,8 @@ class ReceiverInterface
         template<typename FirstArgType, typename... Types>
         void modifyReceiver_(FirstArgType & firstArg, Types &... args)
         {
-            asDerived_().receiverModifyMyself(firstArg);
+            // asDerived_().receiverModifyMyself(firstArg);
+            accessor::receiver_modify_myself(this->asDerived_(),firstArg);
             this->modifyReceiver_(args...);
             return;
         }
