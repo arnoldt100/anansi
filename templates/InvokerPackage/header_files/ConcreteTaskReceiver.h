@@ -106,12 +106,6 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         template<typename T>
         void enableReceiver(T & arg);
         
-        template<typename... Types>
-        void disableReceiver(Types... args);
-
-        template<typename T>
-        void receiverModifyMyself(T & arg);
-
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
 
         OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
@@ -138,6 +132,13 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
+        template<typename... Types>
+        void disableReceiver_(Types... args);
+
+
+        template<typename T>
+        void receiverModifyMyself_(T & arg);
+
 
         // ====================  METHODS       =======================================
 
@@ -199,7 +200,7 @@ void ConcreteTaskReceiver::receiverUndoAction_(Types & ... args) const
 // indeterminate results.
 // ---------------------------------------------------
 template<typename... Types>
-void ConcreteTaskReceiver::disableReceiver(Types... args)
+void ConcreteTaskReceiver::disableReceiver_(Types... args)
 {
     return;
 }

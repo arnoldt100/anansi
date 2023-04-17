@@ -64,18 +64,6 @@ ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::
     return my_ptr;   
 }
 
-// ------------- //
-//  <Edit here>  //
-// ---------------------------------------------------
-// Specializtion for modifying the ConcreteTaskReceiver::base_ data member.
-// ---------------------------------------------------
-template<>
-void ConcreteTaskReceiver::receiverModifyMyself( int & value)
-{
-    this->base_ = value;
-    return;
-}
-
 //============================= OPERATORS ====================================
 
 ConcreteTaskReceiver& ConcreteTaskReceiver::operator=( ConcreteTaskReceiver && other )
@@ -105,6 +93,18 @@ ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::
 }
 
 //============================= MUTATORS =====================================
+
+// ------------- //
+//  <Edit here>  //
+// ---------------------------------------------------
+// Specializtion for modifying the ConcreteTaskReceiver::base_ data member.
+// ---------------------------------------------------
+template<>
+void ConcreteTaskReceiver::receiverModifyMyself( int & value)
+{
+    this->base_ = value;
+    return;
+}
 
 //============================= OPERATORS ====================================
 
