@@ -72,6 +72,13 @@ class ReceiverInterface
                 auto (Derived::*fn)() const = &accessor::receiverGetCopyOfResults_;
                 return (derived.*fn)();
             }
+
+            template<typename... Types>
+            static void disable_receiver(Derived & derived, Types... args)
+            {
+                void (Derived::*fn)(Types... args) = &accessor::disableReceiver_;
+                return (derived.*fn)(args...);
+            }
         };
 
     public:
@@ -132,15 +139,13 @@ class ReceiverInterface
         auto getCopyOfResults() const
         {
             return accessor::get_copy_of_results(this->asDerived_());
-            // return asDerived_().receiverGetCopyOfResults();
         }
 
         // ====================  MUTATORS      =======================================
 
         void disable()
         {
-            asDerived_().disableReceiver();
-            return;
+            return accessor::disable_receiver(this->asDerived_());
         }
 
         template<typename... T>
