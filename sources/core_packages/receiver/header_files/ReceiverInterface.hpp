@@ -44,6 +44,7 @@ class ReceiverInterface
         //! in the invoker.
         using TASK_LABEL_TYPE = RECEIVER::TaskLabel;
 
+    private:
         struct accessor : public Derived
         {
             template<typename... Types>
@@ -70,6 +71,12 @@ class ReceiverInterface
             static auto get_copy_of_results(const Derived & derived)
             {
                 auto (Derived::*fn)() const = &accessor::receiverGetCopyOfResults_;
+                return (derived.*fn)();
+            }
+
+            static auto get_share_of_results(const Derived & derived)
+            {
+                auto (Derived::*fn)() const = &accessor::receiverShareOwnershipOfResults_;
                 return (derived.*fn)();
             }
 
@@ -182,7 +189,7 @@ class ReceiverInterface
         //! returned.
         auto shareOwnershipOfResults()
         {
-            return asDerived_().receiverShareOwnershipOfResults();
+            return accessor::get_share_of_results(this->asDerived_());
         }
 
         //! Transfers ownership of the action results.
@@ -251,16 +258,8 @@ class ReceiverInterface
         template<typename FirstArgType, typename... Types>
         void modifyReceiver_(FirstArgType & firstArg, Types &... args)
         {
-            // asDerived_().receiverModifyMyself(firstArg);
             accessor::receiver_modify_myself(this->asDerived_(),firstArg);
             this->modifyReceiver_(args...);
-            return;
-        }
-
-        template<typename T>
-        void enable_(T & arg)
-        {
-            this->enableReceiver(arg);
             return;
         }
 
