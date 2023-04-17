@@ -106,17 +106,6 @@ void ConcreteTaskReceiver::receiverModifyMyself_( int & value)
     return;
 }
 
-// ------------- //
-//  <Edit here>  //
-// ---------------------------------------------------
-// Specializtion for enabling the receiver.
-// ---------------------------------------------------
-template<>
-void ConcreteTaskReceiver::enableReceiver_( int & value)
-{
-    return;
-}
-
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

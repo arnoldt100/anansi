@@ -193,6 +193,17 @@ void ConcreteTaskReceiver::receiverUndoAction_(Types & ... args) const
 // ------------- //
 //  <Edit here>  //
 // ---------------------------------------------------
+// This method enables the receiver.
+// ---------------------------------------------------
+template<typename T>
+void ConcreteTaskReceiver::enableReceiver_( T & value)
+{
+    return;
+}
+
+// ------------- //
+//  <Edit here>  //
+// ---------------------------------------------------
 // This method frees resources acquired by the  
 // receiver. After the receiver is disabled, re-enabling 
 // the receiver and performing actions might lead to 
