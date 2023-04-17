@@ -54,12 +54,6 @@ std::unique_ptr<ControlFileXMLMPICommReceiver::receiver_result_t> ControlFileXML
 
 //============================= MUTATORS =====================================
 
-template<>
-void ControlFileXMLMPICommReceiver::enableReceiver(int & alpha)
-{
-    return;
-}
-
 //============================= OPERATORS ====================================
 
 ControlFileXMLMPICommReceiver& ControlFileXMLMPICommReceiver::operator= ( ControlFileXMLMPICommReceiver && other )

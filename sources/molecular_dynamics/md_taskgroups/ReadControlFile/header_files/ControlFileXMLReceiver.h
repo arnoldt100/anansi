@@ -95,9 +95,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
-        template<typename T>
-        void enableReceiver(T & arg);
-
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
 
         OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
@@ -123,6 +120,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         // ====================  MUTATORS      =======================================
 
+        template<typename T>
+        void enableReceiver_(T & arg);
+
         template<typename... Types>
         void disableReceiver_(Types... args);
 
@@ -141,7 +141,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 }; // -----  end of class ControlFileXMLReceiver  -----
 
 template<typename T>
-void ControlFileXMLReceiver::enableReceiver(T & arg)
+void ControlFileXMLReceiver::enableReceiver_(T & arg)
 {
     return;
 }

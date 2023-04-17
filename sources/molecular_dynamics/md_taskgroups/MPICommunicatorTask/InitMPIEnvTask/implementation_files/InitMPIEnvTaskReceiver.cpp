@@ -47,11 +47,6 @@ InitMPIEnvTaskReceiver::~InitMPIEnvTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-auto InitMPIEnvTaskReceiver::receiverGetResults() const
-{
-    return results_;
-}
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

@@ -51,8 +51,6 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  ACCESSORS     =======================================
 
-        auto receiverGetResults() const;
-
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -76,6 +74,8 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         }
 
         // ====================  MUTATORS      =======================================
+        template<typename T>
+        void enableReceiver_(T & arg);
 
         template<typename... Types>
         void disableReceiver_(Types &...  args);
@@ -93,6 +93,12 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         mutable receiver_result_t results_;
 
 }; // -----  end of class InitMPIEnvTaskReceiver  -----
+
+template<typename T>
+void InitMPIEnvTaskReceiver::enableReceiver_(T & arg)
+{
+    return;
+}
 
 template<typename... Types>
 void InitMPIEnvTaskReceiver::disableReceiver_(Types &...  args)

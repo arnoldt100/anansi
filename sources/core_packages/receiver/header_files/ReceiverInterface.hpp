@@ -132,7 +132,6 @@ class ReceiverInterface
         { 
             return accessor::do_action(this->asDerived_());
         }
-
        
         void undoAction() const
         {

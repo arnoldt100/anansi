@@ -56,8 +56,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
-        template<typename T>
-        void enableReceiver(T & arg);
 
         // ====================  OPERATORS     =======================================
 
@@ -81,6 +79,9 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         }
 
         // ====================  MUTATORS      =======================================
+
+        template<typename T>
+        void enableReceiver_(T & arg);
 
         template<typename... Types>
         void disableReceiver_(Types... args);
@@ -109,6 +110,12 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 
 template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverUndoAction_(Types & ... args) const
+{
+    return;
+}
+
+template<typename T>
+void ControlFileXMLMPICommReceiver::enableReceiver_(T & value)
 {
     return;
 }

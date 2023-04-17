@@ -126,6 +126,9 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  MUTATORS      =======================================
 
+        template<typename T>
+        void enaableReceiver_(T & args);
+
         template<typename... Types>
         void disableReceiver_(Types &...  args);
 
@@ -154,6 +157,12 @@ template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::receiverUndoAction_(Types &... args) const
 {
     // This class doesn't have an undo action.
+    return;
+}
+
+template<typename T>
+void InitWorldCommunicatorTaskReceiver::enaableReceiver_(T & args)
+{
     return;
 }
 
