@@ -90,6 +90,7 @@
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
+    get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -125,6 +126,8 @@ target_include_directories(${target}
                            PRIVATE ${my_tasks_include}
                            PRIVATE ${my_genericmdtask_include} 
                            PRIVATE ${my_receiver_include} 
+                           PRIVATE ${my_communicator_include}
+                           PRIVATE ${my_mdownershippolicies_include}
                            PRIVATE ${my_mpi_communicator_include})
 
 #-----------------------------------------------------
@@ -135,6 +138,7 @@ target_link_libraries(${target}
                       PUBLIC tasks
                       PUBLIC genericmdtask
                       PUBLIC receiver
+                      PUBLIC mdownershippolicies
                       PUBLIC mpi_communicator)
 
 #-----------------------------------------------------

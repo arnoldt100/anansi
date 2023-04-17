@@ -26,7 +26,7 @@ ConcreteTaskReceiver::ConcreteTaskReceiver() :
     results_(nullptr),
     base_(0)
 {
-    this->results_ = std::make_unique<receiver_result_t>(0);
+    this->results_ = std::make_unique<ConcreteTaskReceiver::receiver_result_t>(0);
     return;
 }
 
@@ -52,15 +52,9 @@ ConcreteTaskReceiver::~ConcreteTaskReceiver()
 
 //============================= MUTATORS =====================================
 
-ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Sharedtype ConcreteTaskReceiver::receiverShareOwnershipOfResults()
-{
-    OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
-
 ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Transfertype ConcreteTaskReceiver::receiverTransferOwnershipOfResults()
 {
-    OwnershipPolicy<receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
@@ -88,7 +82,7 @@ ConcreteTaskReceiver& ConcreteTaskReceiver::operator=( ConcreteTaskReceiver && o
 
 ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Copytype ConcreteTaskReceiver::receiverGetCopyOfResults_() const
 {
-    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
@@ -104,6 +98,12 @@ void ConcreteTaskReceiver::receiverModifyMyself_( int & value)
 {
     this->base_ = value;
     return;
+}
+
+ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Sharedtype ConcreteTaskReceiver::receiverShareOwnershipOfResults_()
+{
+    OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
 }
 
 //============================= OPERATORS ====================================

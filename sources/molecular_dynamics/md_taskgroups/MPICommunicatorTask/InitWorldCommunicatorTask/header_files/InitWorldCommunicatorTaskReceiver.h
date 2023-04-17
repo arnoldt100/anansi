@@ -135,6 +135,8 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
+        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

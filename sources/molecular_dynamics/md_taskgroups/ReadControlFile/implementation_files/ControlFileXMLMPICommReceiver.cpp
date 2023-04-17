@@ -29,7 +29,7 @@ ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
 
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver( ControlFileXMLMPICommReceiver && other) :
     ReceiverInterface<ControlFileXMLMPICommReceiver>(std::move(other)),
-    results_(other.results_)
+    results_(std::move(other.results_))
 {
     if (this != &other)
     {
@@ -44,13 +44,6 @@ ControlFileXMLMPICommReceiver::~ControlFileXMLMPICommReceiver()
 }
 
 //============================= ACCESSORS ====================================
-
-std::unique_ptr<ControlFileXMLMPICommReceiver::receiver_result_t> ControlFileXMLMPICommReceiver::receiverGetCopyOfResults() const
-{
-    std::unique_ptr<ControlFileXMLMPICommReceiver::receiver_result_t> my_ptr =
-        std::make_unique<ControlFileXMLMPICommReceiver::receiver_result_t>(this->results_);
-    return my_ptr;
-}
 
 //============================= MUTATORS =====================================
 
@@ -74,7 +67,21 @@ ControlFileXMLMPICommReceiver& ControlFileXMLMPICommReceiver::operator= ( Contro
 
 //============================= ACCESSORS ====================================
 
+ControlFileXMLMPICommReceiver::OwnershipPolicy<ControlFileXMLMPICommReceiver::receiver_result_t>::Copytype 
+ControlFileXMLMPICommReceiver::receiverGetCopyOfResults_() const
+{
+    OwnershipPolicy<ControlFileXMLMPICommReceiver::receiver_result_t>::Copytype my_ptr =
+        ownershipPolicy_.copyReceiverResult(this->results_);
+    return my_ptr;
+}
+
 //============================= MUTATORS =====================================
+
+ControlFileXMLMPICommReceiver::OwnershipPolicy<ControlFileXMLMPICommReceiver::receiver_result_t>::Sharedtype ControlFileXMLMPICommReceiver::receiverShareOwnershipOfResults_()
+{
+    OwnershipPolicy<ControlFileXMLMPICommReceiver::receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
 
 //============================= OPERATORS ====================================
 

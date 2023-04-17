@@ -70,6 +70,13 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
 
 //============================= ACCESSORS ====================================
 
+InitMPIEnvTaskReceiver::OwnershipPolicy<InitMPIEnvTaskReceiver::receiver_result_t>::Copytype InitMPIEnvTaskReceiver::receiverGetCopyOfResults_() const
+{
+    OwnershipPolicy<InitMPIEnvTaskReceiver::receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    return my_ptr;
+}
+
+
 //============================= MUTATORS =====================================
 
 template<>
@@ -79,6 +86,11 @@ void InitMPIEnvTaskReceiver::receiverModifyMyself_(std::shared_ptr<ANANSI::MPIEn
     return;
 }
 
+InitMPIEnvTaskReceiver::OwnershipPolicy<InitMPIEnvTaskReceiver::receiver_result_t>::Sharedtype InitMPIEnvTaskReceiver::receiverShareOwnershipOfResults_()
+{
+    OwnershipPolicy<InitMPIEnvTaskReceiver::receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

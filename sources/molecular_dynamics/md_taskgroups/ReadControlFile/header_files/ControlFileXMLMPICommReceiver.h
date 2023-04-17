@@ -23,6 +23,19 @@
 //--------------------------------------------------------//
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
+#include "OwnershipImpl1.hpp"
+
+// ---------------------------------------------------
+// Uncomment the ownership policies as required for 
+// class member ConcreteTaskReceiver::ownershipPolicy_.
+// For this class we select CopyOwnershipPolicy.hpp.
+// ---------------------------------------------------
+// #include "NullOwnershipPolicy.hpp"
+// #include "TransferOwnershipPolicy.hpp"
+// #include "ShareCopyOwnershipPolicy.hpp"
+// #include "TransferCopyOwnershipPolicy.hpp""
+// #include "ShareOwnershipPolicy.hpp"
+#include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
@@ -30,7 +43,17 @@ namespace ANANSI
 class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>
 {
     public:
-        using receiver_result_t = boost::property_tree::ptree;
+        // using receiver_result_t = boost::property_tree::ptree;
+        using receiver_result_t = int;
+
+    private:
+        template<typename T>
+        using OwnershipPolicy = OwnershipImpl1<T>;
+
+        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
+
+        mutable  OwnershipPolicy<receiver_result_t>::Copytype results_;
+    public:
 
         // ====================  STATIC       =======================================
 
@@ -52,8 +75,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         ~ControlFileXMLMPICommReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-
-        std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -78,6 +99,8 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
             return  ControlFileXMLMPICommReceiver::TASKLABEL;
         }
 
+        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
+
         // ====================  MUTATORS      =======================================
 
         template<typename T>
@@ -89,6 +112,9 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
+        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
+
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
@@ -97,7 +123,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        mutable boost::property_tree::ptree results_;
 
 }; // -----  end of class ControlFileXMLMPICommReceiver  -----
 

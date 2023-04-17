@@ -50,17 +50,13 @@ ControlFileXMLReceiver::~ControlFileXMLReceiver()
 
 //============================= MUTATORS =====================================
 
-ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Sharedtype ControlFileXMLReceiver::receiverShareOwnershipOfResults()
+ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype ControlFileXMLReceiver::receiverTransferOwnershipOfResults()
 {
-    OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype my_ptr = 
+        ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype ControlFileXMLReceiver::receiverTransferOwnershipOfResults()
-{
-    OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
 //============================= OPERATORS ====================================
 
 ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiver && other )
@@ -82,7 +78,7 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
 
 //============================= ACCESSORS ====================================
 
-ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype ControlFileXMLReceiver::receiverGetCopyOfResults() const
+ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype ControlFileXMLReceiver::receiverGetCopyOfResults_() const
 {
     OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
@@ -90,6 +86,13 @@ ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_
 
 
 //============================= MUTATORS =====================================
+
+ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Sharedtype ControlFileXMLReceiver::receiverShareOwnershipOfResults_()
+{
+    OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
+
 
 //============================= OPERATORS ====================================
 

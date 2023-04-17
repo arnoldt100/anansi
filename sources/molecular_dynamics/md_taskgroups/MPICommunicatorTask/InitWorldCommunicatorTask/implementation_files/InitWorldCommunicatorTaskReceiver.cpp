@@ -84,6 +84,14 @@ void InitWorldCommunicatorTaskReceiver::receiverModifyMyself_(std::unique_ptr<CO
     (this->results_) = std::move(arg);
     return;
 }
+
+InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Sharedtype InitWorldCommunicatorTaskReceiver::receiverShareOwnershipOfResults_()
+{
+    OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
+
+
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

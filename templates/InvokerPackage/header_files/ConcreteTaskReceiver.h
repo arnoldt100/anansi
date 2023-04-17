@@ -103,8 +103,6 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
 
         // ====================  MUTATORS      =======================================
         
-        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
-
         OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
 
         // ====================  OPERATORS     =======================================
@@ -126,7 +124,7 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
             return  ConcreteTaskReceiver::TASKLABEL;
         }
 
-        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
+        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
         template<typename... Types>
@@ -138,6 +136,7 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
+        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
 
         // ====================  METHODS       =======================================
 
