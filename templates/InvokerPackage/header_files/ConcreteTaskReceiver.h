@@ -103,8 +103,6 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
 
         // ====================  MUTATORS      =======================================
         
-        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
-
         // ====================  OPERATORS     =======================================
 
         ConcreteTaskReceiver& operator= ( const ConcreteTaskReceiver &other ) = delete; // assignment operator
@@ -137,6 +135,8 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         void receiverModifyMyself_(T & arg);
 
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
+
+        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  METHODS       =======================================
 

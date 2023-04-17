@@ -52,12 +52,6 @@ ConcreteTaskReceiver::~ConcreteTaskReceiver()
 
 //============================= MUTATORS =====================================
 
-ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Transfertype ConcreteTaskReceiver::receiverTransferOwnershipOfResults()
-{
-    OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
-
 //============================= OPERATORS ====================================
 
 ConcreteTaskReceiver& ConcreteTaskReceiver::operator=( ConcreteTaskReceiver && other )
@@ -103,6 +97,12 @@ void ConcreteTaskReceiver::receiverModifyMyself_( int & value)
 ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Sharedtype ConcreteTaskReceiver::receiverShareOwnershipOfResults_()
 {
     OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
+
+ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Transfertype ConcreteTaskReceiver::receiverTransferOwnershipOfResults_()
+{
+    OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

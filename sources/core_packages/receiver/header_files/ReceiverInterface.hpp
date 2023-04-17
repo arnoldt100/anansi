@@ -80,6 +80,12 @@ class ReceiverInterface
                 return (derived.*fn)();
             }
 
+            static auto transfer_ownership_of_results(const Derived & derived)
+            {
+                auto (Derived::*fn)() const = &accessor::receiverTransferOwnershipOfResults_;
+                return (derived.*fn)();
+            }
+
             template<typename... Types>
             static void disable_receiver(Derived & derived, Types... args)
             {
@@ -200,7 +206,7 @@ class ReceiverInterface
         //! thrown and a default instance of the receiver results  is returned.
         auto transferOwnershipOfResults()
         {
-            return asDerived_().receiverTransferOwnershipOfResults();
+            return accessor::transfer_ownership_of_results(this->asDerived_());
         }
 
         // ====================  OPERATORS     =======================================
