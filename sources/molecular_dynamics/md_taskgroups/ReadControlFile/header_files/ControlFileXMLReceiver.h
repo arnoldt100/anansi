@@ -98,9 +98,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         template<typename T>
         void enableReceiver(T & arg);
 
-        template<typename... Types>
-        void disableReceiver(Types... args);
-
         template<typename T>
         void receiverModifyMyself(T & arg);
 
@@ -129,6 +126,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         // ====================  MUTATORS      =======================================
 
+        template<typename... Types>
+        void disableReceiver_(Types... args);
+
         // ====================  DATA MEMBERS  =======================================
 
     private:
@@ -147,7 +147,7 @@ void ControlFileXMLReceiver::enableReceiver(T & arg)
 }
 
 template<typename... Types>
-void ControlFileXMLReceiver::disableReceiver(Types... args)
+void ControlFileXMLReceiver::disableReceiver_(Types... args)
 {
     return;
 }

@@ -85,9 +85,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
-        
-        template<typename... Types>
-        void disableReceiver(Types... args);
 
         template<typename T>
         void receiverModifyMyself(T & arg);
@@ -121,6 +118,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  MUTATORS      =======================================
 
+        template<typename... Types>
+        void disableReceiver_(Types ...  args);
+
         // ====================  DATA MEMBERS  =======================================
 
     private:
@@ -149,7 +149,7 @@ void WriteTextToConsoleTaskReceiver::receiverUndoAction_(Types & ... args) const
 }
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::disableReceiver(Types... args)
+void WriteTextToConsoleTaskReceiver::disableReceiver_(Types... args)
 {
     // Disable the communicator.
     this->communicator_->freeCommunicator();

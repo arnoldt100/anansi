@@ -55,9 +55,6 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  MUTATORS      =======================================
 
-        template<typename... Types>
-        void disableReceiver(Types &...  args);
-
         template<typename T>
         void receiverModifyMyself(T & arg);
 
@@ -83,6 +80,9 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         // ====================  MUTATORS      =======================================
 
+        template<typename... Types>
+        void disableReceiver_(Types &...  args);
+
         // ====================  DATA MEMBERS  =======================================
 
     private:
@@ -95,7 +95,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 }; // -----  end of class InitMPIEnvTaskReceiver  -----
 
 template<typename... Types>
-void InitMPIEnvTaskReceiver::disableReceiver(Types &...  args)
+void InitMPIEnvTaskReceiver::disableReceiver_(Types &...  args)
 {
     this->mpiEnvironment_->disableEnvironment();
     return;

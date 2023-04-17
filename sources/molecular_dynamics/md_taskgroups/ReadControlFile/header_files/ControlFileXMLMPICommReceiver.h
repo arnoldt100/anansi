@@ -59,9 +59,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         template<typename T>
         void enableReceiver(T & arg);
 
-        template<typename... Types>
-        void disableReceiver(Types... args);
-
         template<typename T>
         void receiverModifyMyself(T & arg);
 
@@ -86,6 +83,10 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
             return  ControlFileXMLMPICommReceiver::TASKLABEL;
         }
 
+        // ====================  MUTATORS      =======================================
+
+        template<typename... Types>
+        void disableReceiver_(Types... args);
 
         // ====================  METHODS       =======================================
 
@@ -113,7 +114,7 @@ void ControlFileXMLMPICommReceiver::receiverUndoAction_(Types & ... args) const
 }
 
 template<typename... Types>
-void ControlFileXMLMPICommReceiver::disableReceiver(Types... args)
+void ControlFileXMLMPICommReceiver::disableReceiver_(Types... args)
 {
     return;
 }

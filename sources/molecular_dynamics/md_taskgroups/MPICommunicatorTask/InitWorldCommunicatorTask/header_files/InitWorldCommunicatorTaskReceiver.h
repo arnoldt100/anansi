@@ -55,7 +55,7 @@ namespace ANANSI
 //! Invoking method receiverGetCopyOfResults_ returns a smart pointer that is a
 //! duplicate of the original world communicator resource.
 //!
-//! Invoking method disableReceiver results in the destruction of the world
+//! Invoking method disableReceiver_ results in the destruction of the world
 //! communicator resource. After this call, all other calls will result in 
 //! an error being thrown.
 class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>
@@ -102,9 +102,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  MUTATORS      =======================================
         
-        template<typename... Types>
-        void disableReceiver(Types &...  args);
-
         template<typename T>
         void receiverModifyMyself(T & arg);
 
@@ -129,6 +126,11 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         }
 
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
+
+        // ====================  MUTATORS      =======================================
+
+        template<typename... Types>
+        void disableReceiver_(Types &...  args);
 
         // ====================  METHODS       =======================================
 
@@ -156,7 +158,7 @@ void InitWorldCommunicatorTaskReceiver::receiverUndoAction_(Types &... args) con
 }
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::disableReceiver(Types &...  args) 
+void InitWorldCommunicatorTaskReceiver::disableReceiver_(Types &...  args) 
 {
     this->results_->freeCommunicator();
     this->results_.reset();
