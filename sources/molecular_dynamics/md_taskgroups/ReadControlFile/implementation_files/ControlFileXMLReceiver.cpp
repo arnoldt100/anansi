@@ -25,7 +25,7 @@ ControlFileXMLReceiver::ControlFileXMLReceiver() :
     ownershipPolicy_(),
     results_(nullptr)
 {
-    this->results_ = std::make_unique<receiver_result_t>(0);
+    this->results_ = std::make_unique<ControlFileXMLReceiver::receiver_result_t>(0);
     return;
 }
 
@@ -58,7 +58,7 @@ ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_
 
 ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype ControlFileXMLReceiver::receiverTransferOwnershipOfResults()
 {
-    OwnershipPolicy<receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 //============================= OPERATORS ====================================
@@ -84,7 +84,7 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
 
 ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype ControlFileXMLReceiver::receiverGetCopyOfResults() const
 {
-    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 

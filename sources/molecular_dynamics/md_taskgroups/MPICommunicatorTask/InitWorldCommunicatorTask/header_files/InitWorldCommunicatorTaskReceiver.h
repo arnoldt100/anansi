@@ -20,8 +20,19 @@
 #include "ReceiverInterface.hpp"
 #include "MPICommunicatorFactory.h"
 #include "TaskLabel.hpp"
-#include "TaskLabelTraits.hpp"
+#include "OwnershipImpl1.hpp"
 
+// ---------------------------------------------------
+// Uncomment the ownership policies as required for 
+// class member ConcreteTaskReceiver::ownershipPolicy_.
+// For this class we select CopyOwnershipPolicy.hpp.
+// ---------------------------------------------------
+// #include "NullOwnershipPolicy.hpp"
+// #include "TransferOwnershipPolicy.hpp"
+// #include "ShareCopyOwnershipPolicy.hpp"
+// #include "TransferCopyOwnershipPolicy.hpp""
+// #include "ShareOwnershipPolicy.hpp"
+#include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
@@ -36,15 +47,12 @@ namespace ANANSI
 //! The method receiverModifyMyself modifies the data members of
 //! InitWorldCommunicatorTaskReceiver.
 //!
-//! The result of method receiverdoAction_ is the creation of the resource world
-//! communicator which the receiver owns by means of a unique_ptr. Invoking
-//! method receiverGetCopyOfResults returns a smart pointer that is a duplicate
-//! of the original world communicator resource.
+//! The result of method receiverdoAction_ is a null action.
 //!
 //! The result of method receiverUndoAction_ undoes the action of
 //! receiverdoAction. For actions that can't be undone this is null action,
 //!
-//! Invoking method receiverGetCopyOfResults returns a smart pointer that is a
+//! Invoking method receiverGetCopyOfResults_ returns a smart pointer that is a
 //! duplicate of the original world communicator resource.
 //!
 //! Invoking method disableReceiver results in the destruction of the world
@@ -52,12 +60,23 @@ namespace ANANSI
 //! an error being thrown.
 class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>
 {
-    private: 
-        using COMMUNICATOR_t = COMMUNICATOR::Communicator;
+    public: 
+        //! The type of the data member results_.
+        using receiver_result_t = std::unique_ptr<COMMUNICATOR::Communicator>;
+        
+        template<typename T>
+        using OwnershipPolicy = OwnershipImpl1<T>;
+
+    private:
+
+        // ---------------------------------------------------
+        // Declare the ownership policy of the receivers' result.
+        // ---------------------------------------------------
+        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
+
+        mutable receiver_result_t results_;
 
     public:
-        //! The type of the data member results_.
-        using receiver_result_t = std::unique_ptr<COMMUNICATOR_t>;
 
         // ====================  STATIC       =======================================
 
@@ -80,8 +99,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         ~InitWorldCommunicatorTaskReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-
-        std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
         
@@ -111,6 +128,8 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
             return  InitWorldCommunicatorTaskReceiver::TASKLABEL;
         }
 
+        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
@@ -119,7 +138,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        mutable receiver_result_t results_;
 
 }; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
 

@@ -66,18 +66,13 @@ class ReceiverInterface
                 constexpr TASK_LABEL_TYPE (Derived::*fn)() const = &accessor::receiverGetTaskLabel_;
                 return (derived.*fn)();
             }
+
+            static auto get_copy_of_results(const Derived & derived)
+            {
+                auto (Derived::*fn)() const = &accessor::receiverGetCopyOfResults_;
+                return (derived.*fn)();
+            }
         };
-
-        void doAction() const
-        { 
-            return accessor::do_action(this->asDerived_());
-        }
-
-        constexpr TASK_LABEL_TYPE getTaskLabel () const
-        {
-           return accessor::get_task_label(this->asDerived_());
-        }
-        
 
     public:
 
@@ -111,12 +106,23 @@ class ReceiverInterface
         virtual ~ReceiverInterface ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
+        
+        void doAction() const
+        { 
+            return accessor::do_action(this->asDerived_());
+        }
+
        
         void undoAction() const
         {
             return accessor::undo_action(this->asDerived_());
         }
 
+        constexpr TASK_LABEL_TYPE getTaskLabel () const
+        {
+           return accessor::get_task_label(this->asDerived_());
+        }
+        
         //! Returns a copy/clone of the action results.
         //!
         //! The results are copied/clone to and unique_ptr and the results of the concrete 
@@ -125,7 +131,8 @@ class ReceiverInterface
         //! results is returned.
         auto getCopyOfResults() const
         {
-            return asDerived_().receiverGetCopyOfResults();
+            return accessor::get_copy_of_results(this->asDerived_());
+            // return asDerived_().receiverGetCopyOfResults();
         }
 
         // ====================  MUTATORS      =======================================

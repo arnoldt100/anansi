@@ -93,6 +93,7 @@
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
+    get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -124,10 +125,12 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE "${my_receiver_include}"
-                           PRIVATE "${my_genericmdtask_include}"
-                           PRIVATE "${my_typelist_aliases_include}"
-                           PRIVATE "${my_mpi_communicator_include}" )
+                           PRIVATE ${my_tasks_include}
+                           PRIVATE ${my_receiver_include}
+                           PRIVATE ${mdownershippolicies}
+                           PRIVATE ${my_genericmdtask_include}
+                           PRIVATE ${my_typelist_aliases_include}
+                           PRIVATE ${my_mpi_communicator_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -138,7 +141,8 @@ target_link_libraries(${target}
                       PUBLIC genericmdtask
                       PUBLIC receiver
                       PUBLIC mpi_communicator
-                      PUBLIC typelist_aliases)
+                      PUBLIC typelist_aliases
+                      PUBLIC mdownershippolicies)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -50,12 +50,6 @@ ConcreteTaskReceiver::~ConcreteTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Copytype ConcreteTaskReceiver::receiverGetCopyOfResults() const
-{
-    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
-    return my_ptr;
-}
-
 //============================= MUTATORS =====================================
 
 ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Sharedtype ConcreteTaskReceiver::receiverShareOwnershipOfResults()
@@ -103,6 +97,12 @@ ConcreteTaskReceiver& ConcreteTaskReceiver::operator=( ConcreteTaskReceiver && o
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+
+ConcreteTaskReceiver::OwnershipPolicy<ConcreteTaskReceiver::receiver_result_t>::Copytype ConcreteTaskReceiver::receiverGetCopyOfResults_() const
+{
+    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    return my_ptr;
+}
 
 //============================= MUTATORS =====================================
 

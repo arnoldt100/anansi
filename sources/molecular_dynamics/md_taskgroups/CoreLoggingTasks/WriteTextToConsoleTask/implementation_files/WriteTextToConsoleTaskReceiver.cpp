@@ -52,13 +52,6 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Copytype WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
-{
-    OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Copytype  my_ptr = 
-        this->ownershipPolicy_.copyReceiverResult(this->results_);
-    return my_ptr;
-}
-
 //============================= MUTATORS =====================================
 
 template<>
@@ -111,6 +104,12 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 
 //============================= ACCESSORS ====================================
 
+WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Copytype WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults_() const
+{
+    OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Copytype  my_ptr = 
+        this->ownershipPolicy_.copyReceiverResult(this->results_);
+    return my_ptr;
+}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

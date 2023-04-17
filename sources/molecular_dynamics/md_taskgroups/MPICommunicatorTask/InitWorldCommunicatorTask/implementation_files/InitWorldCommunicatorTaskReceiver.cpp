@@ -76,11 +76,10 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 
 //============================= ACCESSORS ====================================
 
-std::unique_ptr<InitWorldCommunicatorTaskReceiver::receiver_result_t> InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults() const
+// TO DO: For now we return a null pointer.
+InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Copytype InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults_() const
 {
-    // TODO ::  Thu 02 Feb 2023 05:12:29 PM EST
-    // For now we return a null_ptr.
-    std::unique_ptr<InitWorldCommunicatorTaskReceiver::receiver_result_t> my_ptr;
+    InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Copytype my_ptr;
     return my_ptr;
 }
 

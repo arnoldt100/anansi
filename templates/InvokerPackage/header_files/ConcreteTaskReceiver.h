@@ -101,8 +101,6 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
 
         // ====================  ACCESSORS     =======================================
 
-        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
-
         // ====================  MUTATORS      =======================================
         
         template<typename T>
@@ -136,6 +134,8 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         {
             return  ConcreteTaskReceiver::TASKLABEL;
         }
+
+        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
 
         // ====================  MUTATORS      =======================================
 

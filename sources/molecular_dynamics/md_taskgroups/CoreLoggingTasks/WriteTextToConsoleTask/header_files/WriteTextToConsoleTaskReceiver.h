@@ -84,8 +84,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  ACCESSORS     =======================================
 
-        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
-
         // ====================  MUTATORS      =======================================
         
         template<typename... Types>
@@ -118,6 +116,8 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         {
             return  WriteTextToConsoleTaskReceiver::TASKLABEL;
         }
+
+        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 
