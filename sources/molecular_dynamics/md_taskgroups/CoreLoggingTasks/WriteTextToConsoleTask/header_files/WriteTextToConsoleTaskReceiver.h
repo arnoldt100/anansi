@@ -86,8 +86,6 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  MUTATORS      =======================================
 
-        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
-
         // ====================  OPERATORS     =======================================
 
         WriteTextToConsoleTaskReceiver& operator= ( const WriteTextToConsoleTaskReceiver &other ) = delete; // assignment operator
@@ -123,6 +121,8 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         void receiverModifyMyself_(T & arg);
 
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
+
+        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 

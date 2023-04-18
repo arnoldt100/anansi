@@ -94,8 +94,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
        
         // ====================  MUTATORS      =======================================
 
-        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
-    
         // ====================  OPERATORS     =======================================
 
         ControlFileXMLReceiver& operator= ( const ControlFileXMLReceiver &other ); // assignment operator
@@ -130,6 +128,8 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
 
+        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
+    
         // ====================  DATA MEMBERS  =======================================
 
     private:

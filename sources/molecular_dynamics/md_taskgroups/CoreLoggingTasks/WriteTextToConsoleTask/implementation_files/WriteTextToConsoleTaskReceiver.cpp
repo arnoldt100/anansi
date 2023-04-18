@@ -54,12 +54,6 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= MUTATORS =====================================
 
-WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Transfertype WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults()
-{
-    OwnershipPolicy<receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
-
 //============================= OPERATORS ====================================
 
 WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( WriteTextToConsoleTaskReceiver && other )
@@ -94,6 +88,12 @@ WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::
 WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Sharedtype WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults_()
 {
     OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
+
+WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Transfertype WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults_()
+{
+    OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

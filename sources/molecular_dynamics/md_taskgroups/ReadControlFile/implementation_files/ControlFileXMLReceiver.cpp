@@ -50,13 +50,6 @@ ControlFileXMLReceiver::~ControlFileXMLReceiver()
 
 //============================= MUTATORS =====================================
 
-ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype ControlFileXMLReceiver::receiverTransferOwnershipOfResults()
-{
-    OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype my_ptr = 
-        ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
-
 //============================= OPERATORS ====================================
 
 ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiver && other )
@@ -93,6 +86,11 @@ ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_
     return my_ptr;   
 }
 
+ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype ControlFileXMLReceiver::receiverTransferOwnershipOfResults_()
+{
+    OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
 
 //============================= OPERATORS ====================================
 
