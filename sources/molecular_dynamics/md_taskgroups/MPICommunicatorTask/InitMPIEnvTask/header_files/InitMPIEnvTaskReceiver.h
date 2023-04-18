@@ -97,6 +97,8 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
         OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
 
+        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
+
         // ====================  MUTATORS      =======================================
         template<typename T>
         void enableReceiver_(T & arg);

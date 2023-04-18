@@ -114,6 +114,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
 
+        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  METHODS       =======================================
 

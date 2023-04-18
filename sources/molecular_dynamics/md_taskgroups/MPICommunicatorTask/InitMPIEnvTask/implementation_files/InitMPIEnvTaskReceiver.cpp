@@ -91,6 +91,14 @@ InitMPIEnvTaskReceiver::OwnershipPolicy<InitMPIEnvTaskReceiver::receiver_result_
     OwnershipPolicy<InitMPIEnvTaskReceiver::receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
+
+
+InitMPIEnvTaskReceiver::OwnershipPolicy<InitMPIEnvTaskReceiver::receiver_result_t>::Transfertype InitMPIEnvTaskReceiver::receiverTransferOwnershipOfResults_()
+{
+    OwnershipPolicy<InitMPIEnvTaskReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
+
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////

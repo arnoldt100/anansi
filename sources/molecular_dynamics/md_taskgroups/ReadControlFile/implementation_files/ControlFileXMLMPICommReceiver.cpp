@@ -83,6 +83,12 @@ ControlFileXMLMPICommReceiver::OwnershipPolicy<ControlFileXMLMPICommReceiver::re
     return my_ptr;   
 }
 
+ControlFileXMLMPICommReceiver::OwnershipPolicy<ControlFileXMLMPICommReceiver::receiver_result_t>::Transfertype ControlFileXMLMPICommReceiver::receiverTransferOwnershipOfResults_()
+{
+    OwnershipPolicy<ControlFileXMLMPICommReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
+
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////
