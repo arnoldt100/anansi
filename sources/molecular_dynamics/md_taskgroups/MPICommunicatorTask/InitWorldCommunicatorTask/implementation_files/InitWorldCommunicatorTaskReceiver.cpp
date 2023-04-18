@@ -91,6 +91,11 @@ InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskRece
     return my_ptr;   
 }
 
+InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Transfertype InitWorldCommunicatorTaskReceiver::receiverTransferOwnershipOfResults_()
+{
+    OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
 
 //============================= OPERATORS ====================================
 
