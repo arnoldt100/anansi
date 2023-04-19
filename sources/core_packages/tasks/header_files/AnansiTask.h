@@ -72,12 +72,20 @@ class AnansiTask
         //! @param [in] flags  A list of string flags.
         void undoAction(const std::vector<std::string> & flags );
 
+        //! Enables the task execution,
+        //!
+        //! After enabling task it can do actions. Any calls before a task
+        //! is enables will have throw an error.
+        //! 
+        //! Any future calls to disableTask will have a null effect.
+        void enableTask(const std::vector<std::string> & flags);
+
         //! Disables the task execution,
         //!
         //! After diabling a task the following behavoir is expected:
         //! 
-        //! Any future calls to doAction, undoAction, taskIndex task will 
-        //! have undefined effects.
+        //! Any future calls to doAction, undoAction will
+        //! throw an error.
         //! 
         //! Any future calls to disableTask will have a null effect.
         void disableTask(const std::vector<std::string> & flags);
@@ -103,6 +111,8 @@ class AnansiTask
         virtual void doConcreteTaskAction(const std::vector<std::string> & flags) const = 0;
         
         virtual void undoConcreteTaskAction(const std::vector<std::string> & flags) = 0;
+
+        virtual void enableConcreteTask(const std::vector<std::string> & flags) =0;
 
         virtual void disableConcreteTask(const std::vector<std::string> & flags) =0;
 

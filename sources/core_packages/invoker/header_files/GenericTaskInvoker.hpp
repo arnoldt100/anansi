@@ -115,6 +115,16 @@ class GenericTaskInvoker
         }
 
         void
+        enableTask(std::vector<LABEL_t> const & command_keys)
+        {
+            const std::vector<std::string> flags = {"default"};
+            for (auto key : command_keys)
+            {
+                (this->commandSlots_.at(key))->enableTask(flags);
+            }
+            return;
+        }
+        void
         disableTask(std::vector<LABEL_t> const & command_keys)
         {
             const std::vector<std::string> flags = {"default"};

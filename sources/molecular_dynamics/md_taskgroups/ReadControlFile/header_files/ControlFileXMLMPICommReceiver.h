@@ -103,8 +103,8 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         // ====================  MUTATORS      =======================================
 
-        template<typename T>
-        void enableReceiver_(T & arg);
+        template<typename... Types>
+        void enableReceiver_(Types... args);
 
         template<typename... Types>
         void disableReceiver_(Types... args);
@@ -140,8 +140,8 @@ void ControlFileXMLMPICommReceiver::receiverUndoAction_(Types & ... args) const
     return;
 }
 
-template<typename T>
-void ControlFileXMLMPICommReceiver::enableReceiver_(T & value)
+template<typename... Types>
+void ControlFileXMLMPICommReceiver::enableReceiver_(Types... args)
 {
     return;
 }

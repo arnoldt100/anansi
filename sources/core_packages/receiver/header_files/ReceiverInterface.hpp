@@ -130,11 +130,11 @@ class ReceiverInterface
                 return (derived.*fn)(arg);
             }
 
-            template<typename T>
-            static void enable_receiver(Derived & derived, T & arg)
+            template<typename... Types>
+            static void enable_receiver(Derived & derived, Types... args)
             {
-                void (Derived::*fn)(T&) = &Accessor_::enableReceiver_;
-                return (derived.*fn)(arg);
+                void (Derived::*fn)(Types... args) = &Accessor_::enableReceiver_;
+                return (derived.*fn)(args...);
             }
         };
 
@@ -225,8 +225,7 @@ class ReceiverInterface
         //! Enables the concrete receiver.
         //!
         //! An enabled reciever can perform actions.
-        template<typename T>
-        void enable(T & arg)
+        void enable()
         {
             return Accessor_::enable_receiver(this->asDerived_());
         }

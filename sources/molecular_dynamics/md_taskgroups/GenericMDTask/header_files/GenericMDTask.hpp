@@ -126,6 +126,14 @@ class GenericMDTask : public BaseClass
             return;
         }
 
+        //! Enables  the concrete task.
+        //!
+        //! @param [in] flags Used for any purpose in the concrete class
+        void enableConcreteTask(const std::vector<std::string> & flags) override
+        {
+            this->receiver_->enable();
+            return;
+        }
         //! Disables the concrete task.
         //!
         //! @param [in] flags Used for any purpose in the concrete class

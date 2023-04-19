@@ -126,8 +126,8 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  MUTATORS      =======================================
 
-        template<typename T>
-        void enaableReceiver_(T & args);
+        template<typename... Types>
+        void enableReceiver_(Types &...  args);
 
         template<typename... Types>
         void disableReceiver_(Types &...  args);
@@ -164,8 +164,8 @@ void InitWorldCommunicatorTaskReceiver::receiverUndoAction_(Types &... args) con
     return;
 }
 
-template<typename T>
-void InitWorldCommunicatorTaskReceiver::enaableReceiver_(T & args)
+template<typename... Types>
+void InitWorldCommunicatorTaskReceiver::enableReceiver_(Types &... args)
 {
     return;
 }

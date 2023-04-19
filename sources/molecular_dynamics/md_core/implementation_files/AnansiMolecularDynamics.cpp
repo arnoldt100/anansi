@@ -191,10 +191,8 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
 
     // ---------------------------------------------------
-    //  Create the invoker.
+    //  Create the invoker for 'InitMPIEnvTask'. 
     // 
-    // All command for this invoker will have labels that are of type
-    // std::string. 
     // ---------------------------------------------------
     std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
                                               InitMPIEnvTaskTraits::concrete_products>
@@ -202,7 +200,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
         std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
                                                    InitMPIEnvTaskTraits::concrete_products>
                         >();
-
     this->mdCommEnvInvk_ = mdCommEnvInvkFactory->create_shared_ptr();
 
     // ---------------------------------------------------
@@ -211,8 +208,9 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
     mpi_environment->addMember(this->commandLineArguments_);
-    auto mpi_environment_receiver = RECEIVER::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
-                                                                     InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
+    auto mpi_environment_receiver = 
+        RECEIVER::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
+                                         InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
     mpi_environment_receiver->modifyReceiver(mpi_environment); 
     
     // ---------------------------------------------------
@@ -242,6 +240,12 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     const std::vector< 
                        std::remove_const<decltype(my_label)>::type
                      > command_labels = {my_label};
+
+    // ---------------------------------------------------
+    // Enable all tasks.
+    //
+    // ---------------------------------------------------
+    this->mdCommEnvInvk_->enableTask(command_labels);
 
     this->mdCommEnvInvk_->doTask(command_labels);
     return;

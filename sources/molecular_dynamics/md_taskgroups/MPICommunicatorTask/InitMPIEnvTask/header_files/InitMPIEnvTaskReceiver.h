@@ -100,8 +100,9 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  MUTATORS      =======================================
-        template<typename T>
-        void enableReceiver_(T & arg);
+        template<typename... Types>
+        void enableReceiver_(Types &... args);
+
 
         template<typename... Types>
         void disableReceiver_(Types &...  args);
@@ -121,8 +122,8 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 
 }; // -----  end of class InitMPIEnvTaskReceiver  -----
 
-template<typename T>
-void InitMPIEnvTaskReceiver::enableReceiver_(T & arg)
+template<typename... Types>
+void InitMPIEnvTaskReceiver::enableReceiver_(Types &...  args)
 {
     return;
 }
