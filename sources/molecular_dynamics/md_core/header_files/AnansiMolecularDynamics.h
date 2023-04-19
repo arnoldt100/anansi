@@ -157,7 +157,7 @@ class AnansiMolecularDynamics final : public Simulation
 
         // These are the factories for various invoker objects.
         std::shared_ptr<GenericTaskFactory<InitMPIEnvTaskTraits::abstract_products,
-                                               InitMPIEnvTaskTraits::concrete_products>
+                                           InitMPIEnvTaskTraits::concrete_products>
                        >mdAnansiMPIEnvTaskFactory_;
 
         std::shared_ptr<GenericTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
@@ -169,8 +169,8 @@ class AnansiMolecularDynamics final : public Simulation
                        > mdAnansiCoreLoggingTaskFactory_;
 
         std::shared_ptr<GenericTaskFactory<ReadControlFileTraits::abstract_products,
-                                               ReadControlFileTraits::concrete_products>
-                       > mdAnansiReadControlFileInvoker_;
+                                           ReadControlFileTraits::concrete_products>
+                       > mdAnansiControlFileTaskFactory_;
 
 
        /* ====================  STATIC        ======================================= */

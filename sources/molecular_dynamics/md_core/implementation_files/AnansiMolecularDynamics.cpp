@@ -109,7 +109,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
-    mdAnansiReadControlFileInvoker_(nullptr)
+    mdAnansiControlFileTaskFactory_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -144,7 +144,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
-    mdAnansiReadControlFileInvoker_(nullptr)
+    mdAnansiControlFileTaskFactory_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -168,7 +168,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
                                                                                 WriteTextToConsoleTaskTraits::concrete_products>
                                                             >();
 
-    this->mdAnansiReadControlFileInvoker_ = std::make_shared<GenericTaskFactory<ReadControlFileTraits::abstract_products,
+    this->mdAnansiControlFileTaskFactory_ = std::make_shared<GenericTaskFactory<ReadControlFileTraits::abstract_products,
                                                                                 ReadControlFileTraits::concrete_products>
                                                             >();
 
@@ -389,6 +389,18 @@ AnansiMolecularDynamics::enableControlFileTasks ()
     // std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
     //                                                                       file_name,
     //                                                                       std::move(a_communicator));
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Create the invoker for the control file tasks.
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    // ---------------------------------------------------
+    //
+    //
+    // ---------------------------------------------------
+
+
 
     // control_file->readFile();
 
