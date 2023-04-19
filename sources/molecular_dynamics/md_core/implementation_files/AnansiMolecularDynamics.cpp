@@ -373,7 +373,7 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 }      // -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- 
 
 void
-AnansiMolecularDynamics::enableControlFile ()
+AnansiMolecularDynamics::enableControlFileTasks ()
 {
     const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
     if (file_name == SimulationParameters::OPTION_NOT_FOUND )
@@ -393,10 +393,10 @@ AnansiMolecularDynamics::enableControlFile ()
     // control_file->readFile();
 
     return;
-}   /* -----  end of method AnansiMolecularDynamics::enableControlFile ----- */
+}   /* -----  end of method AnansiMolecularDynamics::enableControlFileTasks ----- */
 
 void
-AnansiMolecularDynamics::disableControlFile ()
+AnansiMolecularDynamics::disableControlFileTasks ()
 {
     return;
 }

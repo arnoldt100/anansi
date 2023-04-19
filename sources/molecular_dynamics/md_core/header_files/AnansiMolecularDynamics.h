@@ -74,8 +74,8 @@ class AnansiMolecularDynamics final : public Simulation
 
         void saveCommandLineOptionParameters();
 
-        void enableControlFile();
-        void disableControlFile();
+        void enableControlFileTasks();
+        void disableControlFileTasks();
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -120,18 +120,17 @@ class AnansiMolecularDynamics final : public Simulation
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment_() final override;
 
+        /* ====================  DATA MEMBERS  ======================================= */
+        COMMANDLINE::CommandLineArguments commandLineArguments_;
+        ANANSI::SimulationParameters simulationParameters_;
+        std::shared_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
+
         template<typename abstract_products_typelist,
                  typename concrete_products_typelist>
         void enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
                                                                                    concrete_products_typelist>
                                                        > & core_logging_invoker,
                                         std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator );
-
-        /* ====================  DATA MEMBERS  ======================================= */
-        COMMANDLINE::CommandLineArguments commandLineArguments_;
-        ANANSI::SimulationParameters simulationParameters_;
-        std::shared_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
-
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTaskTraits::abstract_products,
                                                    InitMPIEnvTaskTraits::concrete_products>

@@ -62,7 +62,7 @@ void MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
     // The control file invoker is disabled
     // 
     // ---------------------------------------------------
-    a_sim.disableControlFile();
+    a_sim.disableControlFileTasks();
 
     // ---------------------------------------------------
     // The core logging tasks are disabled.

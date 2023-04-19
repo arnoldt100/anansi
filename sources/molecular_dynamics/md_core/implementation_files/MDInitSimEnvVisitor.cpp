@@ -79,7 +79,7 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
     // ---------------------------------------------------
     // The control file tasks are enabled.
     // ---------------------------------------------------
-    a_sim.enableControlFile();
+    a_sim.enableControlFileTasks();
 
     return;
 }
