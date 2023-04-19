@@ -23,6 +23,8 @@
 #include "InitMPIEnvTaskReceiver.h"
 #include "ConsoleMessageContainer.h"
 
+#include "initialize_controlfile_invoker_and_taskfactory.h"
+
 namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -97,6 +99,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     mdCommEnvInvk_(nullptr),
+    mdControlFileInvk_(nullptr),
     mdWorldCommunicatorInvk_(nullptr),
     mdCoreLoggingInvk_(nullptr),
     mdState_(nullptr),
@@ -132,6 +135,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     mdCommEnvInvk_(nullptr),
+    mdControlFileInvk_(nullptr),
     mdWorldCommunicatorInvk_(nullptr),
     mdCoreLoggingInvk_(nullptr),
     mdState_(nullptr),
@@ -155,22 +159,40 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
-    // Initialize all invoker factories.
+    // Initialiing the InitMPIEnvTask
     this->mdAnansiMPIEnvTaskFactory_ = std::make_shared<GenericTaskFactory<InitMPIEnvTaskTraits::abstract_products,
                                                                            InitMPIEnvTaskTraits::concrete_products>
                                                        >();
 
+
+    // Initialiing the InitWorldCommunicator 
+    std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                              InitWorldCommunicatorTaskTraits::concrete_products>
+                   > mdWorldCommunicatorInvkFactory = 
+        std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                                   InitWorldCommunicatorTaskTraits::concrete_products>
+                        >();
+
+    this->mdWorldCommunicatorInvk_ = mdWorldCommunicatorInvkFactory->create_shared_ptr();
+
+
     this->mdAnansiInitWorldCommunicatorTaskFactory_ = std::make_shared<GenericTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                                           InitWorldCommunicatorTaskTraits::concrete_products>
                                                                       >();
+    //-
 
     this->mdAnansiCoreLoggingTaskFactory_ = std::make_shared<GenericTaskFactory<WriteTextToConsoleTaskTraits::abstract_products,
                                                                                 WriteTextToConsoleTaskTraits::concrete_products>
                                                             >();
 
-    this->mdAnansiControlFileTaskFactory_ = std::make_shared<GenericTaskFactory<ReadControlFileTraits::abstract_products,
-                                                                                ReadControlFileTraits::concrete_products>
-                                                            >();
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Initialzing the ControlFile invoker and task factory.
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    auto [x,y] = initialize_controlfileinvoker_and_taskfactory();
+    this->mdControlFileInvk_ = x;
+    this->mdAnansiControlFileTaskFactory_ = y; 
+
 
     // Change the state to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -272,20 +294,6 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 
 void AnansiMolecularDynamics::enableWorldCommunicator()
 {
-    // ---------------------------------------------------
-    // Create the invoker for the task InitWorldCommunicatorTask 
-    // 
-    // ---------------------------------------------------
-
-    std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                              InitWorldCommunicatorTaskTraits::concrete_products>
-                   > mdWorldCommunicatorInvkFactory = 
-        std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                   InitWorldCommunicatorTaskTraits::concrete_products>
-                        >();
-
-    this->mdWorldCommunicatorInvk_ = mdWorldCommunicatorInvkFactory->create_shared_ptr();
-
     // ---------------------------------------------------
     //  Create the receiver and enable it.
     // 

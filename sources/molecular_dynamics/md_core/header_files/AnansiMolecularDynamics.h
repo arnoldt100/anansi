@@ -136,6 +136,10 @@ class AnansiMolecularDynamics final : public Simulation
                                                    InitMPIEnvTaskTraits::concrete_products>
                        > mdCommEnvInvk_;
 
+        std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                   ReadControlFileTraits::concrete_products>
+                       > mdControlFileInvk_;
+
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitWorldCommunicatorTaskTraits::abstract_products,
                                                    InitWorldCommunicatorTaskTraits::concrete_products>
 
@@ -144,6 +148,8 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
                                                    WriteTextToConsoleTaskTraits::concrete_products>
                        > mdCoreLoggingInvk_;
+
+
 
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;
