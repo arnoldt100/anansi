@@ -80,7 +80,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  STATIC       =======================================
 
-        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
           {'m','p','i','_', 
            'w', 'o', 'r', 'l', 'd', '_', 
            'c', 'o','m', 'm', 'u', 'n', 'i', 'c', 'a', 't', 'o', 'r'};

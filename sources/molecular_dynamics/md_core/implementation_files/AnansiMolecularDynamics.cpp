@@ -254,11 +254,11 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
     // Use the invoker to initialize the communication environment.
     // 
     // ---------------------------------------------------
-    constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = {
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = {
         'm','p', 'i', '_','e','n','v','i','r','o','n','m','e','n','t'
     };
 
-    const std::vector<RECEIVER::TaskLabel> command_labels = {RECEIVER::TaskLabel(tmpstr)};
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
 
     this->mdCommEnvInvk_->disableTask(command_labels);
     return;
@@ -320,10 +320,10 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // Use the invoker to initialize the world communicator.
     // 
     // ---------------------------------------------------
-    constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
     {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
 
-    const std::vector<RECEIVER::TaskLabel> command_labels = {RECEIVER::TaskLabel(tmpstr)};
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
 
     this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
@@ -335,9 +335,9 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 {
     if (this->mdWorldCommunicatorInvk_)
     {
-        constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
         {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
-        const std::vector<RECEIVER::TaskLabel> command_labels = {RECEIVER::TaskLabel(tmpstr)};
+        const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
         this->mdWorldCommunicatorInvk_->disableTask(command_labels);
     }
 
@@ -355,11 +355,11 @@ AnansiMolecularDynamics::disableCoreLoggingTasks()
     // Disable the Console logger.
     // 
     // ---------------------------------------------------
-    constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = {
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = {
        'w','r','i','t','e','_','t','e','x','t','_','t','o','_','c','o','n','s','o','l','e'
     };
 
-    const std::vector<RECEIVER::TaskLabel> command_labels = {RECEIVER::TaskLabel(tmpstr)};
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
 
     this->mdCoreLoggingInvk_->disableTask(command_labels);
     return;

@@ -25,7 +25,7 @@ namespace RECEIVER
 class TaskLabelTestFixture
 {
     public:
-        constexpr static std::size_t MY_SIZE = TaskLabelTraits::MAX_NM_CHARS;
+        constexpr static std::size_t MY_SIZE = ANANSI::TaskLabelTraits::MAX_NM_CHARS;
         constexpr static char LETTER_A[MY_SIZE]  = {"A"};
         constexpr static char LETTER_B[MY_SIZE]  = {"B"};
 
@@ -42,8 +42,8 @@ class TaskLabelTestFixture
         // ====================  OPERATORS     =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        RECEIVER::TaskLabel a;
-        RECEIVER::TaskLabel b;
+        ANANSI::TaskLabel a;
+        ANANSI::TaskLabel b;
 
     protected:
         // ====================  METHODS       =======================================

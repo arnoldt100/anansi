@@ -125,7 +125,7 @@ class GenericTaskInvokerUtilities
         }
 
 
-        template <typename ConcreteTasksTypeList, RECEIVER::TaskLabel COMMAND_LABEL>
+        template <typename ConcreteTasksTypeList, ANANSI::TaskLabel COMMAND_LABEL>
         static void
         verifyConcreteProductInTypeList()
         {

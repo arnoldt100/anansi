@@ -2,8 +2,6 @@
 #define  RECEIVER_TaskLabelTraits_INC
 
 //!@ file TaskLabelTraits.hpp
-//!
-//! This file s.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -18,7 +16,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace RECEIVER
+namespace ANANSI
 
 {
 
@@ -58,6 +56,6 @@ class TaskLabelTraits
 }; // -----  end of class TaskLabelTraits  -----
 
 
-}; // namespace RECEIVER
+}; // namespace ANANSI
 
-#endif // RECEIVER_TaskLabelTraits_INC
+#endif // R

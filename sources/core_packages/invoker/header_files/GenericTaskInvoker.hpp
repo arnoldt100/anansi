@@ -45,7 +45,7 @@ namespace ANANSI
 //! @tparam LABEL_t  The type of task label (button id)
 template<typename AbstractProductsTypeList,
          typename ConcreteTasksTypeList,
-         typename LABEL_t=RECEIVER::TaskLabel
+         typename LABEL_t=ANANSI::TaskLabel
          >
 class GenericTaskInvoker
 {

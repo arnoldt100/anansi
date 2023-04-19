@@ -38,14 +38,14 @@ class TaskLabelContainer_
         //! Stores the TaskLabel of type L.
         //! 
         //! The type L must have a static member TASKLABEL.
-        constexpr static RECEIVER::TaskLabel value = L::TASKLABEL; 
+        constexpr static ANANSI::TaskLabel value = L::TASKLABEL; 
 };
 
 //! The primary template for searching
 //!
 //! This class is only invoked by classes "IndexOfLabel" and "IndexOfLabel_".
 template <typename TList,
-          RECEIVER::TaskLabel label,
+          ANANSI::TaskLabel label,
           typename LabelIndex>
 class IndexOfLabel_
 {
@@ -62,7 +62,7 @@ class IndexOfLabel_
 //! The specialization for an empty typelist.
 //!
 //! If the typelist is empty
-template <RECEIVER::TaskLabel label,
+template <ANANSI::TaskLabel label,
           typename LabelIndex>
 class IndexOfLabel_<MPL::mpl_typelist<>, label, LabelIndex>
 {
@@ -74,7 +74,7 @@ class IndexOfLabel_<MPL::mpl_typelist<>, label, LabelIndex>
 //
 //! This class is initially called by the program.
 template <typename TList, 
-          RECEIVER::TaskLabel Key>
+          ANANSI::TaskLabel Key>
 class IndexOfLabel
 {
     // For this initial iteration set label_index to MPL::mpl_int<0>
@@ -94,7 +94,7 @@ class ReceiverUtilities
         //! @tparam ConcreteProductTypeList A typelist of concrete tasks.
         //! MY_LABEL The label we seek  to match in the concrete tasks.
         template<typename ConcreteProductTypeList,
-                 RECEIVER::TaskLabel KEY>
+                 ANANSI::TaskLabel KEY>
         constexpr static auto getLocationInTypeList()
         {
             using TL_SEQUENCE_t = MPL::mpl_transform<TaskLabelContainer_,ConcreteProductTypeList>;

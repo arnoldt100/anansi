@@ -47,7 +47,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         template<typename T>
         using OwnershipPolicy = OwnershipImpl1<T>;
 
-        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] =
+        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
             {'m', 'p', 'i', '_', 'e', 'n', 'v', 'i', 'r', 'o', 'n', 'm', 'e', 'n', 't'};
 
         ANANSI::NullOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;

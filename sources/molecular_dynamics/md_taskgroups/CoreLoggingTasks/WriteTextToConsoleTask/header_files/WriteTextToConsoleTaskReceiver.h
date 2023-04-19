@@ -55,7 +55,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
 
-        static constexpr char tmpstr_[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'w','r','i', 't', 'e','_',
              't', 'e', 'x', 't', '_',
              't', 'o', '_',

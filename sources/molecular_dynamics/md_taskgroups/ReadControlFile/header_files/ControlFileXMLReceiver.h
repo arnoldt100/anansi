@@ -60,7 +60,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
     private:
 
-        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
         // ---------------------------------------------------

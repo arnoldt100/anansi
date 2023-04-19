@@ -47,7 +47,7 @@ class ReceiverInterface
         //!
         //! The label type will be the key type for the command button
         //! in the invoker.
-        using TASK_LABEL_TYPE = RECEIVER::TaskLabel;
+        using TASK_LABEL_TYPE = ANANSI::TaskLabel;
 
     private:
         //! Provides access to the CRTP derived class "Derived."

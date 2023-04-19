@@ -26,7 +26,7 @@ namespace ANANSI
 
 template <typename AbstractProductsTypeList,
           typename ConcreteProductsTypeList,
-          typename LABEL_t = RECEIVER::TaskLabel
+          typename LABEL_t = ANANSI::TaskLabel
          > 
 class GenericTaskInvokerFactory
 {

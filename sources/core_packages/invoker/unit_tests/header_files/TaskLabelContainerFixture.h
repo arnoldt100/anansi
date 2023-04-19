@@ -25,11 +25,11 @@
 namespace ANANSI
 {
 
-template<RECEIVER::TaskLabel T>
+template<ANANSI::TaskLabel T>
 class TestConcreteTask
 {
     public:
-        constexpr static RECEIVER::TaskLabel value = T; 
+        constexpr static ANANSI::TaskLabel value = T; 
 };
 
 class TaskLabelContainerFixture
@@ -38,32 +38,32 @@ class TaskLabelContainerFixture
         // ====================  STATIC        =======================================
 
         // Defining type ConcreteTaskA 
-        constexpr static char A[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        constexpr static char A[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'A'} ;
         using ConcreteA = TestConcreteTask<A>; 
 
         // Defining type ConcreteTaskB 
-        constexpr static char B[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        constexpr static char B[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'B'} ;
         using ConcreteB = TestConcreteTask<B>; 
 
         // Defining type ConcreteTaskC 
-        constexpr static char C[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        constexpr static char C[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'C'} ;
         using ConcreteC = TestConcreteTask<C>; 
 
         // Defining type ConcreteTaskD 
-        constexpr static char D[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        constexpr static char D[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'D'} ;
         using ConcreteD = TestConcreteTask<D>; 
 
         // Defining type ConcreteTaskE 
-        constexpr static char E[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        constexpr static char E[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'E'} ;
         using ConcreteE = TestConcreteTask<E>; 
 
         // Defining type ConcreteTaskF 
-        constexpr static char F[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        constexpr static char F[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'F'} ;
         using ConcreteNotInList = TestConcreteTask<F>; 
 
