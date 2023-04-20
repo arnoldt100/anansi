@@ -105,6 +105,14 @@ class OwnershipImpl1
             return tmp_obj;
         }
 
+        template <typename OwnershipPolicyType, typename T>
+        static Underlyingtype accessResult( T & value)
+        {
+            Underlyingtype retval = *value;
+            return retval;
+        };
+
+
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================

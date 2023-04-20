@@ -24,6 +24,7 @@
 #include "ConsoleMessageContainer.h"
 
 #include "initialize_controlfile_invoker_and_taskfactory.h"
+#include "setup_controlfile_receivers.h"
 
 namespace ANANSI {
 
@@ -387,15 +388,23 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 void
 AnansiMolecularDynamics::enableControlFileTasks ()
 {
-    const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
-    if (file_name == SimulationParameters::OPTION_NOT_FOUND )
+    const auto controlfile_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
+    if (controlfile_name == SimulationParameters::OPTION_NOT_FOUND )
     {
         return;
     }
 
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
+    {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
+    const auto mpi_communicator = this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<tmpstr>();
+
     // // Create the control file parser and process the control file.
     // ANANSI::MPICommunicatorFactory a_communicator_factory;
     // std::shared_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
+
+
+
+
     // StandardFileParserFactory file_parser_factory;
     // std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
     // std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
@@ -403,12 +412,13 @@ AnansiMolecularDynamics::enableControlFileTasks ()
     //                                                                       std::move(a_communicator));
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // Create the invoker for the control file tasks.
+    // Setup all receivers for the control file invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    setup_controlfile_receivers(controlfile_name); 
 
     // ---------------------------------------------------
-    //
+    // 
     //
     // ---------------------------------------------------
 

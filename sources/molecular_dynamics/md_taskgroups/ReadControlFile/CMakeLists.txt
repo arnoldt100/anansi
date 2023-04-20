@@ -71,7 +71,8 @@
     set (readcontrolfile_header_files
          header_files/ControlFileXMLReceiver.h
          header_files/ControlFileXMLMPICommReceiver.h
-         header_files/ReadControlFileTraits.h )
+         header_files/ReadControlFileTraits.h
+         header_files/setup_controlfile_receivers.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -83,7 +84,8 @@
     set (readcontrolfile_implementation_files
          implementation_files/ControlFileXMLReceiver.cpp
          implementation_files/ControlFileXMLMPICommReceiver.cpp
-         implementation_files/ReadControlFileTraits.cpp )
+         implementation_files/ReadControlFileTraits.cpp 
+         implementation_files/setup_controlfile_receivers.cpp)
 
     # -----------------------------------------------------
     # Set various variables for include directories.
