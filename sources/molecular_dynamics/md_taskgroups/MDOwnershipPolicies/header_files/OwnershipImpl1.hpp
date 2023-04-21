@@ -26,9 +26,13 @@ template<typename Underlyingtype>
 class OwnershipImpl1
 {
     public:
-         using Copytype = std::unique_ptr<Underlyingtype>;
-         using Sharedtype = std::shared_ptr<Underlyingtype>;
-         using Transfertype = std::unique_ptr<Underlyingtype>;
+         // using Copytype = std::unique_ptr<Underlyingtype>;
+         // using Sharedtype = std::shared_ptr<Underlyingtype>;
+         // using Transfertype = std::unique_ptr<Underlyingtype>;
+
+         using Copytype = Underlyingtype;
+         using Sharedtype = Underlyingtype;
+         using Transfertype = Underlyingtype;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -59,23 +63,23 @@ class OwnershipImpl1
 
         // ====================  STATIC        =======================================
 
-        template <typename Resulttype>
-        static Copytype copy(Resulttype const & result)
+        static Copytype copy(Underlyingtype const & result)
         {
-            Underlyingtype* tmp_obj = new Underlyingtype(*result);
+            // Underlyingtype* tmp_obj = new Underlyingtype(*result);
+            Underlyingtype* tmp_obj = nullptr;
             Copytype obj(tmp_obj);
             return obj; 
         }
 
-        template <typename Resulttype>
-        static Transfertype transfer(Resulttype const & result)
+        template <typename T>
+        static Transfertype transfer(T const & result)
         {
             Transfertype tmp_obj = std::move(result);
             return tmp_obj; 
         }
 
-        template <typename Resulttype>
-        static Sharedtype share(Resulttype const & result)
+        template <typename T>
+        static Sharedtype share(T const & result)
         {
             Sharedtype shared_obj = result;
             return result;
@@ -105,10 +109,17 @@ class OwnershipImpl1
             return tmp_obj;
         }
 
-        template <typename OwnershipPolicyType, typename T>
-        static Underlyingtype accessResult( T & value)
+        // template <typename OwnershipPolicyType>
+        // static Underlyingtype accessResult( std::shared_ptr<Underlyingtype> & value)
+        // {
+        //     Underlyingtype retval = *value;
+        //     return retval;
+        // };
+
+        template <typename OwnershipPolicyType>
+        static Underlyingtype accessResult( std::unique_ptr<Underlyingtype> && value)
         {
-            Underlyingtype retval = *value;
+            Underlyingtype* retval = value.release();
             return retval;
         };
 

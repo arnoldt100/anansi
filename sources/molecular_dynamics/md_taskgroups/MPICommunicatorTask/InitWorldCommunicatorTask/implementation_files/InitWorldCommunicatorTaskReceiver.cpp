@@ -72,7 +72,8 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 // TO DO: For now we return a null pointer.
 InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Copytype InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults_() const
 {
-    InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Copytype my_ptr;
+    InitWorldCommunicatorTaskReceiver::OwnershipPolicy<InitWorldCommunicatorTaskReceiver::receiver_result_t>::Copytype my_ptr =
+        ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
