@@ -2,7 +2,7 @@
 #define ANANSI_OwnershipImpl1_INC
 //! @file OwnershipImpl1.hpp
 //!
-//! Brief description
+//! Implements the 
 //!
 //! Detailed description
 
@@ -26,9 +26,6 @@ template<typename Underlyingtype>
 class OwnershipImpl1
 {
     public:
-         // using Copytype = std::unique_ptr<Underlyingtype>;
-         // using Sharedtype = std::shared_ptr<Underlyingtype>;
-         // using Transfertype = std::unique_ptr<Underlyingtype>;
 
          using Copytype = Underlyingtype;
          using Sharedtype = Underlyingtype;
@@ -59,16 +56,18 @@ class OwnershipImpl1
             return;
         }		// -----  end of method OwnershipImpl1::OwnershipImpl1  -----
 
-        ~OwnershipImpl1();  // destructor
+        ~OwnershipImpl1()  // destructor
+        {
+            return;
+        }
 
         // ====================  STATIC        =======================================
 
         static Copytype copy(Underlyingtype const & result)
         {
             // Underlyingtype* tmp_obj = new Underlyingtype(*result);
-            Underlyingtype* tmp_obj = nullptr;
-            Copytype obj(tmp_obj);
-            return obj; 
+            Underlyingtype tmp_obj;
+            return tmp_obj; 
         }
 
         template <typename T>
@@ -81,7 +80,7 @@ class OwnershipImpl1
         template <typename T>
         static Sharedtype share(T const & result)
         {
-            Sharedtype shared_obj = result;
+            Sharedtype shared_obj = std::move(result);
             return result;
         }
 
@@ -89,7 +88,7 @@ class OwnershipImpl1
         static Sharedtype throwSharingError(std::string error_message)
         {
             throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
-            Sharedtype tmp_obj(new Underlyingtype);
+            Underlyingtype tmp_obj;
             return tmp_obj;
         }
 
@@ -97,7 +96,7 @@ class OwnershipImpl1
         static Copytype throwCopyingError(std::string error_message)
         {
             throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
-            Copytype tmp_obj(new Underlyingtype);
+            Underlyingtype tmp_obj;
             return tmp_obj;
         }
 
@@ -105,7 +104,7 @@ class OwnershipImpl1
         static Transfertype throwTransferringError(std::string error_message)
         {
             throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
-            Transfertype tmp_obj(new Underlyingtype);
+            Transfertype tmp_obj;
             return tmp_obj;
         }
 
@@ -168,11 +167,11 @@ class OwnershipImpl1
 
 }; // -----  end of class OwnershipImpl1  -----
 
-template<typename Underlyingtype>
-OwnershipImpl1<Underlyingtype>::~OwnershipImpl1()
-{
-    return;
-}
+// template<typename Underlyingtype>
+// OwnershipImpl1<Underlyingtype>::~OwnershipImpl1()
+// {
+//     return;
+// }
 
 
 }; // namespace ANANSI

@@ -22,18 +22,17 @@ namespace ANANSI {
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
-    results_(nullptr),
+    results_(0),
     ownershipPolicy_(),
     communicator_(nullptr),
     messageContainer_()
 {
-    this->results_ = std::make_unique<receiver_result_t>(0);
     return;
 }
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
-    results_(std::move(other.results_)),
+    results_(0),
     ownershipPolicy_(),
     communicator_(std::move(other.communicator_)),
     messageContainer_(std::move(other.messageContainer_))

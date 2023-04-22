@@ -141,7 +141,7 @@ void WriteTextToConsoleTaskReceiver::receiverDoAction_(Types & ... args) const
 {
     const auto message = this->messageContainer_->getMessage();
     std::cout << message << std::endl;
-    *(this->results_) += 1;
+    this->results_ += 1;
     return;
 }
 

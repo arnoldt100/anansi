@@ -23,9 +23,8 @@ namespace ANANSI {
 ControlFileXMLReceiver::ControlFileXMLReceiver() :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
     ownershipPolicy_(),
-    results_(nullptr)
+    results_(0)
 {
-    this->results_ = std::make_unique<ControlFileXMLReceiver::receiver_result_t>(0);
     return;
 }
 

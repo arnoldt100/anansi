@@ -165,7 +165,7 @@ void InitWorldCommunicatorTaskReceiver::receiverUndoAction_(Types &... args) con
 }
 
 template<typename... Types>
-void InitWorldCommunicatorTaskReceiver::enableReceiver_(Types &... args)
+void InitWorldCommunicatorTaskReceiver::enableReceiver_(Types &...  args)
 {
     return;
 }

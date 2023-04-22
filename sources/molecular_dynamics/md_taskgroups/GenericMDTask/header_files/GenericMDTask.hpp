@@ -30,7 +30,7 @@ namespace ANANSI
 //!
 //! @tparam BaseClass The base class for the concrete task
 //! @tparam Receiver The type of the concrete task receiver.
-//! @tparam FunctorImpl Not presently used.
+//! @tparam FunctorImpl Not presently used. Reserved for future use.
 template <class BaseClass,
           class Receiver,
           class FunctorImpl = DefaultFunctorImpl>
@@ -94,7 +94,7 @@ class GenericMDTask : public BaseClass
         //! reset to default values.
         auto getCopyOfResults() const
         {
-            std::unique_ptr<typename Receiver::receiver_result_t> results = 
+            task_result_t results = 
                 this->receiver_->getCopyOfResults();
             return results;
         }
@@ -169,9 +169,9 @@ class GenericMDTask : public BaseClass
         //!
         //! Returns a shared_ptr of the receiver results.  The calling function
         //! shares ownership of the receiver results via a shared_ptr.
-        std::shared_ptr<typename Receiver::receiver_result_t> shareOwnershipOfResults()
+        task_result_t shareOwnershipOfResults()
         {
-            std::shared_ptr<typename Receiver::receiver_result_t> results = 
+            task_result_t results = 
                 this->receiver_->shareOwnershipOfResults();
             return results;
         }
@@ -181,9 +181,9 @@ class GenericMDTask : public BaseClass
         //! Returns a unique_ptr of the receiver results.  The calling function
         //! takes ownership of the receiver results via a unique_ptr. The original results 
         //! resets to default values.
-        std::unique_ptr<typename Receiver::receiver_result_t> takeOwnershipOfResults()
+        task_result_t takeOwnershipOfResults()
         {
-            std::unique_ptr<typename Receiver::receiver_result_t> results = 
+            task_result_t results = 
                 this->receiver_->takeOwnershipOfResults();
             return results;
         }
