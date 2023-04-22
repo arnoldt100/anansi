@@ -21,6 +21,7 @@
 #include "MPICommunicatorFactory.h"
 #include "TaskLabel.hpp"
 #include "OwnershipImpl1.hpp"
+#include "InitWorldCommunicatorTaskResultsOwnership.h"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 

@@ -79,7 +79,8 @@
          header_files/ReceiverInterface.hpp
          header_files/ReceiverResultOwnershipPolicy.hpp
          header_files/GenericReceiverFactory.hpp
-         header_files/OwnershipTypeRequirements.hpp)
+         header_files/OwnershipTypeRequirements.hpp
+         header_files/DefaultOwnershipMethods.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -92,7 +93,8 @@
          implementation_files/ReceiverInterface.cpp
          implementation_files/ReceiverResultOwnershipPolicy.cpp
          implementation_files/GenericReceiverFactory.cpp
-         implementation_files/OwnershipTypeRequirements.cpp)
+         implementation_files/OwnershipTypeRequirements.cpp
+         implementation_files/DefaultOwnershipMethods.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

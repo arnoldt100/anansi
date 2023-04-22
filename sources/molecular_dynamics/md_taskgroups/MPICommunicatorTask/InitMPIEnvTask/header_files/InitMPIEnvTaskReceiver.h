@@ -29,6 +29,7 @@
 // class member ConcreteTaskReceiver::ownershipPolicy_.
 // For this class we select NullOwnershipPolicy.hpp.
 // ---------------------------------------------------
+#include "DefaultOwnershipMethods.h"
 #include "NullOwnershipPolicy.hpp"
 // #include "TransferOwnershipPolicy.hpp"
 // #include "ShareCopyOwnershipPolicy.hpp"

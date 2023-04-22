@@ -71,7 +71,8 @@
     #-----------------------------------------------------
     set (initworldcommunicatortask_header_files
          header_files/InitWorldCommunicatorTaskReceiver.h
-         header_files/InitWorldCommunicatorTaskTraits.h)
+         header_files/InitWorldCommunicatorTaskTraits.h
+         header_files/InitWorldCommunicatorTaskResultsOwnership.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -82,7 +83,8 @@
     #-----------------------------------------------------
     set (initworldcommunicatortask_implementation_files
          implementation_files/InitWorldCommunicatorTaskReceiver.cpp
-         implementation_files/InitWorldCommunicatorTaskTraits.cpp )
+         implementation_files/InitWorldCommunicatorTaskTraits.cpp
+         implementation_files/InitWorldCommunicatorTaskResultsOwnership.cpp)
 
     # -----------------------------------------------------
     # Set various variables for include directories.

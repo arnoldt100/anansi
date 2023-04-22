@@ -34,7 +34,9 @@ namespace ANANSI
 template < typename RT,
            template <typename> typename OwnershipImpl = OwnershipImpl1 
          >
-class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy<RT,OwnershipImpl>, OwnershipImpl, RT>
+class CopyOwnershipPolicy : public RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy<RT,OwnershipImpl>,
+                                                                           OwnershipImpl,
+                                                                           RT>
 {
     public:
         using basetype = RECEIVER::ReceiverResultOwnershipPolicy<CopyOwnershipPolicy<RT,OwnershipImpl>, OwnershipImpl, RT>;
