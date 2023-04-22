@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "DefaultOwnershipMethods.h"
+#include "BaseOwnershipImplementation.h"
 
 namespace RECEIVER {
 
@@ -19,12 +19,12 @@ namespace RECEIVER {
 
 //============================= LIFECYCLE ====================================
 
-DefaultOwnershipMethods::DefaultOwnershipMethods()
+BaseOwnershipImplementation::BaseOwnershipImplementation()
 {
     return;
 }
 
-DefaultOwnershipMethods::DefaultOwnershipMethods( DefaultOwnershipMethods const & other)
+BaseOwnershipImplementation::BaseOwnershipImplementation( BaseOwnershipImplementation const & other)
 {
     if (this != &other)
     {
@@ -33,17 +33,17 @@ DefaultOwnershipMethods::DefaultOwnershipMethods( DefaultOwnershipMethods const 
     return;
 }
 
-DefaultOwnershipMethods::DefaultOwnershipMethods( DefaultOwnershipMethods && other)
+BaseOwnershipImplementation::BaseOwnershipImplementation( BaseOwnershipImplementation && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method DefaultOwnershipMethods::DefaultOwnershipMethods  -----
+}		// -----  end of method BaseOwnershipImplementation::BaseOwnershipImplementation  -----
 
 
-DefaultOwnershipMethods::~DefaultOwnershipMethods()
+BaseOwnershipImplementation::~BaseOwnershipImplementation()
 {
     return;
 }
@@ -54,7 +54,7 @@ DefaultOwnershipMethods::~DefaultOwnershipMethods()
 
 //============================= OPERATORS ====================================
 
-DefaultOwnershipMethods& DefaultOwnershipMethods::operator= ( const DefaultOwnershipMethods &other )
+BaseOwnershipImplementation& BaseOwnershipImplementation::operator= ( const BaseOwnershipImplementation &other )
 {
     if (this != &other)
     {
@@ -63,7 +63,7 @@ DefaultOwnershipMethods& DefaultOwnershipMethods::operator= ( const DefaultOwner
     return *this;
 } // assignment operator
 
-DefaultOwnershipMethods& DefaultOwnershipMethods::operator= ( DefaultOwnershipMethods && other )
+BaseOwnershipImplementation& BaseOwnershipImplementation::operator= ( BaseOwnershipImplementation && other )
 {
     if (this != &other)
     {

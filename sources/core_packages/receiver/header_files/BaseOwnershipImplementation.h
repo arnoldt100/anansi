@@ -1,5 +1,5 @@
-#ifndef RECEIVER_DefaultOwnershipMethods_INC
-#define RECEIVER_DefaultOwnershipMethods_INC
+#ifndef RECEIVER_BaseOwnershipImplementation_INC
+#define RECEIVER_BaseOwnershipImplementation_INC
 //! @file __filename__
 //!
 //! Brief description
@@ -22,21 +22,24 @@ namespace RECEIVER
 {
 
 // =====================================================================================
-//        Class:  DefaultOwnershipMethods
+//        Class:  BaseOwnershipImplementation
 //  Description:  
 //  =====================================================================================
-class DefaultOwnershipMethods
+class BaseOwnershipImplementation
 {
     public:
+        
+        // ====================  STATIC        =======================================
+
         // ====================  LIFECYCLE     =======================================
 
-        DefaultOwnershipMethods ();   // constructor
+        BaseOwnershipImplementation ();   // constructor
 
-        DefaultOwnershipMethods (const DefaultOwnershipMethods & other);   // copy constructor
+        BaseOwnershipImplementation (const BaseOwnershipImplementation & other);   // copy constructor
 
-        DefaultOwnershipMethods (DefaultOwnershipMethods && other);   // copy-move constructor
+        BaseOwnershipImplementation (BaseOwnershipImplementation && other);   // copy-move constructor
 
-        ~DefaultOwnershipMethods ();  // destructor
+        ~BaseOwnershipImplementation ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -44,9 +47,9 @@ class DefaultOwnershipMethods
 
         // ====================  OPERATORS     =======================================
 
-        DefaultOwnershipMethods& operator= ( const DefaultOwnershipMethods &other ); // assignment operator
+        BaseOwnershipImplementation& operator= ( const BaseOwnershipImplementation &other ); // assignment operator
 
-        DefaultOwnershipMethods& operator= ( DefaultOwnershipMethods && other ); // assignment-move operator
+        BaseOwnershipImplementation& operator= ( BaseOwnershipImplementation && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -58,9 +61,9 @@ class DefaultOwnershipMethods
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class DefaultOwnershipMethods  -----
+}; // -----  end of class BaseOwnershipImplementation  -----
 
 
 }; // namespace RECEIVER
 
-#endif // RECEIVER_DefaultOwnershipMethods_INC
+#endif // RECEIVER_BaseOwnershipImplementation_INC
