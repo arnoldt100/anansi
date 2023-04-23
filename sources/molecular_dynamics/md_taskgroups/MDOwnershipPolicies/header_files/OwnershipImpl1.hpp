@@ -27,9 +27,9 @@ class OwnershipImpl1
 {
     public:
 
-         using Copytype = Underlyingtype;
-         using Sharedtype = Underlyingtype;
-         using Transfertype = Underlyingtype;
+        using Copytype = Underlyingtype;
+        using Sharedtype = Underlyingtype;
+        using Transfertype = Underlyingtype;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -88,7 +88,7 @@ class OwnershipImpl1
         static Sharedtype throwSharingError(std::string error_message)
         {
             throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
-            Underlyingtype tmp_obj;
+            Sharedtype tmp_obj;
             return tmp_obj;
         }
 
@@ -96,7 +96,7 @@ class OwnershipImpl1
         static Copytype throwCopyingError(std::string error_message)
         {
             throw ANANSI::ErrorOwnershipPolicy<OwnershipPolicyType>(error_message);
-            Underlyingtype tmp_obj;
+            Copytype tmp_obj;
             return tmp_obj;
         }
 
