@@ -30,6 +30,7 @@
 // For this class we select NullOwnershipPolicy.hpp.
 // ---------------------------------------------------
 #include "BaseOwnershipImplementation.h"
+#include "InitMPIEnvTaskOwnershipImpl.h"
 #include "NullOwnershipPolicyVersion2.hpp"
 // #include "TransferOwnershipPolicy.hpp"
 // #include "ShareCopyOwnershipPolicy.hpp"
