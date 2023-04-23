@@ -78,6 +78,7 @@
     set (mdownershippolicies_header_files
          header_files/OwnershipImpl1.hpp  
          header_files/NullOwnershipPolicy.hpp  
+         header_files/NullOwnershipPolicyVersion2.hpp  
          header_files/CopyOwnershipPolicy.hpp  
          header_files/ShareOwnershipPolicy.hpp
          header_files/ShareOwnershipPolicyConcepts.hpp
@@ -99,6 +100,7 @@
     set (mdownershippolicies_implementation_files
          implementation_files/OwnershipImpl1.cpp  
          implementation_files/NullOwnershipPolicy.cpp  
+         implementation_files/NullOwnershipPolicyVersion2.cpp  
          implementation_files/CopyOwnershipPolicy.cpp  
          implementation_files/ShareOwnershipPolicy.cpp
          implementation_files/ShareOwnershipPolicyConcepts.cpp
