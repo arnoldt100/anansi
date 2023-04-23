@@ -1,7 +1,7 @@
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "InitMPIEnvTaskReceiver.h"
+#include "InitMPIEnvTaskOwnershipImpl.h"
 
 namespace ANANSI {
 
@@ -20,44 +20,11 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
-    mpiEnvironment_(nullptr),
-    results_(0)
-{
-    return;
-}
-
-InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver && other) :
-    mpiEnvironment_(std::move(other.mpiEnvironment_)),
-    results_(std::move(other.results_))
-{
-    if (this != &other)
-    {
-        
-    }
-    return;
-}
-
-InitMPIEnvTaskReceiver::~InitMPIEnvTaskReceiver()
-{
-    return;
-}
-
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiver && other )
-{
-    if (this != &other)
-    {
-        this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
-        this->results_ = std::move(other.results_);
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -67,35 +34,7 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
 
 //============================= ACCESSORS ====================================
 
-InitMPIEnvTaskReceiver::ConcreteOwnershipImplementation<InitMPIEnvTaskReceiver::receiver_result_t>::Copytype InitMPIEnvTaskReceiver::receiverGetCopyOfResults_() const
-{
-    ConcreteOwnershipImplementation<InitMPIEnvTaskReceiver::receiver_result_t>::Copytype  my_ptr =
-        this->ownershipPolicy_.copyReceiverResult(this->results_);
-    return my_ptr;
-}
-
-
 //============================= MUTATORS =====================================
-
-template<>
-void InitMPIEnvTaskReceiver::receiverModifyMyself_(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
-{
-    this->mpiEnvironment_ = arg;
-    return;
-}
-
-InitMPIEnvTaskReceiver::ConcreteOwnershipImplementation<InitMPIEnvTaskReceiver::receiver_result_t>::Sharedtype InitMPIEnvTaskReceiver::receiverShareOwnershipOfResults_()
-{
-    ConcreteOwnershipImplementation<InitMPIEnvTaskReceiver::receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
-
-
-InitMPIEnvTaskReceiver::ConcreteOwnershipImplementation<InitMPIEnvTaskReceiver::receiver_result_t>::Transfertype InitMPIEnvTaskReceiver::receiverTransferOwnershipOfResults_()
-{
-    ConcreteOwnershipImplementation<InitMPIEnvTaskReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
 
 //============================= OPERATORS ====================================
 

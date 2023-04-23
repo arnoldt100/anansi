@@ -24,24 +24,23 @@ namespace RECEIVER {
 //!
 //! This class uses the CRTP design pattern for implementing the interface of
 //! the receiver's result ownership policies. The derived class is
-//! ConcreteResultOwnershipPolicy<UT>. There are some class methods that are
-//! not sensible, but we let the concrete class make these methods illegal other
-//! or implement them.
+//! ConcreteResultOwnershipPolicy sets policies 
+//! which controls if one can copy, share, or transfer the results.
 //!
-//! @tparam UT The underlying type of the receiver's result.
-//! @tparam ConcreteResultOwnershipPolicy<UT> The concrete ownership policy of
-//! the recievers result.
-template <typename ConcreteResultOwnershipPolicy,
-          template <typename> typename OwnernshipPolicy, 
-          class UT>
-requires OwnershipTypeRequirements<OwnernshipPolicy<UT>>
+//! The template parameter ConcrteResultOwnershipImpl defines the the implementation
+//! details of copying, sharing, and transferring results.
+//!
+template <typename RT,
+          typename ConcreteResultOwnershipPolicy,
+          template <typename> typename ConcreteResultOwnershipImpl  
+         >
 class BaseReceiverResultOwnershipPolicy {
 public:
   // ====================  LIFECYCLE     =======================================
 
-  using copy_type = typename OwnernshipPolicy<UT>::Copytype;
-  using shared_type = typename OwnernshipPolicy<UT>::Sharedtype;
-  using transfer_type = typename OwnernshipPolicy<UT>::Transfertype;
+  using copy_type = typename ConcreteResultOwnershipImpl<RT>::Copytype;
+  using shared_type = typename ConcreteResultOwnershipImpl<RT>::Sharedtype;
+  using transfer_type = typename ConcreteResultOwnershipImpl<RT>::Transfertype;
 
   BaseReceiverResultOwnershipPolicy(
       const BaseReceiverResultOwnershipPolicy &other) // copy constructor
@@ -155,11 +154,13 @@ private:
 
 }; // -----  end of class BaseReceiverResultOwnershipPolicy  -----
 
-template <class ConcreteResultOwnershipPolicy,
-          template <typename> typename OwnernshipPolicy, class UT>
-requires OwnershipTypeRequirements<OwnernshipPolicy<UT>>
-BaseReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy, OwnernshipPolicy,
-                              UT>::~BaseReceiverResultOwnershipPolicy() {
+template <typename RT,
+          class ConcreteResultOwnershipPolicy,
+          template <typename> typename ConcreteResultOwnershipImpl 
+         >
+BaseReceiverResultOwnershipPolicy<RT, 
+                                  ConcreteResultOwnershipPolicy,
+                                  ConcreteResultOwnershipImpl>::~BaseReceiverResultOwnershipPolicy() {
   return;
 }
 

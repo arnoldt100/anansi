@@ -69,6 +69,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (initmpienvtask_header_files
+        header_files/InitMPIEnvTaskOwnershipImpl.h
          header_files/InitMPIEnvTaskReceiver.h
          header_files/InitMPIEnvTaskTraits.h )
 
@@ -80,6 +81,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (initmpienvtask_implementation_files
+         implementation_files/InitMPIEnvTaskOwnershipImpl.cpp
          implementation_files/InitMPIEnvTaskReceiver.cpp
          implementation_files/InitMPIEnvTaskTraits.cpp )
 

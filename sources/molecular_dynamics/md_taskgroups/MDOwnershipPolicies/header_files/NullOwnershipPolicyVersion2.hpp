@@ -17,8 +17,9 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ErrorOwnershipPolicy.hpp"
-#include "ReceiverResultOwnershipPolicy.hpp"
+#include "BaseReceiverResultOwnershipPolicy.hpp"
 #include "OwnershipImpl1.hpp"
+#include "BaseOwnershipImplementation.h"
 
 namespace ANANSI
 {
@@ -34,16 +35,17 @@ namespace ANANSI
 //! @tparam RT The underlying type of the receiver's result.
 //! @tparam OwnershipImpl The implementation of copying, sharing and transferring the receiver's result.
 template <typename RT,
-          template <typename> typename OwnershipImpl = OwnershipImpl1 
+          template <typename> typename OwnershipImpl
          >
-class NullOwnershipPolicyVersion2 : public RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicyVersion2<RT,OwnershipImpl>, OwnershipImpl, RT>
+class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnershipPolicy<RT,
+                                                                                       NullOwnershipPolicyVersion2<RT,OwnershipImpl>,
+                                                                                       OwnershipImpl>
 {
     public:
 
-        using basetype = RECEIVER::ReceiverResultOwnershipPolicy<NullOwnershipPolicyVersion2<RT,OwnershipImpl>, OwnershipImpl, RT>;
-        using copy_type = typename basetype::copy_type;
-        using shared_type = typename basetype::shared_type;
-        using transfer_type = typename basetype::transfer_type;
+        using copy_type = typename OwnershipImpl<RT>::copy_type;
+        using shared_type = typename OwnershipImpl<RT>::shared_type;
+        using transfer_type = typename OwnershipImpl<RT>::transfer_type;
 
         // ====================  LIFECYCLE     =======================================
 

@@ -27,15 +27,15 @@ namespace RECEIVER
 //  Description:  
 //  =====================================================================================
 template<typename Derived,
-         typename OwnershipPolicy,
+         typename Underlyingtype, 
          template <typename> typename ErrorPolicy>
 class BaseOwnershipImplementation
 {
     public:
     
-        using Copytype = typename OwnershipPolicy::Underlyingtype;
-        using Sharetype = typename OwnershipPolicy::Underlyingtype;
-        using Transfertype = typename OwnershipPolicy::Underlyingtype;
+        using Copytype = Underlyingtype;
+        using Sharetype = Underlyingtype;
+        using Transfertype = Underlyingtype;
 
 
     private:
@@ -100,20 +100,20 @@ class BaseOwnershipImplementation
 
         static Sharetype throwSharingError(const std::string & error_message)
         {
-            throw ErrorPolicy<OwnershipPolicy>(error_message);
+            throw ErrorPolicy<Derived>(error_message);
             Sharetype tmp_obj;
             return tmp_obj;
         }
 
         static Copytype throwCopyingError(const std::string & error_message)
         {
-            throw ErrorPolicy<OwnershipPolicy>(error_message);
+            throw ErrorPolicy<Derived>(error_message);
             Copytype tmp_obj;
             return tmp_obj;
         }
         static Transfertype throwTransferringError(const std::string & error_message)
         {
-            throw ErrorPolicy<OwnershipPolicy>(error_message);
+            throw ErrorPolicy<Derived>(error_message);
             Transfertype tmp_obj;
             return tmp_obj;
         }
@@ -151,7 +151,7 @@ class BaseOwnershipImplementation
         Copytype copy( T const & result) const
         {
             return Accessor_::copy_results(this->asDerived_(),result);
-        }
+}
 
         template<typename T>
         Sharetype share( T & result)
@@ -195,9 +195,9 @@ class BaseOwnershipImplementation
 }; // -----  end of class BaseOwnershipImplementation  -----
 
 template<typename Derived,
-         typename OwnershipPolicy,
+         typename Underlyingtype, 
          template <typename> typename ErrorPolicy>
-BaseOwnershipImplementation<Derived,OwnershipPolicy,ErrorPolicy>::~BaseOwnershipImplementation()
+BaseOwnershipImplementation<Derived,Underlyingtype,ErrorPolicy>::~BaseOwnershipImplementation()
 {
     return;
 }
