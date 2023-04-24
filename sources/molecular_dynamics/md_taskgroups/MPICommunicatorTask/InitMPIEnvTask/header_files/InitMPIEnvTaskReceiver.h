@@ -46,16 +46,11 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         using receiver_result_t = int;
 
     private:
-        template<typename ConcreteOwnershipPolicy,
-                 template <typename> typename ErrorPolicy>
-        using OwnershipImplementation = RECEIVER::BaseOwnershipImplementation<ConcreteOwnershipPolicy,
-                                                                              receiver_result_t, 
-                                                                              ErrorPolicy>;
 
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
             {'m', 'p', 'i', '_', 'e', 'n', 'v', 'i', 'r', 'o', 'n', 'm', 'e', 'n', 't'};
 
-        ANANSI::NullOwnershipPolicyVersion2<receiver_result_t,ConcreteOwnershipImplementation> ownershipPolicy_;
+        ANANSI::NullOwnershipPolicyVersion2<receiver_result_t,InitMPIEnvTaskOwnershipImpl> ownershipPolicy_;
 
         mutable receiver_result_t results_;
 
@@ -100,9 +95,9 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
             return  InitMPIEnvTaskReceiver::TASKLABEL;
         }
 
-        ConcreteOwnershipImplementation<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
+        InitMPIEnvTaskOwnershipImpl::Copytype receiverGetCopyOfResults_() const;
 
-        ConcreteOwnershipImplementation<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
+        InitMPIEnvTaskOwnershipImpl::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  MUTATORS      =======================================
         template<typename... Types>
@@ -115,7 +110,7 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        ConcreteOwnershipImplementation<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
+        InitMPIEnvTaskOwnershipImpl::Sharetype receiverShareOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 

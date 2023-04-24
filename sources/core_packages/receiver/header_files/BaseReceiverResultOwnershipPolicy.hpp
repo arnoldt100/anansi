@@ -32,15 +32,15 @@ namespace RECEIVER {
 //!
 template <typename RT,
           typename ConcreteResultOwnershipPolicy,
-          template <typename> typename ConcreteResultOwnershipImpl  
+          typename ConcreteResultOwnershipImpl  
          >
 class BaseReceiverResultOwnershipPolicy {
 public:
   // ====================  LIFECYCLE     =======================================
 
-  using copy_type = typename ConcreteResultOwnershipImpl<RT>::Copytype;
-  using shared_type = typename ConcreteResultOwnershipImpl<RT>::Sharedtype;
-  using transfer_type = typename ConcreteResultOwnershipImpl<RT>::Transfertype;
+  using copy_type = typename ConcreteResultOwnershipImpl::Copytype;
+  using shared_type = typename ConcreteResultOwnershipImpl::Sharetype;
+  using transfer_type = typename ConcreteResultOwnershipImpl::Transfertype;
 
   BaseReceiverResultOwnershipPolicy(
       const BaseReceiverResultOwnershipPolicy &other) // copy constructor
@@ -156,7 +156,7 @@ private:
 
 template <typename RT,
           class ConcreteResultOwnershipPolicy,
-          template <typename> typename ConcreteResultOwnershipImpl 
+          typename ConcreteResultOwnershipImpl 
          >
 BaseReceiverResultOwnershipPolicy<RT, 
                                   ConcreteResultOwnershipPolicy,
