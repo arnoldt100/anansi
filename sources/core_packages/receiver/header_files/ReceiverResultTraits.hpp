@@ -25,9 +25,19 @@ namespace RECEIVER
 //        Class:  ReceiverResultTraits
 //  Description:  
 //  =====================================================================================
+template<typename ResultType_t,
+         typename CopyType_t,
+         typename ShareType_t,
+         typename TransferType_t>
 class ReceiverResultTraits
 {
+
     public:
+        using Resulttype = ResultType_t;
+        using Copytype = CopyType_t;
+        using Sharetype = ShareType_t;
+        using Transfertype = TransferType_t;
+
         // ====================  LIFECYCLE     =======================================
 
         ReceiverResultTraits ()   // constructor
