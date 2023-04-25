@@ -44,6 +44,9 @@ class InitMPIEnvTaskReceiver :  public RECEIVER::ReceiverInterface<InitMPIEnvTas
 {
     public:
         using receiver_result_t = int;
+        using copy_type = int;
+        using share_type = int;
+        using transfer_type = int;
 
     private:
 

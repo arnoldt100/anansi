@@ -37,7 +37,6 @@ class BaseOwnershipImplementation
         using Sharetype = Underlyingtype;
         using Transfertype = Underlyingtype;
 
-
     private:
         // ====================  ACCESSORS     =======================================
 
