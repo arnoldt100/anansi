@@ -28,7 +28,7 @@
 // class member ConcreteTaskReceiver::ownershipPolicy_.
 // For this class we select NullOwnershipPolicy.hpp.
 // ---------------------------------------------------
-#include "NullOwnershipPolicyVersion2.hpp"
+#include "NullOwnershipPolicy.hpp"
 // #include "TransferOwnershipPolicy.hpp"
 // #include "ShareCopyOwnershipPolicy.hpp"
 // #include "TransferCopyOwnershipPolicy.hpp""
@@ -61,8 +61,8 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 
         using MyOwnershipImpl_ = InitMPIEnvTaskOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::NullOwnershipPolicyVersion2<MyOwnershipImplTraits_::Resulttype,
-                                                                       MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::NullOwnershipPolicy<MyOwnershipImplTraits_::Resulttype,
+                                                               MyOwnershipImpl_>;
     public:
 
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
