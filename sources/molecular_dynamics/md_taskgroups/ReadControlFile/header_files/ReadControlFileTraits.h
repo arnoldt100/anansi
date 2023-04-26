@@ -63,6 +63,17 @@ class ReadControlFileTraits
                                                        GenericMDTask<ControlFile,ControlFileXMLReceiver>,
                                                        GenericMDTask<ControlFileCommunicator,ControlFileXMLMPICommReceiver>
                                                    >;
+
+        using receiver_results_t = MPL::mpl_typelist<
+                                                    	ControlFileXMLReceiver::receiver_result_t,
+                                                        ControlFileXMLMPICommReceiver::receiver_result_t
+                                                     >;
+
+        static constexpr auto LABELS = std::array{
+                                                    ControlFileXMLReceiver::TASKLABEL,
+                                                    ControlFileXMLMPICommReceiver::TASKLABEL
+                                                 };
+
     protected:
         // ====================  METHODS       =======================================
 

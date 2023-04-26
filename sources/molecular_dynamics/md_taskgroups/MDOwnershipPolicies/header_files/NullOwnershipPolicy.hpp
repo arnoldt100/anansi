@@ -19,7 +19,6 @@
 #include "ErrorOwnershipPolicy.hpp"
 #include "BaseReceiverResultOwnershipPolicy.hpp"
 #include "OwnershipImpl1.hpp"
-#include "BaseOwnershipImplementation.h"
 
 namespace ANANSI
 {
@@ -38,8 +37,8 @@ template <typename RT,
           typename OwnershipImpl
          >
 class NullOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<RT,
-                                                                                       NullOwnershipPolicy<RT,OwnershipImpl>,
-                                                                                       OwnershipImpl>
+                                                                               NullOwnershipPolicy<RT,OwnershipImpl>,
+                                                                               OwnershipImpl>
 {
     public:
 
