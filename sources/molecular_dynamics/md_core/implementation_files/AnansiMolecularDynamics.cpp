@@ -194,8 +194,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdControlFileInvk_ = x;
     this->mdAnansiControlFileTaskFactory_ = y; 
 
-
-    // Change the state to Null.
+    // Change the state of the MD simulation to Null.
     this->mdState_ = this->mdNullSimulationState_;
     this->mdState_->who_am_i();
 
@@ -237,12 +236,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     mpi_environment_receiver->modifyReceiver(mpi_environment); 
     
     // ---------------------------------------------------
-    // Get the label for the receiver
-    // 
-    // ---------------------------------------------------
-    const auto my_label = mpi_environment_receiver->getTaskLabel();
-
-    // ---------------------------------------------------
     //  Create the mpi environment task object and bind the 
     //  mpi receiver to it.
     // 
@@ -254,6 +247,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
+    constexpr auto my_label = ANANSI::InitMPIEnvTaskReceiver::TASKLABEL;
     this->mdCommEnvInvk_->addTask(my_label,mpi_environment_cmd);
 
     // ---------------------------------------------------
@@ -271,6 +265,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     this->mdCommEnvInvk_->enableTask(command_labels);
 
     this->mdCommEnvInvk_->doTask(command_labels);
+
     return;
 }
 

@@ -71,13 +71,13 @@ void AnansiTask::undoAction(const std::vector<std::string> & flags )
 
 void AnansiTask::disableTask(const std::vector<std::string> & flags )
 {
-    this->enableConcreteTask(flags);
+    this->disableConcreteTask(flags);
     return;
 }
 
 void AnansiTask::enableTask(const std::vector<std::string> & flags )
 {
-    this->disableConcreteTask(flags);
+    this->enableConcreteTask(flags);
     return;
 }
 

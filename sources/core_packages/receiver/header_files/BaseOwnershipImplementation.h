@@ -18,7 +18,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-
+#include "ReceiverResultTraits.hpp"
 namespace RECEIVER
 {
 
@@ -27,15 +27,15 @@ namespace RECEIVER
 //  Description:  
 //  =====================================================================================
 template<typename Derived,
-         typename Underlyingtype, 
+         typename RT, 
          template <typename> typename ErrorPolicy>
 class BaseOwnershipImplementation
 {
     public:
     
-        using Copytype = Underlyingtype;
-        using Sharetype = Underlyingtype;
-        using Transfertype = Underlyingtype;
+        using Copytype = typename RT::Copytype;
+        using Sharetype = typename RT::Sharetype;
+        using Transfertype = typename RT::Transfertype;
 
     private:
         // ====================  ACCESSORS     =======================================
@@ -194,9 +194,9 @@ class BaseOwnershipImplementation
 }; // -----  end of class BaseOwnershipImplementation  -----
 
 template<typename Derived,
-         typename Underlyingtype, 
+         typename RT, 
          template <typename> typename ErrorPolicy>
-BaseOwnershipImplementation<Derived,Underlyingtype,ErrorPolicy>::~BaseOwnershipImplementation()
+BaseOwnershipImplementation<Derived,RT,ErrorPolicy>::~BaseOwnershipImplementation()
 {
     return;
 }

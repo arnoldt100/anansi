@@ -67,9 +67,9 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
 
 //============================= ACCESSORS ====================================
 
-InitMPIEnvTaskOwnershipImpl::Copytype InitMPIEnvTaskReceiver::receiverGetCopyOfResults_() const
+InitMPIEnvTaskReceiver::MyOwnershipImplTraits_::Copytype InitMPIEnvTaskReceiver::receiverGetCopyOfResults_() const
 {
-    InitMPIEnvTaskOwnershipImpl::Copytype  my_ptr =
+    InitMPIEnvTaskReceiver::MyOwnershipImplTraits_::Copytype  my_ptr =
         this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
@@ -84,16 +84,16 @@ void InitMPIEnvTaskReceiver::receiverModifyMyself_(std::shared_ptr<ANANSI::MPIEn
     return;
 }
 
-InitMPIEnvTaskOwnershipImpl::Sharetype InitMPIEnvTaskReceiver::receiverShareOwnershipOfResults_()
+InitMPIEnvTaskReceiver::MyOwnershipImplTraits_::Sharetype InitMPIEnvTaskReceiver::receiverShareOwnershipOfResults_()
 {
-    InitMPIEnvTaskOwnershipImpl::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    InitMPIEnvTaskReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
 
-InitMPIEnvTaskOwnershipImpl::Transfertype InitMPIEnvTaskReceiver::receiverTransferOwnershipOfResults_()
+InitMPIEnvTaskReceiver::MyOwnershipImplTraits_::Transfertype InitMPIEnvTaskReceiver::receiverTransferOwnershipOfResults_()
 {
-    InitMPIEnvTaskOwnershipImpl::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    InitMPIEnvTaskReceiver::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

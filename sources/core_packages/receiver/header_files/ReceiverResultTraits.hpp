@@ -1,5 +1,5 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
+#ifndef RECEIVER_ReceiverResultTraits_INC
+#define RECEIVER_ReceiverResultTraits_INC
 //! @file ReceiverResultTraits.hpp
 //!
 //! Brief description
@@ -107,4 +107,4 @@ class ReceiverResultTraits
 
 }; // namespace RECEIVER
 
-#endif // __filepreprocessordefine__
+#endif // RECEIVER_ReceiverResultTraits_INC

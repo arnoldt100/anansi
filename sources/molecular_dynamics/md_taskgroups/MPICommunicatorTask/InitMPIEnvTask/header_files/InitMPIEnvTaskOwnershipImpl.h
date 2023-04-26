@@ -18,14 +18,16 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ReceiverResultTraits.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "BaseOwnershipImplementation.h"
 
 namespace ANANSI
 {
 
-class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<InitMPIEnvTaskOwnershipImpl,
-                                                                                 int,
+template<typename MyTaskImplTraits>
+class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<InitMPIEnvTaskOwnershipImpl<MyTaskImplTraits>,
+                                                                                 MyTaskImplTraits, 
                                                                                  ErrorOwnershipPolicy>
 {
     public:
@@ -87,7 +89,7 @@ class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
         // ====================  ACCESSORS     =======================================
 
         template<typename T>
-        Underlyingtype getCopyOfResults_(const T & result) const
+        typename MyTaskImplTraits::Copytype  getCopyOfResults_(const T & result) const
         {
             return result;
         }
@@ -95,13 +97,13 @@ class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
         // ====================  MUTATORS      =======================================
 
         template<typename T>
-        Underlyingtype transferResults_(T & result) const
+        typename MyTaskImplTraits::Transfertype transferResults_(T & result) const
         {
             return std::move(result);
         }
 
         template<typename T>
-        Underlyingtype shareResults_(T & result) const
+        typename MyTaskImplTraits::Sharetype shareResults_(T & result) const
         {
             return result;
         }
