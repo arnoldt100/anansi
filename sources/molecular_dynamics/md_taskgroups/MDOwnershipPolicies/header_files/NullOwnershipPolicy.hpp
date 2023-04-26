@@ -1,6 +1,6 @@
-#ifndef ANANSI_NullOwnershipPolicyVersion2_INC
-#define ANANSI_NullOwnershipPolicyVersion2_INC
-//! @file NullOwnershipPolicyVersion2.hpp
+#ifndef ANANSI_NullOwnershipPolicy_INC
+#define ANANSI_NullOwnershipPolicy_INC
+//! @file NullOwnershipPolicy.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -26,7 +26,7 @@ namespace ANANSI
 
 //! This concrete policy class implements null behaviours with respect to the receiver's's result.
 //! 
-//! The NullOwnershipPolicyVersion2 implements the following constraints
+//! The NullOwnershipPolicy implements the following constraints
 //! on the receiver's result:
 //! * no copying
 //! * no sharing 
@@ -37,8 +37,8 @@ namespace ANANSI
 template <typename RT,
           typename OwnershipImpl
          >
-class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnershipPolicy<RT,
-                                                                                       NullOwnershipPolicyVersion2<RT,OwnershipImpl>,
+class NullOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<RT,
+                                                                                       NullOwnershipPolicy<RT,OwnershipImpl>,
                                                                                        OwnershipImpl>
 {
     public:
@@ -49,12 +49,12 @@ class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnership
 
         // ====================  LIFECYCLE     =======================================
 
-        NullOwnershipPolicyVersion2 ()   // constructor
+        NullOwnershipPolicy ()   // constructor
         {
             return;
         }
 
-        NullOwnershipPolicyVersion2 (const NullOwnershipPolicyVersion2 & other)   // copy constructor
+        NullOwnershipPolicy (const NullOwnershipPolicy & other)   // copy constructor
         {
             if (this != &other)
             {
@@ -63,16 +63,16 @@ class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnership
             return;
         }
 
-        NullOwnershipPolicyVersion2 (NullOwnershipPolicyVersion2 && other)   // copy-move constructor
+        NullOwnershipPolicy (NullOwnershipPolicy && other)   // copy-move constructor
         {
             if (this != &other)
             {
                 
             }
             return;
-        }		// -----  end of method NullOwnershipPolicyVersion2::NullOwnershipPolicyVersion2  -----
+        }		// -----  end of method NullOwnershipPolicy::NullOwnershipPolicy  -----
 
-        ~NullOwnershipPolicyVersion2 ()
+        ~NullOwnershipPolicy ()
         {
             return;
         };  // destructor
@@ -81,12 +81,12 @@ class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnership
         
         //! Throws runtime error if invoked.
         //!
-        //! The NullOwnershipPolicyVersion2 doesn't allow the receiver's results to be
+        //! The NullOwnershipPolicy doesn't allow the receiver's results to be
         //! copied.
         //!
         //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to be copied.
-        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicyVersion2>
+        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         template<typename W>
         copy_type copyResult(W const & a_receiver_result) const
         {
@@ -99,12 +99,12 @@ class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnership
 
         //! Throws runtime error if invoked.
         //!
-        //! The NullOwnershipPolicyVersion2 doesn't allow the receiver results to be
+        //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! taken over.
         //!
         //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to transfer its ownership.
-        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicyVersion2>
+        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         template<typename W>
         transfer_type transferOwnershipOfResult(W & a_receiver_result)
         {
@@ -115,12 +115,12 @@ class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnership
 
         //! Throws runtime error if invoked.
         //!
-        //! The NullOwnershipPolicyVersion2 doesn't allow the receiver results to be
+        //! The NullOwnershipPolicy doesn't allow the receiver results to be
         //! shared.
         //!
         //! @tparam W The type of the receiver's result.
         //! @param[in] a_receiver_result The receiver result to share its ownership.
-        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicyVersion2>
+        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         template<typename W>
         shared_type shareOwnershipOfResult(W & a_receiver_result)
         {
@@ -131,7 +131,7 @@ class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnership
 
         // ====================  OPERATORS     =======================================
 
-        NullOwnershipPolicyVersion2& operator= ( const NullOwnershipPolicyVersion2 &other) // assignment operator
+        NullOwnershipPolicy& operator= ( const NullOwnershipPolicy &other) // assignment operator
         {
             if (this != &other)
             {
@@ -140,7 +140,7 @@ class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnership
             return *this;
         } // assignment operator
 
-        NullOwnershipPolicyVersion2& operator= ( NullOwnershipPolicyVersion2 && other ) // assignment-move operator
+        NullOwnershipPolicy& operator= ( NullOwnershipPolicy && other ) // assignment-move operator
         {
             if (this != &other)
             {
@@ -157,22 +157,22 @@ class NullOwnershipPolicyVersion2 : public RECEIVER::BaseReceiverResultOwnership
     private:
         // ====================  STATIC       =======================================
         static constexpr std::string_view shared_error_message_ = 
-            std::string_view("The NullOwnershipPolicyVersion2 does not permit the receiver result to be shared.");
+            std::string_view("The NullOwnershipPolicy does not permit the receiver result to be shared.");
 
         static constexpr std::string_view take_error_message_ = 
-            std::string_view("The NullOwnershipPolicyVersion2 does not permit the receiver result to be taken over.");
+            std::string_view("The NullOwnershipPolicy does not permit the receiver result to be taken over.");
 
         static constexpr std::string_view copy_error_message_ = 
-            std::string_view("The NullOwnershipPolicyVersion2 does not permit the receiver result to be copied.");
+            std::string_view("The NullOwnershipPolicy does not permit the receiver result to be copied.");
 
 
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class NullOwnershipPolicyVersion2  -----
+}; // -----  end of class NullOwnershipPolicy  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_NullOwnershipPolicyVersion2_INC
+#endif // ANANSI_NullOwnershipPolicy_INC

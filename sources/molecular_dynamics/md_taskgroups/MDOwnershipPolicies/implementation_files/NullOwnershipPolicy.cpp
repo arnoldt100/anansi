@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NullOwnershipPolicyVersion2.hpp"
+#include "NullOwnershipPolicy.hpp"
 
 namespace ANANSI {
 
