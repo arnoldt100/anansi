@@ -133,9 +133,6 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
         mutable receiver_result_t results_;
         mutable std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
         MyOwnershipPolicy_ ownershipPolicy_;
-        // ANANSI::NullOwnershipPolicyVersion2<MyOwnershipImplTraits_::Resulttype,
-        //                                     InitMPIEnvTaskOwnershipImpl<MyOwnershipImplTraits_>
-        //                                    > ownershipPolicy_;
 
 }; // -----  end of class InitMPIEnvTaskReceiver  -----
 
