@@ -79,7 +79,6 @@ class TransferOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPoli
 
         // ====================  ACCESSORS     =======================================
 
-        // ====================  MUTATORS      =======================================
 
         //! Throws runtime error if invoked.
         //!
@@ -93,20 +92,18 @@ class TransferOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPoli
         copy_type copyResult(W & a_receiver_result) const
         {
             const std::string my_error_message(copy_error_message_);
-            copy_type tmp_obj =  OwnershipImpl::throwTransferringError(my_error_message);
+            copy_type tmp_obj =  OwnershipImpl::throwCopyingError(my_error_message);
             return tmp_obj; 
         }
 
 
-        //! Returns a unique_ptr of the receiver results.
-        //!
-        //! The underlying object of the unique_ptr is taken over and moved to
-        //! an  object of transfer_type and returned to the invoker.
+        // ====================  MUTATORS      =======================================
+
         template<typename W>
         transfer_type transferOwnershipOfResult(W & a_receiver_result)
         {
-            transfer_type unique_obj = std::move(this->myImpl_.transfer(a_receiver_result));
-            return unique_obj; 
+            transfer_type tmp_obj = std::move(this->myImpl_.transfer(a_receiver_result));
+            return tmp_obj; 
         }
 
         //! Throws runtime error if invoked.
@@ -120,8 +117,9 @@ class TransferOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPoli
         template<typename W>
         shared_type shareOwnershipOfResult(W & a_receiver_result)
         {
-            shared_type shared_obj = this->myImpl_.share(a_receiver_result);
-            return shared_obj;
+            const std::string my_error_message(shared_error_message_);
+            shared_type tmp_obj =  OwnershipImpl::throwSharingError(my_error_message);
+            return tmp_obj;
         }
 
         // ====================  OPERATORS     =======================================
