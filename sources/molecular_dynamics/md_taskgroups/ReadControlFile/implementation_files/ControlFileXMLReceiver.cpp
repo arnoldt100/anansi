@@ -70,24 +70,31 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
 
 //============================= ACCESSORS ====================================
 
-ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype ControlFileXMLReceiver::receiverGetCopyOfResults_() const
+ControlFileXMLReceiver::MyOwnershipImplTraits_::Copytype ControlFileXMLReceiver::receiverGetCopyOfResults_() const
 {
-    OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    ControlFileXMLReceiver::MyOwnershipImplTraits_::Copytype my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
-
 //============================= MUTATORS =====================================
 
-ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Sharedtype ControlFileXMLReceiver::receiverShareOwnershipOfResults_()
+template<>
+void ControlFileXMLReceiver::receiverModifyMyself_(int & arg)
 {
-    OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    this->results_ = arg;
+    return;
+}
+
+
+ControlFileXMLReceiver::MyOwnershipImplTraits_::Sharetype ControlFileXMLReceiver::receiverShareOwnershipOfResults_()
+{
+    ControlFileXMLReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-ControlFileXMLReceiver::OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype ControlFileXMLReceiver::receiverTransferOwnershipOfResults_()
+ControlFileXMLReceiver::MyOwnershipImplTraits_::Transfertype ControlFileXMLReceiver::receiverTransferOwnershipOfResults_()
 {
-    OwnershipPolicy<ControlFileXMLReceiver::receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    ControlFileXMLReceiver::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

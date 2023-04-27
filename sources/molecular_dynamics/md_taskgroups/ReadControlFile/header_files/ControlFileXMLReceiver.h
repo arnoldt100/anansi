@@ -26,12 +26,14 @@
 //--------------------------------------------------------//
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
-#include "OwnershipImpl1.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
+#include "OwnershipImpl1.hpp"
+#include "ControlFileXMLOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
 
 // ---------------------------------------------------
@@ -53,30 +55,30 @@ namespace ANANSI
 //! Ressposible for reading the control file.
 class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLReceiver>
 {
-    public:
-        using receiver_result_t = int;
-
-        template<typename T>
-        using OwnershipPolicy = OwnershipImpl1<T>;
-
     private:
 
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
-            {'r','e','a','d','_','c','o','n','t','r','o','l','_','f','i','l','e'};
+            {'r','e','a','d','_','x','m','l','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        // ---------------------------------------------------
-        // Declare the ownership policy of the receivers' result.
-        // ---------------------------------------------------
-        ANANSI::ShareCopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
+        using my_result_type_ = int;
+        using my_copy_type_ = int;
+        using my_share_type_ = int;
+        using my_transfer_type_ = int;
+        using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
+                                                                      my_copy_type_,
+                                                                      my_share_type_,
+                                                                      my_transfer_type_>;
 
-        // ---------------------------------------------------
-        // Declare the results. Note that this declaration also
-        // sets the ownership of the result. The ownership and the 
-        // ownership policy must be compatible.
-        // ---------------------------------------------------
-        mutable  OwnershipPolicy<receiver_result_t>::Sharedtype results_;
+        using MyOwnershipImpl_ = ControlFileXMLOwnershipImpl<MyOwnershipImplTraits_>;
+
+        using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImplTraits_::Resulttype,
+                                                                    MyOwnershipImpl_>;
 
     public:
+        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
+
+        // ====================  STATIC       =======================================
+
         static constexpr 
         RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE TASKLABEL =
             RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE(ControlFileXMLReceiver::tmpstr);
@@ -104,7 +106,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
     protected:
         // ====================  ACCESSORS     =======================================
         template<typename... Types>
-        void receiverDoAction_(Types... args) const;
+        void receiverDoAction_(Types & ... args) const;
         
         template<typename... Types>
         void receiverUndoAction_(Types & ... args) const;
@@ -114,22 +116,23 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
             return  ControlFileXMLReceiver::TASKLABEL;
         }
 
-        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
+        MyOwnershipImpl_::Copytype receiverGetCopyOfResults_() const;
+
+        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>
-        void enableReceiver_(Types... args);
+        void enableReceiver_(Types &... args);
 
         template<typename... Types>
-        void disableReceiver_(Types... args);
+        void disableReceiver_(Types &... args);
 
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
+        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
 
-        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
     
         // ====================  DATA MEMBERS  =======================================
 
@@ -139,23 +142,25 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        mutable receiver_result_t results_;
+        MyOwnershipPolicy_ ownershipPolicy_;
         
 }; // -----  end of class ControlFileXMLReceiver  -----
 template<typename... Types>
-void ControlFileXMLReceiver::enableReceiver_(Types... args)
+void ControlFileXMLReceiver::enableReceiver_(Types &... args)
 {
     return;
 }
 
 
 template<typename... Types>
-void ControlFileXMLReceiver::disableReceiver_(Types... args)
+void ControlFileXMLReceiver::disableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void ControlFileXMLReceiver::receiverDoAction_(Types... args) const
+void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
     return;
 }
