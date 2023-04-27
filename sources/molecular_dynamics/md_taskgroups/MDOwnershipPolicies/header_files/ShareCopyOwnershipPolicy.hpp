@@ -81,8 +81,6 @@ class ShareCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPol
 
         // ====================  ACCESSORS     =======================================
 
-        //! Returns a unique_type of the receiver results.
-        //!
         //! The underlying object of the is copied to an object of
         //! copy_type and returned to the invoker.
         //!
