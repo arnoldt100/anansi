@@ -22,7 +22,6 @@
 //--------------------------------------------------------//
 #include "ErrorOwnershipPolicy.hpp"
 #include "BaseReceiverResultOwnershipPolicy.hpp"
-#include "OwnershipImpl1.hpp"
 
 namespace ANANSI
 {
@@ -43,11 +42,13 @@ class ShareOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<
                                                                                 ShareOwnershipPolicy<RT,OwnershipImpl>,
                                                                                 OwnershipImpl>
 {
-    public:
+    private:
+
         using copy_type = typename OwnershipImpl::Copytype;
         using shared_type = typename OwnershipImpl::Sharetype;
         using transfer_type = typename OwnershipImpl::Transfertype;
 
+    public:
         // ====================  LIFECYCLE     =======================================
 
         ShareOwnershipPolicy ()   // constructor
