@@ -44,7 +44,7 @@
 // #include "NullOwnershipPolicy.hpp"
 // #include "TransferOwnershipPolicy.hpp"
 // #include "ShareCopyOwnershipPolicy.hpp"
-#include "ShareCopyOwnershipPolicyVersion2.hpp"
+#include "ShareCopyOwnershipPolicy.hpp"
 // #include "TransferCopyOwnershipPolicy.hpp""
 // #include "ShareOwnershipPolicy.hpp"
 // #include "CopyOwnershipPolicy.hpp"
