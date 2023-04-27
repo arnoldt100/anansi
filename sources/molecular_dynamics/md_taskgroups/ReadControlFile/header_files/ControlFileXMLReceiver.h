@@ -32,7 +32,6 @@
 //--------------------------------------------------------//
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
-#include "OwnershipImpl1.hpp"
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
 

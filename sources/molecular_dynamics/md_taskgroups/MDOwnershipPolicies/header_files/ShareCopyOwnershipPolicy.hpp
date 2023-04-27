@@ -20,7 +20,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "OwnershipImpl1.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "BaseReceiverResultOwnershipPolicy.hpp"
 

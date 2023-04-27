@@ -18,7 +18,6 @@
 //--------------------------------------------------------//
 #include "ErrorOwnershipPolicy.hpp"
 #include "BaseReceiverResultOwnershipPolicy.hpp"
-#include "OwnershipImpl1.hpp"
 
 namespace ANANSI
 {
