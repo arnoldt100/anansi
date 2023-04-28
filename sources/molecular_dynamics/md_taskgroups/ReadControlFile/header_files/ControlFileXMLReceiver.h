@@ -51,7 +51,7 @@
 namespace ANANSI
 {
 
-//! Ressposible for reading the control file.
+//! Resposible for reading the control file.
 class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLReceiver>
 {
     private:

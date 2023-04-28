@@ -85,7 +85,6 @@ void ControlFileXMLReceiver::receiverModifyMyself_(int & arg)
     return;
 }
 
-
 ControlFileXMLReceiver::MyOwnershipImplTraits_::Sharetype ControlFileXMLReceiver::receiverShareOwnershipOfResults_()
 {
     ControlFileXMLReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
