@@ -20,8 +20,7 @@
 #include "ReceiverInterface.hpp"
 #include "MPICommunicatorFactory.h"
 #include "TaskLabel.hpp"
-#include "OwnershipImpl1.hpp"
-#include "InitWorldCommunicatorTaskResultsOwnership.h"
+#include "InitWorldCommunicatorTaskOwnershipImpl.hpp"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -61,6 +60,28 @@ namespace ANANSI
 //! an error being thrown.
 class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>
 {
+    private:
+
+        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
+          {'m','p','i','_', 
+           'w', 'o', 'r', 'l', 'd', '_', 
+           'c', 'o','m', 'm', 'u', 'n', 'i', 'c', 'a', 't', 'o', 'r'};
+
+        using my_result_type_ = std::unique_ptr<COMMUNICATOR::Communicator>;
+        using my_copy_type_ = std::unique_ptr<COMMUNICATOR::Communicator>;
+        using my_share_type_ = std::shared_ptr<COMMUNICATOR::Communicator>;
+        using my_transfer_type_ = std::unique_ptr<COMMUNICATOR::Communicator>;
+
+        using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
+                                                                      my_copy_type_,
+                                                                      my_share_type_,
+                                                                      my_transfer_type_>;
+
+        using MyOwnershipImpl_ = InitWorldCommunicatorTaskOwnershipImpl<MyOwnershipImplTraits_>;
+
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImplTraits_::Resulttype,
+                                                               MyOwnershipImpl_>;
+
     public: 
         //! The type of the data member results_.
         using receiver_result_t = std::unique_ptr<COMMUNICATOR::Communicator>;
@@ -80,11 +101,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
     public:
 
         // ====================  STATIC       =======================================
-
-        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
-          {'m','p','i','_', 
-           'w', 'o', 'r', 'l', 'd', '_', 
-           'c', 'o','m', 'm', 'u', 'n', 'i', 'c', 'a', 't', 'o', 'r'};
 
         static constexpr RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
             RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE(InitWorldCommunicatorTaskReceiver::tmpstr);
