@@ -16,7 +16,7 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
-#                                                                 @
+#                                                                 @a
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     #-----------------------------------------------------
@@ -74,6 +74,7 @@
     #-----------------------------------------------------
     set (writetexttoconsoletask_header_files
          header_files/WriteTextToConsoleTaskReceiver.h
+         header_files/WriteTextToConsoleTaskOwnershipImpl.hpp
          header_files/WriteTextToConsoleTaskTraits.h)
 
     #-----------------------------------------------------
@@ -85,6 +86,7 @@
     #-----------------------------------------------------
     set (writetexttoconsoletask_implementation_files
          implementation_files/WriteTextToConsoleTaskReceiver.cpp
+         implementation_files/WriteTextToConsoleTaskOwnershipImpl.cpp
          implementation_files/WriteTextToConsoleTaskTraits.cpp)
 
 

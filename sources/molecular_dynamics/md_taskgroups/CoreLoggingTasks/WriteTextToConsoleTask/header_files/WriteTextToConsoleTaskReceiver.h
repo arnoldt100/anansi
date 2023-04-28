@@ -17,11 +17,13 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Communicator.h"
 #include "ReceiverInterface.hpp"
-#include "ConsoleMessageContainer.h"
 #include "TaskLabel.hpp"
-#include "OwnershipImpl1.hpp"
+#include "ReceiverResultTraits.hpp"
+#include "WriteTextToConsoleTaskOwnershipImpl.hpp"
+
+#include "Communicator.h"
+#include "ConsoleMessageContainer.h"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -44,16 +46,7 @@ namespace ANANSI
 //! The message store in messageContainer_ is written to stdout.
 class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>
 {
-    public:
-       
-        //! The object type the smart pointer will manage,
-        using receiver_result_t = int;
-
     private:
-        template<typename T>
-        using OwnershipPolicy = OwnershipImpl1<T>;
-
-        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
 
         static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'w','r','i', 't', 'e','_',
@@ -61,9 +54,22 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
              't', 'o', '_',
              'c','o', 'n', 's', 'o', 'l', 'e'};
 
-        mutable  OwnershipPolicy<receiver_result_t>::Copytype results_;
+        using my_result_type_ = int;
+        using my_copy_type_ = int;
+        using my_share_type_ = int;
+        using my_transfer_type_ = int;
+        using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
+                                                                     my_copy_type_,
+                                                                     my_share_type_,
+                                                                     my_transfer_type_>;
 
+        using MyOwnershipImpl_ = WriteTextToConsoleTaskOwnershipImpl<MyOwnershipImplTraits_>;
 
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImplTraits_::Resulttype,
+                                                               MyOwnershipImpl_>;
+    public:
+       
+        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
 
     public:
         // ====================  STATIC       =======================================
@@ -107,7 +113,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
             return  WriteTextToConsoleTaskReceiver::TASKLABEL;
         }
 
-        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
+       WriteTextToConsoleTaskReceiver::MyOwnershipImplTraits_::Copytype receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -120,9 +126,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
+        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
 
-        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
+        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 
@@ -131,8 +137,10 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        mutable receiver_result_t results_;
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
+        MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 

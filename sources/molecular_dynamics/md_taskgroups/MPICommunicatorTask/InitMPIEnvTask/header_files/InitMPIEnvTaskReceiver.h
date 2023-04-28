@@ -18,10 +18,11 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReceiverInterface.hpp"
-#include "MPIEnvironment.h"
 #include "TaskLabel.hpp"
 #include "InitMPIEnvTaskOwnershipImpl.h"
 #include "ReceiverResultTraits.hpp"
+
+#include "MPIEnvironment.h"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -109,8 +110,6 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 
         MyOwnershipImpl_::Copytype receiverGetCopyOfResults_() const;
 
-        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
-
         // ====================  MUTATORS      =======================================
         template<typename... Types>
         void enableReceiver_(Types &... args);
@@ -121,6 +120,8 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 
         template<typename T>
         void receiverModifyMyself_(T & arg);
+
+        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
 
         MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
 
