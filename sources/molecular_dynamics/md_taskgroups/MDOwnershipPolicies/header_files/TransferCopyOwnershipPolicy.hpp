@@ -90,7 +90,7 @@ class TransferCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnership
         template<typename W>
         copy_type copyResult(W const & a_receiver_result) const
         {
-            copy_type tmp_obj = this->myImpl_.copy(a_receiver_result);
+            copy_type tmp_obj = std::move(this->myImpl_.copy(a_receiver_result));
             return tmp_obj; 
         }
 
