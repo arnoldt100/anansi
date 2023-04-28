@@ -107,7 +107,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         MyOwnershipImpl_::Copytype receiverGetCopyOfResults_() const;
 
-        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  MUTATORS      =======================================
 
@@ -121,6 +120,8 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         void receiverModifyMyself_(T & arg);
 
         MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
+
+        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  METHODS       =======================================
 

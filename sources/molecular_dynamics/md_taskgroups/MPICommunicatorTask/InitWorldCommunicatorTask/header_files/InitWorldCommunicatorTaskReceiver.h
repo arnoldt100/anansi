@@ -86,20 +86,6 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         //! The type of the data member results_.
         using receiver_result_t = std::unique_ptr<COMMUNICATOR::Communicator>;
         
-        template<typename T>
-        using OwnershipPolicy = OwnershipImpl1<T>;
-
-    private:
-
-        // ---------------------------------------------------
-        // Declare the ownership policy of the receivers' result.
-        // ---------------------------------------------------
-        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
-
-        mutable receiver_result_t results_;
-
-    public:
-
         // ====================  STATIC       =======================================
 
         static constexpr RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
@@ -139,7 +125,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
             return  InitWorldCommunicatorTaskReceiver::TASKLABEL;
         }
 
-        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults_() const;
+        MyOwnershipImpl_::Copytype receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -152,9 +138,9 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults_();
+        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
 
-        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults_();
+        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
 
         // ====================  METHODS       =======================================
 
@@ -164,6 +150,8 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        mutable receiver_result_t results_;
+        MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class InitWorldCommunicatorTaskReceiver  -----
 
