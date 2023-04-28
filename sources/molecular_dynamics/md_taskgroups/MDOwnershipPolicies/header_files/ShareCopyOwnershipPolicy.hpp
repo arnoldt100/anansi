@@ -164,6 +164,7 @@ class ShareCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPol
 
         // ====================  DATA MEMBERS  =======================================
         OwnershipImpl myImpl_;
+
 }; // -----  end of class ShareCopyOwnershipPolicy  -----
 
 

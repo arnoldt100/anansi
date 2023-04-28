@@ -159,6 +159,7 @@ class CopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<R
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        OwnershipImpl myImpl_;
 
 }; // -----  end of class CopyOwnershipPolicy  -----
 
