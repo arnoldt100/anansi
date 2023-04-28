@@ -71,7 +71,7 @@
     #-----------------------------------------------------
     set (initworldcommunicatortask_header_files
          header_files/InitWorldCommunicatorTaskReceiver.h
-         header_files/InitWorldCommunicatorTaskOwnershiImpl.hpp
+         header_files/InitWorldCommunicatorTaskOwnershipImpl.hpp
          header_files/InitWorldCommunicatorTaskTraits.h
          header_files/InitWorldCommunicatorTaskResultsOwnership.h)
 
@@ -84,7 +84,7 @@
     #-----------------------------------------------------
     set (initworldcommunicatortask_implementation_files
          implementation_files/InitWorldCommunicatorTaskReceiver.cpp
-         implementation_files/InitWorldCommunicatorTaskOwnershiImpl.cpp
+         implementation_files/InitWorldCommunicatorTaskOwnershipImpl.cpp
          implementation_files/InitWorldCommunicatorTaskTraits.cpp
          implementation_files/InitWorldCommunicatorTaskResultsOwnership.cpp)
 
