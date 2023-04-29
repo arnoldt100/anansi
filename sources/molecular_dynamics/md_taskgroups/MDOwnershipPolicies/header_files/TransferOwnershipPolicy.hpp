@@ -79,48 +79,7 @@ class TransferOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPoli
 
         // ====================  ACCESSORS     =======================================
 
-
-        //! Throws runtime error if invoked.
-        //!
-        //! The SharedOwnershipPolicy doesn't allow the receiver's results to be
-        //! copied.
-        //!
-        //! @tparam W The type of the receiver's result.
-        //! @param[in] a_receiver_result The receiver result to be copied.
-        //! @throws ErrorOwnershipPolicy<ShareOwnershipPolicy>
-        template<typename W>
-        copy_type copyResult(W & a_receiver_result) const
-        {
-            const std::string my_error_message(copy_error_message_);
-            copy_type tmp_obj =  OwnershipImpl::throwCopyingError(my_error_message);
-            return tmp_obj; 
-        }
-
-
         // ====================  MUTATORS      =======================================
-
-        template<typename W>
-        transfer_type transferOwnershipOfResult(W & a_receiver_result)
-        {
-            transfer_type tmp_obj = std::move(this->myImpl_.transfer(a_receiver_result));
-            return tmp_obj; 
-        }
-
-        //! Throws runtime error if invoked.
-        //!
-        //! The TransferOwnershipPolicy doesn't permit the receiver results to be
-        //! shared.
-        //!
-        //! @tparam W The type of the receiver's result.
-        //! @param[in] a_receiver_result The receiver result to share its ownership.
-        //! @throws ErrorOwnershipPolicy<TransferOwnershipPolicy>
-        template<typename W>
-        shared_type shareOwnershipOfResult(W & a_receiver_result)
-        {
-            const std::string my_error_message(shared_error_message_);
-            shared_type tmp_obj =  OwnershipImpl::throwSharingError(my_error_message);
-            return tmp_obj;
-        }
 
         // ====================  OPERATORS     =======================================
 
@@ -144,7 +103,58 @@ class TransferOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPoli
        } // assignment-move operator
 
     protected:
-        // ====================  METHODS       =======================================
+        // ====================  ACCESSORS     =======================================
+
+        //! Throws runtime error if invoked.
+        //!
+        //! The SharedOwnershipPolicy doesn't allow the receiver's results to be
+        //! copied.
+        //!
+        //! @tparam W The type of the receiver's result.
+        //! @param[in] a_receiver_result The receiver result to be copied.
+        //! @throws ErrorOwnershipPolicy<ShareOwnershipPolicy>
+        template<typename W>
+        copy_type copyResult_(W & a_receiver_result) const
+        {
+            const std::string my_error_message(copy_error_message_);
+            copy_type tmp_obj =  OwnershipImpl::throwCopyingError(my_error_message);
+            return tmp_obj; 
+        }
+
+        //! Throws runtime error if invoked.
+        //!
+        //! The NullOwnershipPolicy doesn't allow the receiver results to be
+        //! taken over.
+        //!
+        //! @tparam W The type of the receiver's result.
+        //! @param[in] a_receiver_result The receiver result to transfer its ownership.
+        //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
+        template<typename W>
+        transfer_type transferOwnershipOfResult_(W & a_receiver_result)
+        {
+            const std::string my_error_message(take_error_message_);
+            transfer_type tmp_obj = OwnershipImpl::throwTransferringError(my_error_message);
+            return tmp_obj; 
+        }
+
+        // ====================  MUTATORS      =======================================
+
+        //! Throws runtime error if invoked.
+        //!
+        //! The TransferOwnershipPolicy doesn't permit the receiver results to be
+        //! shared.
+        //!
+        //! @tparam W The type of the receiver's result.
+        //! @param[in] a_receiver_result The receiver result to share its ownership.
+        //! @throws ErrorOwnershipPolicy<TransferOwnershipPolicy>
+        template<typename W>
+        shared_type shareOwnershipOfResult_(W & a_receiver_result)
+        {
+            const std::string my_error_message(shared_error_message_);
+            shared_type tmp_obj =  OwnershipImpl::throwSharingError(my_error_message);
+            return tmp_obj;
+        }
+
 
         // ====================  DATA MEMBERS  =======================================
 

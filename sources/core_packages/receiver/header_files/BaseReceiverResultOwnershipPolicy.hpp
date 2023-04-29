@@ -35,6 +35,7 @@ template <typename RT,
           typename ConcreteResultOwnershipImpl  
          >
 class BaseReceiverResultOwnershipPolicy {
+
 public:
   // ====================  LIFECYCLE     =======================================
 
@@ -42,6 +43,44 @@ public:
   using shared_type = typename ConcreteResultOwnershipImpl::Sharetype;
   using transfer_type = typename ConcreteResultOwnershipImpl::Transfertype;
 
+private:
+
+        //! Provides access to the CRTP derived class member methods.
+        //!
+        //! The goal of this stucture is to better encapsulate (i.e. hide) the
+        //! concrete CRTP receivers implementation details. The receievers
+        //! implement protected member functions as in ConcretReceiver::foo_. A
+        //! function pointer to the address derived pointer member function is
+        //! ConcretReceiver::foo_ is formed so that we can indirectly call
+        //! ConcretReceiver::foo_.
+        struct Accessor_ : public ConcreteResultOwnershipPolicy
+        {
+            template <typename T> 
+            static copy_type copy_receiver_result(const ConcreteResultOwnershipPolicy & derived,
+                                                  const T & a_receiver_result )
+            {
+                copy_type (ConcreteResultOwnershipPolicy::*fn)(T const & ) const = &Accessor_::copyResult_; 
+                return (derived.*fn)(a_receiver_result );
+            }
+
+            template<typename T>
+            static shared_type share_receiver_result(ConcreteResultOwnershipPolicy & derived,
+                                                     T & a_receiver_result )
+            {
+                shared_type (ConcreteResultOwnershipPolicy::*fn)(T & ) = &Accessor_::shareOwnershipOfResult_;
+                return (derived.*fn)(a_receiver_result);
+            }
+            
+            template<typename T>
+            static transfer_type transfer_receiver_result(ConcreteResultOwnershipPolicy & derived,
+                                                          T & a_receiver_result )
+            {
+                transfer_type (ConcreteResultOwnershipPolicy::*fn)(T & ) = &Accessor_::transferOwnershipOfResult_;
+                return (derived.*fn)(a_receiver_result);
+            }
+        };
+
+public:
   BaseReceiverResultOwnershipPolicy(
       const BaseReceiverResultOwnershipPolicy &other) // copy constructor
   {
@@ -71,8 +110,8 @@ public:
   //! @return A copy_type obtained by copying the underlying object in
   //! a_receiver_result.
   template <typename W>
-  copy_type copyReceiverResult(W const &a_receiver_result) const {
-    return asDerived_().copyResult(a_receiver_result);
+  copy_type copyReceiverResult(W const & a_receiver_result) const {
+        return Accessor_::copy_receiver_result(this->asDerived_(),a_receiver_result);
   }
 
   // ====================  MUTATORS      =======================================
@@ -85,7 +124,7 @@ public:
   //! underlying object in a_receiver_result.
   template <typename W>
   transfer_type transferOwnershipOfReceiverResult(W &a_receiver_result) {
-    return asDerived_().transferOwnershipOfResult(a_receiver_result);
+        return Accessor_::transfer_receiver_result(this->asDerived_(),a_receiver_result);
   }
 
   //! The share ownership interface definition for a shared_type receiver's
@@ -96,7 +135,7 @@ public:
   //! object in a_receiver_result.
   template <typename W>
   shared_type shareOwnershipOfReceiverResult(W &a_receiver_result) {
-    return asDerived_().shareOwnershipOfResult(a_receiver_result);
+        return Accessor_::share_receiver_result(this->asDerived_(),a_receiver_result);
   }
 
   // ====================  OPERATORS     =======================================

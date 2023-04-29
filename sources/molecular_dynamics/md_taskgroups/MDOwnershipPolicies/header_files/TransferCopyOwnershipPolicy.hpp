@@ -79,52 +79,7 @@ class TransferCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnership
 
         // ====================  ACCESSORS     =======================================
 
-        //! Returns a copy_type of the receiver results.
-        //!
-        //! The underlying object of the copy_type is copied to an object of
-        //! copy_type and returned to the invoker.
-        //!
-        //! @tparam W The type of the receiver's result.
-        //! @param[in] a_receiver_result The receiver result to be copied.
-        //! @throws ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>
-        template<typename W>
-        copy_type copyResult(W const & a_receiver_result) const
-        {
-            copy_type tmp_obj = std::move(this->myImpl_.copy(a_receiver_result));
-            return tmp_obj; 
-        }
-
         // ====================  MUTATORS      =======================================
-
-        //! Returns a transfer_type of the receiver results.
-        //!
-        //! The TransferCopyOwnershipPolicy only permits transfer_type ot be transferred.
-        //!
-        //! @tparam W The type of the receiver's result.
-        //! The underlying object of the unique_ptr is taken over and moved to
-        //! an  object of transfer_type and returned to the invoker.
-        template<typename W>
-        transfer_type transferOwnershipOfResult(W & a_receiver_result)
-        {
-            transfer_type tmp_obj = this->myImpl_.transfer(a_receiver_result);
-            return tmp_obj; 
-        }
-
-        //! Throws runtime error if invoked.
-        //!
-        //! The TransferCopyOwnershipPolicy doesn't permit the receiver results to be
-        //! shared.
-        //!
-        //! @tparam W The type of the receiver's result.
-        //! @param[in] a_receiver_result The receiver result to share its ownership.
-        //! @throws ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>
-        template <typename W>
-        shared_type shareOwnershipReceiverResult(W & my_obj) 
-        {
-            const std::string my_error_message(shared_error_message_);
-            shared_type tmp_obj =  OwnershipImpl::throwSharingError(my_error_message);
-            return tmp_obj;
-        }
 
         // ====================  OPERATORS     =======================================
 
@@ -148,7 +103,54 @@ class TransferCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnership
        } // assignment-move operator
 
     protected:
-        // ====================  METHODS       =======================================
+        // ====================  ACCESSORS     =======================================
+
+        //! Returns a copy_type of the receiver results.
+        //!
+        //! The underlying object of the copy_type is copied to an object of
+        //! copy_type and returned to the invoker.
+        //!
+        //! @tparam W The type of the receiver's result.
+        //! @param[in] a_receiver_result The receiver result to be copied.
+        //! @throws ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>
+        template<typename W>
+        copy_type copyResult_(W const & a_receiver_result) const
+        {
+            copy_type tmp_obj = std::move(this->myImpl_.copy(a_receiver_result));
+            return tmp_obj; 
+        }
+
+        // ====================  MUTATORS      =======================================
+
+        //! Throws runtime error if invoked.
+        //!
+        //! The TransferCopyOwnershipPolicy doesn't permit the receiver results to be
+        //! shared.
+        //!
+        //! @tparam W The type of the receiver's result.
+        //! @param[in] a_receiver_result The receiver result to share its ownership.
+        //! @throws ErrorOwnershipPolicy<TransferCopyOwnershipPolicy>
+        template <typename W>
+        shared_type shareOwnershipResult_(W & my_obj) 
+        {
+            const std::string my_error_message(shared_error_message_);
+            shared_type tmp_obj =  OwnershipImpl::throwSharingError(my_error_message);
+            return tmp_obj;
+        }
+        
+        //! Returns a transfer_type of the receiver results.
+        //!
+        //! The TransferCopyOwnershipPolicy only permits transfer_type ot be transferred.
+        //!
+        //! @tparam W The type of the receiver's result.
+        //! The underlying object of the unique_ptr is taken over and moved to
+        //! an  object of transfer_type and returned to the invoker.
+        template<typename W>
+        transfer_type transferOwnershipOfResult_(W & a_receiver_result)
+        {
+            transfer_type tmp_obj = this->myImpl_.transfer(a_receiver_result);
+            return tmp_obj; 
+        }
 
         // ====================  DATA MEMBERS  =======================================
 

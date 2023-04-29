@@ -58,19 +58,19 @@ class BaseOwnershipImplementation
                 return (derived.*fn)(result);
             }
 
-        template <typename T>
-        static Transfertype transfer_results(const Derived & derived, T & result)
-        {
-            Transfertype (Derived::*fn)(T &) const = &Accessor_::transferResults_;
-            return (derived.*fn)(result);
-        }
+            template <typename T>
+            static Transfertype transfer_results(const Derived & derived, T & result)
+            {
+                Transfertype (Derived::*fn)(T &) const = &Accessor_::transferResults_;
+                return (derived.*fn)(result);
+            }
 
-        template <typename T>
-        static Sharetype share_results(const Derived & derived, T & result)
-        {
-            Transfertype (Derived::*fn)(T &) const = &Accessor_::shareResults_;
-            return (derived.*fn)(result);
-        }
+            template <typename T>
+            static Sharetype share_results(const Derived & derived, T & result)
+            {
+                Transfertype (Derived::*fn)(T &) const = &Accessor_::shareResults_;
+                return (derived.*fn)(result);
+            }
         };
 
         //! Provides access to the CRTP derived class "Derived."
