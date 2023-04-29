@@ -80,6 +80,7 @@ private:
         };
 
 public:
+
   BaseReceiverResultOwnershipPolicy(
       const BaseReceiverResultOwnershipPolicy &other) // copy constructor
   {
@@ -163,7 +164,7 @@ protected:
 private:
   //! The following ensures that the CRTP doesn't use the wrong class.
   //!
-  //! Only friends of this class can invoke the private  base class
+  //! Only friends of this class can invoke the private base class
   //! constructor, Therefore incorrect code like
   //!   * class Derived1 : public Base<Derived2>
   //! won't compile.

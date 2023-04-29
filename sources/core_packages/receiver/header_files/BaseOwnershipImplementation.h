@@ -119,11 +119,6 @@ class BaseOwnershipImplementation
 
         // ====================  LIFECYCLE     =======================================
 
-        BaseOwnershipImplementation ()
-        {
-            return;
-        }
-
         BaseOwnershipImplementation (const BaseOwnershipImplementation & other)
         {
             if (this != &other)
@@ -190,6 +185,19 @@ class BaseOwnershipImplementation
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+    private:
+
+    //! The following ensures that the CRTP doesn't use the wrong class.
+    //!
+    //! Only friends of this class can invoke the private base class
+    //! constructor, Therefore incorrect code like
+    //!   * class Derived1 : public Base<Derived2>
+    //! won't compile.
+    friend Derived;
+    BaseOwnershipImplementation()
+    {
+        return;
+    }
 
 }; // -----  end of class BaseOwnershipImplementation  -----
 
