@@ -391,13 +391,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
 
     constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
     {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
-    const auto mpi_communicator = this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<tmpstr>();
-
-    // // Create the control file parser and process the control file.
-    // ANANSI::MPICommunicatorFactory a_communicator_factory;
-    // std::shared_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
-
-
+    auto mpi_world_communicator = this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<tmpstr>();
 
 
     // StandardFileParserFactory file_parser_factory;
@@ -410,7 +404,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
     // Setup all receivers for the control file invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setup_controlfile_receivers(controlfile_name); 
+    setup_controlfile_receivers(controlfile_name,std::move(mpi_world_communicator),mdControlFileInvk_,mdAnansiControlFileTaskFactory_); 
 
     // ---------------------------------------------------
     // 

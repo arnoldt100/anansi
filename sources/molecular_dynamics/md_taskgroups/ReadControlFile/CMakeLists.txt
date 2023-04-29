@@ -98,7 +98,9 @@
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
+    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
+    get_target_property(my_invoker_include invoker invoker_include )
 
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -131,10 +133,12 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_tasks_include}
-                           PRIVATE ${mdownershippolicies}
-                           PRIVATE ${my_genericmdtask_include} 
-                           PRIVATE ${my_receiver_include} )
+                           PRIVATE "${my_tasks_include}"
+                           PRIVATE "${mdownershippolicies}"
+                           PRIVATE "${my_genericmdtask_include}" 
+                           PRIVATE "${my_generic_abstract_factory_include}"
+                           PRIVATE "${my_invoker_include}"
+                           PRIVATE "${my_receiver_include}" )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -143,7 +147,9 @@ target_include_directories(${target}
 target_link_libraries(${target}
                       PUBLIC tasks
                       PUBLIC genericmdtask
+                      PUBLIC generic_abstract_factory
                       PUBLIC receiver
+                      PUBLIC invoker
                       PUBLIC mdownershippolicies)
 
 #-----------------------------------------------------
