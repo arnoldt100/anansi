@@ -73,7 +73,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         ControlFileXMLMPICommReceiver ();   // constructor
 
-        ControlFileXMLMPICommReceiver (const ControlFileXMLMPICommReceiver & other);   // copy constructor
+        ControlFileXMLMPICommReceiver (const ControlFileXMLMPICommReceiver & other)=delete;   // copy constructor
 
         ControlFileXMLMPICommReceiver (ControlFileXMLMPICommReceiver && other);   // copy-move constructor
 
@@ -85,7 +85,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         // ====================  OPERATORS     =======================================
 
-        ControlFileXMLMPICommReceiver& operator= ( const ControlFileXMLMPICommReceiver &other ); // assignment operator
+        ControlFileXMLMPICommReceiver& operator= ( const ControlFileXMLMPICommReceiver &other )=delete; // assignment operator
 
         ControlFileXMLMPICommReceiver& operator= ( ControlFileXMLMPICommReceiver && other ); // assignment-move operator
 
