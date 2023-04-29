@@ -34,12 +34,10 @@ namespace ANANSI
 //! transferring ownership
 //!
 //! @tparam RT The underlying type of the receiver's result.
-template < typename RT,
-           typename OwnershipImpl
-         >
-class TransferCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<RT,
-                                                                                   TransferCopyOwnershipPolicy<RT,OwnershipImpl>,
-                                                                                   OwnershipImpl>
+template < typename OwnershipImpl >
+class TransferCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy< TransferCopyOwnershipPolicy<OwnershipImpl>,
+                                                                                        OwnershipImpl
+                                                                                       >
 {
     private:
         using copy_type = typename OwnershipImpl::Copytype;

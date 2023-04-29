@@ -34,13 +34,9 @@ namespace ANANSI
 //! sharing of receiver's result.
 //! no transferring ownership
 //!
-//! @tparam RT The underlying type of the receiver's result.
-template < typename RT,
-           typename OwnershipImpl
-         >
-class ShareCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<RT,
-                                                                                    ShareCopyOwnershipPolicy<RT,OwnershipImpl>, 
-                                                                                    OwnershipImpl>
+template < typename OwnershipImpl >
+class ShareCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy< ShareCopyOwnershipPolicy<OwnershipImpl>, 
+                                                                                     OwnershipImpl>
 {
     public:
         using copy_type = typename OwnershipImpl::Copytype;
@@ -151,7 +147,6 @@ class ShareCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPol
             transfer_type tmp_obj = OwnershipImpl::throwTransferringError(my_error_message);
             return tmp_obj; 
         }
-
 
         // ====================  DATA MEMBERS  =======================================
 

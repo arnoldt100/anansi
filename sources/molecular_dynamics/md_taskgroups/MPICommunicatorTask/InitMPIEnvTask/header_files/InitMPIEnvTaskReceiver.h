@@ -62,8 +62,7 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 
         using MyOwnershipImpl_ = InitMPIEnvTaskOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::NullOwnershipPolicy<MyOwnershipImplTraits_::Resulttype,
-                                                               MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::NullOwnershipPolicy<MyOwnershipImpl_>;
     public:
 
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;

@@ -65,8 +65,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         using MyOwnershipImpl_ = WriteTextToConsoleTaskOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImplTraits_::Resulttype,
-                                                               MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
     public:
        
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;

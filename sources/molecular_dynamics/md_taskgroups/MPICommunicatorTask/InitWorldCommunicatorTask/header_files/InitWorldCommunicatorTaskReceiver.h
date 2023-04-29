@@ -79,8 +79,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         using MyOwnershipImpl_ = InitWorldCommunicatorTaskOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImplTraits_::Resulttype,
-                                                               MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
     public: 
         //! The type of the data member results_.

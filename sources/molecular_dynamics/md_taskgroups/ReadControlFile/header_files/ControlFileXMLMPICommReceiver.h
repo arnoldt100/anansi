@@ -58,8 +58,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         using MyOwnershipImpl_ = ControlFileXMLMPICommOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImplTraits_::Resulttype,
-                                                                    MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
 
     public:
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;

@@ -30,8 +30,7 @@ namespace RECEIVER {
 //! The template parameter ConcrteResultOwnershipImpl defines the the implementation
 //! details of copying, sharing, and transferring results.
 //!
-template <typename RT,
-          typename ConcreteResultOwnershipPolicy,
+template <typename ConcreteResultOwnershipPolicy,
           typename ConcreteResultOwnershipImpl  
          >
 class BaseReceiverResultOwnershipPolicy {
@@ -193,12 +192,10 @@ private:
 
 }; // -----  end of class BaseReceiverResultOwnershipPolicy  -----
 
-template <typename RT,
-          class ConcreteResultOwnershipPolicy,
+template <class ConcreteResultOwnershipPolicy,
           typename ConcreteResultOwnershipImpl 
          >
-BaseReceiverResultOwnershipPolicy<RT, 
-                                  ConcreteResultOwnershipPolicy,
+BaseReceiverResultOwnershipPolicy<ConcreteResultOwnershipPolicy,
                                   ConcreteResultOwnershipImpl>::~BaseReceiverResultOwnershipPolicy() {
   return;
 }

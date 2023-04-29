@@ -34,12 +34,8 @@ namespace ANANSI
 //! sharing 
 //! no transferring ownership
 //!
-//! @tparam RT The underlying type of the receiver's result.
-template < typename RT,
-           typename OwnershipImpl
-         >
-class ShareOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<RT,
-                                                                                ShareOwnershipPolicy<RT,OwnershipImpl>,
+template < typename OwnershipImpl >
+class ShareOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<ShareOwnershipPolicy<OwnershipImpl>,
                                                                                 OwnershipImpl>
 {
     private:
