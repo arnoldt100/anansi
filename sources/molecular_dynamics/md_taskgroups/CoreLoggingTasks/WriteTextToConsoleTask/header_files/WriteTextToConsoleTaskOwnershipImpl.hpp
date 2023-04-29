@@ -31,7 +31,6 @@ class WriteTextToConsoleTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplem
                                                                                          ErrorOwnershipPolicy>
 {
     public:
-        using Underlyingtype = int;
 
         // ====================  LIFECYCLE     =======================================
 

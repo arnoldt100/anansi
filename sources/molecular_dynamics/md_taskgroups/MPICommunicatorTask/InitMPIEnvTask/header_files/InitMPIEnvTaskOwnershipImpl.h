@@ -31,7 +31,6 @@ class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
                                                                                  ErrorOwnershipPolicy>
 {
     public:
-        using Underlyingtype = int;
 
         // ====================  LIFECYCLE     =======================================
 

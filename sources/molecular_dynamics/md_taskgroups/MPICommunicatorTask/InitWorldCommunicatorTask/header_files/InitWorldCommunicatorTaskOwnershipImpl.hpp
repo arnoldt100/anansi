@@ -33,7 +33,6 @@ class InitWorldCommunicatorTaskOwnershipImpl : public RECEIVER::BaseOwnershipImp
                                                                                             ErrorOwnershipPolicy>
 {
     public:
-        using Underlyingtype = typename MyTaskImplTraits::Resulttype;
 
         // ====================  LIFECYCLE     =======================================
 

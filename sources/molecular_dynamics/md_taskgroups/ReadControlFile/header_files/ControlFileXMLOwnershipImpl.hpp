@@ -31,7 +31,6 @@ class ControlFileXMLOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
                                                                                  ErrorOwnershipPolicy>
 {
     public:
-        using Underlyingtype = int;
 
         // ====================  LIFECYCLE     =======================================
 
