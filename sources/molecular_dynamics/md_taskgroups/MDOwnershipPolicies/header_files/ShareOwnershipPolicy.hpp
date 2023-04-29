@@ -115,7 +115,7 @@ class ShareOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<
         copy_type copyResult_(W & a_receiver_result) const
         {
             const std::string my_error_message(copy_error_message_);
-            copy_type tmp_obj =  OwnershipImpl::throwTransferringError(my_error_message)(my_error_message);
+            copy_type tmp_obj =  OwnershipImpl::throwCopyingError(my_error_message)(my_error_message);
             return tmp_obj; 
         }
         

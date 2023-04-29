@@ -131,7 +131,7 @@ class TransferOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPoli
         transfer_type transferOwnershipOfResult_(W & a_receiver_result)
         {
             const std::string my_error_message(take_error_message_);
-            transfer_type tmp_obj = OwnershipImpl::throwTransferringError(my_error_message);
+            transfer_type tmp_obj = this->myImpl_.transfer(a_receiver_result);
             return tmp_obj; 
         }
 
