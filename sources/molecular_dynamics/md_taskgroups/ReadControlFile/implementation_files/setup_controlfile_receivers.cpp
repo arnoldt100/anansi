@@ -27,11 +27,9 @@ void setup_controlfile_receivers (const std::string controlfile_name,
     //      - ControlFileXMLReceiver
     //      - ControlFileXMLMPICommReceiver
 
-    setup_ControlFileXMLReceiver();
-
+    setup_ControlFileXMLReceiver(control_file_invoker);
 
     setup_ControlFileXMLMPICommReceiver(); 
-
 
     return;
 }   // -----  end of function setup_controlfile_receivers

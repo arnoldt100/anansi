@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,7 +15,9 @@
 namespace ANANSI
 {
 
-void setup_ControlFileXMLReceiver ()
+void setup_ControlFileXMLReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                                              ReadControlFileTraits::concrete_products>
+                                                  > control_file_invoker)
 {
     return;
 }   // -----  end of function setup_ControlFileXMLReceiver 
