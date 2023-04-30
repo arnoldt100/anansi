@@ -404,7 +404,9 @@ AnansiMolecularDynamics::enableControlFileTasks ()
     // Setup all receivers for the control file invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setup_controlfile_receivers(controlfile_name,std::move(mpi_world_communicator),mdControlFileInvk_,mdAnansiControlFileTaskFactory_); 
+    setup_controlfile_receivers(controlfile_name,
+                                std::move(mpi_world_communicator),
+                                mdControlFileInvk_); 
 
     // ---------------------------------------------------
     // 
