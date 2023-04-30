@@ -10,6 +10,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "setup_controlfile_receivers.h"
+#include "setup_ControlFileXMLMPICommReceiver.h"
+#include "setup_ControlFileXMLReceiver.h"
 
 namespace ANANSI
 {
@@ -25,7 +27,10 @@ void setup_controlfile_receivers (const std::string controlfile_name,
     //      - ControlFileXMLReceiver
     //      - ControlFileXMLMPICommReceiver
 
-    
+    setup_ControlFileXMLReceiver();
+
+
+    setup_ControlFileXMLMPICommReceiver(); 
 
 
     return;
