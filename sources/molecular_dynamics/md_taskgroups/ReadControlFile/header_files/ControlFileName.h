@@ -47,7 +47,7 @@ class ControlFileName
 
         // ====================  OPERATORS     =======================================
 
-        std::string operator()() const ;
+        std::string operator()() const;
 
         ControlFileName& operator= ( const ControlFileName &other ); // assignment operator
 

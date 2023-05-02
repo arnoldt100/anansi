@@ -71,7 +71,7 @@ ControlFileName& ControlFileName::operator= ( const ControlFileName &other )
 {
     if (this != &other)
     {
-
+        this->fileName_ = other.fileName_;
     }
     return *this;
 } // assignment operator
@@ -80,7 +80,7 @@ ControlFileName& ControlFileName::operator= ( ControlFileName && other )
 {
     if (this != &other)
     {
-
+        this->fileName_ = std::move(other.fileName_);
     }
     return *this;
 } // assignment-move operator

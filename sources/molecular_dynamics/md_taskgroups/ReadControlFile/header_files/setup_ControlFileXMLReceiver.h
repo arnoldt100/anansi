@@ -22,6 +22,7 @@ namespace ANANSI
 {
 
 void setup_ControlFileXMLReceiver (const std::string controlfile_name,
+                                   const bool master_process,  
                                    std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                               ReadControlFileTraits::concrete_products>
                                                   > control_file_invoker);
