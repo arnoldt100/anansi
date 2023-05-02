@@ -69,6 +69,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_header_files
+         header_files/ControlFileName.h
          header_files/ControlFileXMLReceiver.h
          header_files/ControlFileXMLOwnershipImpl.hpp
          header_files/ControlFileXMLMPICommReceiver.h
@@ -86,6 +87,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
+         implementation_files/ControlFileName.cpp
          implementation_files/ControlFileXMLReceiver.cpp
          implementation_files/ControlFileXMLOwnershipImpl.cpp
          implementation_files/ControlFileXMLMPICommReceiver.cpp

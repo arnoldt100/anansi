@@ -34,6 +34,7 @@
 #include "ReceiverInterface.hpp"
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
+#include "ControlFileName.h"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -71,6 +72,8 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         using MyOwnershipImpl_ = ControlFileXMLOwnershipImpl<MyOwnershipImplTraits_>;
 
         using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
+
+        ControlFileName controlFileName_;
 
     public:
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
@@ -130,7 +133,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         void receiverModifyMyself_(T & arg);
 
         MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
-
     
         // ====================  DATA MEMBERS  =======================================
 
