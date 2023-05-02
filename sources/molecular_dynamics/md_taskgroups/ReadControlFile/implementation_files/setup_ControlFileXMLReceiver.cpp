@@ -27,17 +27,19 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
     // ---------------------------------------------------
     using my_abstract_tasks = ReadControlFileTraits::abstract_products; // The abstract task typelist.
     using my_concrete_tasks = ReadControlFileTraits::concrete_products; // The concrete tasks typelist.
-    using receiver_t = ANANSI::ControlFileXMLReceiver; // The concrete tasks we are setting up.
+    using base_receiver_t = ANANSI::ControlFile; // The base class for the task we are setting up. 
+    using concrete_receiver_t = ANANSI::ControlFileXMLReceiver; // The concrete tasks we are setting up.
 
     // ---------------------------------------------------
     // Get the task label for the task
     // GenericMDTask<ControlFile,ControlFileXMLReceiver>
     //
     // ---------------------------------------------------
-    auto constexpr task_label = receiver_t::TASKLABEL;
+    auto constexpr task_label = concrete_receiver_t::TASKLABEL;
 
     // ---------------------------------------------------
-    // Declare the concrete task factory for the these set of concrete task  products.
+    // Declare the concrete task factory for the these set of concrete task
+    // products.
     //
     // ---------------------------------------------------
     auto conrete_task_factory = std::make_unique<GenericTaskFactory<my_abstract_tasks,
@@ -49,18 +51,27 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
     // GenericMDTask<ControlFile,ControlFileXMLReceiver> 
     // ---------------------------------------------------
     auto control_file_xml_receiver = 
-        RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<receiver_t>();
+        RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
 
     // ---------------------------------------------------
     // Now setup the receiver 
     //
     // ---------------------------------------------------
 
-    // We nead to add to the reciever the control file name
-
-    // Create the task GenericMDTask<ControlFile,ControlFileXMLReceiver> and bind
-    // the receiver to it. 
     
+    // ---------------------------------------------------
+    // Create task object and bind the receiver to the task object.
+    // 
+    // ---------------------------------------------------
+    std::shared_ptr<ANANSI::AnansiTask> my_task = 
+        conrete_task_factory->create_shared_ptr<base_receiver_t>(control_file_xml_receiver);
+
+    // ---------------------------------------------------
+    // Add the task object/command to the invoker.
+    //
+    // ---------------------------------------------------
+    control_file_invoker->addTask(task_label,my_task);
+
     return;
 }   // -----  end of function setup_ControlFileXMLReceiver 
 
