@@ -75,7 +75,7 @@
          header_files/ControlFileXMLOwnershipImpl.hpp
          header_files/ControlFileXMLMPICommReceiver.h
          header_files/ControlFileXMLMPICommOwnershipImpl.hpp
-         header_files/ControlFileMacroOwnershipImpl.h
+         header_files/ControlFileMacroOwnershipImpl.hpp
          header_files/ReadControlFileTraits.h
          header_files/setup_controlfile_receivers.h
          header_files/setup_ControlFileXMLReceiver.h
