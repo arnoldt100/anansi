@@ -164,6 +164,10 @@ void ControlFileXMLReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
+    if (this->masterProcess_.operator()())
+    {
+        std::cout << "Reading control file " << this->controlFileName_.operator()() << "\n";
+    }
     return;
 }
 

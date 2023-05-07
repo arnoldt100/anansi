@@ -82,7 +82,7 @@ MasterProcess& MasterProcess::operator= ( MasterProcess && other )
     return *this;
 } // assignment-move operator
 
-bool MasterProcess::operator()()
+bool MasterProcess::operator()() const
 {
     return this->masterProcess_;
 }

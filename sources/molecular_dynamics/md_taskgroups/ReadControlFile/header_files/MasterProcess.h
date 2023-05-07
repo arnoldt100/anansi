@@ -46,7 +46,7 @@ class MasterProcess
 
         MasterProcess& operator= ( MasterProcess && other ); // assignment-move operator
 
-        bool operator()();
+        bool operator()() const;
 
     protected:
         // ====================  METHODS       =======================================

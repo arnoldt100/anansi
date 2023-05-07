@@ -85,6 +85,7 @@
          header_files/TaskLabelTraits.hpp
          header_files/TaskLabel.hpp
          header_files/AnansiTaskUtilities.hpp
+         header_files/MacroCommand.hpp
          header_files/ConsoleLoggingTask.h
          header_files/PrimaryFileLoggingTask.h
          header_files/InterProcessCommEnv.h
@@ -105,6 +106,7 @@
          implementation_files/TaskLabelTraits.cpp
          implementation_files/TaskLabel.cpp
          implementation_files/AnansiTaskUtilities.cpp
+         implementation_files/MacroCommand.cpp
          implementation_files/ConsoleLoggingTask.cpp
          implementation_files/PrimaryFileLoggingTask.cpp
          implementation_files/InterProcessCommEnv.cpp
