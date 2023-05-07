@@ -28,6 +28,8 @@ class MasterProcess
 
         MasterProcess ();   // constructor
 
+        MasterProcess (const bool master_process);   // constructor
+
         MasterProcess (const MasterProcess & other);   // copy constructor
 
         MasterProcess (MasterProcess && other);   // copy-move constructor
@@ -55,6 +57,7 @@ class MasterProcess
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool masterProcess_;
 
 }; // -----  end of class MasterProcess  -----
 

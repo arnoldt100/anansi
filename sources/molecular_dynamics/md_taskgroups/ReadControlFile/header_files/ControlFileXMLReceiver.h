@@ -35,6 +35,7 @@
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
 #include "ControlFileName.h"
+#include "MasterProcess.h"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -74,6 +75,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
 
         ControlFileName controlFileName_;
+        MasterProcess masterProcess_;
 
     public:
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
@@ -88,7 +90,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         ControlFileXMLReceiver ();   // constructor
 
-        ControlFileXMLReceiver (const ControlFileXMLReceiver & other);   // copy constructor
+        ControlFileXMLReceiver (const ControlFileXMLReceiver & other) = delete;   // copy constructor
 
         ControlFileXMLReceiver (ControlFileXMLReceiver && other);   // copy-move constructor
 
@@ -100,7 +102,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         // ====================  OPERATORS     =======================================
 
-        ControlFileXMLReceiver& operator= ( const ControlFileXMLReceiver &other ); // assignment operator
+        ControlFileXMLReceiver& operator= ( const ControlFileXMLReceiver &other ) = delete; // assignment operator
 
         ControlFileXMLReceiver& operator= ( ControlFileXMLReceiver && other ); // assignment-move operator
 

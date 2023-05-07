@@ -22,16 +22,20 @@ namespace ANANSI {
 
 ControlFileXMLReceiver::ControlFileXMLReceiver() :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
-    ownershipPolicy_(),
-    results_(0)
+    controlFileName_(),
+    masterProcess_(),
+    results_(0),
+    ownershipPolicy_()
 {
     return;
 }
 
 ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver && other) :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(std::move(other)),
-    ownershipPolicy_(std::move(other.ownershipPolicy_)),
-    results_(std::move(other.results_))
+    controlFileName_(std::move(other.controlFileName_)),
+    masterProcess_(std::move(other.masterProcess_)),
+    results_(std::move(other.results_)),
+    ownershipPolicy_(std::move(other.ownershipPolicy_))
 {
     if (this != &other)
     {
@@ -56,8 +60,10 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
     if (this != &other)
     {
         ReceiverInterface<ControlFileXMLReceiver>::operator=(std::move(other));
-        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
+        this->controlFileName_ = std::move(other.controlFileName_);
+        this->masterProcess_ = std::move(other.masterProcess_);
         this->results_ = std::move(other.results_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
 } // assignment-move operator
@@ -89,6 +95,13 @@ template<>
 void ControlFileXMLReceiver::receiverModifyMyself_(ControlFileName & arg)
 {
     this->controlFileName_ = arg;
+    return;
+}
+
+template<>
+void ControlFileXMLReceiver::receiverModifyMyself_(MasterProcess & arg)
+{
+    this->masterProcess_ = arg;
     return;
 }
 

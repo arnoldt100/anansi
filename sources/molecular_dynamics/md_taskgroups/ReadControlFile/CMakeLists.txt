@@ -89,7 +89,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
          implementation_files/ControlFileName.cpp
-         implementayion_files/MasterProcess.cpp
+         implementation_files/MasterProcess.cpp
          implementation_files/ControlFileXMLReceiver.cpp
          implementation_files/ControlFileXMLOwnershipImpl.cpp
          implementation_files/ControlFileXMLMPICommReceiver.cpp

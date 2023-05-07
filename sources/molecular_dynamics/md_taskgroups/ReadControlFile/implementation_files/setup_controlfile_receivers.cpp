@@ -27,7 +27,8 @@ void setup_controlfile_receivers (const std::string controlfile_name,
     //      - ControlFileXMLReceiver
     //      - ControlFileXMLMPICommReceiver
 
-    setup_ControlFileXMLReceiver(controlfile_name,control_file_invoker);
+    bool master_process = my_world_communicator->iAmMasterProcess();
+    setup_ControlFileXMLReceiver(controlfile_name,master_process,control_file_invoker);
 
     setup_ControlFileXMLMPICommReceiver(); 
 
