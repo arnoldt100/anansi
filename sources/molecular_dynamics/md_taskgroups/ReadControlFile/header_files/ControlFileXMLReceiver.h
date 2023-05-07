@@ -119,9 +119,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
             return  ControlFileXMLReceiver::TASKLABEL;
         }
 
-        MyOwnershipImpl_::Copytype receiverGetCopyOfResults_() const;
-
-        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
+        MyOwnershipImplTraits_::Copytype receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -135,7 +133,10 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         void receiverModifyMyself_(T & arg);
 
         MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
+
     
+        MyOwnershipImplTraits_::Transfertype receiverTransferOwnershipOfResults_();
+
         // ====================  DATA MEMBERS  =======================================
 
     private:
@@ -153,7 +154,6 @@ void ControlFileXMLReceiver::enableReceiver_(Types &... args)
 {
     return;
 }
-
 
 template<typename... Types>
 void ControlFileXMLReceiver::disableReceiver_(Types &... args)
