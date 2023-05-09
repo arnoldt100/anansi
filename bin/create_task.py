@@ -37,6 +37,8 @@ def _main():
 
     logger.info("Start of main program")
 
+    _create_source_files(args.class_name,args.ownership_policy)
+
 ## Parses the command line arguments and returns A namespace.
 #
 # @param [in] ownership_policy_choices A string list of ownership policy choices
@@ -125,6 +127,51 @@ def _register_class_name_message():
 
     help_message = (f"""The name of the task class.\n""") 
     return help_message
+
+## Creates the source files for the task.
+#
+# @param [in] class_name A string that is the class name.
+# @param [in] ownership_policy A string that is the ownership policy.
+def _create_source_files(class_name,ownership_policy):
+
+    _create_header_file(class_name,ownership_policy)
+
+    _create_implementation_file(class_name,ownership_policy)
+
+    return
+
+def _create_header_file(class_name,ownership_policy) :
+    import re
+    import os
+
+    top_level_dir = os.getenv("ANANSI_TOP_LEVEL")
+    template_file = os.path.join(top_level_dir,"templates","TempDummyConcreteTask.h")
+
+    lines = []
+    with open(template_file) as f:
+        lines = f.read().splitlines()
+
+    file_name = class_name + ".h"
+    with open(file_name,'w') as file_handle:
+        for tmp_line in lines:
+            file_handle.write(tmp_line + "\n")
+    return
+
+def _create_implementation_file(class_name,ownership_policy) :
+    import re
+    import os
+
+    top_level_dir = os.getenv("ANANSI_TOP_LEVEL")
+    template_file = os.path.join(top_level_dir,"templates","TempDummyConcreteTask.cpp")
+    lines = []
+    with open(template_file) as f:
+        lines = f.read().splitlines()
+
+    file_name = class_name + ".cpp"
+    with open(file_name,'w') as file_handle:
+        for tmp_line in lines:
+            file_handle.write(tmp_line + "\n")
+    return
 
 if __name__ == "__main__":
     _main()
