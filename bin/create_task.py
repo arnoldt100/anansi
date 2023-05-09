@@ -26,7 +26,11 @@ from loggerutils.logger import create_logger
 def _main():
     ownership_policy_choices = _register_ownership_policy_choices()
     ownership_policy_help_message = _register_ownership_policy_help_message()
-    args = _parse_arguments(ownership_policy_choices,ownership_policy_help_message)
+    classname_help_message =_register_class_name_message()
+
+    args = _parse_arguments(ownership_policy_choices,
+                            ownership_policy_help_message,
+                            classname_help_message)
 
     logger = create_logger(log_id='MainLogger',
                            log_level=args.log_level)
@@ -37,9 +41,10 @@ def _main():
 #
 # @param [in] ownership_policy_choices A string list of ownership policy choices
 # @param [in] ownership_policy_help A string that contains the ownership policy help messages.
+# @param [in]  classname_help A string that contains the class name help messages.
 #
-# @returns A namespace contains attributes that are the command line arguments.
-def _parse_arguments(ownership_policy_choices,ownership_policy_help):
+# @returns A namespace that contains attributes that are the command line arguments.
+def _parse_arguments(ownership_policy_choices,ownership_policy_help,class_name_help):
 
     import logging
 
@@ -68,6 +73,11 @@ def _parse_arguments(ownership_policy_choices,ownership_policy_help):
                            choices=ownership_policy_choices,
                            help=ownership_policy_help)
 
+    mandatory_args_group.add_argument("--class-name",
+                                      required=True,
+                                      type=str,
+                                      help=class_name_help)
+
     my_args = my_parser.parse_args()
 
     return my_args
@@ -95,26 +105,27 @@ def _register_ownership_policy_help_message():
         A string.
 
     """
-    help_message = (f"""Ownership Policy       : Copyable Shareable Transferable\n""" 
-                    f"""--------------------------------------------------------\n"""
-                    f"""NullOwnershipPolicy    :  No      No        No          \n """
-                    f"""TransferOwnershipPolicy:  No      No        Yes         \n"""
-                    f"""ShareCopyOwnershipPolicy:  No      No        Yes         \n"""
-
-
-
-                    )
+    help_message = (f"""Ownership Policy              Copyable  Shareable   Transferable\n""" 
+                    f"""----------------------------------------------------------------\n"""
+                    f"""NullOwnershipPolicy         : No        No          No          \n"""
+                    f"""CopyOwnershipPolicy         : No        Yes         No          \n"""
+                    f"""ShareOwnershipPolicy        : No        Yes         No          \n"""
+                    f"""TransferOwnershipPolicy     : No        No          Yes         \n"""
+                    f"""ShareCopyOwnershipPolicy    : Yes       Yes         No          \n"""
+                    f"""TransferCopyOwnershipPolicy : Yes       Yes         No          \n""")
     return help_message
 
-def _register_publishing_mode_choices():
-    """Creates the choices avaiable for the publishing mode.
+def _register_class_name_message():
+    """Creates the help message for the class name argument.
 
     Returns:
-        An array of strings.
+        A string.
 
     """
-    publishing_mode_choices = ['standard','gitlab-pages','github-pages']
-    return publishing_mode_choices 
+
+    help_message = (f"""The name of the task class.\n""") 
+    return help_message
+
 if __name__ == "__main__":
     _main()
 
