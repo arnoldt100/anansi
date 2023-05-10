@@ -31,7 +31,7 @@ namespace ANANSI
 class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>
 {
     private:
-        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'d','u','m','m','y', '_','l','a','b','e','l'};
 
         using my_result_type_ = int;
@@ -45,7 +45,7 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
 
         using MyOwnershipImpl_ = DummyConcreteTaskOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::__OwnershipPolicy__<MyOwnershipImpl_>;
         
         // Place here the class data members required for doing the task.
 
@@ -56,18 +56,18 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
 
 
         static constexpr 
-        RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE(DummyConcreteTask::tmpstr);
+        RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE(DummyConcreteTaskReceiver::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
-        DummyConcreteTask ();   // constructor
+        DummyConcreteTaskReceiver ();   // constructor
 
-        DummyConcreteTask (const DummyConcreteTask & other);   // copy constructor
+        DummyConcreteTaskReceiver (const DummyConcreteTaskReceiver & other);   // copy constructor
 
-        DummyConcreteTask (DummyConcreteTask && other);   // copy-move constructor
+        DummyConcreteTaskReceiver (DummyConcreteTaskReceiver && other);   // copy-move constructor
 
-        ~DummyConcreteTask ();  // destructor
+        ~DummyConcreteTaskReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -76,9 +76,9 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
 
         // ====================  OPERATORS     =======================================
 
-        DummyConcreteTask& operator= ( const DummyConcreteTask &other ); // assignment operator
+        DummyConcreteTaskReceiver& operator= ( const DummyConcreteTaskReceiver &other ); // assignment operator
 
-        DummyConcreteTask& operator= ( DummyConcreteTask && other ); // assignment-move operator
+        DummyConcreteTaskReceiver& operator= ( DummyConcreteTaskReceiver && other ); // assignment-move operator
 
     protected:
         // ====================  ACCESSORS     =======================================
@@ -88,9 +88,9 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
-            return  DummyConcreteTask::TASKLABEL;
+            return  DummyConcreteTaskReceiver::TASKLABEL;
         }
 
         MyOwnershipImplTraits_::Copytype receiverGetCopyOfResults_() const;
@@ -120,32 +120,32 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
-}; // -----  end of class DummyConcreteTask  -----
+}; // -----  end of class DummyConcreteTaskReceiver  -----
 
 template<typename... Types>
-void DummyConcreteTask::enableReceiver_(Types &... args)
+void DummyConcreteTaskReceiver::enableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTask::disableReceiver_(Types &... args)
+void DummyConcreteTaskReceiver::disableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTask::receiverDoAction_(Types & ... args) const
+void DummyConcreteTaskReceiver::receiverDoAction_(Types & ... args) const
 {
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTask::receiverUndoAction_(Types & ... args) const
+void DummyConcreteTaskReceiver::receiverUndoAction_(Types & ... args) const
 {
     return;
 }
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_DummyConcreteTask_INC  ----- 
+#endif   // ----- #ifndef ANANSI_DummyConcreteTaskReceiver_INC  ----- 

@@ -21,7 +21,7 @@
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
-#include "ControlFileMacroReceiverOwnershipImpl.hpp"
+#include "ControlFileMacroOwnershipImpl.hpp"
 
 #include "CopyOwnershipPolicy.hpp"
 
@@ -31,7 +31,7 @@ namespace ANANSI
 class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFileMacroReceiver>
 {
     private:
-        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'d','u','m','m','y', '_','l','a','b','e','l'};
 
         using my_result_type_ = int;
@@ -43,9 +43,9 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        using MyOwnershipImpl_ = ControlFileMacroReceiverOwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = ControlFileMacroOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
         
         // Place here the class data members required for doing the task.
 
