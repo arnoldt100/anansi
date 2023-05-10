@@ -150,8 +150,8 @@ def _create_header_file(class_name,ownership_policy) :
     with open(template_file) as f:
         lines = f.read().splitlines()
 
-    file_name = class_name + ".h"
-    with open(file_name,'w') as file_handle:
+    file_name = _receiverFileNames(class_name)
+    with open(file_name["header_file"],'w') as file_handle:
         for tmp_line in lines:
             modified_line = _regexEngine(tmp_line,Class_Name=class_name,Ownership_Policy=ownership_policy)
             file_handle.write(modified_line + "\n")
@@ -166,8 +166,8 @@ def _create_implementation_file(class_name,ownership_policy) :
     with open(template_file) as f:
         lines = f.read().splitlines()
 
-    file_name = class_name + ".cpp"
-    with open(file_name,'w') as file_handle:
+    file_name = _receiverFileNames(class_name)
+    with open(file_name["implementation_file"],'w') as file_handle:
         for tmp_line in lines:
             modified_line = _regexEngine(tmp_line,Class_Name=class_name,Ownership_Policy=ownership_policy)
             file_handle.write(modified_line + "\n")
@@ -187,6 +187,12 @@ def _regexEngine(tmpline,Class_Name = None,Ownership_Policy=None):
         result = ownership_pattern.sub(Ownership_Policy,result)
 
     return result
+
+def _receiverFileNames(class_name):
+
+    file_names = { "header_file" : class_name + "Receiver.h",
+                   "implementation_file" : class_name + "Receiver.cpp"}
+    return file_names
 
 if __name__ == "__main__":
     _main()
