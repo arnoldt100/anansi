@@ -1,7 +1,7 @@
-#ifndef  ANANSI_DummyConcreteTask_INC
-#define  ANANSI_DummyConcreteTask_INC
+#ifndef  ANANSI_DummyConcreteTaskReceiver_INC
+#define  ANANSI_DummyConcreteTaskReceiver_INC
 
-//! @file DummyConcreteTask.h
+//! @file DummyConcreteTaskReceiver.h
 //!
 //! Brief description
 //!
@@ -28,7 +28,7 @@
 namespace ANANSI
 {
 
-class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
+class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>
 {
     private:
         static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
