@@ -22,10 +22,12 @@
 #include "MPLAliases.hpp"
 #include "ControlFile.h"
 #include "ControlFileCommunicator.h"
+#include "MacroCommand.hpp"
 #include "GenericMDTask.hpp"
 #include "DefaultFunctorImpl.h"
 #include "ControlFileXMLReceiver.h"
 #include "ControlFileXMLMPICommReceiver.h"
+#include "ControlFileMacroReceiver.h"
 
 namespace ANANSI
 {
@@ -54,24 +56,30 @@ class ReadControlFileTraits
 
         ReadControlFileTraits& operator= ( ReadControlFileTraits && other ); // assignment-move operator
 
+        using MC = MacroCommand<ControlFile,ControlFileCommunicator>;
+
         using abstract_products = MPL::mpl_typelist<
                                                        ControlFile,
-                                                       ControlFileCommunicator
+                                                       ControlFileCommunicator,
+                                                       MC
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
                                                        GenericMDTask<ControlFile,ControlFileXMLReceiver>,
-                                                       GenericMDTask<ControlFileCommunicator,ControlFileXMLMPICommReceiver>
+                                                       GenericMDTask<ControlFileCommunicator,ControlFileXMLMPICommReceiver>,
+                                                       GenericMDTask<MC,ControlFileMacroReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist<
                                                     	ControlFileXMLReceiver::receiver_result_t,
-                                                        ControlFileXMLMPICommReceiver::receiver_result_t
+                                                        ControlFileXMLMPICommReceiver::receiver_result_t,
+                                                        ControlFileMacroReceiver::receiver_result_t
                                                      >;
 
         static constexpr auto LABELS = std::array{
                                                     ControlFileXMLReceiver::TASKLABEL,
-                                                    ControlFileXMLMPICommReceiver::TASKLABEL
+                                                    ControlFileXMLMPICommReceiver::TASKLABEL,
+                                                    ControlFileMacroReceiver::TASKLABEL
                                                  };
 
     protected:

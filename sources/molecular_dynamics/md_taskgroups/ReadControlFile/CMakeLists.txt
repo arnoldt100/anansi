@@ -80,7 +80,9 @@
          header_files/ReadControlFileTraits.h
          header_files/setup_controlfile_receivers.h
          header_files/setup_ControlFileXMLReceiver.h
-         header_files/setup_ControlFileXMLMPICommReceiver.h)
+         header_files/setup_ControlFileXMLMPICommReceiver.h
+         header_files/setup_ControlFileMacroReceiver.h
+         )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -101,7 +103,9 @@
          implementation_files/ReadControlFileTraits.cpp 
          implementation_files/setup_controlfile_receivers.cpp
          implementation_files/setup_ControlFileXMLReceiver.cpp
-         implementation_files/setup_ControlFileXMLMPICommReceiver.cpp)
+         implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
+         implementation_files/setup_ControlFileMacroReceiver.cpp
+         )
 
     # -----------------------------------------------------
     # Set various variables for include directories.

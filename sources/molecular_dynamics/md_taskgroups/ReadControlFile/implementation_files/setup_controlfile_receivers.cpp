@@ -12,6 +12,7 @@
 #include "setup_controlfile_receivers.h"
 #include "setup_ControlFileXMLMPICommReceiver.h"
 #include "setup_ControlFileXMLReceiver.h"
+#include "setup_ControlFileMacroReceiver.h"
 
 namespace ANANSI
 {
@@ -31,6 +32,9 @@ void setup_controlfile_receivers (const std::string controlfile_name,
     setup_ControlFileXMLReceiver(controlfile_name,master_process,control_file_invoker);
 
     setup_ControlFileXMLMPICommReceiver(); 
+
+    setup_ControlFileMacroReceiver();
+
 
     return;
 }   // -----  end of function setup_controlfile_receivers
