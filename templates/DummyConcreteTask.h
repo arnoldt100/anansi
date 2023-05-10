@@ -23,18 +23,7 @@
 #include "TaskLabel.hpp"
 #include "DummyConcreteTaskOwnershipImpl.hpp"
 
-// ---------------------------------------------------
-// Uncomment the ownership policies as required for 
-// class member ConcreteTaskReceiver::ownershipPolicy_.
-// For this class we select ShareCopyOwnershipPolicy.hpp.
-// ---------------------------------------------------
-// #include "NullOwnershipPolicy.hpp"
-// #include "TransferOwnershipPolicy.hpp"
-// #include "ShareCopyOwnershipPolicy.hpp"
-// #include "ShareCopyOwnershipPolicy.hpp"
-// #include "TransferCopyOwnershipPolicy.hpp""
-#include "ShareOwnershipPolicy.hpp"
-// #include "CopyOwnershipPolicy.hpp"
+#include "__OwnershipPolicy__.hpp"
 
 namespace ANANSI
 {

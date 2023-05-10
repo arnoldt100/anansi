@@ -85,7 +85,7 @@ def _parse_arguments(ownership_policy_choices,ownership_policy_help,class_name_h
     return my_args
 
 def _register_ownership_policy_choices():
-    """Creates the choices avaiable for the ownership policies
+    """Sets the choices avaiable for the ownership policies.
 
     Returns:
         An array of strings.
@@ -141,11 +141,10 @@ def _create_source_files(class_name,ownership_policy):
     return
 
 def _create_header_file(class_name,ownership_policy) :
-    import re
     import os
 
     top_level_dir = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(top_level_dir,"templates","TempDummyConcreteTask.h")
+    template_file = os.path.join(top_level_dir,"templates","DummyConcreteTask.h")
 
     lines = []
     with open(template_file) as f:
@@ -154,15 +153,15 @@ def _create_header_file(class_name,ownership_policy) :
     file_name = class_name + ".h"
     with open(file_name,'w') as file_handle:
         for tmp_line in lines:
-            file_handle.write(tmp_line + "\n")
+            modified_line = _regexEngine(tmp_line,Class_Name=class_name,Ownership_Policy=ownership_policy)
+            file_handle.write(modified_line + "\n")
     return
 
 def _create_implementation_file(class_name,ownership_policy) :
-    import re
     import os
 
     top_level_dir = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(top_level_dir,"templates","TempDummyConcreteTask.cpp")
+    template_file = os.path.join(top_level_dir,"templates","DummyConcreteTask.cpp")
     lines = []
     with open(template_file) as f:
         lines = f.read().splitlines()
@@ -170,8 +169,24 @@ def _create_implementation_file(class_name,ownership_policy) :
     file_name = class_name + ".cpp"
     with open(file_name,'w') as file_handle:
         for tmp_line in lines:
-            file_handle.write(tmp_line + "\n")
+            modified_line = _regexEngine(tmp_line,Class_Name=class_name,Ownership_Policy=ownership_policy)
+            file_handle.write(modified_line + "\n")
     return
+
+def _regexEngine(tmpline,Class_Name = None,Ownership_Policy=None):
+    import re
+
+    class_name_pattern = re.compile("DummyConcreteTask")
+    ownership_pattern = re.compile("__OwnershipPolicy__")
+
+    result = tmpline
+    if Class_Name != None:
+        result = class_name_pattern.sub(Class_Name,result)
+
+    if Ownership_Policy != None:
+        result = ownership_pattern.sub(Ownership_Policy,result)
+
+    return result
 
 if __name__ == "__main__":
     _main()
