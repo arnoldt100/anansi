@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "DummyConcreteTask.h"
+#include "DummyConcreteTaskReceiver.h"
 
 namespace ANANSI {
 
@@ -20,16 +20,16 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-DummyConcreteTask::DummyConcreteTask() :
-    ReceiverInterface<DummyConcreteTask>(),
+DummyConcreteTaskReceiver::DummyConcreteTaskReceiver() :
+    ReceiverInterface<DummyConcreteTaskReceiver>(),
     results_(0),
     ownershipPolicy_()
 {
     return;
 }
 
-DummyConcreteTask::DummyConcreteTask( DummyConcreteTask && other) :
-    ReceiverInterface<DummyConcreteTask>(std::move(other)),
+DummyConcreteTaskReceiver::DummyConcreteTaskReceiver( DummyConcreteTaskReceiver && other) :
+    ReceiverInterface<DummyConcreteTaskReceiver>(std::move(other)),
     results_(std::move(other.results_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_))
 {
@@ -40,7 +40,7 @@ DummyConcreteTask::DummyConcreteTask( DummyConcreteTask && other) :
     return;
 }
 
-DummyConcreteTask::~DummyConcreteTask()
+DummyConcreteTaskReceiver::~DummyConcreteTaskReceiver()
 {
     return;
 }
@@ -51,11 +51,11 @@ DummyConcreteTask::~DummyConcreteTask()
 
 //============================= OPERATORS ====================================
 
-DummyConcreteTask& DummyConcreteTask::operator= ( DummyConcreteTask && other )
+DummyConcreteTaskReceiver& DummyConcreteTaskReceiver::operator= ( DummyConcreteTaskReceiver && other )
 {
     if (this != &other)
     {
-        ReceiverInterface<DummyConcreteTask>::operator=(std::move(other));
+        ReceiverInterface<DummyConcreteTaskReceiver>::operator=(std::move(other));
         this->results_ = std::move(other.results_);
     }
     return *this;
@@ -69,28 +69,28 @@ DummyConcreteTask& DummyConcreteTask::operator= ( DummyConcreteTask && other )
 
 //============================= ACCESSORS ====================================
 
-DummyConcreteTask::MyOwnershipImplTraits_::Copytype DummyConcreteTask::receiverGetCopyOfResults_() const
+DummyConcreteTaskReceiver::MyOwnershipImplTraits_::Copytype DummyConcreteTaskReceiver::receiverGetCopyOfResults_() const
 {
-    DummyConcreteTask::MyOwnershipImplTraits_::Copytype my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    DummyConcreteTaskReceiver::MyOwnershipImplTraits_::Copytype my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
 //============================= MUTATORS =====================================
 
-DummyConcreteTask::MyOwnershipImplTraits_::Transfertype DummyConcreteTask::receiverTransferOwnershipOfResults_()
+DummyConcreteTaskReceiver::MyOwnershipImplTraits_::Transfertype DummyConcreteTaskReceiver::receiverTransferOwnershipOfResults_()
 {
-    DummyConcreteTask::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    DummyConcreteTaskReceiver::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-DummyConcreteTask::MyOwnershipImplTraits_::Sharetype DummyConcreteTask::receiverShareOwnershipOfResults_()
+DummyConcreteTaskReceiver::MyOwnershipImplTraits_::Sharetype DummyConcreteTaskReceiver::receiverShareOwnershipOfResults_()
 {
-    DummyConcreteTask::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    DummyConcreteTaskReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
 template<>
-void DummyConcreteTask::receiverModifyMyself_(int & alpha)
+void DummyConcreteTaskReceiver::receiverModifyMyself_(int & alpha)
 {
     return;
 }

@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "DummyConcreteTask.h"
+#include "ControlFileMacroReceiver.h"
 
 namespace ANANSI {
 
@@ -20,16 +20,16 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-DummyConcreteTask::DummyConcreteTask() :
-    ReceiverInterface<DummyConcreteTask>(),
+ControlFileMacroReceiver::ControlFileMacroReceiver() :
+    ReceiverInterface<ControlFileMacroReceiver>(),
     results_(0),
     ownershipPolicy_()
 {
     return;
 }
 
-DummyConcreteTask::DummyConcreteTask( DummyConcreteTask && other) :
-    ReceiverInterface<DummyConcreteTask>(std::move(other)),
+ControlFileMacroReceiver::ControlFileMacroReceiver( ControlFileMacroReceiver && other) :
+    ReceiverInterface<ControlFileMacroReceiver>(std::move(other)),
     results_(std::move(other.results_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_))
 {
@@ -40,7 +40,7 @@ DummyConcreteTask::DummyConcreteTask( DummyConcreteTask && other) :
     return;
 }
 
-DummyConcreteTask::~DummyConcreteTask()
+ControlFileMacroReceiver::~ControlFileMacroReceiver()
 {
     return;
 }
@@ -51,11 +51,11 @@ DummyConcreteTask::~DummyConcreteTask()
 
 //============================= OPERATORS ====================================
 
-DummyConcreteTask& DummyConcreteTask::operator= ( DummyConcreteTask && other )
+ControlFileMacroReceiver& ControlFileMacroReceiver::operator= ( ControlFileMacroReceiver && other )
 {
     if (this != &other)
     {
-        ReceiverInterface<DummyConcreteTask>::operator=(std::move(other));
+        ReceiverInterface<ControlFileMacroReceiver>::operator=(std::move(other));
         this->results_ = std::move(other.results_);
     }
     return *this;
@@ -69,28 +69,28 @@ DummyConcreteTask& DummyConcreteTask::operator= ( DummyConcreteTask && other )
 
 //============================= ACCESSORS ====================================
 
-DummyConcreteTask::MyOwnershipImplTraits_::Copytype DummyConcreteTask::receiverGetCopyOfResults_() const
+ControlFileMacroReceiver::MyOwnershipImplTraits_::Copytype ControlFileMacroReceiver::receiverGetCopyOfResults_() const
 {
-    DummyConcreteTask::MyOwnershipImplTraits_::Copytype my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    ControlFileMacroReceiver::MyOwnershipImplTraits_::Copytype my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
 //============================= MUTATORS =====================================
 
-DummyConcreteTask::MyOwnershipImplTraits_::Transfertype DummyConcreteTask::receiverTransferOwnershipOfResults_()
+ControlFileMacroReceiver::MyOwnershipImplTraits_::Transfertype ControlFileMacroReceiver::receiverTransferOwnershipOfResults_()
 {
-    DummyConcreteTask::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    ControlFileMacroReceiver::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-DummyConcreteTask::MyOwnershipImplTraits_::Sharetype DummyConcreteTask::receiverShareOwnershipOfResults_()
+ControlFileMacroReceiver::MyOwnershipImplTraits_::Sharetype ControlFileMacroReceiver::receiverShareOwnershipOfResults_()
 {
-    DummyConcreteTask::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    ControlFileMacroReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
 template<>
-void DummyConcreteTask::receiverModifyMyself_(int & alpha)
+void ControlFileMacroReceiver::receiverModifyMyself_(int & alpha)
 {
     return;
 }

@@ -1,7 +1,7 @@
-#ifndef  ANANSI_DummyConcreteTask_INC
-#define  ANANSI_DummyConcreteTask_INC
+#ifndef  ANANSI_ControlFileMacroReceiver_INC
+#define  ANANSI_ControlFileMacroReceiver_INC
 
-//! @file DummyConcreteTask.h
+//! @file ControlFileMacroReceiver.h
 //!
 //! Brief description
 //!
@@ -21,25 +21,14 @@
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
-#include "DummyConcreteTaskOwnershipImpl.hpp"
+#include "ControlFileMacroReceiverOwnershipImpl.hpp"
 
-// ---------------------------------------------------
-// Uncomment the ownership policies as required for 
-// class member ConcreteTaskReceiver::ownershipPolicy_.
-// For this class we select ShareCopyOwnershipPolicy.hpp.
-// ---------------------------------------------------
-// #include "NullOwnershipPolicy.hpp"
-// #include "TransferOwnershipPolicy.hpp"
-// #include "ShareCopyOwnershipPolicy.hpp"
-// #include "ShareCopyOwnershipPolicy.hpp"
-// #include "TransferCopyOwnershipPolicy.hpp""
-#include "ShareOwnershipPolicy.hpp"
-// #include "CopyOwnershipPolicy.hpp"
+#include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
 
-class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
+class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFileMacroReceiver>
 {
     private:
         static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
@@ -54,7 +43,7 @@ class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        using MyOwnershipImpl_ = DummyConcreteTaskOwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = ControlFileMacroReceiverOwnershipImpl<MyOwnershipImplTraits_>;
 
         using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
         
@@ -67,18 +56,18 @@ class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
 
 
         static constexpr 
-        RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE(DummyConcreteTask::tmpstr);
+        RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE(ControlFileMacroReceiver::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
-        DummyConcreteTask ();   // constructor
+        ControlFileMacroReceiver ();   // constructor
 
-        DummyConcreteTask (const DummyConcreteTask & other);   // copy constructor
+        ControlFileMacroReceiver (const ControlFileMacroReceiver & other);   // copy constructor
 
-        DummyConcreteTask (DummyConcreteTask && other);   // copy-move constructor
+        ControlFileMacroReceiver (ControlFileMacroReceiver && other);   // copy-move constructor
 
-        ~DummyConcreteTask ();  // destructor
+        ~ControlFileMacroReceiver ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -87,9 +76,9 @@ class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
 
         // ====================  OPERATORS     =======================================
 
-        DummyConcreteTask& operator= ( const DummyConcreteTask &other ); // assignment operator
+        ControlFileMacroReceiver& operator= ( const ControlFileMacroReceiver &other ); // assignment operator
 
-        DummyConcreteTask& operator= ( DummyConcreteTask && other ); // assignment-move operator
+        ControlFileMacroReceiver& operator= ( ControlFileMacroReceiver && other ); // assignment-move operator
 
     protected:
         // ====================  ACCESSORS     =======================================
@@ -99,9 +88,9 @@ class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
-            return  DummyConcreteTask::TASKLABEL;
+            return  ControlFileMacroReceiver::TASKLABEL;
         }
 
         MyOwnershipImplTraits_::Copytype receiverGetCopyOfResults_() const;
@@ -131,32 +120,32 @@ class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
-}; // -----  end of class DummyConcreteTask  -----
+}; // -----  end of class ControlFileMacroReceiver  -----
 
 template<typename... Types>
-void DummyConcreteTask::enableReceiver_(Types &... args)
+void ControlFileMacroReceiver::enableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTask::disableReceiver_(Types &... args)
+void ControlFileMacroReceiver::disableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTask::receiverDoAction_(Types & ... args) const
+void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTask::receiverUndoAction_(Types & ... args) const
+void ControlFileMacroReceiver::receiverUndoAction_(Types & ... args) const
 {
     return;
 }
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_DummyConcreteTask_INC  ----- 
+#endif   // ----- #ifndef ANANSI_ControlFileMacroReceiver_INC  ----- 

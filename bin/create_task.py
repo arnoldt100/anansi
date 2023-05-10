@@ -144,7 +144,7 @@ def _create_header_file(class_name,ownership_policy) :
     import os
 
     top_level_dir = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(top_level_dir,"templates","DummyConcreteTask.h")
+    template_file = os.path.join(top_level_dir,"templates","DummyConcreteTaskReceiver.h")
 
     lines = []
     with open(template_file) as f:
@@ -161,7 +161,7 @@ def _create_implementation_file(class_name,ownership_policy) :
     import os
 
     top_level_dir = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(top_level_dir,"templates","DummyConcreteTask.cpp")
+    template_file = os.path.join(top_level_dir,"templates","DummyConcreteTaskReceiver.cpp")
     lines = []
     with open(template_file) as f:
         lines = f.read().splitlines()
