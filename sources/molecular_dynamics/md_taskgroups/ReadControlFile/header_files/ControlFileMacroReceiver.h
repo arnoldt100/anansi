@@ -22,6 +22,8 @@
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
 #include "ControlFileMacroOwnershipImpl.hpp"
+#include "ControlFileXMLReceiver.h"
+#include "ControlFileXMLMPICommReceiver.h"
 
 #include "CopyOwnershipPolicy.hpp"
 

@@ -166,7 +166,7 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
     if (this->masterProcess_.operator()())
     {
-        std::cout << "Reading control file " << this->controlFileName_.operator()() << "\n";
+        std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
     }
     return;
 }
