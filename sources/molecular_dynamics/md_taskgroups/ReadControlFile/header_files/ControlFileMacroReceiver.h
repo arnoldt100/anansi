@@ -53,6 +53,9 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
     public:
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
+        using receiver_copy_t = MyOwnershipImplTraits_::Copytype;
+        using receiver_share_t = MyOwnershipImplTraits_::Sharetype;
+        using receiver_transfer_t = MyOwnershipImplTraits_::Transfertype;
 
         // ====================  STATIC       =======================================
 

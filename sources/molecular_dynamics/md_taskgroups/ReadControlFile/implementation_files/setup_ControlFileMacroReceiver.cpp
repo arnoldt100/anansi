@@ -18,6 +18,8 @@ void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
                                                                                 ReadControlFileTraits::concrete_products>
                                                     > control_file_invoker)
 {
+
+    // 
     return;
 }   /* -----  end of function __function__  ----- */
 

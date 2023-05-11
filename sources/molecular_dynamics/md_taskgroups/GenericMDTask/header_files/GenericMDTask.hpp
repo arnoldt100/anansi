@@ -184,7 +184,7 @@ class GenericMDTask : public BaseClass
         task_result_t takeOwnershipOfResults()
         {
             task_result_t results = 
-                this->receiver_->takeOwnershipOfResults();
+                this->receiver_->transferOwnershipOfResults();
             return results;
         }
         // ====================  OPERATORS     =======================================

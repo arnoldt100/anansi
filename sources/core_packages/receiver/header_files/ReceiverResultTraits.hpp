@@ -25,6 +25,7 @@ namespace RECEIVER
 //        Class:  ReceiverResultTraits
 //  Description:  
 //  =====================================================================================
+
 template<typename ResultType_t,
          typename CopyType_t,
          typename ShareType_t,
@@ -98,6 +99,7 @@ class ReceiverResultTraits
         // ====================  DATA MEMBERS  =======================================
 
     private:
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

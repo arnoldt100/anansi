@@ -124,6 +124,27 @@ class GenericTaskInvokerUtilities
             return ret_val;
         }
 
+        //! Returns a trasfer type of the result of a concrete task.
+        //!
+        //! @tparam A typelist of concrete task types.
+        //! @param[in,out] task The concrete task of whose results we want,
+        template <typename ConcreteTasksTypeList,
+                  typename LABEL_t,
+                  LABEL_t COMMAND_LABEL>
+        static auto
+        trasnferTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
+        {
+            using concrete_task_type = 
+                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+
+            std::shared_ptr<concrete_task_type> concrete_task =
+                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
+
+            auto ret_val = concrete_task->takeOwnershipOfResults();
+
+            return ret_val;
+        }
+
 
         template <typename ConcreteTasksTypeList, ANANSI::TaskLabel COMMAND_LABEL>
         static void
