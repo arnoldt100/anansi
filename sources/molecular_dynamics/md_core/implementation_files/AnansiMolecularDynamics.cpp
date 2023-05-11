@@ -34,7 +34,7 @@ namespace ANANSI {
 
 //============================= ACCESSORS ====================================
 template<>
-void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTraits::abstract_products,
+void AnansiMolecularDynamics::enab -veConsoleLoggingTask_<WriteTextToConsoleTaskTraits::abstract_products,
                                                         WriteTextToConsoleTaskTraits::concrete_products
                                                        >(
     std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
