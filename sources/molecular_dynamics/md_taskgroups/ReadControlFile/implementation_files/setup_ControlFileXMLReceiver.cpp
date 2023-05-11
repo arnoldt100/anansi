@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "setup_ControlFileXMLReceiver.h"
+#include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
 
 namespace ANANSI

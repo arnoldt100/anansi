@@ -14,7 +14,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "GenericTaskInvoker.hpp"
-#include "GenericTaskFactory.hpp"
 #include "ReadControlFileTraits.h"
 
 
