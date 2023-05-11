@@ -27,13 +27,14 @@ void setup_controlfile_receivers (const std::string controlfile_name,
     // Setup the concrete products of typelist ReadControlFileTraits::concrete_products:
     //      - ControlFileXMLReceiver
     //      - ControlFileXMLMPICommReceiver
+    //      -setup_ControlFileMacroReceiver
 
     bool master_process = my_world_communicator->iAmMasterProcess();
     setup_ControlFileXMLReceiver(controlfile_name,master_process,control_file_invoker);
 
-    setup_ControlFileXMLMPICommReceiver(); 
+    setup_ControlFileXMLMPICommReceiver(control_file_invoker); 
 
-    setup_ControlFileMacroReceiver();
+    setup_ControlFileMacroReceiver(control_file_invoker);
 
 
     return;

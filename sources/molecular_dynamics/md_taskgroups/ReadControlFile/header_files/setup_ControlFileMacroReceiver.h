@@ -12,18 +12,16 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GenericTaskInvoker.hpp"
+#include "ReadControlFileTraits.h"
 
 
 namespace ANANSI
 {
 
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  __function__
- *  Description:  
- * =====================================================================================
- */
-void setup_ControlFileMacroReceiver ();
+void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                                                ReadControlFileTraits::concrete_products>
+                                                    > control_file_invoker);
 
 
 }; /* namespace ANANSI */
