@@ -69,23 +69,23 @@ ControlFileMacroReceiver& ControlFileMacroReceiver::operator= ( ControlFileMacro
 
 //============================= ACCESSORS ====================================
 
-ControlFileMacroReceiver::MyOwnershipImplTraits_::Copytype ControlFileMacroReceiver::receiverGetCopyOfResults_() const
+ControlFileMacroReceiver::receiver_copy_t ControlFileMacroReceiver::receiverGetCopyOfResults_() const
 {
-    ControlFileMacroReceiver::MyOwnershipImplTraits_::Copytype my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    ControlFileMacroReceiver::receiver_copy_t my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
 //============================= MUTATORS =====================================
 
-ControlFileMacroReceiver::MyOwnershipImplTraits_::Transfertype ControlFileMacroReceiver::receiverTransferOwnershipOfResults_()
+ControlFileMacroReceiver::receiver_transfer_t ControlFileMacroReceiver::receiverTransferOwnershipOfResults_()
 {
-    ControlFileMacroReceiver::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    ControlFileMacroReceiver::receiver_transfer_t my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-ControlFileMacroReceiver::MyOwnershipImplTraits_::Sharetype ControlFileMacroReceiver::receiverShareOwnershipOfResults_()
+ControlFileMacroReceiver::receiver_share_t ControlFileMacroReceiver::receiverShareOwnershipOfResults_()
 {
-    ControlFileMacroReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    ControlFileMacroReceiver::receiver_share_t my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

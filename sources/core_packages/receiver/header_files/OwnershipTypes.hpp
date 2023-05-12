@@ -19,26 +19,26 @@ enum class OwnershipTypes
     TRANSFERTYPE
 }; // -----  end of enum  OwnershipTypes  -----
 
-template <OwnershipTypes T,typename W>
+template <OwnershipTypes T,typename ReceiverResultTraitsType>
 struct ReceiverOwnershipType;
 
 
-template <typename W>
-struct ReceiverOwnershipType<OwnershipTypes::COPYTYPE,W>
+template <typename ReceiverResultTraitsType>
+struct ReceiverOwnershipType<OwnershipTypes::COPYTYPE,ReceiverResultTraitsType>
 {
-    using TYPE = typename W::Copytype;
+    using TYPE = typename ReceiverResultTraitsType::Copytype;
 };
 
-template <typename W>
-struct ReceiverOwnershipType<OwnershipTypes::SHARETYPE,W>
+template <typename ReceiverResultTraitsType>
+struct ReceiverOwnershipType<OwnershipTypes::SHARETYPE,ReceiverResultTraitsType>
 {
-    using TYPE = typename W::Sharetype;
+    using TYPE = typename ReceiverResultTraitsType::Sharetype;
 };
 
-template <typename W>
-struct ReceiverOwnershipType<OwnershipTypes::TRANSFERTYPE,W>
+template <typename ReceiverResultTraitsType>
+struct ReceiverOwnershipType<OwnershipTypes::TRANSFERTYPE,ReceiverResultTraitsType>
 {
-    using TYPE = typename W::Sharetype;
+    using TYPE = typename ReceiverResultTraitsType::Sharetype;
 };
 
 } // namespace __NAMESPACE__

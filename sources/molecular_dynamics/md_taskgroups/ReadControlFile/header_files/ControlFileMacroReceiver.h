@@ -24,8 +24,8 @@
 #include "ControlFileMacroOwnershipImpl.hpp"
 #include "ControlFileXMLReceiver.h"
 #include "ControlFileXMLMPICommReceiver.h"
-
 #include "CopyOwnershipPolicy.hpp"
+#include "OwnershipTypes.hpp"
 
 namespace ANANSI
 {
@@ -46,9 +46,11 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
                                                                       my_transfer_type_>;
 
         using MyOwnershipImpl_ = ControlFileMacroOwnershipImpl<MyOwnershipImplTraits_>;
-
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
-        
+       
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+
         // Place here the class data members required for doing the task.
 
     public:
@@ -98,7 +100,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
             return  ControlFileMacroReceiver::TASKLABEL;
         }
 
-        MyOwnershipImplTraits_::Copytype receiverGetCopyOfResults_() const;
+        ControlFileMacroReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
 
 
         // ====================  MUTATORS      =======================================
@@ -112,9 +114,9 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
+        ControlFileMacroReceiver::receiver_share_t receiverShareOwnershipOfResults_();
     
-        MyOwnershipImplTraits_::Transfertype receiverTransferOwnershipOfResults_();
+        ControlFileMacroReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 
