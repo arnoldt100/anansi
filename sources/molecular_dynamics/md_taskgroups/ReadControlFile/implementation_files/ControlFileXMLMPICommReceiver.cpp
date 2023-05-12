@@ -70,9 +70,9 @@ ControlFileXMLMPICommReceiver& ControlFileXMLMPICommReceiver::operator= ( Contro
 
 //============================= ACCESSORS ====================================
 
-ControlFileXMLMPICommReceiver::MyOwnershipImplTraits_::Copytype ControlFileXMLMPICommReceiver::receiverGetCopyOfResults_() const
+ControlFileXMLMPICommReceiver::receiver_copy_t ControlFileXMLMPICommReceiver::receiverGetCopyOfResults_() const
 {
-    ControlFileXMLMPICommReceiver::MyOwnershipImplTraits_::Copytype my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    ControlFileXMLMPICommReceiver::receiver_copy_t my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
@@ -85,15 +85,15 @@ void ControlFileXMLMPICommReceiver::receiverModifyMyself_(int & arg)
     return;
 }
 
-ControlFileXMLMPICommReceiver::MyOwnershipImplTraits_::Sharetype ControlFileXMLMPICommReceiver::receiverShareOwnershipOfResults_()
+ControlFileXMLMPICommReceiver::receiver_share_t ControlFileXMLMPICommReceiver::receiverShareOwnershipOfResults_()
 {
-    ControlFileXMLMPICommReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    ControlFileXMLMPICommReceiver::receiver_share_t my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-ControlFileXMLMPICommReceiver::MyOwnershipImplTraits_::Transfertype ControlFileXMLMPICommReceiver::receiverTransferOwnershipOfResults_()
+ControlFileXMLMPICommReceiver::receiver_transfer_t ControlFileXMLMPICommReceiver::receiverTransferOwnershipOfResults_()
 {
-    ControlFileXMLMPICommReceiver::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    ControlFileXMLMPICommReceiver::receiver_transfer_t my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

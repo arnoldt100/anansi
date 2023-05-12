@@ -25,6 +25,7 @@
 #include "ReceiverInterface.hpp"
 #include "ControlFileXMLMPICommOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
+#include "OwnershipTypes.hpp"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -56,12 +57,18 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+
         using MyOwnershipImpl_ = ControlFileXMLMPICommOwnershipImpl<MyOwnershipImplTraits_>;
 
         using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
 
     public:
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
+        using receiver_copy_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
         // ====================  STATIC       =======================================
 
@@ -104,7 +111,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
             return  ControlFileXMLMPICommReceiver::TASKLABEL;
         }
 
-        MyOwnershipImpl_::Copytype receiverGetCopyOfResults_() const;
+        ControlFileXMLMPICommReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
 
 
         // ====================  MUTATORS      =======================================
@@ -118,9 +125,9 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
+        ControlFileXMLMPICommReceiver::receiver_share_t receiverShareOwnershipOfResults_();
 
-        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
+        ControlFileXMLMPICommReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
 
         // ====================  METHODS       =======================================
 

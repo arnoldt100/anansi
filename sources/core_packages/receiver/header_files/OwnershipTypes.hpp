@@ -1,4 +1,6 @@
-//--------------------------------------------------------//
+#ifndef RECEIVER_ReceiverOwnershipTypes_INC
+#define RECEIVER_ReceiverOwnershipTypes_INC
+RECEIVER_ReceiverOwnershipTypes_INC//--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 
@@ -41,4 +43,6 @@ struct ReceiverOwnershipType<OwnershipTypes::TRANSFERTYPE,ReceiverResultTraitsTy
     using TYPE = typename ReceiverResultTraitsType::Sharetype;
 };
 
-} // namespace __NAMESPACE__
+} // namespace RECEIVER
+
+#endif // RECEIVER_ReceiverOwnershipTypes_INC

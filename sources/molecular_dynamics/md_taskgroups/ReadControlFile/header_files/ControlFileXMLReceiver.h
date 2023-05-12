@@ -36,6 +36,7 @@
 #include "TaskLabel.hpp"
 #include "ControlFileName.h"
 #include "MasterProcess.h"
+#include "OwnershipTypes.hpp"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -70,6 +71,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+
         using MyOwnershipImpl_ = ControlFileXMLOwnershipImpl<MyOwnershipImplTraits_>;
 
         using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
@@ -79,6 +83,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
     public:
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
+        using receiver_copy_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
         // ====================  STATIC       =======================================
 
@@ -119,7 +126,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
             return  ControlFileXMLReceiver::TASKLABEL;
         }
 
-        MyOwnershipImplTraits_::Copytype receiverGetCopyOfResults_() const;
+        ControlFileXMLReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -132,10 +139,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
-
+        ControlFileXMLReceiver::receiver_share_t receiverShareOwnershipOfResults_();
     
-        MyOwnershipImplTraits_::Transfertype receiverTransferOwnershipOfResults_();
+        ControlFileXMLReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 
