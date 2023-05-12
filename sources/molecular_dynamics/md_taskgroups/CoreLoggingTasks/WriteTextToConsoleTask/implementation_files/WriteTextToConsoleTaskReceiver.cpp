@@ -76,24 +76,24 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 
 //============================= ACCESSORS ====================================
 
-WriteTextToConsoleTaskReceiver::MyOwnershipImplTraits_::Copytype WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults_() const
+WriteTextToConsoleTaskReceiver::receiver_copy_t WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults_() const
 {
-    WriteTextToConsoleTaskReceiver::MyOwnershipImplTraits_::Copytype  my_ptr =
+    WriteTextToConsoleTaskReceiver::receiver_copy_t my_ptr =
         this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
 //============================= MUTATORS =====================================
 
-WriteTextToConsoleTaskReceiver::MyOwnershipImplTraits_::Sharetype WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults_()
+WriteTextToConsoleTaskReceiver::receiver_share_t WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults_()
 {
-    WriteTextToConsoleTaskReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    WriteTextToConsoleTaskReceiver::receiver_share_t my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-WriteTextToConsoleTaskReceiver::MyOwnershipImplTraits_::Transfertype WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults_()
+WriteTextToConsoleTaskReceiver::receiver_transfer_t WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults_()
 {
-    WriteTextToConsoleTaskReceiver::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    WriteTextToConsoleTaskReceiver::receiver_transfer_t my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

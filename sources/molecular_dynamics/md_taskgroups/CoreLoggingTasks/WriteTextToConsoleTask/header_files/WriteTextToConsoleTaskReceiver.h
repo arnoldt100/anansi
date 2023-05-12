@@ -21,9 +21,9 @@
 #include "TaskLabel.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "WriteTextToConsoleTaskOwnershipImpl.hpp"
-
 #include "Communicator.h"
 #include "ConsoleMessageContainer.h"
+#include "OwnershipTypes.hpp"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -62,13 +62,17 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
                                                                      my_copy_type_,
                                                                      my_share_type_,
                                                                      my_transfer_type_>;
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
 
         using MyOwnershipImpl_ = WriteTextToConsoleTaskOwnershipImpl<MyOwnershipImplTraits_>;
-
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
     public:
        
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
+        using receiver_copy_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
     public:
         // ====================  STATIC       =======================================
@@ -112,7 +116,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
             return  WriteTextToConsoleTaskReceiver::TASKLABEL;
         }
 
-       WriteTextToConsoleTaskReceiver::MyOwnershipImplTraits_::Copytype receiverGetCopyOfResults_() const;
+        WriteTextToConsoleTaskReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -125,9 +129,9 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
+        WriteTextToConsoleTaskReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
 
-        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
+        WriteTextToConsoleTaskReceiver::receiver_share_t receiverShareOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 

@@ -72,9 +72,9 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 
 //============================= ACCESSORS ====================================
 
-InitWorldCommunicatorTaskReceiver::MyOwnershipImplTraits_::Copytype InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults_() const
+InitWorldCommunicatorTaskReceiver::receiver_copy_t InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults_() const
 {
-    InitWorldCommunicatorTaskReceiver::MyOwnershipImplTraits_::Copytype my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    InitWorldCommunicatorTaskReceiver::receiver_copy_t my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
@@ -87,15 +87,15 @@ void InitWorldCommunicatorTaskReceiver::receiverModifyMyself_(std::unique_ptr<CO
     return;
 }
 
-InitWorldCommunicatorTaskReceiver::MyOwnershipImplTraits_::Sharetype InitWorldCommunicatorTaskReceiver::receiverShareOwnershipOfResults_()
+InitWorldCommunicatorTaskReceiver::receiver_share_t InitWorldCommunicatorTaskReceiver::receiverShareOwnershipOfResults_()
 {
-    InitWorldCommunicatorTaskReceiver::MyOwnershipImplTraits_::Sharetype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    InitWorldCommunicatorTaskReceiver::receiver_share_t my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-InitWorldCommunicatorTaskReceiver::MyOwnershipImplTraits_::Transfertype InitWorldCommunicatorTaskReceiver::receiverTransferOwnershipOfResults_()
+InitWorldCommunicatorTaskReceiver::receiver_transfer_t InitWorldCommunicatorTaskReceiver::receiverTransferOwnershipOfResults_()
 {
-    InitWorldCommunicatorTaskReceiver::MyOwnershipImplTraits_::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    InitWorldCommunicatorTaskReceiver::receiver_transfer_t my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

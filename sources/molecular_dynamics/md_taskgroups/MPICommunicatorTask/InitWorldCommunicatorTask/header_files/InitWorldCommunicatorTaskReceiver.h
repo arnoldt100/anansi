@@ -21,6 +21,7 @@
 #include "MPICommunicatorFactory.h"
 #include "TaskLabel.hpp"
 #include "InitWorldCommunicatorTaskOwnershipImpl.hpp"
+#include "OwnershipTypes.hpp"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -77,13 +78,18 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        using MyOwnershipImpl_ = InitWorldCommunicatorTaskOwnershipImpl<MyOwnershipImplTraits_>;
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
 
+        using MyOwnershipImpl_ = InitWorldCommunicatorTaskOwnershipImpl<MyOwnershipImplTraits_>;
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
     public: 
         //! The type of the data member results_.
         using receiver_result_t = std::unique_ptr<COMMUNICATOR::Communicator>;
+        using receiver_copy_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
         
         // ====================  STATIC       =======================================
 
@@ -124,7 +130,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
             return  InitWorldCommunicatorTaskReceiver::TASKLABEL;
         }
 
-        MyOwnershipImpl_::Copytype receiverGetCopyOfResults_() const;
+        InitWorldCommunicatorTaskReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -137,9 +143,9 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
+        InitWorldCommunicatorTaskReceiver::receiver_share_t receiverShareOwnershipOfResults_();
 
-        MyOwnershipImpl_::Transfertype receiverTransferOwnershipOfResults_();
+        InitWorldCommunicatorTaskReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
 
         // ====================  METHODS       =======================================
 
