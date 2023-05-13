@@ -22,6 +22,7 @@
 #include "TaskLabel.hpp"
 #include "AnansiTaskParameters.h"
 #include "DefaultFunctorImpl.h"
+#include "OwnershipTypes.hpp"
 
 namespace ANANSI
 {
@@ -38,6 +39,9 @@ class GenericMDTask : public BaseClass
 {
 
     public:
+
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes_ = typename Receiver:: template MyOwnershipTypes<Q>;
 
         using task_result_t = typename Receiver::receiver_result_t;
         using receiver_copy_t =  typename Receiver::receiver_copy_t;

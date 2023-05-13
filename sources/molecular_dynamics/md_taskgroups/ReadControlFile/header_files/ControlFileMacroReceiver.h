@@ -45,19 +45,19 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
-
         using MyOwnershipImpl_ = ControlFileMacroOwnershipImpl<MyOwnershipImplTraits_>;
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
        
         // Place here the class data members required for doing the task.
 
     public:
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
-        using receiver_copy_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        using receiver_copy_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
         // ====================  STATIC       =======================================
 
