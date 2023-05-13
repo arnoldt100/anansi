@@ -94,10 +94,12 @@ class GenericTaskInvokerUtilities
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
+            using receiver_copy_t = typename concrete_task_type::receiver_copy_t;
+
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
 
-            auto ret_val = concrete_task->getCopyOfResults();
+            receiver_copy_t ret_val = concrete_task->getCopyOfResults();
 
             return ret_val;
         }
@@ -116,10 +118,12 @@ class GenericTaskInvokerUtilities
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
+            using receiver_share_t = typename concrete_task_type::receiver_share_t;
+
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
 
-            auto ret_val = concrete_task->shareOwnershipOfResults();
+            receiver_share_t ret_val = concrete_task->shareOwnershipOfResults();
 
             return ret_val;
         }
@@ -132,15 +136,17 @@ class GenericTaskInvokerUtilities
                   typename LABEL_t,
                   LABEL_t COMMAND_LABEL>
         static auto
-        trasnferTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
+        transferTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
         {
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
+            using receiver_transfer_t = typename concrete_task_type::receiver_transfer_t;
+
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
 
-            auto ret_val = concrete_task->takeOwnershipOfResults();
+            receiver_transfer_t  ret_val = concrete_task->takeOwnershipOfResults();
 
             return ret_val;
         }
