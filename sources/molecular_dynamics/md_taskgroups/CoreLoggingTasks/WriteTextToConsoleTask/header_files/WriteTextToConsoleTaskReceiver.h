@@ -62,17 +62,17 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
                                                                      my_copy_type_,
                                                                      my_share_type_,
                                                                      my_transfer_type_>;
-        template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
-
         using MyOwnershipImpl_ = WriteTextToConsoleTaskOwnershipImpl<MyOwnershipImplTraits_>;
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
     public:
        
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
-        using receiver_copy_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t = MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        using receiver_copy_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
     public:
         // ====================  STATIC       =======================================

@@ -57,9 +57,6 @@
     #  (End of section)
     # ----------------------------------------------------
 
-
-
-
     # ----------------------------------------------------
     #  This section configures targets in MPICommunicatorTask.
     # 
