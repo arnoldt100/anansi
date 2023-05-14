@@ -224,9 +224,9 @@ class GenericMDTask : public BaseClass
         // ====================  TYPE ALIASES  =======================================
         using receiver_t = Receiver;
         using task_result_t = typename Receiver::receiver_result_t;
-        using receiver_copy_t =  typename Receiver::receiver_copy_t;
-        using receiver_share_t =  typename Receiver::receiver_share_t;
-        using receiver_transfer_t =  typename Receiver::receiver_transfer_t;
+        using receiver_copy_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
         // ====================  METHODS       =======================================
 
