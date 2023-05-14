@@ -40,13 +40,9 @@ class GenericMDTask : public BaseClass
 
     public:
 
+        // ====================  TYPE ALIASES  =======================================
         template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes_ = typename Receiver:: template MyOwnershipTypes<Q>;
-
-        using task_result_t = typename Receiver::receiver_result_t;
-        using receiver_copy_t =  typename Receiver::receiver_copy_t;
-        using receiver_share_t =  typename Receiver::receiver_share_t;
-        using receiver_transfer_t =  typename Receiver::receiver_transfer_t;
+        using MyOwnershipTypes = typename Receiver:: template MyOwnershipTypes<Q>;
 
         // ====================  STATIC       =======================================
         static constexpr ANANSI::TaskLabel TASKLABEL =
@@ -101,7 +97,7 @@ class GenericMDTask : public BaseClass
         //! reset to default values.
         auto getCopyOfResults() const
         {
-            task_result_t results = 
+            receiver_copy_t results = 
                 this->receiver_->getCopyOfResults();
             return results;
         }
@@ -176,9 +172,9 @@ class GenericMDTask : public BaseClass
         //!
         //! Returns a shared_ptr of the receiver results.  The calling function
         //! shares ownership of the receiver results via a shared_ptr.
-        task_result_t shareOwnershipOfResults()
+        auto shareOwnershipOfResults()
         {
-            task_result_t results = 
+            receiver_share_t results = 
                 this->receiver_->shareOwnershipOfResults();
             return results;
         }
@@ -188,9 +184,9 @@ class GenericMDTask : public BaseClass
         //! Returns a unique_ptr of the receiver results.  The calling function
         //! takes ownership of the receiver results via a unique_ptr. The original results 
         //! resets to default values.
-        task_result_t takeOwnershipOfResults()
+        auto takeOwnershipOfResults()
         {
-            task_result_t results = 
+            receiver_transfer_t results = 
                 this->receiver_->transferOwnershipOfResults();
             return results;
         }
@@ -222,7 +218,16 @@ class GenericMDTask : public BaseClass
 
         // ====================  DATA MEMBERS  =======================================
 
+
     private:
+
+        // ====================  TYPE ALIASES  =======================================
+        using receiver_t = Receiver;
+        using task_result_t = typename Receiver::receiver_result_t;
+        using receiver_copy_t =  typename Receiver::receiver_copy_t;
+        using receiver_share_t =  typename Receiver::receiver_share_t;
+        using receiver_transfer_t =  typename Receiver::receiver_transfer_t;
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

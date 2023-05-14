@@ -21,6 +21,7 @@
 #include "MPICommunicatorFactory.h"
 #include "TaskLabel.hpp"
 #include "InitWorldCommunicatorTaskOwnershipImpl.hpp"
+#include "CopyOwnershipPolicy.hpp"
 #include "OwnershipTypes.hpp"
 
 // ---------------------------------------------------
@@ -33,7 +34,6 @@
 // #include "ShareCopyOwnershipPolicy.hpp"
 // #include "TransferCopyOwnershipPolicy.hpp""
 // #include "ShareOwnershipPolicy.hpp"
-#include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
 {

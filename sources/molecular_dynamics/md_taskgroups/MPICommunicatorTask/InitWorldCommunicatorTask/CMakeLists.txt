@@ -131,7 +131,7 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_tasks_include}
                            PRIVATE ${my_receiver_include}
-                           PRIVATE ${mdownershippolicies}
+                           PRIVATE ${my_mdownershippolicies_include}
                            PRIVATE ${my_genericmdtask_include}
                            PRIVATE ${my_typelist_aliases_include}
                            PRIVATE ${my_mpi_communicator_include} )

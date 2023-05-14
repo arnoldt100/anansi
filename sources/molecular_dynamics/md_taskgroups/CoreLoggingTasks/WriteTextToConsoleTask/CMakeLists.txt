@@ -134,7 +134,7 @@ target_include_directories(${target}
                            PRIVATE ${my_tasks_include}
                            PRIVATE ${my_logger_include}
                            PRIVATE ${my_receiver_include}
-                           PRIVATE ${mdownershippolicies}
+                           PRIVATE ${my_mdownershippolicies_include}
                            PRIVATE ${my_communicator_include}
                            PRIVATE ${my_genericmdtask_include})
 

@@ -150,7 +150,7 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE "${my_tasks_include}"
-                           PRIVATE "${mdownershippolicies}"
+                           PRIVATE "${my_mdownershippolicies_include}"
                            PRIVATE "${my_genericmdtask_include}" 
                            PRIVATE "${my_generic_abstract_factory_include}"
                            PRIVATE "${my_invoker_include}"

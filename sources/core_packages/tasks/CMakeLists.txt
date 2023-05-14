@@ -55,14 +55,13 @@
     get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
     get_target_property(my_comm_include communicator communicator_include)
     get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include)
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -146,8 +145,8 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_comm_include}
                            PRIVATE ${my_command_line_arguments_include} 
-                           PRIVATE ${my_generic_object_factory_include}) 
-                           # PRIVATE ${my_logger_include})
+                           PRIVATE ${my_generic_object_factory_include}
+                           PRIVATE ${my_typelist_aliases_include} )
 
 
 #-----------------------------------------------------
@@ -157,7 +156,8 @@ target_include_directories(${target}
 target_link_libraries( ${target}
                        PUBLIC command_line_arguments
                        PUBLIC communicator
-                       PUBLIC generic_object_factory) 
+                       PUBLIC generic_object_factory
+                       PUBLIC typelist_aliases) 
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

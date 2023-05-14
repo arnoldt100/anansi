@@ -10,6 +10,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -21,7 +22,6 @@
 #include "ReceiverResultTraits.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "BaseOwnershipImplementation.h"
-
 #include "MPICommunicatorFactory.h"
 
 namespace ANANSI

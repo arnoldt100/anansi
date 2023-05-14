@@ -25,6 +25,7 @@
 #include "AnansiTaskUtilities.hpp"
 #include "MPLAliases.hpp"
 #include "ReceiverUtilities.hpp"
+#include "OwnershipTypes.hpp"
 
 namespace ANANSI
 {
@@ -75,9 +76,11 @@ class GenericTaskInvokerUtilities
         {
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
             concrete_task->modifyReceiver(receiver_args...);
+
             return;
         }
 
@@ -94,7 +97,8 @@ class GenericTaskInvokerUtilities
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
-            using receiver_copy_t = typename concrete_task_type::receiver_copy_t;
+            using receiver_copy_t = 
+                typename concrete_task_type:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
 
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
@@ -118,7 +122,8 @@ class GenericTaskInvokerUtilities
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
-            using receiver_share_t = typename concrete_task_type::receiver_share_t;
+            using receiver_share_t = 
+                typename concrete_task_type:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
 
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
@@ -141,7 +146,8 @@ class GenericTaskInvokerUtilities
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
-            using receiver_transfer_t = typename concrete_task_type::receiver_transfer_t;
+            using receiver_transfer_t = 
+                typename concrete_task_type:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
