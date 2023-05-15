@@ -72,10 +72,10 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 
 //============================= ACCESSORS ====================================
 
-InitWorldCommunicatorTaskReceiver::receiver_copy_t InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults_() const
+InitWorldCommunicatorTaskReceiver::receiver_copy_t_ InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults_() const
 {
-    InitWorldCommunicatorTaskReceiver::receiver_copy_t  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
-    return my_ptr;
+    InitWorldCommunicatorTaskReceiver::receiver_copy_t_  my_copied_result = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    return my_copied_result;
 }
 
 //============================= MUTATORS =====================================
@@ -87,16 +87,16 @@ void InitWorldCommunicatorTaskReceiver::receiverModifyMyself_(std::unique_ptr<CO
     return;
 }
 
-InitWorldCommunicatorTaskReceiver::receiver_share_t InitWorldCommunicatorTaskReceiver::receiverShareOwnershipOfResults_()
+InitWorldCommunicatorTaskReceiver::receiver_share_t_ InitWorldCommunicatorTaskReceiver::receiverShareOwnershipOfResults_()
 {
-    InitWorldCommunicatorTaskReceiver::receiver_share_t my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
+    InitWorldCommunicatorTaskReceiver::receiver_share_t_ my_shared_result = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_shared_result;   
 }
 
-InitWorldCommunicatorTaskReceiver::receiver_transfer_t InitWorldCommunicatorTaskReceiver::receiverTransferOwnershipOfResults_()
+InitWorldCommunicatorTaskReceiver::receiver_transfer_t_ InitWorldCommunicatorTaskReceiver::receiverTransferOwnershipOfResults_()
 {
-    InitWorldCommunicatorTaskReceiver::receiver_transfer_t my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
+    InitWorldCommunicatorTaskReceiver::receiver_transfer_t_ my_transfer_result = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_transfer_result;   
 }
 
 //============================= OPERATORS ====================================

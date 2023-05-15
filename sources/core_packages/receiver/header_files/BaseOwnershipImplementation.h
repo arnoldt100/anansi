@@ -18,6 +18,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "OwnershipTypes.hpp"
 #include "ReceiverResultTraits.hpp"
 namespace RECEIVER
 {
@@ -27,16 +28,24 @@ namespace RECEIVER
 //  Description:  
 //  =====================================================================================
 template<typename Derived,
-         typename RT, 
+         typename ReceiverOwnershipImplTraits, 
          template <typename> typename ErrorPolicy>
 class BaseOwnershipImplementation
 {
     public :
-        using Copytype = typename RT::Copytype;
-        using Sharetype = typename RT::Sharetype;
-        using Transfertype = typename RT::Transfertype;
+        using Sharetype = typename ReceiverOwnershipImplTraits::Sharetype;
+        using Transfertype = typename ReceiverOwnershipImplTraits::Transfertype;
 
     private:
+        using Copytype = typename ReceiverOwnershipImplTraits::Copytype;
+
+        template<RECEIVER::OwnershipTypes Q>
+        using MyReceiverOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,ReceiverOwnershipImplTraits>;
+
+        using receiver_copy_t = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+
         // ====================  ACCESSORS     =======================================
 
         //! Provides access to the CRTP derived class member methods.
@@ -51,9 +60,9 @@ class BaseOwnershipImplementation
         {
             //! Provides access to the receiver member receiverGetCopyOfResults_.
             template <typename T>
-            static Copytype copy_results(const Derived & derived, const T & result)
+            static receiver_copy_t copy_results(const Derived & derived, const T & result)
             {
-                Copytype (Derived::*fn)(const T &) const = &Accessor_::getCopyOfResults_;
+                receiver_copy_t (Derived::*fn)(const T &) const = &Accessor_::getCopyOfResults_;
                 return (derived.*fn)(result);
             }
 
@@ -201,9 +210,9 @@ class BaseOwnershipImplementation
 }; // -----  end of class BaseOwnershipImplementation  -----
 
 template<typename Derived,
-         typename RT, 
+         typename ReceiverOwnershipImplTraits, 
          template <typename> typename ErrorPolicy>
-BaseOwnershipImplementation<Derived,RT,ErrorPolicy>::~BaseOwnershipImplementation()
+BaseOwnershipImplementation<Derived,ReceiverOwnershipImplTraits,ErrorPolicy>::~BaseOwnershipImplementation()
 {
     return;
 }

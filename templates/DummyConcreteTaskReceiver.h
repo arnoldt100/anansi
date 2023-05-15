@@ -22,8 +22,8 @@
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
 #include "DummyConcreteTaskOwnershipImpl.hpp"
-
 #include "__OwnershipPolicy__.hpp"
+#include "OwnershipTypes.hpp"
 
 namespace ANANSI
 {
@@ -44,17 +44,24 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
                                                                       my_transfer_type_>;
 
         using MyOwnershipImpl_ = DummyConcreteTaskOwnershipImpl<MyOwnershipImplTraits_>;
-
         using MyOwnershipPolicy_ = ANANSI::__OwnershipPolicy__<MyOwnershipImpl_>;
         
         // Place here the class data members required for doing the task.
 
     public:
-        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+
+        using receiver_result_t = my_result_type_;
 
         // ====================  STATIC       =======================================
 
+    private: 
+        using receiver_copy_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
+    public: 
         static constexpr 
         RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
             RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE(DummyConcreteTaskReceiver::tmpstr);
@@ -107,9 +114,9 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        MyOwnershipImplTraits_::Sharetype receiverShareOwnershipOfResults_();
+        receiver_share_t_ receiverShareOwnershipOfResults_();
     
-        MyOwnershipImplTraits_::Transfertype receiverTransferOwnershipOfResults_();
+        receiver_transfer_t_ receiverTransferOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 
