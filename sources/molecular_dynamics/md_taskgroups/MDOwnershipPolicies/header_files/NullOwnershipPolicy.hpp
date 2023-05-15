@@ -37,16 +37,20 @@ class NullOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy< 
                                                                                 OwnershipImpl>
 {
     private : 
+
+        // ====================  TYPEDEF ALIASES =====================================
+
         using MyReceiverOwnershipImplementationTraits_ = typename OwnershipImpl::ReceiverOwnershipImplementationTraits; 
 
         template<RECEIVER::OwnershipTypes Q>
         using MyReceiverOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyReceiverOwnershipImplementationTraits_>;
 
-    public:
-        using copy_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using shared_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using transfer_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        using copy_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using shared_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using transfer_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
+
+    public:
         // ====================  LIFECYCLE     =======================================
 
         NullOwnershipPolicy ()   // constructor
@@ -113,10 +117,10 @@ class NullOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy< 
         //! @param[in] a_receiver_result The receiver result to share its ownership.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         template<typename W>
-        shared_type shareOwnershipOfResult_(W & a_receiver_result)
+        shared_type_ shareOwnershipOfResult_(W & a_receiver_result)
         {
             const std::string my_error_message(shared_error_message_);
-            shared_type tmp_obj = OwnershipImpl::throwSharingError(my_error_message);
+            shared_type_ tmp_obj = OwnershipImpl::throwSharingError(my_error_message);
             return tmp_obj; 
         }
 
@@ -129,10 +133,10 @@ class NullOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy< 
         //! @param[in] a_receiver_result The receiver result to transfer its ownership.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         template<typename W>
-        transfer_type transferOwnershipOfResult_(W & a_receiver_result)
+        transfer_type_ transferOwnershipOfResult_(W & a_receiver_result)
         {
             const std::string my_error_message(take_error_message_);
-            transfer_type tmp_obj = OwnershipImpl::throwTransferringError(my_error_message);
+            transfer_type_ tmp_obj = OwnershipImpl::throwTransferringError(my_error_message);
             return tmp_obj; 
         }
 
@@ -148,10 +152,10 @@ class NullOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy< 
         //! @param[in] a_receiver_result The receiver result to be copied.
         //! @throws ErrorOwnershipPolicy<NullOwnershipPolicy>
         template<typename W>
-        copy_type copyResult_(W const & a_receiver_result) const
+        copy_type_ copyResult_(W const & a_receiver_result) const
         {
             const std::string my_error_message(copy_error_message_);
-            copy_type tmp_obj = OwnershipImpl::throwCopyingError(my_error_message);
+            copy_type_ tmp_obj = OwnershipImpl::throwCopyingError(my_error_message);
             return tmp_obj; 
         }
 
