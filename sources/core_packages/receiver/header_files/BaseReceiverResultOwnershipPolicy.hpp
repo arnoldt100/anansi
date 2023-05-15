@@ -36,19 +36,18 @@ template <typename ConcreteResultOwnershipPolicy,
          >
 class BaseReceiverResultOwnershipPolicy {
 
-public:
-  // ====================  LIFECYCLE     =======================================
-
-  using shared_type = typename ConcreteResultOwnershipImpl::Sharetype;
-  using transfer_type = typename ConcreteResultOwnershipImpl::Transfertype;
-
 private:
+
+        // ====================  TYPEDEF ALIASES =====================================
+
         using MyReceiverOwnershipImplementationTraits_ = typename ConcreteResultOwnershipImpl::ReceiverOwnershipImplementationTraits; 
 
         template<RECEIVER::OwnershipTypes Q>
         using MyReceiverOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyReceiverOwnershipImplementationTraits_>;
 
-        using copy_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using copy_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using shared_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using transfer_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
         //! Provides access to the CRTP derived class member methods.
         //!
@@ -61,32 +60,32 @@ private:
         struct Accessor_ : public ConcreteResultOwnershipPolicy
         {
             template <typename T> 
-            static copy_type copy_receiver_result(const ConcreteResultOwnershipPolicy & derived,
+            static copy_type_ copy_receiver_result(const ConcreteResultOwnershipPolicy & derived,
                                                   const T & a_receiver_result )
             {
-                copy_type (ConcreteResultOwnershipPolicy::*fn)(T const & ) const = &Accessor_::copyResult_; 
+                copy_type_ (ConcreteResultOwnershipPolicy::*fn)(T const & ) const = &Accessor_::copyResult_; 
                 return (derived.*fn)(a_receiver_result );
             }
 
             template<typename T>
-            static shared_type share_receiver_result(ConcreteResultOwnershipPolicy & derived,
+            static shared_type_ share_receiver_result(ConcreteResultOwnershipPolicy & derived,
                                                      T & a_receiver_result )
             {
-                shared_type (ConcreteResultOwnershipPolicy::*fn)(T & ) = &Accessor_::shareOwnershipOfResult_;
+                shared_type_ (ConcreteResultOwnershipPolicy::*fn)(T & ) = &Accessor_::shareOwnershipOfResult_;
                 return (derived.*fn)(a_receiver_result);
             }
             
             template<typename T>
-            static transfer_type transfer_receiver_result(ConcreteResultOwnershipPolicy & derived,
+            static transfer_type_ transfer_receiver_result(ConcreteResultOwnershipPolicy & derived,
                                                           T & a_receiver_result )
             {
-                transfer_type (ConcreteResultOwnershipPolicy::*fn)(T & ) = &Accessor_::transferOwnershipOfResult_;
+                transfer_type_ (ConcreteResultOwnershipPolicy::*fn)(T & ) = &Accessor_::transferOwnershipOfResult_;
                 return (derived.*fn)(a_receiver_result);
             }
         };
 
 public:
-
+  // ====================  LIFECYCLE     =======================================
   BaseReceiverResultOwnershipPolicy(
       const BaseReceiverResultOwnershipPolicy &other) // copy constructor
   {
@@ -108,15 +107,15 @@ public:
 
   // ====================  ACCESSORS     =======================================
 
-  //! The copy interface definition for a copy_type receiver's result.
+  //! The copy interface definition for a copy_type_ receiver's result.
   //!
   //! The underlying object in a_receiver_result is to be copied.
   //!
   //! @param[in] a_receiver_result The receiver result to be copied.
-  //! @return A copy_type obtained by copying the underlying object in
+  //! @return A copy_type_ obtained by copying the underlying object in
   //! a_receiver_result.
-  template <typename W>
-  copy_type copyReceiverResult(W const & a_receiver_result) const {
+  template <typename ReceiverResult_T>
+  copy_type_ copyReceiverResult(ReceiverResult_T const & a_receiver_result) const {
         return Accessor_::copy_receiver_result(this->asDerived_(),a_receiver_result);
   }
 
@@ -126,21 +125,21 @@ public:
   //! result.
   //!
   //! @param[in] a_receiver_result The receiver result to trasnfer ownership.
-  //! @return A transfer_type obtained by transferring ownership of the
+  //! @return A transfer_type_ obtained by transferring ownership of the
   //! underlying object in a_receiver_result.
-  template <typename W>
-  transfer_type transferOwnershipOfReceiverResult(W &a_receiver_result) {
+  template <typename ReceiverResult_T>
+  transfer_type_ transferOwnershipOfReceiverResult(ReceiverResult_T &a_receiver_result) {
         return Accessor_::transfer_receiver_result(this->asDerived_(),a_receiver_result);
   }
 
-  //! The share ownership interface definition for a shared_type receiver's
+  //! The share ownership interface definition for a shared_type_ receiver's
   //! result.
   //!
   //! @param[in] a_receiver_result The receiver result to share ownership.
-  //! @return A shared_type obtained by transferring ownership of the underlying
+  //! @return A shared_type_ obtained by transferring ownership of the underlying
   //! object in a_receiver_result.
-  template <typename W>
-  shared_type shareOwnershipOfReceiverResult(W &a_receiver_result) {
+  template <typename ReceiverResult_T>
+  shared_type_ shareOwnershipOfReceiverResult(ReceiverResult_T &a_receiver_result) {
         return Accessor_::share_receiver_result(this->asDerived_(),a_receiver_result);
   }
 
