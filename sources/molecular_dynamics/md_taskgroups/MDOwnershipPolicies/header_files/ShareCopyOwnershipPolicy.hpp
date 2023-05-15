@@ -40,6 +40,9 @@ class ShareCopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPol
                                                                                      OwnershipImpl>
 {
     private :
+
+        // ====================  TYPEDEF ALIASES =====================================
+
         using MyReceiverOwnershipImplementationTraits_ = typename OwnershipImpl::ReceiverOwnershipImplementationTraits; 
 
         template<RECEIVER::OwnershipTypes Q>
