@@ -44,8 +44,8 @@ class NullOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy< 
 
     public:
         using copy_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using shared_type = typename OwnershipImpl::Sharetype;
-        using transfer_type = typename OwnershipImpl::Transfertype;
+        using shared_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using transfer_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
         // ====================  LIFECYCLE     =======================================
 
