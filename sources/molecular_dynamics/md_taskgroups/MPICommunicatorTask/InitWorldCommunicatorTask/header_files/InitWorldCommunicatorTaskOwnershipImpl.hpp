@@ -27,9 +27,9 @@
 namespace ANANSI
 {
 
-template<typename MyTaskImplTraits>
-class InitWorldCommunicatorTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<InitWorldCommunicatorTaskOwnershipImpl<MyTaskImplTraits>,
-                                                                                            MyTaskImplTraits, 
+template<typename ReceiverOwnershipImplTraits>
+class InitWorldCommunicatorTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<InitWorldCommunicatorTaskOwnershipImpl<ReceiverOwnershipImplTraits>,
+                                                                                            ReceiverOwnershipImplTraits, 
                                                                                             ErrorOwnershipPolicy>
 {
     public:
@@ -90,7 +90,7 @@ class InitWorldCommunicatorTaskOwnershipImpl : public RECEIVER::BaseOwnershipImp
         // ====================  ACCESSORS     =======================================
 
         template<typename T>
-        typename MyTaskImplTraits::Copytype getCopyOfResults_(const T & result) const
+        typename ReceiverOwnershipImplTraits::Copytype getCopyOfResults_(const T & result) const
         {
             std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>(); 
             auto tmp_communicator = a_communicator_factory->cloneCommunicator(result);
@@ -100,13 +100,13 @@ class InitWorldCommunicatorTaskOwnershipImpl : public RECEIVER::BaseOwnershipImp
         // ====================  MUTATORS      =======================================
 
         template<typename T>
-        typename MyTaskImplTraits::Transfertype transferResults_(T & result) const
+        typename ReceiverOwnershipImplTraits::Transfertype transferResults_(T & result) const
         {
             return std::move(result);
         }
 
         template<typename T>
-        typename MyTaskImplTraits::Sharetype shareResults_(T & result) const
+        typename ReceiverOwnershipImplTraits::Sharetype shareResults_(T & result) const
         {
             return result;
         }

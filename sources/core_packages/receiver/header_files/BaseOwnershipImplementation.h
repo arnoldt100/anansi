@@ -31,8 +31,7 @@ template<typename Derived,
          template <typename> typename ErrorPolicy>
 class BaseOwnershipImplementation
 {
-    public:
-    
+    public :
         using Copytype = typename RT::Copytype;
         using Sharetype = typename RT::Sharetype;
         using Transfertype = typename RT::Transfertype;

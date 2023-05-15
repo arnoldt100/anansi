@@ -72,7 +72,7 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 
 //============================= ACCESSORS ====================================
 
-InitWorldCommunicatorTaskReceiver::receiver_copy_t ::TYPE InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults_() const
+InitWorldCommunicatorTaskReceiver::receiver_copy_t InitWorldCommunicatorTaskReceiver::receiverGetCopyOfResults_() const
 {
     InitWorldCommunicatorTaskReceiver::receiver_copy_t  my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
