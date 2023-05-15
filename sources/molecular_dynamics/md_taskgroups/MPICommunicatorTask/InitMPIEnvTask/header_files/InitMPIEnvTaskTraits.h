@@ -19,9 +19,12 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
-#include "InterProcessCommEnv.h"
 #include "GenericMDTask.hpp"
-#include "DefaultFunctorImpl.h"
+
+// Includes for abstract tasks.
+#include "InterProcessCommEnv.h"
+
+// Includes for concrete tasks receivers.
 #include "InitMPIEnvTaskReceiver.h"
 
 namespace ANANSI

@@ -20,11 +20,14 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
+#include "GenericMDTask.hpp"
+
+// Includes for abstract tasks.
 #include "ControlFile.h"
 #include "ControlFileCommunicator.h"
 #include "MacroCommand.hpp"
-#include "GenericMDTask.hpp"
-#include "DefaultFunctorImpl.h"
+
+// Includes for concrete tasks receivers.
 #include "ControlFileXMLReceiver.h"
 #include "ControlFileXMLMPICommReceiver.h"
 #include "ControlFileMacroReceiver.h"
@@ -34,6 +37,9 @@ namespace ANANSI
 
 class ReadControlFileTraits
 {
+    private: 
+        using MC_ = MacroCommand<ControlFile,ControlFileCommunicator>;
+
     public:
 
         // ====================  LIFECYCLE     =======================================
@@ -56,18 +62,16 @@ class ReadControlFileTraits
 
         ReadControlFileTraits& operator= ( ReadControlFileTraits && other ); // assignment-move operator
 
-        using MC = MacroCommand<ControlFile,ControlFileCommunicator>;
-
         using abstract_products = MPL::mpl_typelist<
                                                        ControlFile,
                                                        ControlFileCommunicator,
-                                                       MC
+                                                       MC_
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
                                                        GenericMDTask<ControlFile,ControlFileXMLReceiver>,
                                                        GenericMDTask<ControlFileCommunicator,ControlFileXMLMPICommReceiver>,
-                                                       GenericMDTask<MC,ControlFileMacroReceiver>
+                                                       GenericMDTask<MC_,ControlFileMacroReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist<

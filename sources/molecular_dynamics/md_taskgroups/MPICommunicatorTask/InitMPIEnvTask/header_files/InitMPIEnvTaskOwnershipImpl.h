@@ -25,11 +25,19 @@
 namespace ANANSI
 {
 
-template<typename MyTaskImplTraits>
-class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<InitMPIEnvTaskOwnershipImpl<MyTaskImplTraits>,
-                                                                                 MyTaskImplTraits, 
+template<typename ReceiverOwnershipImplTraits>
+class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<InitMPIEnvTaskOwnershipImpl<ReceiverOwnershipImplTraits>,
+                                                                                 ReceiverOwnershipImplTraits, 
                                                                                  ErrorOwnershipPolicy>
 {
+    private:
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,ReceiverOwnershipImplTraits>;
+
+        using receiver_copy_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+
     public:
 
         // ====================  LIFECYCLE     =======================================
@@ -88,7 +96,7 @@ class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
         // ====================  ACCESSORS     =======================================
 
         template<typename T>
-        typename MyTaskImplTraits::Copytype  getCopyOfResults_(const T & result) const
+        receiver_copy_t_ getCopyOfResults_(const T & result) const
         {
             return result;
         }
@@ -96,17 +104,16 @@ class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
         // ====================  MUTATORS      =======================================
 
         template<typename T>
-        typename MyTaskImplTraits::Transfertype transferResults_(T & result) const
+        receiver_transfer_t_ transferResults_(T & result) const
         {
             return std::move(result);
         }
 
         template<typename T>
-        typename MyTaskImplTraits::Sharetype shareResults_(T & result) const
+        receiver_share_t_ shareResults_(T & result) const
         {
             return result;
         }
-
 
         // ====================  DATA MEMBERS  =======================================
 

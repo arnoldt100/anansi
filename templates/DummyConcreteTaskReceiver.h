@@ -54,7 +54,6 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
 
         using receiver_result_t = my_result_type_;
 
-        // ====================  STATIC       =======================================
 
     private: 
         using receiver_copy_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
@@ -62,6 +61,8 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         using receiver_transfer_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
     public: 
+        // ====================  STATIC       =======================================
+
         static constexpr 
         RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
             RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE(DummyConcreteTaskReceiver::tmpstr);
@@ -70,7 +71,7 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
 
         DummyConcreteTaskReceiver ();   // constructor
 
-        DummyConcreteTaskReceiver (const DummyConcreteTaskReceiver & other);   // copy constructor
+        DummyConcreteTaskReceiver (const DummyConcreteTaskReceiver & other) = delete;   // copy constructor
 
         DummyConcreteTaskReceiver (DummyConcreteTaskReceiver && other);   // copy-move constructor
 
@@ -83,7 +84,7 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
 
         // ====================  OPERATORS     =======================================
 
-        DummyConcreteTaskReceiver& operator= ( const DummyConcreteTaskReceiver &other ); // assignment operator
+        DummyConcreteTaskReceiver& operator= ( const DummyConcreteTaskReceiver &other ) = delete; // assignment operator
 
         DummyConcreteTaskReceiver& operator= ( DummyConcreteTaskReceiver && other ); // assignment-move operator
 
@@ -100,8 +101,7 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
             return  DummyConcreteTaskReceiver::TASKLABEL;
         }
 
-        MyOwnershipImplTraits_::Copytype receiverGetCopyOfResults_() const;
-
+        receiver_copy_t_ receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 

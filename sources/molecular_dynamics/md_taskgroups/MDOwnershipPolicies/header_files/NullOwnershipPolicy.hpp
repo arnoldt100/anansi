@@ -18,6 +18,7 @@
 //--------------------------------------------------------//
 #include "ErrorOwnershipPolicy.hpp"
 #include "BaseReceiverResultOwnershipPolicy.hpp"
+#include "OwnershipTypes.hpp"
 
 namespace ANANSI
 {
@@ -35,9 +36,14 @@ template < typename OwnershipImpl >
 class NullOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy< NullOwnershipPolicy<OwnershipImpl>,
                                                                                 OwnershipImpl>
 {
-    public:
+    private : 
+        using MyReceiverOwnershipImplementationTraits_ = typename OwnershipImpl::ReceiverOwnershipImplementationTraits; 
 
-        using copy_type = typename OwnershipImpl::Copytype;
+        template<RECEIVER::OwnershipTypes Q>
+        using MyReceiverOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyReceiverOwnershipImplementationTraits_>;
+
+    public:
+        using copy_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
         using shared_type = typename OwnershipImpl::Sharetype;
         using transfer_type = typename OwnershipImpl::Transfertype;
 

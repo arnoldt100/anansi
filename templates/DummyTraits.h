@@ -26,7 +26,7 @@
 #include "DummyAbstractTask2.h"
 
 
-// Includes for concrete tasks.
+// Includes for concrete tasks receivers.
 #include "DummyConcreteTask1.h"
 #include "DummyConcreteTask2.h"
 
@@ -74,7 +74,7 @@ class DummyTraits
 
         static constexpr auto LABELS = std::array{
                                                          DummyConcreteTaskReceiver1::TASKLABEL,
-                                                         DummyConcreteTaskReceiver2::TASKLABE,
+                                                         DummyConcreteTaskReceiver2::TASKLABEL,
                                                  };
     protected:
         // ====================  METHODS       =======================================

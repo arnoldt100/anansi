@@ -33,10 +33,12 @@ template<typename Derived,
 class BaseOwnershipImplementation
 {
     public :
+        using ReceiverOwnershipImplementationTraits = ReceiverOwnershipImplTraits;
         using Sharetype = typename ReceiverOwnershipImplTraits::Sharetype;
         using Transfertype = typename ReceiverOwnershipImplTraits::Transfertype;
 
     private:
+
         using Copytype = typename ReceiverOwnershipImplTraits::Copytype;
 
         template<RECEIVER::OwnershipTypes Q>

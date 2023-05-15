@@ -21,20 +21,10 @@
 #include "TaskLabel.hpp"
 #include "InitMPIEnvTaskOwnershipImpl.h"
 #include "ReceiverResultTraits.hpp"
-#include "OwnershipTypes.hpp"
-#include "MPIEnvironment.h"
-
-// ---------------------------------------------------
-// Uncomment the ownership policies as required for 
-// class member ConcreteTaskReceiver::ownershipPolicy_.
-// For this class we select NullOwnershipPolicy.hpp.
-// ---------------------------------------------------
 #include "NullOwnershipPolicy.hpp"
-// #include "TransferOwnershipPolicy.hpp"
-// #include "ShareCopyOwnershipPolicy.hpp"
-// #include "TransferCopyOwnershipPolicy.hpp""
-// #include "ShareOwnershipPolicy.hpp"
-// #include "CopyOwnershipPolicy.hpp"
+#include "OwnershipTypes.hpp"
+
+#include "MPIEnvironment.h"
 
 
 namespace ANANSI
@@ -56,21 +46,26 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
         using my_share_type_ = int;
         using my_transfer_type_ = int;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
-                                                                     my_copy_type_,
-                                                                     my_share_type_,
-                                                                     my_transfer_type_>;
+                                                                      my_copy_type_,
+                                                                      my_share_type_,
+                                                                      my_transfer_type_>;
 
         using MyOwnershipImpl_ = InitMPIEnvTaskOwnershipImpl<MyOwnershipImplTraits_>;
         using MyOwnershipPolicy_ = ANANSI::NullOwnershipPolicy<MyOwnershipImpl_>;
+
     public:
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
 
-        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
-        using receiver_copy_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        using receiver_result_t = my_result_type_;
+
+    private:
+        using receiver_copy_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+
+    public:
 
         // ====================  STATIC       =======================================
 
@@ -112,12 +107,11 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
             return  InitMPIEnvTaskReceiver::TASKLABEL;
         }
 
-        InitMPIEnvTaskReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
+        receiver_copy_t_ receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
         template<typename... Types>
         void enableReceiver_(Types &... args);
-
 
         template<typename... Types>
         void disableReceiver_(Types &...  args);
@@ -125,9 +119,9 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        InitMPIEnvTaskReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
+        receiver_transfer_t_ receiverTransferOwnershipOfResults_();
 
-        InitMPIEnvTaskReceiver::receiver_share_t receiverShareOwnershipOfResults_();
+        receiver_share_t_ receiverShareOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 
@@ -136,8 +130,8 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
-        mutable std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
         MyOwnershipPolicy_ ownershipPolicy_;
+        mutable std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
 
 }; // -----  end of class InitMPIEnvTaskReceiver  -----
 

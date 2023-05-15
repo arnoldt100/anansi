@@ -92,8 +92,8 @@ DummyConcreteTaskReceiver::receiver_share_t_ DummyConcreteTaskReceiver::receiver
 
 DummyConcreteTaskReceiver::receiver_transfer_t_ DummyConcreteTaskReceiver::receiverTransferOwnershipOfResults_()
 {
-    DummyConcreteTaskReceiver::receiver_transfer_t_ my_transfer_type_result = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
-    return my_transfer_type_result;   
+    DummyConcreteTaskReceiver::receiver_transfer_t_ my_transfered_result = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_transfered_result;   
 }
 
 

@@ -16,6 +16,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "OwnershipTypeRequirements.hpp"
+#include "OwnershipTypes.hpp"
 
 namespace RECEIVER {
 
@@ -38,11 +39,16 @@ class BaseReceiverResultOwnershipPolicy {
 public:
   // ====================  LIFECYCLE     =======================================
 
-  using copy_type = typename ConcreteResultOwnershipImpl::Copytype;
   using shared_type = typename ConcreteResultOwnershipImpl::Sharetype;
   using transfer_type = typename ConcreteResultOwnershipImpl::Transfertype;
 
 private:
+        using MyReceiverOwnershipImplementationTraits_ = typename ConcreteResultOwnershipImpl::ReceiverOwnershipImplementationTraits; 
+
+        template<RECEIVER::OwnershipTypes Q>
+        using MyReceiverOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyReceiverOwnershipImplementationTraits_>;
+
+        using copy_type = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
 
         //! Provides access to the CRTP derived class member methods.
         //!

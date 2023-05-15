@@ -34,9 +34,9 @@ class DummyConcreteTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementat
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,ReceiverOwnershipImplTraits>;
 
-        using receiver_copy_t = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        using receiver_copy_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
 
     public:
@@ -97,7 +97,7 @@ class DummyConcreteTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementat
         // ====================  ACCESSORS     =======================================
 
         template<typename T>
-        receiver_copy_t getCopyOfResults_(const T & result) const
+        receiver_copy_t_ getCopyOfResults_(const T & result) const
         {
             return result;
         }
@@ -105,17 +105,16 @@ class DummyConcreteTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementat
         // ====================  MUTATORS      =======================================
 
         template<typename T>
-        receiver_transfer_t transferResults_(T & result) const
+        receiver_transfer_t_ transferResults_(T & result) const
         {
             return std::move(result);
         }
 
         template<typename T>
-        receiver_share_t shareResults_(T & result) const
+        receiver_share_t_ shareResults_(T & result) const
         {
             return result;
         }
-
 
         // ====================  DATA MEMBERS  =======================================
 

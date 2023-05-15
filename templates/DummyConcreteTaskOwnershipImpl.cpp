@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFileXMLOwnershipImpl.hpp"
+#include "DummyConcreteTaskOwnershipImpl.hpp"
 
 namespace ANANSI {
 
