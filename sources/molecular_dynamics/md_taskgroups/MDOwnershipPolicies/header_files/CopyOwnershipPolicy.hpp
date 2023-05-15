@@ -36,6 +36,8 @@ class CopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<C
                                                                                OwnershipImpl>
 {
     private:
+        // ====================  TYPEDEF ALIASES =====================================
+
         using MyReceiverOwnershipImplementationTraits_ = typename OwnershipImpl::ReceiverOwnershipImplementationTraits; 
 
         template<RECEIVER::OwnershipTypes Q>
