@@ -25,17 +25,6 @@
 #include "CopyOwnershipPolicy.hpp"
 #include "OwnershipTypes.hpp"
 
-// ---------------------------------------------------
-// Uncomment the ownership policies as required for 
-// class member ConcreteTaskReceiver::ownershipPolicy_.
-// For this class we select CopyOwnershipPolicy.hpp.
-// ---------------------------------------------------
-// #include "NullOwnershipPolicy.hpp"
-// #include "TransferOwnershipPolicy.hpp"
-// #include "ShareCopyOwnershipPolicy.hpp"
-// #include "TransferCopyOwnershipPolicy.hpp""
-// #include "ShareOwnershipPolicy.hpp"
-
 namespace ANANSI
 {
 

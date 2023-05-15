@@ -20,8 +20,12 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
-#include "CommunicatorTask.h"
 #include "GenericMDTask.hpp"
+
+// Includes for abstract tasks.
+#include "CommunicatorTask.h"
+
+// Includes for concrete tasks receivers.
 #include "InitWorldCommunicatorTaskReceiver.h"
 
 namespace ANANSI

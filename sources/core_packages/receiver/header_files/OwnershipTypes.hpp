@@ -24,7 +24,6 @@ enum class OwnershipTypes
 template <OwnershipTypes T,typename ReceiverResultTraitsType>
 struct ReceiverOwnershipType;
 
-
 template <typename ReceiverResultTraitsType>
 struct ReceiverOwnershipType<OwnershipTypes::COPYTYPE,ReceiverResultTraitsType>
 {
@@ -40,7 +39,7 @@ struct ReceiverOwnershipType<OwnershipTypes::SHARETYPE,ReceiverResultTraitsType>
 template <typename ReceiverResultTraitsType>
 struct ReceiverOwnershipType<OwnershipTypes::TRANSFERTYPE,ReceiverResultTraitsType>
 {
-    using TYPE = typename ReceiverResultTraitsType::Sharetype;
+    using TYPE = typename ReceiverResultTraitsType::Transfertype;
 };
 
 } // namespace RECEIVER
