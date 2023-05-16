@@ -24,22 +24,22 @@ enum class OwnershipTypes
 namespace PRIVATE_NAMESPACE_
 {
     template <OwnershipTypes T,typename ReceiverResultTraitsType>
-    struct ReceiverOwnershipType;
+    struct ReceiverOwnershipType_;
 
     template <typename ReceiverResultTraitsType>
-    struct ReceiverOwnershipType<OwnershipTypes::COPYTYPE,ReceiverResultTraitsType>
+    struct ReceiverOwnershipType_<OwnershipTypes::COPYTYPE,ReceiverResultTraitsType>
     {
         using TYPE = typename ReceiverResultTraitsType::Copytype;
     };
 
     template <typename ReceiverResultTraitsType>
-    struct ReceiverOwnershipType<OwnershipTypes::SHARETYPE,ReceiverResultTraitsType>
+    struct ReceiverOwnershipType_<OwnershipTypes::SHARETYPE,ReceiverResultTraitsType>
     {
         using TYPE = typename ReceiverResultTraitsType::Sharetype;
     };
 
     template <typename ReceiverResultTraitsType>
-    struct ReceiverOwnershipType<OwnershipTypes::TRANSFERTYPE,ReceiverResultTraitsType>
+    struct ReceiverOwnershipType_<OwnershipTypes::TRANSFERTYPE,ReceiverResultTraitsType>
     {
         using TYPE = typename ReceiverResultTraitsType::Transfertype;
     };
@@ -53,7 +53,7 @@ struct ReceiverResultOwnershipType
         using MyReceiverOwnershipImplementationTraits_ = typename OwnershipImpl::ReceiverOwnershipImplementationTraits; 
 
         template<RECEIVER::OwnershipTypes Q>
-        using MyReceiverOwnershipTypes_ = PRIVATE_NAMESPACE_::ReceiverOwnershipType<Q,MyReceiverOwnershipImplementationTraits_>;
+        using MyReceiverOwnershipTypes_ = PRIVATE_NAMESPACE_::ReceiverOwnershipType_<Q,MyReceiverOwnershipImplementationTraits_>;
        
     public:
         using TYPE = typename MyReceiverOwnershipTypes_<T>::TYPE;
@@ -65,7 +65,7 @@ struct ReceiverResultOwnershipType_TraitsVersion
 {
     private:
         template<RECEIVER::OwnershipTypes Q>
-        using MyReceiverOwnershipTypes_ = PRIVATE_NAMESPACE_::ReceiverOwnershipType<Q,OwnershipImplTraits>;
+        using MyReceiverOwnershipTypes_ = PRIVATE_NAMESPACE_::ReceiverOwnershipType_<Q,OwnershipImplTraits>;
        
     public:
         using TYPE = typename MyReceiverOwnershipTypes_<T>::TYPE;
