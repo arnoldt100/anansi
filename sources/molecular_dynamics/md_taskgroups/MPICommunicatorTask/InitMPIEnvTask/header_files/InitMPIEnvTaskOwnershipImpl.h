@@ -27,8 +27,8 @@ namespace ANANSI
 
 template<typename ReceiverOwnershipImplTraits>
 class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<InitMPIEnvTaskOwnershipImpl<ReceiverOwnershipImplTraits>,
-                                                                                 ReceiverOwnershipImplTraits, 
-                                                                                 ErrorOwnershipPolicy>
+                            ReceiverOwnershipImplTraits, 
+                            ErrorOwnershipPolicy>
 {
     public:
 

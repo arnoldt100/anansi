@@ -49,16 +49,12 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         // Place here the class data members required for doing the task.
 
     public:
+
         template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
 
         using receiver_result_t = my_result_type_;
 
-
-    private: 
-        using receiver_copy_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
     public: 
         // ====================  STATIC       =======================================
@@ -87,6 +83,21 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         DummyConcreteTaskReceiver& operator= ( const DummyConcreteTaskReceiver &other ) = delete; // assignment operator
 
         DummyConcreteTaskReceiver& operator= ( DummyConcreteTaskReceiver && other ); // assignment-move operator
+
+    private:
+
+        using receiver_copy_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_share_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_transfer_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
 
     protected:
         // ====================  ACCESSORS     =======================================
