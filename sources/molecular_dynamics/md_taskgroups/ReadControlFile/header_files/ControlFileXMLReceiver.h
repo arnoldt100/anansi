@@ -79,13 +79,8 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         MasterProcess masterProcess_;
 
     public:
-        template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
 
         using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
-        using receiver_copy_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 
         // ====================  STATIC       =======================================
 
@@ -113,6 +108,20 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         ControlFileXMLReceiver& operator= ( ControlFileXMLReceiver && other ); // assignment-move operator
 
+    private:
+
+        using receiver_copy_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_share_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_transfer_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
     protected:
         // ====================  ACCESSORS     =======================================
         template<typename... Types>
@@ -126,7 +135,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
             return  ControlFileXMLReceiver::TASKLABEL;
         }
 
-        ControlFileXMLReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
+        ControlFileXMLReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
 
@@ -139,9 +148,9 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        ControlFileXMLReceiver::receiver_share_t receiverShareOwnershipOfResults_();
+        ControlFileXMLReceiver::receiver_share_t_ receiverShareOwnershipOfResults_();
     
-        ControlFileXMLReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
+        ControlFileXMLReceiver::receiver_transfer_t_ receiverTransferOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 

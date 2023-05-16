@@ -34,19 +34,24 @@ class BaseOwnershipImplementation
 {
     public :
         using ReceiverOwnershipImplementationTraits = ReceiverOwnershipImplTraits;
-        using Sharetype = typename ReceiverOwnershipImplTraits::Sharetype;
-        using Transfertype = typename ReceiverOwnershipImplTraits::Transfertype;
 
     private:
 
         using Copytype = typename ReceiverOwnershipImplTraits::Copytype;
+        using Sharetype = typename ReceiverOwnershipImplTraits::Sharetype;
+        using Transfertype = typename ReceiverOwnershipImplTraits::Transfertype;
 
-        template<RECEIVER::OwnershipTypes Q>
-        using MyReceiverOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,ReceiverOwnershipImplTraits>;
+        using receiver_copy_t = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         ReceiverOwnershipImplTraits>::TYPE;
 
-        using receiver_copy_t = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        using receiver_share_t =
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         ReceiverOwnershipImplTraits>::TYPE;
+
+        using receiver_transfer_t = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                         ReceiverOwnershipImplTraits>::TYPE;
 
         // ====================  ACCESSORS     =======================================
 

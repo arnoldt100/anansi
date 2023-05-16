@@ -35,18 +35,6 @@ template < typename OwnershipImpl >
 class CopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<CopyOwnershipPolicy<OwnershipImpl>, 
                                                                                OwnershipImpl>
 {
-    private:
-        // ====================  TYPEDEF ALIASES =====================================
-
-        using MyReceiverOwnershipImplementationTraits_ = typename OwnershipImpl::ReceiverOwnershipImplementationTraits; 
-
-        template<RECEIVER::OwnershipTypes Q>
-        using MyReceiverOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyReceiverOwnershipImplementationTraits_>;
-
-        using copy_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using shared_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using transfer_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
-
     public:
 
         // ====================  LIFECYCLE     =======================================
@@ -102,6 +90,20 @@ class CopyOwnershipPolicy : public RECEIVER::BaseReceiverResultOwnershipPolicy<C
             return *this;
         } // assignment-move operator
 
+    private:
+        // ====================  TYPEDEF ALIASES =====================================
+
+        using copy_type_ = 
+            typename RECEIVER::ReceiverResultOwnershipType<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                           OwnershipImpl>::TYPE;
+
+        using shared_type_ = 
+            typename  RECEIVER::ReceiverResultOwnershipType<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                           OwnershipImpl>::TYPE;
+
+         using transfer_type_ = 
+             typename RECEIVER::ReceiverResultOwnershipType<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                           OwnershipImpl>::TYPE;
     protected:
         // ====================  ACCESSORS     =======================================
 

@@ -76,9 +76,9 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
 
 //============================= ACCESSORS ====================================
 
-ControlFileXMLReceiver::receiver_copy_t ControlFileXMLReceiver::receiverGetCopyOfResults_() const
+ControlFileXMLReceiver::receiver_copy_t_ ControlFileXMLReceiver::receiverGetCopyOfResults_() const
 {
-    ControlFileXMLReceiver::receiver_copy_t my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    ControlFileXMLReceiver::receiver_copy_t_ my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
 }
 
@@ -105,15 +105,15 @@ void ControlFileXMLReceiver::receiverModifyMyself_(MasterProcess & arg)
     return;
 }
 
-ControlFileXMLReceiver::receiver_share_t ControlFileXMLReceiver::receiverShareOwnershipOfResults_()
+ControlFileXMLReceiver::receiver_share_t_ ControlFileXMLReceiver::receiverShareOwnershipOfResults_()
 {
-    ControlFileXMLReceiver::receiver_share_t my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    ControlFileXMLReceiver::receiver_share_t_ my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 
-ControlFileXMLReceiver::receiver_transfer_t ControlFileXMLReceiver::receiverTransferOwnershipOfResults_()
+ControlFileXMLReceiver::receiver_transfer_t_ ControlFileXMLReceiver::receiverTransferOwnershipOfResults_()
 {
-    ControlFileXMLReceiver::receiver_transfer_t my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    ControlFileXMLReceiver::receiver_transfer_t_ my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_ptr;   
 }
 

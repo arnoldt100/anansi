@@ -21,27 +21,56 @@ enum class OwnershipTypes
     TRANSFERTYPE
 }; // -----  end of enum  OwnershipTypes  -----
 
-template <OwnershipTypes T,typename ReceiverResultTraitsType>
-struct ReceiverOwnershipType;
-
-template <typename ReceiverResultTraitsType>
-struct ReceiverOwnershipType<OwnershipTypes::COPYTYPE,ReceiverResultTraitsType>
+namespace PRIVATE_NAMESPACE_
 {
-    using TYPE = typename ReceiverResultTraitsType::Copytype;
+    template <OwnershipTypes T,typename ReceiverResultTraitsType>
+    struct ReceiverOwnershipType;
+
+    template <typename ReceiverResultTraitsType>
+    struct ReceiverOwnershipType<OwnershipTypes::COPYTYPE,ReceiverResultTraitsType>
+    {
+        using TYPE = typename ReceiverResultTraitsType::Copytype;
+    };
+
+    template <typename ReceiverResultTraitsType>
+    struct ReceiverOwnershipType<OwnershipTypes::SHARETYPE,ReceiverResultTraitsType>
+    {
+        using TYPE = typename ReceiverResultTraitsType::Sharetype;
+    };
+
+    template <typename ReceiverResultTraitsType>
+    struct ReceiverOwnershipType<OwnershipTypes::TRANSFERTYPE,ReceiverResultTraitsType>
+    {
+        using TYPE = typename ReceiverResultTraitsType::Transfertype;
+    };
+}
+
+template<OwnershipTypes T, 
+         typename OwnershipImpl>
+struct ReceiverResultOwnershipType
+{
+    private:
+        using MyReceiverOwnershipImplementationTraits_ = typename OwnershipImpl::ReceiverOwnershipImplementationTraits; 
+
+        template<RECEIVER::OwnershipTypes Q>
+        using MyReceiverOwnershipTypes_ = PRIVATE_NAMESPACE_::ReceiverOwnershipType<Q,MyReceiverOwnershipImplementationTraits_>;
+       
+    public:
+        using TYPE = typename MyReceiverOwnershipTypes_<T>::TYPE;
 };
 
-template <typename ReceiverResultTraitsType>
-struct ReceiverOwnershipType<OwnershipTypes::SHARETYPE,ReceiverResultTraitsType>
+template<OwnershipTypes T, 
+         typename OwnershipImplTraits>
+struct ReceiverResultOwnershipType_TraitsVersion
 {
-    using TYPE = typename ReceiverResultTraitsType::Sharetype;
+    private:
+        template<RECEIVER::OwnershipTypes Q>
+        using MyReceiverOwnershipTypes_ = PRIVATE_NAMESPACE_::ReceiverOwnershipType<Q,OwnershipImplTraits>;
+       
+    public:
+        using TYPE = typename MyReceiverOwnershipTypes_<T>::TYPE;
 };
 
-template <typename ReceiverResultTraitsType>
-struct ReceiverOwnershipType<OwnershipTypes::TRANSFERTYPE,ReceiverResultTraitsType>
-{
-    using TYPE = typename ReceiverResultTraitsType::Transfertype;
-};
-
-} // namespace RECEIVER
+}; // namespace RECEIVER
 
 #endif // RECEIVER_ReceiverOwnershipTypes_INC

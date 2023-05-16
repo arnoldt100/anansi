@@ -55,17 +55,9 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 
     public:
 
-        template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+        // ====================  TYPEDEFS     =======================================
 
         using receiver_result_t = my_result_type_;
-
-    private:
-        using receiver_copy_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t_ = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
-
-    public:
 
         // ====================  STATIC       =======================================
 
@@ -92,6 +84,20 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
         InitMPIEnvTaskReceiver& operator= ( const InitMPIEnvTaskReceiver &other ) = delete; // assignment operator
 
         InitMPIEnvTaskReceiver& operator= ( InitMPIEnvTaskReceiver && other ); // assignment-move operator
+
+    private:
+
+        using receiver_copy_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_share_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_transfer_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
 
     protected:
         // ====================  ACCESSORS     =======================================

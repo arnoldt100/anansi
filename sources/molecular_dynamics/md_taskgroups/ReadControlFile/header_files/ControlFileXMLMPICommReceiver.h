@@ -62,13 +62,9 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
 
     public:
-        template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
+        // ====================  TYPEDEFS     =======================================
 
-        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
-        using receiver_copy_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        using receiver_result_t = my_result_type_;
 
         // ====================  STATIC       =======================================
 
@@ -95,6 +91,20 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         ControlFileXMLMPICommReceiver& operator= ( const ControlFileXMLMPICommReceiver &other )=delete; // assignment operator
 
         ControlFileXMLMPICommReceiver& operator= ( ControlFileXMLMPICommReceiver && other ); // assignment-move operator
+    private:
+
+        using receiver_copy_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_share_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_transfer_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
 
     protected:
         
@@ -111,7 +121,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
             return  ControlFileXMLMPICommReceiver::TASKLABEL;
         }
 
-        ControlFileXMLMPICommReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
+        ControlFileXMLMPICommReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
 
 
         // ====================  MUTATORS      =======================================
@@ -125,9 +135,9 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        ControlFileXMLMPICommReceiver::receiver_share_t receiverShareOwnershipOfResults_();
+        ControlFileXMLMPICommReceiver::receiver_share_t_ receiverShareOwnershipOfResults_();
 
-        ControlFileXMLMPICommReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
+        ControlFileXMLMPICommReceiver::receiver_transfer_t_ receiverTransferOwnershipOfResults_();
 
         // ====================  METHODS       =======================================
 

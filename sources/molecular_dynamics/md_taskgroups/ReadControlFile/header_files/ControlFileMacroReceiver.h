@@ -51,16 +51,12 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         // Place here the class data members required for doing the task.
 
     public:
-        template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = RECEIVER::ReceiverOwnershipType<Q,MyOwnershipImplTraits_>;
 
-        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
-        using receiver_copy_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t = MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        // ====================  TYPEDEFS     =======================================
+
+        using receiver_result_t = my_result_type_;
 
         // ====================  STATIC       =======================================
-
 
         static constexpr 
         RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE TASKLABEL =
@@ -87,6 +83,20 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         ControlFileMacroReceiver& operator= ( ControlFileMacroReceiver && other ); // assignment-move operator
 
+    private:
+
+        using receiver_copy_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_share_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_transfer_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
     protected:
         // ====================  ACCESSORS     =======================================
         template<typename... Types>
@@ -100,7 +110,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
             return  ControlFileMacroReceiver::TASKLABEL;
         }
 
-        ControlFileMacroReceiver::receiver_copy_t receiverGetCopyOfResults_() const;
+        ControlFileMacroReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
 
 
         // ====================  MUTATORS      =======================================
@@ -114,9 +124,9 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         template<typename T>
         void receiverModifyMyself_(T & arg);
 
-        ControlFileMacroReceiver::receiver_share_t receiverShareOwnershipOfResults_();
+        ControlFileMacroReceiver::receiver_share_t_ receiverShareOwnershipOfResults_();
     
-        ControlFileMacroReceiver::receiver_transfer_t receiverTransferOwnershipOfResults_();
+        ControlFileMacroReceiver::receiver_transfer_t_ receiverTransferOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 

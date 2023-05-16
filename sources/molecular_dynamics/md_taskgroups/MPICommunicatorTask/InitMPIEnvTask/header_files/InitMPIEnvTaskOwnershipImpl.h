@@ -30,14 +30,6 @@ class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
                                                                                  ReceiverOwnershipImplTraits, 
                                                                                  ErrorOwnershipPolicy>
 {
-    private:
-        template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,ReceiverOwnershipImplTraits>;
-
-        using receiver_copy_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t_ = typename MyOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
-
     public:
 
         // ====================  LIFECYCLE     =======================================
@@ -90,6 +82,20 @@ class InitMPIEnvTaskOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
             }
             return *this;
         }
+
+    private:
+
+        using receiver_copy_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         ReceiverOwnershipImplTraits>::TYPE;
+
+        using receiver_share_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         ReceiverOwnershipImplTraits>::TYPE;
+
+        using receiver_transfer_t_ = 
+             typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                          ReceiverOwnershipImplTraits>::TYPE;
 
     protected:
 

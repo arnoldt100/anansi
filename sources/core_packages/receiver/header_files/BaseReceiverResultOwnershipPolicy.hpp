@@ -40,15 +40,17 @@ private:
 
         // ====================  TYPEDEF ALIASES =====================================
 
-        using MyReceiverOwnershipImplementationTraits_ = typename ConcreteResultOwnershipImpl::ReceiverOwnershipImplementationTraits; 
+        using copy_type_ = 
+            typename ReceiverResultOwnershipType<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                 ConcreteResultOwnershipImpl>::TYPE;
 
-        template<RECEIVER::OwnershipTypes Q>
-        using MyReceiverOwnershipTypes_ = RECEIVER::ReceiverOwnershipType<Q,MyReceiverOwnershipImplementationTraits_>;
+        using shared_type_ = 
+            typename  ReceiverResultOwnershipType<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                  ConcreteResultOwnershipImpl>::TYPE;
 
-        using copy_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using shared_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using transfer_type_ = typename MyReceiverOwnershipTypes_<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
-
+         using transfer_type_ = 
+             typename ReceiverResultOwnershipType<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                  ConcreteResultOwnershipImpl>::TYPE;
         //! Provides access to the CRTP derived class member methods.
         //!
         //! The goal of this stucture is to better encapsulate (i.e. hide) the
