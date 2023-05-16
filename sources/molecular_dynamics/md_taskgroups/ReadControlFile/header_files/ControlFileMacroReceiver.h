@@ -54,6 +54,9 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // ====================  TYPEDEFS     =======================================
 
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
+
         using receiver_result_t = my_result_type_;
 
         // ====================  STATIC       =======================================
