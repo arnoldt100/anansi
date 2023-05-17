@@ -38,9 +38,36 @@ namespace ANANSI
 class ReadControlFileTraits
 {
     private: 
-        using MC_ = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
     public:
+
+        // ====================  TYPEDEFS      =======================================
+
+        using MC = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
+
+        using abstract_products = MPL::mpl_typelist<
+                                                       ControlFile,
+                                                       ControlFileCommunicator,
+                                                       MC
+                                                   >;
+
+        using concrete_products = MPL::mpl_typelist<
+                                                       GenericMDTask<ControlFile,ControlFileXMLReceiver>,
+                                                       GenericMDTask<ControlFileCommunicator,ControlFileXMLMPICommReceiver>,
+                                                       GenericMDTask<MC,ControlFileMacroReceiver>
+                                                   >;
+
+        using receiver_results_t = MPL::mpl_typelist<
+                                                    	ControlFileXMLReceiver::receiver_result_t,
+                                                        ControlFileXMLMPICommReceiver::receiver_result_t,
+                                                        ControlFileMacroReceiver::receiver_result_t
+                                                     >;
+
+        static constexpr auto LABELS = std::array{
+                                                    ControlFileXMLReceiver::TASKLABEL,
+                                                    ControlFileXMLMPICommReceiver::TASKLABEL,
+                                                    ControlFileMacroReceiver::TASKLABEL
+                                                 };
 
         // ====================  LIFECYCLE     =======================================
 
@@ -61,30 +88,6 @@ class ReadControlFileTraits
         ReadControlFileTraits& operator= ( const ReadControlFileTraits &other ); // assignment operator
 
         ReadControlFileTraits& operator= ( ReadControlFileTraits && other ); // assignment-move operator
-
-        using abstract_products = MPL::mpl_typelist<
-                                                       ControlFile,
-                                                       ControlFileCommunicator,
-                                                       MC_
-                                                   >;
-
-        using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<ControlFile,ControlFileXMLReceiver>,
-                                                       GenericMDTask<ControlFileCommunicator,ControlFileXMLMPICommReceiver>,
-                                                       GenericMDTask<MC_,ControlFileMacroReceiver>
-                                                   >;
-
-        using receiver_results_t = MPL::mpl_typelist<
-                                                    	ControlFileXMLReceiver::receiver_result_t,
-                                                        ControlFileXMLMPICommReceiver::receiver_result_t,
-                                                        ControlFileMacroReceiver::receiver_result_t
-                                                     >;
-
-        static constexpr auto LABELS = std::array{
-                                                    ControlFileXMLReceiver::TASKLABEL,
-                                                    ControlFileXMLMPICommReceiver::TASKLABEL,
-                                                    ControlFileMacroReceiver::TASKLABEL
-                                                 };
 
     protected:
         // ====================  METHODS       =======================================
