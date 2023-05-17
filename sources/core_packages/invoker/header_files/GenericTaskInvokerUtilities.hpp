@@ -26,6 +26,7 @@
 #include "MPLAliases.hpp"
 #include "ReceiverUtilities.hpp"
 #include "OwnershipTypes.hpp"
+#include "ReceiverTypeUtilities.hpp"
 
 namespace ANANSI
 {

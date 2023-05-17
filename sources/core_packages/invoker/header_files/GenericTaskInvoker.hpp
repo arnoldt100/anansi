@@ -23,6 +23,7 @@
 #include "MPLAliases.hpp"
 #include "TaskLabel.hpp"
 #include "ReceiverUtilities.hpp"
+#include "ReceiverTypeUtilities.hpp"
 
 namespace ANANSI
 {
