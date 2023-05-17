@@ -393,13 +393,6 @@ AnansiMolecularDynamics::enableControlFileTasks ()
     {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
     auto mpi_world_communicator = this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<tmpstr>();
 
-
-    // StandardFileParserFactory file_parser_factory;
-    // std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
-    // std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
-    //                                                                       file_name,
-    //                                                                       std::move(a_communicator));
-
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // Setup all receivers for the control file invoker.
     //
