@@ -193,6 +193,16 @@ class GenericTaskInvoker
             return results;
         }
 
+        //! Returns a 'handle' to the concrete task.
+        template <LABEL_t COMMAND_LABEL>
+        auto getHandleToTask()
+        {
+            GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
+
+            return task;
+        }
 
         // ====================  OPERATORS     =======================================
 

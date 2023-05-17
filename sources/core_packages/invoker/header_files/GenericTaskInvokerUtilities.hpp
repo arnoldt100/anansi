@@ -125,8 +125,13 @@ class GenericTaskInvokerUtilities
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
-            using receiver_share_t = 
-                typename concrete_task_type:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+            using receiver_share_t =
+                typename  GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                           LABEL_t,
+                                                           COMMAND_LABEL,
+                                                           ConcreteTasksTypeList>::TYPE;
+
+
 
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
@@ -150,7 +155,10 @@ class GenericTaskInvokerUtilities
                 typename ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
             using receiver_transfer_t = 
-                typename concrete_task_type:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+                typename  GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                           LABEL_t,
+                                                           COMMAND_LABEL,
+                                                           ConcreteTasksTypeList>::TYPE;
 
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
@@ -159,7 +167,6 @@ class GenericTaskInvokerUtilities
 
             return ret_val;
         }
-
 
         template <typename ConcreteTasksTypeList, ANANSI::TaskLabel COMMAND_LABEL>
         static void

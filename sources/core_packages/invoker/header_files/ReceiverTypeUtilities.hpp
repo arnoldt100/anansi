@@ -77,6 +77,7 @@ struct GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE,L
         using TYPE = 
             typename concrete_task_type_:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
 };
+
 }; // namespace ANANSI
 
 #endif // ANANSI_ReceiverTypeUtilities_INC
