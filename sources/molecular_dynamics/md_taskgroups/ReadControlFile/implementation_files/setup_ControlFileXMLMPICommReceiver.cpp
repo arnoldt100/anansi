@@ -18,7 +18,7 @@ namespace ANANSI
 
 void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                                      ReadControlFileTraits::concrete_products>
-                                                         > control_file_invoker)
+                                                         > control_filexmlmpi_invoker)
 {
     // ---------------------------------------------------
     // We define some type aliases to reduce the amount of typing.
@@ -26,7 +26,7 @@ void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInv
     // ---------------------------------------------------
     using my_abstract_tasks = ReadControlFileTraits::abstract_products; // The abstract task typelist.
     using my_concrete_tasks = ReadControlFileTraits::concrete_products; // The concrete tasks typelist.
-    using base_receiver_t = ANANSI::ControlFile; // The base class for the task we are setting up. 
+    using base_receiver_t = ANANSI::ControlFileCommunicator; // The base class for the task we are setting up. 
     using concrete_receiver_t = ANANSI::ControlFileXMLMPICommReceiver; // The concrete tasks we are setting up.
 
     // ---------------------------------------------------
@@ -49,8 +49,21 @@ void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInv
     // Create the receiver of concrete task 
     // GenericMDTask<ControlFile,ControlFileXMLReceiver> 
     // ---------------------------------------------------
-    auto control_file_xml_receiver = 
+    auto control_file_xmlmpi_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
+
+    // ---------------------------------------------------
+    // Create task object and bind the receiver to the task object.
+    // 
+    // ---------------------------------------------------
+    std::shared_ptr<ANANSI::AnansiTask> my_task = 
+        conrete_task_factory->create_shared_ptr<base_receiver_t>(control_file_xmlmpi_receiver);
+
+    // ---------------------------------------------------
+    // Add the task object/command to the invoker.
+    //
+    // ---------------------------------------------------
+    control_filexmlmpi_invoker->addTask(task_label,my_task);
 
     return;
 }   //  -----  end of function setup_ControlFileXMLMPICommReceiver

@@ -38,7 +38,7 @@ namespace ANANSI
 class ReadControlFileTraits
 {
     private: 
-        using MC_ = MacroCommand<ControlFile,ControlFileCommunicator>;
+        using MC_ = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
     public:
 
