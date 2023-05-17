@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -157,6 +158,8 @@ void ControlFileMacroReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
+
+    std::cout << "Stub: ControlFileMacroReceiver::receiverDoAction_" << "\n";
     return;
 }
 
