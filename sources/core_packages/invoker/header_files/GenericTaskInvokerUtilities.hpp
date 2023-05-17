@@ -145,7 +145,7 @@ class GenericTaskInvokerUtilities
         transferTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
         {
             using concrete_task_type = 
-                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+                typename ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
             using receiver_transfer_t = 
                 typename concrete_task_type:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
