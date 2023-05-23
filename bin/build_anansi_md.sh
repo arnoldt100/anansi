@@ -4,7 +4,7 @@
 # Define the Anansi buld directory.                  -
 #                                                    -
 #-----------------------------------------------------
-declare -r anansi_cmake_build_dir="build"
+declare -r anansi_cmake_build_dir="${ANANSI_TOP_LEVEL}/build"
 
 #-----------------------------------------------------
 # The number of make threads.                        -
