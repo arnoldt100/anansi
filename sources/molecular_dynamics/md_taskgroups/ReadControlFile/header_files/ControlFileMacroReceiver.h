@@ -2,10 +2,6 @@
 #define  ANANSI_ControlFileMacroReceiver_INC
 
 //! @file ControlFileMacroReceiver.h
-//!
-//! Brief description
-//!
-//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -31,12 +27,21 @@
 namespace ANANSI
 {
 
+//! Assembles the ControlFileXMLReceiver and ControlFileXMLMPICommReceiver commands.
+//!
+//! These assemble commands will have the result of all MPI tasks in the
+//! communicator group of ControlFileXMLMPICommReceiver to contain the information
+//! contained in control file.
 class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFileMacroReceiver>
 {
     private:
-        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
-            {'d','u','m','m','y', '_','l','a','b','e','l'};
+        //! The command label for the task associated with this receiver.
+        static constexpr char commandlabel[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
+            {'d','o','_','m','a','c','r','o','_','i','n','p','u','t','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
+        //! The ownership types for the result. 
+        //!
+        //! Currently we use a dummy int result.
         using my_result_type_ = int;
         using my_copy_type_ = int;
         using my_share_type_ = int;
@@ -46,7 +51,10 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
+        //! The ownership policy traits  for the result.
         using MyOwnershipImpl_ = ControlFileMacroOwnershipImpl<MyOwnershipImplTraits_>;
+        
+        //! The ownership policy for the result.
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
        
         // Place here the class data members required for doing the task.
@@ -64,7 +72,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         static constexpr 
         RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE(ControlFileMacroReceiver::tmpstr);
+            RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE(ControlFileMacroReceiver::commandlabel);
 
         // ====================  LIFECYCLE     =======================================
 

@@ -12,7 +12,10 @@
 //--------------------------------------------------------//
 #include "ControlFileMacroReceiver.h"
 
+
 namespace ANANSI {
+
+class AnansiTask;
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -91,6 +94,12 @@ ControlFileMacroReceiver::receiver_share_t_ ControlFileMacroReceiver::receiverSh
 
 template<>
 void ControlFileMacroReceiver::receiverModifyMyself_(int & alpha)
+{
+    return;
+}
+
+template<>
+void ControlFileMacroReceiver::receiverModifyMyself_<std::shared_ptr<ANANSI::AnansiTask>>(std::shared_ptr<ANANSI::AnansiTask> & a_task)
 {
     return;
 }

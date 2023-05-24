@@ -54,6 +54,19 @@ void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
 
     // ---------------------------------------------------
+    // Get the shared_ptr to the tasks associated with the
+    // ControlFileXMLMPICommReciever and ControlFileXMLReceiver.
+    //
+    // ---------------------------------------------------
+    constexpr auto my_task_label1 = ControlFileXMLReceiver::TASKLABEL; 
+    auto my_controlfilexmlreciever_task =  control_file_invoker->getHandleToTask<my_task_label1>();
+    control_file_xmlmacro_receiver->modifyReceiver(my_controlfilexmlreciever_task);
+
+    constexpr auto my_task_label2 = ControlFileXMLMPICommReceiver::TASKLABEL; 
+    auto my_controlfilexmlmpicommreciever_task = control_file_invoker->getHandleToTask<my_task_label2>();
+    control_file_xmlmacro_receiver->modifyReceiver(my_controlfilexmlmpicommreciever_task);
+
+    // ---------------------------------------------------
     // Create task object and bind the receiver to the task object.
     // 
     // ---------------------------------------------------
