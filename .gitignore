@@ -54,5 +54,5 @@ anansi_cmake_build_dir/*
 *stdout.txt
 *stderr.txt
 /mouseion_log.txt
-.cahce
+.cahce/*
 build/*
