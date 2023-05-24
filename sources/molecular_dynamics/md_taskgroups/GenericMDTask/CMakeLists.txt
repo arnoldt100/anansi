@@ -79,7 +79,8 @@
     #-----------------------------------------------------
     set (genericmdtask_header_files
           header_files/GenericMDTask.hpp
-          header_files/DefaultFunctorImpl.h )
+          header_files/DefaultFunctorImpl.h
+          header_files/GenericMDTaskContainer.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -90,7 +91,8 @@
     #-----------------------------------------------------
     set (genericmdtask_implementation_files
          implementation_files/GenericMDTask.cpp
-         implementation_files/DefaultFunctorImpl.cpp )
+         implementation_files/DefaultFunctorImpl.cpp 
+         implementation_files/GenericMDTaskContainer.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
