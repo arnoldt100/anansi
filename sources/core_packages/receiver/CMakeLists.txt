@@ -77,6 +77,7 @@
     #-----------------------------------------------------
     set (receiver_header_files
          header_files/ReceiverInterface.hpp
+         header_files/ConcreteReceiverConstraints.hpp
          header_files/BaseReceiverResultOwnershipPolicy.hpp
          header_files/GenericReceiverFactory.hpp
          header_files/OwnershipTypeRequirements.hpp
@@ -93,6 +94,7 @@
     #-----------------------------------------------------
     set (receiver_implementation_files
          implementation_files/ReceiverInterface.cpp
+         implementation_files/ConcreteReceiverConstraints.cpp
          implementation_files/BaseReceiverResultOwnershipPolicy.cpp
          implementation_files/GenericReceiverFactory.cpp
          implementation_files/OwnershipTypeRequirements.cpp
