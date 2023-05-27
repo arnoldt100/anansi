@@ -47,6 +47,10 @@ GenericMDTaskContainer::~GenericMDTaskContainer()
 }
 
 //============================= ACCESSORS ====================================
+bool GenericMDTaskContainer::compareTaskLabel() const
+{
+    return false;
+}
 
 //============================= MUTATORS =====================================
 

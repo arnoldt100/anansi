@@ -27,8 +27,8 @@ namespace ANANSI
 
 template<typename MyTaskImplTraits>
 class ControlFileMacroOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<ControlFileMacroOwnershipImpl<MyTaskImplTraits>,
-                                                                                   MyTaskImplTraits, 
-                                                                                   ErrorOwnershipPolicy>
+                            MyTaskImplTraits, 
+                            ErrorOwnershipPolicy>
 {
     public:
 

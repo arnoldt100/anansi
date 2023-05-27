@@ -43,18 +43,20 @@ class ReadControlFileTraits
 
         // ====================  TYPEDEFS      =======================================
 
-        using MC = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
+
+        using MCParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
         using abstract_products = MPL::mpl_typelist<
                                                        ControlFile,
                                                        ControlFileCommunicator,
-                                                       MC
+                                                       MCParentTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
                                                        GenericMDTask<ControlFile,ControlFileXMLReceiver>,
                                                        GenericMDTask<ControlFileCommunicator,ControlFileXMLMPICommReceiver>,
-                                                       GenericMDTask<MC,ControlFileMacroReceiver>
+                                                       GenericMDTask<ControlFileMacroReceiver::MyParentTask,
+                                                                     ControlFileMacroReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist<

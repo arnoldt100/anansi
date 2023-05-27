@@ -27,7 +27,7 @@ void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
     // ---------------------------------------------------
     using my_abstract_tasks = ReadControlFileTraits::abstract_products; // The abstract task typelist.
     using my_concrete_tasks = ReadControlFileTraits::concrete_products; // The concrete tasks typelist.
-    using base_receiver_t = ReadControlFileTraits::MC; // The base class for the task we are setting up. 
+    using parent_task_t = ReadControlFileTraits::MCParentTask; // The base class for the task we are setting up. 
     using concrete_receiver_t = ANANSI::ControlFileMacroReceiver; // The concrete tasks we are setting up.
 
     // ---------------------------------------------------
@@ -71,7 +71,7 @@ void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> my_task = 
-        conrete_task_factory->create_shared_ptr<base_receiver_t>(control_file_xmlmacro_receiver);
+        conrete_task_factory->create_shared_ptr<parent_task_t>(control_file_xmlmacro_receiver);
 
     // ---------------------------------------------------
     // Add the task object/command to the invoker.

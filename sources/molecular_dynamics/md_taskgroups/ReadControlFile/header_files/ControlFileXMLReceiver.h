@@ -32,6 +32,7 @@
 //--------------------------------------------------------//
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
+#include "ControlFile.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
 #include "ControlFileName.h"
@@ -79,6 +80,8 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         MasterProcess masterProcess_;
 
     public:
+
+        using MyParentTask = ControlFile;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;

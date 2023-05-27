@@ -25,6 +25,9 @@ namespace ANANSI
 //! The purpose of this class is to 'wrap' the GenericMdTask objects
 //1 to facilitate modifying the GenericMdTask objects by means of the
 //1 ReceiverInterface::modifyReceiver method which GenericMdTask inherits.
+//! The GenericMDTaskContainer provides a interface for identifying  the
+//! type of GenericMdTask object being pass as a argument to method
+//! ReceiverInterface::modifyReceiver.
 class GenericMDTaskContainer 
 {
     public:
@@ -41,6 +44,7 @@ class GenericMDTaskContainer
         ~GenericMDTaskContainer ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        bool compareTaskLabel() const;
 
         // ====================  MUTATORS      =======================================
 

@@ -23,6 +23,7 @@
 //--------------------------------------------------------//
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
+#include "ControlFileCommunicator.h"
 #include "ControlFileXMLMPICommOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
 #include "OwnershipTypes.hpp"
@@ -63,6 +64,8 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
     public:
         // ====================  TYPEDEFS     =======================================
+
+        using MyParentTask = ControlFileCommunicator;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;

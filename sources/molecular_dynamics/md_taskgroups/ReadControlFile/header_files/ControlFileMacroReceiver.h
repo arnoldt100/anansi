@@ -15,6 +15,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MacroCommand.hpp"
+#include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
@@ -36,7 +38,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 {
     private:
         //! The command label for the task associated with this receiver.
-        static constexpr char commandlabel[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char commandlabel_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'d','o','_','m','a','c','r','o','_','i','n','p','u','t','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
         //! The ownership types for the result. 
@@ -57,11 +59,16 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         //! The ownership policy for the result.
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
        
-        // Place here the class data members required for doing the task.
-
     public:
 
         // ====================  TYPEDEFS     =======================================
+
+        // Place here the concrete commponent receivers required for receiver to 
+        // do its work.
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<ControlFileXMLReceiver,
+                                                              ControlFileXMLMPICommReceiver>;
+
+        using MyParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
@@ -70,9 +77,9 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // ====================  STATIC       =======================================
 
-        static constexpr 
+        static constexpr
         RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE(ControlFileMacroReceiver::commandlabel);
+            RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE(ControlFileMacroReceiver::commandlabel_);
 
         // ====================  LIFECYCLE     =======================================
 
