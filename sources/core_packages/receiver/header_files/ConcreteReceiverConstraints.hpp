@@ -22,9 +22,9 @@ namespace RECEIVER
 template <typename ConcreteReceiver_t>
 concept ConcreteReceiverConstraints = requires  (ConcreteReceiver_t x)
 {
+    typename ConcreteReceiver_t::MyComponentReceiverTypelist; 
     typename ConcreteReceiver_t::receiver_result_t;
-    // { typename ConcreteReceiver_t::MyParentTask } -> std::derived_from<ANANSI::AnansiTask>;
-     typename ConcreteReceiver_t::MyParentTask; 
+    typename ConcreteReceiver_t::MyParentTask; 
 }; 
 
 

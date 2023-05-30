@@ -21,6 +21,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "ControlFileCommunicator.h"
@@ -64,6 +65,8 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
     public:
         // ====================  TYPEDEFS     =======================================
+
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
 
         using MyParentTask = ControlFileCommunicator;
 
