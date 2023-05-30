@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ConsoleLoggingTask.h"
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
 #include "ReceiverResultTraits.hpp"
@@ -24,17 +25,6 @@
 #include "Communicator.h"
 #include "ConsoleMessageContainer.h"
 #include "OwnershipTypes.hpp"
-
-// ---------------------------------------------------
-// Uncomment the ownership policies as required for 
-// class member ConcreteTaskReceiver::ownershipPolicy_.
-// For this class we select CopyOwnershipPolicy.hpp.
-// ---------------------------------------------------
-// #include "NullOwnershipPolicy.hpp"
-// #include "TransferOwnershipPolicy.hpp"
-// #include "ShareCopyOwnershipPolicy.hpp"
-// #include "TransferCopyOwnershipPolicy.hpp""
-// #include "ShareOwnershipPolicy.hpp"
 #include "CopyOwnershipPolicy.hpp"
 
 
@@ -74,6 +64,10 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
     public:
         // ====================  STATIC       =======================================
+
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
+
+        using MyParentTask = ConsoleLoggingTask;
 
         static constexpr 
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =

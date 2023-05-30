@@ -51,15 +51,16 @@ class WriteTextToConsoleTaskTraits
         // ====================  ALIASES       =======================================
 
         using abstract_products = MPL::mpl_typelist<
-                                                        ConsoleLoggingTask
+                                                    WriteTextToConsoleTaskReceiver::MyParentTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                        GenericMDTask<ConsoleLoggingTask,WriteTextToConsoleTaskReceiver>
+                                                    GenericMDTask<WriteTextToConsoleTaskReceiver::MyParentTask,
+                                                                  WriteTextToConsoleTaskReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist <
-                                                         WriteTextToConsoleTaskReceiver::receiver_result_t 
+                                                      WriteTextToConsoleTaskReceiver::receiver_result_t 
                                                      >;
 
         static constexpr auto LABELS = std::array{
