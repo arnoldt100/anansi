@@ -19,6 +19,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ConcreteReceiverConstraints.hpp"
 #include "TaskLabel.hpp"
 #include "AnansiTaskParameters.h"
 #include "DefaultFunctorImpl.h"
@@ -34,7 +35,7 @@ namespace ANANSI
 //! @tparam FunctorImpl Not presently used. Reserved for future use.
 template <class BaseClass,
           class Receiver,
-          class FunctorImpl = DefaultFunctorImpl>
+          class FunctorImpl = DefaultFunctorImpl> requires RECEIVER::ConcreteReceiverConstraints<Receiver>
 class GenericMDTask : public BaseClass  
 {
 

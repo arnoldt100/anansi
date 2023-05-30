@@ -17,6 +17,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "TaskLabel.hpp"
+#include "ConcreteReceiverConstraints.hpp"
 
 namespace RECEIVER
 {
@@ -39,7 +40,7 @@ namespace RECEIVER
 //! Some methods have const qualifiers so as to limit the methods side effects.
 
 //! @tparam The derived class of the CRTP. The derived classes are the concrete receivers. 
-template<typename Derived>
+template<typename Derived> 
 class ReceiverInterface
 {
     public : 
@@ -74,7 +75,7 @@ class ReceiverInterface
         //! function pointer to the address derived pointer member function is
         //! ConcretReceiver::foo_ is formed so that we can indirectly call
         //! ConcretReceiver::foo_.
-        struct Accessor_ : public Derived
+        struct Accessor_ : public Derived 
         {
             template<typename... Types>
             static void do_action(const Derived & derived, Types... args)

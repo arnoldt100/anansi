@@ -54,11 +54,12 @@ class InitMPIEnvTaskTraits
         InitMPIEnvTaskTraits& operator= ( InitMPIEnvTaskTraits && other ); // assignment-move operator
         
         using abstract_products = MPL::mpl_typelist<
-                                                       InterProcessCommEnv
+                                                       InitMPIEnvTaskReceiver::MyParentTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<InterProcessCommEnv,InitMPIEnvTaskReceiver>
+                                                       GenericMDTask<InitMPIEnvTaskReceiver::MyParentTask,
+                                                                     InitMPIEnvTaskReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist<

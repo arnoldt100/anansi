@@ -71,7 +71,8 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         using MyParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
         template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
+        using MyOwnershipTypes = 
+        typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
 
         using receiver_result_t = my_result_type_;
 

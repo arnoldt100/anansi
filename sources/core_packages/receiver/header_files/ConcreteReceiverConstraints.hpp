@@ -14,15 +14,17 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTask.h"
 
 namespace RECEIVER
 {
 
 template <typename ConcreteReceiver_t>
-concept ConcreteReceiverConstraints = requires
+concept ConcreteReceiverConstraints = requires  (ConcreteReceiver_t x)
 {
-    //! The concrete receciver parent task.
-    typename ConcreteReceiver_t::MyParentTask;
+    typename ConcreteReceiver_t::receiver_result_t;
+    // { typename ConcreteReceiver_t::MyParentTask } -> std::derived_from<ANANSI::AnansiTask>;
+     typename ConcreteReceiver_t::MyParentTask; 
 }; 
 
 

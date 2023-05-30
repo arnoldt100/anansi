@@ -30,6 +30,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "ControlFile.h"
@@ -80,6 +81,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         MasterProcess masterProcess_;
 
     public:
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
 
         using MyParentTask = ControlFile;
 

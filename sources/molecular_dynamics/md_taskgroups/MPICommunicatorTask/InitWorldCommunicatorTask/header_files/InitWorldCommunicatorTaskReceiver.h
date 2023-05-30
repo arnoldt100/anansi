@@ -16,7 +16,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
 #include "Communicator.h"
+#include "CommunicatorTask.h"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "MPICommunicatorFactory.h"
@@ -72,6 +74,9 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
 
     public: 
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
+
+        using MyParentTask = CommunicatorTask;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;

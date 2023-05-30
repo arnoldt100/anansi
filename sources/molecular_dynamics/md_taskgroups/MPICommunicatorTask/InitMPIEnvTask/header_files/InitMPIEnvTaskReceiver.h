@@ -17,8 +17,10 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
+#include "InterProcessCommEnv.h"
 #include "InitMPIEnvTaskOwnershipImpl.h"
 #include "ReceiverResultTraits.hpp"
 #include "NullOwnershipPolicy.hpp"
@@ -56,6 +58,10 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
     public:
 
         // ====================  TYPEDEFS     =======================================
+
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
+
+        using MyParentTask = InterProcessCommEnv;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
