@@ -15,6 +15,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GenericMDTask.hpp"
 #include "MacroCommand.hpp"
 #include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
@@ -65,8 +66,9 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // Place here the concrete commponent receivers required for receiver to 
         // do its work.
-        using MyComponentReceiverTypelist = MPL::mpl_typelist<ControlFileXMLReceiver,
-                                                              ControlFileXMLMPICommReceiver>;
+        using MyComponentReceiverTypelist = 
+            MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>,
+                                            GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>>;
 
         using MyParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
@@ -155,6 +157,8 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
+        std::shared_ptr<GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>> taskReadControlFile_;
+        std::shared_ptr<GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>> taskCommunicateControlFile_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class ControlFileMacroReceiver  -----
