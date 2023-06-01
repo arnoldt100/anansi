@@ -402,13 +402,11 @@ AnansiMolecularDynamics::enableControlFileTasks ()
                                 mdControlFileInvk_); 
 
     // ---------------------------------------------------
-    // 
+    // Run macro receiver.
     //
     // ---------------------------------------------------
-
-
-
-    // control_file->readFile();
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::ControlFileMacroReceiver::TASKLABEL};
+    this->mdControlFileInvk_->doTask(command_labels);
 
     return;
 }   /* -----  end of method AnansiMolecularDynamics::enableControlFileTasks ----- */

@@ -37,14 +37,14 @@ namespace ANANSI
 
 class ReadControlFileTraits
 {
-    private: 
 
     public:
 
         // ====================  TYPEDEFS      =======================================
 
 
-        using MCParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
+
+        using MCParentTask = ControlFileMacroReceiver::MyParentTask;
 
         using abstract_products = MPL::mpl_typelist<
                                                        ControlFileXMLReceiver::MyParentTask,

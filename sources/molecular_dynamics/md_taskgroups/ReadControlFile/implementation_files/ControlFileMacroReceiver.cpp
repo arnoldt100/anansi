@@ -101,6 +101,8 @@ void ControlFileMacroReceiver::receiverModifyMyself_(int & alpha)
 template<>
 void ControlFileMacroReceiver::receiverModifyMyself_<std::shared_ptr<ANANSI::AnansiTask>>(std::shared_ptr<ANANSI::AnansiTask> & a_task)
 {
+    const auto task_index = a_task->taskIndex();
+    this->compenentTasks_[task_index] = a_task;
     return;
 }
 

@@ -6,6 +6,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <map>
 #include <iostream>
 
 //--------------------------------------------------------//
@@ -26,6 +27,7 @@
 #include "ControlFileXMLMPICommReceiver.h"
 #include "CopyOwnershipPolicy.hpp"
 #include "OwnershipTypes.hpp"
+#include "AnansiTaskParameters.h"
 
 namespace ANANSI
 {
@@ -68,7 +70,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         // do its work.
         using MyComponentReceiverTypelist = 
             MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>,
-                                            GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>>;
+                              GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>>;
 
         using MyParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
@@ -157,8 +159,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
-        std::shared_ptr<GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>> taskReadControlFile_;
-        std::shared_ptr<GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>> taskCommunicateControlFile_;
+        std::map<AnansiTaskParameters::task_size_t, std::shared_ptr<AnansiTask>> compenentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class ControlFileMacroReceiver  -----
