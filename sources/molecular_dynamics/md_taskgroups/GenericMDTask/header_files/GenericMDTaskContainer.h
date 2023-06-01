@@ -1,6 +1,6 @@
 #ifndef ANANSI_GenericMDTaskContainer_INC
 #define ANANSI_GenericMDTaskContainer_INC
-//! @file GenericMDTaskContainer,h
+//! @file GenericMDTaskContainer.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//

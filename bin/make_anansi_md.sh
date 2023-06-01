@@ -30,4 +30,4 @@ fi
 
 cd ${anansi_cmake_build_dir}
 
-make -j ${NM_MAKE_THREADS} && make install 
+make -j ${NM_MAKE_THREADS} all && make install 

@@ -1,6 +1,6 @@
 #ifndef ANANSI_WriteTextToConsoleTaskOwnershipImpl_INC
 #define ANANSI_WriteTextToConsoleTaskOwnershipImpl_INC
-//! @file WriteTextToConsoleTaskOwnershipImpl.h
+//! @file WriteTextToConsoleTaskOwnershipImpl.hpp
 //!
 //! Brief description
 //!
