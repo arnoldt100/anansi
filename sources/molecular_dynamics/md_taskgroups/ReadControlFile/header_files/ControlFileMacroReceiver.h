@@ -66,13 +66,14 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // ====================  TYPEDEFS     =======================================
 
+        using MyParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
+
         // Place here the concrete commponent receivers required for receiver to 
         // do its work.
         using MyComponentReceiverTypelist = 
             MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>,
                               GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>>;
 
-        using MyParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = 
@@ -180,7 +181,7 @@ template<typename... Types>
 void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
     // The first step is to execute the task of reading the control file.
-
+    
     // The second step is to communicate the control file to the
     // other processes in the communicator group.
     std::cout << "Stub: ControlFileMacroReceiver::receiverDoAction_" << "\n";
