@@ -18,7 +18,16 @@
     # 
     # ----------------------------------------------------
     package_config_begin_delimiter("common_md_taskgroup_headers" "${md_taskgroups_logfilepath}")
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/CommonMDTaskGroupHeaders/cmake_macros_and_functions/common_md_taskgroup_headers.cmake)
     
+    enable_building_common_md_taskgroup_headers_package("${md_taskgroups_install_lib_directory}"
+                                                        "${md_taskgroups_install_include_directory}"
+                                                        "${md_taskgroups_install_bin_directory}"
+                                                        "${md_taskgroups_cxx_standard}"
+                                                        "${md_taskgroups_logfilepath}")
+
+    add_subdirectory(CommonMDTaskgroupHeaders)
+
     package_config_end_delimiter("common_md_taskgroup_headers" "${md_taskgroups_logfilepath}")
     # ----------------------------------------------------
     #  (End of section)
