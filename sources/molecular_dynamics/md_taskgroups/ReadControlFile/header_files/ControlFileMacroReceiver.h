@@ -160,7 +160,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
-        std::map<AnansiTaskParameters::task_size_t, std::shared_ptr<AnansiTask>> compenentTasks_;
+        std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> compenentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class ControlFileMacroReceiver  -----
@@ -181,10 +181,14 @@ template<typename... Types>
 void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
     // The first step is to execute the task of reading the control file.
-    
+    auto task_label_1 = ControlFileXMLReceiver::TASKLABEL;
+    std::vector<std::string> flags;
+    this->compenentTasks_.at(task_label_1)->doAction(flags);
+
     // The second step is to communicate the control file to the
     // other processes in the communicator group.
-    std::cout << "Stub: ControlFileMacroReceiver::receiverDoAction_" << "\n";
+    auto task_label_2 = ControlFileXMLMPICommReceiver::TASKLABEL;
+    this->compenentTasks_.at(task_label_2)->doAction(flags);
     return;
 }
 
