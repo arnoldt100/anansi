@@ -10,6 +10,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <map>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,12 +20,15 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GenericMDTask.hpp"
+#include "MacroCommand.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
+#include "OwnershipTypes.hpp"
+#include "AnansiTaskParameters.h"
 #include "DummyConcreteTaskOwnershipImpl.hpp"
 #include "__OwnershipPolicy__.hpp"
-#include "OwnershipTypes.hpp"
 
 namespace ANANSI
 {
@@ -43,20 +48,30 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
+        //! The ownership policy traits  for the result.
         using MyOwnershipImpl_ = DummyConcreteTaskOwnershipImpl<MyOwnershipImplTraits_>;
+
+        //! The ownership policy for the result.
         using MyOwnershipPolicy_ = ANANSI::__OwnershipPolicy__<MyOwnershipImpl_>;
         
         // Place here the class data members required for doing the task.
 
     public:
 
+        // ====================  TYPEDEFS     =======================================
+        using MyParentTask = MacroCommand<>;
+
+        // Place here the concrete commponent receivers required for receiver to 
+        // do its work.
+        using MyComponentReceiverTypelist = 
+            MPL::mpl_typelist<>;
+
         template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
+        using MyOwnershipTypes = 
+        typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
 
         using receiver_result_t = my_result_type_;
 
-
-    public: 
         // ====================  STATIC       =======================================
 
         static constexpr 
@@ -136,6 +151,7 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
+        std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> compenentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class DummyConcreteTaskReceiver  -----
@@ -155,12 +171,14 @@ void DummyConcreteTaskReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void DummyConcreteTaskReceiver::receiverDoAction_(Types & ... args) const
 {
+    std::cout >> "Stud for DummyConcreteTaskReceiver::receiverDoAction_" << std::endl;
     return;
 }
 
 template<typename... Types>
 void DummyConcreteTaskReceiver::receiverUndoAction_(Types & ... args) const
 {
+    std::cout >> "Stud for DummyConcreteTaskReceiver::receiverUndoAction_" << std::endl;
     return;
 }
 
