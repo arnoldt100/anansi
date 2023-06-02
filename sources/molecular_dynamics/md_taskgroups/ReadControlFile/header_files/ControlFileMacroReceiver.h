@@ -22,12 +22,12 @@
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
+#include "OwnershipTypes.hpp"
+#include "AnansiTaskParameters.h"
 #include "ControlFileMacroOwnershipImpl.hpp"
 #include "ControlFileXMLReceiver.h"
 #include "ControlFileXMLMPICommReceiver.h"
 #include "CopyOwnershipPolicy.hpp"
-#include "OwnershipTypes.hpp"
-#include "AnansiTaskParameters.h"
 
 namespace ANANSI
 {
@@ -91,7 +91,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         ControlFileMacroReceiver ();   // constructor
 
-        ControlFileMacroReceiver (const ControlFileMacroReceiver & other);   // copy constructor
+        ControlFileMacroReceiver (const ControlFileMacroReceiver & other) = delete ;   // copy constructor
 
         ControlFileMacroReceiver (ControlFileMacroReceiver && other);   // copy-move constructor
 
@@ -104,7 +104,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // ====================  OPERATORS     =======================================
 
-        ControlFileMacroReceiver& operator= ( const ControlFileMacroReceiver &other ); // assignment operator
+        ControlFileMacroReceiver& operator= ( const ControlFileMacroReceiver &other ) = delete; // assignment operator
 
         ControlFileMacroReceiver& operator= ( ControlFileMacroReceiver && other ); // assignment-move operator
 
