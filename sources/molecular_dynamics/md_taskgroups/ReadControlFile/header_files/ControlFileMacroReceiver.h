@@ -179,7 +179,10 @@ void ControlFileMacroReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
+    // The first step is to execute the task of reading the control file.
 
+    // The second step is to communicate the control file to the
+    // other processes in the communicator group.
     std::cout << "Stub: ControlFileMacroReceiver::receiverDoAction_" << "\n";
     return;
 }
