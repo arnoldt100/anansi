@@ -55,6 +55,10 @@ AnansiTaskParameters::task_size_t AnansiTask::taskIndex() const
     return this->taskIndex_();
 }
 
+ANANSI::TaskLabel AnansiTask::taskLabel() const
+{
+    return this->taskLabel_();
+}
 
 //============================= MUTATORS =====================================
 void AnansiTask::doAction(const std::vector<std::string> & flags ) const

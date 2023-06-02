@@ -23,6 +23,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiTaskParameters.h"
+#include "TaskLabel.hpp"
 
 namespace ANANSI
 {
@@ -53,6 +54,9 @@ class AnansiTask
 
         //! Returns the location of concrete task with respect to the concrete typelist.
         AnansiTaskParameters::task_size_t taskIndex() const;
+
+        //! Returns the TaskLabel for the receiver corresponding to this task.
+        ANANSI::TaskLabel taskLabel() const;
 
         // ====================  MUTATORS      =======================================
         
@@ -103,6 +107,9 @@ class AnansiTask
         // ====================  ACCESSORS     =======================================
         
         virtual AnansiTaskParameters::task_size_t taskIndex_() const = 0;
+
+        //! Returns the TaskLabel for the receiver corresponding to this task.
+        virtual ANANSI::TaskLabel taskLabel_() const=0;
 
         // ====================  MUTATORS      =======================================
         

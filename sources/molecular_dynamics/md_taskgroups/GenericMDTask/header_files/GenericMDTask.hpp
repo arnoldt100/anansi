@@ -91,6 +91,11 @@ class GenericMDTask : public BaseClass
             return this->taskConcreteTypeListIndex_;
         }
 
+        ANANSI::TaskLabel taskLabel_() const override
+        {
+            return TASKLABEL;
+        }
+
         //! Gets the result of getCopyOfResults
         //!
         //! Returns a copy of the receiver results.  The calling function
