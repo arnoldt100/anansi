@@ -30,28 +30,19 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPLAliases.hpp"
-#include "ReceiverResultTraits.hpp"
-#include "ReceiverInterface.hpp"
+#include "CommonMDTaskGroupHeaders.h"
+
 #include "ControlFile.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
-#include "TaskLabel.hpp"
 #include "ControlFileName.h"
 #include "MasterProcess.h"
-#include "OwnershipTypes.hpp"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
 // class member ConcreteTaskReceiver::ownershipPolicy_.
 // For this class we select ShareCopyOwnershipPolicy.hpp.
 // ---------------------------------------------------
-// #include "NullOwnershipPolicy.hpp"
-// #include "TransferOwnershipPolicy.hpp"
-// #include "ShareCopyOwnershipPolicy.hpp"
 #include "ShareCopyOwnershipPolicy.hpp"
-// #include "TransferCopyOwnershipPolicy.hpp""
-// #include "ShareOwnershipPolicy.hpp"
-// #include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
