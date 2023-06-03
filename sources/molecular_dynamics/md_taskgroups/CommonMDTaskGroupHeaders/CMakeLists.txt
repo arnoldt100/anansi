@@ -2,7 +2,7 @@
 # To add source files, simply append the appropiate variable
 # common_md_taskgroup_headers_header_files or common_md_taskgroup_headers_implementation_files.
 #
-# The target for the library is common_md_taskgroup_headers.
+# The target for the library is common_md_taskgroup_headers
 #
 # The following properties are set for the target common_md_taskgroup_headers.
 #
@@ -75,6 +75,16 @@
     set (common_md_taskgroup_headers_implementation_files
          implementation_files/CommonMDTaskGroupHeaders.cpp )
 
+    # -----------------------------------------------------
+    # Set various variables for include directories.
+    # 
+    # -----------------------------------------------------
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include )
+    get_target_property(my_tasks_include tasks tasks_include)
+    get_target_property(my_receiver_include receiver receiver_include )
+    get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
+    get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
@@ -104,7 +114,19 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PRIVATE "${typelist_aliases_include})"
+                           PRIVATE "${my_tasks_include}"
+                           PRIVATE "${my_genericmdtask_include}"
+                           PRIVATE "${my_receiver_include}"
+                           PRIVATE "${mdownershippolicies_include}")
+
+target_link_libraries(${target}
+                      PUBLIC typelist_aliases 
+                      PUBLIC tasks
+                      PUBLIC genericmdtask
+                      PUBLIC receiver
+                      PUBLIC mdownershippolicies)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

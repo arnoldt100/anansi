@@ -16,14 +16,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "GenericMDTask.hpp"
-#include "MacroCommand.hpp"
-#include "MPLAliases.hpp"
-#include "ReceiverResultTraits.hpp"
-#include "ReceiverInterface.hpp"
-#include "TaskLabel.hpp"
-#include "OwnershipTypes.hpp"
-#include "AnansiTaskParameters.h"
+#include "CommonMDTaskGroupHeaders.h"
+
 #include "ControlFileMacroOwnershipImpl.hpp"
 #include "ControlFileXMLReceiver.h"
 #include "ControlFileXMLMPICommReceiver.h"

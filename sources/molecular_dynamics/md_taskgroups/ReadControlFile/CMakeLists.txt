@@ -111,6 +111,7 @@
     # Set various variables for include directories.
     # 
     # -----------------------------------------------------
+    get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
@@ -149,22 +150,20 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE "${my_tasks_include}"
+                           PRIVATE "${my_common_md_taskgroup_headers_include}"
                            PRIVATE "${my_mdownershippolicies_include}"
                            PRIVATE "${my_genericmdtask_include}" 
                            PRIVATE "${my_generic_abstract_factory_include}"
-                           PRIVATE "${my_invoker_include}"
-                           PRIVATE "${my_receiver_include}" )
+                           PRIVATE "${my_invoker_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC tasks
+                      PUBLIC common_md_taskgroup_headers
                       PUBLIC genericmdtask
                       PUBLIC generic_abstract_factory
-                      PUBLIC receiver
                       PUBLIC invoker
                       PUBLIC mdownershippolicies)
 

@@ -22,11 +22,12 @@
 //--------------------------------------------------------//
 #include "GenericMDTask.hpp"
 #include "MacroCommand.hpp"
-#include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
 #include "OwnershipTypes.hpp"
 #include "AnansiTaskParameters.h"
+#include "ReceiverResultTraits.hpp"
+
 #include "DummyConcreteTaskOwnershipImpl.hpp"
 #include "__OwnershipPolicy__.hpp"
 
