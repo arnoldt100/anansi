@@ -22,19 +22,19 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFile::ControlFile() :
-    BaseInputFile()
+    BaseInputFile<ControlFile>()
 {
     return;
 }
 
 ControlFile::ControlFile( const ControlFile & other) : 
-    BaseInputFile(other)
+    BaseInputFile<ControlFile>(other)
 {
     return;
 } // -----  end of method ControlFile::ControlFile  -----
 
 ControlFile::ControlFile( ControlFile && other) :
-    BaseInputFile(std::move(other))
+    BaseInputFile<ControlFile>(std::move(other))
 
 {
     return;
@@ -56,7 +56,7 @@ ControlFile& ControlFile::operator= ( const ControlFile & other )
 {
     if (this != &other)
     {
-        BaseInputFile::operator=(other);
+        BaseInputFile<ControlFile>::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -66,7 +66,7 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 {
     if (this != &other)
     {
-        BaseInputFile::operator=(std::move(other));
+        BaseInputFile<ControlFile>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

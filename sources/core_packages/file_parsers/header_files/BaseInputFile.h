@@ -25,7 +25,7 @@
 namespace ANANSI
 {
 
-    template< typename Derived>
+    template<typename Derived>
     class BaseInputFile
     {
         public:
@@ -54,10 +54,7 @@ namespace ANANSI
                 return;
             } 
 
-            ~BaseInputFile () // destructor
-            {
-                return;
-            }
+            virtual ~BaseInputFile()=0;// destructor
 
             /* ====================  ACCESSORS     ======================================= */
 
@@ -96,6 +93,11 @@ namespace ANANSI
 
     }; /* -----  end of class BaseInputFile  ----- */
 
+template<typename Derived>
+BaseInputFile<Derived>::~BaseInputFile()
+{
+    return;
+}
 
 }; // namespace ANANSI
 

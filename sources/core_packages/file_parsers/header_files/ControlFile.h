@@ -22,16 +22,6 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
     public:
         // ====================  LIFECYCLE     =======================================
 
-        /*
-         *--------------------------------------------------------------------------------------
-         *       Class:  ControlFile
-         *      Method:  ControlFile :: ControlFile
-         * Description:  Constructor
-         *
-         * Arguments: 
-         *
-         *--------------------------------------------------------------------------------------
-         */
         ControlFile();   // constructor
 
         ControlFile (const ControlFile & other);   // copy constructor
