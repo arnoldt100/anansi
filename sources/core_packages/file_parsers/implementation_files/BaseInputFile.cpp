@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "FileParser.h"
+#include "../header_files/BaseInputFile.h"
 
 namespace ANANSI {
 
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-FileParser::FileParser()
+BaseInputFile::BaseInputFile()
 {
     return;
 }
 
-FileParser::FileParser( FileParser const & other)
+BaseInputFile::BaseInputFile( BaseInputFile const & other)
 {
     if (this != &other)
     {
@@ -33,7 +33,7 @@ FileParser::FileParser( FileParser const & other)
     return;
 } 
 
-FileParser::FileParser( FileParser && other)
+BaseInputFile::BaseInputFile( BaseInputFile && other)
 {
     if (this != &other)
     {
@@ -42,7 +42,7 @@ FileParser::FileParser( FileParser && other)
     return;
 } 
 
-FileParser::~FileParser()
+BaseInputFile::~BaseInputFile()
 {
     return;
 }
@@ -50,29 +50,6 @@ FileParser::~FileParser()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void FileParser::readFile()
-{
-    this->_readFile();
-    return;
-}   // -----  end of method FileParser::readFile  ----- 
-
-
-void FileParser::shareData ()
-{
-    this->_shareData();
-    return ;
-}		// -----  end of method FileParser::shareData  ----- 
-
-void FileParser::setFileName(const std::string file_name)
-{
-    this->_setFileName(file_name);
-}
-
-void FileParser::setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
-{
-	this->_setCommunicator(std::move(a_communicator));
-	return;
-}
 
 //============================= OPERATORS ====================================
 
@@ -88,7 +65,7 @@ void FileParser::setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && 
 
 //============================= OPERATORS ====================================
 
-FileParser& FileParser::operator=( const FileParser &other )
+BaseInputFile& BaseInputFile::operator=( const BaseInputFile &other )
 {
     if (this != &other)
     {
@@ -97,7 +74,7 @@ FileParser& FileParser::operator=( const FileParser &other )
     return *this;
 } // assignment operator
 
-FileParser& FileParser::operator=( FileParser && other )
+BaseInputFile& BaseInputFile::operator=( BaseInputFile && other )
 {
     if (this != &other)
     {

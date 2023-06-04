@@ -78,12 +78,11 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_header_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FileParser.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BaseInputFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderFile.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/RegistryControlFileParserStatus.h )
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -93,12 +92,11 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FileParser.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BaseInputFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderControlFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderFile.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StandardFileFactory.cpp 
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/RegistryControlFileParserStatus.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StandardFileFactory.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

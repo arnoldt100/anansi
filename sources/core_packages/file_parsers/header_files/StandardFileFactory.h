@@ -53,7 +53,7 @@ namespace ANANSI
             create( std::shared_ptr<BuilderFileParser> builder,
                     const std::string file_name)
             {
-            	std::shared_ptr<FileParser> a_parser;
+            	std::shared_ptr<BaseInputFile> a_parser;
                 return a_parser;
             }
 
