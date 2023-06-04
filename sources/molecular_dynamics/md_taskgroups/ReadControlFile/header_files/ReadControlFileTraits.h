@@ -23,7 +23,7 @@
 #include "GenericMDTask.hpp"
 
 // Includes for abstract tasks.
-#include "ControlFile.h"
+#include "ControlFileTask.h"
 #include "ControlFileCommunicator.h"
 #include "MacroCommand.hpp"
 

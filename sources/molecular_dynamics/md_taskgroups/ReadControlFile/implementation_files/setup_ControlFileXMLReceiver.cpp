@@ -29,7 +29,7 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
     // ---------------------------------------------------
     using my_abstract_tasks = ReadControlFileTraits::abstract_products; // The abstract task typelist.
     using my_concrete_tasks = ReadControlFileTraits::concrete_products; // The concrete tasks typelist.
-    using base_receiver_t = ANANSI::ControlFile; // The base class for the task we are setting up. 
+    using base_receiver_t = ANANSI::ControlFileTask; // The base class for the task we are setting up. 
     using concrete_receiver_t = ANANSI::ControlFileXMLReceiver; // The concrete tasks we are setting up.
 
     // ---------------------------------------------------

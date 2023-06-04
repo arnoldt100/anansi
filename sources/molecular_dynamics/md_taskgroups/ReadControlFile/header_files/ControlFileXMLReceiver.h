@@ -32,7 +32,7 @@
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
 
-#include "ControlFile.h"
+#include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "ControlFileName.h"
 #include "MasterProcess.h"
@@ -74,7 +74,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
     public:
         using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
 
-        using MyParentTask = ControlFile;
+        using MyParentTask = ControlFileTask;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;

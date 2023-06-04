@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFile.h"
+#include "ControlFileTask.h"
 
 namespace ANANSI {
 
@@ -20,13 +20,13 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlFile::ControlFile() :
+ControlFileTask::ControlFileTask() :
     AnansiTask()
 {
     return;
 }
 
-ControlFile::ControlFile( ControlFile const & other) :
+ControlFileTask::ControlFileTask( ControlFileTask const & other) :
     AnansiTask(other)
 {
     if (this != &other)
@@ -36,7 +36,7 @@ ControlFile::ControlFile( ControlFile const & other) :
     return;
 }
 
-ControlFile::ControlFile( ControlFile && other) :
+ControlFileTask::ControlFileTask( ControlFileTask && other) :
     AnansiTask(std::move(other))
 {
     if (this != &other)
@@ -44,10 +44,10 @@ ControlFile::ControlFile( ControlFile && other) :
         
     }
     return;
-}		// -----  end of method ControlFile::ControlFile  -----
+}		// -----  end of method ControlFileTask::ControlFileTask  -----
 
 
-ControlFile::~ControlFile()
+ControlFileTask::~ControlFileTask()
 {
     return;
 }
@@ -58,7 +58,7 @@ ControlFile::~ControlFile()
 
 //============================= OPERATORS ====================================
 
-ControlFile& ControlFile::operator= ( const ControlFile &other )
+ControlFileTask& ControlFileTask::operator= ( const ControlFileTask &other )
 {
     if (this != &other)
     {
@@ -67,7 +67,7 @@ ControlFile& ControlFile::operator= ( const ControlFile &other )
     return *this;
 } // assignment operator
 
-ControlFile& ControlFile::operator= ( ControlFile && other )
+ControlFileTask& ControlFileTask::operator= ( ControlFileTask && other )
 {
     if (this != &other)
     {

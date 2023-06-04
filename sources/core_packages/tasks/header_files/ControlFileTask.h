@@ -1,7 +1,7 @@
-#ifndef  ANANSI_ControlFile_INC
-#define  ANANSI_ControlFile_INC
+#ifndef  ANANSI_ControlFileTask_INC
+#define  ANANSI_ControlFileTask_INC
 
-//! @file ControlFile.h
+//! @file ControlFileTask.h
 //!
 //! Brief description
 //!
@@ -23,18 +23,18 @@
 namespace ANANSI
 {
 
-class ControlFile : public AnansiTask
+class ControlFileTask : public AnansiTask
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ControlFile ();   // constructor
+        ControlFileTask ();   // constructor
 
-        ControlFile (const ControlFile & other);   // copy constructor
+        ControlFileTask (const ControlFileTask & other);   // copy constructor
 
-        ControlFile (ControlFile && other);   // copy-move constructor
+        ControlFileTask (ControlFileTask && other);   // copy-move constructor
 
-        virtual ~ControlFile ();  // destructor
+        virtual ~ControlFileTask ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -42,9 +42,9 @@ class ControlFile : public AnansiTask
 
         // ====================  OPERATORS     =======================================
 
-        ControlFile& operator= ( const ControlFile &other ); // assignment operator
+        ControlFileTask& operator= ( const ControlFileTask &other ); // assignment operator
 
-        ControlFile& operator= ( ControlFile && other ); // assignment-move operator
+        ControlFileTask& operator= ( ControlFileTask && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -56,9 +56,9 @@ class ControlFile : public AnansiTask
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class ControlFile  -----
+}; // -----  end of class ControlFileTask  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_ControlFile_INC  ----- 
+#endif   // ----- #ifndef ANANSI_ControlFileTask_INC  ----- 
