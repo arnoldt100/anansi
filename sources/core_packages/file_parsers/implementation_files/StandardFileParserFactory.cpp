@@ -10,7 +10,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "StandardFileParserFactory.h"
-#include "ControlFileParser.h"
+#include "ControlFile.h"
 
 namespace ANANSI {
 
@@ -50,15 +50,6 @@ StandardFileParserFactory::~StandardFileParserFactory()
 }
 
 //============================= ACCESSORS ====================================
-std::shared_ptr<FileParser> StandardFileParserFactory::create( std::shared_ptr<BuilderFileParser> builder,
-                                                               const std::string file_name, 
-                                                               std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
-{
-	builder->setCommunicator(std::move(a_communicator));
-	builder->setFileName(file_name);
-	std::shared_ptr<FileParser> a_parser = builder->getParser();
-    return a_parser;
-}
 
 //============================= MUTATORS =====================================
 

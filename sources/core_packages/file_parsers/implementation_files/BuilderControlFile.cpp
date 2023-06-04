@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 BuilderControlFile::BuilderControlFile() :
-	myFile_(std::make_shared<ControlFile>())
+	myFile_(std::make_shared<BuilderControlFile::Filetype_t>())
 {
     return;
 }
@@ -57,7 +57,6 @@ BuilderControlFile& BuilderControlFile::operator=( BuilderControlFile && other )
 {
     if (this != &other)
     {
-        BuilderFileParser::operator=(std::move(other));
         this->myFile_ = std::move(other.myFile_);
     }
     return *this;

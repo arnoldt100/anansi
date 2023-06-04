@@ -89,7 +89,7 @@
          header_files/PrimaryFileLoggingTask.h
          header_files/InterProcessCommEnv.h
          header_files/CommunicatorTask.h
-         header_files/ControlFile.h
+         header_files/ControlFileTask.h
          header_files/ControlFileCommunicator.h)
 
     #-----------------------------------------------------
@@ -110,7 +110,7 @@
          implementation_files/PrimaryFileLoggingTask.cpp
          implementation_files/InterProcessCommEnv.cpp
          implementation_files/CommunicatorTask.cpp
-         implementation_files/ControlFile.cpp
+         implementation_files/ControlFileTask.cpp
          implementation_files/ControlFileCommunicator.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

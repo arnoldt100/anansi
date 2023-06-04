@@ -48,19 +48,15 @@ namespace ANANSI
 
             // ====================  ACCESSORS     =======================================
 
-            //--------------------------------------------------------------------------------------
-            //       Class:  StandardFileParserFactory
-            //      Method:  StandardFileParserFactory :: create
-            // Description:  Creates a standard FileParser. The standard FileParser has a 
-            //               a communicator, and logger.
-            // 
-            //  Parameters: 
-            //
-            //      Return:
-            //--------------------------------------------------------------------------------------
-            std::shared_ptr<FileParser> create( std::shared_ptr<BuilderFileParser> builder,
-                                                const std::string file_name,
-                                                std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator );
+            template <typename BuilderFileParser>
+            std::shared_ptr<typename BuilderFileParser::Filetype_t> 
+            create( std::shared_ptr<BuilderFileParser> builder,
+                    const std::string file_name)
+            {
+            	std::shared_ptr<FileParser> a_parser;
+                return a_parser;
+            }
+
 
             // ====================  MUTATORS      =======================================
             

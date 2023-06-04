@@ -22,6 +22,10 @@ namespace ANANSI
     class BuilderControlFile
     {
         public:
+
+            // ====================  LIFECYCLE     =======================================
+            using Filetype_t = ANANSI::ControlFile;
+
             // ====================  LIFECYCLE     =======================================
 
             BuilderControlFile ();   // constructor
@@ -51,7 +55,7 @@ namespace ANANSI
             // ====================  MUTATORS      =======================================
 
             // ====================  DATA MEMBERS  =======================================
-            std::shared_ptr<ControlFile> myFile_;
+            std::shared_ptr<Filetype_t> myFile_;
 
     }; // -----  end of class BuilderControlFile  -----
 
