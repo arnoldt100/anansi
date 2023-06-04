@@ -1,11 +1,9 @@
-#ifndef  ControlFileParser_INC
-#define  ControlFileParser_INC
+#ifndef  ControlFile_INC
+#define  ControlFile_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <string>
-#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,41 +12,38 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "FileParser.h"
-#include "Communicator.h"
-#include "RegistryControlFileParserStatus.h"
 
 namespace ANANSI
 {
 
     /*
      * =====================================================================================
-     *        Class:  ControlFileParser
+     *        Class:  ControlFile
      *  Description:  
      * =====================================================================================
      */
-    class ControlFileParser final : public  FileParser
+    class ControlFile
     {
         public:
             // ====================  LIFECYCLE     =======================================
 
             /*
              *--------------------------------------------------------------------------------------
-             *       Class:  ControlFileParser
-             *      Method:  ControlFileParser :: ControlFileParser
+             *       Class:  ControlFile
+             *      Method:  ControlFile :: ControlFile
              * Description:  Constructor
              *
              * Arguments: 
              *
              *--------------------------------------------------------------------------------------
              */
-            ControlFileParser();   // constructor
+            ControlFile();   // constructor
 
-            ControlFileParser (const ControlFileParser & other)=delete;   // copy constructor
+            ControlFile (const ControlFile & other);   // copy constructor
 
-            ControlFileParser (ControlFileParser && other);   // copy-move constructor
+            ControlFile (ControlFile && other);   // copy-move constructor
 
-            virtual ~ControlFileParser ();  // destructor
+            ~ControlFile ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 
@@ -56,9 +51,9 @@ namespace ANANSI
 
             // ====================  OPERATORS     =======================================
 
-            ControlFileParser& operator=( const ControlFileParser &other )=delete; // assignment operator
+            ControlFile& operator=( const ControlFile &other ); // assignment operator
 
-            ControlFileParser& operator=( ControlFileParser && other ); // assignment-move operator
+            ControlFile& operator=( ControlFile && other ); // assignment-move operator
 
         protected:
             // ====================  METHODS       =======================================
@@ -67,28 +62,14 @@ namespace ANANSI
 
         private:
             // ====================  MUTATORS      =======================================
-            void _readFile() override;
-
-            void _shareData () override;
-
-            void _setFileName(const std::string file_name) override;
-
-            void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator) override;
-
-            void _parseFile();
-
 
             // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
-            std::string _fileName;
-            std::unique_ptr<COMMUNICATOR::Communicator> _myCommunicator;
-            ANANSI::RegistryControlFileParserStatus _myControlFileParserStatus;
-            std::map<std::string,std::string> _values;
 
-    }; // -----  end of class ControlFileParser  -----
+    }; // -----  end of class ControlFile  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ControlFileParser_INC  ----- 
+#endif   // ----- #ifndef ControlFile_INC  ----- 

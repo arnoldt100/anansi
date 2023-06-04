@@ -1,5 +1,5 @@
-#ifndef  BuilderControlFileParser_INC
-#define  BuilderControlFileParser_INC
+#ifndef  ANANSI_BuilderControlFile_INC
+#define  ANANSI_BuilderControlFile_INC
 
 
 //--------------------------------------------------------//
@@ -14,36 +14,23 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "BuilderFileParser.h"
-#include "ControlFileParser.h"
+#include "ControlFile.h"
 
 namespace ANANSI
 {
 
-     // =====================================================================================
-     //        Class:  BuilderControlFileParser
-     //  Description:  
-     //  =====================================================================================
-    class BuilderControlFileParser : public BuilderFileParser
+    class BuilderControlFile
     {
         public:
             // ====================  LIFECYCLE     =======================================
 
-            //--------------------------------------------------------------------------------------
-            //       Class:  BuilderControlFileParser
-            //      Method:  BuilderControlFileParser :: BuilderControlFileParser
-            // Description:  
-            // 
-            //  Parameters: 
-            //
-            //      Return:
-            //--------------------------------------------------------------------------------------
-            BuilderControlFileParser ();   // constructor
+            BuilderControlFile ();   // constructor
 
-            BuilderControlFileParser (const BuilderControlFileParser & other);   // copy constructor
+            BuilderControlFile (const BuilderControlFile & other);   // copy constructor
 
-            BuilderControlFileParser (BuilderControlFileParser && other);   // copy-move constructor
+            BuilderControlFile (BuilderControlFile && other);   // copy-move constructor
 
-            ~BuilderControlFileParser ();  // destructor
+            ~BuilderControlFile ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 
@@ -51,9 +38,9 @@ namespace ANANSI
 
             // ====================  OPERATORS     =======================================
 
-            BuilderControlFileParser& operator= ( const BuilderControlFileParser &other ); // assignment operator
+            BuilderControlFile& operator= ( const BuilderControlFile &other ); // assignment operator
 
-            BuilderControlFileParser& operator= ( BuilderControlFileParser && other ); // assignment-move operator
+            BuilderControlFile& operator= ( BuilderControlFile && other ); // assignment-move operator
 
         protected:
             // ====================  METHODS       =======================================
@@ -62,20 +49,13 @@ namespace ANANSI
 
         private:
             // ====================  MUTATORS      =======================================
-            void _setFileName(const std::string file_name) override;
-
-            void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator) override;
-
-            std::shared_ptr<FileParser> _getParser() override;
-
-            void _resetBuilder();
 
             // ====================  DATA MEMBERS  =======================================
-            std::shared_ptr<ControlFileParser> _myParser;
+            std::shared_ptr<ControlFile> myFile_;
 
-    }; // -----  end of class BuilderControlFileParser  -----
+    }; // -----  end of class BuilderControlFile  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef BuilderControlFileParser_INC  ----- 
+#endif   // ----- #ifndef ANANSI_BuilderControlFile_INC  ----- 
