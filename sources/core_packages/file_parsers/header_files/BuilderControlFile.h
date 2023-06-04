@@ -13,7 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "BuilderFileParser.h"
+#include "BuilderFile.h"
 #include "ControlFile.h"
 
 namespace ANANSI

@@ -9,7 +9,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "BuilderFileParser.h"
+#include "StandardFileFactory.h"
+#include "ControlFile.h"
 
 namespace ANANSI {
 
@@ -19,31 +20,31 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-BuilderFileParser::BuilderFileParser()
+StandardFileFactory::StandardFileFactory()
 {
     return;
 }
 
-BuilderFileParser::BuilderFileParser( BuilderFileParser const & other)
+StandardFileFactory::StandardFileFactory( StandardFileFactory const & other)
 {
     if (this != &other)
     {
 
     }
     return;
-}   // -----  end of method BuilderFileParser::BuilderFileParser  -----
+}		// -----  end of method StandardFileFactory::StandardFileFactory  -----
 
-BuilderFileParser::BuilderFileParser( BuilderFileParser && other)
+StandardFileFactory::StandardFileFactory( StandardFileFactory && other)
 {
     if (this != &other)
     {
 
     }
     return;
-}   // -----  end of method BuilderFileParser::BuilderFileParser  -----
+}		// -----  end of method StandardFileFactory::StandardFileFactory  -----
 
 
-BuilderFileParser::~BuilderFileParser()
+StandardFileFactory::~StandardFileFactory()
 {
     return;
 }
@@ -51,42 +52,26 @@ BuilderFileParser::~BuilderFileParser()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void BuilderFileParser::setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
-{
-	this->_setCommunicator(std::move(a_communicator));
-	return;
-}
-
-void BuilderFileParser::setFileName(const std::string file_name)
-{
-	this->_setFileName(file_name);
-	return;
-}
-
-std::shared_ptr<FileParser> BuilderFileParser::getParser()
-{
-	return this->_getParser();
-}
 
 //============================= OPERATORS ====================================
 
-BuilderFileParser& BuilderFileParser::operator= ( const BuilderFileParser &other )
+StandardFileFactory& StandardFileFactory::operator=( const StandardFileFactory &other )
 {
     if (this != &other)
     {
 
     }
     return *this;
-}   // assignment operator
+} // assignment operator
 
-BuilderFileParser& BuilderFileParser::operator= ( BuilderFileParser && other )
+StandardFileFactory& StandardFileFactory::operator=( StandardFileFactory && other )
 {
     if (this != &other)
     {
 
     }
     return *this;
-}   // assignment-move operator
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -109,12 +94,8 @@ BuilderFileParser& BuilderFileParser::operator= ( BuilderFileParser && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void BuilderFileParser::_setFileName(const std::string)
-{
-	return;
-}
 
 //============================= OPERATORS ====================================
 
 
-}   // namespace ANANSI
+} // namespace ANANSI

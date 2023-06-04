@@ -1,12 +1,12 @@
-#ifndef  BuilderFileParser_INC
-#define  BuilderFileParser_INC
-
+#ifndef  StandardFileParserFactory_INC
+#define  StandardFileParserFactory_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
 
+#include "BuilderFile.h"
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
@@ -14,51 +14,57 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "FileParser.h"
 #include "Communicator.h"
+
 
 namespace ANANSI
 {
 
      // =====================================================================================
-     //        Class:  BuilderFileParser
+     //        Class:  StandardFileFactory
      //  Description:  
      //  =====================================================================================
-    class BuilderFileParser
+    class StandardFileFactory
     {
         public:
             // ====================  LIFECYCLE     =======================================
 
             //--------------------------------------------------------------------------------------
-            //       Class:  BuilderFileParser
-            //      Method:  BuilderFileParser :: BuilderFileParser
+            //       Class:  StandardFileFactory
+            //      Method:  StandardFileFactory :: StandardFileFactory
             // Description:  
             // 
             //  Parameters: 
             //
             //      Return:
             //--------------------------------------------------------------------------------------
-            BuilderFileParser ();   // constructor
+            StandardFileFactory ();   // constructor
 
-            BuilderFileParser (const BuilderFileParser & other);   // copy constructor
+            StandardFileFactory (const StandardFileFactory & other);   // copy constructor
 
-            BuilderFileParser (BuilderFileParser && other);   // copy-move constructor
+            StandardFileFactory (StandardFileFactory && other);   // copy-move constructor
 
-            virtual ~BuilderFileParser()=0;  // destructor
+            ~StandardFileFactory ();  // destructor
 
             // ====================  ACCESSORS     =======================================
 
+            template <typename BuilderFileParser>
+            std::shared_ptr<typename BuilderFileParser::Filetype_t> 
+            create( std::shared_ptr<BuilderFileParser> builder,
+                    const std::string file_name)
+            {
+            	std::shared_ptr<FileParser> a_parser;
+                return a_parser;
+            }
+
             // ====================  MUTATORS      =======================================
-            void setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator);
+            
 
-            void setFileName(const std::string filename);
-
-            std::shared_ptr<FileParser> getParser();
             // ====================  OPERATORS     =======================================
 
-            BuilderFileParser& operator=( const BuilderFileParser &other ); // assignment operator
+            StandardFileFactory& operator= ( const StandardFileFactory &other ); // assignment operator
 
-            BuilderFileParser& operator=( BuilderFileParser && other ); // assignment-move operator
+            StandardFileFactory& operator= ( StandardFileFactory && other ); // assignment-move operator
 
         protected:
             // ====================  METHODS       =======================================
@@ -66,18 +72,13 @@ namespace ANANSI
             // ====================  DATA MEMBERS  =======================================
 
         private:
-            // ====================  MUTATORS      =======================================
-            virtual void _setFileName(const std::string file_name);
-
-            virtual void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator) = 0;
-
-            virtual std::shared_ptr<FileParser> _getParser()=0;
+            // ====================  METHODS       =======================================
 
             // ====================  DATA MEMBERS  =======================================
 
-    };  // -----  end of class BuilderFileParser  -----
+    }; // -----  end of class StandardFileFactory  -----
 
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef BuilderFileParser_INC  ----- 
+#endif   // ----- #ifndef StandardFileParserFactory_INC  ----- 
