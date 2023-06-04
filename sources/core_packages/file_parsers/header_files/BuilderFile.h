@@ -49,11 +49,7 @@ namespace ANANSI
             // ====================  ACCESSORS     =======================================
 
             // ====================  MUTATORS      =======================================
-            void setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator);
 
-            void setFileName(const std::string filename);
-
-            std::shared_ptr<FileParser> getParser();
             // ====================  OPERATORS     =======================================
 
             BuilderFile& operator=( const BuilderFile &other ); // assignment operator
@@ -67,11 +63,6 @@ namespace ANANSI
 
         private:
             // ====================  MUTATORS      =======================================
-            virtual void _setFileName(const std::string file_name);
-
-            virtual void _setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator) = 0;
-
-            virtual std::shared_ptr<FileParser> _getParser()=0;
 
             // ====================  DATA MEMBERS  =======================================
 

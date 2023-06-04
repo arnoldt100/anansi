@@ -51,22 +51,6 @@ BuilderFile::~BuilderFile()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void BuilderFile::setCommunicator(std::unique_ptr<COMMUNICATOR::Communicator> && a_communicator)
-{
-	this->_setCommunicator(std::move(a_communicator));
-	return;
-}
-
-void BuilderFile::setFileName(const std::string file_name)
-{
-	this->_setFileName(file_name);
-	return;
-}
-
-std::shared_ptr<FileParser> BuilderFile::getParser()
-{
-	return this->_getParser();
-}
 
 //============================= OPERATORS ====================================
 
@@ -109,10 +93,6 @@ BuilderFile& BuilderFile::operator= ( BuilderFile && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void BuilderFile::_setFileName(const std::string)
-{
-	return;
-}
 
 //============================= OPERATORS ====================================
 
