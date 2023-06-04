@@ -48,15 +48,6 @@ namespace ANANSI
 
             // ====================  ACCESSORS     =======================================
 
-            template <typename BuilderFileParser>
-            std::shared_ptr<typename BuilderFileParser::Filetype_t> 
-            create( std::shared_ptr<BuilderFileParser> builder,
-                    const std::string file_name)
-            {
-            	std::shared_ptr<BaseInputFile> a_parser;
-                return a_parser;
-            }
-
             // ====================  MUTATORS      =======================================
             
 

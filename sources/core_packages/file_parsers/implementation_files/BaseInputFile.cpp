@@ -19,34 +19,6 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-BaseInputFile::BaseInputFile()
-{
-    return;
-}
-
-BaseInputFile::BaseInputFile( BaseInputFile const & other)
-{
-    if (this != &other)
-    {
-
-    }
-    return;
-} 
-
-BaseInputFile::BaseInputFile( BaseInputFile && other)
-{
-    if (this != &other)
-    {
-
-    }
-    return;
-} 
-
-BaseInputFile::~BaseInputFile()
-{
-    return;
-}
-
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
@@ -64,23 +36,6 @@ BaseInputFile::~BaseInputFile()
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-BaseInputFile& BaseInputFile::operator=( const BaseInputFile &other )
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-} // assignment operator
-
-BaseInputFile& BaseInputFile::operator=( BaseInputFile && other )
-{
-    if (this != &other)
-    {
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////

@@ -12,62 +12,57 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "BaseInputFile.h"
 
 namespace ANANSI
 {
 
-    /*
-     * =====================================================================================
-     *        Class:  ControlFile
-     *  Description:  
-     * =====================================================================================
-     */
-    class ControlFile
-    {
-        public:
-            // ====================  LIFECYCLE     =======================================
+class ControlFile :public ANANSI::BaseInputFile<ControlFile>
+{
+    public:
+        // ====================  LIFECYCLE     =======================================
 
-            /*
-             *--------------------------------------------------------------------------------------
-             *       Class:  ControlFile
-             *      Method:  ControlFile :: ControlFile
-             * Description:  Constructor
-             *
-             * Arguments: 
-             *
-             *--------------------------------------------------------------------------------------
-             */
-            ControlFile();   // constructor
+        /*
+         *--------------------------------------------------------------------------------------
+         *       Class:  ControlFile
+         *      Method:  ControlFile :: ControlFile
+         * Description:  Constructor
+         *
+         * Arguments: 
+         *
+         *--------------------------------------------------------------------------------------
+         */
+        ControlFile();   // constructor
 
-            ControlFile (const ControlFile & other);   // copy constructor
+        ControlFile (const ControlFile & other);   // copy constructor
 
-            ControlFile (ControlFile && other);   // copy-move constructor
+        ControlFile (ControlFile && other);   // copy-move constructor
 
-            ~ControlFile ();  // destructor
+        ~ControlFile ();  // destructor
 
-            // ====================  ACCESSORS     =======================================
+        // ====================  ACCESSORS     =======================================
 
-            // ====================  MUTATORS      =======================================
+        // ====================  MUTATORS      =======================================
 
-            // ====================  OPERATORS     =======================================
+        // ====================  OPERATORS     =======================================
 
-            ControlFile& operator=( const ControlFile &other ); // assignment operator
+        ControlFile& operator=( const ControlFile &other ); // assignment operator
 
-            ControlFile& operator=( ControlFile && other ); // assignment-move operator
+        ControlFile& operator=( ControlFile && other ); // assignment-move operator
 
-        protected:
-            // ====================  METHODS       =======================================
+    protected:
+        // ====================  METHODS       =======================================
 
-            // ====================  DATA MEMBERS  =======================================
+        // ====================  DATA MEMBERS  =======================================
 
-        private:
-            // ====================  MUTATORS      =======================================
+    private:
+        // ====================  MUTATORS      =======================================
 
-            // ====================  METHODS       =======================================
+        // ====================  METHODS       =======================================
 
-            // ====================  DATA MEMBERS  =======================================
+        // ====================  DATA MEMBERS  =======================================
 
-    }; // -----  end of class ControlFile  -----
+}; // -----  end of class ControlFile  -----
 
 
 }; // namespace ANANSI

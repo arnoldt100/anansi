@@ -2,6 +2,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -20,17 +21,21 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlFile::ControlFile() 
+ControlFile::ControlFile() :
+    BaseInputFile()
 {
     return;
 }
 
-ControlFile::ControlFile( const ControlFile & other) 
+ControlFile::ControlFile( const ControlFile & other) : 
+    BaseInputFile(other)
 {
     return;
 } // -----  end of method ControlFile::ControlFile  -----
 
-ControlFile::ControlFile( ControlFile && other) 
+ControlFile::ControlFile( ControlFile && other) :
+    BaseInputFile(std::move(other))
+
 {
     return;
 } // -----  end of method ControlFile::ControlFile  -----
@@ -51,6 +56,7 @@ ControlFile& ControlFile::operator= ( const ControlFile & other )
 {
     if (this != &other)
     {
+        BaseInputFile::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -60,6 +66,7 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 {
     if (this != &other)
     {
+        BaseInputFile::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

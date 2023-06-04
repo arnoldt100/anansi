@@ -17,45 +17,47 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <memory>
-#include <string>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Communicator.h"
 
 namespace ANANSI
 {
 
-    /*
-     * =====================================================================================
-     *        Class:  BaseInputFile
-     *  Description:  
-     * =====================================================================================
-     */
+    template< typename Derived>
     class BaseInputFile
     {
         public:
             // ====================  LIFECYCLE     =======================================
 
-            /*
-             *--------------------------------------------------------------------------------------
-             *       Class:  BaseInputFile
-             *      Method:  BaseInputFile :: BaseInputFile
-             * Description:  Constructor
-             *
-             * Arguments: 
-             *
-             *--------------------------------------------------------------------------------------
-             */
-            BaseInputFile (); // constructor
+            BaseInputFile () // constructor
+            {
+                return;
+            }
 
-            BaseInputFile ( const BaseInputFile &other ); // copy constructor
+            BaseInputFile ( const BaseInputFile &other ) // copy constructor
+            {
+                if (this != &other)
+                {
+            
+                }
+                return;
+            } 
 
-            BaseInputFile (BaseInputFile && other); // copy-move constructor
+            BaseInputFile (BaseInputFile && other) // copy-move constructor
+            {
+                if (this != &other)
+                {
+            
+                }
+                return;
+            } 
 
-            virtual ~BaseInputFile ()=0; // destructor
+            ~BaseInputFile () // destructor
+            {
+                return;
+            }
 
             /* ====================  ACCESSORS     ======================================= */
 
@@ -63,9 +65,23 @@ namespace ANANSI
 
             /* ====================  OPERATORS     ======================================= */
 
-            BaseInputFile& operator= ( const BaseInputFile &other ); /* assignment operator */
+            BaseInputFile& operator= ( const BaseInputFile &other ) /* assignment operator */
+            {
+                if (this != &other)
+                {
+            
+                }
+                return *this;
+            } // assignment operator
 
-            BaseInputFile& operator= ( BaseInputFile && other ); // assignment-move operator
+            BaseInputFile& operator= ( BaseInputFile && other ) // assignment-move operator
+            {
+                if (this != &other)
+                {
+                }
+                return *this;
+            } // assignment-move operator
+
         protected:
             /* ====================  METHODS       ======================================= */
 
