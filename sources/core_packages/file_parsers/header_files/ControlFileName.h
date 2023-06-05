@@ -35,7 +35,7 @@ class ControlFileName
 
         ControlFileName (const std::string file_name);   // constructor
 
-        ~ControlFileName ();   // constructor
+        ~ControlFileName ();   // destructor
 
         ControlFileName (const ControlFileName & other);   // copy constructor
 

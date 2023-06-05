@@ -87,7 +87,7 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 //============================= MUTATORS =====================================
 void ControlFile::setFileName_(const std::string my_file_name)
 {
-    this->fileName_ = my_file_name;
+    this->fileName_ = ANANSI::ControlFileName(my_file_name);
     return;
 }
 

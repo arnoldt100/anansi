@@ -12,6 +12,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ControlFileName.h"
 #include "BaseInputFile.h"
 
 namespace ANANSI
@@ -52,7 +53,7 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::string fileName_;
+        ControlFileName fileName_;
 
 }; // -----  end of class ControlFile  -----
 
