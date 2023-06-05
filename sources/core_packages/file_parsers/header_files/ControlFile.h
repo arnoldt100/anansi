@@ -52,6 +52,7 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::string fileName_;
 
 }; // -----  end of class ControlFile  -----
 

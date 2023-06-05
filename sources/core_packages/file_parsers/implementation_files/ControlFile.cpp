@@ -22,19 +22,22 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFile::ControlFile() :
-    BaseInputFile<ControlFile>()
+    BaseInputFile<ControlFile>(),
+    fileName_()
 {
     return;
 }
 
 ControlFile::ControlFile( const ControlFile & other) : 
-    BaseInputFile<ControlFile>(other)
+    BaseInputFile<ControlFile>(other),
+    fileName_(other.fileName_)
 {
     return;
 } // -----  end of method ControlFile::ControlFile  -----
 
 ControlFile::ControlFile( ControlFile && other) :
-    BaseInputFile<ControlFile>(std::move(other))
+    BaseInputFile<ControlFile>(std::move(other)),
+    fileName_(std::move(other.fileName_))
 
 {
     return;
@@ -57,6 +60,7 @@ ControlFile& ControlFile::operator= ( const ControlFile & other )
     if (this != &other)
     {
         BaseInputFile<ControlFile>::operator=(other);
+        this->fileName_ = other.fileName_;
     }
     return *this;
 } // assignment operator
@@ -67,6 +71,7 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
     if (this != &other)
     {
         BaseInputFile<ControlFile>::operator=(std::move(other));
+        this->fileName_ = std::move(other.fileName_);
     }
     return *this;
 } // assignment-move operator
@@ -82,6 +87,7 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 //============================= MUTATORS =====================================
 void ControlFile::setFileName_(const std::string my_file_name)
 {
+    this->fileName_ = my_file_name;
     return;
 }
 

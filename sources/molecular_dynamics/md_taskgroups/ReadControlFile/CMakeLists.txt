@@ -69,7 +69,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_header_files
-         header_files/ControlFileName.h
          header_files/MasterProcess.h
          header_files/ControlFileXMLReceiver.h
          header_files/ControlFileXMLOwnershipImpl.hpp
