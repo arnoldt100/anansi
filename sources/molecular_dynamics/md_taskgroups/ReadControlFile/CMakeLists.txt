@@ -118,6 +118,7 @@
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
     get_target_property(my_invoker_include invoker invoker_include )
+    get_target_property(my_file_parsers_include  file_parsers file_parsers_include)
 
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -154,7 +155,8 @@ target_include_directories(${target}
                            PRIVATE "${my_mdownershippolicies_include}"
                            PRIVATE "${my_genericmdtask_include}" 
                            PRIVATE "${my_generic_abstract_factory_include}"
-                           PRIVATE "${my_invoker_include}")
+                           PRIVATE "${my_invoker_include}"
+                           PRIVATE "${my_file_parsers_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -165,7 +167,9 @@ target_link_libraries(${target}
                       PUBLIC genericmdtask
                       PUBLIC generic_abstract_factory
                       PUBLIC invoker
-                      PUBLIC mdownershippolicies)
+                      PUBLIC mdownershippolicies
+                      PUBLIC file_parsers) 
+
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -88,7 +88,7 @@ class ControlFileXMLOwnershipImpl : public RECEIVER::BaseOwnershipImplementation
         // ====================  ACCESSORS     =======================================
 
         template<typename T>
-        typename MyTaskImplTraits::Copytype  getCopyOfResults_(const T & result) const
+        typename MyTaskImplTraits::Copytype getCopyOfResults_(const T & result) const
         {
             return result;
         }

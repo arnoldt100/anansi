@@ -80,6 +80,10 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void ControlFile::setFileName_(const std::string my_file_name)
+{
+    return;
+}
 
 //============================= OPERATORS ====================================
 

@@ -1,5 +1,5 @@
-#ifndef  ControlFile_INC
-#define  ControlFile_INC
+#ifndef  ANANSI_ControlFile_INC
+#define ANANSI_ControlFile_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -33,6 +33,7 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        void setFileName_(const std::string my_file_name);
 
         // ====================  OPERATORS     =======================================
 
@@ -41,7 +42,7 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
         ControlFile& operator=( ControlFile && other ); // assignment-move operator
 
     protected:
-        // ====================  METHODS       =======================================
+        // ====================  ACCESSORS     =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
@@ -57,4 +58,4 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ControlFile_INC  ----- 
+#endif   // ----- #ifndef ANANSI_ControlFile_INC  ----- 

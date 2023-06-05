@@ -32,6 +32,7 @@
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
 
+#include "ControlFile.h"
 #include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "ControlFileName.h"
@@ -42,7 +43,7 @@
 // class member ConcreteTaskReceiver::ownershipPolicy_.
 // For this class we select ShareCopyOwnershipPolicy.hpp.
 // ---------------------------------------------------
-#include "ShareCopyOwnershipPolicy.hpp"
+#include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
@@ -55,10 +56,10 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','x','m','l','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = int;
-        using my_copy_type_ = int;
-        using my_share_type_ = int;
-        using my_transfer_type_ = int;
+        using my_result_type_ = ANANSI::ControlFile;
+        using my_copy_type_ = ANANSI::ControlFile;
+        using my_share_type_ = ANANSI::ControlFile;
+        using my_transfer_type_ = ANANSI::ControlFile;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
@@ -66,7 +67,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         using MyOwnershipImpl_ = ControlFileXMLOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
         ControlFileName controlFileName_;
         MasterProcess masterProcess_;
