@@ -38,6 +38,14 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "${target}_include" )
 
+     # ----------------------------------------------------
+    # Verify that all initworldcommunicatortask build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/initworldcommunicatortask_build_prerequisites.cmake")
+    verify_initworldcommunicatortask_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -63,7 +71,8 @@
     #-----------------------------------------------------
     set (initworldcommunicatortask_header_files
          header_files/InitWorldCommunicatorTaskReceiver.h
-         header_files/InitWorldCommunicatorTaskTraits.h)
+         header_files/InitWorldCommunicatorTaskOwnershipImpl.hpp
+         header_files/InitWorldCommunicatorTaskTraits.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -74,6 +83,7 @@
     #-----------------------------------------------------
     set (initworldcommunicatortask_implementation_files
          implementation_files/InitWorldCommunicatorTaskReceiver.cpp
+         implementation_files/InitWorldCommunicatorTaskOwnershipImpl.cpp
          implementation_files/InitWorldCommunicatorTaskTraits.cpp )
 
     # -----------------------------------------------------
@@ -85,6 +95,7 @@
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
+    get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -116,10 +127,12 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE "${my_receiver_include}"
-                           PRIVATE "${my_genericmdtask_include}"
-                           PRIVATE "${my_typelist_aliases_include}"
-                           PRIVATE "${my_mpi_communicator_include}" )
+                           PRIVATE ${my_tasks_include}
+                           PRIVATE ${my_receiver_include}
+                           PRIVATE ${my_mdownershippolicies_include}
+                           PRIVATE ${my_genericmdtask_include}
+                           PRIVATE ${my_typelist_aliases_include}
+                           PRIVATE ${my_mpi_communicator_include} )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -130,7 +143,8 @@ target_link_libraries(${target}
                       PUBLIC genericmdtask
                       PUBLIC receiver
                       PUBLIC mpi_communicator
-                      PUBLIC typelist_aliases)
+                      PUBLIC typelist_aliases
+                      PUBLIC mdownershippolicies)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

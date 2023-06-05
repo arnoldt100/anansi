@@ -20,12 +20,16 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDTerminateSimulationVisitor::MDTerminateSimulationVisitor()
+MDTerminateSimulationVisitor::MDTerminateSimulationVisitor() :
+    MPL::BaseVisitor(),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>()
 {
     return;
 }
 
-MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulationVisitor const & other)
+MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulationVisitor const & other) :
+    MPL::BaseVisitor(other),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(other)
 {
     if (this != &other)
     {
@@ -34,7 +38,9 @@ MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulatio
     return;
 }
 
-MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulationVisitor && other)
+MDTerminateSimulationVisitor::MDTerminateSimulationVisitor( MDTerminateSimulationVisitor && other) :
+    MPL::BaseVisitor(std::move(other)),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(std::move(other))
 {
     return;
     if (this != &other)
@@ -56,7 +62,7 @@ void MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
     // The control file invoker is disabled
     // 
     // ---------------------------------------------------
-    a_sim.disableControlFile();
+    a_sim.disableControlFileTasks();
 
     // ---------------------------------------------------
     // The core logging tasks are disabled.
@@ -86,7 +92,8 @@ MDTerminateSimulationVisitor& MDTerminateSimulationVisitor::operator= ( const MD
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(other);
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -95,7 +102,8 @@ MDTerminateSimulationVisitor& MDTerminateSimulationVisitor::operator= ( MDTermin
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(std::move(other));
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

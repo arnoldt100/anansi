@@ -4,7 +4,7 @@
 # Define the Anansi buld directory.                  -
 #                                                    -
 #-----------------------------------------------------
-declare -r anansi_cmake_build_dir="build"
+declare -r anansi_cmake_build_dir="${ANANSI_TOP_LEVEL}/build"
 
 #-----------------------------------------------------
 # The number of make threads.                        -
@@ -33,7 +33,6 @@ then
     rm -rf ${anansi_cmake_build_dir}
 fi
 mkdir ${anansi_cmake_build_dir}
-
 cd ${anansi_cmake_build_dir}
 
 cmake ${ANANSI_TOP_LEVEL}/sources \
@@ -43,6 +42,3 @@ cmake ${ANANSI_TOP_LEVEL}/sources \
       -DCMAKE_BUILD_TYPE=Debug \
       -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 
-make -j ${NM_MAKE_THREADS}
-
-make install

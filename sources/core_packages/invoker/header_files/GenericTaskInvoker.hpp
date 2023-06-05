@@ -23,6 +23,7 @@
 #include "MPLAliases.hpp"
 #include "TaskLabel.hpp"
 #include "ReceiverUtilities.hpp"
+#include "ReceiverTypeUtilities.hpp"
 
 namespace ANANSI
 {
@@ -45,7 +46,7 @@ namespace ANANSI
 //! @tparam LABEL_t  The type of task label (button id)
 template<typename AbstractProductsTypeList,
          typename ConcreteTasksTypeList,
-         typename LABEL_t=RECEIVER::TaskLabel
+         typename LABEL_t=ANANSI::TaskLabel
          >
 class GenericTaskInvoker
 {
@@ -115,6 +116,16 @@ class GenericTaskInvoker
         }
 
         void
+        enableTask(std::vector<LABEL_t> const & command_keys)
+        {
+            const std::vector<std::string> flags = {"default"};
+            for (auto key : command_keys)
+            {
+                (this->commandSlots_.at(key))->enableTask(flags);
+            }
+            return;
+        }
+        void
         disableTask(std::vector<LABEL_t> const & command_keys)
         {
             const std::vector<std::string> flags = {"default"};
@@ -182,6 +193,16 @@ class GenericTaskInvoker
             return results;
         }
 
+        //! Returns a 'handle' to the concrete task.
+        template <LABEL_t COMMAND_LABEL>
+        auto getHandleToTask()
+        {
+            GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
+
+            return task;
+        }
 
         // ====================  OPERATORS     =======================================
 

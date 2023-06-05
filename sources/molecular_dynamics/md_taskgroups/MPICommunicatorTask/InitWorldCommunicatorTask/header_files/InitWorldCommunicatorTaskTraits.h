@@ -20,8 +20,12 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
-#include "CommunicatorTask.h"
 #include "GenericMDTask.hpp"
+
+// Includes for abstract tasks.
+#include "CommunicatorTask.h"
+
+// Includes for concrete tasks receivers.
 #include "InitWorldCommunicatorTaskReceiver.h"
 
 namespace ANANSI
@@ -53,11 +57,12 @@ class InitWorldCommunicatorTaskTraits
         // ====================  ALIASES       =======================================
         
         using abstract_products = MPL::mpl_typelist<
-                                                       CommunicatorTask
+                                                       InitWorldCommunicatorTaskReceiver::MyParentTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<CommunicatorTask,InitWorldCommunicatorTaskReceiver>
+                                                       GenericMDTask<InitWorldCommunicatorTaskReceiver::MyParentTask,
+                                                                     InitWorldCommunicatorTaskReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist <

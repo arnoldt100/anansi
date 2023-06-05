@@ -21,17 +21,19 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
-    ReceiverInterface<InitMPIEnvTaskReceiver>(),
-    mpiEnvironment_(nullptr),
-    results_(0)
+    RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>(),
+    results_(0),
+    ownershipPolicy_(),
+    mpiEnvironment_(nullptr)
 {
     return;
 }
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver && other) :
-    ReceiverInterface<InitMPIEnvTaskReceiver>(std::move(other)),
-    mpiEnvironment_(std::move(other.mpiEnvironment_)),
-    results_(std::move(other.results_))
+    RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>(std::move(other)),
+    results_(std::move(other.results_)),
+    ownershipPolicy_(std::move(other.ownershipPolicy_)),
+    mpiEnvironment_(std::move(other.mpiEnvironment_))
 {
     if (this != &other)
     {
@@ -47,24 +49,7 @@ InitMPIEnvTaskReceiver::~InitMPIEnvTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE InitMPIEnvTaskReceiver::receiverGetTaskLabel() const
-{
-    return  InitMPIEnvTaskReceiver::TASKLABEL;
-}
-
-auto InitMPIEnvTaskReceiver::receiverGetResults() const
-{
-    return results_;
-}
-
 //============================= MUTATORS =====================================
-
-template<>
-void InitMPIEnvTaskReceiver::receiverModifyMyself(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
-{
-    this->mpiEnvironment_ = arg;
-    return;
-}
 
 //============================= OPERATORS ====================================
 
@@ -73,8 +58,9 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
     if (this != &other)
     {
         ReceiverInterface<InitMPIEnvTaskReceiver>::operator=(std::move(other));
-        this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
         this->results_ = std::move(other.results_);
+        this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
 } // assignment-move operator
@@ -87,7 +73,35 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
 
 //============================= ACCESSORS ====================================
 
+InitMPIEnvTaskReceiver::receiver_copy_t_ InitMPIEnvTaskReceiver::receiverGetCopyOfResults_() const
+{
+    InitMPIEnvTaskReceiver::receiver_copy_t_  my_copied_result =
+        this->ownershipPolicy_.copyReceiverResult(this->results_);
+    return my_copied_result;
+}
+
+
 //============================= MUTATORS =====================================
+
+template<>
+void InitMPIEnvTaskReceiver::receiverModifyMyself_(std::shared_ptr<ANANSI::MPIEnvironment> & arg)
+{
+    this->mpiEnvironment_ = arg;
+    return;
+}
+
+InitMPIEnvTaskReceiver::receiver_share_t_ InitMPIEnvTaskReceiver::receiverShareOwnershipOfResults_()
+{
+    InitMPIEnvTaskReceiver::receiver_share_t_ my_shared_result = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_shared_result;   
+}
+
+
+InitMPIEnvTaskReceiver::receiver_transfer_t_ InitMPIEnvTaskReceiver::receiverTransferOwnershipOfResults_()
+{
+    InitMPIEnvTaskReceiver::receiver_transfer_t_ my_transfered_result = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_transfered_result;   
+}
 
 //============================= OPERATORS ====================================
 

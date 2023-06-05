@@ -38,6 +38,13 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "readcontrolfile_include")
 
+    # ----------------------------------------------------
+    # Verify all readcontrolfile prerequisites are satisfied. 
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/readcontrolfile_build_prerequisites.cmake")
+    verify_readcontrolfile_build_prerequisites_are_met() 
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -62,9 +69,19 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_header_files
+         header_files/MasterProcess.h
          header_files/ControlFileXMLReceiver.h
-         header_files/ControlFileMPICommReceiver.h
-         header_files/ReadControlFileTraits.h )
+         header_files/ControlFileXMLOwnershipImpl.hpp
+         header_files/ControlFileXMLMPICommReceiver.h
+         header_files/ControlFileXMLMPICommOwnershipImpl.hpp
+         header_files/ControlFileMacroOwnershipImpl.hpp
+         header_files/ControlFileMacroReceiver.h
+         header_files/ReadControlFileTraits.h
+         header_files/setup_controlfile_receivers.h
+         header_files/setup_ControlFileXMLReceiver.h
+         header_files/setup_ControlFileXMLMPICommReceiver.h
+         header_files/setup_ControlFileMacroReceiver.h
+         )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -74,17 +91,32 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
+         implementation_files/MasterProcess.cpp
          implementation_files/ControlFileXMLReceiver.cpp
-         implementation_files/ControlFileMPICommReceiver.cpp
-         implementation_files/ReadControlFileTraits.cpp )
+         implementation_files/ControlFileXMLOwnershipImpl.cpp
+         implementation_files/ControlFileXMLMPICommReceiver.cpp
+         implementation_files/ControlFileXMLMPICommOwnershipImpl.cpp
+         implementation_files/ControlFileMacroOwnershipImpl.cpp
+         implementation_files/ControlFileMacroReceiver.cpp
+         implementation_files/ReadControlFileTraits.cpp 
+         implementation_files/setup_controlfile_receivers.cpp
+         implementation_files/setup_ControlFileXMLReceiver.cpp
+         implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
+         implementation_files/setup_ControlFileMacroReceiver.cpp
+         )
 
     # -----------------------------------------------------
     # Set various variables for include directories.
     # 
     # -----------------------------------------------------
+    get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
+    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
+    get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
+    get_target_property(my_invoker_include invoker invoker_include )
+    get_target_property(my_file_parsers_include  file_parsers file_parsers_include)
 
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -117,18 +149,25 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_tasks_include}
-                           PRIVATE ${my_genericmdtask_include} 
-                           PRIVATE ${my_receiver_include} )
+                           PRIVATE "${my_common_md_taskgroup_headers_include}"
+                           PRIVATE "${my_mdownershippolicies_include}"
+                           PRIVATE "${my_genericmdtask_include}" 
+                           PRIVATE "${my_generic_abstract_factory_include}"
+                           PRIVATE "${my_invoker_include}"
+                           PRIVATE "${my_file_parsers_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC tasks
+                      PUBLIC common_md_taskgroup_headers
                       PUBLIC genericmdtask
-                      PUBLIC receiver)
+                      PUBLIC generic_abstract_factory
+                      PUBLIC invoker
+                      PUBLIC mdownershippolicies
+                      PUBLIC file_parsers) 
+
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
@@ -142,12 +181,12 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD "${md_taskgroups_cxx_standard}"
+                      CXX_STANDARD "${readcontrolfile_cxx_standard}"
                       PUBLIC_HEADER "${readcontrolfile_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${md_taskgroups_install_include_directory} )
+         ARCHIVE DESTINATION ${readcontrolfile_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${readcontrolfile_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

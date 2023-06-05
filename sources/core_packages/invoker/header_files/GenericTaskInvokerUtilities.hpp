@@ -25,6 +25,8 @@
 #include "AnansiTaskUtilities.hpp"
 #include "MPLAliases.hpp"
 #include "ReceiverUtilities.hpp"
+#include "OwnershipTypes.hpp"
+#include "ReceiverTypeUtilities.hpp"
 
 namespace ANANSI
 {
@@ -75,9 +77,11 @@ class GenericTaskInvokerUtilities
         {
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
             concrete_task->modifyReceiver(receiver_args...);
+
             return;
         }
 
@@ -94,10 +98,15 @@ class GenericTaskInvokerUtilities
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
+            using receiver_copy_t = typename  GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                               LABEL_t,
+                                                                               COMMAND_LABEL,
+                                                                               ConcreteTasksTypeList>::TYPE;
+
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
 
-            auto ret_val = concrete_task->getCopyOfResults();
+            receiver_copy_t ret_val = concrete_task->getCopyOfResults();
 
             return ret_val;
         }
@@ -116,16 +125,50 @@ class GenericTaskInvokerUtilities
             using concrete_task_type = 
                 typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
+            using receiver_share_t =
+                typename  GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                           LABEL_t,
+                                                           COMMAND_LABEL,
+                                                           ConcreteTasksTypeList>::TYPE;
+
+
+
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
 
-            auto ret_val = concrete_task->shareOwnershipOfResults();
+            receiver_share_t ret_val = concrete_task->shareOwnershipOfResults();
 
             return ret_val;
         }
 
+        //! Returns a trasfer type of the result of a concrete task.
+        //!
+        //! @tparam A typelist of concrete task types.
+        //! @param[in,out] task The concrete task of whose results we want,
+        template <typename ConcreteTasksTypeList,
+                  typename LABEL_t,
+                  LABEL_t COMMAND_LABEL>
+        static auto
+        transferTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
+        {
+            using concrete_task_type = 
+                typename ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
 
-        template <typename ConcreteTasksTypeList, RECEIVER::TaskLabel COMMAND_LABEL>
+            using receiver_transfer_t = 
+                typename  GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                           LABEL_t,
+                                                           COMMAND_LABEL,
+                                                           ConcreteTasksTypeList>::TYPE;
+
+            std::shared_ptr<concrete_task_type> concrete_task =
+                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
+
+            receiver_transfer_t  ret_val = concrete_task->takeOwnershipOfResults();
+
+            return ret_val;
+        }
+
+        template <typename ConcreteTasksTypeList, ANANSI::TaskLabel COMMAND_LABEL>
         static void
         verifyConcreteProductInTypeList()
         {

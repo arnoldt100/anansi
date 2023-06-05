@@ -20,12 +20,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlFileCommunicator::ControlFileCommunicator()
+ControlFileCommunicator::ControlFileCommunicator() :
+    AnansiTask()
 {
     return;
 }
 
-ControlFileCommunicator::ControlFileCommunicator( ControlFileCommunicator const & other)
+ControlFileCommunicator::ControlFileCommunicator( ControlFileCommunicator const & other) :
+    AnansiTask()
 {
     if (this != &other)
     {
@@ -34,11 +36,11 @@ ControlFileCommunicator::ControlFileCommunicator( ControlFileCommunicator const 
     return;
 }
 
-ControlFileCommunicator::ControlFileCommunicator( ControlFileCommunicator && other)
+ControlFileCommunicator::ControlFileCommunicator( ControlFileCommunicator && other) :
+    AnansiTask(std::move(other))
 {
     if (this != &other)
     {
-        AnansiTask::operator=(std::move(other));   
     }
     return;
 }		// -----  end of method ControlFileCommunicator::ControlFileCommunicator  -----
@@ -59,7 +61,7 @@ ControlFileCommunicator& ControlFileCommunicator::operator= ( const ControlFileC
 {
     if (this != &other)
     {
-
+        AnansiTask::operator=(other);   
     }
     return *this;
 } // assignment operator
@@ -68,7 +70,7 @@ ControlFileCommunicator& ControlFileCommunicator::operator= ( ControlFileCommuni
 {
     if (this != &other)
     {
-
+        AnansiTask::operator=(std::move(other));   
     }
     return *this;
 } // assignment-move operator

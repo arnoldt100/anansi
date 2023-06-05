@@ -19,9 +19,12 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
-#include "InterProcessCommEnv.h"
 #include "GenericMDTask.hpp"
-#include "DefaultFunctorImpl.h"
+
+// Includes for abstract tasks.
+#include "InterProcessCommEnv.h"
+
+// Includes for concrete tasks receivers.
 #include "InitMPIEnvTaskReceiver.h"
 
 namespace ANANSI
@@ -51,16 +54,17 @@ class InitMPIEnvTaskTraits
         InitMPIEnvTaskTraits& operator= ( InitMPIEnvTaskTraits && other ); // assignment-move operator
         
         using abstract_products = MPL::mpl_typelist<
-                                                       InterProcessCommEnv
+                                                       InitMPIEnvTaskReceiver::MyParentTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<InterProcessCommEnv,InitMPIEnvTaskReceiver>
+                                                       GenericMDTask<InitMPIEnvTaskReceiver::MyParentTask,
+                                                                     InitMPIEnvTaskReceiver>
                                                    >;
 
-        using receiver_results_t = MPL::mpl_typelist <
-                                                         InitMPIEnvTaskReceiver::receiver_result_t 
-                                                     >;
+        using receiver_results_t = MPL::mpl_typelist<
+                                                    	InitMPIEnvTaskReceiver::receiver_result_t
+                                                    >;
 
         static constexpr auto LABELS = std::array{
                                                     InitMPIEnvTaskReceiver::TASKLABEL

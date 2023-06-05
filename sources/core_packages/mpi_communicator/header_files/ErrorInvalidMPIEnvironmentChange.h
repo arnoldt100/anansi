@@ -4,7 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-
+#include <string_view>
 #include <exception>
 
 //--------------------------------------------------------//
@@ -29,6 +29,8 @@ class ErrorInvalidMPIEnvironmentChange : public std::exception
 
         ErrorInvalidMPIEnvironmentChange ();   // constructor
 
+        ErrorInvalidMPIEnvironmentChange(std::string_view const original_state, std::string_view const action );
+
         ErrorInvalidMPIEnvironmentChange (const ErrorInvalidMPIEnvironmentChange & other);   // copy constructor
 
         ErrorInvalidMPIEnvironmentChange (ErrorInvalidMPIEnvironmentChange && other);   // copy-move constructor
@@ -36,7 +38,7 @@ class ErrorInvalidMPIEnvironmentChange : public std::exception
         ~ErrorInvalidMPIEnvironmentChange ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        const char* what() const noexcept override;
+        const char* what() const noexcept;
 
         // ====================  MUTATORS      =======================================
 
@@ -55,6 +57,8 @@ class ErrorInvalidMPIEnvironmentChange : public std::exception
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::string_view originalState_;
+        std::string_view action_;
 
 }; // -----  end of class ErrorInvalidMPIEnvironmentChange  -----
 

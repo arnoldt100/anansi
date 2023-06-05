@@ -25,12 +25,16 @@
 macro ( enable_building_receiver_package install_lib_directory
         install_include_directory
         install_bin_directory 
+        cmake_c_compiler
+        cmake_cxx_compiler
         cxx_standard
         logfilepath)
 
     set(receiver_install_lib_directory ${install_lib_directory})
     set(receiver_install_include_directory ${install_include_directory})
     set(receiver_install_bin_directory ${install_bin_directory} )
+    set(receiver_cmake_c_compiler ${cmake_c_compiler} )
+    set(receiver_cmake_cxx_compiler ${cmake_cxx_compiler} )
     set(receiver_cxx_standard ${cxx_standard} )
     set(receiver_logfilepath ${logfilepath})
 endmacro()

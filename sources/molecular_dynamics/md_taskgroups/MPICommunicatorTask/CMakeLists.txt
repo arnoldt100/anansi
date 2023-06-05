@@ -12,7 +12,7 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #---------------------------------------------------
-#The section configures the initmpienvtask package.
+# The section configures the initmpienvtask package.
 #
 #---------------------------------------------------
 package_config_begin_delimiter("initmpienvtask" "${md_taskgroups_logfilepath}")
@@ -25,18 +25,25 @@ enable_building_initmpienvtask_package("${md_taskgroups_install_lib_directory}"
                                        "${md_taskgroups_cxx_standard}"
                                        "${md_taskgroups_logfilepath}")
 
+add_subdirectory(InitMPIEnvTask)
 
 package_config_end_delimiter("initmpienvtask" "${md_taskgroups_logfilepath}")
 
 
 #---------------------------------------------------
-#The section configures initmpienvtask package.
-#
-#---------------------------------------------------
-add_subdirectory(InitMPIEnvTask)
-
-#---------------------------------------------------
 #The section configures the initworldcommunicatortask package.
 #
 #---------------------------------------------------
+package_config_begin_delimiter("initworldcommunicatortask" "${md_taskgroups_logfilepath}")
+
+include( ${CMAKE_CURRENT_SOURCE_DIR}/InitWorldCommunicatorTask/cmake_macros_and_functions/initworldcommunicatortask.cmake )
+
+enable_building_initworldcommunicatortask_package("${md_taskgroups_install_lib_directory}"
+                                                  "${md_taskgroups_install_include_directory}"
+                                                  "${md_taskgroups_install_bin_directory}"
+                                                  "${md_taskgroups_cxx_standard}"
+                                                  "${md_taskgroups_logfilepath}")
+
 add_subdirectory(InitWorldCommunicatorTask)
+
+package_config_end_delimiter("initworldcommunicatortask" "${md_taskgroups_logfilepath}")

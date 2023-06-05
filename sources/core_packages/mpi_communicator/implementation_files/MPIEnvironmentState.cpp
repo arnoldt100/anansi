@@ -50,6 +50,11 @@ MPIEnvironmentState::~MPIEnvironmentState()
 
 //============================= ACCESSORS ====================================
 
+std::string MPIEnvironmentState::currentState() const 
+{
+    return this->currentState_();
+}
+
 //============================= MUTATORS =====================================
 void MPIEnvironmentState::enable(MPIEnvironment* const mpi_environment)
 {
@@ -62,7 +67,6 @@ void MPIEnvironmentState::disable(MPIEnvironment* const mpi_environment)
     this->disable_(mpi_environment);
     return;
 }
-
 
 //============================= OPERATORS ====================================
 
@@ -105,17 +109,6 @@ MPIEnvironmentState& MPIEnvironmentState::operator= ( MPIEnvironmentState && oth
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-
-void MPIEnvironmentState::enable_(MPIEnvironment* const mpi_environment)
-{
-    return;
-}
-
-void MPIEnvironmentState::disable_(MPIEnvironment* const mpi_environment)
-{
-    return;
-}
-
 
 //============================= OPERATORS ====================================
 

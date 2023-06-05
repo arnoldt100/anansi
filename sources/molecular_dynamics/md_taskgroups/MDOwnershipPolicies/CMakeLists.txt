@@ -36,6 +36,15 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "${target}_include" )
 
+
+    # ----------------------------------------------------
+    # Verify that all mdownershippolicies build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/mdownershippolicies_build_prerequisites.cmake)
+    verify_mdownershippolicies_build_prerequisites_are_met()
+
     # ----------------------------------------------------
     # 
     # Set various variables for include directories.
@@ -67,12 +76,10 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdownershippolicies_header_files
-         header_files/OwnershipImpl1.hpp  
          header_files/NullOwnershipPolicy.hpp  
          header_files/CopyOwnershipPolicy.hpp  
          header_files/ShareOwnershipPolicy.hpp
          header_files/ShareOwnershipPolicyConcepts.hpp
-         header_files/ShareCopyOwnershipPolicy.hpp
          header_files/ShareCopyOwnershipPolicyConcepts.hpp
          header_files/TransferOwnershipPolicy.hpp
          header_files/TransferOwnershipPolicyConcepts.hpp
@@ -88,13 +95,11 @@
     #                                                    -
     #-----------------------------------------------------
     set (mdownershippolicies_implementation_files
-         implementation_files/OwnershipImpl1.cpp  
          implementation_files/NullOwnershipPolicy.cpp  
          implementation_files/CopyOwnershipPolicy.cpp  
          implementation_files/ShareOwnershipPolicy.cpp
          implementation_files/ShareOwnershipPolicyConcepts.cpp
          implementation_files/ShareCopyOwnershipPolicy.cpp
-         implementation_files/ShareCopyOwnershipPolicyConcepts.cpp
          implementation_files/TransferOwnershipPolicy.cpp
          implementation_files/TransferOwnershipPolicyConcepts.cpp
          implementation_files/TransferCopyOwnershipPolicy.cpp

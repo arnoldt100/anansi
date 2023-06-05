@@ -49,9 +49,12 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
 # ----------------------------------------------------
 include( ${CMAKE_CURRENT_SOURCE_DIR}/tasks/cmake_macros_and_functions/tasks.cmake)
 enable_building_tasks_library( "${core_packages_install_lib_directory}"
-                                    "${core_packages_install_include_directory}"
-                                    "${core_packages_install_bin_directory}" 
-                                    "${core_packages_cxx_standard}" )
+                               "${core_packages_install_include_directory}"
+                               "${core_packages_install_bin_directory}"
+                               "${core_packages_cmake_c_compiler}"
+                               "${core_packages_cmake_cxx_compiler}"
+                               "${core_packages_cxx_standard}"
+                               "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tasks)
 
 # ----------------------------------------------------
@@ -60,11 +63,14 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tasks)
 # 
 # ----------------------------------------------------
 include( ${CMAKE_CURRENT_SOURCE_DIR}/receiver/cmake_macros_and_functions/receiver.cmake )
-enable_building_receiver_package( "${core_packages_install_lib_directory}"
-                                  "${core_packages_install_include_directory}"
-                                  "${core_packages_install_bin_directory}" 
-                                  "${core_packages_cxx_standard}"
-                                  "${core_packages_logfilepath}" )
+enable_building_receiver_package( 
+    "${core_packages_install_lib_directory}"
+    "${core_packages_install_include_directory}"
+    "${core_packages_install_bin_directory}" 
+    "${core_packages_cmake_c_compiler}"
+    "${core_packages_cmake_cxx_compiler}"
+    "${core_packages_cxx_standard}"
+    "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/receiver)
 
 #-----------------------------------------------------
@@ -91,6 +97,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/file_parsers/cmake_macros_and_functions/fil
 enable_building_file_parsers_package( "${core_packages_install_lib_directory}"
                                       "${core_packages_install_include_directory}"
                                       "${core_packages_install_bin_directory}" 
+                                      "${core_packages_cmake_c_compiler}"
+                                      "${core_packages_cmake_cxx_compiler}"
                                       "${core_packages_cxx_standard}"
                                       "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/file_parsers)
@@ -105,6 +113,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation_state/cmake_macros_and_functions
 enable_building_simulation_state_package( "${core_packages_install_lib_directory}"
                                           "${core_packages_install_include_directory}"
                                           "${core_packages_install_bin_directory}" 
+                                          "${core_packages_cmake_c_compiler}"
+                                          "${core_packages_cmake_cxx_compiler}"
                                           "${core_packages_cxx_standard}"
                                           "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_state)
@@ -133,6 +143,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator/cmake_macros_and_functions
 enable_building_mpi_communicator_library( "${core_packages_install_lib_directory}"
                                           "${core_packages_install_include_directory}"
                                           "${core_packages_install_bin_directory}" 
+                                          "${core_packages_cmake_c_compiler}" 
+                                          "${core_packages_cmake_cxx_compiler}" 
                                           "${core_packages_cxx_standard}"
                                           "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator)
@@ -148,7 +160,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/logger/cmake_macros_and_functions/logger.cm
 enable_building_logger_library( "${core_packages_install_lib_directory}"
                                 "${core_packages_install_include_directory}"
                                 "${core_packages_install_bin_directory}" 
-                                "${core_packages_cxx_standard}" )
+                                "${core_packages_cxx_standard}"
+                                "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 
 #-----------------------------------------------------
@@ -160,6 +173,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/invoker/cmake_macros_and_functions/invoker.
 enable_building_invoker_package( "${core_packages_install_lib_directory}"
                                   "${core_packages_install_include_directory}"
                                   "${core_packages_install_bin_directory}" 
+                                  "${core_packages_cmake_c_compiler}" 
+                                  "${core_packages_cmake_cxx_compiler}" 
                                   "${core_packages_cxx_standard}"
                                   "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/invoker)

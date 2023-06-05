@@ -1,9 +1,19 @@
-#ifndef  ANANSI_ControlFileXML_INC
-#define  ANANSI_ControlFileXML_INC
+#ifndef  ANANSI_ControlFileXMLReceiver_INC
+#define  ANANSI_ControlFileXMLReceiver_INC
 
 //! @file ControlFileXMLReceiver.h
 //!
-//! 
+//! Class ControlFileXMLReceiver is the concrete task for reading the control
+//! file.
+//!
+//! The reading of the control file is distributed across a group of
+//! processes in a communicator group. The master process in the communicator
+//! group reads the file. The result will be the a ControlFile
+//! object will be populated on the master process. The non-master processes
+//! will have an empyty ControlFile object.
+//!
+//! The result of this action is ControFile object. We need a
+//! ShareCopyOwnershipPolicy and a SharedType ownership for the result.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -20,21 +30,59 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ReceiverInterface.hpp"
-#include "TaskLabel.hpp"
+#include "CommonMDTaskGroupHeaders.h"
 
+#include "ControlFile.h"
+#include "ControlFileTask.h"
+#include "ControlFileXMLOwnershipImpl.hpp"
+#include "ControlFileName.h"
+#include "MasterProcess.h"
+
+// ---------------------------------------------------
+// Uncomment the ownership policies as required for 
+// class member ConcreteTaskReceiver::ownershipPolicy_.
+// For this class we select ShareCopyOwnershipPolicy.hpp.
+// ---------------------------------------------------
+#include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
 
-//! Ressposible for reading the control file.
+//! Resposible for reading the control file.
 class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLReceiver>
 {
-    public:
-        using receiver_result_t = boost::property_tree::ptree;
+    private:
 
-        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
-            {'r','e','a','d','_','c','o','n','t','r','o','l','_','f','i','l','e'};
+        static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
+            {'r','e','a','d','_','x','m','l','_','c','o','n','t','r','o','l','_','f','i','l','e'};
+
+        using my_result_type_ = ANANSI::ControlFile;
+        using my_copy_type_ = ANANSI::ControlFile;
+        using my_share_type_ = ANANSI::ControlFile;
+        using my_transfer_type_ = ANANSI::ControlFile;
+        using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
+                                                                      my_copy_type_,
+                                                                      my_share_type_,
+                                                                      my_transfer_type_>;
+
+        using MyOwnershipImpl_ = ControlFileXMLOwnershipImpl<MyOwnershipImplTraits_>;
+
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
+
+        ControlFileName controlFileName_;
+        MasterProcess masterProcess_;
+
+    public:
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
+
+        using MyParentTask = ControlFileTask;
+
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
+
+        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
+
+        // ====================  STATIC       =======================================
 
         static constexpr 
         RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE TASKLABEL =
@@ -44,7 +92,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         ControlFileXMLReceiver ();   // constructor
 
-        ControlFileXMLReceiver (const ControlFileXMLReceiver & other);   // copy constructor
+        ControlFileXMLReceiver (const ControlFileXMLReceiver & other) = delete;   // copy constructor
 
         ControlFileXMLReceiver (ControlFileXMLReceiver && other);   // copy-move constructor
 
@@ -52,73 +100,98 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         // ====================  ACCESSORS     =======================================
        
+        // ====================  MUTATORS      =======================================
 
-        constexpr RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
+        // ====================  OPERATORS     =======================================
+
+        ControlFileXMLReceiver& operator= ( const ControlFileXMLReceiver &other ) = delete; // assignment operator
+
+        ControlFileXMLReceiver& operator= ( ControlFileXMLReceiver && other ); // assignment-move operator
+
+    private:
+
+        using receiver_copy_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_share_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_transfer_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+    protected:
+        // ====================  ACCESSORS     =======================================
+        template<typename... Types>
+        void receiverDoAction_(Types & ... args) const;
+        
+        template<typename... Types>
+        void receiverUndoAction_(Types & ... args) const;
+
+        constexpr RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  ControlFileXMLReceiver::TASKLABEL;
         }
 
-        template<typename... Types>
-        void receiverDoAction(Types... args) const;
-
-        template<typename... Types>
-        void receiverUndoAction(Types... args) const;
-
-        std::unique_ptr<receiver_result_t> receiverGetCopyOfResults() const;
+        ControlFileXMLReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
 
         // ====================  MUTATORS      =======================================
-        template<typename T>
-        void enableReceiver(T & arg);
 
         template<typename... Types>
-        void disableReceiver(Types... args);
+        void enableReceiver_(Types &... args);
+
+        template<typename... Types>
+        void disableReceiver_(Types &... args);
 
         template<typename T>
-        void receiverModifyMyself(T & arg);
+        void receiverModifyMyself_(T & arg);
 
-        // ====================  OPERATORS     =======================================
-
-        ControlFileXMLReceiver& operator= ( const ControlFileXMLReceiver &other ); // assignment operator
-
-        ControlFileXMLReceiver& operator= ( ControlFileXMLReceiver && other ); // assignment-move operator
-
-    protected:
-        // ====================  METHODS       =======================================
+        ControlFileXMLReceiver::receiver_share_t_ receiverShareOwnershipOfResults_();
+    
+        ControlFileXMLReceiver::receiver_transfer_t_ receiverTransferOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        // ====================  ACCESSORS     =======================================
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        mutable boost::property_tree::ptree results_;
-        std::string controlFileName_;
-        int commID_;
-
+        mutable receiver_result_t results_;
+        MyOwnershipPolicy_ ownershipPolicy_;
+        
 }; // -----  end of class ControlFileXMLReceiver  -----
-
 template<typename... Types>
-void ControlFileXMLReceiver::disableReceiver(Types... args)
+void ControlFileXMLReceiver::enableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void ControlFileXMLReceiver::receiverDoAction(Types... args) const
+void ControlFileXMLReceiver::disableReceiver_(Types &... args)
 {
-    if (commID_ == 0)
+    return;
+}
+
+template<typename... Types>
+void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
+{
+    if (this->masterProcess_.operator()())
     {
-        std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction" << std::endl;
+        std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
     }
     return;
 }
 
 template<typename... Types>
-void ControlFileXMLReceiver::receiverUndoAction(Types... args) const
+void ControlFileXMLReceiver::receiverUndoAction_(Types &...  args) const
 {
     return;
 }
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_ControlFileXML_INC  ----- 
+#endif   // ----- #ifndef ANANSI_ControlFileXMLReceiver_INC  ----- 

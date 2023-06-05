@@ -30,7 +30,6 @@
 #include "CommandLineArguments.h"
 #include "SimulationParameters.h"
 #include "Communicator.h"
-#include "RegistryAnansiMDStatus.h"
 #include "SimulationState.h"
 #include "GenericTaskFactory.hpp"
 #include "AnansiTask.h"
@@ -75,11 +74,8 @@ class AnansiMolecularDynamics final : public Simulation
 
         void saveCommandLineOptionParameters();
 
-        void enableControlFile();
-        void disableControlFile();
-
-        void readInitialConfiguration();
-
+        void enableControlFileTasks();
+        void disableControlFileTasks();
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -102,15 +98,7 @@ class AnansiMolecularDynamics final : public Simulation
     private:
         /* ====================  ACCESSORS     ======================================= */
 
-        COMMUNICATOR::RegistryAnansiMDStatus status_() const final override;
-
         bool isHelpOnCommandLine_() const final override;
-
-        bool isISEStatusOkay_() const final override;
-
-        bool isISEGlobalStatusOkay_() const final override;
-
-        bool isIICStatusOkay_() const final override;
 
         /* ====================  MUTATORS      ======================================= */
 
@@ -132,11 +120,10 @@ class AnansiMolecularDynamics final : public Simulation
         // This group of functions terminates the simulation environment.
         void terminateSimulationEnvironment_() final override;
 
-        // To be depracated.
-        void setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus) final override;
-
-        // To be depracated.
-        void setGlobalISEStatus_() final override;
+        /* ====================  DATA MEMBERS  ======================================= */
+        COMMANDLINE::CommandLineArguments commandLineArguments_;
+        ANANSI::SimulationParameters simulationParameters_;
+        std::shared_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
 
         template<typename abstract_products_typelist,
                  typename concrete_products_typelist>
@@ -145,15 +132,13 @@ class AnansiMolecularDynamics final : public Simulation
                                                        > & core_logging_invoker,
                                         std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator );
 
-        /* ====================  DATA MEMBERS  ======================================= */
-        COMMANDLINE::CommandLineArguments commandLineArguments_;
-        ANANSI::SimulationParameters simulationParameters_;
-        std::shared_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
-
-
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTaskTraits::abstract_products,
                                                    InitMPIEnvTaskTraits::concrete_products>
                        > mdCommEnvInvk_;
+
+        std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                   ReadControlFileTraits::concrete_products>
+                       > mdControlFileInvk_;
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitWorldCommunicatorTaskTraits::abstract_products,
                                                    InitWorldCommunicatorTaskTraits::concrete_products>
@@ -163,6 +148,8 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
                                                    WriteTextToConsoleTaskTraits::concrete_products>
                        > mdCoreLoggingInvk_;
+
+
 
         // These are the state objects for the MD simulation.
         std::shared_ptr<ANANSI::SimulationState> mdState_;
@@ -174,9 +161,9 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
 
-        // These are the factories for various invoker objects.
+        // These are the task factories for various invoker objects.
         std::shared_ptr<GenericTaskFactory<InitMPIEnvTaskTraits::abstract_products,
-                                               InitMPIEnvTaskTraits::concrete_products>
+                                           InitMPIEnvTaskTraits::concrete_products>
                        >mdAnansiMPIEnvTaskFactory_;
 
         std::shared_ptr<GenericTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
@@ -188,15 +175,9 @@ class AnansiMolecularDynamics final : public Simulation
                        > mdAnansiCoreLoggingTaskFactory_;
 
         std::shared_ptr<GenericTaskFactory<ReadControlFileTraits::abstract_products,
-                                               ReadControlFileTraits::concrete_products>
-                       > mdAnansiReadControlFileInvoker_;
+                                           ReadControlFileTraits::concrete_products>
+                       > mdAnansiControlFileTaskFactory_;
 
-
-        // :TODO:09/27/2022 02:38:21 PM:: To be deprecated.
-        COMMUNICATOR::RegistryAnansiMDStatus mdStatus_;
-        
-        // :TODO:09/27/2022 02:39:21 PM:: To be deprecated.
-        COMMUNICATOR::RegistryAnansiMDStatus mdGlobalStatus_;
 
        /* ====================  STATIC        ======================================= */
 

@@ -134,7 +134,7 @@
     #-----------------------------------------------------
     install( TARGETS ${target}
              RUNTIME DESTINATION ${tasks_install_lib_library_directory} 
-             PUBLIC_HEADER DESTINATION ${tasks_install_lib_directory} )
+             PUBLIC_HEADER DESTINATION ${tasks_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

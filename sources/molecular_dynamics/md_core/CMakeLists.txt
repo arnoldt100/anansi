@@ -80,7 +80,7 @@
 
     #-----------------------------------------------------
     # Here we define the variable
-    # md_core_library_headers associated
+    # md_core_header_files associated
     # with the molecular dynamics library
     # 
     #-----------------------------------------------------
@@ -101,7 +101,8 @@
         header_files/MDSimulationStateFactory.h
         header_files/ISEStatus.h
         header_files/AnansiMolecularDynamicsFactory.h 
-        header_files/AnansiMDStateInt2Type.hpp)
+        header_files/AnansiMDStateInt2Type.hpp
+        header_files/initialize_controlfile_invoker_and_taskfactory.h)
     
     # ----------------------------------------------------
     # These files are for communicattion environment invoker.
@@ -130,7 +131,8 @@
         implementation_files/MDSimulationStateFactory.cpp
         implementation_files/ISEStatus.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp 
-        implementation_files/AnansiMDStateInt2Type.cpp)
+        implementation_files/AnansiMDStateInt2Type.cpp
+        implementation_files/initialize_controlfile_invoker_and_taskfactory.cpp)
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -223,16 +225,13 @@ enable_compile_warnings("${md_core_target}")
 #
 #-----------------------------------------------------
 set_target_properties("${md_core_target}" PROPERTIES 
-    PUBLIC_HEADER "${md_core_library_headers}" 
+    md_core_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+    PUBLIC_HEADER "${md_core_header_files}" 
     CXX_STANDARD "${md_core_cxx_standard}" )
 
 install( TARGETS "${md_core_target}"
          ARCHIVE DESTINATION "${md_core_install_lib_directory}"
          PUBLIC_HEADER DESTINATION "${md_core_install_include_directory}" )
-
-set_target_properties("${md_core_target}" PROPERTIES
-                      md_core_include "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
-                      PUBLIC_HEADER "${md_core_header_files}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

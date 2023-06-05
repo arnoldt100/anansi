@@ -77,9 +77,13 @@
     #-----------------------------------------------------
     set (receiver_header_files
          header_files/ReceiverInterface.hpp
-         header_files/ReceiverResultOwnershipPolicy.hpp
+         header_files/ConcreteReceiverConstraints.hpp
+         header_files/BaseReceiverResultOwnershipPolicy.hpp
          header_files/GenericReceiverFactory.hpp
-         header_files/OwnershipTypeRequirements.hpp)
+         header_files/OwnershipTypeRequirements.hpp
+         header_files/OwnershipTypes.hpp
+         header_files/BaseOwnershipImplementation.h
+         header_files/ReceiverResultTraits.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -90,9 +94,13 @@
     #-----------------------------------------------------
     set (receiver_implementation_files
          implementation_files/ReceiverInterface.cpp
-         implementation_files/ReceiverResultOwnershipPolicy.cpp
+         implementation_files/ConcreteReceiverConstraints.cpp
+         implementation_files/BaseReceiverResultOwnershipPolicy.cpp
          implementation_files/GenericReceiverFactory.cpp
-         implementation_files/OwnershipTypeRequirements.cpp)
+         implementation_files/OwnershipTypeRequirements.cpp
+         implementation_files/OwnershipTypes.cpp
+         implementation_files/BaseOwnershipImplementation.cpp
+         implementation_files/ReceiverResultTraits.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -152,7 +160,7 @@ set_target_properties(${target} PROPERTIES
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION ${receiver_install_lib_library_directory} 
-         PUBLIC_HEADER DESTINATION ${receiver_install_lib_directory} )
+         PUBLIC_HEADER DESTINATION ${receiver_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

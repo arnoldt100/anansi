@@ -19,9 +19,11 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ConcreteReceiverConstraints.hpp"
 #include "TaskLabel.hpp"
 #include "AnansiTaskParameters.h"
 #include "DefaultFunctorImpl.h"
+#include "OwnershipTypes.hpp"
 
 namespace ANANSI
 {
@@ -30,19 +32,21 @@ namespace ANANSI
 //!
 //! @tparam BaseClass The base class for the concrete task
 //! @tparam Receiver The type of the concrete task receiver.
-//! @tparam FunctorImpl Not presently used.
+//! @tparam FunctorImpl Not presently used. Reserved for future use.
 template <class BaseClass,
           class Receiver,
-          class FunctorImpl = DefaultFunctorImpl>
+          class FunctorImpl = DefaultFunctorImpl> requires RECEIVER::ConcreteReceiverConstraints<Receiver>
 class GenericMDTask : public BaseClass  
 {
 
     public:
 
-        using task_result_t = typename Receiver::receiver_result_t;
+        // ====================  TYPE ALIASES  =======================================
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes = typename Receiver:: template MyOwnershipTypes<Q>;
 
         // ====================  STATIC       =======================================
-        static constexpr RECEIVER::TaskLabel TASKLABEL =
+        static constexpr ANANSI::TaskLabel TASKLABEL =
             Receiver::TASKLABEL;
 
         // ====================  LIFECYCLE     =======================================
@@ -87,6 +91,11 @@ class GenericMDTask : public BaseClass
             return this->taskConcreteTypeListIndex_;
         }
 
+        ANANSI::TaskLabel taskLabel_() const override
+        {
+            return TASKLABEL;
+        }
+
         //! Gets the result of getCopyOfResults
         //!
         //! Returns a copy of the receiver results.  The calling function
@@ -94,7 +103,7 @@ class GenericMDTask : public BaseClass
         //! reset to default values.
         auto getCopyOfResults() const
         {
-            std::unique_ptr<typename Receiver::receiver_result_t> results = 
+            receiver_copy_t results = 
                 this->receiver_->getCopyOfResults();
             return results;
         }
@@ -113,7 +122,7 @@ class GenericMDTask : public BaseClass
         //! @param [in] flags Used for any purpose in the concrete class
         void doConcreteTaskAction(const std::vector<std::string> & flags) const override
         {
-            this->receiver_->action();
+            this->receiver_->doAction();
             return;
         }
 
@@ -126,6 +135,14 @@ class GenericMDTask : public BaseClass
             return;
         }
 
+        //! Enables  the concrete task.
+        //!
+        //! @param [in] flags Used for any purpose in the concrete class
+        void enableConcreteTask(const std::vector<std::string> & flags) override
+        {
+            this->receiver_->enable();
+            return;
+        }
         //! Disables the concrete task.
         //!
         //! @param [in] flags Used for any purpose in the concrete class
@@ -161,9 +178,9 @@ class GenericMDTask : public BaseClass
         //!
         //! Returns a shared_ptr of the receiver results.  The calling function
         //! shares ownership of the receiver results via a shared_ptr.
-        std::shared_ptr<typename Receiver::receiver_result_t> shareOwnershipOfResults()
+        auto shareOwnershipOfResults()
         {
-            std::shared_ptr<typename Receiver::receiver_result_t> results = 
+            receiver_share_t results = 
                 this->receiver_->shareOwnershipOfResults();
             return results;
         }
@@ -173,10 +190,10 @@ class GenericMDTask : public BaseClass
         //! Returns a unique_ptr of the receiver results.  The calling function
         //! takes ownership of the receiver results via a unique_ptr. The original results 
         //! resets to default values.
-        std::unique_ptr<typename Receiver::receiver_result_t> takeOwnershipOfResults()
+        auto takeOwnershipOfResults()
         {
-            std::unique_ptr<typename Receiver::receiver_result_t> results = 
-                this->receiver_->takeOwnershipOfResults();
+            receiver_transfer_t results = 
+                this->receiver_->transferOwnershipOfResults();
             return results;
         }
         // ====================  OPERATORS     =======================================
@@ -207,7 +224,16 @@ class GenericMDTask : public BaseClass
 
         // ====================  DATA MEMBERS  =======================================
 
+
     private:
+
+        // ====================  TYPE ALIASES  =======================================
+        using receiver_t = Receiver;
+        using task_result_t = typename Receiver::receiver_result_t;
+        using receiver_copy_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+        using receiver_share_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+        using receiver_transfer_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

@@ -26,7 +26,7 @@
 #include "DummyAbstractTask2.h"
 
 
-// Includes for concrete tasks.
+// Includes for concrete tasks receivers.
 #include "DummyConcreteTask1.h"
 #include "DummyConcreteTask2.h"
 
@@ -63,9 +63,19 @@ class DummyTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<DummyAbstractTask1,DummyConcreteTask1>,
-                                                       GenericMDTask<DummyAbstractTask2,DummyConcreteTask2>
+                                                       GenericMDTask<DummyAbstractTask1,DummyConcreteTaskReceiver1>,
+                                                       GenericMDTask<DummyAbstractTask2,DummyConcreteTaskReceiver2>
                                                    >;
+
+        using receiver_results_t = MPL::mpl_typelist <
+                                                         DummyConcreteTaskReceiver1::receiver_result_t, 
+                                                         DummyConcreteTaskReceiver2::receiver_result_t, 
+                                                     >;
+
+        static constexpr auto LABELS = std::array{
+                                                         DummyConcreteTaskReceiver1::TASKLABEL,
+                                                         DummyConcreteTaskReceiver2::TASKLABEL,
+                                                 };
     protected:
         // ====================  METHODS       =======================================
 

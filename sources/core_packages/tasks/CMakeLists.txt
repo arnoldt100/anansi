@@ -37,6 +37,17 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    # Verify that prerequisite variables are defined.
+    set (my_variable_prerequisites 
+        "install_lib_directory"
+        "install_include_directory"
+        "install_bin_directory"
+        "cmake_c_compiler"
+        "cmake_cxx_compiler"
+        "cxx_standard"
+        "logfilepath" )
+    generic_target_build_prerequisites("${my_project_name}"  my_variable_prerequisites )
+
     #-----------------------------------------------------
     # Set various variables for include directories.     -
     #                                                    -
@@ -44,14 +55,13 @@
     get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
     get_target_property(my_comm_include communicator communicator_include)
     get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include)
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -74,11 +84,12 @@
          header_files/TaskLabelTraits.hpp
          header_files/TaskLabel.hpp
          header_files/AnansiTaskUtilities.hpp
+         header_files/MacroCommand.hpp
          header_files/ConsoleLoggingTask.h
          header_files/PrimaryFileLoggingTask.h
          header_files/InterProcessCommEnv.h
          header_files/CommunicatorTask.h
-         header_files/ControlFile.h
+         header_files/ControlFileTask.h
          header_files/ControlFileCommunicator.h)
 
     #-----------------------------------------------------
@@ -94,11 +105,12 @@
          implementation_files/TaskLabelTraits.cpp
          implementation_files/TaskLabel.cpp
          implementation_files/AnansiTaskUtilities.cpp
+         implementation_files/MacroCommand.cpp
          implementation_files/ConsoleLoggingTask.cpp
          implementation_files/PrimaryFileLoggingTask.cpp
          implementation_files/InterProcessCommEnv.cpp
          implementation_files/CommunicatorTask.cpp
-         implementation_files/ControlFile.cpp
+         implementation_files/ControlFileTask.cpp
          implementation_files/ControlFileCommunicator.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -133,8 +145,8 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_comm_include}
                            PRIVATE ${my_command_line_arguments_include} 
-                           PRIVATE ${my_generic_object_factory_include}) 
-                           # PRIVATE ${my_logger_include})
+                           PRIVATE ${my_generic_object_factory_include}
+                           PRIVATE ${my_typelist_aliases_include} )
 
 
 #-----------------------------------------------------
@@ -144,13 +156,20 @@ target_include_directories(${target}
 target_link_libraries( ${target}
                        PUBLIC command_line_arguments
                        PUBLIC communicator
-                       PUBLIC generic_object_factory) 
+                       PUBLIC generic_object_factory
+                       PUBLIC typelist_aliases) 
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -
 #-----------------------------------------------------
 enable_compile_warnings(${target})
+
+#-----------------------------------------------------
+# Enable debug code.
+#
+#-----------------------------------------------------
+enable_anansi_debug_flags(${target})
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
@@ -163,7 +182,7 @@ set_target_properties(${target} PROPERTIES
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION "${tasks_install_lib_directory}" 
-         PUBLIC_HEADER DESTINATION "${tasks_install_lib_directory}" )
+         PUBLIC_HEADER DESTINATION "${tasks_install_include_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

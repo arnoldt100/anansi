@@ -20,19 +20,55 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
-#include "ControlFile.h"
-#include "ControlFileCommunicator.h"
 #include "GenericMDTask.hpp"
-#include "DefaultFunctorImpl.h"
+
+// Includes for abstract tasks.
+#include "ControlFileTask.h"
+#include "ControlFileCommunicator.h"
+#include "MacroCommand.hpp"
+
+// Includes for concrete tasks receivers.
 #include "ControlFileXMLReceiver.h"
-#include "ControlFileMPICommReceiver.h"
+#include "ControlFileXMLMPICommReceiver.h"
+#include "ControlFileMacroReceiver.h"
 
 namespace ANANSI
 {
 
 class ReadControlFileTraits
 {
+
     public:
+
+        // ====================  TYPEDEFS      =======================================
+
+
+
+        using MCParentTask = ControlFileMacroReceiver::MyParentTask;
+
+        using abstract_products = MPL::mpl_typelist<
+                                                       ControlFileXMLReceiver::MyParentTask,
+                                                       ControlFileXMLMPICommReceiver::MyParentTask,
+                                                       ControlFileMacroReceiver::MyParentTask
+                                                   >;
+
+        using concrete_products = MPL::mpl_typelist<
+                                                       GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>,
+                                                       GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>,
+                                                       GenericMDTask<ControlFileMacroReceiver::MyParentTask,ControlFileMacroReceiver>
+                                                   >;
+
+        using receiver_results_t = MPL::mpl_typelist<
+                                                    	ControlFileXMLReceiver::receiver_result_t,
+                                                        ControlFileXMLMPICommReceiver::receiver_result_t,
+                                                        ControlFileMacroReceiver::receiver_result_t
+                                                     >;
+
+        static constexpr auto LABELS = std::array{
+                                                    ControlFileXMLReceiver::TASKLABEL,
+                                                    ControlFileXMLMPICommReceiver::TASKLABEL,
+                                                    ControlFileMacroReceiver::TASKLABEL
+                                                 };
 
         // ====================  LIFECYCLE     =======================================
 
@@ -54,15 +90,6 @@ class ReadControlFileTraits
 
         ReadControlFileTraits& operator= ( ReadControlFileTraits && other ); // assignment-move operator
 
-        using abstract_products = MPL::mpl_typelist<
-                                                       ControlFile,
-                                                       ControlFileCommunicator
-                                                   >;
-
-        using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<ControlFile,ControlFileXMLReceiver>,
-                                                       GenericMDTask<ControlFileCommunicator,ControlFileMPICommReceiver>
-                                                   >;
     protected:
         // ====================  METHODS       =======================================
 

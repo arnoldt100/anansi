@@ -20,12 +20,17 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDInitSimEnvVisitor::MDInitSimEnvVisitor()
+MDInitSimEnvVisitor::MDInitSimEnvVisitor() :
+    MPL::BaseVisitor(),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>()
+
 {
     return;
 }
 
-MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor const & other)
+MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor const & other) :
+    MPL::BaseVisitor(other),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(other)
 {
     if (this != &other)
     {
@@ -34,7 +39,9 @@ MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor const & other)
     return;
 }
 
-MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor && other)
+MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor && other) :
+    MPL::BaseVisitor(std::move(other)),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(std::move(other))
 {
     if (this != &other)
     {
@@ -51,7 +58,7 @@ MDInitSimEnvVisitor::~MDInitSimEnvVisitor()
 //============================= ACCESSORS ====================================
 void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
-    std::cout << "Visit(AnansiMolecularDynamics&)" << std::endl;
+    std::cout << "MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
 
     // ---------------------------------------------------
     // The comunication environment must be first enabled for many other tasks
@@ -66,14 +73,13 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 
     // ---------------------------------------------------
     // The core logging tasks are enabled.
-    // 
     // ---------------------------------------------------
     a_sim.enableCoreLoggingTasks();
 
     // ---------------------------------------------------
-    // The read control file invoker is enabaled.
+    // The control file tasks are enabled.
     // ---------------------------------------------------
-    a_sim.enableControlFile();
+    a_sim.enableControlFileTasks();
 
     return;
 }
@@ -86,7 +92,8 @@ MDInitSimEnvVisitor& MDInitSimEnvVisitor::operator= ( const MDInitSimEnvVisitor 
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(other);
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -95,6 +102,8 @@ MDInitSimEnvVisitor& MDInitSimEnvVisitor::operator= ( MDInitSimEnvVisitor && oth
 {
     if (this != &other)
     {
+        MPL::BaseVisitor::operator=(std::move(other));
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(std::move(other));
 
     }
     return *this;

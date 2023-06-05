@@ -23,6 +23,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "AnansiTaskParameters.h"
+#include "TaskLabel.hpp"
 
 namespace ANANSI
 {
@@ -54,6 +55,9 @@ class AnansiTask
         //! Returns the location of concrete task with respect to the concrete typelist.
         AnansiTaskParameters::task_size_t taskIndex() const;
 
+        //! Returns the TaskLabel for the receiver corresponding to this task.
+        ANANSI::TaskLabel taskLabel() const;
+
         // ====================  MUTATORS      =======================================
         
         //! Executes the task.
@@ -72,14 +76,20 @@ class AnansiTask
         //! @param [in] flags  A list of string flags.
         void undoAction(const std::vector<std::string> & flags );
 
-        //! Disables the task execution,
+        //! Enables the task execution,
         //!
-        //! After diabling a task the following behavoir is expected:
-        //! 
-        //! Any future calls to doAction, undoAction, taskIndex task will 
-        //! have undefined effects.
+        //! After enabling task it can do actions. Any calls before a task
+        //! is enabled will have throw an error.
         //! 
         //! Any future calls to disableTask will have a null effect.
+        void enableTask(const std::vector<std::string> & flags);
+
+        //! Disables the task execution,
+        //!
+        //! After disabling a task the following behavoir is expected:
+        //! 
+        //! Any future calls to doAction, undoAction will
+        //! throw an error.
         void disableTask(const std::vector<std::string> & flags);
 
         // ====================  OPERATORS     =======================================
@@ -98,11 +108,16 @@ class AnansiTask
         
         virtual AnansiTaskParameters::task_size_t taskIndex_() const = 0;
 
+        //! Returns the TaskLabel for the receiver corresponding to this task.
+        virtual ANANSI::TaskLabel taskLabel_() const=0;
+
         // ====================  MUTATORS      =======================================
         
         virtual void doConcreteTaskAction(const std::vector<std::string> & flags) const = 0;
         
         virtual void undoConcreteTaskAction(const std::vector<std::string> & flags) = 0;
+
+        virtual void enableConcreteTask(const std::vector<std::string> & flags) =0;
 
         virtual void disableConcreteTask(const std::vector<std::string> & flags) =0;
 

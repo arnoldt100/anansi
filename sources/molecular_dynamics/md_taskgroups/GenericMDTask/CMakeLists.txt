@@ -38,12 +38,21 @@
     #-----------------------------------------------------
     set(my_target_include_property_name "genericmdtask_include" )
 
+    # ----------------------------------------------------
+    # Verify that all genericmdtask build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/genericmdtask_build_prerequisites.cmake")
+    verify_genericmdtask_build_prerequisites_are_met()
+
     #-----------------------------------------------------
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include)
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -70,7 +79,8 @@
     #-----------------------------------------------------
     set (genericmdtask_header_files
           header_files/GenericMDTask.hpp
-          header_files/DefaultFunctorImpl.h )
+          header_files/DefaultFunctorImpl.h
+          header_files/GenericMDTaskContainer.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -81,7 +91,8 @@
     #-----------------------------------------------------
     set (genericmdtask_implementation_files
          implementation_files/GenericMDTask.cpp
-         implementation_files/DefaultFunctorImpl.cpp )
+         implementation_files/DefaultFunctorImpl.cpp 
+         implementation_files/GenericMDTaskContainer.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -113,8 +124,8 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_tasks_include}
-                           PRIVATE ${my_receiver_include})
+                           PUBLIC ${my_tasks_include}
+                           PUBLIC ${my_receiver_include})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -

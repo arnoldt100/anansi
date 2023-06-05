@@ -20,12 +20,16 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDNullSimulationVisitor::MDNullSimulationVisitor()
+MDNullSimulationVisitor::MDNullSimulationVisitor() :
+    MPL::BaseVisitor(),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>()
 {
     return;
 }
 
-MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor const & other)
+MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor const & other) :
+    MPL::BaseVisitor(other),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(other)
 {
     if (this != &other)
     {
@@ -34,7 +38,10 @@ MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor const 
     return;
 }
 
-MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor && other)
+MDNullSimulationVisitor::MDNullSimulationVisitor( MDNullSimulationVisitor && other) :
+    MPL::BaseVisitor(std::move(other)),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(std::move(other))
+
 {
     if (this != &other)
     {
@@ -64,7 +71,8 @@ MDNullSimulationVisitor& MDNullSimulationVisitor::operator= ( const MDNullSimula
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(other);
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -73,7 +81,8 @@ MDNullSimulationVisitor& MDNullSimulationVisitor::operator= ( MDNullSimulationVi
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(std::move(other));
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

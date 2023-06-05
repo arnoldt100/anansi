@@ -78,12 +78,12 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_header_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FileParser.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileParser.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFileParser.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderFileParser.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileParserFactory.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/RegistryControlFileParserStatus.h )
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BaseInputFile.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileName.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFile.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFile.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderFile.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -93,12 +93,12 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FileParser.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileParser.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderControlFileParser.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderFileParser.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StandardFileParserFactory.cpp 
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/RegistryControlFileParserStatus.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BaseInputFile.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileName.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFile.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderControlFile.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderFile.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StandardFileFactory.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

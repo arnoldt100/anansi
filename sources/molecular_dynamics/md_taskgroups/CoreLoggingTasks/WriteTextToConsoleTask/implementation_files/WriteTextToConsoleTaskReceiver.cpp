@@ -22,19 +22,20 @@ namespace ANANSI {
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
+    results_(0),
     communicator_(nullptr),
     messageContainer_(),
-    results_(nullptr)
+    ownershipPolicy_()
 {
-    this->results_ = std::make_unique<receiver_result_t>(0);
     return;
 }
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
+    results_(0),
     communicator_(std::move(other.communicator_)),
     messageContainer_(std::move(other.messageContainer_)),
-    results_(std::move(other.results_))
+    ownershipPolicy_()
 {
     if (this != &other)
     {
@@ -50,41 +51,7 @@ WriteTextToConsoleTaskReceiver::~WriteTextToConsoleTaskReceiver()
 
 //============================= ACCESSORS ====================================
 
-// std::unique_ptr<WriteTextToConsoleTaskReceiver::receiver_result_t> WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
-WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Copytype WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults() const
-{
-    OwnershipPolicy<receiver_result_t>::Copytype  my_ptr = this->ownershipPolicy_.copyResult(this->results_);
-    return my_ptr;
-}
-
 //============================= MUTATORS =====================================
-
-template<>
-void WriteTextToConsoleTaskReceiver::receiverModifyMyself(
-        std::unique_ptr<ConsoleMessageContainer> & message_container)
-{
-    this->messageContainer_ = std::move(message_container);
-    return;
-}
-
-template<>
-void WriteTextToConsoleTaskReceiver::receiverModifyMyself(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
-{
-    this->communicator_ = std::move(arg);
-    return;
-}
-
-WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Sharedtype WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults()
-{
-    OwnershipPolicy<receiver_result_t>::Sharedtype my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
-
-WriteTextToConsoleTaskReceiver::OwnershipPolicy<WriteTextToConsoleTaskReceiver::receiver_result_t>::Transfertype WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults()
-{
-    OwnershipPolicy<receiver_result_t>::Transfertype my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
-    return my_ptr;   
-}
 
 //============================= OPERATORS ====================================
 
@@ -93,9 +60,10 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(std::move(other));
+        this->results_ = std::move(other.results_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->communicator_ = std::move(other.communicator_);
         this->messageContainer_ = std::move(other.messageContainer_);
-        this->results_ = std::move(other.results_);
     }
     return *this;
 } // assignment-move operator
@@ -108,7 +76,41 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 
 //============================= ACCESSORS ====================================
 
+WriteTextToConsoleTaskReceiver::receiver_copy_t_ WriteTextToConsoleTaskReceiver::receiverGetCopyOfResults_() const
+{
+    WriteTextToConsoleTaskReceiver::receiver_copy_t_ my_ptr =
+        this->ownershipPolicy_.copyReceiverResult(this->results_);
+    return my_ptr;
+}
+
 //============================= MUTATORS =====================================
+
+WriteTextToConsoleTaskReceiver::receiver_share_t_ WriteTextToConsoleTaskReceiver::receiverShareOwnershipOfResults_()
+{
+    WriteTextToConsoleTaskReceiver::receiver_share_t_ my_ptr = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
+
+WriteTextToConsoleTaskReceiver::receiver_transfer_t_ WriteTextToConsoleTaskReceiver::receiverTransferOwnershipOfResults_()
+{
+    WriteTextToConsoleTaskReceiver::receiver_transfer_t_ my_ptr = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    return my_ptr;   
+}
+
+template<>
+void WriteTextToConsoleTaskReceiver::receiverModifyMyself_(
+        std::unique_ptr<ConsoleMessageContainer> & message_container)
+{
+    this->messageContainer_ = std::move(message_container);
+    return;
+}
+
+template<>
+void WriteTextToConsoleTaskReceiver::receiverModifyMyself_(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
+{
+    this->communicator_ = std::move(arg);
+    return;
+}
 
 //============================= OPERATORS ====================================
 

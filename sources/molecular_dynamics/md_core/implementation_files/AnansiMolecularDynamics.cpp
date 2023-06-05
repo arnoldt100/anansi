@@ -14,14 +14,15 @@
 //--------------------------------------------------------//
 #include "AnansiMolecularDynamics.h"
 #include "SimulationParametersFactory.h"
-#include "BuilderControlFileParser.h"
-#include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
 #include "GenericTaskInvokerFactory.hpp"
 #include "InterProcessCommEnv.h"
 #include "GenericReceiverFactory.hpp"
 #include "InitMPIEnvTaskReceiver.h"
 #include "ConsoleMessageContainer.h"
+
+#include "initialize_controlfile_invoker_and_taskfactory.h"
+#include "setup_controlfile_receivers.h"
 
 namespace ANANSI {
 
@@ -80,7 +81,7 @@ void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTr
                      > command_labels = {my_label};
     core_logging_invoker->doTask(command_labels);
 
-    auto tmp_value = core_logging_invoker->shareTaskResults<my_label>();
+    auto tmp_value = core_logging_invoker->getCopyOfTaskResults<my_label>();
 
     return;
 }
@@ -97,6 +98,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     mdCommEnvInvk_(nullptr),
+    mdControlFileInvk_(nullptr),
     mdWorldCommunicatorInvk_(nullptr),
     mdCoreLoggingInvk_(nullptr),
     mdState_(nullptr),
@@ -109,9 +111,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
-    mdAnansiReadControlFileInvoker_(nullptr),
-    mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+    mdAnansiControlFileTaskFactory_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -134,6 +134,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     simulationParameters_(),
     MpiWorldCommunicator_(nullptr),
     mdCommEnvInvk_(nullptr),
+    mdControlFileInvk_(nullptr),
     mdWorldCommunicatorInvk_(nullptr),
     mdCoreLoggingInvk_(nullptr),
     mdState_(nullptr),
@@ -146,9 +147,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
-    mdAnansiReadControlFileInvoker_(nullptr),
-    mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+    mdAnansiControlFileTaskFactory_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -159,24 +158,41 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
-    // Initialize all invoker factories.
+    // Initialiing the InitMPIEnvTask
     this->mdAnansiMPIEnvTaskFactory_ = std::make_shared<GenericTaskFactory<InitMPIEnvTaskTraits::abstract_products,
                                                                            InitMPIEnvTaskTraits::concrete_products>
                                                        >();
 
+
+    // Initialiing the InitWorldCommunicator 
+    std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                              InitWorldCommunicatorTaskTraits::concrete_products>
+                   > mdWorldCommunicatorInvkFactory = 
+        std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
+                                                   InitWorldCommunicatorTaskTraits::concrete_products>
+                        >();
+
+    this->mdWorldCommunicatorInvk_ = mdWorldCommunicatorInvkFactory->create_shared_ptr();
+
+
     this->mdAnansiInitWorldCommunicatorTaskFactory_ = std::make_shared<GenericTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                                           InitWorldCommunicatorTaskTraits::concrete_products>
                                                                       >();
+    //-
 
     this->mdAnansiCoreLoggingTaskFactory_ = std::make_shared<GenericTaskFactory<WriteTextToConsoleTaskTraits::abstract_products,
                                                                                 WriteTextToConsoleTaskTraits::concrete_products>
                                                             >();
 
-    this->mdAnansiReadControlFileInvoker_ = std::make_shared<GenericTaskFactory<ReadControlFileTraits::abstract_products,
-                                                                                ReadControlFileTraits::concrete_products>
-                                                            >();
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Initialzing the ControlFile invoker and task factory.
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    auto [x,y] = initialize_controlfileinvoker_and_taskfactory();
+    this->mdControlFileInvk_ = x;
+    this->mdAnansiControlFileTaskFactory_ = y; 
 
-    // Change the state to Null.
+    // Change the state of the MD simulation to Null.
     this->mdState_ = this->mdNullSimulationState_;
     this->mdState_->who_am_i();
 
@@ -195,10 +211,8 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
 
     // ---------------------------------------------------
-    //  Create the invoker.
+    //  Create the invoker for 'InitMPIEnvTask'. 
     // 
-    // All command for this invoker will have labels that are of type
-    // std::string. 
     // ---------------------------------------------------
     std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
                                               InitMPIEnvTaskTraits::concrete_products>
@@ -206,7 +220,6 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
         std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
                                                    InitMPIEnvTaskTraits::concrete_products>
                         >();
-
     this->mdCommEnvInvk_ = mdCommEnvInvkFactory->create_shared_ptr();
 
     // ---------------------------------------------------
@@ -215,16 +228,11 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
     mpi_environment->addMember(this->commandLineArguments_);
-    auto mpi_environment_receiver = RECEIVER::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
-                                                                     InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
+    auto mpi_environment_receiver = 
+        RECEIVER::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
+                                         InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
     mpi_environment_receiver->modifyReceiver(mpi_environment); 
     
-    // ---------------------------------------------------
-    // Get the label for the receiver
-    // 
-    // ---------------------------------------------------
-    const auto my_label = mpi_environment_receiver->getTaskLabel();
-
     // ---------------------------------------------------
     //  Create the mpi environment task object and bind the 
     //  mpi receiver to it.
@@ -237,6 +245,7 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Add the task object/command to the invoker.
     // 
     // ---------------------------------------------------
+    constexpr auto my_label = ANANSI::InitMPIEnvTaskReceiver::TASKLABEL;
     this->mdCommEnvInvk_->addTask(my_label,mpi_environment_cmd);
 
     // ---------------------------------------------------
@@ -247,7 +256,14 @@ void AnansiMolecularDynamics::enableCommunicationEnvironment()
                        std::remove_const<decltype(my_label)>::type
                      > command_labels = {my_label};
 
+    // ---------------------------------------------------
+    // Enable all tasks.
+    //
+    // ---------------------------------------------------
+    this->mdCommEnvInvk_->enableTask(command_labels);
+
     this->mdCommEnvInvk_->doTask(command_labels);
+
     return;
 }
 
@@ -258,11 +274,11 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
     // Use the invoker to initialize the communication environment.
     // 
     // ---------------------------------------------------
-    constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = {
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = {
         'm','p', 'i', '_','e','n','v','i','r','o','n','m','e','n','t'
     };
 
-    const std::vector<RECEIVER::TaskLabel> command_labels = {RECEIVER::TaskLabel(tmpstr)};
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
 
     this->mdCommEnvInvk_->disableTask(command_labels);
     return;
@@ -272,20 +288,6 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 
 void AnansiMolecularDynamics::enableWorldCommunicator()
 {
-    // ---------------------------------------------------
-    // Create the invoker for the task InitWorldCommunicatorTask 
-    // 
-    // ---------------------------------------------------
-
-    std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                              InitWorldCommunicatorTaskTraits::concrete_products>
-                   > mdWorldCommunicatorInvkFactory = 
-        std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                   InitWorldCommunicatorTaskTraits::concrete_products>
-                        >();
-
-    this->mdWorldCommunicatorInvk_ = mdWorldCommunicatorInvkFactory->create_shared_ptr();
-
     // ---------------------------------------------------
     //  Create the receiver and enable it.
     // 
@@ -324,10 +326,10 @@ void AnansiMolecularDynamics::enableWorldCommunicator()
     // Use the invoker to initialize the world communicator.
     // 
     // ---------------------------------------------------
-    constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
     {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
 
-    const std::vector<RECEIVER::TaskLabel> command_labels = {RECEIVER::TaskLabel(tmpstr)};
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
 
     this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
@@ -339,9 +341,9 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 {
     if (this->mdWorldCommunicatorInvk_)
     {
-        constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
         {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
-        const std::vector<RECEIVER::TaskLabel> command_labels = {RECEIVER::TaskLabel(tmpstr)};
+        const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
         this->mdWorldCommunicatorInvk_->disableTask(command_labels);
     }
 
@@ -359,11 +361,11 @@ AnansiMolecularDynamics::disableCoreLoggingTasks()
     // Disable the Console logger.
     // 
     // ---------------------------------------------------
-    constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = {
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = {
        'w','r','i','t','e','_','t','e','x','t','_','t','o','_','c','o','n','s','o','l','e'
     };
 
-    const std::vector<RECEIVER::TaskLabel> command_labels = {RECEIVER::TaskLabel(tmpstr)};
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
 
     this->mdCoreLoggingInvk_->disableTask(command_labels);
     return;
@@ -377,36 +379,40 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 }      // -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- 
 
 void
-AnansiMolecularDynamics::enableControlFile ()
+AnansiMolecularDynamics::enableControlFileTasks ()
 {
-    const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
-    if (file_name == SimulationParameters::OPTION_NOT_FOUND )
+    const auto controlfile_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
+    if (controlfile_name == SimulationParameters::OPTION_NOT_FOUND )
     {
         return;
     }
 
-    // // Create the control file parser and process the control file.
-    // ANANSI::MPICommunicatorFactory a_communicator_factory;
-    // std::shared_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
-    // StandardFileParserFactory file_parser_factory;
-    // std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
-    // std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
-    //                                                                       file_name,
-    //                                                                       std::move(a_communicator));
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
+    {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
+    auto mpi_world_communicator = this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<tmpstr>();
 
-    // control_file->readFile();
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Setup all receivers for the control file invoker.
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    setup_controlfile_receivers(controlfile_name,
+                                std::move(mpi_world_communicator),
+                                mdControlFileInvk_); 
+
+    // ---------------------------------------------------
+    // Run macro receiver.
+    //
+    // ---------------------------------------------------
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::ControlFileMacroReceiver::TASKLABEL};
+    this->mdControlFileInvk_->doTask(command_labels);
 
     return;
-}   /* -----  end of method AnansiMolecularDynamics::readSimulationControlFile_  ----- */
+}   /* -----  end of method AnansiMolecularDynamics::enableControlFileTasks ----- */
 
 void
-AnansiMolecularDynamics::disableControlFile ()
+AnansiMolecularDynamics::disableControlFileTasks ()
 {
     return;
-}
-void AnansiMolecularDynamics::readInitialConfiguration()
-{
-    std::cout << "Reading initial configuration" << std::endl;
 }
 
 void AnansiMolecularDynamics::enableCoreLoggingTasks()
@@ -462,61 +468,11 @@ void AnansiMolecularDynamics::enableCoreLoggingTasks()
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-COMMUNICATOR::RegistryAnansiMDStatus AnansiMolecularDynamics::status_() const
-{
-    return this->mdStatus_;
-}
 
 bool AnansiMolecularDynamics::isHelpOnCommandLine_() const
 {
     const bool help_found = this->simulationParameters_.isCommandLineOptionPresent("help");
     return help_found;
-}
-
-bool AnansiMolecularDynamics::isISEStatusOkay_() const
-{
-    bool ret_value=false;
-    if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
-    {
-        ret_value = true;
-    }
-    else if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
-}
-
-bool AnansiMolecularDynamics::isISEGlobalStatusOkay_() const
-{
-    bool ret_value=false;
-    if (this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
-    {
-        ret_value = true;
-    }
-    else if ( this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
-}
-
-bool AnansiMolecularDynamics::isIICStatusOkay_() const
-{
-    bool ret_value=false;
-    if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
-    {
-        ret_value = true;
-    }
-    else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionInProgress )
-    {
-        ret_value = true;
-    }
-    else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
 }
 
 //============================= MUTATORS =====================================
@@ -587,28 +543,6 @@ void AnansiMolecularDynamics::terminateSimulationEnvironment_()
 
     return;
 }      // -----  end of method AnansiMolecularDynamics::terminateSimulationEnvironment_  -----
-
-void 
-AnansiMolecularDynamics::setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
-{
-    this->mdStatus_ = aStatus;
-    return;
-}
-
-void 
-AnansiMolecularDynamics::setGlobalISEStatus_()
-{
-    // We do a custom all reduction of the ISE status to get the
-    // global ISE status. 
-    const auto my_status = this->mdStatus_;
-    COMMUNICATOR::ISEReductionFunctor my_reduction_functor;
-
-    this->mdGlobalStatus_ = 
-        COMMUNICATOR::getGlobalStatusCustomReduction<COMMUNICATOR::RegistryAnansiMDStatus>(my_status,
-                                                     *(this->MpiWorldCommunicator_));
-    return;
-}
-
 
 //============================= OPERATORS ====================================
 

@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string_view>
 #include <memory>
 
 //--------------------------------------------------------//
@@ -51,11 +52,16 @@ class EnabledMPIEnvironment : public MPIEnvironmentState
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        // ====================  ACCESSORS     =======================================
+        std::string currentState_() const override;
+
         // ====================  MUTATORS      =======================================
 
+        void enable_(MPIEnvironment* const mpi_environment) override;
         void disable_(MPIEnvironment* const mpi_environment) override;
 
         // ====================  DATA MEMBERS  =======================================
+        constexpr static std::string_view stateid_{"EnabledMPIEnvironment"};
 
 }; // -----  end of class EnabledMPIEnvironment  -----
 

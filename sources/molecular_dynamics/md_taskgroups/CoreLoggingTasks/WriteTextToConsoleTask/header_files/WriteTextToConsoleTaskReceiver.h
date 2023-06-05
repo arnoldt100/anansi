@@ -9,7 +9,6 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
-#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,45 +17,61 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Communicator.h"
+#include "ConsoleLoggingTask.h"
 #include "ReceiverInterface.hpp"
-#include "ConsoleMessageContainer.h"
 #include "TaskLabel.hpp"
-#include "OwnershipImpl1.hpp"
+#include "ReceiverResultTraits.hpp"
+#include "WriteTextToConsoleTaskOwnershipImpl.hpp"
+#include "Communicator.h"
+#include "ConsoleMessageContainer.h"
+#include "OwnershipTypes.hpp"
 #include "CopyOwnershipPolicy.hpp"
+
 
 namespace ANANSI
 {
 
 //! The action of the reciever is to write a message to stdout.
 //! 
-//! The message store in messageContainer_ is written to stdout. There are no
-//! results stored in the class and therfore all copying, sharing and
-//! trasferring of results will result in an exception being thrown.
+//! The message store in messageContainer_ is written to stdout.
 class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>
 {
-    public:
-       
-        //! The object type the smart pointer will manage,
-        using receiver_result_t = int;
+    private:
 
-        template<typename T>
-        using OwnershipPolicy = OwnershipImpl1<T>;
-
-        //! The type of smart pointer that manages the receiver's result.
-        using receiver_result_smart_pointer_t = std::unique_ptr<receiver_result_t>;
-
-        // ====================  STATIC       =======================================
-
-        static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
+        static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'w','r','i', 't', 'e','_',
              't', 'e', 'x', 't', '_',
              't', 'o', '_',
              'c','o', 'n', 's', 'o', 'l', 'e'};
 
+        using my_result_type_ = int;
+        using my_copy_type_ = int;
+        using my_share_type_ = int;
+        using my_transfer_type_ = int;
+        using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
+                                                                     my_copy_type_,
+                                                                     my_share_type_,
+                                                                     my_transfer_type_>;
+        using MyOwnershipImpl_ = WriteTextToConsoleTaskOwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
+
+    public:
+       
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
+
+        using receiver_result_t = my_result_type_;
+
+    public:
+        // ====================  STATIC       =======================================
+
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
+
+        using MyParentTask = ConsoleLoggingTask;
+
         static constexpr 
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(WriteTextToConsoleTaskReceiver::tmpstr);
+            RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(WriteTextToConsoleTaskReceiver::tmpstr_);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -70,30 +85,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         // ====================  ACCESSORS     =======================================
 
-        constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel() const
-        {
-            return  WriteTextToConsoleTaskReceiver::TASKLABEL;
-        }
-
-        template<typename... Types>
-        void receiverDoAction(Types & ... args) const;
-
-        template<typename... Types>
-        void receiverUndoAction(Types & ... args) const;
-
-        OwnershipPolicy<receiver_result_t>::Copytype receiverGetCopyOfResults() const;
-
         // ====================  MUTATORS      =======================================
-        
-        template<typename... Types>
-        void disableReceiver(Types... args);
-
-        template<typename T>
-        void receiverModifyMyself(T & arg);
-
-        OwnershipPolicy<receiver_result_t>::Sharedtype receiverShareOwnershipOfResults();
-
-        OwnershipPolicy<receiver_result_t>::Transfertype receiverTransferOwnershipOfResults();
 
         // ====================  OPERATORS     =======================================
 
@@ -101,42 +93,90 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         WriteTextToConsoleTaskReceiver& operator= ( WriteTextToConsoleTaskReceiver && other ); // assignment-move operator
 
+    private:
+
+        using receiver_copy_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::COPYTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_share_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::SHARETYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+        using receiver_transfer_t_ = 
+            typename RECEIVER::ReceiverResultOwnershipType_TraitsVersion<RECEIVER::OwnershipTypes::TRANSFERTYPE,
+                                                                         MyOwnershipImplTraits_>::TYPE;
+
+
     protected:
-        // ====================  METHODS       =======================================
+
+        // ====================  ACCESSORS     =======================================
+
+        template<typename... Types>
+        void receiverDoAction_(Types &... args) const;
+
+        template<typename... Types>
+        void receiverUndoAction_(Types & ... args) const;
+
+        constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        {
+            return  WriteTextToConsoleTaskReceiver::TASKLABEL;
+        }
+
+        WriteTextToConsoleTaskReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
+
+        // ====================  MUTATORS      =======================================
+
+        template<typename... Types>
+        void enableReceiver_(Types &... args);
+
+        template<typename... Types>
+        void disableReceiver_(Types ...  args);
+
+        template<typename T>
+        void receiverModifyMyself_(T & arg);
+
+        WriteTextToConsoleTaskReceiver::receiver_transfer_t_ receiverTransferOwnershipOfResults_();
+
+        WriteTextToConsoleTaskReceiver::receiver_share_t_ receiverShareOwnershipOfResults_();
 
         // ====================  DATA MEMBERS  =======================================
 
     private:
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        mutable receiver_result_t results_;
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
-        ANANSI::CopyOwnershipPolicy<receiver_result_t,OwnershipPolicy> ownershipPolicy_;
-
-
-        // mutable std::unique_ptr<receiver_result_t> results_;
-        mutable  OwnershipPolicy<receiver_result_t>::Transfertype results_;
+        MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class WriteTextToConsoleTaskReceiver  -----
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::receiverDoAction(Types & ... args) const
+void WriteTextToConsoleTaskReceiver::receiverDoAction_(Types & ... args) const
 {
     const auto message = this->messageContainer_->getMessage();
     std::cout << message << std::endl;
-    *(this->results_) += 1;
+    this->results_ += 1;
     return;
 }
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::receiverUndoAction(Types & ... args) const
+void WriteTextToConsoleTaskReceiver::receiverUndoAction_(Types & ... args) const
 {
     return;
 }
 
 template<typename... Types>
-void WriteTextToConsoleTaskReceiver::disableReceiver(Types... args)
+void WriteTextToConsoleTaskReceiver::enableReceiver_(Types & ... args)
+{
+    return;
+}
+
+template<typename... Types>
+void WriteTextToConsoleTaskReceiver::disableReceiver_(Types... args)
 {
     // Disable the communicator.
     this->communicator_->freeCommunicator();

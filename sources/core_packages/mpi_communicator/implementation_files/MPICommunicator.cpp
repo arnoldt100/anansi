@@ -1,4 +1,3 @@
-
 /*
  * MPICommunicator.cpp
  *
@@ -20,6 +19,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AssertValidValueForType.hpp"
 #include "MPICommunicator.h"
 #include "MPIInitException.h"
 #include "MPIGenericException.h"
@@ -182,16 +182,16 @@ MPICommunicator::_broadcastStdString(const std::string & str_to_bcast, const std
         // First broadcast the length of the string that is to be broadcasted.
         // The variable str_len1 is only properly defined on the communicator
         // with rank bcast_rank. 
-        const int str_len1 = str_to_bcast.length();
-        const std::size_t bcast_str_len = ANANSI::MPI_Broadcast<int>::Broadcast(str_len1, 
+        const std::size_t str_len1 = str_to_bcast.length();
+        const std::size_t bcast_str_len = ANANSI::MPI_Broadcast<std::size_t>::Broadcast(str_len1,
                                                                               this->_mpiCommunicator,
                                                                               bcast_rank);
 
         // Broadcast the string to all other ranks.
         ret_value = ANANSI::MPI_Broadcast<std::string>::Broadcast(str_to_bcast,
-                                                                        bcast_str_len,
-                                                                        this->_mpiCommunicator,
-                                                                        bcast_rank);
+                                                                  bcast_str_len,
+                                                                  this->_mpiCommunicator,
+                                                                  bcast_rank);
     }
     catch (ANANSI::ErrorMPIBroadcast<char> const & my_mpi_exception )
     {
@@ -315,18 +315,18 @@ MPICommunicator::_duplicateCommunicator() const
     return aMPICommunicator;
 }
 
-int
-MPICommunicator::_getMaximum(int const value) const 
+std::size_t
+MPICommunicator::_getMaximum(std::size_t const value) const 
 {
-    std::vector<int> vec = {value};
-    std::vector<int> vec_maximum;
+    std::vector<std::size_t> vec = {value};
+    std::vector<std::size_t> vec_maximum;
 
     try 
     {
-      vec_maximum = ANANSI::MPI_ALLREDUCE<int,ANANSI::MPIReductionOperation::reduction_operation_type>::REDUCE(
-                                                this->_mpiCommunicator,
-                                                vec,
-                                                ANANSI::MPIReductionOperation::maximum);
+      vec_maximum = ANANSI::MPI_ALLREDUCE<std::size_t,ANANSI::MPIReductionOperation::reduction_operation_type>::REDUCE(
+                                          this->_mpiCommunicator,
+                                          vec,
+                                          ANANSI::MPIReductionOperation::maximum);
     }
     catch ( const  ANANSI::MPIAllReduceException & my_mpi_exception )
     {
@@ -344,11 +344,11 @@ MPICommunicator::_allGather(
         char const * aCString,
         const std::size_t aLengthMaximum,
         std::size_t & offset_size,
-        int* & start_offsets_ptr,
-        int* & end_offsets_ptr) const
+        std::size_t* & start_offsets_ptr,
+        std::size_t* & end_offsets_ptr) const
 {
 
-    MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     char* recv_buffer_ptr = nullptr;
 
     try 
@@ -357,7 +357,6 @@ MPICommunicator::_allGather(
                                                                         offset_size,
                                                                         aCString,
                                                                         aLengthMaximum);
-
 
         if ( start_offsets_ptr != nullptr )
         {
@@ -396,19 +395,23 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
                          char const * aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
-                         int* & start_offsets_ptr,
-                         int* & end_offsets_ptr ) const 
+                         std::size_t* & start_offsets_ptr,
+                         std::size_t* & end_offsets_ptr ) const 
 {
 
-    MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
+
+    #ifdef ANANASI_DBD_VALID_VALUES
+    DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(task_id_to_gather_dat_on);
+    #endif
+    MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     char* recv_buffer_ptr = nullptr;
     try
     {
-        recv_buffer_ptr = ANANSI::MPI_GATHER<char>::Gather(task_id_to_gather_dat_on,
-                                                  this->_mpiCommunicator,
-                                                  offset_size,
-                                                  aCString,
-                                                  aLengthMaximum);
+        recv_buffer_ptr = ANANSI::MPI_GATHER<char>::Gather(static_cast<int>(task_id_to_gather_dat_on),
+                                                           this->_mpiCommunicator,
+                                                           offset_size,
+                                                           aCString,
+                                                           aLengthMaximum);
 
         if ( start_offsets_ptr != nullptr )
         {
@@ -446,27 +449,30 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
                          const std::unique_ptr<char[]> & aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
-                         std::unique_ptr<int[]> & start_offsets,
-                         std::unique_ptr<int[]> & end_offsets) const 
+                         std::unique_ptr<std::size_t[]> & start_offsets,
+                         std::unique_ptr<std::size_t[]> & end_offsets) const 
 {
-    MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
+    MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     std::unique_ptr<char[]> recv_buffer;
     try
     {
         // Call the MPI_Gather for char arrays.
+        #ifdef ANANSI_DBG_VALID_VALUE
+        DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(task_id_to_gather_data_on);
+        #endif
         char* tmp_recieve_buffer =
-            ANANSI::MPI_GATHER<char>::Gather(task_id_to_gather_data_on,
-                                                   this->_mpiCommunicator,
-                                                   offset_size,
-                                                   aCString.get(),
-                                                   aLengthMaximum);
+            ANANSI::MPI_GATHER<char>::Gather(static_cast<int>(task_id_to_gather_data_on),
+                                             this->_mpiCommunicator,
+                                             offset_size,
+                                             aCString.get(),
+                                             aLengthMaximum);
 
         recv_buffer.reset(tmp_recieve_buffer);
 
-        int* tmp_start_offsets_ptr = my_int_array_factory.createArray(offset_size);
+        std::size_t* tmp_start_offsets_ptr = my_int_array_factory.createArray(offset_size);
         start_offsets.reset(tmp_start_offsets_ptr);
 
-        int* tmp_end_offsets_ptr = my_int_array_factory.createArray(offset_size);
+        std::size_t* tmp_end_offsets_ptr = my_int_array_factory.createArray(offset_size);
         end_offsets.reset(tmp_end_offsets_ptr);
 
         this->_calculateStartAndEndOffsets(offset_size,
@@ -498,27 +504,27 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
         ANANSI::MPIUtilityFunctions::same_rank(task_id_to_gather_data_on,this->_mpiCommunicator);
 
     // Get the maximum length of tag with respect to the communicator group.
-    const int slength = data_to_gather.length();
-    const int slength_maximum = this->_getMaximum(slength);
+    const std::size_t slength = data_to_gather.length();
+    const std::size_t slength_maximum = this->_getMaximum(slength);
 
     // Form and c string with length tag_length + 1, and 
     // then copy the tag in a c string.
-    const int slength_maximum_adj = slength_maximum  + 1;
+    const std::size_t slength_maximum_adj = slength_maximum  + 1;
     char* data_ptr = my_char_array_factory.createArray(data_to_gather,
                                                        slength_maximum_adj);
 
     std::unique_ptr<char[]> data(data_ptr);
 
     std::size_t offset_size;
-    std::unique_ptr<int[]> start_offsets;
-    std::unique_ptr<int[]> end_offsets;
+    std::unique_ptr<std::size_t[]> start_offsets;
+    std::unique_ptr<std::size_t[]> end_offsets;
     
     std::unique_ptr<char[]> all_data = this->_gather(task_id_to_gather_data_on,
                                                      data,
                                                      static_cast<std::size_t> (slength_maximum_adj),
                                                      offset_size,
                                                      start_offsets,
-                                                     end_offsets) ;
+                                                     end_offsets);
 
     // Form vector string array of the hostnames.
     std::vector<std::string> gathered_data;
@@ -577,10 +583,10 @@ void
 MPICommunicator::_calculateStartAndEndOffsets(
     const std::size_t & offset_size,
     const std::size_t & aLengthMaximum,
-    int* const & start_offsets_ptr,
-    int* const & end_offsets_ptr)
+    std::size_t* const & start_offsets_ptr,
+    std::size_t* const & end_offsets_ptr)
 {
-    for (std::size_t ip=0; ip < offset_size; ++ip)
+    for (std::size_t ip=static_cast<std::size_t>(0); ip < offset_size; ++ip)
     {
         start_offsets_ptr[ip] = aLengthMaximum*ip;
         end_offsets_ptr[ip] = aLengthMaximum*(ip+1) - 1;
