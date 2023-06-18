@@ -69,7 +69,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (initmpienvtask_header_files
-        header_files/InitMPIEnvTaskOwnershipImpl.h
+         header_files/InitMPIEnvTaskOwnershipImpl.h
          header_files/InitMPIEnvTaskReceiver.h
          header_files/InitMPIEnvTaskTraits.h )
 
@@ -89,6 +89,7 @@
     # Set various variables for include directories.
     # 
     # -----------------------------------------------------
+    get_target_property(my_common_md_taskgroup_headers common_md_taskgroup_headers common_md_taskgroup_headers_include)
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
@@ -125,6 +126,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PRIVATE "${my_common_md_taskgroup_headers}"
                            PRIVATE ${my_tasks_include}
                            PRIVATE ${my_genericmdtask_include} 
                            PRIVATE ${my_receiver_include} 
@@ -137,6 +139,7 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
+                      PUBLIC common_md_taskgroup_headers
                       PUBLIC tasks
                       PUBLIC genericmdtask
                       PUBLIC receiver

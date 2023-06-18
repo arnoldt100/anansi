@@ -17,14 +17,11 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MPLAliases.hpp"
-#include "ReceiverInterface.hpp"
-#include "TaskLabel.hpp"
+#include "CommonMDTaskGroupHeaders.h"
+
 #include "InterProcessCommEnv.h"
 #include "InitMPIEnvTaskOwnershipImpl.h"
-#include "ReceiverResultTraits.hpp"
 #include "NullOwnershipPolicy.hpp"
-#include "OwnershipTypes.hpp"
 
 #include "MPIEnvironment.h"
 
@@ -40,7 +37,7 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 {
 
     private:
-        static constexpr char tmp_task_label_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
+        static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
             {'m', 'p', 'i', '_', 'e', 'n', 'v', 'i', 'r', 'o', 'n', 'm', 'e', 'n', 't'};
 
         using my_result_type_ = int;
@@ -66,13 +63,13 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
 
-        using receiver_result_t = my_result_type_;
+        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
 
         // ====================  STATIC       =======================================
 
         static constexpr 
         RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE TASKLABEL = 
-            RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE(InitMPIEnvTaskReceiver::tmp_task_label_);
+            RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE(InitMPIEnvTaskReceiver::tmpstr_);
 
         // ====================  LIFECYCLE     =======================================
 

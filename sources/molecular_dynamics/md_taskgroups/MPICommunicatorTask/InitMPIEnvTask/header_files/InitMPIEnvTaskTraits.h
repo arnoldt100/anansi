@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <array>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -66,9 +67,8 @@ class InitMPIEnvTaskTraits
                                                     	InitMPIEnvTaskReceiver::receiver_result_t
                                                     >;
 
-        static constexpr auto LABELS = std::array{
-                                                    InitMPIEnvTaskReceiver::TASKLABEL
-                                                 };
+        static constexpr auto LABELS  = std::array{ InitMPIEnvTaskReceiver::TASKLABEL};
+
     protected:
         // ====================  METHODS       =======================================
 
