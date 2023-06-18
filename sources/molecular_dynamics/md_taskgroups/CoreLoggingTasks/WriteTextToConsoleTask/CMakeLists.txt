@@ -94,12 +94,14 @@
     # Set various variables for include directories.
     # 
     # -----------------------------------------------------
+    get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
     get_target_property(my_tasks_include tasks tasks_include) 
-    get_target_property(my_logger_include logger logger_include)
     get_target_property(my_receiver_include receiver receiver_include )
-    get_target_property(my_communicator_include communicator communicator_include)
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
+    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
+    get_target_property(my_logger_include logger logger_include)
+    get_target_property(my_communicator_include communicator communicator_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -131,24 +133,24 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_tasks_include}
-                           PRIVATE ${my_logger_include}
-                           PRIVATE ${my_receiver_include}
-                           PRIVATE ${my_mdownershippolicies_include}
-                           PRIVATE ${my_communicator_include}
-                           PRIVATE ${my_genericmdtask_include})
+                           PRIVATE "${my_common_md_taskgroup_headers_include}"
+                           PRIVATE "${my_mdownershippolicies_include}"
+                           PRIVATE "${my_genericmdtask_include}"
+                           PRIVATE "${my_generic_abstract_factory_include}"
+                           PRIVATE "${my_logger_include}"
+                           PRIVATE "${my_communicator_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC tasks
+                      PUBLIC common_md_taskgroup_headers
                       PUBLIC logger
-                      PUBLIC receiver
                       PUBLIC mdownershippolicies
-                      PUBLIC communicator
-                      PUBLIC genericmdtask)
+                      PUBLIC generic_abstract_factory
+                      PUBLIC genericmdtask
+                      PUBLIC communicator)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -17,16 +17,20 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "CommonMDTaskGroupHeaders.h"
+
 #include "ConsoleLoggingTask.h"
-#include "ReceiverInterface.hpp"
-#include "TaskLabel.hpp"
-#include "ReceiverResultTraits.hpp"
 #include "WriteTextToConsoleTaskOwnershipImpl.hpp"
 #include "Communicator.h"
 #include "ConsoleMessageContainer.h"
-#include "OwnershipTypes.hpp"
-#include "CopyOwnershipPolicy.hpp"
 
+
+// ---------------------------------------------------
+// Uncomment the ownership policies as required for 
+// class member ConcreteTaskReceiver::ownershipPolicy_.
+// For this class we select ShareCopyOwnershipPolicy.hpp.
+// ---------------------------------------------------
+#include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
 {
@@ -57,17 +61,16 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
     public:
        
-        template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
-
-        using receiver_result_t = my_result_type_;
-
-    public:
-        // ====================  STATIC       =======================================
-
         using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
 
         using MyParentTask = ConsoleLoggingTask;
+
+        template<RECEIVER::OwnershipTypes Q>
+        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
+
+        using receiver_result_t = MyOwnershipImplTraits_::Resulttype;
+
+        // ====================  STATIC       =======================================
 
         static constexpr 
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =

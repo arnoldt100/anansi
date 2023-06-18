@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <array>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,8 +19,12 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPLAliases.hpp"
-#include "ConsoleLoggingTask.h"
 #include "GenericMDTask.hpp"
+
+// Includes for abstract tasks.
+#include "ConsoleLoggingTask.h"
+
+// Includes for concrete tasks receivers.
 #include "WriteTextToConsoleTaskReceiver.h"
 
 namespace ANANSI
@@ -63,9 +68,7 @@ class WriteTextToConsoleTaskTraits
                                                       WriteTextToConsoleTaskReceiver::receiver_result_t 
                                                      >;
 
-        static constexpr auto LABELS = std::array{
-                                                    WriteTextToConsoleTaskReceiver::TASKLABEL
-                                                 };
+         static constexpr auto  LABEL = std::array{WriteTextToConsoleTaskReceiver::TASKLABEL};
 
     protected:
         // ====================  METHODS       =======================================
