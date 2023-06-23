@@ -68,7 +68,8 @@ class WriteTextToConsoleTaskTraits
                                                       WriteTextToConsoleTaskReceiver::receiver_result_t 
                                                      >;
 
-         static constexpr auto  LABEL = std::array{WriteTextToConsoleTaskReceiver::TASKLABEL};
+         static constexpr auto  LABELS = std::array{WriteTextToConsoleTaskReceiver::TASKLABEL};
+
 
     protected:
         // ====================  METHODS       =======================================

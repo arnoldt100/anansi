@@ -110,12 +110,12 @@
     # 
     # -----------------------------------------------------
     get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
+    get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
-    get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_file_parsers_include  file_parsers file_parsers_include)
 
     
