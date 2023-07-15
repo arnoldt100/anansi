@@ -909,6 +909,9 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
+                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto \
+                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/BuildingAnansi \
+                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/DevelopersGuide \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/header_files \
@@ -940,7 +943,6 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_state/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/implementation_files
 

@@ -5,6 +5,18 @@
     <tab type="mainpage" visible="yes" title=""/>
     <tab type="pages" visible="no" title="" intro=""/>
     <tab type="modules" visible="yes" title="" intro=""/>
+    
+    <!-- User cereated documentation.          -->
+    <tab type="usergroup" title="Building Anansi" >
+        <tab type="user" visible="yes" url="@ref BuildingAnansi" title="Building Anansi"/>
+    </tab>
+
+    <tab type="usergroup" title="Developer's Documentation" >
+        <tab type="usergroup" title="How To Guides" >
+            <tab type="user" visible="yes" url="@ref howto" title="How To Guides"/>
+        </tab>
+    </tab>
+
     <tab type="namespaces" visible="yes" title="">
       <tab type="namespacelist" visible="yes" title="" intro=""/>
       <tab type="namespacemembers" visible="yes" title="" intro=""/>
@@ -34,7 +46,6 @@
       <tab type="globals" visible="yes" title="" intro=""/>
     </tab>
     <tab type="examples" visible="yes" title="" intro=""/> 
-    <tab type="user" visible="yes" url="@ref howto" title="How To Guides"/>
   </navindex>
 
   <!-- Layout definition for a class page -->
