@@ -158,7 +158,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
-    // Initialiing the InitMPIEnvTask
+    // Initialiing the InitMPIEnv task factory.
     this->mdAnansiMPIEnvTaskFactory_ = std::make_shared<GenericTaskFactory<InitMPIEnvTaskTraits::abstract_products,
                                                                            InitMPIEnvTaskTraits::concrete_products>
                                                        >();

@@ -1,6 +1,8 @@
 #ifndef  anansi_molecular_dynamics_INC
 #define  anansi_molecular_dynamics_INC
 
+//! \file AnansiMolecularDynamics.h
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -39,8 +41,33 @@
 
 namespace ANANSI {
 
+//! \brief AnansiMolecularDynamics is the encapsulates the Molecular Dynamics simulation.
+//! and is derived from the parent abstract class Simulation.
+//! 
+//! Anansi implements the following
+//! private methods to implement the Simulation interface:
+//!  - AnansiMolecularDynamics::isHelpOnCommandLine_
+//!  - AnansiMolecularDynamics::initializeSimulationEnvironment_
+//!  - AnansiMolecularDynamics::processCommandLine_
+//!  - AnansiMolecularDynamics::initializeInitialConditions_
+//!  - AnansiMolecularDynamics::performSimulation_
+//!  - AnansiMolecularDynamics::terminateSimulationEnvironment_
+//! 
 class AnansiMolecularDynamics final : public Simulation
 {
+    // These methods implement the parent classs Simulation private virtual methods.
+    private:
+
+        //! \brief Returns true if the option "-h" or "--help" is present on the command line, otherwise
+        //!        returns false.
+        bool isHelpOnCommandLine_() const final override;
+
+        //! \brief Processes the command line arguments.
+        //!
+        //! After this call the AnansiMolecularDynamics object contains the
+        // command line arguments.
+        void processCommandLine_() final override; 
+
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
@@ -98,17 +125,12 @@ class AnansiMolecularDynamics final : public Simulation
     private:
         /* ====================  ACCESSORS     ======================================= */
 
-        bool isHelpOnCommandLine_() const final override;
 
         /* ====================  MUTATORS      ======================================= */
 
         // This group of functions initializes the simulation environment.
         void
         initializeSimulationEnvironment_() final override;
-
-        // This group of functions processes the command line and sets the
-        // simulation parameters.
-        void processCommandLine_() final override; 
 
         // This group of functions initializes the initial conditions of the 
         // simulation.
@@ -161,6 +183,7 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
 
+        // To be removed.
         // These are the task factories for various invoker objects.
         std::shared_ptr<GenericTaskFactory<InitMPIEnvTaskTraits::abstract_products,
                                            InitMPIEnvTaskTraits::concrete_products>
