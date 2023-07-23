@@ -39,83 +39,160 @@
 // Includes for invoking the communication environment.
 #include "GenericTaskInvoker.hpp"
 
-namespace ANANSI {
+namespace ANANSI
+{
 
-//! \brief AnansiMolecularDynamics is the encapsulates the Molecular Dynamics simulation.
-//! and is derived from the parent abstract class Simulation.
-//! 
-//! Anansi implements the following
-//! private methods to implement the Simulation interface:
-//!  - AnansiMolecularDynamics::isHelpOnCommandLine_
-//!  - AnansiMolecularDynamics::initializeSimulationEnvironment_
-//!  - AnansiMolecularDynamics::processCommandLine_
-//!  - AnansiMolecularDynamics::initializeInitialConditions_
-//!  - AnansiMolecularDynamics::performSimulation_
-//!  - AnansiMolecularDynamics::terminateSimulationEnvironment_
-//! 
+//! \brief AnansiMolecularDynamics encapsulates the Molecular Dynamics simulation and is derived from the
+//!        class Simulation. The table below lists the private methods AnansiMolecularDynamics implements
+//!        and their corrsponding interface in Simulation:
+//!
+//! | Private Implementation in Derived Class AnansiMolecularDynamics | Interface                            |
+//! | ------------------------------------------- | -------------------------------------------------------- |
+//! |AnansiMolecularDynamics::isHelpOnCommandLine_             | Simulation::isHelpOnCommandLine             |
+//! |AnansiMolecularDynamics::processCommandLine_              | Simulation::processCommandLine              |
+//! |AnansiMolecularDynamics::initializeSimulationEnvironment_ | Simulation::initializeSimulationEnvironment |
+//! |AnansiMolecularDynamics::initializeInitialConditions_     | Simulation::initializeInitialConditions     |
+//! |AnansiMolecularDynamics::performSimulation_               | Simulation::performSimulation               |
+//! |AnansiMolecularDynamics::terminateSimulationEnvironment_  | Simulation::terminateSimulationEnvironment  |
+//!
+//! The above private methods are not documented by Doxygen and one must
+//! read the header file AnansiMolecularDynamics.h for their documentation.
+//!
+//! The class AnansiMolecularDynamics is also visitable via the macro DEFINE_VISITABLE.
+//! The root hierarchy of AnansiMolecularDynamics is the class MPL::BaseVisitable<>. See
+//! Chapter 10 Visitor,  of "Modern C++ Design: Generic Programming and Design Patters" by
+//! Andrei Alexandrescu for details of this generic visitor pattern.
+//!
+//! Finally, AnansiMolecularDynamics' copy constructor, move-copy constructor,
+//! assignment operator, and move-assignment operator are deleted.
 class AnansiMolecularDynamics final : public Simulation
 {
-    // These methods implement the parent classs Simulation private virtual methods.
+        /* =============================================================================== */
+        /* ====================  Simulation Interface Implementations   ================== */
+        /* =============================================================================== */
+
+        // These methods implement the interface for the parent class Simulation
+        // private virtual methods.
     private:
+
+        /* ====================  ACCESSORS     ======================================= */
 
         //! \brief Returns true if the option "-h" or "--help" is present on the command line, otherwise
         //!        returns false.
-        bool isHelpOnCommandLine_() const final override;
+        bool
+        isHelpOnCommandLine_() const final override;
+
+        /* ====================  MUTATORS      ======================================= */
 
         //! \brief Processes the command line arguments.
         //!
         //! After this call the AnansiMolecularDynamics object contains the
         // command line arguments.
-        void processCommandLine_() final override; 
+        void
+        processCommandLine_() final override;
+
+        //! \brief Initializes the simulation environment.
+        //!
+        //! After this call program the runtime environments are initialized. For example,
+        //! the comunnication environment is initialized (MPI is typical), the
+        //! accelerator runtime environment is initialized, etc.
+        void
+        initializeSimulationEnvironment_() final override;
+
+        //! \brief After this call the initial conditions of the simulation is set.
+        void
+        initializeInitialConditions_ () final override;
+
+        //! \brief After this call the simulation is performed.
+        void
+        performSimulation_() final override;
+
+        //! \brief After this call the simulation is terminated.
+        void
+        terminateSimulationEnvironment_() final override;
+
+        /* =============================================================================== */
+        /* ====================  MPL:BaseVisitable Implementations      ================== */
+        /* =============================================================================== */
+
+    public:
+        // This macro defines the Accept member function which in conjuction
+        // with MPL::BaseVisitable as the root class in the hierarchy make
+        // anansi_molecular_dynamics visitable.
+        DEFINE_VISITABLE()
+
+        /* =============================================================================== */
+        /* ====================  AnansiMolecularDynamics Standard Implementations ======== */
+        /* =============================================================================== */
 
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
-        AnansiMolecularDynamics ();  /* constructor */
+        //! \brief The default constructor
+        //!
+        //! This is defined for completeness. Do not use for instantiating an
+        //! AnansiMolecularDynamics object.
+        AnansiMolecularDynamics(); /* constructor */
 
-        AnansiMolecularDynamics (int const & argc, char const *const *const & argv);  /* constructor */
+        //! \brief The constructor to be used to instantiate an AnansiMolecularDynamics object.
+        //!
+        //! \param [in] argc The number of command line arguments.
+        //! \param [in] argv A character array that contains the command line arguments.
+        AnansiMolecularDynamics(int const &argc,
+                                char const *const *const &argv); /* constructor */
 
-        ~AnansiMolecularDynamics (); /* destructor */
+        ~AnansiMolecularDynamics(); /* destructor */
 
-        AnansiMolecularDynamics(AnansiMolecularDynamics const & other) = delete; // Avoid implicit of copying the
-                                                                                 // AnansiMolecularDynamics class.
+        AnansiMolecularDynamics(AnansiMolecularDynamics const &other) =
+            delete; // Avoid implicit of copying the
+        // AnansiMolecularDynamics class.
 
-        AnansiMolecularDynamics(AnansiMolecularDynamics && other) = delete;
+        AnansiMolecularDynamics(AnansiMolecularDynamics &&other) = delete;
 
-        /* ====================  ACCESSORS     ======================================= */
+        /* ====================  ACCESSORS =======================================
+         */
 
+        /* ====================  MUTATORS =======================================
+         */
 
-        /* ====================  MUTATORS      ======================================= */
-        
-        // This macro defines the Accept member function.
-        DEFINE_VISITABLE()
+        void
+        enableCommunicationEnvironment();
+        void
+        disableCommunicationEnvironment();
 
-        void enableCommunicationEnvironment();
-        void disableCommunicationEnvironment();
+        void
+        enableWorldCommunicator();
+        void
+        disableWorldCommunicator();
 
-        void enableWorldCommunicator();
-        void disableWorldCommunicator();
+        void
+        enableCoreLoggingTasks();
+        void
+        disableCoreLoggingTasks();
 
-        void enableCoreLoggingTasks();
-        void disableCoreLoggingTasks();
+        void
+        saveCommandLineOptionParameters();
 
-        void saveCommandLineOptionParameters();
+        void
+        enableControlFileTasks();
+        void
+        disableControlFileTasks();
 
-        void enableControlFileTasks();
-        void disableControlFileTasks();
+        /* ====================  OPERATORS =======================================
+         */
 
-        /* ====================  OPERATORS     ======================================= */
+        AnansiMolecularDynamics &
+        operator=(AnansiMolecularDynamics const &other) =
+            delete; // Avoid implicit copy assignment of
+        // AnansiMolecularDynamics class.
 
-        AnansiMolecularDynamics&
-        operator=(AnansiMolecularDynamics const & other) = delete; // Avoid implicit copy assignment of
-                                                                   // AnansiMolecularDynamics class.
+        AnansiMolecularDynamics &
+        operator=(AnansiMolecularDynamics &&other) = delete;
 
-        AnansiMolecularDynamics&
-        operator=(AnansiMolecularDynamics && other) = delete;
+        /* ====================  STATIC ======================================= */
 
-        /* ====================  STATIC        ======================================= */
-
-        // ====================  USING ALIASES =======================================
+        // ====================  USING ALIASES
+        // =======================================
 
     protected:
         /* ====================  METHODS       ======================================= */
@@ -128,20 +205,6 @@ class AnansiMolecularDynamics final : public Simulation
 
         /* ====================  MUTATORS      ======================================= */
 
-        // This group of functions initializes the simulation environment.
-        void
-        initializeSimulationEnvironment_() final override;
-
-        // This group of functions initializes the initial conditions of the 
-        // simulation.
-        void initializeInitialConditions_ () final override;
-
-        // This group of functions performs the MD simulation.
-        void performSimulation_() final override;
-
-        // This group of functions terminates the simulation environment.
-        void terminateSimulationEnvironment_() final override;
-
         /* ====================  DATA MEMBERS  ======================================= */
         COMMANDLINE::CommandLineArguments commandLineArguments_;
         ANANSI::SimulationParameters simulationParameters_;
@@ -149,27 +212,28 @@ class AnansiMolecularDynamics final : public Simulation
 
         template<typename abstract_products_typelist,
                  typename concrete_products_typelist>
-        void enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
-                                                                                   concrete_products_typelist>
-                                                       > & core_logging_invoker,
-                                        std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator );
+        void
+        enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
+                                   concrete_products_typelist>
+                                   > & core_logging_invoker,
+                                   std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator );
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTaskTraits::abstract_products,
-                                                   InitMPIEnvTaskTraits::concrete_products>
-                       > mdCommEnvInvk_;
+            InitMPIEnvTaskTraits::concrete_products>
+            > mdCommEnvInvk_;
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
-                                                   ReadControlFileTraits::concrete_products>
-                       > mdControlFileInvk_;
+            ReadControlFileTraits::concrete_products>
+            > mdControlFileInvk_;
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitWorldCommunicatorTaskTraits::abstract_products,
-                                                   InitWorldCommunicatorTaskTraits::concrete_products>
+            InitWorldCommunicatorTaskTraits::concrete_products>
 
-                       > mdWorldCommunicatorInvk_;
+            > mdWorldCommunicatorInvk_;
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
-                                                   WriteTextToConsoleTaskTraits::concrete_products>
-                       > mdCoreLoggingInvk_;
+            WriteTextToConsoleTaskTraits::concrete_products>
+            > mdCoreLoggingInvk_;
 
 
 
@@ -186,23 +250,23 @@ class AnansiMolecularDynamics final : public Simulation
         // To be removed.
         // These are the task factories for various invoker objects.
         std::shared_ptr<GenericTaskFactory<InitMPIEnvTaskTraits::abstract_products,
-                                           InitMPIEnvTaskTraits::concrete_products>
-                       >mdAnansiMPIEnvTaskFactory_;
+            InitMPIEnvTaskTraits::concrete_products>
+            >mdAnansiMPIEnvTaskFactory_;
 
         std::shared_ptr<GenericTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-                                               InitWorldCommunicatorTaskTraits::concrete_products>
-                       > mdAnansiInitWorldCommunicatorTaskFactory_;
+            InitWorldCommunicatorTaskTraits::concrete_products>
+            > mdAnansiInitWorldCommunicatorTaskFactory_;
 
         std::shared_ptr<GenericTaskFactory<WriteTextToConsoleTaskTraits::abstract_products,
-                                               WriteTextToConsoleTaskTraits::concrete_products>
-                       > mdAnansiCoreLoggingTaskFactory_;
+            WriteTextToConsoleTaskTraits::concrete_products>
+            > mdAnansiCoreLoggingTaskFactory_;
 
         std::shared_ptr<GenericTaskFactory<ReadControlFileTraits::abstract_products,
-                                           ReadControlFileTraits::concrete_products>
-                       > mdAnansiControlFileTaskFactory_;
+            ReadControlFileTraits::concrete_products>
+            > mdAnansiControlFileTaskFactory_;
 
 
-       /* ====================  STATIC        ======================================= */
+        /* ====================  STATIC        ======================================= */
 
 }; /* -----  end of class AnansiMolecularDynamics  ----- */
 
