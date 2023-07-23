@@ -67,22 +67,22 @@ namespace ANANSI
 //! assignment operator, and move-assignment operator are deleted.
 class AnansiMolecularDynamics final : public Simulation
 {
-        /* =============================================================================== */
-        /* ====================  Simulation Interface Implementations   ================== */
-        /* =============================================================================== */
+        // ===============================================================================
+        // ====================  Simulation Interface Implementations   ==================
+        // ===============================================================================
 
         // These methods implement the interface for the parent class Simulation
         // private virtual methods.
     private:
 
-        /* ====================  ACCESSORS     ======================================= */
+        // ====================  ACCESSORS     =======================================
 
         //! \brief Returns true if the option "-h" or "--help" is present on the command line, otherwise
         //!        returns false.
         bool
         isHelpOnCommandLine_() const final override;
 
-        /* ====================  MUTATORS      ======================================= */
+        // ====================  MUTATORS      =======================================
 
         //! \brief Processes the command line arguments.
         //!
@@ -111,9 +111,9 @@ class AnansiMolecularDynamics final : public Simulation
         void
         terminateSimulationEnvironment_() final override;
 
-        /* =============================================================================== */
-        /* ====================  MPL:BaseVisitable Implementations      ================== */
-        /* =============================================================================== */
+        // ===============================================================================
+        // ====================  MPL:BaseVisitable Implementations      ==================
+        // ===============================================================================
 
     public:
         // This macro defines the Accept member function which in conjuction
@@ -121,27 +121,27 @@ class AnansiMolecularDynamics final : public Simulation
         // anansi_molecular_dynamics visitable.
         DEFINE_VISITABLE()
 
-        /* =============================================================================== */
-        /* ====================  AnansiMolecularDynamics Standard Implementations ======== */
-        /* =============================================================================== */
+        // ===============================================================================
+        // ====================  AnansiMolecularDynamics Standard Implementations ========
+        // ===============================================================================
 
     public:
-        /* ====================  LIFECYCLE     ======================================= */
+        // ====================  LIFECYCLE     =======================================
 
         //! \brief The default constructor
         //!
         //! This is defined for completeness. Do not use for instantiating an
         //! AnansiMolecularDynamics object.
-        AnansiMolecularDynamics(); /* constructor */
+        AnansiMolecularDynamics(); // constructor
 
         //! \brief The constructor to be used to instantiate an AnansiMolecularDynamics object.
         //!
         //! \param [in] argc The number of command line arguments.
         //! \param [in] argv A character array that contains the command line arguments.
         AnansiMolecularDynamics(int const &argc,
-                                char const *const *const &argv); /* constructor */
+                                char const *const *const &argv);
 
-        ~AnansiMolecularDynamics(); /* destructor */
+        ~AnansiMolecularDynamics();
 
         AnansiMolecularDynamics(AnansiMolecularDynamics const &other) =
             delete; // Avoid implicit of copying the
@@ -149,24 +149,25 @@ class AnansiMolecularDynamics final : public Simulation
 
         AnansiMolecularDynamics(AnansiMolecularDynamics &&other) = delete;
 
-        /* ====================  ACCESSORS =======================================
-         */
+        // ====================  ACCESSORS =======================================
 
-        /* ====================  MUTATORS =======================================
-         */
+        // ====================  MUTATORS =======================================
 
         void
         enableCommunicationEnvironment();
+
         void
         disableCommunicationEnvironment();
 
         void
         enableWorldCommunicator();
+
         void
         disableWorldCommunicator();
 
         void
         enableCoreLoggingTasks();
+
         void
         disableCoreLoggingTasks();
 
@@ -175,11 +176,11 @@ class AnansiMolecularDynamics final : public Simulation
 
         void
         enableControlFileTasks();
+
         void
         disableControlFileTasks();
 
-        /* ====================  OPERATORS =======================================
-         */
+        // ====================  OPERATORS =======================================
 
         AnansiMolecularDynamics &
         operator=(AnansiMolecularDynamics const &other) =
@@ -189,23 +190,23 @@ class AnansiMolecularDynamics final : public Simulation
         AnansiMolecularDynamics &
         operator=(AnansiMolecularDynamics &&other) = delete;
 
-        /* ====================  STATIC ======================================= */
+        // ====================  STATIC =======================================
 
         // ====================  USING ALIASES
         // =======================================
 
     protected:
-        /* ====================  METHODS       ======================================= */
+        // ====================  METHODS       =======================================
 
-        /* ====================  DATA MEMBERS  ======================================= */
+        // ====================  DATA MEMBERS  =======================================
 
     private:
-        /* ====================  ACCESSORS     ======================================= */
+        // ====================  ACCESSORS     =======================================
 
 
-        /* ====================  MUTATORS      ======================================= */
+        // ====================  MUTATORS      =======================================
 
-        /* ====================  DATA MEMBERS  ======================================= */
+        // ====================  DATA MEMBERS  =======================================
         COMMANDLINE::CommandLineArguments commandLineArguments_;
         ANANSI::SimulationParameters simulationParameters_;
         std::shared_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
@@ -266,10 +267,10 @@ class AnansiMolecularDynamics final : public Simulation
             > mdAnansiControlFileTaskFactory_;
 
 
-        /* ====================  STATIC        ======================================= */
+        // ====================  STATIC        =======================================
 
-}; /* -----  end of class AnansiMolecularDynamics  ----- */
+}; // -----  end of class AnansiMolecularDynamics  -----
 
-}; /* -----  end of namespace ANANSI  ----- */
+}; // -----  end of namespace ANANSI  -----
 
-#endif   /* ----- #ifndef anansi_molecular_dynamics_INC  ----- */
+#endif   // ----- #ifndef anansi_molecular_dynamics_INC  -----
