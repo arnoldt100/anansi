@@ -232,7 +232,7 @@ AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Setup all receivers for the communication environment invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setup_mpi_communication_environment_receivers();
+    setup_mpi_communication_environment_receivers(this->mdCommEnvInvk_);
 
     // ---------------------------------------------------
     //  Create the invoker for 'InitMPIEnvTask'.
