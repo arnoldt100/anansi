@@ -23,6 +23,7 @@
 
 #include "initialize_controlfile_invoker_and_taskfactory.h"
 #include "setup_controlfile_receivers.h"
+#include "setup_mpi_communication_environment_receivers.h"
 
 namespace ANANSI
 {
@@ -227,6 +228,12 @@ void
 AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
 
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Setup all receivers for the communication environment invoker.
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    setup_mpi_communication_environment_receivers();
+
     // ---------------------------------------------------
     //  Create the invoker for 'InitMPIEnvTask'.
     //
@@ -279,6 +286,10 @@ AnansiMolecularDynamics::enableCommunicationEnvironment()
     // ---------------------------------------------------
     this->mdCommEnvInvk_->enableTask(command_labels);
 
+    // ---------------------------------------------------
+    // Do task that will set up communication runtime environment.
+    //
+    // ---------------------------------------------------
     this->mdCommEnvInvk_->doTask(command_labels);
 
     return;
@@ -288,7 +299,7 @@ void
 AnansiMolecularDynamics::disableCommunicationEnvironment()
 {
     // ---------------------------------------------------
-    // Use the invoker to initialize the communication environment.
+    // Use the invoker to disable the communication environment.
     //
     // ---------------------------------------------------
     constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =

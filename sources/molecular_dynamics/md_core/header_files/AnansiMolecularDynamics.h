@@ -46,7 +46,7 @@ namespace ANANSI
 //!        class Simulation. The table below lists the private methods AnansiMolecularDynamics implements
 //!        and their corrsponding interface in Simulation:
 //!
-//! | Private Implementation in Derived Class AnansiMolecularDynamics | Interface                            |
+//! | Private Implementation in Derived Class AnansiMolecularDynamics | Interface in Sumualtion              |
 //! | ------------------------------------------- | -------------------------------------------------------- |
 //! |AnansiMolecularDynamics::isHelpOnCommandLine_             | Simulation::isHelpOnCommandLine             |
 //! |AnansiMolecularDynamics::processCommandLine_              | Simulation::processCommandLine              |
@@ -87,7 +87,7 @@ class AnansiMolecularDynamics final : public Simulation
         //! \brief Processes the command line arguments.
         //!
         //! After this call the AnansiMolecularDynamics object contains the
-        // command line arguments.
+        //! command line arguments.
         void
         processCommandLine_() final override;
 
@@ -153,12 +153,26 @@ class AnansiMolecularDynamics final : public Simulation
 
         // ====================  MUTATORS =======================================
 
+        //! \brief Enables the communication runtime environment.
+        //!
+        //! The communication runtime environment is set up. The responsibility is
+        //! initializing the communication invoker object AnansiMolecularDynamics::mdCommEnvInvk_.
+        //! AnansiMolecularDynamics::mdCommEnvInvk_ then invokes the task to set up communication
+        //! environment.
         void
         enableCommunicationEnvironment();
 
+        //! \brief Disables the communication runtime environment.
+        //!
+        //! The invoker object AnansiMolecularDynamics::mdCommEnvInvk_
+        //! invokes the task to disable the communication environment.
         void
         disableCommunicationEnvironment();
 
+        //! \brief Enables the world commumicator.
+        //!
+        //! The invoker object AnansiMolecularDynamics::mdWorldCommunicatorInvk_ invokes the
+        //! task to create a world communicator.
         void
         enableWorldCommunicator();
 
@@ -183,17 +197,14 @@ class AnansiMolecularDynamics final : public Simulation
         // ====================  OPERATORS =======================================
 
         AnansiMolecularDynamics &
-        operator=(AnansiMolecularDynamics const &other) =
-            delete; // Avoid implicit copy assignment of
-        // AnansiMolecularDynamics class.
+        operator=(AnansiMolecularDynamics const &other) = delete;
 
         AnansiMolecularDynamics &
         operator=(AnansiMolecularDynamics &&other) = delete;
 
         // ====================  STATIC =======================================
 
-        // ====================  USING ALIASES
-        // =======================================
+        // ====================  USING ALIASES =======================================
 
     protected:
         // ====================  METHODS       =======================================
