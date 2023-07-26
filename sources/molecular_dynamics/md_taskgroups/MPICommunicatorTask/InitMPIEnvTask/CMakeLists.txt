@@ -99,6 +99,7 @@
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
+    get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -135,7 +136,8 @@ target_include_directories(${target}
                            PRIVATE "${my_genericmdtask_include}" 
                            PRIVATE "${my_generic_abstract_factory_include}"
                            PRIVATE "${my_invoker_include}"
-                           PRIVATE "${my_mpi_communicator_include}")
+                           PRIVATE "${my_mpi_communicator_include}"
+                           PRIVATE "${my_command_line_arguments_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -147,7 +149,8 @@ target_link_libraries(${target}
                       PUBLIC genericmdtask
                       PUBLIC generic_abstract_factory
                       PUBLIC invoker
-                      PUBLIC mpi_communicator)
+                      PUBLIC mpi_communicator
+                      PUBLIC command_line_arguments)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

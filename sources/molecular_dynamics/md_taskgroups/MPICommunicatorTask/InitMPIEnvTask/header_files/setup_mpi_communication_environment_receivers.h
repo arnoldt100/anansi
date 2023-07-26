@@ -15,6 +15,7 @@
 //--------------------------------------------------------//
 #include "GenericTaskInvoker.hpp"
 #include "InitMPIEnvTaskTraits.h"
+#include "CommandLineArguments.h"
 
 
 namespace ANANSI
@@ -23,7 +24,8 @@ namespace ANANSI
 //! \brief Enables the MPI communcation environment.
 void setup_mpi_communication_environment_receivers (std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTaskTraits::abstract_products,
         InitMPIEnvTaskTraits::concrete_products>
-        > mpi_comm_invoker);
+        > mpi_comm_invoker,
+        const COMMANDLINE::CommandLineArguments & command_line_arguments);
 
 
 }; // namespace ANANSI

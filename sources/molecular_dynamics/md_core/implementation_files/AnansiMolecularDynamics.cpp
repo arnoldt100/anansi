@@ -232,58 +232,60 @@ AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Setup all receivers for the communication environment invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setup_mpi_communication_environment_receivers(this->mdCommEnvInvk_);
+    setup_mpi_communication_environment_receivers(this->mdCommEnvInvk_,
+                                                  this->commandLineArguments_);
 
     // ---------------------------------------------------
     //  Create the invoker for 'InitMPIEnvTask'.
     //
     // ---------------------------------------------------
-    std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
-        InitMPIEnvTaskTraits::concrete_products>
-        > mdCommEnvInvkFactory =
-            std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
-            InitMPIEnvTaskTraits::concrete_products>
-            >();
-    this->mdCommEnvInvk_ = mdCommEnvInvkFactory->create_shared_ptr();
+    //-// std::shared_ptr<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
+    //-//     InitMPIEnvTaskTraits::concrete_products>
+    //-//     > mdCommEnvInvkFactory =
+    //-//         std::make_shared<GenericTaskInvokerFactory<InitMPIEnvTaskTraits::abstract_products,
+    //-//         InitMPIEnvTaskTraits::concrete_products>
+    //-//         >();
+    //-// this->mdCommEnvInvk_ = mdCommEnvInvkFactory->create_shared_ptr();
 
-    // ---------------------------------------------------
-    //  Create the mpi environment receiver and enable it.
-    //
-    // ---------------------------------------------------
-    std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
-    mpi_environment->addMember(this->commandLineArguments_);
-    auto mpi_environment_receiver =
-        RECEIVER::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
-        InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
-    mpi_environment_receiver->modifyReceiver(mpi_environment);
+    //-// // ---------------------------------------------------
+    //-// //  Create the mpi environment receiver and enable it.
+    //-// //
+    //-// // ---------------------------------------------------
+    //-// std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
+    //-// mpi_environment->addMember(this->commandLineArguments_);
+    //-// auto mpi_environment_receiver =
+    //-//     RECEIVER::GenericReceiverFactory<InitMPIEnvTaskTraits::abstract_products,
+    //-//     InitMPIEnvTaskTraits::concrete_products>::createSharedReceiver<ANANSI::InitMPIEnvTaskReceiver>();
+    //-// mpi_environment_receiver->modifyReceiver(mpi_environment);
 
-    // ---------------------------------------------------
-    //  Create the mpi environment task object and bind the
-    //  mpi receiver to it.
-    //
-    // ---------------------------------------------------
-    std::shared_ptr<ANANSI::AnansiTask> mpi_environment_cmd =
-        this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
+    //-// // ---------------------------------------------------
+    //-// //  Create the mpi environment task object and bind the
+    //-// //  mpi receiver to it.
+    //-// //
+    //-// // ---------------------------------------------------
+    //-// std::shared_ptr<ANANSI::AnansiTask> mpi_environment_cmd =
+    //-//     this->mdAnansiMPIEnvTaskFactory_->create_shared_ptr<InterProcessCommEnv>(mpi_environment_receiver);
 
-    // ---------------------------------------------------
-    // Add the task object/command to the invoker.
-    //
-    // ---------------------------------------------------
-    constexpr auto my_label = ANANSI::InitMPIEnvTaskReceiver::TASKLABEL;
-    this->mdCommEnvInvk_->addTask(my_label,mpi_environment_cmd);
+    //-// // ---------------------------------------------------
+    //-// // Add the task object/command to the invoker.
+    //-// //
+    //-// // ---------------------------------------------------
+    //-// constexpr auto my_label = ANANSI::InitMPIEnvTaskReceiver::TASKLABEL;
+    //-// this->mdCommEnvInvk_->addTask(my_label,mpi_environment_cmd);
 
-    // ---------------------------------------------------
-    // Use the invoker to initialize the communication environment.
-    //
-    // ---------------------------------------------------
-    const std::vector<
-    std::remove_const<decltype(my_label)>::type
-    > command_labels = {my_label};
+    //-// // ---------------------------------------------------
+    //-// // Use the invoker to initialize the communication environment.
+    //-// //
+    //-// // ---------------------------------------------------
+    //-// const std::vector<
+    //-// std::remove_const<decltype(my_label)>::type
+    //-// > command_labels = {my_label};
 
     // ---------------------------------------------------
     // Enable all tasks.
     //
     // ---------------------------------------------------
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::InitMPIEnvTaskReceiver::TASKLABEL};
     this->mdCommEnvInvk_->enableTask(command_labels);
 
     // ---------------------------------------------------
