@@ -162,10 +162,10 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries(${target}
                       PUBLIC common_md_taskgroup_headers
+                      PUBLIC mdownershippolicies
                       PUBLIC genericmdtask
                       PUBLIC generic_abstract_factory
                       PUBLIC invoker
-                      PUBLIC mdownershippolicies
                       PUBLIC file_parsers) 
 
 

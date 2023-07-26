@@ -1,3 +1,6 @@
+#ifndef ANANSI_setup_InitMPIEnvTaskReceiver_INC
+#define ANANSI_setup_InitMPIEnvTaskReceiver_INC
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -9,22 +12,18 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "setup_mpi_communication_environment_receivers.h"
-#include "setup_InitMPIEnvTaskReceiver.h"
+#include "GenericTaskInvoker.hpp"
+#include "InitMPIEnvTaskTraits.h"
+
 
 namespace ANANSI
 {
 
-void setup_mpi_communication_environment_receivers (std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTaskTraits::abstract_products,
+void setup_InitMPIEnvTaskReceiver(std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTaskTraits::abstract_products,
         InitMPIEnvTaskTraits::concrete_products>
-        > mpi_comm_invoker)
-{
-    // Setup the concrete products of typelist InitMPIEnvTaskTraits::concrete_products:
-    //      - InitMPIEnvTaskReceiver
-    setup_InitMPIEnvTaskReceiver(mpi_comm_invoker); 
-    return;
-}   /* -----  end of function __function__  ----- */
+        > mpi_comm_invoker);
 
 
 }; // namespace ANANSI
 
+#endif // ANANSI_setup_InitMPIEnvTaskReceiver_INC
