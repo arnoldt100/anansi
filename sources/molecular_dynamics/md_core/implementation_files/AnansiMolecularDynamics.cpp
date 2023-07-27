@@ -24,6 +24,7 @@
 #include "initialize_controlfile_invoker_and_taskfactory.h"
 #include "setup_controlfile_receivers.h"
 #include "setup_mpi_communication_environment_receivers.h"
+#include "setup_mpi_world_communicator.h"
 
 namespace ANANSI
 {
@@ -123,7 +124,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
     mdTerminateSimulation_(nullptr),
-    mdAnansiMPIEnvTaskFactory_(nullptr),
     mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
     mdAnansiControlFileTaskFactory_(nullptr)
@@ -267,6 +267,8 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 void
 AnansiMolecularDynamics::enableWorldCommunicator()
 {
+    setup_mpi_world_communicator();
+
     // ---------------------------------------------------
     //  Create the receiver and enable it.
     //
