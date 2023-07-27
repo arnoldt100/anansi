@@ -258,13 +258,7 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
-
-        // To be removed.
-        // These are the task factories for various invoker objects.
-        std::shared_ptr<GenericTaskFactory<InitMPIEnvTaskTraits::abstract_products,
-            InitMPIEnvTaskTraits::concrete_products>
-            >mdAnansiMPIEnvTaskFactory_;
-
+        // These factories are to be removed.
         std::shared_ptr<GenericTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
             InitWorldCommunicatorTaskTraits::concrete_products>
             > mdAnansiInitWorldCommunicatorTaskFactory_;

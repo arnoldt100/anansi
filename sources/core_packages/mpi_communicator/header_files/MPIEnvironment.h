@@ -44,7 +44,7 @@ class MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironme
 
         /* ====================  MUTATORS      ======================================= */
         template <typename T>
-        void addMember( T & member);
+        void addMember( const T & member);
 
         void enableEnvironment();
 

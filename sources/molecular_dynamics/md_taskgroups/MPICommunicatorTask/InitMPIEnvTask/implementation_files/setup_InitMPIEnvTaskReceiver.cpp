@@ -12,6 +12,7 @@
 #include "setup_InitMPIEnvTaskReceiver.h"
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
+#include "MPIEnvironment.h"
 
 namespace ANANSI
 {
@@ -52,12 +53,9 @@ void setup_InitMPIEnvTaskReceiver(std::shared_ptr<ANANSI::GenericTaskInvoker<Ini
     // ---------------------------------------------------
     auto my_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
-
-    // ---------------------------------------------------
-    // Now setup the receiver 
-    //
-    // ---------------------------------------------------
-    // Nothing to setup
+    std::shared_ptr<ANANSI::MPIEnvironment> mpi_environment = std::make_shared<ANANSI::MPIEnvironment>();
+    mpi_environment->addMember(command_line_arguments);
+    my_receiver->modifyReceiver(mpi_environment);
 
     // ---------------------------------------------------
     // Create task object and bind the receiver to the task object.
