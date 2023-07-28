@@ -12,7 +12,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-
+#include "GenericTaskInvoker.hpp"
+#include "InitWorldCommunicatorTaskReceiver.h"
 
 namespace ANANSI
 {

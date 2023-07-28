@@ -267,7 +267,6 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
 void
 AnansiMolecularDynamics::enableWorldCommunicator()
 {
-    setup_mpi_world_communicator();
 
     // ---------------------------------------------------
     //  Create the receiver and enable it.
@@ -302,6 +301,8 @@ AnansiMolecularDynamics::enableWorldCommunicator()
     //
     // ---------------------------------------------------
     this->mdWorldCommunicatorInvk_->addTask(tmp_label,mpi_init_world_communicator_cmd);
+
+    setup_mpi_world_communicator(mdWorldCommunicatorInvk_);
 
     // ---------------------------------------------------
     // Use the invoker to initialize the world communicator.
