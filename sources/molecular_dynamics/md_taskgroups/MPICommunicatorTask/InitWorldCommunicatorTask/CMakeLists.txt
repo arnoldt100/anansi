@@ -73,7 +73,8 @@
          header_files/InitWorldCommunicatorTaskReceiver.h
          header_files/InitWorldCommunicatorTaskOwnershipImpl.hpp
          header_files/InitWorldCommunicatorTaskTraits.h
-         header_files/setup_mpi_world_communicator.h)
+         header_files/setup_mpi_world_communicator.h
+         header_files/setup_InitWorldCommunicatorTaskReceiver.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -86,7 +87,8 @@
          implementation_files/InitWorldCommunicatorTaskReceiver.cpp
          implementation_files/InitWorldCommunicatorTaskOwnershipImpl.cpp
          implementation_files/InitWorldCommunicatorTaskTraits.cpp
-         implementation_files/setup_mpi_world_communicator.cpp)
+         implementation_files/setup_mpi_world_communicator.cpp
+         implementation_files/setup_InitWorldCommunicatorTaskReceiver.cpp)
 
     # -----------------------------------------------------
     # Set various variables for include directories.
@@ -97,6 +99,7 @@
     get_target_property(my_invoker_include invoker invoker_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
+    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
@@ -134,6 +137,7 @@ target_include_directories(${target}
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
                            PRIVATE "${my_mdownershippolicies_include}"
                            PRIVATE "${my_genericmdtask_include}"
+                           PRIVATE "${my_generic_abstract_factory_include}"
                            PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_receiver_include}"
                            PRIVATE "${my_mpi_communicator_include}" )
@@ -148,6 +152,7 @@ target_link_libraries(${target}
                       PUBLIC receiver
                       PUBLIC mdownershippolicies
                       PUBLIC genericmdtask
+                      PUBLIC generic_abstract_factory
                       PUBLIC mpi_communicator
                       PUBLIC typelist_aliases)
 

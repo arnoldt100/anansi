@@ -12,12 +12,15 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-
+#include "GenericTaskInvoker.hpp"
+#include "InitWorldCommunicatorTaskTraits.h"
 
 namespace ANANSI
 {
 
-void setup_InitWorldCommunicatorTaskReceiver ();
+void setup_InitWorldCommunicatorTaskReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<InitWorldCommunicatorTaskTraits::abstract_products,
+                                                                                         InitWorldCommunicatorTaskTraits::concrete_products>
+                                                             > initworldcomm_invoker);
 
 }; /* namespace ANANSI */
 
