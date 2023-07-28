@@ -94,6 +94,7 @@
     # -----------------------------------------------------
     get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
     get_target_property(my_tasks_include tasks tasks_include)
+    get_target_property(my_invoker_include invoker invoker_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
@@ -131,10 +132,10 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
-                           PRIVATE ${my_mdownershippolicies_include}
-                           PRIVATE ${my_genericmdtask_include}
+                           PRIVATE "${my_mdownershippolicies_include}"
+                           PRIVATE "${my_genericmdtask_include}"
                            PRIVATE "${my_invoker_include}"
-                           PRIVATE ${my_mpi_communicator_include} )
+                           PRIVATE "${my_mpi_communicator_include}" )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -142,6 +143,7 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries(${target}
                       PUBLIC common_md_taskgroup_headers
+                      PUBLIC invoker
                       PUBLIC mdownershippolicies
                       PUBLIC genericmdtask
                       PUBLIC mpi_communicator
