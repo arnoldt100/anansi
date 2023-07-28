@@ -135,6 +135,7 @@ target_include_directories(${target}
                            PRIVATE "${my_mdownershippolicies_include}"
                            PRIVATE "${my_genericmdtask_include}"
                            PRIVATE "${my_invoker_include}"
+                           PRIVATE "${my_receiver_include}"
                            PRIVATE "${my_mpi_communicator_include}" )
 
 #-----------------------------------------------------
@@ -144,6 +145,7 @@ target_include_directories(${target}
 target_link_libraries(${target}
                       PUBLIC common_md_taskgroup_headers
                       PUBLIC invoker
+                      PUBLIC receiver
                       PUBLIC mdownershippolicies
                       PUBLIC genericmdtask
                       PUBLIC mpi_communicator

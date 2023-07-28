@@ -14,6 +14,7 @@
 //--------------------------------------------------------//
 #include "GenericTaskInvoker.hpp"
 #include "InitWorldCommunicatorTaskTraits.h"
+#include "MPICommunicatorFactory.h"
 
 namespace ANANSI
 {
