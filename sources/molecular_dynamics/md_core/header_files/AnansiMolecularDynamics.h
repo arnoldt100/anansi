@@ -259,10 +259,6 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
         // These factories are to be removed.
-        std::shared_ptr<GenericTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-            InitWorldCommunicatorTaskTraits::concrete_products>
-            > mdAnansiInitWorldCommunicatorTaskFactory_;
-
         std::shared_ptr<GenericTaskFactory<WriteTextToConsoleTaskTraits::abstract_products,
             WriteTextToConsoleTaskTraits::concrete_products>
             > mdAnansiCoreLoggingTaskFactory_;

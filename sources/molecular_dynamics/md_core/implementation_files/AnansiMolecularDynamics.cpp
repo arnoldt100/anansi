@@ -22,6 +22,7 @@
 #include "ConsoleMessageContainer.h"
 
 #include "initialize_controlfile_invoker_and_taskfactory.h"
+#include "setup_core_logging_invoker.h"
 #include "setup_controlfile_receivers.h"
 #include "setup_mpi_communication_environment_receivers.h"
 #include "setup_mpi_world_communicator.h"
@@ -124,7 +125,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
     mdTerminateSimulation_(nullptr),
-    mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
     mdAnansiControlFileTaskFactory_(nullptr)
 {
@@ -159,7 +159,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
     mdTerminateSimulation_(nullptr),
-    mdAnansiInitWorldCommunicatorTaskFactory_(nullptr),
     mdAnansiCoreLoggingTaskFactory_(nullptr),
     mdAnansiControlFileTaskFactory_(nullptr)
 {
@@ -173,21 +172,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
     // Initialiing the InitWorldCommunicator
-    std::shared_ptr<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-        InitWorldCommunicatorTaskTraits::concrete_products>
-        > mdWorldCommunicatorInvkFactory =
-            std::make_shared<GenericTaskInvokerFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-            InitWorldCommunicatorTaskTraits::concrete_products>
-            >();
-
-    this->mdWorldCommunicatorInvk_ = mdWorldCommunicatorInvkFactory->create_shared_ptr();
-
-
-    this->mdAnansiInitWorldCommunicatorTaskFactory_ =
-        std::make_shared<GenericTaskFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-        InitWorldCommunicatorTaskTraits::concrete_products>
-        >();
-    //-
 
     this->mdAnansiCoreLoggingTaskFactory_ =
         std::make_shared<GenericTaskFactory<WriteTextToConsoleTaskTraits::abstract_products,
@@ -400,6 +384,12 @@ AnansiMolecularDynamics::enableCoreLoggingTasks()
          WriteTextToConsoleTaskTraits::concrete_products
          >(this->mdCoreLoggingInvk_,
            tmp_communicator);
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Setup all tasks and receivers for the console logging invoker
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    setup_core_logging_invoker();
 
     return;
 }
