@@ -14,11 +14,11 @@
 namespace __NAMESPACE__
 {
 
-void __function__ ( <+argument_list+> );
+void __function__ ( <+argument_list+> )
 {
     return <+return_value+>;
-}   /* -----  end of function __function__  ----- */
+}   // -----  end of function __function__  -----
 
 
-}; /* namespace __NAMESPACE__ */
+}; // namespace __NAMESPACE__
 
