@@ -222,13 +222,16 @@ class AnansiMolecularDynamics final : public Simulation
         ANANSI::SimulationParameters simulationParameters_;
         std::shared_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
 
-        template<typename abstract_products_typelist,
-                 typename concrete_products_typelist>
-        void
-        enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
-                                   concrete_products_typelist>
-                                   > & core_logging_invoker,
-                                   std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator );
+        //
+        // To be removed
+        //
+        // template<typename abstract_products_typelist,
+        //          typename concrete_products_typelist>
+        // void
+        // enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
+        //                            concrete_products_typelist>
+        //                            > & core_logging_invoker,
+        //                            std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator );
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTaskTraits::abstract_products,
             InitMPIEnvTaskTraits::concrete_products>
@@ -259,9 +262,6 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
         // These factories are to be removed.
-        std::shared_ptr<GenericTaskFactory<WriteTextToConsoleTaskTraits::abstract_products,
-            WriteTextToConsoleTaskTraits::concrete_products>
-            > mdAnansiCoreLoggingTaskFactory_;
 
         std::shared_ptr<GenericTaskFactory<ReadControlFileTraits::abstract_products,
             ReadControlFileTraits::concrete_products>
