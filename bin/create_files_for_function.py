@@ -22,8 +22,12 @@ from loggerutils.logger import create_logger
 
 def _main():
     args = _parse_arguments()
-    _create_header_file()
-    _create_implementation_file()
+
+    namespace = args.namespace
+    function_name = args.function_name
+
+    _create_header_file(namespace,function_name)
+    _create_implementation_file(namespace,function_name)
 
 ## Parses the command line arguments and returns A namespace.
 #
@@ -72,11 +76,54 @@ def _parse_arguments():
 
     return my_args 
 
-def _create_header_file():
-    pass
+def _create_header_file(namespace,function_name):
+    import os
+    import re
+    print("Creating header file " + function_name + ".h")
+    anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
+    template_file = os.path.join(anansi_top_level,"templates","functions.h")
+    output_file = function_name + ".h"
+    preprocessor_name = namespace + "_" + function_name + "_INC"
+    regex_array = [ (re.compile("__NAMESPACE__"),namespace),
+                    (re.compile("__function__"),function_name),
+                    (re.compile("__filepreprocessordefine__"), preprocessor_name),
+                   ]
 
-def _create_implementation_file():
-    pass
+    _parse_file(regex_array,template_file, output_file)
+
+    return
+
+def _create_implementation_file(namespace,function_name):
+    import os
+    import re
+    print("Creating implementation file " + function_name + ".cpp")
+    anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
+    template_file = os.path.join(anansi_top_level,"templates","functions.cpp")
+    output_file = function_name + ".cpp"
+    regex_array = [ (re.compile("__NAMESPACE__"),namespace ),
+                    (re.compile("__function__"),function_name),
+                   ]
+    _parse_file(regex_array,template_file,output_file)
+    return
+
+def _parse_file(regex_array,template_file, output_file):
+    # Read lines in from template fileself.
+    import os
+
+    if os.path.exists(output_file):
+        print("Aborting: File " + output_file + " exists!" )
+        return
+
+    template_file_lines = []
+    with open(output_file,"w") as output_fileobj :
+        with open(template_file,"r") as template_fileobj :
+            template_file_lines = template_fileobj.readlines()
+            for tmp_record in template_file_lines: 
+
+                for (regex_pattern,replacement) in regex_array:
+                    tmp_record = regex_pattern.sub(replacement,tmp_record)    
+                output_fileobj.write(tmp_record)
+
 
 if __name__ == "__main__":
     _main()
