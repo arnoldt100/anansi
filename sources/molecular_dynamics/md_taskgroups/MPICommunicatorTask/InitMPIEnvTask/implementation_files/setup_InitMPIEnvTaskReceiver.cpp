@@ -26,7 +26,7 @@ void setup_InitMPIEnvTaskReceiver(std::shared_ptr<ANANSI::GenericTaskInvoker<Ini
     // We define some type aliases to reduce the amount of typing.
     //
     // ---------------------------------------------------
-    using my_abstract_tasks = ANANSI::InitMPIEnvTaskTraits::abstract_products; // The abstract task typelist.
+    using my_abstract_tasks = ANANSI::InitMPIEnvTaskTraits::abstract_products; // The abstract tasks typelist.
     using my_concrete_tasks = ANANSI::InitMPIEnvTaskTraits::concrete_products; // The concrete tasks typelist.
     using base_receiver_t = ANANSI::InitMPIEnvTaskReceiver::MyParentTask; // The base class for the task we are setting up/
     using concrete_receiver_t = ANANSI::InitMPIEnvTaskReceiver; // The concrete reciever we are setting up.

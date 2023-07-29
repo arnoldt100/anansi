@@ -232,7 +232,8 @@ AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Enable all tasks.
     //
     // ---------------------------------------------------
-    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::InitMPIEnvTaskReceiver::TASKLABEL};
+    const std::vector<ANANSI::TaskLabel> command_labels = 
+        {ANANSI::InitMPIEnvTaskReceiver::TASKLABEL};
     this->mdCommEnvInvk_->enableTask(command_labels);
 
     // ---------------------------------------------------
@@ -268,51 +269,23 @@ void
 AnansiMolecularDynamics::enableWorldCommunicator()
 {
 
-    // ---------------------------------------------------
-    //  Create the receiver and enable it.
-    //
-    // ---------------------------------------------------
     std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>();
     this->MpiWorldCommunicator_ = a_communicator_factory->createWorldCommunicator();
-    auto tmp_communicator = a_communicator_factory->cloneCommunicator(this->MpiWorldCommunicator_);
-
-    auto mpi_init_world_commm_receiver =
-        RECEIVER::GenericReceiverFactory<InitWorldCommunicatorTaskTraits::abstract_products,
-        InitWorldCommunicatorTaskTraits::concrete_products>::createSharedReceiver<InitWorldCommunicatorTaskReceiver>();
-
-    mpi_init_world_commm_receiver->modifyReceiver(tmp_communicator);
-
-    // ---------------------------------------------------
-    //  Get the label for this receiver.
-    //
-    // ---------------------------------------------------
-    const auto tmp_label = mpi_init_world_commm_receiver->getTaskLabel();
-
-    // ---------------------------------------------------
-    //  Create the task object and bind the
-    //  receiver to it.
-    //
-    // ---------------------------------------------------
-    std::shared_ptr<ANANSI::AnansiTask> mpi_init_world_communicator_cmd =
-        this->mdAnansiInitWorldCommunicatorTaskFactory_->create_shared_ptr<CommunicatorTask>(mpi_init_world_commm_receiver);
-
-    // ---------------------------------------------------
-    // Add the task object/command to the invoker.
-    //
-    // ---------------------------------------------------
-    this->mdWorldCommunicatorInvk_->addTask(tmp_label,mpi_init_world_communicator_cmd);
 
     setup_mpi_world_communicator(mdWorldCommunicatorInvk_);
 
     // ---------------------------------------------------
-    // Use the invoker to initialize the world communicator.
+    // Enable all tasks.
     //
     // ---------------------------------------------------
-    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
-    {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
-
-    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
-
+    const std::vector<ANANSI::TaskLabel> command_labels =
+        {ANANSI::InitWorldCommunicatorTaskReceiver::TASKLABEL};
+    this->mdWorldCommunicatorInvk_->enableTask(command_labels);
+    
+    // ---------------------------------------------------
+    // Do task that will set up world communicator.
+    //
+    // ---------------------------------------------------
     this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
     return;
@@ -390,7 +363,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
     this->mdControlFileInvk_->doTask(command_labels);
 
     return;
-}   /* -----  end of method AnansiMolecularDynamics::enableControlFileTasks ----- */
+}   // -----  end of method AnansiMolecularDynamics::enableControlFileTasks -----
 
 void
 AnansiMolecularDynamics::disableControlFileTasks ()
