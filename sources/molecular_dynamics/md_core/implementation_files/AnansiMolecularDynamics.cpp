@@ -358,6 +358,12 @@ AnansiMolecularDynamics::disableControlFileTasks ()
 void
 AnansiMolecularDynamics::enableCoreLoggingTasks()
 {
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Setup all tasks and receivers for the console logging invoker
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    setup_core_logging_invoker(this->mdCoreLoggingInvk_);
+
     // ---------------------------------------------------
     // Create the invoker for the task WriteTextToConsoleTaskTraits
     //
@@ -385,11 +391,6 @@ AnansiMolecularDynamics::enableCoreLoggingTasks()
          >(this->mdCoreLoggingInvk_,
            tmp_communicator);
 
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // Setup all tasks and receivers for the console logging invoker
-    //
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setup_core_logging_invoker();
 
     return;
 }
