@@ -14,7 +14,9 @@
 namespace ANANSI
 {
 
-void setup_WriteTextToConsoleTaskReceiver ()
+void setup_WriteTextToConsoleTaskReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
+        WriteTextToConsoleTaskTraits::concrete_products>
+        > core_logging_invoker)
 {
     return ;
 }   // -----  end of function setup_WriteTextToConsoleTaskReceiver  -----

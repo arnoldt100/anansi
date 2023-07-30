@@ -24,7 +24,7 @@ void setup_core_logging_invoker (std::shared_ptr<ANANSI::GenericTaskInvoker<Writ
     core_logging_invoker = 
         GenericTaskInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,WriteTextToConsoleTaskTraits::concrete_products>::initializeInvoker();
 
-    setup_WriteTextToConsoleTaskReceiver();
+    setup_WriteTextToConsoleTaskReceiver(core_logging_invoker);
 
     return ;
 }   // -----  end of function setup_core_logging_invoker  -----
