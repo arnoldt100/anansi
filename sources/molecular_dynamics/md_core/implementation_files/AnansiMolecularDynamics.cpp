@@ -351,11 +351,17 @@ AnansiMolecularDynamics::disableControlFileTasks ()
 void
 AnansiMolecularDynamics::enableCoreLoggingTasks()
 {
+
+    // To setup the mdCoreLoggingInvk_ we need the world communicator object.
+    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
+        {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
+    auto world_communicator = this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<tmpstr>();
+
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // Setup all tasks and receivers for the console logging invoker
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setup_core_logging_invoker(this->mdCoreLoggingInvk_);
+    setup_core_logging_invoker(this->mdCoreLoggingInvk_,std::move(world_communicator));
 
     //
     // To be removed.

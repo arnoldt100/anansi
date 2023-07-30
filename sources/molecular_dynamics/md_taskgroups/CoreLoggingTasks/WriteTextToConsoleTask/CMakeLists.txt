@@ -76,7 +76,8 @@
          header_files/WriteTextToConsoleTaskReceiver.h
          header_files/WriteTextToConsoleTaskOwnershipImpl.hpp
          header_files/WriteTextToConsoleTaskTraits.h
-         header_files/setup_core_logging_invoker.h)
+         header_files/setup_core_logging_invoker.h
+	 header_files/setup_WriteTextToConsoleTaskReceiver.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -89,7 +90,8 @@
          implementation_files/WriteTextToConsoleTaskReceiver.cpp
          implementation_files/WriteTextToConsoleTaskOwnershipImpl.cpp
          implementation_files/WriteTextToConsoleTaskTraits.cpp
-         implementation_files/setup_core_logging_invoker.cpp)
+         implementation_files/setup_core_logging_invoker.cpp
+	 implementation_files/setup_WriteTextToConsoleTaskReceiver.cpp)
 
 
     # -----------------------------------------------------

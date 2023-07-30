@@ -1,7 +1,7 @@
-#ifndef ANANSI_setup_core_logging_invoker_INC
-#define ANANSI_setup_core_logging_invoker_INC
+#ifndef ANANSI_setup_WriteTextToConsoleTaskReceiver_INC
+#define ANANSI_setup_WriteTextToConsoleTaskReceiver_INC
 
-//! \file setup_core_logging_invoker.h
+//! \file setup_WriteTextToConsoleTaskReceiver.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -14,22 +14,15 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "GenericTaskInvoker.hpp"
-#include "WriteTextToConsoleTaskTraits.h"
-#include "Communicator.h"
 
 
 namespace ANANSI
 {
 
 //! \brief Stud text for brief description
-void setup_core_logging_invoker (std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
-        WriteTextToConsoleTaskTraits::concrete_products>
-        > core_logging_invoker,
-          std::unique_ptr<COMMUNICATOR::Communicator> world_communicator
-        );
+void setup_WriteTextToConsoleTaskReceiver ();
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_setup_core_logging_invoker_INC
+#endif // ANANSI_setup_WriteTextToConsoleTaskReceiver_INC
