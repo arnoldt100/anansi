@@ -26,7 +26,7 @@ void setup_controlfile_receivers (const std::string controlfile_name,
                                   std::unique_ptr<COMMUNICATOR::Communicator> my_world_communicator,
                                   std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                              ReadControlFileTraits::concrete_products>
-                                                 > control_file_invoker);
+                                                 > & control_file_invoker);
 
 
 }; /* namespace ANANSI */

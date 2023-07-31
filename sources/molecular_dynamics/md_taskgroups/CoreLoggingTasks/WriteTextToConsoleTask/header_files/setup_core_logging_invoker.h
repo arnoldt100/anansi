@@ -25,7 +25,7 @@ namespace ANANSI
 //! \brief Stud text for brief description
 void setup_core_logging_invoker (std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
         WriteTextToConsoleTaskTraits::concrete_products>
-        > core_logging_invoker,
+        > & core_logging_invoker,
           std::unique_ptr<COMMUNICATOR::Communicator> world_communicator
         );
 

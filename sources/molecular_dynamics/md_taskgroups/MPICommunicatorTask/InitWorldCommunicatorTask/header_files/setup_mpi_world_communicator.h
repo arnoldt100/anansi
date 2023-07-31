@@ -21,7 +21,7 @@ namespace ANANSI
 
 void setup_mpi_world_communicator (std::shared_ptr<ANANSI::GenericTaskInvoker<InitWorldCommunicatorTaskTraits::abstract_products,
                                                                               InitWorldCommunicatorTaskTraits::concrete_products>
-                                                   > initworldcomm_invoker);
+                                                   > & initworldcomm_invoker);
 
 }; // namespace ANANSI
 
