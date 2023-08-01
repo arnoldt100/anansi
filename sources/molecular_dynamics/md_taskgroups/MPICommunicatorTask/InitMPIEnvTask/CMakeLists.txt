@@ -72,7 +72,7 @@
          header_files/InitMPIEnvTaskOwnershipImpl.h
          header_files/InitMPIEnvTaskReceiver.h
          header_files/InitMPIEnvTaskTraits.h 
-         header_files/setup_mpi_communication_environment_receivers.h
+         header_files/setup_mpi_communication_environment_invoker.h
 	     header_files/setup_InitMPIEnvTaskReceiver.h )
 
     #-----------------------------------------------------
@@ -86,7 +86,7 @@
          implementation_files/InitMPIEnvTaskOwnershipImpl.cpp
          implementation_files/InitMPIEnvTaskReceiver.cpp
          implementation_files/InitMPIEnvTaskTraits.cpp
-         implementation_files/setup_mpi_communication_environment_receivers.cpp
+         implementation_files/setup_mpi_communication_environment_invoker.cpp
 	     implementation_files/setup_InitMPIEnvTaskReceiver.cpp)
 
     # -----------------------------------------------------

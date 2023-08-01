@@ -23,7 +23,7 @@
 
 #include "setup_core_logging_invoker.h"
 #include "setup_controlfile_invoker.h"
-#include "setup_mpi_communication_environment_receivers.h"
+#include "setup_mpi_communication_environment_invoker.h"
 #include "setup_mpi_world_communicator.h"
 
 namespace ANANSI
@@ -134,8 +134,8 @@ AnansiMolecularDynamics::enableCommunicationEnvironment()
     // Setup all tasks/recievers for the communication environment invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setup_mpi_communication_environment_receivers(this->mdCommEnvInvk_,
-                                                  this->commandLineArguments_);
+    setup_mpi_communication_environment_invoker(this->mdCommEnvInvk_,
+                                                this->commandLineArguments_);
 
     // ---------------------------------------------------
     // Enable all tasks.
