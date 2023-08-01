@@ -24,7 +24,7 @@
 #include "setup_core_logging_invoker.h"
 #include "setup_controlfile_invoker.h"
 #include "setup_mpi_communication_environment_invoker.h"
-#include "setup_mpi_world_communicator.h"
+#include "setup_mpi_world_communicator_invoker.h"
 
 namespace ANANSI
 {
@@ -175,7 +175,7 @@ AnansiMolecularDynamics::enableWorldCommunicator()
     std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>();
     this->MpiWorldCommunicator_ = a_communicator_factory->createWorldCommunicator();
 
-    setup_mpi_world_communicator(mdWorldCommunicatorInvk_);
+    setup_mpi_world_communicator_invoker(mdWorldCommunicatorInvk_);
 
     // ---------------------------------------------------
     // Enable all tasks.
