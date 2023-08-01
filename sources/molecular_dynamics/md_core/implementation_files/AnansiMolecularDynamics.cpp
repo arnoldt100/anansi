@@ -68,8 +68,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics() :
     mdProcessCmdLine_(nullptr),
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
-    mdTerminateSimulation_(nullptr),
-    mdAnansiControlFileTaskFactory_(nullptr)
+    mdTerminateSimulation_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -101,8 +100,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     mdProcessCmdLine_(nullptr),
     mdInitInitialConditions_(nullptr),
     mdPerformSimulation_(nullptr),
-    mdTerminateSimulation_(nullptr),
-    mdAnansiControlFileTaskFactory_(nullptr)
+    mdTerminateSimulation_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();

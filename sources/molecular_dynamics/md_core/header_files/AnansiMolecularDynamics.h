@@ -250,13 +250,6 @@ class AnansiMolecularDynamics final : public Simulation
         std::shared_ptr<ANANSI::SimulationState> mdPerformSimulation_;
         std::shared_ptr<ANANSI::SimulationState> mdTerminateSimulation_;
 
-        // These factories are to be removed.
-
-        std::shared_ptr<GenericTaskFactory<ReadControlFileTraits::abstract_products,
-            ReadControlFileTraits::concrete_products>
-            > mdAnansiControlFileTaskFactory_;
-
-
         // ====================  STATIC        =======================================
 
 }; // -----  end of class AnansiMolecularDynamics  -----
