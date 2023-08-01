@@ -163,13 +163,7 @@ AnansiMolecularDynamics::disableCommunicationEnvironment()
     // Use the invoker to disable the communication environment.
     //
     // ---------------------------------------------------
-    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
-    {
-        'm','p', 'i', '_','e','n','v','i','r','o','n','m','e','n','t'
-    };
-
-    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
-
+    const std::vector<ANANSI::TaskLabel> command_labels = {InitMPIEnvTaskReceiver::TASKLABEL};
     this->mdCommEnvInvk_->disableTask(command_labels);
     return;
 
@@ -207,9 +201,7 @@ AnansiMolecularDynamics::disableWorldCommunicator()
 {
     if (this->mdWorldCommunicatorInvk_)
     {
-        constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
-        {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
-        const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
+        const std::vector<ANANSI::TaskLabel> command_labels = {InitWorldCommunicatorTaskReceiver::TASKLABEL};
         this->mdWorldCommunicatorInvk_->disableTask(command_labels);
     }
 
@@ -227,13 +219,8 @@ AnansiMolecularDynamics::disableCoreLoggingTasks()
     // Disable the Console logger.
     //
     // ---------------------------------------------------
-    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
-    {
-        'w','r','i','t','e','_','t','e','x','t','_','t','o','_','c','o','n','s','o','l','e'
-    };
-
-    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::TaskLabel(tmpstr)};
-
+    const std::vector<ANANSI::TaskLabel> command_labels = 
+      {WriteTextToConsoleTaskReceiver::TASKLABEL};
     this->mdCoreLoggingInvk_->disableTask(command_labels);
     return;
 }
@@ -254,9 +241,8 @@ AnansiMolecularDynamics::enableControlFileTasks ()
         return;
     }
 
-    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
-    {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
-    auto mpi_world_communicator = this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<tmpstr>();
+    auto mpi_world_communicator = 
+      this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<InitWorldCommunicatorTaskReceiver::TASKLABEL>();
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // Setup all receivers for the control file invoker.
@@ -287,9 +273,8 @@ AnansiMolecularDynamics::enableCoreLoggingTasks()
 {
 
     // To setup the mdCoreLoggingInvk_ we need the world communicator object.
-    constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] =
-        {'m','p','i','_','w','o','r','l','d','_','c','o','m','m','u','n','i','c','a','t','o','r'};
-    auto world_communicator = this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<tmpstr>();
+    auto world_communicator = 
+      this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<InitWorldCommunicatorTaskReceiver::TASKLABEL>();
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // Setup all tasks and receivers for the console logging invoker
