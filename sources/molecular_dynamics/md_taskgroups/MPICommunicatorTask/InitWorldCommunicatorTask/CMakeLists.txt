@@ -73,7 +73,7 @@
          header_files/InitWorldCommunicatorTaskReceiver.h
          header_files/InitWorldCommunicatorTaskOwnershipImpl.hpp
          header_files/InitWorldCommunicatorTaskTraits.h
-         header_files/setup_mpi_world_communicator.h
+         header_files/setup_mpi_world_communicator_invoker.h
          header_files/setup_InitWorldCommunicatorTaskReceiver.h)
 
     #-----------------------------------------------------
@@ -87,7 +87,7 @@
          implementation_files/InitWorldCommunicatorTaskReceiver.cpp
          implementation_files/InitWorldCommunicatorTaskOwnershipImpl.cpp
          implementation_files/InitWorldCommunicatorTaskTraits.cpp
-         implementation_files/setup_mpi_world_communicator.cpp
+         implementation_files/setup_mpi_world_communicator_invoker.cpp
          implementation_files/setup_InitWorldCommunicatorTaskReceiver.cpp)
 
     # -----------------------------------------------------
