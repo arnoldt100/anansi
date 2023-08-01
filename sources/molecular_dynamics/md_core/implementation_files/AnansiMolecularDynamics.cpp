@@ -29,7 +29,7 @@
 namespace ANANSI
 {
 
-// ====================  Sumulation Interface Implementations  ===============
+// ====================  Simulation Interface Implementations  ===============
 
 // These methods implement the interface for the parent class Simulation
 // private virtual methods.
@@ -131,7 +131,7 @@ AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // Setup all receivers for the communication environment invoker.
+    // Setup all tasks/recievers for the communication environment invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     setup_mpi_communication_environment_receivers(this->mdCommEnvInvk_,

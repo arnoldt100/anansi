@@ -67,13 +67,13 @@ namespace ANANSI
 //! assignment operator, and move-assignment operator are deleted.
 class AnansiMolecularDynamics final : public Simulation
 {
-        // ===============================================================================
-        // ====================  Simulation Interface Implementations   ==================
-        // ===============================================================================
+    // ===============================================================================
+    // ====================  Simulation Interface Implementations   ==================
+    // ===============================================================================
+    private:
 
         // These methods implement the interface for the parent class Simulation
         // private virtual methods.
-    private:
 
         // ====================  ACCESSORS     =======================================
 
@@ -111,20 +111,19 @@ class AnansiMolecularDynamics final : public Simulation
         void
         terminateSimulationEnvironment_() final override;
 
-        // ===============================================================================
-        // ====================  MPL:BaseVisitable Implementations      ==================
-        // ===============================================================================
-
+    // ===============================================================================
+    // ====================  MPL:BaseVisitable Implementations      ==================
+    // ===============================================================================
     public:
+
         // This macro defines the Accept member function which in conjuction
         // with MPL::BaseVisitable as the root class in the hierarchy make
         // anansi_molecular_dynamics visitable.
         DEFINE_VISITABLE()
 
-        // ===============================================================================
-        // ====================  AnansiMolecularDynamics Standard Implementations ========
-        // ===============================================================================
-
+    // ===============================================================================
+    // ====================  AnansiMolecularDynamics Standard Implementations ========
+    // ===============================================================================
     public:
         // ====================  LIFECYCLE     =======================================
 
@@ -158,24 +157,42 @@ class AnansiMolecularDynamics final : public Simulation
         //! The communication runtime environment is set up. The responsibility is
         //! initializing the communication invoker object AnansiMolecularDynamics::mdCommEnvInvk_.
         //! AnansiMolecularDynamics::mdCommEnvInvk_ then invokes the task to set up communication
-        //! environment.
+        //! environment. The method is called once and only once. Repeated calls results in undefined 
+        //! behavoir.
         void
         enableCommunicationEnvironment();
 
         //! \brief Disables the communication runtime environment.
         //!
         //! The invoker object AnansiMolecularDynamics::mdCommEnvInvk_
-        //! invokes the task to disable the communication environment.
+        //! invokes the task to disable the communication environment. After the communication
+        //! is disabled, no more commuication can occur and the communication environment can't be 
+        //! renabled.The method is called once and only once. Repeated calls results in undefined 
+        //! behavoir.
         void
         disableCommunicationEnvironment();
 
-        //! \brief Enables the world commumicator.
+        //! \brief Enables the world communicator.
         //!
-        //! The invoker object AnansiMolecularDynamics::mdWorldCommunicatorInvk_ invokes the
-        //! task to create a world communicator.
+        //! The invoker object
+        //! AnansiMolecularDynamics::mdWorldCommunicatorInvk_ invokes a task
+        //! to create a world communicator. See the documentation on 
+        //! RECEIVER::InitWorldCommunicatorTaskReceiver for task details.
+        //! AnansiMolecularDynamics::enableWorldCommunicator must be called
+        //! after the communication environment is enabled and can be called more
+        //! than once.
         void
         enableWorldCommunicator();
 
+        //! \brief Disables the world communicator.
+        //!
+        //! The invoker object
+        //! AnansiMolecularDynamics::mdWorldCommunicatorInvk_ invokes a task
+        //! to disable the world communicator. See the documentation on 
+        //! RECEIVER::InitWorldCommunicatorTaskReceiver for task details. If the 
+        //! the world communicator has not been enabled (via AnansiMolecularDynamics::enableWorldCommunicator)
+        //! an exception is thrown. See the documentation on 
+        //! RECEIVER::InitWorldCommunicatorTaskReceiver for task details.
         void
         disableWorldCommunicator();
 
