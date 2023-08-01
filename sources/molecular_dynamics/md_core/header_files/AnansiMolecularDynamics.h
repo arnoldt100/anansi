@@ -222,17 +222,6 @@ class AnansiMolecularDynamics final : public Simulation
         ANANSI::SimulationParameters simulationParameters_;
         std::shared_ptr<COMMUNICATOR::Communicator> MpiWorldCommunicator_;
 
-        //
-        // To be removed
-        //
-        // template<typename abstract_products_typelist,
-        //          typename concrete_products_typelist>
-        // void
-        // enableConsoleLoggingTask_( std::shared_ptr<ANANSI::GenericTaskInvoker<abstract_products_typelist,
-        //                            concrete_products_typelist>
-        //                            > & core_logging_invoker,
-        //                            std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator );
-
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitMPIEnvTaskTraits::abstract_products,
             InitMPIEnvTaskTraits::concrete_products>
             > mdCommEnvInvk_;

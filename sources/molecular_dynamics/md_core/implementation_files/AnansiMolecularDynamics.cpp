@@ -21,7 +21,6 @@
 #include "InitMPIEnvTaskReceiver.h"
 #include "ConsoleMessageContainer.h"
 
-#include "initialize_controlfile_invoker_and_taskfactory.h"
 #include "setup_core_logging_invoker.h"
 #include "setup_controlfile_receivers.h"
 #include "setup_mpi_communication_environment_receivers.h"
@@ -47,61 +46,6 @@ namespace ANANSI
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= ACCESSORS ====================================
-// template<>
-// void AnansiMolecularDynamics::enableConsoleLoggingTask_<WriteTextToConsoleTaskTraits::abstract_products,
-//      WriteTextToConsoleTaskTraits::concrete_products
-//      >
-//      (
-//          std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
-//          WriteTextToConsoleTaskTraits::concrete_products>
-//          > & core_logging_invoker,
-//          std::unique_ptr<COMMUNICATOR::Communicator> & a_communicator )
-// {
-//     // ---------------------------------------------------
-//     // Create the receiver and add the communicator.
-//     //
-//     // ---------------------------------------------------
-//     auto console_logger_receiver =
-//         RECEIVER::GenericReceiverFactory<WriteTextToConsoleTaskTraits::abstract_products,
-//         WriteTextToConsoleTaskTraits::concrete_products>::createSharedReceiver<ANANSI::WriteTextToConsoleTaskReceiver>();
-// 
-//     // The console receiver contains the a communicator.
-//     console_logger_receiver->modifyReceiver(a_communicator);
-// 
-//     // ---------------------------------------------------
-//     // Create task object and bind to receiver.
-//     //
-//     // ---------------------------------------------------
-//     std::shared_ptr<ANANSI::AnansiTask> console_logger_cmd =
-//         this->mdAnansiCoreLoggingTaskFactory_->create_shared_ptr<ConsoleLoggingTask>(console_logger_receiver);
-// 
-//     // ---------------------------------------------------
-//     // Add the task object/command to the invoker.
-//     //
-//     // ---------------------------------------------------
-//     constexpr auto my_label = ANANSI::WriteTextToConsoleTaskReceiver::TASKLABEL;
-//     core_logging_invoker->addTask(my_label,console_logger_cmd);
-// 
-//     // ---------------------------------------------------
-//     // Log to console that the Console Logger is enabled.
-//     //
-//     // ---------------------------------------------------
-//     std::string sender{"A processor."};
-//     std::string message{"The console logger is enabled."};
-//     auto message_packet = std::make_unique<ConsoleMessageContainer>(message,sender);
-// 
-//     // core_logging_invoker->modifyTask(my_label,message_packet);
-//     core_logging_invoker->modifyTask<my_label>(message_packet);
-// 
-//     const std::vector<
-//     std::remove_const<decltype(my_label)>::type
-//     > command_labels = {my_label};
-//     core_logging_invoker->doTask(command_labels);
-// 
-//     auto tmp_value = core_logging_invoker->getCopyOfTaskResults<my_label>();
-// 
-//     return;
-// }
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -168,16 +112,6 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdInitInitialConditions_ = std::move(md_state_factory->create<InitInitialConditions>());
     this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
-
-    // Initialiing the InitWorldCommunicator
-
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // Initialzing the ControlFile invoker and task factory.
-    //
-    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    auto [x,y] = initialize_controlfileinvoker_and_taskfactory();
-    this->mdControlFileInvk_ = x;
-    this->mdAnansiControlFileTaskFactory_ = y;
 
     // Change the state of the MD simulation to Null.
     this->mdState_ = this->mdNullSimulationState_;
@@ -362,37 +296,6 @@ AnansiMolecularDynamics::enableCoreLoggingTasks()
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     setup_core_logging_invoker(this->mdCoreLoggingInvk_,std::move(world_communicator));
-
-    //
-    // To be removed.
-    //
-    // // ---------------------------------------------------
-    // // Create the invoker for the task WriteTextToConsoleTaskTraits
-    // //
-    // // All receivers for this invoker will have labels that are of type
-    // // std::string.
-    // // ---------------------------------------------------
-    // std::shared_ptr<GenericTaskInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,
-    //     WriteTextToConsoleTaskTraits::concrete_products>
-    //     > mdAnansiCoreLoggingTaskFactory =
-    //         std::make_shared<GenericTaskInvokerFactory<WriteTextToConsoleTaskTraits::abstract_products,
-    //         WriteTextToConsoleTaskTraits::concrete_products>
-    //         >();
-
-    // this->mdCoreLoggingInvk_ = mdAnansiCoreLoggingTaskFactory->create_shared_ptr();
-
-
-    // // ---------------------------------------------------
-    // // Enable the Console logger.
-    // //
-    // // ---------------------------------------------------
-    // std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>();
-    // auto tmp_communicator = a_communicator_factory->cloneCommunicator(this->MpiWorldCommunicator_);
-    // this->enableConsoleLoggingTask_<WriteTextToConsoleTaskTraits::abstract_products,
-    //      WriteTextToConsoleTaskTraits::concrete_products
-    //      >(this->mdCoreLoggingInvk_,
-    //        tmp_communicator);
-
 
     return;
 }
