@@ -14,6 +14,7 @@
 #include "setup_ControlFileXMLMPICommReceiver.h"
 #include "setup_ControlFileXMLReceiver.h"
 #include "setup_ControlFileMacroReceiver.h"
+#include "GenericTaskInvokerFactory.hpp"
 
 namespace ANANSI
 {
@@ -25,10 +26,14 @@ void setup_controlfile_invoker (const std::string controlfile_name,
                                                  > & control_file_invoker )
 {
 
+    control_file_invoker = 
+      GenericTaskInvokerFactory<ReadControlFileTraits::abstract_products,
+                                ReadControlFileTraits::concrete_products>::initializeInvoker();
+
     // Setup the concrete products of typelist ReadControlFileTraits::concrete_products:
     //      - ControlFileXMLReceiver
     //      - ControlFileXMLMPICommReceiver
-    //      -setup_ControlFileMacroReceiver
+    //      - ControlFileMacroReceiver
 
     bool master_process = my_world_communicator->iAmMasterProcess();
     setup_ControlFileXMLReceiver(controlfile_name,master_process,control_file_invoker);
