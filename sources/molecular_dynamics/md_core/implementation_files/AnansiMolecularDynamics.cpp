@@ -22,7 +22,7 @@
 #include "ConsoleMessageContainer.h"
 
 #include "setup_core_logging_invoker.h"
-#include "setup_controlfile_receivers.h"
+#include "setup_controlfile_invoker.h"
 #include "setup_mpi_communication_environment_receivers.h"
 #include "setup_mpi_world_communicator.h"
 
@@ -246,9 +246,9 @@ AnansiMolecularDynamics::enableControlFileTasks ()
     // Setup all receivers for the control file invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    setup_controlfile_receivers(controlfile_name,
-                                std::move(mpi_world_communicator),
-                                mdControlFileInvk_);
+    setup_controlfile_invoker(controlfile_name,
+                              std::move(mpi_world_communicator),
+                              mdControlFileInvk_);
 
     // ---------------------------------------------------
     // Run macro receiver.

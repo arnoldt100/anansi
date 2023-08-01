@@ -77,7 +77,7 @@
          header_files/ControlFileMacroOwnershipImpl.hpp
          header_files/ControlFileMacroReceiver.h
          header_files/ReadControlFileTraits.h
-         header_files/setup_controlfile_receivers.h
+         header_files/setup_controlfile_invoker.h
          header_files/setup_ControlFileXMLReceiver.h
          header_files/setup_ControlFileXMLMPICommReceiver.h
          header_files/setup_ControlFileMacroReceiver.h
@@ -99,7 +99,7 @@
          implementation_files/ControlFileMacroOwnershipImpl.cpp
          implementation_files/ControlFileMacroReceiver.cpp
          implementation_files/ReadControlFileTraits.cpp 
-         implementation_files/setup_controlfile_receivers.cpp
+         implementation_files/setup_controlfile_invoker.cpp
          implementation_files/setup_ControlFileXMLReceiver.cpp
          implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
          implementation_files/setup_ControlFileMacroReceiver.cpp
