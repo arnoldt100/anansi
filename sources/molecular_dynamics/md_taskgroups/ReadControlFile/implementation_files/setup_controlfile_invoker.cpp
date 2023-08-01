@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "setup_controlfile_receivers.h"
+#include "setup_controlfile_invoker.h"
 #include "setup_ControlFileXMLMPICommReceiver.h"
 #include "setup_ControlFileXMLReceiver.h"
 #include "setup_ControlFileMacroReceiver.h"
@@ -18,7 +18,7 @@
 namespace ANANSI
 {
 
-void setup_controlfile_receivers (const std::string controlfile_name,
+void setup_controlfile_invoker (const std::string controlfile_name,
                                   std::unique_ptr<COMMUNICATOR::Communicator> my_world_communicator,
                                   std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                              ReadControlFileTraits::concrete_products>
@@ -39,7 +39,7 @@ void setup_controlfile_receivers (const std::string controlfile_name,
 
 
     return;
-}   // -----  end of function setup_controlfile_receivers
+}   // -----  end of function setup_controlfile_invoker
 
 
 }; // namespace ANANSI

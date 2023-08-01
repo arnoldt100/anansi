@@ -1,5 +1,5 @@
-#ifndef ANANSI_setup_controlfile_receivers_INC
-#define ANANSI_setup_controlfile_receivers_INC
+#ifndef ANANSI_setup_controlfile_invoker_INC
+#define ANANSI_setup_controlfile_invoker_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -22,7 +22,7 @@
 namespace ANANSI
 {
 
-void setup_controlfile_receivers (const std::string controlfile_name,
+void setup_controlfile_invoker (const std::string controlfile_name,
                                   std::unique_ptr<COMMUNICATOR::Communicator> my_world_communicator,
                                   std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                              ReadControlFileTraits::concrete_products>
@@ -31,4 +31,4 @@ void setup_controlfile_receivers (const std::string controlfile_name,
 
 }; /* namespace ANANSI */
 
-#endif // ANANSI_setup_controlfile_receivers_INC
+#endif // ANANSI_setup_controlfile_invoker_INC
