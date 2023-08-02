@@ -4,6 +4,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -55,6 +57,7 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
 
         // ====================  DATA MEMBERS  =======================================
         ControlFileName fileName_;
+        std::vector<std::string> nodeKeys_;
         boost::property_tree::ptree pt_;
 
 }; // -----  end of class ControlFile  -----
