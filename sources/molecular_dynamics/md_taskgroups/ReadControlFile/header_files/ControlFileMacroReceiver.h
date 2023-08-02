@@ -1,7 +1,7 @@
 #ifndef  ANANSI_ControlFileMacroReceiver_INC
 #define  ANANSI_ControlFileMacroReceiver_INC
 
-//! @file ControlFileMacroReceiver.h
+//! \file ControlFileMacroReceiver.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -28,7 +28,7 @@ namespace ANANSI
 
 //! Assembles the ControlFileXMLReceiver and ControlFileXMLMPICommReceiver commands.
 //!
-//! These assemble commands will have the result of all MPI tasks in the
+//! These assembled commands will have the result of all MPI tasks in the
 //! communicator group of ControlFileXMLMPICommReceiver to contain the information
 //! contained in control file.
 class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFileMacroReceiver>

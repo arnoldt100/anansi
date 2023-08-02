@@ -8,6 +8,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -54,6 +55,7 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
 
         // ====================  DATA MEMBERS  =======================================
         ControlFileName fileName_;
+        boost::property_tree::ptree pt_;
 
 }; // -----  end of class ControlFile  -----
 

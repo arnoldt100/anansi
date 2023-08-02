@@ -39,8 +39,6 @@ namespace ANANSI
 //////////////////////////////////////////////////////////////////////////////
 
 
-
-
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -251,7 +249,9 @@ AnansiMolecularDynamics::enableControlFileTasks ()
                               mdControlFileInvk_);
 
     // ---------------------------------------------------
-    // Run macro receiver.
+    // Run macro task command for the Control file. This macro task cammand 
+    // action results in every process storing the infromation of th control 
+    // file. See class RECEIVER::ControlFileMacroReceiver for more details.
     //
     // ---------------------------------------------------
     const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::ControlFileMacroReceiver::TASKLABEL};

@@ -1,13 +1,12 @@
 #ifndef  ANANSI_ControlFileXMLReceiver_INC
 #define  ANANSI_ControlFileXMLReceiver_INC
 
-//! @file ControlFileXMLReceiver.h
+//! \file ControlFileXMLReceiver.h
 //!
-//! Class ControlFileXMLReceiver is the concrete task for reading the control
-//! file.
+//! \brief Class ControlFileXMLReceiver is the reciever for 
+//! concrete task for reading the control file.
 //!
-//! The reading of the control file is distributed across a group of
-//! processes in a communicator group. The master process in the communicator
+//! The master process in the communicator
 //! group reads the file. The result will be the a ControlFile
 //! object will be populated on the master process. The non-master processes
 //! will have an empyty ControlFile object.

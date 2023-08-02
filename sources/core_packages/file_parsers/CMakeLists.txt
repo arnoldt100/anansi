@@ -135,10 +135,12 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files)
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE "${Boost_INCLUDE_DIR}")
 
 target_link_libraries(${target}
-                      communicator)
+                      PUBLIC communicator
+                      PUBLIC "${Boost_LIBRARIES}")
 
 #-----------------------------------------------------
 # Here we set the properties on target               -
