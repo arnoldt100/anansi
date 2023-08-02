@@ -269,7 +269,6 @@ AnansiMolecularDynamics::disableControlFileTasks ()
 void
 AnansiMolecularDynamics::enableCoreLoggingTasks()
 {
-
     // To setup the mdCoreLoggingInvk_ we need the world communicator object.
     auto world_communicator = 
       this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<InitWorldCommunicatorTaskReceiver::TASKLABEL>();
