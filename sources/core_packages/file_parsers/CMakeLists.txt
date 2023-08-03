@@ -83,7 +83,8 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderFile.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h)
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileNodeKeys.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -98,7 +99,8 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderControlFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderFile.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StandardFileFactory.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StandardFileFactory.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileNodeKeys.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

@@ -1,6 +1,6 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
-//! \file __filename__.h
+#ifndef ANANSI_ControlFileNodeKeys_INC
+#define ANANSI_ControlFileNodeKeys_INC
+//! \file ControlFileNodeKeys.h
 //!
 //! \brief Brief description
 //!
@@ -18,21 +18,21 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
-class __classname__
+class ControlFileNodeKeys
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ ();   // constructor
+        ControlFileNodeKeys ();   // constructor
 
-        __classname__ (const __classname__ & other);   // copy constructor
+        ControlFileNodeKeys (const ControlFileNodeKeys & other);   // copy constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        ControlFileNodeKeys (ControlFileNodeKeys && other);   // copy-move constructor
 
-        virtual ~__classname__ ();  // destructor
+        virtual ~ControlFileNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -40,9 +40,9 @@ class __classname__
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        ControlFileNodeKeys& operator= ( const ControlFileNodeKeys &other ); // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        ControlFileNodeKeys& operator= ( ControlFileNodeKeys && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -54,9 +54,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class ControlFileNodeKeys  -----
 
 
-}; // namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif // ANANSI_ControlFileNodeKeys_INC
