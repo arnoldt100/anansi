@@ -9,6 +9,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -32,11 +34,12 @@ class ControlFileNodeKeys
 
         ControlFileNodeKeys (ControlFileNodeKeys && other);   // copy-move constructor
 
-        virtual ~ControlFileNodeKeys ();  // destructor
+        ~ControlFileNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
+        void add(const std::string key);
 
         // ====================  OPERATORS     =======================================
 
@@ -53,6 +56,7 @@ class ControlFileNodeKeys
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::vector<std::string> nodeKeys_;
 
 }; // -----  end of class ControlFileNodeKeys  -----
 

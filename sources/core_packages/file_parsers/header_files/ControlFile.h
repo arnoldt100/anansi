@@ -10,11 +10,11 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ControlFileNodeKeys.h"
 #include "ControlFileName.h"
 #include "BaseInputFile.h"
 
@@ -57,8 +57,7 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
 
         // ====================  DATA MEMBERS  =======================================
         ControlFileName fileName_;
-        std::vector<std::string> nodeKeys_;
-        boost::property_tree::ptree pt_;
+        ControlFileNodeKeys nodeKeys_;
 
 }; // -----  end of class ControlFile  -----
 
