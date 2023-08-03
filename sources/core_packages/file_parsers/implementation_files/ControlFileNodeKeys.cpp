@@ -67,6 +67,11 @@ ControlFileNodeKeys::~ControlFileNodeKeys()
 }
 
 //============================= ACCESSORS ====================================
+std::pair<std::vector<std::string>::iterator,
+          std::vector<std::string>::iterator> ControlFileNodeKeys::allKeysIterator()
+{
+    return std::make_pair(this->nodeKeys_.begin(),this->nodeKeys_.begin());
+}
 
 //============================= MUTATORS =====================================
 void ControlFileNodeKeys::add(const std::string keys)

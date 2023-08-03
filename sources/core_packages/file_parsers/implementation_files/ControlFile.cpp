@@ -2,6 +2,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 #include <utility>
 
 //--------------------------------------------------------//
@@ -106,6 +107,11 @@ void ControlFile::setFileName_(const std::string my_file_name)
 
 void ControlFile::getFileInformation_()
 {
+    // auto keys = this->nodeKeys_.allKeysIterator();
+    // for(; keys.first != keys.second; keys.first++)
+    // {
+    //     std::cout << "Node key: " << (keys.first)->c_str() << std::endl;
+    // }
     return;
 }
 

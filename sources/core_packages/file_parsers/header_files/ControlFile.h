@@ -23,7 +23,7 @@
 namespace ANANSI
 {
 
-class ControlFile :public ANANSI::BaseInputFile<ControlFile>
+class ControlFile : public ANANSI::BaseInputFile<ControlFile>
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -39,9 +39,6 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
-        void setFileName_(const std::string my_file_name);
-
-        void getFileInformation_();
 
         // ====================  OPERATORS     =======================================
 
@@ -51,6 +48,12 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
 
     protected:
         // ====================  ACCESSORS     =======================================
+        
+        // ====================  MUTATORS      =======================================
+        void setFileName_(const std::string my_file_name);
+
+        void getFileInformation_();
+
 
         // ====================  DATA MEMBERS  =======================================
 

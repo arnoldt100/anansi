@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 #include <string>
 #include <vector>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -22,6 +23,10 @@
 
 namespace ANANSI
 {
+
+struct SSS
+{
+};
 
 class ControlFileNodeKeys
 {
@@ -37,6 +42,8 @@ class ControlFileNodeKeys
         ~ControlFileNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        std::pair<std::vector<std::string>::iterator,
+                  std::vector<std::string>::iterator> allKeysIterator();
 
         // ====================  MUTATORS      =======================================
         void add(const std::string key);

@@ -47,6 +47,14 @@ class BaseInputFile
         //! Derived::foo_.
         struct Accessor_ : public Derived 
         {
+            //! Read and store the information from input file.
+            static void get_information(Derived & derived)
+            {
+                void (Derived::*fn)() = &Accessor_::getFileInformation_;
+                derived.*fn();
+                return;
+            };
+
             //! Set the file name of the input files.
             static void set_file_name(Derived & derived, const std::string my_file_name)
             {
@@ -55,13 +63,6 @@ class BaseInputFile
                 return;
             };
 
-            //! Read and store the information from input file.
-            static void get_information(Derived & derived)
-            {
-                void (Derived::*fn)(const std::string) const = &Accessor_::getInformation_;
-                derived.*fn();
-                return;
-            }
 
         };
 
@@ -105,6 +106,7 @@ class BaseInputFile
         void getFileInformation()
         {
             Accessor_::get_information(this->asDerived_());
+            return;
         }
         /* ====================  OPERATORS     ======================================= */
 
