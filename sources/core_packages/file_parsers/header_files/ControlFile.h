@@ -10,6 +10,8 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -39,6 +41,8 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
         // ====================  MUTATORS      =======================================
         void setFileName_(const std::string my_file_name);
 
+        void getFileInformation_();
+
         // ====================  OPERATORS     =======================================
 
         ControlFile& operator=( const ControlFile &other ); // assignment operator
@@ -58,6 +62,7 @@ class ControlFile :public ANANSI::BaseInputFile<ControlFile>
         // ====================  DATA MEMBERS  =======================================
         ControlFileName fileName_;
         ControlFileNodeKeys nodeKeys_;
+        boost::property_tree::ptree pt_;
 
 }; // -----  end of class ControlFile  -----
 
