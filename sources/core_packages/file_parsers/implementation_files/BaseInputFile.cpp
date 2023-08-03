@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "../header_files/BaseInputFile.h"
+#include "BaseInputFile.h"
 
 namespace ANANSI {
 
