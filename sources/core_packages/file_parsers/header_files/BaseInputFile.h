@@ -48,10 +48,12 @@ class BaseInputFile
         struct Accessor_ : public Derived 
         {
             //! Read and store the information from input file.
-            static void get_information(Derived & derived)
+            template<typename... Types>
+            static void get_file_information(Derived & derived,Types ...args)
             {
-                void (Derived::*fn)() = &Accessor_::getFileInformation_;
-                derived.*fn();
+                // void (Derived::*fn)(Types... args) const = &Accessor_::receiverDoAction_;
+                void (Derived::*fn)(Types... args) const = &Accessor_::getFileInformation_;
+                (derived.*fn)(args...);
                 return;
             };
 
@@ -59,7 +61,7 @@ class BaseInputFile
             static void set_file_name(Derived & derived, const std::string my_file_name)
             {
                 void (Derived::*fn)(const std::string) const = &Accessor_::setFileName_;
-                derived.*fn(my_file_name);
+                (derived.*fn)(my_file_name);
                 return;
             };
 
@@ -105,7 +107,7 @@ class BaseInputFile
 
         void getFileInformation()
         {
-            Accessor_::get_information(this->asDerived_());
+            Accessor_::get_file_information(this->asDerived_());
             return;
         }
         /* ====================  OPERATORS     ======================================= */

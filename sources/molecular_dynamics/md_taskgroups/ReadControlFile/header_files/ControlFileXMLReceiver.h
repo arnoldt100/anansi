@@ -182,6 +182,7 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
     if (this->masterProcess_.operator()())
     {
         std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
+        this->results_.getFileInformation(); 
     }
     return;
 }

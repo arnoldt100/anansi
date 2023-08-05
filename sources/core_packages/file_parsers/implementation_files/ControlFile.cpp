@@ -105,7 +105,7 @@ void ControlFile::setFileName_(const std::string my_file_name)
     return;
 }
 
-void ControlFile::getFileInformation_()
+void ControlFile::getFileInformation_() const
 {
     // auto keys = this->nodeKeys_.allKeysIterator();
     // for(; keys.first != keys.second; keys.first++)
