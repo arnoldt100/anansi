@@ -42,8 +42,8 @@ class ControlFileNodeKeys
         ~ControlFileNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        std::pair<std::vector<std::string>::iterator,
-                  std::vector<std::string>::iterator> allKeysIterator();
+        std::pair<std::vector<std::string>::const_iterator,
+                  std::vector<std::string>::const_iterator> allKeysIterator() const;
 
         // ====================  MUTATORS      =======================================
         void add(const std::string key);

@@ -67,10 +67,10 @@ ControlFileNodeKeys::~ControlFileNodeKeys()
 }
 
 //============================= ACCESSORS ====================================
-std::pair<std::vector<std::string>::iterator,
-          std::vector<std::string>::iterator> ControlFileNodeKeys::allKeysIterator()
+std::pair<std::vector<std::string>::const_iterator,
+          std::vector<std::string>::const_iterator> ControlFileNodeKeys::allKeysIterator() const
 {
-    return std::make_pair(this->nodeKeys_.begin(),this->nodeKeys_.begin());
+    return std::pair(this->nodeKeys_.begin(),this->nodeKeys_.end());
 }
 
 //============================= MUTATORS =====================================

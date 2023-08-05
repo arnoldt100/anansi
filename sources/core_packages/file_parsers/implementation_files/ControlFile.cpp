@@ -48,8 +48,6 @@ ControlFile::ControlFile( ControlFile && other) :
     pt_(std::move(other.pt_))
 
 {
-    // Set the node keys for the control file.
-
     return;
 } // -----  end of method ControlFile::ControlFile  -----
 
@@ -107,11 +105,12 @@ void ControlFile::setFileName_(const std::string my_file_name)
 
 void ControlFile::getFileInformation_() const
 {
-    // auto keys = this->nodeKeys_.allKeysIterator();
-    // for(; keys.first != keys.second; keys.first++)
-    // {
-    //     std::cout << "Node key: " << (keys.first)->c_str() << std::endl;
-    // }
+    
+    auto keys = this->nodeKeys_.allKeysIterator();
+    for(; keys.first != keys.second; keys.first++)
+    {
+        std::cout << "Node key: " << (keys.first)->c_str() << std::endl;
+    }
     return;
 }
 
