@@ -4,6 +4,7 @@
 //--------------------------------------------------------//
 #include <iostream>
 #include <utility>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -29,6 +30,13 @@ ControlFile::ControlFile() :
     nodeKeys_(),
     pt_()
 {
+    auto keys = this->nodeKeys_.allKeysIterator();
+    for(; keys.first != keys.second; keys.first++)
+    {
+        const auto my_node_key = (keys.first)->c_str();
+        this->pt_.put(my_node_key,"--default-null-value--");
+    }
+
     return;
 }
 
@@ -103,12 +111,21 @@ void ControlFile::setFileName_(const std::string my_file_name)
     return;
 }
 
-void ControlFile::getFileInformation_(boost::property_tree::ptree & pt) const
+void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
 {
     auto keys = this->nodeKeys_.allKeysIterator();
     for(; keys.first != keys.second; keys.first++)
     {
         std::cout << "Node key: " << (keys.first)->c_str() << std::endl;
+
+        // 
+        auto v1 = this->pt_.get<std::string>(keys.first->c_str());
+        auto v2 = pt.get<std::string>(keys.first->c_str());
+
+        std::cout << "v1: " << v1 << std::endl;
+        std::cout << "v2: " << v2 << std::endl;
+        std::cout << std::endl;
+        std::cout << std::endl;
     }
     return;
 }

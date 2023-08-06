@@ -51,8 +51,7 @@ class BaseInputFile
             template<typename... Types>
             static void get_file_information(Derived & derived,Types&... args)
             {
-                // void (Derived::*fn)(Types... args) const = &Accessor_::receiverDoAction_;
-                void (Derived::*fn)(Types&... args) const = &Accessor_::getFileInformation_;
+                void (Derived::*fn)(Types &... args) = &Accessor_::readFileInformation_;
                 (derived.*fn)(args...);
                 return;
             };

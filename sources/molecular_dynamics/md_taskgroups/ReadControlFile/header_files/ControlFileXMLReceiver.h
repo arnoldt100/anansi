@@ -19,6 +19,7 @@
 //--------------------------------------------------------//
 #include <string>
 #include <iostream>
+#include <exception>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -30,7 +31,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
-
+#include "ReceiverError.h"
 #include "ControlFile.h"
 #include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
@@ -178,15 +179,30 @@ void ControlFileXMLReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
+    std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
+
     if (this->masterProcess_.operator()())
     {
-        std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
-
-        // Read the xml formatted control file into a boost property tree.
-        boost::property_tree::ptree pt;
-        const std::string filename = this->controlFileName_();
-        boost::property_tree::read_xml(filename, pt);
-        this->results_.getFileInformation(pt); 
+        try 
+        {
+            boost::property_tree::ptree pt;
+            const std::string filename = this->controlFileName_();
+            boost::property_tree::read_xml(filename, pt);
+            this->results_.getFileInformation(pt); 
+        }
+        catch(const boost::property_tree::xml_parser_error & my_error)
+        {
+            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'boost::property_tree::xml_parser_error'."; 
+            error_message += my_error.what();
+            throw RECEIVER::ReceiverError(error_message);
+        }
+        catch (const std::exception& my_error)
+        {
+            std::cout << my_error.what() << std::endl;
+            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'std::exception'."; 
+            error_message += my_error.what();
+            throw RECEIVER::ReceiverError(error_message);
+        }
     }
 
     return;

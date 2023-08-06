@@ -28,13 +28,13 @@ ControlFileNodeKeys::ControlFileNodeKeys() :
     this->nodeKeys_.push_back("processor-topology.lattice-type");
     this->nodeKeys_.push_back("processor-topology.mpi-spatial-decomposition");
     this->nodeKeys_.push_back("processor-topology.compute-units-per-spatial-domain");
-    this->nodeKeys_.push_back("initial-configuration");
-    this->nodeKeys_.push_back("molecular-topology");
-    this->nodeKeys_.push_back("Hamiltonian");
+    this->nodeKeys_.push_back("initial-configuration.filename");
+    this->nodeKeys_.push_back("molecular-topology.filename");
+    this->nodeKeys_.push_back("Hamiltonian.filename");
     this->nodeKeys_.push_back("time-step.value");
     this->nodeKeys_.push_back("time-step.units");
     this->nodeKeys_.push_back("time-step.number-time-steps");
-    this->nodeKeys_.push_back("integration-methodology");
+    this->nodeKeys_.push_back("integration-methodology.ensemble");
 
 
     return;

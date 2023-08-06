@@ -70,7 +70,7 @@
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # command_line_arguments_header_files.               -
+    # receiver_header_files.                             -
     # A list of header files is stored in                -
     # this variable.                                     -
     #                                                    -
@@ -83,11 +83,12 @@
          header_files/OwnershipTypeRequirements.hpp
          header_files/OwnershipTypes.hpp
          header_files/BaseOwnershipImplementation.h
-         header_files/ReceiverResultTraits.hpp)
+         header_files/ReceiverResultTraits.hpp
+         header_files/Exceptions/ReceiverError.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # command_line_arguments_implementation_files.       -
+    # receiver_implementation_files.                     -
     # A list of implementation files is stored in this   -
     # variable.                                          -
     #                                                    -
@@ -100,18 +101,19 @@
          implementation_files/OwnershipTypeRequirements.cpp
          implementation_files/OwnershipTypes.cpp
          implementation_files/BaseOwnershipImplementation.cpp
-         implementation_files/ReceiverResultTraits.cpp)
+         implementation_files/ReceiverResultTraits.cpp
+         implementation_files/Exceptions/ReceiverError.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
-# with the command_line_arguments targets.                        @
+# with the receiver target.                                       @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #-----------------------------------------------------
 # Add the library associated with target             -
-# command_line_arguments.                            -
+# receiver.                                          -
 #                                                    -
 #-----------------------------------------------------
 add_library( ${target} STATIC 
@@ -133,6 +135,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions
                            PRIVATE ${my_typelist_aliases_include}
                            PRIVATE ${my_tasks_include})
 
