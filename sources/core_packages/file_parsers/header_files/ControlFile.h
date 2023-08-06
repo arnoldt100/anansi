@@ -52,7 +52,7 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
         // ====================  MUTATORS      =======================================
         void setFileName_(const std::string my_file_name);
 
-        void getFileInformation_() const;
+        void getFileInformation_(boost::property_tree::ptree & pt) const;
 
 
         // ====================  DATA MEMBERS  =======================================

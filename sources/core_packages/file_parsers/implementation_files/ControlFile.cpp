@@ -103,9 +103,8 @@ void ControlFile::setFileName_(const std::string my_file_name)
     return;
 }
 
-void ControlFile::getFileInformation_() const
+void ControlFile::getFileInformation_(boost::property_tree::ptree & pt) const
 {
-    
     auto keys = this->nodeKeys_.allKeysIterator();
     for(; keys.first != keys.second; keys.first++)
     {

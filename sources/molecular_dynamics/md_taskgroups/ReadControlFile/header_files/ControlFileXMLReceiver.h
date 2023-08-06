@@ -178,12 +178,17 @@ void ControlFileXMLReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
-    // this->results_.getFileInformation();
     if (this->masterProcess_.operator()())
     {
         std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
-        this->results_.getFileInformation(); 
+
+        // Read the xml formatted control file into a boost property tree.
+        boost::property_tree::ptree pt;
+        const std::string filename = this->controlFileName_();
+        boost::property_tree::read_xml(filename, pt);
+        this->results_.getFileInformation(pt); 
     }
+
     return;
 }
 
