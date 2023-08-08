@@ -2,21 +2,15 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
-#include <utility>
-#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFile.h"
-#include "add_values_to_nodekeys.h"
-#include "verify_controlfile_keys_are_valid.h"
+#include "MasterControlFileNodeKeys.h"
 
 namespace ANANSI {
 
@@ -26,74 +20,80 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlFile::ControlFile() :
-    BaseInputFile<ControlFile>(),
-    fileName_(),
-    nodeKeys_(),
-    pt_()
+MasterControlFileNodeKeys::MasterControlFileNodeKeys() :
+    nodeKeys_()
 {
-    auto keys = this->nodeKeys_.allKeysIterator();
-    for(; keys.first != keys.second; keys.first++)
-    {
-        const auto my_node_key = (keys.first)->c_str();
-        this->pt_.put(my_node_key,"--default-null-value--");
-    }
+    this->nodeKeys_.push_back("title");
+    this->nodeKeys_.push_back("units");
+    this->nodeKeys_.push_back("processor-topology.lattice-type");
+    this->nodeKeys_.push_back("processor-topology.mpi-spatial-decomposition");
+    this->nodeKeys_.push_back("processor-topology.compute-units-per-spatial-domain");
+    this->nodeKeys_.push_back("initial-configuration.filename");
+    this->nodeKeys_.push_back("molecular-topology.filename");
+    this->nodeKeys_.push_back("Hamiltonian.filename");
+    this->nodeKeys_.push_back("time-step.value");
+    this->nodeKeys_.push_back("time-step.units");
+    this->nodeKeys_.push_back("time-step.number-time-steps");
+    this->nodeKeys_.push_back("integration-methodology.ensemble");
+
 
     return;
 }
 
-ControlFile::ControlFile( const ControlFile & other) : 
-    BaseInputFile<ControlFile>(other),
-    fileName_(other.fileName_),
-    nodeKeys_(other.nodeKeys_),
-    pt_(other.pt_)
+MasterControlFileNodeKeys::MasterControlFileNodeKeys( MasterControlFileNodeKeys const & other) :
+    nodeKeys_(other.nodeKeys_)
 {
+    if (this != &other)
+    {
+        
+    }
     return;
-} // -----  end of method ControlFile::ControlFile  -----
+}
 
-ControlFile::ControlFile( ControlFile && other) :
-    BaseInputFile<ControlFile>(std::move(other)),
-    fileName_(std::move(other.fileName_)),
-    nodeKeys_(std::move(other.nodeKeys_)),
-    pt_(std::move(other.pt_))
-
+MasterControlFileNodeKeys::MasterControlFileNodeKeys( MasterControlFileNodeKeys && other) :
+    nodeKeys_(std::move(other.nodeKeys_))
 {
+    if (this != &other)
+    {
+        
+    }
     return;
-} // -----  end of method ControlFile::ControlFile  -----
+}		// -----  end of method MasterControlFileNodeKeys::MasterControlFileNodeKeys  -----
 
 
-ControlFile::~ControlFile()
+MasterControlFileNodeKeys::~MasterControlFileNodeKeys()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
+std::pair<std::vector<std::string>::const_iterator,
+          std::vector<std::string>::const_iterator> MasterControlFileNodeKeys::allKeysIterator() const
+{
+    return std::pair(this->nodeKeys_.begin(),this->nodeKeys_.end());
+}
 
 //============================= MUTATORS =====================================
+void MasterControlFileNodeKeys::add(const std::string keys)
+{
 
+}
 //============================= OPERATORS ====================================
 
-ControlFile& ControlFile::operator= ( const ControlFile & other )
+MasterControlFileNodeKeys& MasterControlFileNodeKeys::operator= ( const MasterControlFileNodeKeys &other )
 {
     if (this != &other)
     {
-        BaseInputFile<ControlFile>::operator=(other);
-        this->fileName_ = other.fileName_;
         this->nodeKeys_ = other.nodeKeys_;
-        this->pt_ = other.pt_;
     }
     return *this;
 } // assignment operator
 
-
-ControlFile& ControlFile::operator= ( ControlFile && other )
+MasterControlFileNodeKeys& MasterControlFileNodeKeys::operator= ( MasterControlFileNodeKeys && other )
 {
     if (this != &other)
     {
-        BaseInputFile<ControlFile>::operator=(std::move(other));
-        this->fileName_ = std::move(other.fileName_);
         this->nodeKeys_ = std::move(other.nodeKeys_);
-        this->pt_ = std::move(other.pt_);
     }
     return *this;
 } // assignment-move operator
@@ -107,39 +107,6 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void ControlFile::setFileName_(const std::string my_file_name)
-{
-    this->fileName_ = ANANSI::ControlFileName(my_file_name);
-    return;
-}
-
-void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
-{
-    // Verify all keys in pt are valid keys.
-    verify_controlfile_keys_are_valid(this->nodeKeys_,pt);
-
-    // Add values to nodeKeys_ property tree.
-    add_values_to_nodekeys(this->nodeKeys_,pt);    
-    
-    // auto keys = this->nodeKeys_.allKeysIterator();
-    // for(; keys.first != keys.second; keys.first++)
-    // {
-    //     const auto node_key = (keys.first)->c_str();
-    //     std::cout << "Node key: " << node_key << std::endl;
-
-    //     boost::property_tree::ptree::const_assoc_iterator it = pt.find(node_key);
-    //     if ( it != pt.not_found()  )
-    //     {
-
-    //     }
-    //     auto v2 = this->pt_.get<std::string>(keys.first->c_str());
-    //     std::cout << "v2: " << v2 << std::endl;
-    //     std::cout << std::endl;
-    //     std::cout << std::endl;
-    //     
-    // }
-    return;
-}
 
 //============================= OPERATORS ====================================
 

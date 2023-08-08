@@ -16,7 +16,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFileNodeKeys.h"
+#include "MasterControlFileNodeKeys.h"
 #include "ControlFileName.h"
 #include "BaseInputFile.h"
 
@@ -64,7 +64,7 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
 
         // ====================  DATA MEMBERS  =======================================
         ControlFileName fileName_;
-        ControlFileNodeKeys nodeKeys_;
+        MasterControlFileNodeKeys nodeKeys_;
         boost::property_tree::ptree pt_;
 
 }; // -----  end of class ControlFile  -----

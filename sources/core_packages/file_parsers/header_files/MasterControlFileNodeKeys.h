@@ -1,10 +1,6 @@
-#ifndef ANANSI_ControlFileNodeKeys_INC
-#define ANANSI_ControlFileNodeKeys_INC
-//! \file ControlFileNodeKeys.h
-//!
-//! \brief Brief description
-//!
-//! Detailed description
+#ifndef ANANSI_MasterControlFileNodeKeys_INC
+#define ANANSI_MasterControlFileNodeKeys_INC
+//! \file MasterControlFileNodeKeys.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -24,22 +20,18 @@
 namespace ANANSI
 {
 
-struct SSS
-{
-};
-
-class ControlFileNodeKeys
+class MasterControlFileNodeKeys
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ControlFileNodeKeys ();   // constructor
+        MasterControlFileNodeKeys ();   // constructor
 
-        ControlFileNodeKeys (const ControlFileNodeKeys & other);   // copy constructor
+        MasterControlFileNodeKeys (const MasterControlFileNodeKeys & other);   // copy constructor
 
-        ControlFileNodeKeys (ControlFileNodeKeys && other);   // copy-move constructor
+        MasterControlFileNodeKeys (MasterControlFileNodeKeys && other);   // copy-move constructor
 
-        ~ControlFileNodeKeys ();  // destructor
+        ~MasterControlFileNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         std::pair<std::vector<std::string>::const_iterator,
@@ -50,9 +42,9 @@ class ControlFileNodeKeys
 
         // ====================  OPERATORS     =======================================
 
-        ControlFileNodeKeys& operator= ( const ControlFileNodeKeys &other ); // assignment operator
+        MasterControlFileNodeKeys& operator= ( const MasterControlFileNodeKeys &other ); // assignment operator
 
-        ControlFileNodeKeys& operator= ( ControlFileNodeKeys && other ); // assignment-move operator
+        MasterControlFileNodeKeys& operator= ( MasterControlFileNodeKeys && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -65,9 +57,9 @@ class ControlFileNodeKeys
         // ====================  DATA MEMBERS  =======================================
         std::vector<std::string> nodeKeys_;
 
-}; // -----  end of class ControlFileNodeKeys  -----
+}; // -----  end of class MasterControlFileNodeKeys  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_ControlFileNodeKeys_INC
+#endif // ANANSI_MasterControlFileNodeKeys_INC

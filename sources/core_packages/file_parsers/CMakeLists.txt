@@ -84,9 +84,10 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileNodeKeys.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlFileNodeKeys.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/verify_controlfile_keys_are_valid.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/add_values_to_nodekeys.h)
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/add_values_to_nodekeys.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ControlFileNodeKeyNotFound.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -102,9 +103,10 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderControlFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StandardFileFactory.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileNodeKeys.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlFileNodeKeys.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/verify_controlfile_keys_are_valid.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/add_values_to_nodekeys.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/add_values_to_nodekeys.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ControlFileNodeKeyNotFound.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -142,6 +144,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions
                            PRIVATE "${Boost_INCLUDE_DIR}")
 
 target_link_libraries(${target}
