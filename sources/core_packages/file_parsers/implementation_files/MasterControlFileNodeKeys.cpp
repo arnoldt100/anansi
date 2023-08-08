@@ -35,8 +35,6 @@ MasterControlFileNodeKeys::MasterControlFileNodeKeys() :
     this->nodeKeys_.push_back("time-step.units");
     this->nodeKeys_.push_back("time-step.number-time-steps");
     this->nodeKeys_.push_back("integration-methodology.ensemble");
-
-
     return;
 }
 

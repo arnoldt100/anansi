@@ -1,5 +1,6 @@
 #ifndef ANANSI_MasterControlFileNodeKeys_INC
 #define ANANSI_MasterControlFileNodeKeys_INC
+
 //! \file MasterControlFileNodeKeys.h
 
 //--------------------------------------------------------//
@@ -19,7 +20,12 @@
 
 namespace ANANSI
 {
-
+//!  Contains the all control file node keys.
+//!
+//! All available keys of the control file are stored in this class. To add
+//! a new key, see the default constructor. If the control file
+//! uses a key that is not is in MasterControlFileNodeKeys, this
+//! class, the program will throw an exception and terminate.
 class MasterControlFileNodeKeys
 {
     public:
@@ -34,6 +40,13 @@ class MasterControlFileNodeKeys
         ~MasterControlFileNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        //! \brief Returns iterators to the begin and end of the master list of 
+        //! control file node keys. 
+        //!
+        //! The first  and second member elements are respectively 
+        //! constant iterators to the beginning and the end of the list.
+        //!
+        //! \return std::pair<std::vector<std::string>::const_iterator, std::vector<std::string>::const_iterator>. 
         std::pair<std::vector<std::string>::const_iterator,
                   std::vector<std::string>::const_iterator> allKeysIterator() const;
 

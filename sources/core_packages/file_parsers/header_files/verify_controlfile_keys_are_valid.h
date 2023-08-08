@@ -27,10 +27,10 @@ namespace ANANSI
 //! key is not found in MasterControlFileNodeKeys, then the error ControlFileNodeKeyNotFound is
 //! thrown.
 //! 
-//! \param[in] master_node_keys Contain the master node keys.
+//! \param[in] master_node_keys Contains the master node keys.
 //! \param[in] pt A property_tree of which the node keys are checked against master_node_keys.
 //!
-//! \throws ControlFileNodeKeyNotFound  
+//! \throws ControlFileNodeKeyNotFound
 void verify_controlfile_keys_are_valid (const MasterControlFileNodeKeys & master_node_keys,
                                         const boost::property_tree::ptree & pt );
 

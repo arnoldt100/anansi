@@ -24,6 +24,7 @@ namespace ANANSI
 //!             to exist in MasterControlFileNodeKeys.
 class ControlFileNodeKeyNotFound : public std::exception
 {
+  public: 
         // ====================  LIFECYCLE     =======================================
 
         ControlFileNodeKeyNotFound ();   // constructor
