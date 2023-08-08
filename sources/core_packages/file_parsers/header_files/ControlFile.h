@@ -59,8 +59,8 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
 
     private:
         // ====================  MUTATORS      =======================================
-
-        // ====================  METHODS       =======================================
+        
+        // ====================  ACCESSORS     =======================================
 
         // ====================  DATA MEMBERS  =======================================
         ControlFileName fileName_;

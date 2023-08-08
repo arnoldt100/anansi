@@ -15,6 +15,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ControlFile.h"
+#include "add_values_to_nodekeys.h"
+#include "verify_controlfile_keys_are_valid.h"
 
 namespace ANANSI {
 
@@ -113,21 +115,29 @@ void ControlFile::setFileName_(const std::string my_file_name)
 
 void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
 {
-    auto keys = this->nodeKeys_.allKeysIterator();
-    for(; keys.first != keys.second; keys.first++)
-    {
-        std::cout << "Node key: " << (keys.first)->c_str() << std::endl;
+    // Verify all keys in pt are valid keys.
+    verify_controlfile_keys_are_valid();
 
-        boost::property_tree::ptree::const_assoc_iterator it = pt.find("pi");
+    // Add values to nodeKeys_ property tree.
+    add_values_to_nodekeys();    
+    
+    // auto keys = this->nodeKeys_.allKeysIterator();
+    // for(; keys.first != keys.second; keys.first++)
+    // {
+    //     const auto node_key = (keys.first)->c_str();
+    //     std::cout << "Node key: " << node_key << std::endl;
 
-        auto v2 = this->pt_.get<std::string>(keys.first->c_str());
-        std::cout << "v2: " << v2 << std::endl;
-        std::cout << std::endl;
-        std::cout << std::endl;
-        
-        // auto v1 = this->pt_.get<std::string>(keys.first->c_str());
-        // std::cout << "v1: " << v1 << std::endl;
-    }
+    //     boost::property_tree::ptree::const_assoc_iterator it = pt.find(node_key);
+    //     if ( it != pt.not_found()  )
+    //     {
+
+    //     }
+    //     auto v2 = this->pt_.get<std::string>(keys.first->c_str());
+    //     std::cout << "v2: " << v2 << std::endl;
+    //     std::cout << std::endl;
+    //     std::cout << std::endl;
+    //     
+    // }
     return;
 }
 
