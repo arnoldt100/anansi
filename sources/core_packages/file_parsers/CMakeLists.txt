@@ -86,7 +86,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlFileNodeKeys.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/verify_controlfile_keys_are_valid.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/add_values_to_nodekeys.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/add_values_to_property_tree.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ControlFileNodeKeyNotFound.h)
 
     #-----------------------------------------------------
@@ -105,7 +105,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/StandardFileFactory.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlFileNodeKeys.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/verify_controlfile_keys_are_valid.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/add_values_to_nodekeys.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/add_values_to_property_tree.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ControlFileNodeKeyNotFound.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
