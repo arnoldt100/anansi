@@ -49,7 +49,7 @@ class BaseInputFile
         {
             //! Read and store the information from input file.
             template<typename... Types>
-            static void get_file_information(Derived & derived,Types&... args)
+            static void read_file_information(Derived & derived,Types&... args)
             {
                 void (Derived::*fn)(Types &... args) = &Accessor_::readFileInformation_;
                 (derived.*fn)(args...);
@@ -59,7 +59,7 @@ class BaseInputFile
             //! Set the file name of the input files.
             static void set_file_name(Derived & derived, const std::string my_file_name)
             {
-                void (Derived::*fn)(const std::string) const = &Accessor_::setFileName_;
+                void (Derived::*fn)(const std::string) = &Accessor_::setFileName_;
                 (derived.*fn)(my_file_name);
                 return;
             };
@@ -105,9 +105,9 @@ class BaseInputFile
         }
 
         template<typename... Types>
-        void getFileInformation(Types&... args)
+        void readFileInformation(Types&... args)
         {
-            Accessor_::get_file_information(this->asDerived_(),args...);
+            Accessor_::read_file_information(this->asDerived_(),args...);
             return;
         }
         /* ====================  OPERATORS     ======================================= */

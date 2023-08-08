@@ -188,7 +188,8 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
             boost::property_tree::ptree pt;
             const std::string filename = this->controlFileName_();
             boost::property_tree::read_xml(filename, pt);
-            this->results_.getFileInformation(pt); 
+
+            this->results_.readFileInformation(pt); 
         }
         catch(const boost::property_tree::xml_parser_error & my_error)
         {

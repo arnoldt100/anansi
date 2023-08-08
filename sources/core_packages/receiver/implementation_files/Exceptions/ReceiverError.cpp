@@ -2,21 +2,17 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
-#include <utility>
-#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFile.h"
+#include "ReceiverError.h"
 
-namespace ANANSI {
+namespace RECEIVER {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -24,74 +20,65 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlFile::ControlFile() :
-    BaseInputFile<ControlFile>(),
-    fileName_(),
-    nodeKeys_(),
-    pt_()
+ReceiverError::ReceiverError()
 {
-    auto keys = this->nodeKeys_.allKeysIterator();
-    for(; keys.first != keys.second; keys.first++)
-    {
-        const auto my_node_key = (keys.first)->c_str();
-        this->pt_.put(my_node_key,"--default-null-value--");
-    }
-
     return;
 }
 
-ControlFile::ControlFile( const ControlFile & other) : 
-    BaseInputFile<ControlFile>(other),
-    fileName_(other.fileName_),
-    nodeKeys_(other.nodeKeys_),
-    pt_(other.pt_)
+ReceiverError::ReceiverError( const std::string error_message)
 {
+    this->errorMessage_ = error_message;
     return;
-} // -----  end of method ControlFile::ControlFile  -----
+}
 
-ControlFile::ControlFile( ControlFile && other) :
-    BaseInputFile<ControlFile>(std::move(other)),
-    fileName_(std::move(other.fileName_)),
-    nodeKeys_(std::move(other.nodeKeys_)),
-    pt_(std::move(other.pt_))
-
+ReceiverError::ReceiverError( ReceiverError const & other)
 {
+    if (this != &other)
+    {
+        
+    }
     return;
-} // -----  end of method ControlFile::ControlFile  -----
+}
+
+ReceiverError::ReceiverError( ReceiverError && other)
+{
+    if (this != &other)
+    {
+        
+    }
+    return;
+}		// -----  end of method ReceiverError::ReceiverError  -----
 
 
-ControlFile::~ControlFile()
+ReceiverError::~ReceiverError()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
+const char* ReceiverError::what()
+{
+    return this->errorMessage_.c_str();
+}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-ControlFile& ControlFile::operator= ( const ControlFile & other )
+ReceiverError& ReceiverError::operator= ( const ReceiverError &other )
 {
     if (this != &other)
     {
-        BaseInputFile<ControlFile>::operator=(other);
-        this->fileName_ = other.fileName_;
-        this->nodeKeys_ = other.nodeKeys_;
-        this->pt_ = other.pt_;
+
     }
     return *this;
 } // assignment operator
 
-
-ControlFile& ControlFile::operator= ( ControlFile && other )
+ReceiverError& ReceiverError::operator= ( ReceiverError && other )
 {
     if (this != &other)
     {
-        BaseInputFile<ControlFile>::operator=(std::move(other));
-        this->fileName_ = std::move(other.fileName_);
-        this->nodeKeys_ = std::move(other.nodeKeys_);
-        this->pt_ = std::move(other.pt_);
+
     }
     return *this;
 } // assignment-move operator
@@ -105,31 +92,6 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void ControlFile::setFileName_(const std::string my_file_name)
-{
-    this->fileName_ = ANANSI::ControlFileName(my_file_name);
-    return;
-}
-
-void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
-{
-    auto keys = this->nodeKeys_.allKeysIterator();
-    for(; keys.first != keys.second; keys.first++)
-    {
-        std::cout << "Node key: " << (keys.first)->c_str() << std::endl;
-
-        boost::property_tree::ptree::const_assoc_iterator it = pt.find("pi");
-
-        auto v2 = this->pt_.get<std::string>(keys.first->c_str());
-        std::cout << "v2: " << v2 << std::endl;
-        std::cout << std::endl;
-        std::cout << std::endl;
-        
-        // auto v1 = this->pt_.get<std::string>(keys.first->c_str());
-        // std::cout << "v1: " << v1 << std::endl;
-    }
-    return;
-}
 
 //============================= OPERATORS ====================================
 
@@ -146,4 +108,4 @@ void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+} // namespace RECEIVER
