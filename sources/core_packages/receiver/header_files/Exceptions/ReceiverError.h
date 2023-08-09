@@ -35,7 +35,7 @@ class ReceiverError : public std::exception
         virtual ~ReceiverError ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        const char* what();
+        const char* what() const noexcept;
 
         // ====================  MUTATORS      =======================================
 

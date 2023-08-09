@@ -56,7 +56,7 @@ ReceiverError::~ReceiverError()
 }
 
 //============================= ACCESSORS ====================================
-const char* ReceiverError::what()
+const char* ReceiverError::what() const noexcept
 {
     return this->errorMessage_.c_str();
 }

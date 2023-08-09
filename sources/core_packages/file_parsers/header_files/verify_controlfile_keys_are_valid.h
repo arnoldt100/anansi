@@ -34,6 +34,8 @@ namespace ANANSI
 void verify_controlfile_keys_are_valid (const MasterControlFileNodeKeys & master_node_keys,
                                         const boost::property_tree::ptree & pt );
 
+void parse_tree(const MasterControlFileNodeKeys & master_node_keys,const boost::property_tree::ptree & pt, std::string key);
+
 }; // namespace ANANSI
 
 #endif // ANANSI_verify_controlfile_keys_are_valid_INC

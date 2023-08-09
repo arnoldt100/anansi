@@ -121,23 +121,6 @@ void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
     // Add values to masterNodeKeys_ property tree.
     add_values_to_property_tree(this->masterNodeKeys_,pt);    
     
-    // auto keys = this->masterNodeKeys_.allKeysIterator();
-    // for(; keys.first != keys.second; keys.first++)
-    // {
-    //     const auto node_key = (keys.first)->c_str();
-    //     std::cout << "Node key: " << node_key << std::endl;
-
-    //     boost::property_tree::ptree::const_assoc_iterator it = pt.find(node_key);
-    //     if ( it != pt.not_found()  )
-    //     {
-
-    //     }
-    //     auto v2 = this->pt_.get<std::string>(keys.first->c_str());
-    //     std::cout << "v2: " << v2 << std::endl;
-    //     std::cout << std::endl;
-    //     std::cout << std::endl;
-    //     
-    // }
     return;
 }
 

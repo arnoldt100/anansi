@@ -193,8 +193,13 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
         }
         catch(const boost::property_tree::xml_parser_error & my_error)
         {
-            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'boost::property_tree::xml_parser_error'."; 
-            error_message += my_error.what();
+            std::cout << my_error.what();
+
+            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'boost::property_tree::xml_parser_error'.\n"; 
+            error_message += "The boost::property_tree::xml_parser errored during reading the XML formatted control file.\n";
+            error_message += "Some typical causes are the following:\n";
+            error_message += "(1) Check every <tag> has a matching <\\tag>.\n" ;
+            error_message += "(2) Check all comments are properly enclosed <!--  A dummy comment.   -->\n" ;
             throw RECEIVER::ReceiverError(error_message);
         }
         catch (const std::exception& my_error)

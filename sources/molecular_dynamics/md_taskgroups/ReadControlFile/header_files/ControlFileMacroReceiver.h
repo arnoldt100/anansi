@@ -6,6 +6,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <boost/test/unit_test_parameters.hpp>
 #include <map>
 #include <iostream>
 
@@ -174,15 +175,27 @@ void ControlFileMacroReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
-    // The first step is to execute the task of reading the control file.
-    auto task_label_1 = ControlFileXMLReceiver::TASKLABEL;
-    std::vector<std::string> flags;
-    this->compenentTasks_.at(task_label_1)->doAction(flags);
+    try {
+        // The first step is to execute the task of reading the control file.
+        auto task_label_1 = ControlFileXMLReceiver::TASKLABEL;
+        std::vector<std::string> flags;
+        this->compenentTasks_.at(task_label_1)->doAction(flags);
 
-    // The second step is to communicate the control file to the
-    // other processes in the communicator group.
-    auto task_label_2 = ControlFileXMLMPICommReceiver::TASKLABEL;
-    this->compenentTasks_.at(task_label_2)->doAction(flags);
+        // The second step is to communicate the control file to the
+        // other processes in the communicator group.
+        auto task_label_2 = ControlFileXMLMPICommReceiver::TASKLABEL;
+        this->compenentTasks_.at(task_label_2)->doAction(flags);
+    } 
+    catch ( const RECEIVER::ReceiverError & my_error)
+    {
+        std::cout << my_error.what() << std::endl;
+        // Send signal to abort program.
+    }
+    catch (const std::exception& my_error) 
+    {
+        std::cout << my_error.what() << std::endl;
+        // Send signal to abort program.
+    }
     return;
 }
 
