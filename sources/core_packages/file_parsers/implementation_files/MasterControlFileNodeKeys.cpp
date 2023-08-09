@@ -2,6 +2,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <algorithm>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -71,11 +72,24 @@ std::pair<std::vector<std::string>::const_iterator,
     return std::pair(this->nodeKeys_.begin(),this->nodeKeys_.end());
 }
 
+bool MasterControlFileNodeKeys::find(const std::string key) const
+{
+    bool key_found = true;
+    auto it = std::find (this->nodeKeys_.begin(), this->nodeKeys_.end(), key);
+    if ( it == this->nodeKeys_.end() )
+    {
+        key_found = false;
+    }
+    return key_found;
+}
+
+
 //============================= MUTATORS =====================================
 void MasterControlFileNodeKeys::add(const std::string keys)
 {
-
+    this->nodeKeys_.push_back(keys.c_str());
 }
+
 //============================= OPERATORS ====================================
 
 MasterControlFileNodeKeys& MasterControlFileNodeKeys::operator= ( const MasterControlFileNodeKeys &other )

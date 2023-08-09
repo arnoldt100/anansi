@@ -50,6 +50,8 @@ class MasterControlFileNodeKeys
         std::pair<std::vector<std::string>::const_iterator,
                   std::vector<std::string>::const_iterator> allKeysIterator() const;
 
+        bool find(const std::string key) const;
+
         // ====================  MUTATORS      =======================================
         void add(const std::string key);
 

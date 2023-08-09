@@ -1,7 +1,7 @@
-#ifndef ANANSI_add_values_to_nodekeys_INC
-#define ANANSI_add_values_to_nodekeys_INC
+#ifndef ANANSI_add_values_to_property_tree_INC
+#define ANANSI_add_values_to_property_tree_INC
 
-//! \file add_values_to_nodekeys.h
+//! \file add_values_to_property_tree.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -21,9 +21,9 @@ namespace ANANSI
 {
 
 //! \brief Stud text for brief description
-void add_values_to_nodekeys (const MasterControlFileNodeKeys & node_keys,
-                             const boost::property_tree::ptree & pt );
+void add_values_to_property_tree (const MasterControlFileNodeKeys & node_keys,
+                                  const boost::property_tree::ptree & pt );
 
 }; // namespace ANANSI
 
-#endif // ANANSI_add_values_to_nodekeys_INC
+#endif // ANANSI_add_values_to_property_tree_INC

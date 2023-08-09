@@ -15,7 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ControlFile.h"
-#include "add_values_to_nodekeys.h"
+#include "add_values_to_property_tree.h"
 #include "verify_controlfile_keys_are_valid.h"
 
 namespace ANANSI {
@@ -29,10 +29,10 @@ namespace ANANSI {
 ControlFile::ControlFile() :
     BaseInputFile<ControlFile>(),
     fileName_(),
-    nodeKeys_(),
+    masterNodeKeys_(),
     pt_()
 {
-    auto keys = this->nodeKeys_.allKeysIterator();
+    auto keys = this->masterNodeKeys_.allKeysIterator();
     for(; keys.first != keys.second; keys.first++)
     {
         const auto my_node_key = (keys.first)->c_str();
@@ -45,7 +45,7 @@ ControlFile::ControlFile() :
 ControlFile::ControlFile( const ControlFile & other) : 
     BaseInputFile<ControlFile>(other),
     fileName_(other.fileName_),
-    nodeKeys_(other.nodeKeys_),
+    masterNodeKeys_(other.masterNodeKeys_),
     pt_(other.pt_)
 {
     return;
@@ -54,7 +54,7 @@ ControlFile::ControlFile( const ControlFile & other) :
 ControlFile::ControlFile( ControlFile && other) :
     BaseInputFile<ControlFile>(std::move(other)),
     fileName_(std::move(other.fileName_)),
-    nodeKeys_(std::move(other.nodeKeys_)),
+    masterNodeKeys_(std::move(other.masterNodeKeys_)),
     pt_(std::move(other.pt_))
 
 {
@@ -79,7 +79,7 @@ ControlFile& ControlFile::operator= ( const ControlFile & other )
     {
         BaseInputFile<ControlFile>::operator=(other);
         this->fileName_ = other.fileName_;
-        this->nodeKeys_ = other.nodeKeys_;
+        this->masterNodeKeys_ = other.masterNodeKeys_;
         this->pt_ = other.pt_;
     }
     return *this;
@@ -92,7 +92,7 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
     {
         BaseInputFile<ControlFile>::operator=(std::move(other));
         this->fileName_ = std::move(other.fileName_);
-        this->nodeKeys_ = std::move(other.nodeKeys_);
+        this->masterNodeKeys_ = std::move(other.masterNodeKeys_);
         this->pt_ = std::move(other.pt_);
     }
     return *this;
@@ -116,12 +116,12 @@ void ControlFile::setFileName_(const std::string my_file_name)
 void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
 {
     // Verify all keys in pt are valid keys.
-    verify_controlfile_keys_are_valid(this->nodeKeys_,pt);
+    verify_controlfile_keys_are_valid(this->masterNodeKeys_,pt);
 
-    // Add values to nodeKeys_ property tree.
-    add_values_to_nodekeys(this->nodeKeys_,pt);    
+    // Add values to masterNodeKeys_ property tree.
+    add_values_to_property_tree(this->masterNodeKeys_,pt);    
     
-    // auto keys = this->nodeKeys_.allKeysIterator();
+    // auto keys = this->masterNodeKeys_.allKeysIterator();
     // for(; keys.first != keys.second; keys.first++)
     // {
     //     const auto node_key = (keys.first)->c_str();

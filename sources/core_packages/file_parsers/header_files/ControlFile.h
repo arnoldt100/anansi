@@ -64,7 +64,7 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
 
         // ====================  DATA MEMBERS  =======================================
         ControlFileName fileName_;
-        MasterControlFileNodeKeys nodeKeys_;
+        MasterControlFileNodeKeys masterNodeKeys_;
         boost::property_tree::ptree pt_;
 
 }; // -----  end of class ControlFile  -----
