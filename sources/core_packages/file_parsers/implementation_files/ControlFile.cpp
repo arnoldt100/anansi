@@ -119,7 +119,7 @@ void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
     verify_controlfile_keys_are_valid(this->masterNodeKeys_,pt);
 
     // Add values to masterNodeKeys_ property tree.
-    add_values_to_property_tree(this->masterNodeKeys_,pt);    
+    add_values_to_property_tree(this->masterNodeKeys_,pt,this->pt_);    
     
     return;
 }
