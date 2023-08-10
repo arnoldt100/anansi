@@ -118,7 +118,7 @@ void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
     // Verify all keys in pt are valid keys.
     verify_controlfile_keys_are_valid(this->masterNodeKeys_,pt);
 
-    // Add values to masterNodeKeys_ property tree.
+    // Fill in this->pt_ from pt. The pt values come from the control file on disk.
     add_values_to_property_tree(this->masterNodeKeys_,pt,this->pt_);    
     
     return;
