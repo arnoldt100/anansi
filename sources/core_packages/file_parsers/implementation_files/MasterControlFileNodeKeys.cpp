@@ -24,19 +24,25 @@ namespace ANANSI {
 MasterControlFileNodeKeys::MasterControlFileNodeKeys() :
     nodeKeys_()
 {
-    this->nodeKeys_.push_back("title");
-    this->nodeKeys_.push_back("units");
-    this->nodeKeys_.push_back("processor-topology.lattice-type");
-    this->nodeKeys_.push_back("processor-topology.mpi-spatial-decomposition");
-    this->nodeKeys_.push_back("processor-topology.compute-units-per-spatial-domain");
-    this->nodeKeys_.push_back("initial-configuration.filename");
-    this->nodeKeys_.push_back("molecular-topology.filename");
-    this->nodeKeys_.push_back("Hamiltonian.filename");
-    this->nodeKeys_.push_back("time-step.value");
-    this->nodeKeys_.push_back("time-step.units");
-    this->nodeKeys_.push_back("time-step.number-time-steps");
-    this->nodeKeys_.push_back("integration-methodology.ensemble");
-    return;
+  // This the node key value boost::property_tree::ptree uses for an xml
+  // comment. 
+  this->addTag(std::string("<xmlcomment>"));
+
+  // These are the tags for the control file. To and n new tag
+  // one simply appends the text tag string to nodekeys_.
+  this->addTag(std::string("title"));
+  this->addTag(std::string("units"));
+  this->addTag(std::string("processor-topology.lattice-type"));
+  this->addTag(std::string("processor-topology.mpi-spatial-decomposition"));
+  this->addTag(std::string("processor-topology.compute-units-per-spatial-domain"));
+  this->addTag(std::string("initial-configuration.filename"));
+  this->addTag(std::string("molecular-topology.filename"));
+  this->addTag(std::string("Hamiltonian.filename"));
+  this->addTag(std::string("time-step.value"));
+  this->addTag(std::string("time-step.units"));
+  this->addTag(std::string("time-step.number-time-steps"));
+  this->addTag(std::string("integration-methodology.ensemble"));
+  return;
 }
 
 MasterControlFileNodeKeys::MasterControlFileNodeKeys( MasterControlFileNodeKeys const & other) :
@@ -85,7 +91,7 @@ bool MasterControlFileNodeKeys::find(const std::string key) const
 
 
 //============================= MUTATORS =====================================
-void MasterControlFileNodeKeys::add(const std::string keys)
+void MasterControlFileNodeKeys::addTag(const std::string keys)
 {
     this->nodeKeys_.push_back(keys.c_str());
 }

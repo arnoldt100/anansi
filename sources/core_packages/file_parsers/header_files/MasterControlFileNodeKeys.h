@@ -53,7 +53,7 @@ class MasterControlFileNodeKeys
         bool find(const std::string key) const;
 
         // ====================  MUTATORS      =======================================
-        void add(const std::string key);
+        void addTag(const std::string key);
 
         // ====================  OPERATORS     =======================================
 

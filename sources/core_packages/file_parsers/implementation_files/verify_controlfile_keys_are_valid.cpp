@@ -29,10 +29,6 @@ void verify_controlfile_keys_are_valid (const MasterControlFileNodeKeys & master
     for(auto it = pt.begin(); it != pt.end(); ++it)
     {
         parse_tree(master_node_keys,it->second,it->first);
-        // if ( it == pt.not_found() )
-        // {
-        //     throw ControlFileNodeKeyNotFound(); 
-        // }
     }
 
     return;
@@ -44,14 +40,24 @@ void parse_tree (const MasterControlFileNodeKeys & master_node_keys, const boost
 
     if (!key.empty())
     {
-      // The full-key/value pair for this node is
-      // key / pt.data()
-      // So do with it what you need
-      std::cout << "pt node: " << key.c_str() << std::endl;
-      std::cout << "Number of direct child nodes: " << pt.size() << std::endl;
-      std::cout << "pt value: " << pt.data() << std::endl;
-      std::cout << std::endl;
-      nextkey = key + ".";  // More work is involved if you use a different path separator
+        // The full-key/value pair for this node is
+        // key / pt.data()
+        // So do with it what you need
+        // Only check for a valid tag if the number of direct child
+        // nodes are 0.
+        if ( pt.size() == 0)
+        {
+            if (! master_node_keys.find(key))
+            {
+                std::string   error_message("The following node key in the internal boost::property_tree::ptree representation of the contol file\n");
+                error_message += std::string("is not valid: ");
+                error_message += key;
+                error_message += std::string("\n");
+                error_message += std::string("Please check the corresponding section of the control file for valid tags.\n");
+                throw ControlFileNodeKeyNotFound(error_message);
+            }
+        }
+        nextkey = key + ".";  // More work is involved if you use a different path separator
     }
 
     boost::property_tree::ptree::const_iterator end = pt.end();

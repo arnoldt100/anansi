@@ -56,7 +56,7 @@ ControlFileNodeKeyNotFound::~ControlFileNodeKeyNotFound()
 }
 
 //============================= ACCESSORS ====================================
-const char* ControlFileNodeKeyNotFound::what()
+const char* ControlFileNodeKeyNotFound::what() const noexcept
 {
     return this->errorMessage_.c_str();
 }

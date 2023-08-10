@@ -38,7 +38,7 @@ class ControlFileNodeKeyNotFound : public std::exception
         virtual ~ControlFileNodeKeyNotFound ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        const char* what();
+        const char* what() const noexcept;
 
         // ====================  MUTATORS      =======================================
 

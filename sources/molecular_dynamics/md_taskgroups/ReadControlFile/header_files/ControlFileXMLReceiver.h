@@ -32,6 +32,7 @@
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
 #include "ReceiverError.h"
+#include "ControlFileNodeKeyNotFound.h"
 #include "ControlFile.h"
 #include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
@@ -193,8 +194,6 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
         }
         catch(const boost::property_tree::xml_parser_error & my_error)
         {
-            std::cout << my_error.what();
-
             std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'boost::property_tree::xml_parser_error'.\n"; 
             error_message += "The boost::property_tree::xml_parser errored during reading the XML formatted control file.\n";
             error_message += "Some typical causes are the following:\n";
@@ -202,11 +201,17 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
             error_message += "(2) Check all comments are properly enclosed <!--  A dummy comment.   -->\n" ;
             throw RECEIVER::ReceiverError(error_message);
         }
+        catch (const ControlFileNodeKeyNotFound & my_error)
+        {
+            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'ControlFileNodeKeyNotFound'.\n"; 
+            error_message += std::string(my_error.what());
+            throw RECEIVER::ReceiverError(error_message);
+
+        }
         catch (const std::exception& my_error)
         {
-            std::cout << my_error.what() << std::endl;
-            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'std::exception'."; 
-            error_message += my_error.what();
+            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'std::exception'.\n"; 
+            error_message += std::string(my_error.what());
             throw RECEIVER::ReceiverError(error_message);
         }
     }
