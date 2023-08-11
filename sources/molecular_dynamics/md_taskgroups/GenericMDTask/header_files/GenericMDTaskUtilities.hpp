@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,12 +14,14 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "AnansiTask.h"
+#include "GenericMDTask.hpp"
 
 namespace ANANSI
 {
 
-template <class RootTaskClass,
-          class Receiver>
+template <class Receiver,
+          class RootTask=ANANSI::AnansiTask>
 class GenericMDTaskUtilities
 {
     public:
@@ -49,6 +52,16 @@ class GenericMDTaskUtilities
 
         ~GenericMDTaskUtilities () // destructor
         {
+            return;
+        }
+
+        // ====================  STATIC        =======================================
+        static void convertToConcreteGenericmdtask(std::shared_ptr<RootTask> task)
+        {
+            // We do a dynamic down cast to std::shared_ptr<GenericMDTask<Receiver>>
+            using derived = GenericMDTask<Receiver>;
+            auto ptr = std::dynamic_pointer_cast<derived>(task);
+            auto results = ptr->getCopyOfResults();
             return;
         }
 
