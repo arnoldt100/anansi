@@ -54,9 +54,9 @@ class ReadControlFileTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>,
-                                                       GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>,
-                                                       GenericMDTask<ControlFileMacroReceiver::MyParentTask,ControlFileMacroReceiver>
+                                                       GenericMDTask<ControlFileXMLReceiver>,
+                                                       GenericMDTask<ControlFileXMLMPICommReceiver>,
+                                                       GenericMDTask<ControlFileMacroReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist<

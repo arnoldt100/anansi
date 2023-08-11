@@ -34,7 +34,7 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
 
     // ---------------------------------------------------
     // Get the task label for the task
-    // GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>
+    // GenericMDTask<ControlFileXMLReceiver>
     //
     // ---------------------------------------------------
     auto constexpr task_label = concrete_receiver_t::TASKLABEL;
@@ -50,7 +50,7 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
 
     // ---------------------------------------------------
     // Create the receiver of concrete task 
-    // GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver> 
+    // GenericMDTask<ControlFileXMLReceiver>
     //
     // ---------------------------------------------------
     auto control_file_xml_receiver = 

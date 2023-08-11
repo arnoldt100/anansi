@@ -66,8 +66,8 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         // Place here the concrete commponent receivers required for receiver to 
         // do its work.
         using MyComponentReceiverTypelist = 
-            MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>,
-                              GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>>;
+            MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver>,
+                              GenericMDTask<ControlFileXMLMPICommReceiver>>;
 
 
         template<RECEIVER::OwnershipTypes Q>

@@ -60,8 +60,7 @@ class WriteTextToConsoleTaskTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                    GenericMDTask<WriteTextToConsoleTaskReceiver::MyParentTask,
-                                                                  WriteTextToConsoleTaskReceiver>
+                                                    GenericMDTask<WriteTextToConsoleTaskReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist <

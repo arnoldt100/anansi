@@ -55,7 +55,7 @@ class ConcreteTaskTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                        GenericMDTask<AbstractTask,ConcreteTaskReceiver>
+                                                        GenericMDTask<ConcreteTaskReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist<

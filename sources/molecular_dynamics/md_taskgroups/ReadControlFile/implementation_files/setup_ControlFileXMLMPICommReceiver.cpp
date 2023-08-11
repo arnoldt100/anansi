@@ -31,7 +31,7 @@ void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInv
 
     // ---------------------------------------------------
     // Get the task label for the task
-    // GenericMDTask<ControlFile,ControlFileXMLMPICommReceiver>
+    // GenericMDTask<ControlFileXMLMPICommReceiver>
     //
     // ---------------------------------------------------
     auto constexpr task_label = concrete_receiver_t::TASKLABEL;
@@ -47,7 +47,7 @@ void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInv
 
     // ---------------------------------------------------
     // Create the receiver of concrete task 
-    // GenericMDTask<ControlFile,ControlFileXMLReceiver> 
+    // GenericMDTask<ControlFileXMLReceiver>
     // ---------------------------------------------------
     auto control_file_xmlmpi_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();

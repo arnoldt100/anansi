@@ -59,8 +59,7 @@ class InitMPIEnvTaskTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<InitMPIEnvTaskReceiver::MyParentTask,
-                                                                     InitMPIEnvTaskReceiver>
+                                                       GenericMDTask<InitMPIEnvTaskReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist<

@@ -34,7 +34,7 @@ void setup_InitWorldCommunicatorTaskReceiver (std::shared_ptr<ANANSI::GenericTas
 
     // ---------------------------------------------------
     // Get the task label for the concrete task
-    // GenericMDTask<ANANSI::InitMPIEnvTaskReceiver::MyParentTask,InitMPIEnvTaskReceiver>
+    // GenericMDTask<InitMPIEnvTaskReceiver>
     //
     // ---------------------------------------------------
     auto constexpr task_label = concrete_receiver_t::TASKLABEL;
@@ -50,7 +50,7 @@ void setup_InitWorldCommunicatorTaskReceiver (std::shared_ptr<ANANSI::GenericTas
 
     // ---------------------------------------------------
     // Create the receiver for the concrete task 
-    // GenericMDTask<CommunicatorTask,InitWorldCommunicatorTaskReceiver> 
+    // GenericMDTask<InitWorldCommunicatorTaskReceiver>
     //
     // ---------------------------------------------------
     auto my_receiver =

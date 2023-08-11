@@ -30,13 +30,11 @@ namespace ANANSI
 
 //! This template class is the blueprint for all concrete tasks.
 //!
-//! @tparam BaseClass The base class for the concrete task
 //! @tparam Receiver The type of the concrete task receiver.
 //! @tparam FunctorImpl Not presently used. Reserved for future use.
-template <class BaseClass,
-          class Receiver,
+template <class Receiver,
           class FunctorImpl = DefaultFunctorImpl> requires RECEIVER::ConcreteReceiverConstraints<Receiver>
-class GenericMDTask : public BaseClass  
+class GenericMDTask : public Receiver::MyParentTask  
 {
 
     public:

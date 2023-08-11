@@ -61,8 +61,7 @@ class InitWorldCommunicatorTaskTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<InitWorldCommunicatorTaskReceiver::MyParentTask,
-                                                                     InitWorldCommunicatorTaskReceiver>
+                                                       GenericMDTask<InitWorldCommunicatorTaskReceiver>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist <
