@@ -23,9 +23,16 @@ void add_values_to_property_tree (const MasterControlFileNodeKeys & master_node_
     for (auto it = it_keys.first; it != it_keys.second; ++it)
     {
         const std::string key(*it);
-        // Check if the key is in source_pt. If the key get value and put 
+
+        // Check if this is a comment tag. If a comment tag then ignore
+        if ( master_node_keys.isCommentTag(key))
+        {
+           continue; 
+        }
+
+        // Check if the key is in source_pt. If the key get value and put
         // to dest_pt.
-        if ( source_pt.find(key) == source_pt.not_found() )
+        if ( source_pt.find(key) != source_pt.not_found() )
         {
             const auto data = source_pt.get<std::string>(key.c_str());
             dest_pt.put(key.c_str(), data);

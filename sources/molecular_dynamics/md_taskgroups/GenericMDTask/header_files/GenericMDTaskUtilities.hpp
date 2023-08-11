@@ -17,18 +17,40 @@
 namespace ANANSI
 {
 
+template <class RootTaskClass,
+          class Receiver>
 class GenericMDTaskUtilities
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        GenericMDTaskUtilities ();   // constructor
+        GenericMDTaskUtilities ()   // constructor
+        {
+            return;
+        }
 
-        GenericMDTaskUtilities (const GenericMDTaskUtilities & other);   // copy constructor
+        GenericMDTaskUtilities (const GenericMDTaskUtilities & other)   // copy constructor
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }
 
-        GenericMDTaskUtilities (GenericMDTaskUtilities && other);   // copy-move constructor
+        GenericMDTaskUtilities (GenericMDTaskUtilities && other)   // copy-move constructor
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }		// -----  end of method GenericMDTaskUtilities::GenericMDTaskUtilities  -----
 
-        virtual ~GenericMDTaskUtilities ();  // destructor
+        ~GenericMDTaskUtilities () // destructor
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
 
@@ -36,9 +58,23 @@ class GenericMDTaskUtilities
 
         // ====================  OPERATORS     =======================================
 
-        GenericMDTaskUtilities& operator= ( const GenericMDTaskUtilities &other ); // assignment operator
+        GenericMDTaskUtilities& operator= ( const GenericMDTaskUtilities &other ) // assignment operator
+        {
+            if (this != &other)
+            {
+        
+            }
+            return *this;
+        } // assignment operator
 
-        GenericMDTaskUtilities& operator= ( GenericMDTaskUtilities && other ); // assignment-move operator
+        GenericMDTaskUtilities& operator= ( GenericMDTaskUtilities && other ) // assignment-move operator
+        {
+            if (this != &other)
+            {
+        
+            }
+            return *this;
+        } // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================

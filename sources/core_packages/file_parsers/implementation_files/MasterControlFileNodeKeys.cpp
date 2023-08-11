@@ -22,11 +22,13 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 MasterControlFileNodeKeys::MasterControlFileNodeKeys() :
-    nodeKeys_()
+    nodeKeys_(),
+    commentNodeKeys_()
 {
-  // This the node key value boost::property_tree::ptree uses for an xml
+  // The node key value boost::property_tree::ptree uses for an xml
   // comment. 
   this->addTag(std::string("<xmlcomment>"));
+  this->addCommentTag(std::string("<xmlcomment>"));
 
   // These are the tags for the control file. To and n new tag
   // one simply appends the text tag string to nodekeys_.
@@ -89,11 +91,26 @@ bool MasterControlFileNodeKeys::find(const std::string key) const
     return key_found;
 }
 
+bool MasterControlFileNodeKeys::isCommentTag(const std::string key) const
+{
+    bool key_is_comment = true;
+    auto it = std::find (this->commentNodeKeys_.begin(), this->commentNodeKeys_.end(), key);
+    if ( it == this->commentNodeKeys_.end() )
+    {
+        key_is_comment = false;
+    }
+    return key_is_comment;
+}
 
 //============================= MUTATORS =====================================
 void MasterControlFileNodeKeys::addTag(const std::string keys)
 {
     this->nodeKeys_.push_back(keys.c_str());
+}
+
+void MasterControlFileNodeKeys::addCommentTag(const std::string keys)
+{
+    this->commentNodeKeys_.push_back(keys.c_str());
 }
 
 //============================= OPERATORS ====================================

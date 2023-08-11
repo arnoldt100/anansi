@@ -52,8 +52,12 @@ class MasterControlFileNodeKeys
 
         bool find(const std::string key) const;
 
+        bool isCommentTag(const std::string key) const;
+
         // ====================  MUTATORS      =======================================
         void addTag(const std::string key);
+
+        void addCommentTag(const std::string key);
 
         // ====================  OPERATORS     =======================================
 
@@ -71,6 +75,7 @@ class MasterControlFileNodeKeys
 
         // ====================  DATA MEMBERS  =======================================
         std::vector<std::string> nodeKeys_;
+        std::vector<std::string> commentNodeKeys_;
 
 }; // -----  end of class MasterControlFileNodeKeys  -----
 

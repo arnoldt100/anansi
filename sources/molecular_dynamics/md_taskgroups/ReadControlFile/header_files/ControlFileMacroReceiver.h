@@ -175,14 +175,25 @@ void ControlFileMacroReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
+    // (1) The first step is to execute the task of reading the control file via ControlFileXMLReceiver.
+    //     Only the master process reads the control file. As the number of processes increases, one doesn't 
+    //     want all processes reading the same file.
+    // (2) Get the results of the ControlFileXMLReceiver and copy to ControlFileXMLMPICommReceiver 
+    // (3) ControlFileXMLMPICommReceiver communicates control file to other processes.
+    // (4) Get the results of the ControlFileXMLMPICommReceiver and copy to ControlFileXMLReceiver
+
     try {
-        // The first step is to execute the task of reading the control file.
+        // (1) The first step is to execute the task of reading the control file via ControlFileXMLReceiver. 
         auto task_label_1 = ControlFileXMLReceiver::TASKLABEL;
         std::vector<std::string> flags;
         this->compenentTasks_.at(task_label_1)->doAction(flags);
 
-        // The second step is to communicate the control file to the
-        // other processes in the communicator group.
+        // (2) Get the results of the ControlFileXMLReceiver and copy to ControlFileXMLMPICommReceiver 
+
+        // (3) ControlFileXMLMPICommReceiver to communicate control file to other processies.
+    
+        // (4) Get the results of the ControlFileXMLMPICommReceiver and copy to ControlFileXMLReceiver
+
         auto task_label_2 = ControlFileXMLMPICommReceiver::TASKLABEL;
         this->compenentTasks_.at(task_label_2)->doAction(flags);
     } 

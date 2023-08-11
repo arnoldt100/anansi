@@ -33,7 +33,7 @@ void setup_InitMPIEnvTaskReceiver(std::shared_ptr<ANANSI::GenericTaskInvoker<Ini
 
     // ---------------------------------------------------
     // Get the task label for the concrete task
-    // GenericMDTask<ANANSI::InitMPIEnvTaskReceiver::MyParentTask,InitMPIEnvTaskReceiver>
+    // GenericMDTask<InitMPIEnvTaskReceiver>
     //
     // ---------------------------------------------------
     auto constexpr task_label = concrete_receiver_t::TASKLABEL;
@@ -49,7 +49,7 @@ void setup_InitMPIEnvTaskReceiver(std::shared_ptr<ANANSI::GenericTaskInvoker<Ini
 
     // ---------------------------------------------------
     // Create the receiver for the concrete task 
-    // GenericMDTask<InterProcessCommEnv,InitMPIEnvTaskReceiver> 
+    // GenericMDTask<InitMPIEnvTaskReceiver> 
     // ---------------------------------------------------
     auto my_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
