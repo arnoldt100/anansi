@@ -49,9 +49,9 @@ class BaseInputFile
         {
             //! Read and store the information from input file.
             template<typename... Types>
-            static void read_file_information(Derived & derived,Types&... args)
+            static void read_property_tree(Derived & derived,Types&... args)
             {
-                void (Derived::*fn)(Types &... args) = &Accessor_::readFileInformation_;
+                void (Derived::*fn)(Types &... args) = &Accessor_::readPropertyTree_;
                 (derived.*fn)(args...);
                 return;
             };
@@ -64,6 +64,12 @@ class BaseInputFile
                 return;
             };
 
+            static void write_to_disk(Derived & derived, const std::string my_file_name)
+            {
+                void (Derived::*fn)(const std::string) = &Accessor_::writeToDisk_;
+                (derived.*fn)(my_file_name);
+                return;
+            };
 
         };
 
@@ -96,6 +102,11 @@ class BaseInputFile
         virtual ~BaseInputFile()=0;// destructor
 
         /* ====================  ACCESSORS     ======================================= */
+        void writeToDisk(const std::string my_file_name)
+        {
+            Accessor_::write_to_disk(this->asDerived_(), my_file_name);
+
+        }
 
         /* ====================  MUTATORS      ======================================= */
         void setFileName(const std::string my_file_name)
@@ -105,9 +116,9 @@ class BaseInputFile
         }
 
         template<typename... Types>
-        void readFileInformation(Types&... args)
+        void readPropertyTree(Types&... args)
         {
-            Accessor_::read_file_information(this->asDerived_(),args...);
+            Accessor_::read_property_tree(this->asDerived_(),args...);
             return;
         }
         /* ====================  OPERATORS     ======================================= */

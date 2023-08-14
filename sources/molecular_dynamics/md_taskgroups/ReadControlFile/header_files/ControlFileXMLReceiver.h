@@ -93,7 +93,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         ControlFileXMLReceiver ();   // constructor
 
-        ControlFileXMLReceiver (const ControlFileXMLReceiver & other) = delete;   // copy constructor
+        ControlFileXMLReceiver (const ControlFileXMLReceiver & other) = delete;   // copy constructo
 
         ControlFileXMLReceiver (ControlFileXMLReceiver && other);   // copy-move constructor
 
@@ -190,7 +190,8 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
             const std::string filename = this->controlFileName_();
             boost::property_tree::read_xml(filename, pt);
 
-            this->results_.readFileInformation(pt); 
+            this->results_.setFileName(filename);
+            this->results_.readPropertyTree(pt); 
         }
         catch(const boost::property_tree::xml_parser_error & my_error)
         {

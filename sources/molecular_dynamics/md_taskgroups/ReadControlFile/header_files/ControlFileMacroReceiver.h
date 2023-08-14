@@ -185,19 +185,21 @@ void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 
     try {
         // (1) The first step is to execute the task of reading the control file via ControlFileXMLReceiver. 
-        auto task_label_1 = ControlFileXMLReceiver::TASKLABEL;
+        auto task_1_label = ControlFileXMLReceiver::TASKLABEL;
         std::vector<std::string> flags;
-        this->componentTasks_.at(task_label_1)->doAction(flags);
+        this->componentTasks_.at(task_1_label)->doAction(flags);
 
         // (2) Get the results of the ControlFileXMLReceiver and copy to ControlFileXMLMPICommReceiver 
-        GenericMDTaskUtilities<ControlFileXMLReceiver>::convertToConcreteGenericmdtask(this->componentTasks_.at(task_label_1));
+        auto task_2_label = ControlFileXMLMPICommReceiver::TASKLABEL;
+        auto results = 
+          GenericMDTaskUtilities<ControlFileXMLReceiver>::getCopyofTaskResults(this->componentTasks_.at(task_1_label));
+        GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::modifyTask(this->componentTasks_.at(task_2_label));
 
-        // (3) ControlFileXMLMPICommReceiver to communicate control file to other processies.
+        // (3) ControlFileXMLMPICommReceiver to communicate control file to other processes.
+        this->componentTasks_.at(task_2_label)->doAction(flags);
     
         // (4) Get the results of the ControlFileXMLMPICommReceiver and copy to ControlFileXMLReceiver
 
-        auto task_label_2 = ControlFileXMLMPICommReceiver::TASKLABEL;
-        this->componentTasks_.at(task_label_2)->doAction(flags);
     } 
     catch ( const RECEIVER::ReceiverError & my_error)
     {

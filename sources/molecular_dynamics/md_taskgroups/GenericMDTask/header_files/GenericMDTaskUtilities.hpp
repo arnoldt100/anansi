@@ -25,6 +25,8 @@ template <class Receiver,
 class GenericMDTaskUtilities
 {
     public:
+        using Derived = GenericMDTask<Receiver>;
+
         // ====================  LIFECYCLE     =======================================
 
         GenericMDTaskUtilities ()   // constructor
@@ -56,12 +58,18 @@ class GenericMDTaskUtilities
         }
 
         // ====================  STATIC        =======================================
-        static void convertToConcreteGenericmdtask(std::shared_ptr<RootTask> task)
+        static typename Receiver::receiver_result_t  getCopyofTaskResults(std::shared_ptr<RootTask> task)
         {
             // We do a dynamic down cast to std::shared_ptr<GenericMDTask<Receiver>>
-            using derived = GenericMDTask<Receiver>;
-            auto ptr = std::dynamic_pointer_cast<derived>(task);
-            auto results = ptr->getCopyOfResults();
+            auto ptr = GenericMDTaskUtilities::asDerived_(task);
+            typename Receiver::receiver_result_t results = ptr->getCopyOfResults();
+            return results;
+        }
+
+        static void modifyTask(std::shared_ptr<RootTask> task)
+        {
+            // We do a dynamic down cast to std::shared_ptr<GenericMDTask<Receiver>>
+            auto ptr = GenericMDTaskUtilities::asDerived_(task);
             return;
         }
 
@@ -98,6 +106,11 @@ class GenericMDTaskUtilities
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        static std::shared_ptr<Derived> asDerived_ (std::shared_ptr<RootTask> task)
+        {
+            std::shared_ptr<Derived> ptr = std::dynamic_pointer_cast<Derived>(task);
+            return ptr;
+        }
 
 }; // -----  end of class GenericMDTaskUtilities  -----
 

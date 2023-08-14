@@ -48,11 +48,12 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
 
     protected:
         // ====================  ACCESSORS     =======================================
-        
+        void writeToDisk_(const std::string my_file_name);
+
         // ====================  MUTATORS      =======================================
         void setFileName_(const std::string my_file_name);
 
-        void readFileInformation_(boost::property_tree::ptree & pt);
+        void readPropertyTree_(boost::property_tree::ptree & pt);
 
 
         // ====================  DATA MEMBERS  =======================================
@@ -66,6 +67,8 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
         ControlFileName fileName_;
         MasterControlFileNodeKeys masterNodeKeys_;
         boost::property_tree::ptree pt_;
+        constexpr static char defaultValue_[] = {"default-null-value"};
+
 
 }; // -----  end of class ControlFile  -----
 

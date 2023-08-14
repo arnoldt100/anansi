@@ -17,6 +17,7 @@
 #include "ControlFile.h"
 #include "add_values_to_property_tree.h"
 #include "verify_controlfile_keys_are_valid.h"
+#include <boost/algorithm/string.hpp>
 
 namespace ANANSI {
 
@@ -36,7 +37,7 @@ ControlFile::ControlFile() :
     for(; keys.first != keys.second; keys.first++)
     {
         const auto my_node_key = (keys.first)->c_str();
-        this->pt_.put(my_node_key,"--default-null-value--");
+        this->pt_.put(my_node_key,this->defaultValue_);
     }
 
     return;
@@ -105,6 +106,12 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+void ControlFile::writeToDisk_(const std::string my_filename)
+{
+    // Write property tree to XML file
+    boost::property_tree::write_xml(my_filename, this->pt_);
+    return;
+}
 
 //============================= MUTATORS =====================================
 void ControlFile::setFileName_(const std::string my_file_name)
@@ -113,14 +120,17 @@ void ControlFile::setFileName_(const std::string my_file_name)
     return;
 }
 
-void ControlFile::readFileInformation_(boost::property_tree::ptree & pt)
+void ControlFile::readPropertyTree_(boost::property_tree::ptree & pt)
 {
     // Verify all keys in pt are valid keys.
     verify_controlfile_keys_are_valid(this->masterNodeKeys_,pt);
 
     // Fill in this->pt_ from pt. The pt values come from the control file on disk.
-    add_values_to_property_tree(this->masterNodeKeys_,pt,this->pt_);    
-    
+    add_values_to_property_tree(this->masterNodeKeys_,
+                                pt,
+                                std::string(this->defaultValue_),
+                                this->pt_);    
+   
     return;
 }
 

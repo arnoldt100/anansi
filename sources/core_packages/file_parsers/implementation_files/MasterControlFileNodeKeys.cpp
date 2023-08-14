@@ -48,7 +48,8 @@ MasterControlFileNodeKeys::MasterControlFileNodeKeys() :
 }
 
 MasterControlFileNodeKeys::MasterControlFileNodeKeys( MasterControlFileNodeKeys const & other) :
-    nodeKeys_(other.nodeKeys_)
+    nodeKeys_(other.nodeKeys_),
+    commentNodeKeys_(other.commentNodeKeys_)
 {
     if (this != &other)
     {
@@ -58,7 +59,9 @@ MasterControlFileNodeKeys::MasterControlFileNodeKeys( MasterControlFileNodeKeys 
 }
 
 MasterControlFileNodeKeys::MasterControlFileNodeKeys( MasterControlFileNodeKeys && other) :
-    nodeKeys_(std::move(other.nodeKeys_))
+    nodeKeys_(std::move(other.nodeKeys_)),
+    commentNodeKeys_(std::move(other.commentNodeKeys_))
+
 {
     if (this != &other)
     {
