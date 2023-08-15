@@ -193,7 +193,7 @@ void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
         auto task_2_label = ControlFileXMLMPICommReceiver::TASKLABEL;
         auto results = 
           GenericMDTaskUtilities<ControlFileXMLReceiver>::getCopyofTaskResults(this->componentTasks_.at(task_1_label));
-        GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::modifyTask(this->componentTasks_.at(task_2_label));
+        GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::modifyTask(this->componentTasks_.at(task_2_label),results);
 
         // (3) ControlFileXMLMPICommReceiver to communicate control file to other processes.
         this->componentTasks_.at(task_2_label)->doAction(flags);

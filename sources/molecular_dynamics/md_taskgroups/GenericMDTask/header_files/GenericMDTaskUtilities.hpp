@@ -66,10 +66,12 @@ class GenericMDTaskUtilities
             return results;
         }
 
-        static void modifyTask(std::shared_ptr<RootTask> task)
+        template<typename... T >
+        static void modifyTask(std::shared_ptr<RootTask> task, T & ...  args)
         {
             // We do a dynamic down cast to std::shared_ptr<GenericMDTask<Receiver>>
             auto ptr = GenericMDTaskUtilities::asDerived_(task);
+            ptr->modifyTask(args...);
             return;
         }
 
