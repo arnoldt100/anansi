@@ -18,7 +18,8 @@ namespace ANANSI
 
 void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                                      ReadControlFileTraits::concrete_products>
-                                                         > control_filexmlmpi_invoker)
+                                                         > control_filexmlmpi_invoker,
+                                          std::unique_ptr<COMMUNICATOR::Communicator> my_world_communicator)
 {
     // ---------------------------------------------------
     // We define some type aliases to reduce the amount of typing.
@@ -51,6 +52,11 @@ void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInv
     // ---------------------------------------------------
     auto control_file_xmlmpi_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
+
+    // ---------------------------------------------------
+    // Add the world communicator to the receiver.
+    // ---------------------------------------------------
+    control_file_xmlmpi_receiver->modifyReceiver(my_world_communicator); 
 
     // ---------------------------------------------------
     // Create task object and bind the receiver to the task object.

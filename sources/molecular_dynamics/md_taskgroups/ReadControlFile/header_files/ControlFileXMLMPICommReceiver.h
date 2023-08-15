@@ -11,6 +11,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -160,6 +161,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         // ====================  DATA MEMBERS  =======================================
 
         mutable receiver_result_t results_;
+        std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 
         MyOwnershipPolicy_ ownershipPolicy_;
 
@@ -187,6 +189,10 @@ void ControlFileXMLMPICommReceiver::enableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileXMLMPICommReceiver::disableReceiver_(Types &... args)
 {
+    if (this->communicator_)
+    {
+        this->communicator_->freeCommunicator();
+    }
     return;
 }
 

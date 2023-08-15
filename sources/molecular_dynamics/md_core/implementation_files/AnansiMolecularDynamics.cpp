@@ -23,6 +23,7 @@
 
 #include "setup_core_logging_invoker.h"
 #include "setup_controlfile_invoker.h"
+#include "disable_controlfile_invoker.h"
 #include "setup_mpi_communication_environment_invoker.h"
 #include "setup_mpi_world_communicator_invoker.h"
 
@@ -263,6 +264,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
 void
 AnansiMolecularDynamics::disableControlFileTasks ()
 {
+    disable_controlfile_invoker();
     return;
 }
 

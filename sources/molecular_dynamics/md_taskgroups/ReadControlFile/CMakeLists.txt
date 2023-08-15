@@ -78,6 +78,7 @@
          header_files/ControlFileMacroReceiver.h
          header_files/ReadControlFileTraits.h
          header_files/setup_controlfile_invoker.h
+         header_files/disable_controlfile_invoker.h
          header_files/setup_ControlFileXMLReceiver.h
          header_files/setup_ControlFileXMLMPICommReceiver.h
          header_files/setup_ControlFileMacroReceiver.h
@@ -100,6 +101,7 @@
          implementation_files/ControlFileMacroReceiver.cpp
          implementation_files/ReadControlFileTraits.cpp 
          implementation_files/setup_controlfile_invoker.cpp
+	 implementation_files/disable_controlfile_invoker.cpp
          implementation_files/setup_ControlFileXMLReceiver.cpp
          implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
          implementation_files/setup_ControlFileMacroReceiver.cpp
