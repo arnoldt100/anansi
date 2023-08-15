@@ -171,12 +171,16 @@ template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
     std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
+    // The master process 
     return;
 }
 
 template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverUndoAction_(Types & ... args) const
 {
+    // We synchronized all processes in this->communicator_ 
+    // at this point.
+
     return;
 }
 

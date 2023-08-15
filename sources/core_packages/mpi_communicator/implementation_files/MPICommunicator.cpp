@@ -33,6 +33,7 @@
 #include "MPIAllgather.h"
 #include "MPIGather.h"
 #include "MPIBroadcast.h"
+#include "MPIBarrier.h"
 #include "convert_sequence_of_chars_to_vector_string.h"
 #include "ErrorMPIBroadcast.h"
 #include "Array1d.hpp"
@@ -171,6 +172,13 @@ MPICommunicator& MPICommunicator::operator=(Communicator && other)
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= ACCESSORS ====================================
+
+
+void MPICommunicator::synchronizationPoint_() const
+{
+    ANANSI::MPIBarrier::MPIBarrier();
+    return;
+}
 
 
 std::string
@@ -333,7 +341,6 @@ MPICommunicator::_getMaximum(std::size_t const value) const
         std::cout << my_mpi_exception.what() << std::endl;
         std::abort();
     }
-
 
     return vec_maximum[0];
 }

@@ -59,6 +59,9 @@ public:
 
 private:
     //===== ACCESSORS ======
+
+    void synchronizationPoint_() const final override;
+
     std::size_t
     _getSizeofCommunicator(const std::string & id) const final override;
 
