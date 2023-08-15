@@ -14,7 +14,9 @@
 namespace ANANSI
 {
 
-void disable_controlfile_invoker (  )
+void disable_controlfile_invoker (  std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                    ReadControlFileTraits::concrete_products>
+                                                   > & control_file_invoker)
 {
     // this->mdControlFileInvk_->disableTask(command_labels);
     return ;

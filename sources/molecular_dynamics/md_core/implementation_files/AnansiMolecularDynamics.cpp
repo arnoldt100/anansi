@@ -247,7 +247,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     setup_controlfile_invoker(controlfile_name,
                               std::move(mpi_world_communicator),
-                              mdControlFileInvk_);
+                              this->mdControlFileInvk_);
 
     // ---------------------------------------------------
     // Run macro task command for the Control file. This macro task cammand 
@@ -264,7 +264,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
 void
 AnansiMolecularDynamics::disableControlFileTasks ()
 {
-    disable_controlfile_invoker();
+    disable_controlfile_invoker(this->mdControlFileInvk_);
     return;
 }
 

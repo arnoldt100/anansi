@@ -14,13 +14,17 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GenericTaskInvoker.hpp"
+#include "ReadControlFileTraits.h"
 
 
 namespace ANANSI
 {
 
 //! \brief Stud text for brief description
-void disable_controlfile_invoker (  );
+void disable_controlfile_invoker ( std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                   ReadControlFileTraits::concrete_products>
+                                                  > & control_file_invoker );
 
 
 }; // namespace ANANSI
