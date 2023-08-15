@@ -24,6 +24,7 @@
 #include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
+#include "ControlFile.h"
 #include "ControlFileCommunicator.h"
 #include "ControlFileXMLMPICommOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
@@ -36,7 +37,7 @@
 // ---------------------------------------------------
 // #include "NullOwnershipPolicy.hpp"
 // #include "TransferOwnershipPolicy.hpp"
-#include "ShareCopyOwnershipPolicy.hpp"
+#include "CopyOwnershipPolicy.hpp"
 // #include "TransferCopyOwnershipPolicy.hpp""
 // #include "ShareOwnershipPolicy.hpp"
 // #include "CopyOwnershipPolicy.hpp"
@@ -50,10 +51,10 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'c','o','m','m','u', 'n','i','c','a','t','e','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = int;
-        using my_copy_type_ = int;
-        using my_share_type_ = int;
-        using my_transfer_type_ = int;
+        using my_result_type_ = ControlFile;
+        using my_copy_type_ = ControlFile;
+        using my_share_type_ = ControlFile;
+        using my_transfer_type_ = ControlFile;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
@@ -61,7 +62,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         using MyOwnershipImpl_ = ControlFileXMLMPICommOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
     public:
         // ====================  TYPEDEFS     =======================================
@@ -158,6 +159,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         // ====================  DATA MEMBERS  =======================================
 
         mutable receiver_result_t results_;
+
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class ControlFileXMLMPICommReceiver  -----

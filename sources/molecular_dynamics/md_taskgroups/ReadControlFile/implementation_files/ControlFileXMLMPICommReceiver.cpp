@@ -23,7 +23,7 @@ namespace ANANSI {
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
     ReceiverInterface<ControlFileXMLMPICommReceiver>(),
     ownershipPolicy_(),
-    results_(0)
+    results_()
 {
     return;
 }
@@ -79,7 +79,7 @@ ControlFileXMLMPICommReceiver::receiver_copy_t_ ControlFileXMLMPICommReceiver::r
 //============================= MUTATORS =====================================
 
 template<>
-void ControlFileXMLMPICommReceiver::receiverModifyMyself_(int & arg)
+void ControlFileXMLMPICommReceiver::receiverModifyMyself_(ControlFile & arg)
 {
     this->results_ = arg;
     return;

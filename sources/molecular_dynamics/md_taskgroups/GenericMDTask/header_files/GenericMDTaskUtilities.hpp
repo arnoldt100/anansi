@@ -61,8 +61,8 @@ class GenericMDTaskUtilities
         static typename Receiver::receiver_result_t  getCopyofTaskResults(std::shared_ptr<RootTask> task)
         {
             // We do a dynamic down cast to std::shared_ptr<GenericMDTask<Receiver>>
-            auto ptr = GenericMDTaskUtilities::asDerived_(task);
-            typename Receiver::receiver_result_t results = ptr->getCopyOfResults();
+            auto derived_task = GenericMDTaskUtilities::asDerived_(task);
+            typename Receiver::receiver_result_t results = derived_task->getCopyOfResults();
             return results;
         }
 
@@ -70,8 +70,8 @@ class GenericMDTaskUtilities
         static void modifyTask(std::shared_ptr<RootTask> task, T & ...  args)
         {
             // We do a dynamic down cast to std::shared_ptr<GenericMDTask<Receiver>>
-            auto ptr = GenericMDTaskUtilities::asDerived_(task);
-            ptr->modifyTask(args...);
+            auto derived_task = GenericMDTaskUtilities::asDerived_(task);
+            derived_task->modifyReceiver(args...);
             return;
         }
 
@@ -110,8 +110,8 @@ class GenericMDTaskUtilities
         // ====================  DATA MEMBERS  =======================================
         static std::shared_ptr<Derived> asDerived_ (std::shared_ptr<RootTask> task)
         {
-            std::shared_ptr<Derived> ptr = std::dynamic_pointer_cast<Derived>(task);
-            return ptr;
+            std::shared_ptr<Derived> derived_task = std::dynamic_pointer_cast<Derived>(task);
+            return derived_task;
         }
 
 }; // -----  end of class GenericMDTaskUtilities  -----
