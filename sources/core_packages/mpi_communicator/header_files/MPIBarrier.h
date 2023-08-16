@@ -1,10 +1,6 @@
 #ifndef ANANSI_MPIBarrier_INC
 #define ANANSI_MPIBarrier_INC
 //! \file MPIBarrier.h
-//!
-//! \brief Brief description
-//!
-//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
