@@ -21,7 +21,6 @@
 //--------------------------------------------------------//
 #include "Communicator.h"
 
-
 namespace ANANSI
 {
 

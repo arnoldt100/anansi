@@ -176,7 +176,7 @@ MPICommunicator& MPICommunicator::operator=(Communicator && other)
 
 void MPICommunicator::synchronizationPoint_() const
 {
-    ANANSI::MPIBarrier::MPIBarrier();
+    ANANSI::MPIBarrier::Barrier(this->_mpiCommunicator);
     return;
 }
 
