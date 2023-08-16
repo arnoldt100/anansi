@@ -15,7 +15,7 @@
 namespace ANANSI
 {
 
-//! @tparam The derived class of the CRTP. The derived classes are the concrete receivers. 
+//! @tparam The derived class of the CRTP.
 template<typename Derived>
 class BaseInputFile
 {
@@ -64,12 +64,19 @@ class BaseInputFile
                 return;
             };
 
-            static void write_to_disk(Derived & derived, const std::string my_file_name)
+            static void write_to_disk(const Derived & derived, const std::string my_file_name)
             {
-                void (Derived::*fn)(const std::string) = &Accessor_::writeToDisk_;
+                void (Derived::*fn)(const std::string) const = &Accessor_::writeToDisk_;
                 (derived.*fn)(my_file_name);
                 return;
             };
+
+            static void pickle_to_map(const Derived & derived)
+            {
+                void (Derived::*fn)() const = &Accessor_::pickleToMap_;
+                (derived.*fn)();
+                return;
+            }
 
         };
 
@@ -102,7 +109,7 @@ class BaseInputFile
         virtual ~BaseInputFile()=0;// destructor
 
         /* ====================  ACCESSORS     ======================================= */
-        void writeToDisk(const std::string my_file_name)
+        void writeToDisk(const std::string my_file_name) const
         {
             Accessor_::write_to_disk(this->asDerived_(), my_file_name);
 
@@ -121,6 +128,12 @@ class BaseInputFile
             Accessor_::read_property_tree(this->asDerived_(),args...);
             return;
         }
+
+        void pickleToMap() const
+        {
+            Accessor_::pickle_to_map(this->asDerived_());
+        }
+
         /* ====================  OPERATORS     ======================================= */
 
         BaseInputFile& operator= ( const BaseInputFile &other ) /* assignment operator */

@@ -48,13 +48,14 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
 
     protected:
         // ====================  ACCESSORS     =======================================
-        void writeToDisk_(const std::string my_file_name);
+        void writeToDisk_(const std::string my_file_name) const;
 
         // ====================  MUTATORS      =======================================
         void setFileName_(const std::string my_file_name);
 
         void readPropertyTree_(boost::property_tree::ptree & pt);
 
+        void pickleToMap_() const;
 
         // ====================  DATA MEMBERS  =======================================
 

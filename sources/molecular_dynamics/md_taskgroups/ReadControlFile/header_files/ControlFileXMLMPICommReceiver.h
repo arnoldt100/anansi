@@ -175,6 +175,8 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     // "this->communicator_" at this point.
     this->communicator_->synchronizationPoint();
 
+    this->results_.pickleToMap();
+    
     return;
 }
 

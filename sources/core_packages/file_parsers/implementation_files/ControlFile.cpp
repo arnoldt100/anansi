@@ -4,7 +4,6 @@
 //--------------------------------------------------------//
 #include <iostream>
 #include <utility>
-#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -106,10 +105,16 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-void ControlFile::writeToDisk_(const std::string my_filename)
+void ControlFile::writeToDisk_(const std::string my_filename) const
 {
     // Write property tree to XML file
     boost::property_tree::write_xml(my_filename, this->pt_);
+    return;
+}
+
+void ControlFile::pickleToMap_() const
+{
+    std::cout << "Pickling file to  std::map" << std::endl;
     return;
 }
 
