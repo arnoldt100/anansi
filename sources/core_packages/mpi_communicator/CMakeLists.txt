@@ -87,7 +87,8 @@
          header_files/MPICommSplitException.h
          header_files/ErrorMPIBroadcast.h
          header_files/MPIBroadcast.h
-         header_files/MPIBarrier.h
+	 header_files/MPIBarrier.h
+	 header_files/MPIBarrierException.h
          header_files/MPICommDuplicateException.h
          header_files/MPIAllReduceException.h
          header_files/MPIReduce.h
@@ -130,6 +131,7 @@
          implementation_files/ErrorMPIBroadcast.cpp
          implementation_files/MPIBroadcast.cpp
          implementation_files/MPIBarrier.cpp
+	 implementation_files/MPIBarrierException.cpp
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIAllReduceException.cpp
          implementation_files/MPIReduce.cpp

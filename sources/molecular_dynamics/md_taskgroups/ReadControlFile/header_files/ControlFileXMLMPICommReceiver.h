@@ -171,7 +171,7 @@ template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
     std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
-    // synchronized all processes in the communicator group of
+    // Synchronize all processes in the communicator group of
     // "this->communicator_" at this point.
     this->communicator_->synchronizationPoint();
 
