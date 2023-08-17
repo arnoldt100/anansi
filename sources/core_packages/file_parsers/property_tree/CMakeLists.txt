@@ -61,7 +61,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (property_tree_header_files
-      ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BaseInputFile.h )
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BaseInputFile.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -71,7 +71,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (property_tree_implementation_files
-      ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BaseInputFile.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BaseInputFile.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -103,7 +103,7 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files}"
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
                            PRIVATE "${Boost_INCLUDE_DIR}" )
 
 target_link_libraries(${target}
