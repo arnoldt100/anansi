@@ -101,7 +101,7 @@
          implementation_files/ControlFileMacroReceiver.cpp
          implementation_files/ReadControlFileTraits.cpp 
          implementation_files/setup_controlfile_invoker.cpp
-	 implementation_files/disable_controlfile_invoker.cpp
+	       implementation_files/disable_controlfile_invoker.cpp
          implementation_files/setup_ControlFileXMLReceiver.cpp
          implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
          implementation_files/setup_ControlFileMacroReceiver.cpp
@@ -119,7 +119,7 @@
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
-    get_target_property(my_control_file_include  control_file control_file_include)
+    get_target_property(my_control_file_include control_file control_file_include)
 
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

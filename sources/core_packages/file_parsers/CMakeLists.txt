@@ -33,6 +33,22 @@
 
     # ----------------------------------------------------
     # Here we define variables which indicate where
+    # to install the property_tree libraries,
+    # header files, and associated binariers.
+    # 
+    # ----------------------------------------------------
+    include(${CMAKE_CURRENT_SOURCE_DIR}/property_tree/cmake_macros_and_functions/property_tree.cmake)
+    enable_building_property_tree_package( "${file_parsers_install_lib_directory}"
+                                           "${file_parsers_install_include_directory}"
+                                           "${file_parsers_install_bin_directory}" 
+                                           "${file_parsers_cmake_c_compiler}"
+                                           "${file_parsers_cmake_cxx_compiler}"
+                                           "${file_parsers_cxx_standard}"
+                                           "${file_parsers_logfilepath}" ) 
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/PropertyTree)
+
+    # ----------------------------------------------------
+    # Here we define variables which indicate where
     # to install the control_file libraries,
     # header files, and associated binariers.
     # 
