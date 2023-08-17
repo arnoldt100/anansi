@@ -81,6 +81,7 @@
     set (control_file_header_files
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileName.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFile.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileTraits.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h

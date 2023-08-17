@@ -16,9 +16,14 @@ namespace ANANSI
 {
 
 //! @tparam The derived class of the CRTP.
-template<typename Derived>
+template<typename Derived,
+         typename DerivedTypeTraits>
 class BaseInputFile
 {
+    public:
+
+      using PICKLETYPE = DerivedTypeTraits::PICKLETYPE;
+
     private:
         //! Provides access to the CRTP derived class "Derived."
         //!
@@ -167,8 +172,8 @@ class BaseInputFile
 
 }; /* -----  end of class BaseInputFile  ----- */
 
-template<typename Derived>
-BaseInputFile<Derived>::~BaseInputFile()
+template<typename Derived,typename DerivedTraits>
+BaseInputFile<Derived,DerivedTraits>::~BaseInputFile()
 {
     return;
 }

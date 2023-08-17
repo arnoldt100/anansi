@@ -28,7 +28,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFile::ControlFile() :
-    BaseInputFile<ControlFile>(),
+    BaseInputFile<ControlFile,ControlFileTraits>(),
     fileName_(),
     masterNodeKeys_(),
     pt_()
@@ -44,7 +44,7 @@ ControlFile::ControlFile() :
 }
 
 ControlFile::ControlFile( const ControlFile & other) : 
-    BaseInputFile<ControlFile>(other),
+    BaseInputFile<ControlFile,ControlFileTraits>(other),
     fileName_(other.fileName_),
     masterNodeKeys_(other.masterNodeKeys_),
     pt_(other.pt_)
@@ -53,7 +53,7 @@ ControlFile::ControlFile( const ControlFile & other) :
 } // -----  end of method ControlFile::ControlFile  -----
 
 ControlFile::ControlFile( ControlFile && other) :
-    BaseInputFile<ControlFile>(std::move(other)),
+    BaseInputFile<ControlFile,ControlFileTraits>(std::move(other)),
     fileName_(std::move(other.fileName_)),
     masterNodeKeys_(std::move(other.masterNodeKeys_)),
     pt_(std::move(other.pt_))
@@ -78,7 +78,7 @@ ControlFile& ControlFile::operator= ( const ControlFile & other )
 {
     if (this != &other)
     {
-        BaseInputFile<ControlFile>::operator=(other);
+        BaseInputFile<ControlFile,ControlFileTraits>::operator=(other);
         this->fileName_ = other.fileName_;
         this->masterNodeKeys_ = other.masterNodeKeys_;
         this->pt_ = other.pt_;
@@ -91,7 +91,7 @@ ControlFile& ControlFile::operator= ( ControlFile && other )
 {
     if (this != &other)
     {
-        BaseInputFile<ControlFile>::operator=(std::move(other));
+        BaseInputFile<ControlFile,ControlFileTraits>::operator=(std::move(other));
         this->fileName_ = std::move(other.fileName_);
         this->masterNodeKeys_ = std::move(other.masterNodeKeys_);
         this->pt_ = std::move(other.pt_);

@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ControlFileTraits.h"
 #include "MasterControlFileNodeKeys.h"
 #include "ControlFileName.h"
 #include "BaseInputFile.h"
@@ -24,10 +25,10 @@
 namespace ANANSI
 {
 
-class ControlFile : public ANANSI::BaseInputFile<ControlFile>
+class ControlFile : public ANANSI::BaseInputFile<ControlFile,ControlFileTraits>
 {
     public:
-        using PICKLETYPE = std::map<std::string,std::string>;
+        // using PICKLETYPE = std::map<std::string,std::string>;
 
         // ====================  LIFECYCLE     =======================================
 
