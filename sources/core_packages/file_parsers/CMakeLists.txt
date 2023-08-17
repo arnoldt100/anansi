@@ -45,7 +45,7 @@
                                            "${file_parsers_cmake_cxx_compiler}"
                                            "${file_parsers_cxx_standard}"
                                            "${file_parsers_logfilepath}" ) 
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/PropertyTree)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/property_tree)
 
     # ----------------------------------------------------
     # Here we define variables which indicate where
