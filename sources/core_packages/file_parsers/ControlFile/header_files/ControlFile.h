@@ -6,6 +6,7 @@
 //--------------------------------------------------------//
 #include <string>
 #include <vector>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -26,6 +27,7 @@ namespace ANANSI
 class ControlFile : public ANANSI::BaseInputFile<ControlFile>
 {
     public:
+
         // ====================  LIFECYCLE     =======================================
 
         ControlFile();   // constructor
@@ -57,9 +59,12 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
 
         void pickleToMap_() const;
 
+        using PICKLETYPE = std::map<std::string,std::string>;
+
         // ====================  DATA MEMBERS  =======================================
 
     private:
+
         // ====================  MUTATORS      =======================================
         
         // ====================  ACCESSORS     =======================================
@@ -70,7 +75,7 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile>
         boost::property_tree::ptree pt_;
         constexpr static char defaultValue_[] = {"default-null-value"};
 
-
+    public:
 }; // -----  end of class ControlFile  -----
 
 

@@ -2,7 +2,7 @@
 #
 #       Filename:  file_parsers_build_prerequisites.cmake
 #    Description:  Contains convenience functions that help verify the
-#                  prerequisites for building the  package file_parsers
+#                  prerequisites for building the package file_parsers
 #                  are satisfied.
 #
 # =====================================================================================

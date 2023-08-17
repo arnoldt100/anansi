@@ -171,12 +171,25 @@ template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
     std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
+    const bool i_am_master = this->communicator_->iAmMasterProcess();
+    using temp_t = receiver_result_t::PICKLETYPE;
+
     // Synchronize all processes in the communicator group of
     // "this->communicator_" at this point.
     this->communicator_->synchronizationPoint();
 
-    this->results_.pickleToMap();
+    // Only the master process will pickle it's results which is the ControlFile.
+    // The master process then broadcasts this pickled object to the other worker processes.
+    // The worker processes uses the pickled object to fill in their results.
+    if ( i_am_master )
+    {
+      this->results_.pickleToMap();
+    }
     
+    // Synchronize all processes in the communicator group of
+    // "this->communicator_" at this point.
+    this->communicator_->synchronizationPoint();
+
     return;
 }
 

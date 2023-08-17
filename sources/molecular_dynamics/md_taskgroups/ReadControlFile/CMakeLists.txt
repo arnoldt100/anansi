@@ -119,7 +119,7 @@
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
-    get_target_property(my_file_parsers_include  file_parsers file_parsers_include)
+    get_target_property(my_control_file_include  control_file control_file_include)
 
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -157,7 +157,7 @@ target_include_directories(${target}
                            PRIVATE "${my_genericmdtask_include}" 
                            PRIVATE "${my_generic_abstract_factory_include}"
                            PRIVATE "${my_invoker_include}"
-                           PRIVATE "${my_file_parsers_include}"
+                           PRIVATE "${my_control_file_include}"
                            PRIVATE "${my_mpi_communicator_include}")
 
 #-----------------------------------------------------
@@ -170,7 +170,7 @@ target_link_libraries(${target}
                       PUBLIC genericmdtask
                       PUBLIC generic_abstract_factory
                       PUBLIC invoker
-                      PUBLIC file_parsers
+                      PUBLIC control_file
                       PUBLIC mpi_communicator) 
 
 

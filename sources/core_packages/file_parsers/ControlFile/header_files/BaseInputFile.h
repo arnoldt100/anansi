@@ -19,7 +19,6 @@ namespace ANANSI
 template<typename Derived>
 class BaseInputFile
 {
-
     private:
         //! Provides access to the CRTP derived class "Derived."
         //!
@@ -81,6 +80,7 @@ class BaseInputFile
         };
 
     public:
+
         // ====================  LIFECYCLE     =======================================
 
         BaseInputFile () // constructor
