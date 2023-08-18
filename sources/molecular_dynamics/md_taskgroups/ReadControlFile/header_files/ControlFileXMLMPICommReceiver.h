@@ -172,7 +172,7 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
     std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
     const bool i_am_master = this->communicator_->iAmMasterProcess();
-    using temp_t = receiver_result_t::PICKLETYPE;
+    receiver_result_t::PICKLETYPE  pickeled_obj;
 
     // Synchronize all processes in the communicator group of
     // "this->communicator_" at this point.
@@ -183,9 +183,12 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     // The worker processes uses the pickled object to fill in their results.
     if ( i_am_master )
     {
-      receiver_result_t::PICKLETYPE  pickeled_obj = this->results_.pickleToMap();
+      pickeled_obj = this->results_.pickleToMap();
     }
-    
+   
+    // Broadcast the std::map to the other worker processes.
+
+
     // Synchronize all processes in the communicator group of
     // "this->communicator_" at this point.
     this->communicator_->synchronizationPoint();
