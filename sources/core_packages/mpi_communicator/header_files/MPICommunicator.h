@@ -114,6 +114,9 @@ private:
     std::string
     _broadcastStdString(const std::string & data_to_broadcast, const std::size_t bcast_rank) const final override;
 
+    std::map<std::string,std::string>
+    broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const final override;
+
     //===== MUTATORS =======
     void
     _initializeWorldCommunicator() final override;

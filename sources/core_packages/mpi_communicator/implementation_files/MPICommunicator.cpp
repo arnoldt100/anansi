@@ -35,6 +35,7 @@
 #include "MPIBroadcast.h"
 #include "MPIBarrier.h"
 #include "convert_sequence_of_chars_to_vector_string.h"
+#include "convert_string_vector_to_char_array.h"
 #include "ErrorMPIBroadcast.h"
 #include "Array1d.hpp"
 
@@ -516,7 +517,7 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
 
     // Form and c string with length tag_length + 1, and 
     // then copy the tag in a c string.
-    const std::size_t slength_maximum_adj = slength_maximum  + 1;
+    const std::size_t slength_maximum_adj = slength_maximum + 1;
     char* data_ptr = my_char_array_factory.createArray(data_to_gather,
                                                        slength_maximum_adj);
 
@@ -581,6 +582,33 @@ MPICommunicator::_getGlobalStatus(const bool & data_to_reduce) const
                                                                                                   mpi_op); 
     return my_global_status[0];
 }
+
+
+std::map<std::string,std::string>
+MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const
+{
+    MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
+
+    std::size_t offset_size;
+    std::shared_ptr<std::size_t[]> start_offsets;
+    std::shared_ptr<std::size_t[]> end_offsets;
+
+    for (auto it = a_map.begin(); it != a_map.end(); ++it)
+    {
+        auto key = it->first;
+        auto value = it->second;
+    }
+    // Broadcast string vector of keys.
+    STRING_UTILITIES::convert_string_vector_to_char_array();
+
+    // Broadcast string vector of values.
+    STRING_UTILITIES::convert_string_vector_to_char_array();
+
+    // Reform the map object form the broadcasted keys  and values.
+
+    return a_map;
+}
+
 
 //============================= MUTATORS =====================================
 

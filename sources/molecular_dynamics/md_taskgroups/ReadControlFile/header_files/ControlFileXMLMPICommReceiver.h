@@ -171,22 +171,28 @@ template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
     std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
-    const bool i_am_master = this->communicator_->iAmMasterProcess();
-    receiver_result_t::PICKLETYPE  pickeled_obj;
 
     // Synchronize all processes in the communicator group of
     // "this->communicator_" at this point.
     this->communicator_->synchronizationPoint();
 
-    // Only the master process will pickle it's results which is the ControlFile.
+    // Only the master process will pickle it's results, this->results_, which is the ControlFile.
     // The master process then broadcasts this pickled object to the other worker processes.
-    // The worker processes uses the pickled object to fill in their results.
+    // The worker processes uses the broadcasted pickled object to fill in their 
+    // "this->results_".
+    const bool i_am_master = this->communicator_->iAmMasterProcess();
+    receiver_result_t::PICKLETYPE  pickled_control_file;
     if ( i_am_master )
     {
-      pickeled_obj = this->results_.pickleToMap();
+      pickled_control_file = this->results_.pickleToMap();
     }
    
-    // Broadcast the std::map to the other worker processes.
+    // Broadcast the pickled_control_file to the other worker processes.
+    const std::size_t rank_to_broadcast = COMMUNICATOR::MASTER_TASK_ID;
+    const receiver_result_t::PICKLETYPE broadcasted_pickled_control_file =
+        this->communicator_->broadcastStdMap(pickled_control_file,rank_to_broadcast);
+
+    // Use the broadcasted_pickled_obj to fill in this->results_ of the workers.
 
 
     // Synchronize all processes in the communicator group of
