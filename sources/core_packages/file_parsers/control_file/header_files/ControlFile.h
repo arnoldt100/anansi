@@ -59,7 +59,7 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile,ControlFileTraits>
 
         void readPropertyTree_(boost::property_tree::ptree & pt);
 
-        void pickleToMap_() const;
+        ControlFileTraits::PICKLETYPE pickleToMap_() const;
 
 
         // ====================  DATA MEMBERS  =======================================

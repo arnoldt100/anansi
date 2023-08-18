@@ -75,11 +75,11 @@ class BaseInputFile
                 return;
             };
 
-            static void pickle_to_map(const Derived & derived)
+            static DerivedTypeTraits::PICKLETYPE pickle_to_map(const Derived & derived)
             {
-                void (Derived::*fn)() const = &Accessor_::pickleToMap_;
-                (derived.*fn)();
-                return;
+                typename DerivedTypeTraits::PICKLETYPE (Derived::*fn)() const = &Accessor_::pickleToMap_;
+                return (derived.*fn)();
+                ;
             }
 
         };
@@ -134,9 +134,9 @@ class BaseInputFile
             return;
         }
 
-        void pickleToMap() const
+        DerivedTypeTraits::PICKLETYPE pickleToMap() const
         {
-            Accessor_::pickle_to_map(this->asDerived_());
+            return Accessor_::pickle_to_map(this->asDerived_());
         }
 
         /* ====================  OPERATORS     ======================================= */

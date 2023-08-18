@@ -183,7 +183,7 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     // The worker processes uses the pickled object to fill in their results.
     if ( i_am_master )
     {
-      this->results_.pickleToMap();
+      receiver_result_t::PICKLETYPE  pickeled_obj = this->results_.pickleToMap();
     }
     
     // Synchronize all processes in the communicator group of
