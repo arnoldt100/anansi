@@ -1,10 +1,4 @@
-/*
- * MPICommunicator.h
- *
- *  Created on: Oct 15, 2018
- *      Author: arnoldt
- */
-
+//! \file MPICommunicator.h
 #ifndef  COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPICOMMUNICATOR_H_
 #define  COMMUNICATOR_SOURCE_IMPLEMENTATION_FILES_MPICOMMUNICATOR_H_
 
