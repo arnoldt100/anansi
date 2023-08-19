@@ -42,11 +42,17 @@
 namespace ANANSI
 {
 
-//! \brief AnansiMolecularDynamics encapsulates the Molecular Dynamics simulation and is derived from the
-//!        class Simulation. The table below lists the private methods AnansiMolecularDynamics implements
-//!        and their corrsponding interface in Simulation:
+//! \brief AnansiMolecularDynamics is an abstraction for the Molecular Dynamics simulation and is derived from the
+//!        class Simulation. 
 //!
-//! | Private Implementation in Derived Class AnansiMolecularDynamics | Interface in Sumualtion              |
+//! The Template Pattern with the Non-Virtual Interface Idiom is employed for
+//! AnansiMolecularDynamics and Simulation. The public interface is defined in
+//! the public method of Simulation, and the implementation is defined in the
+//! private method of AnansiMolecularDynamics. The table below lists the private
+//! implementation methods of AnansiMolecularDynamics and the corrsponding
+//! public interface methods in Simulation.
+//!
+//! | Private Implementation in Derived Class AnansiMolecularDynamics | Public Interface in Simulation       |
 //! | ------------------------------------------- | -------------------------------------------------------- |
 //! |AnansiMolecularDynamics::isHelpOnCommandLine_             | Simulation::isHelpOnCommandLine             |
 //! |AnansiMolecularDynamics::processCommandLine_              | Simulation::processCommandLine              |
@@ -146,7 +152,7 @@ class AnansiMolecularDynamics final : public Simulation
             delete; // Avoid implicit of copying the
         // AnansiMolecularDynamics class.
 
-        AnansiMolecularDynamics(AnansiMolecularDynamics &&other) = delete;
+        AnansiMolecularDynamics(AnansiMolecularDynamics && other) = delete;
 
         // ====================  ACCESSORS =======================================
 

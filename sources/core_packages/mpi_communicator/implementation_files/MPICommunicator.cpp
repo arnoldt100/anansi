@@ -399,7 +399,7 @@ MPICommunicator::_allGather(
 }
 
 char*
-MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
+MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
                          char const * aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
@@ -409,13 +409,13 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
 
 
     #ifdef ANANASI_DBD_VALID_VALUES
-    DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(task_id_to_gather_dat_on);
+    DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(task_id_to_gather_data_on);
     #endif
     MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     char* recv_buffer_ptr = nullptr;
     try
     {
-        recv_buffer_ptr = ANANSI::MPI_GATHER<char>::Gather(static_cast<int>(task_id_to_gather_dat_on),
+        recv_buffer_ptr = ANANSI::MPI_GATHER<char>::Gather(static_cast<int>(task_id_to_gather_data_on),
                                                            this->_mpiCommunicator,
                                                            offset_size,
                                                            aCString,
@@ -589,14 +589,16 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
 {
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
 
-    std::size_t offset_size;
-    std::shared_ptr<std::size_t[]> start_offsets;
-    std::shared_ptr<std::size_t[]> end_offsets;
-
+    // Form a vector of the keys and values of the map "a_map".
+    std::vector<std::string> map_keys;
+    std::vector<std::string> map_values;
     for (auto it = a_map.begin(); it != a_map.end(); ++it)
     {
         auto key = it->first;
+        map_keys.push_back(key);
+
         auto value = it->second;
+        map_values.push_back(value);
     }
     // Broadcast string vector of keys.
     STRING_UTILITIES::convert_string_vector_to_char_array();
