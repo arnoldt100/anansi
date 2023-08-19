@@ -115,9 +115,6 @@ private:
     _gatherInt(const int & data_to_gather,
                const std::size_t task_id_gather_data) const final override;
 
-    bool
-    _getGlobalStatus(const bool & data_to_reduce) const final override;
-
     template<typename T>
     T _getGlobalStatusCustomReduction( T const & data_to_transform) const;
 
