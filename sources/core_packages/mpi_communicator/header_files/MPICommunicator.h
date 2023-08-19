@@ -20,6 +20,22 @@ namespace ANANSI
 
 static constexpr std::size_t DEFAULT_MPI_MASTER_RANK_ID=0;
 
+//! \brief MPICommunicator is an abstraction for the MPI communicator and is derived 
+//!        from COMMUNICATOR::Communicator.
+//!
+//! The Template Pattern with the Non-Virtual Interface Idiom is employed for
+//! MPICommunicator and COMMUNICATOR::Communicator. The public interface is defined in
+//! the public methods of COMMUNICATOR::Communicator, and the implementation is defined in the
+//! private methods of MPICommunicator. The table below lists the private
+//! implementation methods of MPICommunicator and the corrsponding
+//! public interface methods in COMMUNICATOR::Communicator.
+//!
+//! | Private Implementation in Derived Class MPICommunicator      | Public Interface in COMMUNICATOR::Communicator             |
+//! | ------------------------------------------------------------ | ---------------------------------------------------------- |
+//! | void synchronizationPoint_ const final override              | Communicator::synchronizationPoint                         |
+//! | int getCommunicatorRank_ const final override                | Communicator::getCommunicatorRank const                    |
+//! | std::vector<int> gatherInt_ const final override             | std::vector<int> gatherInt_ gatherInt const                |
+
 class MPICommunicator final : public COMMUNICATOR::Communicator
 {
 public:

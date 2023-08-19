@@ -47,8 +47,8 @@ namespace ANANSI
 //!
 //! The Template Pattern with the Non-Virtual Interface Idiom is employed for
 //! AnansiMolecularDynamics and Simulation. The public interface is defined in
-//! the public method of Simulation, and the implementation is defined in the
-//! private method of AnansiMolecularDynamics. The table below lists the private
+//! the public methods of Simulation, and the implementation is defined in the
+//! private methods of AnansiMolecularDynamics. The table below lists the private
 //! implementation methods of AnansiMolecularDynamics and the corrsponding
 //! public interface methods in Simulation.
 //!
