@@ -89,7 +89,7 @@ MPICommunicator::~MPICommunicator()
 //============================= MUTATORS =====================================
 
 void
-MPICommunicator::_initializeWorldCommunicator()
+MPICommunicator::initializeWorldCommunicator_()
 {
 
     // Create a copy of the MPI world communicator.
@@ -183,7 +183,7 @@ void MPICommunicator::synchronizationPoint_() const
 
 
 std::string
-MPICommunicator::_broadcastStdString(const std::string & str_to_bcast, const std::size_t bcast_rank) const
+MPICommunicator::broadcastStdString_(const std::string & str_to_bcast, const std::size_t bcast_rank) const
 {
     std::string ret_value;
     try 
@@ -218,7 +218,7 @@ MPICommunicator::_broadcastStdString(const std::string & str_to_bcast, const std
 
 
 std::size_t
-MPICommunicator::_getSizeofCommunicator(const std::string & id) const
+MPICommunicator::getSizeofCommunicator_(const std::string & id) const
 {
     std::size_t my_size;
     try
@@ -245,7 +245,7 @@ MPICommunicator::_getSizeofCommunicator(const std::string & id) const
 
 // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
 void
-MPICommunicator::_createSubcommunicator(const std::string & tag) 
+MPICommunicator::createSubcommunicator_(const std::string & tag) 
 {
     std::map<std::string, std::size_t> aglobaltagmap = 
         COMMUNICATOR::Communicator::formGlobalMap(tag,*this);
@@ -276,7 +276,7 @@ MPICommunicator::_createSubcommunicator(const std::string & tag)
 }
 
 int
-MPICommunicator::_getCommunicatorRank() const
+MPICommunicator::getCommunicatorRank_() const
 {
     int rank;
     try
@@ -298,7 +298,7 @@ MPICommunicator::_getCommunicatorRank() const
 }
 
 COMMUNICATOR::Communicator*
-MPICommunicator::_duplicateCommunicator() const 
+MPICommunicator::duplicateCommunicator_() const 
 {
   MPICommunicator* aMPICommunicator = nullptr;
 
@@ -325,7 +325,7 @@ MPICommunicator::_duplicateCommunicator() const
 }
 
 std::size_t
-MPICommunicator::_getMaximum(std::size_t const value) const 
+MPICommunicator::getMaximum_(std::size_t const value) const 
 {
     std::vector<std::size_t> vec = {value};
     std::vector<std::size_t> vec_maximum;
@@ -348,7 +348,7 @@ MPICommunicator::_getMaximum(std::size_t const value) const
 
 
 char*
-MPICommunicator::_allGather(
+MPICommunicator::allGather_(
         char const * aCString,
         const std::size_t aLengthMaximum,
         std::size_t & offset_size,
@@ -399,7 +399,7 @@ MPICommunicator::_allGather(
 }
 
 char*
-MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
+MPICommunicator::gather_(const std::size_t task_id_to_gather_data_on,
                          char const * aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
@@ -453,7 +453,7 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
 }
 
 std::unique_ptr<char[]>
-MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
+MPICommunicator::gather_(const std::size_t task_id_to_gather_data_on,
                          const std::unique_ptr<char[]> & aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
@@ -503,7 +503,7 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
 
 
 std::vector<std::string>
-MPICommunicator::_gatherString(const std::string & data_to_gather,
+MPICommunicator::gatherString_(const std::string & data_to_gather,
                                const std::size_t task_id_to_gather_data_on ) const
 {
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
@@ -513,7 +513,7 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
 
     // Get the maximum length of tag with respect to the communicator group.
     const std::size_t slength = data_to_gather.length();
-    const std::size_t slength_maximum = this->_getMaximum(slength);
+    const std::size_t slength_maximum = this->getMaximum_(slength);
 
     // Form and c string with length tag_length + 1, and 
     // then copy the tag in a c string.
@@ -527,7 +527,7 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
     std::unique_ptr<std::size_t[]> start_offsets;
     std::unique_ptr<std::size_t[]> end_offsets;
     
-    std::unique_ptr<char[]> all_data = this->_gather(task_id_to_gather_data_on,
+    std::unique_ptr<char[]> all_data = this->gather_(task_id_to_gather_data_on,
                                                      data,
                                                      static_cast<std::size_t> (slength_maximum_adj),
                                                      offset_size,
@@ -549,7 +549,7 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
 }
 
 std::vector<int>
-MPICommunicator::_gatherInt(const int & data_to_gather,
+MPICommunicator::gatherInt_(const int & data_to_gather,
                             const std::size_t task_id_to_gather_data_on) const
 {
     MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
