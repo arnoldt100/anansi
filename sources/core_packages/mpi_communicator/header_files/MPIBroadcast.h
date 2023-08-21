@@ -61,7 +61,8 @@ class MPI_Broadcast<STRING_UTILITIES::VectorStringCache>
 {
     public:
     static  STRING_UTILITIES::VectorStringCache Broadcast(const STRING_UTILITIES::VectorStringCache,
-                                                const MPI_Comm mpi_comm);
+                                                          const MPI_Comm mpi_comm,
+                                                          const std::size_t bcast_rank);
 };
 
 }; // namespace ANANSI

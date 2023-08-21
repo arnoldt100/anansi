@@ -1,10 +1,3 @@
-/*
- * MPICommunicator.cpp
- *
- *  Created on: Oct 15, 2018
- *      Author: arnoldt
- */
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -573,23 +566,33 @@ MPICommunicator::gatherInt_(const int & data_to_gather,
 
 std::map<std::string,std::string>
 MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const
-{   std::map<std::string,std::string> b_map;
+{   
+    // The variable "b_map" will store the broadcasted "a_map".
+    std::map<std::string,std::string> b_map;
     if (this->isParallel_())
     {
-        std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> tuple1;
+        // The variable "key_value_tuple" will store a tuple a the cached "a_map" keys and corresponding key values.
+        // Only the master process will cache "a_map" to variable "key_value_tuple".
+        // std::get<0>(key_value_tuple) is the key cache for "a_map".
+        // std::get<1>(key_value_tuple) is the key values cache for "a_map".
+        std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> key_value_tuple;
         if ( this->iAmMasterProcess() )
         {
-            tuple1 = STRING_UTILITIES::cache_stdmap(a_map);
+            key_value_tuple = STRING_UTILITIES::cache_stdmap(a_map);
         }
 
-        // Broadcast string vector of keys.
-        auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<0>(tuple1),this->_mpiCommunicator);
+        // Broadcast the key and key values to the worker processes.  
+        auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<0>(key_value_tuple),
+                                                                                        this->_mpiCommunicator,
+                                                                                        bcast_rank);
+        auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<1>(key_value_tuple),
+                                                                                          this->_mpiCommunicator,
+                                                                                          bcast_rank);
 
-        // Broadcast string vector of values.
-        auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<1>(tuple1),this->_mpiCommunicator);
-
-        // Reform std::map from bkey_cache and bvalue_cache.
-        b_map = STRING_UTILITIES::reform_stdmap(bkey_cache,bvalue_cache);
+        // The variable "bkey_value_tuple" stores the broadcasted "key_value_tuple". Use bkey_value_tuple to reform the 
+        // broadcasted std::map "a_map".
+        auto bkey_value_tuple = std::make_tuple(bkey_cache,bvalue_cache);
+        b_map = STRING_UTILITIES::reform_stdmap(bkey_value_tuple);
     }
     else
     {

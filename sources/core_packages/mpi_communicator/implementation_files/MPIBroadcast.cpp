@@ -128,7 +128,9 @@ std::string MPI_Broadcast<std::string>::Broadcast(const std::string str_to_bcast
 }
 
 STRING_UTILITIES::VectorStringCache MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(const STRING_UTILITIES::VectorStringCache cache,
-                                                                                                const MPI_Comm mpi_comm)
+                                                                                                  const MPI_Comm mpi_comm,
+                                                                                                  const std::size_t bcast_rank)
+
 {
         return cache;
 }
