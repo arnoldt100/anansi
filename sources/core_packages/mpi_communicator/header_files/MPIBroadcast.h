@@ -14,6 +14,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "VectorStringCache.h"
 
 namespace ANANSI
 {
@@ -52,6 +53,15 @@ class MPI_Broadcast<std::string>
                                  const std::size_t bcast_str_len,
                                  const MPI_Comm mpi_comm,
                                  const std::size_t bcast_rank);
+};
+
+
+template<>
+class MPI_Broadcast<STRING_UTILITIES::VectorStringCache>
+{
+    public:
+    static  STRING_UTILITIES::VectorStringCache Broadcast(const STRING_UTILITIES::VectorStringCache,
+                                                const MPI_Comm mpi_comm);
 };
 
 }; // namespace ANANSI

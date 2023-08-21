@@ -127,6 +127,11 @@ std::string MPI_Broadcast<std::string>::Broadcast(const std::string str_to_bcast
     return ret_value;
 }
 
+STRING_UTILITIES::VectorStringCache MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(const STRING_UTILITIES::VectorStringCache cache,
+                                                                                                const MPI_Comm mpi_comm)
+{
+        return cache;
+}
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////

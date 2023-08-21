@@ -577,26 +577,38 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
     std::vector<std::string> map_keys;
     std::vector<std::string> map_values;
-    const bool communicator_group_has_more_than_one_rank = this->getSizeofCommunicator_() > 1;
 
     if (this->isParallel_())
     {
-          // Form a vector of the keys and values of the map "a_map".
-          for (auto it = a_map.begin(); it != a_map.end(); ++it)
-          {
-              // Reform the map object form the broadcasted keys and values.
-              auto key = it->first;
-              map_keys.push_back(key);
+        STRING_UTILITIES::VectorStringCache key_cache;
+        if ( this->iAmMasterProcess() )
+        {
+            // Form a vector of the keys and values of the map "a_map".
+            for (auto it = a_map.begin(); it != a_map.end(); ++it)
+            {
+                // Reform the map object form the broadcasted keys and values.
+                auto key = it->first;
+                map_keys.push_back(key);
+            }
+            key_cache = STRING_UTILITIES::convert_string_vector_to_char_array(map_keys);
+        }
 
-              auto value = it->second;
-              map_values.push_back(value);
-          }
+        // Broadcast string vector of keys.
+        auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(key_cache,this->_mpiCommunicator);
 
-          // Broadcast string vector of keys.
-          auto key_cache = STRING_UTILITIES::convert_string_vector_to_char_array(map_keys);
-
-          // Broadcast string vector of values.
-          auto map_cache = STRING_UTILITIES::convert_string_vector_to_char_array(map_values);
+        STRING_UTILITIES::VectorStringCache value_cache;
+        if ( this->iAmMasterProcess() )
+        {
+            // Form a vector of the keys and values of the map "a_map".
+            for (auto it = a_map.begin(); it != a_map.end(); ++it)
+            {
+                auto value = it->second;
+                map_values.push_back(value);
+            }
+            value_cache = STRING_UTILITIES::convert_string_vector_to_char_array(map_values);
+        }
+        // Broadcast string vector of values.
+        auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(value_cache,this->_mpiCommunicator);
     }
     return a_map;
 }
