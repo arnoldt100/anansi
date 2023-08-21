@@ -38,6 +38,7 @@
 #include "convert_string_vector_to_char_array.h"
 #include "ErrorMPIBroadcast.h"
 #include "Array1d.hpp"
+#include "VectorStringCache.h"
 
 namespace ANANSI
 {
@@ -47,6 +48,7 @@ std::string MPICommunicator::HOSTNAME_NOT_DEFINED("Hostname not defined");
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= LIFECYCLE ====================================
@@ -218,22 +220,19 @@ MPICommunicator::broadcastStdString_(const std::string & str_to_bcast, const std
 
 
 std::size_t
-MPICommunicator::getSizeofCommunicator_(const std::string & id) const
+MPICommunicator::getSizeofCommunicator_() const
 {
     std::size_t my_size;
     try
     {
-        if (id == "world_communicator")
-        {
-            int world_comm_group_size;
-            int mpi_return_code = MPI_Comm_size(this->_mpiCommunicator,&world_comm_group_size);
+        int world_comm_group_size;
+        int mpi_return_code = MPI_Comm_size(this->_mpiCommunicator,&world_comm_group_size);
 
-            if (mpi_return_code != MPI_SUCCESS)
-            {
-                throw ANANSI::MPICommSizeException();
-            }
-            my_size = static_cast<std::size_t>(world_comm_group_size);
+        if (mpi_return_code != MPI_SUCCESS)
+        {
+            throw ANANSI::MPICommSizeException();
         }
+        my_size = static_cast<std::size_t>(world_comm_group_size);
     }
     catch (ANANSI::MPICommSizeException const & my_mpi_exception)
     {
@@ -576,26 +575,29 @@ std::map<std::string,std::string>
 MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const
 {
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
-
-    // Form a vector of the keys and values of the map "a_map".
     std::vector<std::string> map_keys;
     std::vector<std::string> map_values;
-    for (auto it = a_map.begin(); it != a_map.end(); ++it)
+    const bool communicator_group_has_more_than_one_rank = this->getSizeofCommunicator_() > 1;
+
+    if (this->isParallel_())
     {
-        auto key = it->first;
-        map_keys.push_back(key);
+          // Form a vector of the keys and values of the map "a_map".
+          for (auto it = a_map.begin(); it != a_map.end(); ++it)
+          {
+              // Reform the map object form the broadcasted keys and values.
+              auto key = it->first;
+              map_keys.push_back(key);
 
-        auto value = it->second;
-        map_values.push_back(value);
+              auto value = it->second;
+              map_values.push_back(value);
+          }
+
+          // Broadcast string vector of keys.
+          auto key_cache = STRING_UTILITIES::convert_string_vector_to_char_array(map_keys);
+
+          // Broadcast string vector of values.
+          auto map_cache = STRING_UTILITIES::convert_string_vector_to_char_array(map_values);
     }
-    // Broadcast string vector of keys.
-    STRING_UTILITIES::convert_string_vector_to_char_array();
-
-    // Broadcast string vector of values.
-    STRING_UTILITIES::convert_string_vector_to_char_array();
-
-    // Reform the map object form the broadcasted keys  and values.
-
     return a_map;
 }
 

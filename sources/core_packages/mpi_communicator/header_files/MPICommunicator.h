@@ -72,7 +72,7 @@ private:
     void synchronizationPoint_() const final override;
 
     std::size_t
-    getSizeofCommunicator_(const std::string & id) const final override;
+    getSizeofCommunicator_() const final override;
 
     int
     getCommunicatorRank_() const final override;
@@ -123,6 +123,12 @@ private:
 
     std::map<std::string,std::string>
     broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const final override;
+
+    bool isParallel_() const
+    {
+        const bool communicator_group_has_more_than_one_rank = this->getSizeofCommunicator_() > 1;
+        return communicator_group_has_more_than_one_rank ;
+    }
 
     //===== MUTATORS =======
     void
