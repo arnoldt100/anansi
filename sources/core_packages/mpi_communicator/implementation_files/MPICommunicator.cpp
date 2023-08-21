@@ -35,7 +35,7 @@
 #include "MPIBroadcast.h"
 #include "MPIBarrier.h"
 #include "convert_sequence_of_chars_to_vector_string.h"
-#include "convert_string_vector_to_char_array.h"
+#include "cache_stdmap.h"
 #include "ErrorMPIBroadcast.h"
 #include "Array1d.hpp"
 #include "VectorStringCache.h"
@@ -590,7 +590,7 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
                 auto key = it->first;
                 map_keys.push_back(key);
             }
-            key_cache = STRING_UTILITIES::convert_string_vector_to_char_array(map_keys);
+            auto tuple1 = STRING_UTILITIES::cache_stdmap(a_map, map_keys);
         }
 
         // Broadcast string vector of keys.
@@ -605,7 +605,7 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
                 auto value = it->second;
                 map_values.push_back(value);
             }
-            value_cache = STRING_UTILITIES::convert_string_vector_to_char_array(map_values);
+            auto t2 = STRING_UTILITIES::cache_stdmap(a_map,map_values);
         }
         // Broadcast string vector of values.
         auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(value_cache,this->_mpiCommunicator);
