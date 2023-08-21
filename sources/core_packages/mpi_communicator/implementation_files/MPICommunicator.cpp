@@ -580,35 +580,23 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
 
     if (this->isParallel_())
     {
-        STRING_UTILITIES::VectorStringCache key_cache;
+        std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> tuple1;
         if ( this->iAmMasterProcess() )
         {
-            // Form a vector of the keys and values of the map "a_map".
-            for (auto it = a_map.begin(); it != a_map.end(); ++it)
-            {
-                // Reform the map object form the broadcasted keys and values.
-                auto key = it->first;
-                map_keys.push_back(key);
-            }
-            auto tuple1 = STRING_UTILITIES::cache_stdmap(a_map, map_keys);
+            tuple1 = STRING_UTILITIES::cache_stdmap(a_map);
         }
 
         // Broadcast string vector of keys.
-        auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(key_cache,this->_mpiCommunicator);
+        auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<0>(tuple1),this->_mpiCommunicator);
 
-        STRING_UTILITIES::VectorStringCache value_cache;
-        if ( this->iAmMasterProcess() )
-        {
-            // Form a vector of the keys and values of the map "a_map".
-            for (auto it = a_map.begin(); it != a_map.end(); ++it)
-            {
-                auto value = it->second;
-                map_values.push_back(value);
-            }
-            auto t2 = STRING_UTILITIES::cache_stdmap(a_map,map_values);
-        }
         // Broadcast string vector of values.
-        auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(value_cache,this->_mpiCommunicator);
+        auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<1>(tuple1),this->_mpiCommunicator);
+
+        if ( ! this->iAmMasterProcess() )
+        {
+            // Reform std::map from bkey_cache and bvalue_cache.
+            // a_map = STRING_UTILITIES::reform_stdmap(bkey_cache,bvalue_cache);
+        }
     }
     return a_map;
 }
