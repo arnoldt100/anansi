@@ -178,24 +178,24 @@ void MPICommunicator::synchronizationPoint_() const
 
 
 std::string
-MPICommunicator::broadcastStdString_(const std::string & str_to_bcast, const std::size_t bcast_rank) const
+MPICommunicator::broadcastStdString_(const std::string & str_to_bcast, const std::size_t broadcast_rank) const
 {
     std::string ret_value;
     try 
     {
         // First broadcast the length of the string that is to be broadcasted.
         // The variable str_len1 is only properly defined on the communicator
-        // with rank bcast_rank. 
+        // with rank broadcast_rank. 
         const std::size_t str_len1 = str_to_bcast.length();
         const std::size_t bcast_str_len = ANANSI::MPI_Broadcast<std::size_t>::Broadcast(str_len1,
                                                                               this->_mpiCommunicator,
-                                                                              bcast_rank);
+                                                                              broadcast_rank);
 
         // Broadcast the string to all other ranks.
         ret_value = ANANSI::MPI_Broadcast<std::string>::Broadcast(str_to_bcast,
                                                                   bcast_str_len,
                                                                   this->_mpiCommunicator,
-                                                                  bcast_rank);
+                                                                  broadcast_rank);
     }
     catch (ANANSI::ErrorMPIBroadcast<char> const & my_mpi_exception )
     {
@@ -563,15 +563,14 @@ MPICommunicator::gatherInt_(const int & data_to_gather,
     return gathered_data; 
 }
 
-
 std::map<std::string,std::string>
-MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const
+MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t broadcast_rank) const
 {   
     // The variable "b_map" will store the broadcasted "a_map".
     std::map<std::string,std::string> b_map;
     if (this->isParallel_())
     {
-        // The variable "key_value_tuple" will store a tuple a the cached "a_map" keys and corresponding key values.
+        // The variable "key_value_tuple" will store a tuple of the cached "a_map" keys and corresponding key values.
         // Only the master process will cache "a_map" to variable "key_value_tuple".
         // std::get<0>(key_value_tuple) is the key cache for "a_map".
         // std::get<1>(key_value_tuple) is the key values cache for "a_map".
@@ -584,10 +583,10 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
         // Broadcast the key and key values to the worker processes.  
         auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<0>(key_value_tuple),
                                                                                         this->_mpiCommunicator,
-                                                                                        bcast_rank);
+                                                                                        broadcast_rank);
         auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<1>(key_value_tuple),
                                                                                           this->_mpiCommunicator,
-                                                                                          bcast_rank);
+                                                                                          broadcast_rank);
 
         // The variable "bkey_value_tuple" stores the broadcasted "key_value_tuple". Use bkey_value_tuple to reform the 
         // broadcasted std::map "a_map".
@@ -600,7 +599,6 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
     }
     return b_map;
 }
-
 
 //============================= MUTATORS =====================================
 
