@@ -573,7 +573,7 @@ MPICommunicator::gatherInt_(const int & data_to_gather,
 
 std::map<std::string,std::string>
 MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const
-{
+{   std::map<std::string,std::string> b_map;
     if (this->isParallel_())
     {
         std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> tuple1;
@@ -588,13 +588,14 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
         // Broadcast string vector of values.
         auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<1>(tuple1),this->_mpiCommunicator);
 
-        if ( ! this->iAmMasterProcess() )
-        {
-            // Reform std::map from bkey_cache and bvalue_cache.
-            // a_map = STRING_UTILITIES::reform_stdmap(bkey_cache,bvalue_cache);
-        }
+        // Reform std::map from bkey_cache and bvalue_cache.
+        b_map = STRING_UTILITIES::reform_stdmap(bkey_cache,bvalue_cache);
     }
-    return a_map;
+    else
+    {
+        b_map = a_map;
+    }
+    return b_map;
 }
 
 
