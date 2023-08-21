@@ -574,10 +574,6 @@ MPICommunicator::gatherInt_(const int & data_to_gather,
 std::map<std::string,std::string>
 MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t bcast_rank) const
 {
-    MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
-    std::vector<std::string> map_keys;
-    std::vector<std::string> map_values;
-
     if (this->isParallel_())
     {
         std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> tuple1;
