@@ -127,12 +127,33 @@ std::string MPI_Broadcast<std::string>::Broadcast(const std::string str_to_bcast
     return ret_value;
 }
 
-STRING_UTILITIES::VectorStringCache MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(const STRING_UTILITIES::VectorStringCache cache,
-                                                                                                  const MPI_Comm mpi_comm,
-                                                                                                  const std::size_t bcast_rank)
-
+STRING_UTILITIES::VectorStringCache 
+MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(
+    const STRING_UTILITIES::VectorStringCache data_to_broadcast,
+    const MPI_Comm mpi_comm,
+    const std::size_t bcast_rank)
 {
-        return cache;
+    MEMORY_MANAGEMENT::Array1d<std::size_t> SizeTArray1dFactory;
+    MEMORY_MANAGEMENT::Array1d<char> CharArray1dFactory;
+
+    // Unpack "data_to_broadcast" to arrays, broadcast these arrays, and
+    // reform into a new VectorStringCache object which is to be returned.
+    std::size_t buffer_array_lengths[2] = { data_to_broadcast.getCharactersPerVectorArrayLength(),
+                              data_to_broadcast.getCharacterArrayLength() };
+
+    MPI_Bcast(buffer_array_lengths,2,MPI_DATA_TYPE<unsigned long>::value(),
+              static_cast<int>(bcast_rank),mpi_comm);
+
+    // Allocate buffer arrays.
+    std::size_t* buffer_ncpv = SizeTArray1dFactory.createArray(buffer_array_lengths[0]);
+    char* buffer_ca = CharArray1dFactory.createArray(buffer_array_lengths[1]);
+
+
+    // Destroy buffer arrays.
+    SizeTArray1dFactory.destroyArray(buffer_ncpv);
+    CharArray1dFactory.destroyArray(buffer_ca);
+
+    return data_to_broadcast;
 }
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
