@@ -570,12 +570,15 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
     std::map<std::string,std::string> b_map;
     if (this->isParallel_())
     {
-        // The variable "key_value_tuple" will store a tuple of the cached "a_map" keys and corresponding key values.
-        // Only the master process will cache "a_map" to variable "key_value_tuple".
-        // std::get<0>(key_value_tuple) is the key cache for "a_map".
-        // std::get<1>(key_value_tuple) is the key values cache for "a_map".
+        // The variable "key_value_tuple" will store a tuple of the cached
+        // "a_map" keys and corresponding key values. Only the process with rank
+        // "broadcast_rank" will cache "a_map" to tuple variable
+        // "key_value_tuple". std::get<0>(key_value_tuple) is the key cache for
+        // "a_map". std::get<1>(key_value_tuple) is the key values cache for
+        // "a_map".
         std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> key_value_tuple;
-        if ( this->iAmMasterProcess() )
+        bool i_am_broadcast_rank = this->sameCommunicatorRank(broadcast_rank);
+        if ( i_am_broadcast_rank )
         {
             key_value_tuple = STRING_UTILITIES::cache_stdmap(a_map);
         }
