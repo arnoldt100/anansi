@@ -139,7 +139,7 @@ MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(
     // Unpack "data_to_broadcast" to arrays, broadcast these arrays, and
     // reform into a new VectorStringCache object which is to be returned.
     std::size_t buffer_array_lengths[2] = { data_to_broadcast.getCharactersPerVectorArrayLength(),
-                              data_to_broadcast.getCharacterArrayLength() };
+                                            data_to_broadcast.getCharacterArrayLength() };
 
     MPI_Bcast(buffer_array_lengths,2,MPI_DATA_TYPE<unsigned long>::value(),
               static_cast<int>(bcast_rank),mpi_comm);

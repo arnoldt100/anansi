@@ -563,6 +563,27 @@ MPICommunicator::gatherInt_(const int & data_to_gather,
     return gathered_data; 
 }
 
+//! \brief Broadcasts data of type std::map<std::string,std::string> from
+//!        the process broadcast_rank to the remaining
+//!        processes in the MPI communicator group.
+//!
+//! The data type std::map<std::string,std::string> is flattened/transformed to
+//! a tuple of type
+//!
+//!   std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
+//!
+//! The key-values pairs of std::map<std::string,std::string> are respectively
+//! stored in 0'th and 1'st element of the tuple.
+//! STRING_UTILITIES::VectorStringCache is simply a container; int, int*, and
+//! char*; for storing a group of strings for broadcasting convenience.
+//! Each tuple element is broadcasted. The tuple pair is then reformed, and
+//! function uncache_stdmap is used to reform the
+//! std::map<std::string,std::string> which is returned to the invoking
+//! function.
+//!
+//! \param[in] a_map The object to broadcasted.
+//! \param[in] broadcast_rank The MPI rank of the broadcaster.
+//! \return The broadcasted a_map.
 std::map<std::string,std::string>
 MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t broadcast_rank) const
 {   
@@ -570,12 +591,6 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
     std::map<std::string,std::string> b_map;
     if (this->isParallel_())
     {
-        // The variable "key_value_tuple" will store a tuple of the cached
-        // "a_map" keys and corresponding key values. Only the process with rank
-        // "broadcast_rank" will cache "a_map" to tuple variable
-        // "key_value_tuple". std::get<0>(key_value_tuple) is the key cache for
-        // "a_map". std::get<1>(key_value_tuple) is the key values cache for
-        // "a_map".
         std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> key_value_tuple;
         bool i_am_broadcast_rank = this->sameCommunicatorRank(broadcast_rank);
         if ( i_am_broadcast_rank )
@@ -584,17 +599,17 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
         }
 
         // Broadcast the key and key values to the worker processes.  
-        auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<0>(key_value_tuple),
-                                                                                        this->_mpiCommunicator,
-                                                                                        broadcast_rank);
-        auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<1>(key_value_tuple),
-                                                                                          this->_mpiCommunicator,
-                                                                                          broadcast_rank);
+        // auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<0>(key_value_tuple),
+        //                                                                                 this->_mpiCommunicator,
+        //                                                                                 broadcast_rank);
+        // auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<1>(key_value_tuple),
+        //                                                                                   this->_mpiCommunicator,
+        //                                                                                   broadcast_rank);
 
         // The variable "bkey_value_tuple" stores the broadcasted "key_value_tuple". Use bkey_value_tuple to reform the 
         // broadcasted std::map "a_map".
-        auto bkey_value_tuple = std::make_tuple(bkey_cache,bvalue_cache);
-        b_map = STRING_UTILITIES::reform_stdmap(bkey_value_tuple);
+        // auto bkey_value_tuple = std::make_tuple(bkey_cache,bvalue_cache);
+        // b_map = STRING_UTILITIES::reform_stdmap(bkey_value_tuple);
     }
     else
     {
