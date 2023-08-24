@@ -26,6 +26,7 @@
 #include "MPIAllgather.h"
 #include "MPIGather.h"
 #include "MPIBroadcast.h"
+#include "BroadcastVectorStringCache.h"
 #include "MPIBarrier.h"
 #include "convert_sequence_of_chars_to_vector_string.h"
 #include "cache_stdmap.h"
