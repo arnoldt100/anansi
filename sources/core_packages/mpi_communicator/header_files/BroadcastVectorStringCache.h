@@ -39,7 +39,6 @@ public:
 
 }; // -----  end of class BroadcastVectorStringCache  -----
 
-
 }; // namespace ANANSI
 
 #endif // ANANSI_BroadcastVectorStringCache_INC
