@@ -22,7 +22,7 @@ class BaseInputFile
 {
     public:
 
-      using PICKLETYPE = DerivedTypeTraits::PICKLETYPE;
+      using PICKLETYPE = typename DerivedTypeTraits::PICKLETYPE;
 
     private:
         //! Provides access to the CRTP derived class "Derived."
@@ -75,7 +75,7 @@ class BaseInputFile
                 return;
             };
 
-            static DerivedTypeTraits::PICKLETYPE pickle_to_map(const Derived & derived)
+            static typename DerivedTypeTraits::PICKLETYPE pickle_to_map(const Derived & derived)
             {
                 typename DerivedTypeTraits::PICKLETYPE (Derived::*fn)() const = &Accessor_::pickleToMap_;
                 return (derived.*fn)();
@@ -134,7 +134,7 @@ class BaseInputFile
             return;
         }
 
-        DerivedTypeTraits::PICKLETYPE pickleToMap() const
+        typename DerivedTypeTraits::PICKLETYPE pickleToMap() const
         {
             return Accessor_::pickle_to_map(this->asDerived_());
         }
