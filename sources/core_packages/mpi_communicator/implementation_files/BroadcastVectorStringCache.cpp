@@ -58,7 +58,7 @@ namespace details {
 //////////////////////////////////////////////////////////////////////////////
 STRING_UTILITIES::VectorStringCache 
 MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(
-    const STRING_UTILITIES::VectorStringCache data_to_broadcast,
+    const STRING_UTILITIES::VectorStringCache & data_to_broadcast,
     const MPI_Comm mpi_comm,
     const std::size_t bcast_rank)
 {
