@@ -75,19 +75,19 @@ MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(
     std::unique_ptr<std::size_t[]> buffer_array_lengths = 
         details::broadcast_array_lengths(mpi_comm,rank,bcast_rank,data_to_broadcast);
 
-    // // ---------------------------------------------------
-    // // Broadcast the array of number characters per vector element.
-    // // ---------------------------------------------------
-    // MEMORY_MANAGEMENT::Array1d<std::size_t> SizeTArray1dFactory;
-    // std::size_t* buffer_ncpv = nullptr;
-    // if ( static_cast<std::size_t>(rank) == bcast_rank)
-    // {
-    //     buffer_ncpv = SizeTArray1dFactory.createArray(buffer_array_lengths[0]);
-    // }
-    // else
-    // {
-    //     buffer_ncpv = data_to_broadcast.getArrayOfNumberCharactersPerVector();
-    // }
+    // ---------------------------------------------------
+    // Broadcast the array of number characters per vector element.
+    // ---------------------------------------------------
+    MEMORY_MANAGEMENT::Array1d<std::size_t> SizeTArray1dFactory;
+    std::size_t* buffer_ncpv = nullptr;
+    if ( static_cast<std::size_t>(rank) == bcast_rank)
+    {
+        buffer_ncpv = SizeTArray1dFactory.createArray(buffer_array_lengths[0]);
+    }
+    else
+    {
+        buffer_ncpv = data_to_broadcast.getArrayOfNumberCharactersPerVector();
+    }
 
     // // ---------------------------------------------------
     // // Broadcast the array of characters in VectorStringCache.
