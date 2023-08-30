@@ -54,15 +54,23 @@ std::tuple<std::size_t,std::size_t> broadcast_array_lengths(const MPI_Comm & mpi
     return std::make_tuple(buffer_array_lengths[0],buffer_array_lengths[1]);
 }
 
-std::unique_ptr<char[]> broadcast_ncpv_array(const MPI_Comm & mpi_comm,
+std::unique_ptr<int[]> broadcast_ncpv_array(const MPI_Comm & mpi_comm,
                                      const int & rank,
                                      const std::size_t & bcast_rank,
-                                     char * & ncpv_array_to_broadcast,
+                                     int * & ncpv_array_to_broadcast,
                                      std::size_t const & ncpv_array_length )
 {
 
 }
 
+std::unique_ptr<char[]> broadcast_ca_array(const MPI_Comm & mpi_comm,
+                                     const int & rank,
+                                     const std::size_t & bcast_rank,
+                                     char * & ca_array_to_broadcast,
+                                     std::size_t const & ncpv_array_length )
+{
+
+}
 
 };
 };
@@ -88,7 +96,7 @@ MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(
     std::size_t ncpv_array_length;
     std::size_t ca_array_length;
 
-    std::unique_ptr<std::size_t[]> buffer_array_lengths = 
+    std::tie(ncpv_array_length,ca_array_length) = 
         details::broadcast_array_lengths(mpi_comm,rank,bcast_rank,data_to_broadcast);
 
     // ---------------------------------------------------
