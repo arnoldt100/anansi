@@ -101,7 +101,7 @@ MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(
     buffer_array_lengths[0] = data_to_broadcast.getNumberCharactersPerVectorArrayLength();
     buffer_array_lengths[1] = data_to_broadcast.getCharacterArrayLength() ;
     std::tie(ncpv_array_length,ca_array_length) = 
-        details::broadcast_array_lengths(mpi_comm,rank,bcast_rank,buffer_array_lengths);
+        details::broadcast_array_lengths(mpi_comm,rank,bcast_rank,std::move(buffer_array_lengths));
 
     // ---------------------------------------------------
     // Broadcast the array of number characters per vector element.
