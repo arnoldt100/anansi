@@ -184,7 +184,7 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     receiver_result_t::PICKLETYPE  pickled_control_file;
     if ( i_am_master )
     {
-      pickled_control_file = this->results_.pickleToMap();
+      pickled_control_file = this->results_.pickle();
     }
    
     // Broadcast the pickled_control_file to the other worker processes.
@@ -192,7 +192,11 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     const receiver_result_t::PICKLETYPE broadcasted_pickled_control_file =
         this->communicator_->broadcastStdMap(pickled_control_file,rank_to_broadcast);
 
-    // Use the broadcasted_pickled_obj to fill in this->results_ of the workers.
+    // Use the broadcasted_pickled_obj to fill in this->results_ for the workers.
+    if ( ! i_am_master )
+    {
+        this->results_.unpickle(broadcasted_pickled_control_file);      
+    }
 
 
     // Synchronize all processes in the communicator group of

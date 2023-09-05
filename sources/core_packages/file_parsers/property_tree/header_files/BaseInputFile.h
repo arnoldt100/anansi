@@ -22,7 +22,7 @@ class BaseInputFile
 {
     public:
 
-      using PICKLETYPE = typename DerivedTypeTraits::PICKLETYPE;
+        using PICKLETYPE = typename DerivedTypeTraits::PICKLETYPE;
 
     private:
         //! Provides access to the CRTP derived class "Derived."
@@ -75,11 +75,16 @@ class BaseInputFile
                 return;
             };
 
-            static typename DerivedTypeTraits::PICKLETYPE pickle_to_map(const Derived & derived)
+            static typename DerivedTypeTraits::PICKLETYPE pickle(const Derived & derived)
             {
-                typename DerivedTypeTraits::PICKLETYPE (Derived::*fn)() const = &Accessor_::pickleToMap_;
+                typename DerivedTypeTraits::PICKLETYPE (Derived::*fn)() const = &Accessor_::pickle_;
                 return (derived.*fn)();
-                ;
+            }
+
+            static void unpickle(const Derived & derived, const typename DerivedTypeTraits::PICKLETYPE & pickleobj)
+            {
+                void (Derived::*fn) (const typename DerivedTypeTraits::PICKLETYPE &) = &Accessor_::unpickle_;
+                return;
             }
 
         };
@@ -120,6 +125,11 @@ class BaseInputFile
 
         }
 
+        typename DerivedTypeTraits::PICKLETYPE pickle() const
+        {
+            return Accessor_::pickle(this->asDerived_());
+        }
+
         /* ====================  MUTATORS      ======================================= */
         void setFileName(const std::string my_file_name)
         {
@@ -134,9 +144,10 @@ class BaseInputFile
             return;
         }
 
-        typename DerivedTypeTraits::PICKLETYPE pickleToMap() const
+        void unpickle( const DerivedTypeTraits::PICKLETYPE & pickle_obj)
         {
-            return Accessor_::pickle_to_map(this->asDerived_());
+            Accessor_::unpickle(this->asDerived_(),pickle_obj);
+            return;
         }
 
         /* ====================  OPERATORS     ======================================= */

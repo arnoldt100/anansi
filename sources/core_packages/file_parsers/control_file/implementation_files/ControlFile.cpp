@@ -113,7 +113,7 @@ void ControlFile::writeToDisk_(const std::string my_filename) const
     return;
 }
 
-ControlFileTraits::PICKLETYPE ControlFile::pickleToMap_() const
+ControlFileTraits::PICKLETYPE ControlFile::pickle_() const
 {
     ControlFileTraits::PICKLETYPE pobj;
 
@@ -141,6 +141,11 @@ void ControlFile::readPropertyTree_(boost::property_tree::ptree & pt)
                                 std::string(this->defaultValue_),
                                 this->pt_);    
    
+    return;
+}
+
+void ControlFile::unpickle_(const ControlFileTraits::PICKLETYPE & pickle_obj) 
+{
     return;
 }
 
