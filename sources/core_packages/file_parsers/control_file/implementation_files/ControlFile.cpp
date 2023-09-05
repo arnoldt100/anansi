@@ -115,13 +115,11 @@ void ControlFile::writeToDisk_(const std::string my_filename) const
 
 ControlFileTraits::PICKLETYPE ControlFile::pickleToMap_() const
 {
-    std::cout << "Pickling file to  std::map" << std::endl;
     ControlFileTraits::PICKLETYPE pobj;
 
     // Pickle the file name to std::map.
     pobj[std::string("filename")] = this->fileName_();
 
-    // Pickle the property tree to std::map.
     return pobj; 
 }
 

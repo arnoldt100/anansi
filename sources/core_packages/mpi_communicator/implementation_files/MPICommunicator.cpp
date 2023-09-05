@@ -600,8 +600,6 @@ MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_m
         }
 
         // Broadcast the key and key values to the worker processes.  
-        std::get<0>(key_value).printToStdOut();
-        std::get<1>(key_value).printToStdOut();
         auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<0>(key_value),
                                                                                         this->_mpiCommunicator,
                                                                                         broadcast_rank);
