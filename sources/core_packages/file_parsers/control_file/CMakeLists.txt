@@ -88,6 +88,9 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlFileNodeKeys.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/verify_controlfile_keys_are_valid.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/add_values_to_property_tree.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFilePickle.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/unpickle_to_property_tree.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/pickle_ControlFile_property_tree.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ControlFileNodeKeyNotFound.h)
 
     #-----------------------------------------------------
@@ -106,6 +109,9 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlFileNodeKeys.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/verify_controlfile_keys_are_valid.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/add_values_to_property_tree.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFilePickle.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/unpickle_to_property_tree.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/pickle_ControlFile_property_tree.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ControlFileNodeKeyNotFound.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

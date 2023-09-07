@@ -16,6 +16,8 @@
 //--------------------------------------------------------//
 #include "ControlFile.h"
 #include "add_values_to_property_tree.h"
+#include "pickle_ControlFile_property_tree.h"
+#include "unpickle_to_property_tree.h"
 #include "verify_controlfile_keys_are_valid.h"
 #include <boost/algorithm/string.hpp>
 
@@ -120,6 +122,8 @@ ControlFileTraits::PICKLETYPE ControlFile::pickle_() const
     // Pickle the file name to std::map.
     pobj[std::string("filename")] = this->fileName_();
 
+    pickle_ControlFile_property_tree();
+
     return pobj; 
 }
 
@@ -144,8 +148,29 @@ void ControlFile::readPropertyTree_(boost::property_tree::ptree & pt)
     return;
 }
 
+//! \brief Unpickles "pickle_obj" and reforms the ControlFile's property tree,
+//!        and other data members.
+//!
+//! Iterate through the keys of this->masterNodeKeys. Check if a matching is
+//! found in the pickle_obj, and if a matching key is found the add key-value pair to
+//! boost::property_tree "this->pt_". If the key is not found then add the key
+//! value pair with "default-null-value" as the key's value.
 void ControlFile::unpickle_(const ControlFileTraits::PICKLETYPE & pickle_obj) 
 {
+    // Unpickle the filename.
+    this->fileName_ = ControlFileName(pickle_obj.at("filename")); 
+
+    // Unpickle the property tree.
+    this->pt_.clear();
+
+    this->writeToDisk_(std::string("debug.controlFile.before"));
+
+    this->pt_ = unpickle_to_property_tree(this->masterNodeKeys_,
+                                          pickle_obj,
+                                          this->defaultValue_);
+
+    this->writeToDisk_(std::string("debug.controlFile.after"));
+
     return;
 }
 

@@ -81,9 +81,10 @@ class BaseInputFile
                 return (derived.*fn)();
             }
 
-            static void unpickle(const Derived & derived, const typename DerivedTypeTraits::PICKLETYPE & pickleobj)
+            static void unpickle(Derived & derived, const typename DerivedTypeTraits::PICKLETYPE & pickleobj)
             {
                 void (Derived::*fn) (const typename DerivedTypeTraits::PICKLETYPE &) = &Accessor_::unpickle_;
+                (derived.*fn)(pickleobj);
                 return;
             }
 
