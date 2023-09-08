@@ -22,13 +22,11 @@ namespace ANANSI {
 
 ControlFilePickle::ControlFilePickle()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
 ControlFilePickle::ControlFilePickle( ControlFilePickle const & other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
         
@@ -38,7 +36,6 @@ ControlFilePickle::ControlFilePickle( ControlFilePickle const & other)
 
 ControlFilePickle::ControlFilePickle( ControlFilePickle && other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
         
@@ -49,7 +46,6 @@ ControlFilePickle::ControlFilePickle( ControlFilePickle && other)
 
 ControlFilePickle::~ControlFilePickle()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 

@@ -160,10 +160,16 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile<PicklingPolicy>,
         //! value pair with "default-null-value" as the key's value.
         void unpickle_(const ControlFileTraits::PICKLETYPE & pickle_obj) 
         {
+            this->pt_.clear();
+
+            this->pt_ = PicklingPolicy:: template unpickle<ControlFileTraits::INTERNALREPRESENTATION,
+                                                           ControlFileTraits::PICKLETYPE,
+                                                           ControlFileTraits::DEFAULTVALUE>(this->masterNodeKeys_,
+                                                                                            pickle_obj);
+
             // Unpickle the filename.
             this->fileName_ = ControlFileName(pickle_obj.at("filename")); 
 
-            this->pt_.clear();
 
             this->writeToDisk_(std::string("debug.controlFile.before"));
 
