@@ -85,7 +85,7 @@ ControlFileXMLReceiver::receiver_copy_t_ ControlFileXMLReceiver::receiverGetCopy
 //============================= MUTATORS =====================================
 
 template<>
-void ControlFileXMLReceiver::receiverModifyMyself_(ControlFile & arg)
+void ControlFileXMLReceiver::receiverModifyMyself_(ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY> & arg)
 {
     this->results_ = arg;
     return;

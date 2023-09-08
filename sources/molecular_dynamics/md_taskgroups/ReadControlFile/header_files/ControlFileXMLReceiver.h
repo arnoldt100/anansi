@@ -57,10 +57,10 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','x','m','l','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = ANANSI::ControlFile;
-        using my_copy_type_ = ANANSI::ControlFile;
-        using my_share_type_ = ANANSI::ControlFile;
-        using my_transfer_type_ = ANANSI::ControlFile;
+        using my_result_type_ = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
+        using my_copy_type_ = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
+        using my_share_type_ = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
+        using my_transfer_type_ = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,

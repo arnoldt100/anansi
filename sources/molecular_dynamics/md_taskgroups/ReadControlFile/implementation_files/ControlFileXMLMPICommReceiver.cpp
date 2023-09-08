@@ -82,7 +82,7 @@ ControlFileXMLMPICommReceiver::receiver_copy_t_ ControlFileXMLMPICommReceiver::r
 //============================= MUTATORS =====================================
 
 template<>
-void ControlFileXMLMPICommReceiver::receiverModifyMyself_(ControlFile & arg)
+void ControlFileXMLMPICommReceiver::receiverModifyMyself_(ControlFile<ControlFileTraits::PICKLEPOLICY> & arg)
 {
     this->results_ = arg;
     return;

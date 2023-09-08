@@ -24,7 +24,7 @@ namespace ANANSI
         public:
 
             // ====================  LIFECYCLE     =======================================
-            using Filetype_t = ANANSI::ControlFile;
+            using Filetype_t = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
 
             // ====================  LIFECYCLE     =======================================
 
