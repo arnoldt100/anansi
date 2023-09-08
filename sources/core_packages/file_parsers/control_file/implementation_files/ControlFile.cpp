@@ -14,7 +14,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFile.h"
+#include "ControlFile.hpp"
 #include "add_values_to_property_tree.h"
 #include "pickle_ControlFile_property_tree.h"
 #include "unpickle_to_property_tree.h"
@@ -160,7 +160,6 @@ void ControlFile::unpickle_(const ControlFileTraits::PICKLETYPE & pickle_obj)
     // Unpickle the filename.
     this->fileName_ = ControlFileName(pickle_obj.at("filename")); 
 
-    // Unpickle the property tree.
     this->pt_.clear();
 
     this->writeToDisk_(std::string("debug.controlFile.before"));

@@ -26,7 +26,7 @@
 #include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
-#include "ControlFile.h"
+#include "ControlFile.hpp"
 #include "ControlFileCommunicator.h"
 #include "ControlFileXMLMPICommOwnershipImpl.hpp"
 #include "TaskLabel.hpp"

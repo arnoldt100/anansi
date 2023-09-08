@@ -11,10 +11,13 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ControlFilePickle.h"
 
 namespace ANANSI
 {
@@ -23,6 +26,9 @@ class ControlFileTraits
 {
     public:
         using PICKLETYPE = std::map<std::string,std::string>;
+        using PICKLERPOLICY = ControlFilePickle;
+        using INTERNALREPRESENTATION = boost::property_tree::ptree;
+        constexpr static char DEFAULTVALUE[] = {"default-null-value"};
 
         // ====================  LIFECYCLE     =======================================
 

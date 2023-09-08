@@ -145,7 +145,7 @@ class BaseInputFile
             return;
         }
 
-        void unpickle( const DerivedTypeTraits::PICKLETYPE & pickle_obj)
+        void unpickle( const typename DerivedTypeTraits::PICKLETYPE & pickle_obj)
         {
             Accessor_::unpickle(this->asDerived_(),pickle_obj);
             return;

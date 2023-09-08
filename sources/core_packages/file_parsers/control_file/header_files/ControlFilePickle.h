@@ -32,7 +32,7 @@ class ControlFilePickle
 
         ControlFilePickle (ControlFilePickle && other);   // copy-move constructor
 
-        virtual ~ControlFilePickle ();  // destructor
+        ~ControlFilePickle ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 

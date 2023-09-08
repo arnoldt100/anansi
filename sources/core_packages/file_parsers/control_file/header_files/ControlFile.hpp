@@ -28,7 +28,6 @@ namespace ANANSI
 class ControlFile : public ANANSI::BaseInputFile<ControlFile,ControlFileTraits>
 {
     public:
-        // using PICKLETYPE = std::map<std::string,std::string>;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -62,7 +61,6 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile,ControlFileTraits>
         ControlFileTraits::PICKLETYPE pickle_() const;
 
         void unpickle_(const ControlFileTraits::PICKLETYPE & pickle_obj);
-
 
         // ====================  DATA MEMBERS  =======================================
 

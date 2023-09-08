@@ -14,7 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "BuilderFile.h"
-#include "ControlFile.h"
+#include "ControlFile.hpp"
 
 namespace ANANSI
 {

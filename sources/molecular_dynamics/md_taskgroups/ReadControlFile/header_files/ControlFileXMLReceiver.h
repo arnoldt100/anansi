@@ -33,7 +33,7 @@
 #include "CommonMDTaskGroupHeaders.h"
 #include "ReceiverError.h"
 #include "ControlFileNodeKeyNotFound.h"
-#include "ControlFile.h"
+#include "ControlFile.hpp"
 #include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "ControlFileName.h"
