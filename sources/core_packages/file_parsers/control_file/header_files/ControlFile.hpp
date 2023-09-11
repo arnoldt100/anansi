@@ -178,7 +178,6 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile<PicklingPolicy>,
             return;
         }
 
-
         // ====================  DATA MEMBERS  =======================================
 
     private:

@@ -123,7 +123,6 @@ class BaseInputFile
         void writeToDisk(const std::string my_file_name) const
         {
             Accessor_::write_to_disk(this->asDerived_(), my_file_name);
-
         }
 
         typename DerivedTypeTraits::PICKLETYPE pickle() const
