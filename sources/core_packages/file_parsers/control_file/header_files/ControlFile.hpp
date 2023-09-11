@@ -154,31 +154,27 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile<PicklingPolicy>,
         //! \brief Unpickles "pickle_obj" and reforms the ControlFile's property tree,
         //!        and other data members.
         //!
-        //! Iterate through the keys of this->masterNodeKeys. Check if a matching is
-        //! found in the pickle_obj, and if a matching key is found the add key-value pair to
-        //! boost::property_tree "this->pt_". If the key is not found then add the key
-        //! value pair with "default-null-value" as the key's value.
+        //! Iterate through the keys of this->masterNodeKeys. Check if a
+        //! matching is found in the pickle_obj, and if a matching key is found
+        //! the add key-value pair to boost::property_tree "this->pt_". If the
+        //! key is not found then add the key value pair with
+        //! "default-null-value" as the key's value.
         void unpickle_(const ControlFileTraits::PICKLETYPE & pickle_obj) 
         {
             this->pt_.clear();
 
-            this->pt_ = PicklingPolicy:: template unpickle<ControlFileTraits::INTERNALREPRESENTATION,
-                                                           ControlFileTraits::PICKLETYPE,
-                                                           ControlFileTraits::DEFAULTVALUE>(this->masterNodeKeys_,
-                                                                                            pickle_obj);
+            this->writeToDisk_(std::string("debug.controlFile.before"));
 
             // Unpickle the filename.
             this->fileName_ = ControlFileName(pickle_obj.at("filename")); 
 
-
-            this->writeToDisk_(std::string("debug.controlFile.before"));
-
-            this->pt_ = unpickle_to_property_tree(this->masterNodeKeys_,
-                                                  pickle_obj,
-                                                  this->defaultValue_);
+            this->pt_ = PicklingPolicy:: template unpickle<ControlFileTraits::INTERNALREPRESENTATION,
+                                                           ControlFileTraits::PICKLETYPE,
+                                                           ControlFileTraits::DEFAULTVALUE
+                                                           >(this->masterNodeKeys_,
+                                                             pickle_obj);
 
             this->writeToDisk_(std::string("debug.controlFile.after"));
-
             return;
         }
 

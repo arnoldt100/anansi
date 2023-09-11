@@ -25,7 +25,7 @@ namespace ANANSI
 namespace 
 {
     struct DefaultValue {
-        const std::string value = {"default-null-value"};
+        static std::string VALUE = {"default-null-value"};
     };
 }
 
