@@ -25,8 +25,10 @@ namespace ANANSI
 namespace 
 {
     struct DefaultValue {
-        static std::string VALUE = {"default-null-value"};
+        static std::string VALUE;
     };
+
+    std::string DefaultValue::VALUE = {"default-null-value"};
 }
 
 class ControlFileTraits
