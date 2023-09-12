@@ -12,12 +12,6 @@
 # control_file_include         ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
 # PUBLIC_HEADER                ${control_file_header_files}                        The list of headers files associated with this librarry.
 #
-# The build will abort unless the following variables are defined to
-# install the library archive, header files, and unit tests:
-#   control_file_install_lib_directory
-#   control_file_install_include_directory
-#   control_file_install_bin_directory
-#   control_file_logfilepath
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
