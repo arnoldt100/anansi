@@ -37,7 +37,7 @@
     # header files, and associated binariers.
     # 
     # ----------------------------------------------------
-    include(${CMAKE_CURRENT_SOURCE_DIR}/property_tree/cmake_macros_and_functions/command_files.cmake)
+    include(${CMAKE_CURRENT_SOURCE_DIR}/command_files/cmake_macros_and_functions/command_files.cmake)
     enable_building_command_files_package( "${file_parsers_install_lib_directory}"
                                            "${file_parsers_install_include_directory}"
                                            "${file_parsers_install_bin_directory}" 
