@@ -20,25 +20,25 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-CommandFiles::CommandFiles()
+CommandFiles::CommandFiles() :
+    valuePtr_(nullptr)
 {
     return;
 }
 
-CommandFiles::CommandFiles( CommandFiles const & other)
+CommandFiles::CommandFiles(CommandFiles const & other)
 {
     if (this != &other)
     {
-        
     }
     return;
 }
 
-CommandFiles::CommandFiles( CommandFiles && other)
+CommandFiles::CommandFiles(CommandFiles && other)
 {
     if (this != &other)
     {
-        
+        this->valuePtr_ = std::move(other.valuePtr_); 
     }
     return;
 }		// -----  end of method CommandFiles::CommandFiles  -----
@@ -53,13 +53,18 @@ CommandFiles::~CommandFiles()
 
 //============================= MUTATORS =====================================
 
+void CommandFiles::read() 
+{
+    this->valuePtr_->readFile();
+    return;
+}
+
 //============================= OPERATORS ====================================
 
 CommandFiles& CommandFiles::operator= ( const CommandFiles &other )
 {
     if (this != &other)
     {
-
     }
     return *this;
 } // assignment operator
@@ -68,7 +73,7 @@ CommandFiles& CommandFiles::operator= ( CommandFiles && other )
 {
     if (this != &other)
     {
-
+        this->valuePtr_ = std::move(other.valuePtr_); 
     }
     return *this;
 } // assignment-move operator
