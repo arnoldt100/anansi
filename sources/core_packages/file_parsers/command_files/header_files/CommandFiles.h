@@ -27,7 +27,6 @@ class CommandFiles
 
         CommandFiles (const CommandFiles & other);   // copy constructor
 
-        // A templated constructor which accepts "any" CommandFiles
         template<typename T> 
         CommandFiles(T && value)
         {
@@ -56,12 +55,28 @@ class CommandFiles
 
     private:
 
-        // The concept. 
         class CommandFilesConcept
         {
             public: 
+                // ====================  LIFECYCLE     =======================================
+                CommandFilesConcept() = default;
+                CommandFilesConcept(const CommandFilesConcept & other) = default;
+                CommandFilesConcept(CommandFilesConcept && other) = default;
                 virtual ~CommandFilesConcept()=0;
-                virtual void readFile() = 0;
+
+                // ====================  OPERATORS     =======================================
+                CommandFilesConcept& operator=(const CommandFilesConcept & other)=default;
+                CommandFilesConcept& operator=(CommandFilesConcept && other)=default;
+
+                // ====================  ACCESSORS     =======================================
+                virtual CommandFilesConcept* clone() const=0;
+                virtual void debugWriteToDisk(const std::string filename) const=0;
+                virtual void pickleFile() const=0;
+                virtual void unPickleFile() const=0;
+
+                // ====================  MUTATORS      =======================================
+                virtual void setFileName()=0;
+                virtual void readFile()=0;
         };
 
         // The model.
@@ -69,18 +84,72 @@ class CommandFiles
         class CommandFilesModel : public CommandFilesConcept
         {
             public:
+                // ====================  LIFECYCLE     =======================================
+                CommandFilesModel() :
+                    CommandFilesConcept(),
+                    value_()
+                {
+                    return;
+                };
+
+                CommandFilesModel(const  CommandFilesModel & other) :
+                    CommandFilesConcept(other),
+                    value_(other.value_)
+                {
+                    if (this != &other)
+                    {
+                    }
+                };
+
+                CommandFilesModel(CommandFilesModel && other) :
+                    CommandFilesConcept(std::move(other)),
+                    value_(std::move(other.value_))
+                {
+                    if (this != &other)
+                    {
+                    }
+                };
+
                 CommandFilesModel(const T & in_value ) : 
                     value_(in_value)
                 {
                     return;
                 };
 
+                // ====================  OPERATORS     =======================================
+                CommandFilesModel& operator=(const CommandFilesModel & other) 
+                {
+                    if (this != &other)
+                    {
+                        CommandFilesConcept::operator=(other);
+                        this->value_ = other.value;
+                    }
+                    return *this;
+                }
+
+                CommandFilesModel& operator=( CommandFilesModel && other) 
+                {
+                    if (this != &other)
+                    {
+                        CommandFilesConcept::operator=(std::move(other));
+                        this->value_ = std::move(other.value);
+                    }
+                    return *this;
+                }
+
+                CommandFilesModel* clone() const
+                {
+                    return new CommandFilesModel(*this);
+                }
+
+                // ====================  ACCESSORS     =======================================
+                
+                // ====================  MUTATORS      =======================================
                 void readFile() override
                 {
                     this->value.readFile();
                     return;
                 }
-
                 T value_;
         };
 

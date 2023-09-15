@@ -30,6 +30,8 @@ CommandFiles::CommandFiles(CommandFiles const & other)
 {
     if (this != &other)
     {
+        std::unique_ptr<CommandFilesConcept> tmp_obj(other.valuePtr_->clone());
+        this->valuePtr_  = std::move(tmp_obj);
     }
     return;
 }
@@ -65,6 +67,8 @@ CommandFiles& CommandFiles::operator= ( const CommandFiles &other )
 {
     if (this != &other)
     {
+        std::unique_ptr<CommandFilesConcept> tmp_obj(other.valuePtr_->clone());
+        this->valuePtr_  = std::move(tmp_obj);
     }
     return *this;
 } // assignment operator
