@@ -1,4 +1,3 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -10,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "CommandFiles.h"
+#include "CommandFileName.h"
 
 namespace ANANSI {
 
@@ -20,33 +19,39 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-CommandFiles::CommandFiles() :
-    valuePtr_(nullptr)
+CommandFileName::CommandFileName() :
+    fileName_()
 {
     return;
 }
 
-CommandFiles::CommandFiles(CommandFiles const & other)
+CommandFileName::CommandFileName(const std::string file_name) :
+    fileName_(file_name)
+{
+    return;
+}
+
+CommandFileName::CommandFileName( CommandFileName const & other) :
+    fileName_(other.fileName_)
 {
     if (this != &other)
     {
-        std::unique_ptr<CommandFilesConcept> tmp_obj(other.valuePtr_->clone());
-        this->valuePtr_  = std::move(tmp_obj);
     }
     return;
 }
 
-CommandFiles::CommandFiles(CommandFiles && other)
+CommandFileName::CommandFileName( CommandFileName && other) :
+    fileName_(std::move(other.fileName_))
 {
     if (this != &other)
     {
-        this->valuePtr_ = std::move(other.valuePtr_); 
+        
     }
     return;
-}		// -----  end of method CommandFiles::CommandFiles  -----
+}		// -----  end of method CommandFileName::CommandFileName  -----
 
 
-CommandFiles::~CommandFiles()
+CommandFileName::~CommandFileName()
 {
     return;
 }
@@ -55,29 +60,27 @@ CommandFiles::~CommandFiles()
 
 //============================= MUTATORS =====================================
 
-void CommandFiles::read() 
-{
-    this->valuePtr_->readFile();
-    return;
-}
-
 //============================= OPERATORS ====================================
 
-CommandFiles& CommandFiles::operator= ( const CommandFiles &other )
+std::string CommandFileName::operator()() const
+{
+    return this->fileName_;
+}
+
+CommandFileName& CommandFileName::operator= ( const CommandFileName &other )
 {
     if (this != &other)
     {
-        std::unique_ptr<CommandFilesConcept<>> tmp_obj(other.valuePtr_->clone());
-        this->valuePtr_  = std::move(tmp_obj);
+        this->fileName_ = other.fileName_;
     }
     return *this;
 } // assignment operator
 
-CommandFiles& CommandFiles::operator= ( CommandFiles && other )
+CommandFileName& CommandFileName::operator= ( CommandFileName && other )
 {
     if (this != &other)
     {
-        this->valuePtr_ = std::move(other.valuePtr_); 
+        this->fileName_ = std::move(other.fileName_);
     }
     return *this;
 } // assignment-move operator

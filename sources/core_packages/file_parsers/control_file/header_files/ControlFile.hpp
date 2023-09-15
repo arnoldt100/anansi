@@ -125,6 +125,7 @@ class ControlFile : public ANANSI::BaseInputFile<ControlFile<PicklingPolicy>,
             // Pickle the file name to std::map.
             pobj[std::string("filename")] = this->fileName_();
 
+            // TODO: pickle remainder of pt_;
             pickle_ControlFile_property_tree();
 
             return pobj; 

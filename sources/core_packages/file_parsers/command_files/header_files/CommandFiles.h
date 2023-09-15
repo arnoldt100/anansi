@@ -6,6 +6,10 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
+#include <string>
+#include <map>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,9 +18,21 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "CommandFileName.h"
 
 namespace ANANSI
 {
+
+namespace
+{
+    struct DefaultValue {
+        static std::string VALUE;
+    };
+    std::string DefaultValue::VALUE = {"default-null-value"};
+
+    using InternalRepresentation = boost::property_tree::ptree;
+    using PICKLETYPE = std::map<std::string,std::string>;
+};
 
 class CommandFiles
 {
@@ -70,12 +86,13 @@ class CommandFiles
 
                 // ====================  ACCESSORS     =======================================
                 virtual CommandFilesConcept* clone() const=0;
-                virtual void debugWriteToDisk(const std::string filename) const=0;
-                virtual void pickleFile() const=0;
-                virtual void unPickleFile() const=0;
+                virtual void debugWriteToDisk(std::string filename) const=0;
+                virtual InternalRepresentation getInternalRepresentation () const=0;
+                virtual PICKLETYPE pickle() const=0;
 
                 // ====================  MUTATORS      =======================================
-                virtual void setFileName()=0;
+                virtual void unPickle(const PICKLETYPE & pickle_obj)=0;
+                virtual void setFileName(CommandFileName filename)=0;
                 virtual void readFile()=0;
         };
 
@@ -137,19 +154,41 @@ class CommandFiles
                     return *this;
                 }
 
-                CommandFilesModel* clone() const
+                CommandFilesModel* clone() const override
                 {
                     return new CommandFilesModel(*this);
                 }
 
                 // ====================  ACCESSORS     =======================================
-                
+                void  debugWriteToDisk(const std::string filename) const override
+                {
+                    this->value_.writeToDisk(filename);
+                    return;
+                }
+
+                InternalRepresentation getInternalRepresentation( ) const override
+                {
+                    return this->value.getInternalRepresentation();
+                }
+
                 // ====================  MUTATORS      =======================================
                 void readFile() override
                 {
-                    this->value.readFile();
+                    this->value_.readFile();
                     return;
                 }
+
+                void setFileName(CommandFileName filename) override
+                {
+                    this->value_.setFileName(filename);
+                    return;
+                }
+
+                void unPickle( const PICKLETYPE & pickle_obj) override
+                {
+                    return this->value.unpickle(pickle_obj);
+                }
+
                 T value_;
         };
 

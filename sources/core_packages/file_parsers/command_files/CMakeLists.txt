@@ -71,7 +71,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (command_files_header_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFiles.h )
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFiles.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -81,7 +82,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (command_files_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFiles.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFiles.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

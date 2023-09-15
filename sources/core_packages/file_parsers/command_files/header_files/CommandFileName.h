@@ -1,10 +1,6 @@
-#ifndef ANANSI_ControlFileName_INC
-#define ANANSI_ControlFileName_INC
-//! @file ControlFileName.h
-//!
-//! Brief description
-//!
-//! Detailed description
+#ifndef ANANSI_CommandFileName_INC
+#define ANANSI_CommandFileName_INC
+//! @file CommandFileName.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -24,22 +20,22 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  ControlFileName
+//        Class:  CommandFileName
 //  Description:  
 //  =====================================================================================
-class ControlFileName
+class CommandFileName
 {
     public:
         // ====================  LIFECYCLE     =======================================
-        ControlFileName ();   // constructor
+        CommandFileName ();   // constructor
 
-        ControlFileName (const std::string file_name);   // constructor
+        CommandFileName (const std::string file_name);   // constructor
 
-        ~ControlFileName ();   // destructor
+        ~CommandFileName ();   // destructor
 
-        ControlFileName (const ControlFileName & other);   // copy constructor
+        CommandFileName (const CommandFileName & other);   // copy constructor
 
-        ControlFileName (ControlFileName && other);   // copy-move constructor
+        CommandFileName (CommandFileName && other);   // copy-move constructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -49,9 +45,9 @@ class ControlFileName
 
         std::string operator()() const;
 
-        ControlFileName& operator= ( const ControlFileName &other ); // assignment operator
+        CommandFileName& operator= ( const CommandFileName &other ); // assignment operator
 
-        ControlFileName& operator= ( ControlFileName && other ); // assignment-move operator
+        CommandFileName& operator= ( CommandFileName && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -64,9 +60,9 @@ class ControlFileName
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class ControlFileName  -----
+}; // -----  end of class CommandFileName  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_ControlFileName_INC
+#endif // ANANSI_CommandFileName_INC
