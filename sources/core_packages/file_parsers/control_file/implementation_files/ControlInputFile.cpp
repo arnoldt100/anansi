@@ -113,7 +113,7 @@ ControlInputFile& ControlInputFile::operator=( ControlInputFile && other )
 
 //============================= OPERATORS ====================================
 
-void set_file_name(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename)
+void set_file_name_alt(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename)
 {
     object.setFileName(filename);
 };
