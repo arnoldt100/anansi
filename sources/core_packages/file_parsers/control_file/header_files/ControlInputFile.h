@@ -58,7 +58,7 @@ class ControlInputFile
 
 }; // -----  end of class ControlInputFile  -----
 
-void set_file_name(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename);
+void set_file_name_alt(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename);
 
 void read_file(ANANSI::ControlInputFile & object);
 

@@ -61,7 +61,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (property_tree_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BaseInputFile.h )
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BaseInputFile.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -71,7 +72,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (property_tree_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BaseInputFile.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BaseInputFile.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

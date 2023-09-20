@@ -34,29 +34,32 @@ class CommandFiles
 
         CommandFiles ();   // constructor
 
-        CommandFiles (const CommandFiles & other);   // copy constructor
+        explicit CommandFiles (const CommandFiles & other);   // copy constructor
 
         template<typename T> 
-        CommandFiles(T && value) :
+        explicit CommandFiles(T && value) :
             valuePtr_{new CommandFilesModel<T>(std::forward<T>(value))}
         {
             return;
         }
 
-        CommandFiles (CommandFiles && other);   // copy-move constructor
+        explicit CommandFiles (CommandFiles && other);   // copy-move constructor
 
         ~CommandFiles ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        CommandFiles clone () const;
+        CommandFiles clone () const
+        {
+            return CommandFiles(*this);
+        }
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        CommandFiles& operator= ( const CommandFiles &other ); // assignment operator
+        CommandFiles& operator=( const CommandFiles &other ); // assignment operator
 
-        CommandFiles& operator= ( CommandFiles && other ); // assignment-move operator
+        CommandFiles& operator=( CommandFiles && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -100,7 +103,7 @@ class CommandFiles
                     return;
                 };
 
-                CommandFilesModel(const  CommandFilesModel & other) :
+                CommandFilesModel(const CommandFilesModel & other) :
                     CommandFilesConcept(other),
                     object_(other.object_)
                 {
@@ -118,7 +121,7 @@ class CommandFiles
                     }
                 };
 
-                CommandFilesModel(const T & in_value ) : 
+                explicit CommandFilesModel(const T & in_value) : 
                     object_(in_value)
                 {
                     return;
@@ -155,35 +158,40 @@ class CommandFiles
 
                 void setFileName(CommandFileName filename) override
                 {
-                    set_file_name(object_,filename);
+                    set_file_name_alt(object_,filename);
                     return;
                 }
+
                 void readCommandFile() override
                 {
                     read_file(object_);
+                    return;
                 }
-
                 T object_;
         };
 
         friend void set_file_name(CommandFiles && command_file, CommandFileName filename)
         {
             command_file.valuePtr_->setFileName(filename);
+            return;
         }
 
         friend void set_file_name(CommandFiles & command_file, CommandFileName filename)
         {
             command_file.valuePtr_->setFileName(filename);
+            return;
         }
 
         friend void read_file(CommandFiles & command_file)
         {
             command_file.valuePtr_->readCommandFile();
+            return;
         }
 
         friend void read_file(CommandFiles && command_file)
         {
             command_file.valuePtr_->readCommandFile();
+            return;
         }
 
         // ====================  METHODS       =======================================

@@ -167,12 +167,12 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
+                      PUBLIC control_file
                       PUBLIC common_md_taskgroup_headers
                       PUBLIC mdownershippolicies
                       PUBLIC genericmdtask
                       PUBLIC generic_abstract_factory
                       PUBLIC invoker
-                      PUBLIC control_file
                       PUBLIC command_files
                       PUBLIC mpi_communicator) 
 
