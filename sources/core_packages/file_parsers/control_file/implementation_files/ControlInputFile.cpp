@@ -20,12 +20,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ControlInputFile::ControlInputFile()
+ControlInputFile::ControlInputFile() :
+    filename_()
 {
     return;
 }
 
-ControlInputFile::ControlInputFile( ControlInputFile const & other)
+ControlInputFile::ControlInputFile( ControlInputFile const & other) :
+    filename_(other.filename_)
 {
     if (this != &other)
     {
@@ -34,7 +36,8 @@ ControlInputFile::ControlInputFile( ControlInputFile const & other)
     return;
 }
 
-ControlInputFile::ControlInputFile( ControlInputFile && other)
+ControlInputFile::ControlInputFile( ControlInputFile && other) :
+    filename_(std::move(other.filename_))
 {
     if (this != &other)
     {
@@ -50,12 +53,25 @@ ControlInputFile::~ControlInputFile()
 }
 
 //============================= ACCESSORS ====================================
+ControlInputFile* ControlInputFile::clone() const
+{
+    return new ControlInputFile(*this);
+}
 
 //============================= MUTATORS =====================================
+void ControlInputFile::setFileName(const CommandFileName & command_file_name)
+{
+    this->filename_ = command_file_name;
+}
+
+void ControlInputFile::readFile()
+{
+   return;
+}
 
 //============================= OPERATORS ====================================
 
-ControlInputFile& ControlInputFile::operator= ( const ControlInputFile &other )
+ControlInputFile& ControlInputFile::operator=( const ControlInputFile &other )
 {
     if (this != &other)
     {
@@ -64,7 +80,7 @@ ControlInputFile& ControlInputFile::operator= ( const ControlInputFile &other )
     return *this;
 } // assignment operator
 
-ControlInputFile& ControlInputFile::operator= ( ControlInputFile && other )
+ControlInputFile& ControlInputFile::operator=( ControlInputFile && other )
 {
     if (this != &other)
     {
@@ -97,5 +113,14 @@ ControlInputFile& ControlInputFile::operator= ( ControlInputFile && other )
 
 //============================= OPERATORS ====================================
 
+void set_file_name(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename)
+{
+    object.setFileName(filename);
+};
+
+void read_file(ANANSI::ControlInputFile & object)
+{
+    object.readFile();
+};
 
 } // namespace ANANSI

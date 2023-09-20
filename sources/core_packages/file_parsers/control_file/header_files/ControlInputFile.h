@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "CommandFileName.h"
 
 namespace ANANSI
 {
@@ -31,8 +32,12 @@ class ControlInputFile
         ~ControlInputFile ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        ControlInputFile* clone() const;
 
         // ====================  MUTATORS      =======================================
+        void setFileName(const CommandFileName & filename);
+
+        void readFile();
 
         // ====================  OPERATORS     =======================================
 
@@ -49,10 +54,15 @@ class ControlInputFile
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        CommandFileName filename_;
 
 }; // -----  end of class ControlInputFile  -----
 
+void set_file_name(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename);
+
+void read_file(ANANSI::ControlInputFile & object);
 
 }; // namespace ANANSI
+
 
 #endif // ANANSI_ControlInputFile_INC

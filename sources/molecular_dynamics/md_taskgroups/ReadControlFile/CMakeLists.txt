@@ -101,7 +101,7 @@
          implementation_files/ControlFileMacroReceiver.cpp
          implementation_files/ReadControlFileTraits.cpp 
          implementation_files/setup_controlfile_invoker.cpp
-	       implementation_files/disable_controlfile_invoker.cpp
+	     implementation_files/disable_controlfile_invoker.cpp
          implementation_files/setup_ControlFileXMLReceiver.cpp
          implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
          implementation_files/setup_ControlFileMacroReceiver.cpp
@@ -120,6 +120,7 @@
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
     get_target_property(my_control_file_include control_file control_file_include)
+    get_target_property(my_command_files_include command_files command_files_include)
 
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -158,6 +159,7 @@ target_include_directories(${target}
                            PRIVATE "${my_generic_abstract_factory_include}"
                            PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_control_file_include}"
+                           PRIVATE "${my_command_files_include}"
                            PRIVATE "${my_mpi_communicator_include}")
 
 #-----------------------------------------------------
@@ -171,6 +173,7 @@ target_link_libraries(${target}
                       PUBLIC generic_abstract_factory
                       PUBLIC invoker
                       PUBLIC control_file
+                      PUBLIC command_files
                       PUBLIC mpi_communicator) 
 
 

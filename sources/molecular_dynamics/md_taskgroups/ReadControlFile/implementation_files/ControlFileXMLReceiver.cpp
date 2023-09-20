@@ -23,8 +23,10 @@ namespace ANANSI {
 ControlFileXMLReceiver::ControlFileXMLReceiver() :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
     controlFileName_(),
+    commandFileName_(),
     masterProcess_(),
     results_(),
+    controlInputFile_(ControlInputFile()),
     ownershipPolicy_()
 {
     return;
@@ -33,8 +35,10 @@ ControlFileXMLReceiver::ControlFileXMLReceiver() :
 ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver && other) :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(std::move(other)),
     controlFileName_(std::move(other.controlFileName_)),
+    commandFileName_(std::move(other.commandFileName_)),
     masterProcess_(std::move(other.masterProcess_)),
     results_(std::move(other.results_)),
+    controlInputFile_(std::move(other.controlInputFile_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_))
 {
     if (this != &other)
@@ -61,8 +65,10 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
     {
         ReceiverInterface<ControlFileXMLReceiver>::operator=(std::move(other));
         this->controlFileName_ = std::move(other.controlFileName_);
+        this->commandFileName_ = std::move(other.commandFileName_);
         this->masterProcess_ = std::move(other.masterProcess_);
         this->results_ = std::move(other.results_);
+        this->controlInputFile_ = std::move(other.controlInputFile_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
@@ -92,10 +98,23 @@ void ControlFileXMLReceiver::receiverModifyMyself_(ANANSI::ControlFile<ControlFi
 }
 
 template<>
+void ControlFileXMLReceiver::receiverModifyMyself_(ANANSI::CommandFiles & arg)
+{
+    this->controlInputFile_ = arg;
+    return;
+}
+
+template<>
 void ControlFileXMLReceiver::receiverModifyMyself_(ControlFileName & arg)
 {
     this->controlFileName_ = arg;
     return;
+}
+
+template<>
+void ControlFileXMLReceiver::receiverModifyMyself_(CommandFileName & arg)
+{
+    this->commandFileName_ = arg;
 }
 
 template<>

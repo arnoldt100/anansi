@@ -19,6 +19,10 @@ namespace ANANSI {
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= LIFECYCLE ====================================
+CommandFiles::CommandFilesConcept::~CommandFilesConcept()
+{
+    return;
+}
 
 CommandFiles::CommandFiles() :
     valuePtr_(nullptr)
@@ -30,8 +34,7 @@ CommandFiles::CommandFiles(CommandFiles const & other)
 {
     if (this != &other)
     {
-        std::unique_ptr<CommandFilesConcept> tmp_obj(other.valuePtr_->clone());
-        this->valuePtr_  = std::move(tmp_obj);
+        this->valuePtr_ = other.valuePtr_->clone();
     }
     return;
 }
@@ -52,14 +55,12 @@ CommandFiles::~CommandFiles()
 }
 
 //============================= ACCESSORS ====================================
+CommandFiles CommandFiles::clone () const
+{
+    return new CommandFiles(*this);
+}
 
 //============================= MUTATORS =====================================
-
-void CommandFiles::read() 
-{
-    this->valuePtr_->readFile();
-    return;
-}
 
 //============================= OPERATORS ====================================
 
@@ -67,8 +68,7 @@ CommandFiles& CommandFiles::operator= ( const CommandFiles &other )
 {
     if (this != &other)
     {
-        std::unique_ptr<CommandFilesConcept> tmp_obj(other.valuePtr_->clone());
-        this->valuePtr_ = std::move(tmp_obj);
+        this->valuePtr_  = other.valuePtr_->clone();
     }
     return *this;
 } // assignment operator
@@ -106,5 +106,28 @@ CommandFiles& CommandFiles::operator= ( CommandFiles && other )
 
 //============================= OPERATORS ====================================
 
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// Nonmeber Functions ///////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+// void set_file_name(CommandFiles && command_file, CommandFileName filename)
+// {
+//     command_file.setFileName(filename);
+// }
+// 
+// void set_file_name(CommandFiles & command_file, CommandFileName filename)
+// {
+//     command_file.setFileName(filename);
+// }
+// 
+// void read_command_file(CommandFiles & command_file)
+// {
+//     command_file.readCommandFile();
+// }
+// 
+// void read_command_file(CommandFiles && command_file)
+// {
+//     command_file.readCommandFile();
+// }
 
 } // namespace ANANSI

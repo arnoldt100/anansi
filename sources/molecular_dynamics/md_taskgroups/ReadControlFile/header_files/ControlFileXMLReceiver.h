@@ -34,6 +34,8 @@
 #include "ReceiverError.h"
 #include "ControlFileNodeKeyNotFound.h"
 #include "ControlFile.hpp"
+#include "ControlInputFile.h"
+#include "CommandFiles.h"
 #include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "ControlFileName.h"
@@ -71,6 +73,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
         ControlFileName controlFileName_;
+        CommandFileName commandFileName_;
         MasterProcess masterProcess_;
 
     public:
@@ -162,6 +165,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
+        mutable CommandFiles controlInputFile_; 
         MyOwnershipPolicy_ ownershipPolicy_;
         
 }; // -----  end of class ControlFileXMLReceiver  -----
