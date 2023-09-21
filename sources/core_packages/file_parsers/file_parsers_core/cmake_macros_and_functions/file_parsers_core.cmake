@@ -1,6 +1,6 @@
 # =====================================================================================
 # 
-#        Filename:  property_tree.cmake
+#        Filename:  file_parsers_core.cmake
 # 
 #     Description:  
 # 
@@ -11,7 +11,7 @@
 
 
 # ===  MACRO     ======================================================================
-#         Name:  enable_building_property_tree_library
+#         Name:  enable_building_file_parsers_core_library
 #  Description:  Defines key environmental variables enabling the
 #                building of the file parsers library.
 # 
@@ -22,7 +22,7 @@
 #             cxx_standard - The C++ standard to build the library and binaries
 #             logfilepath - The path to the logging file.
 # =====================================================================================
-macro ( enable_building_property_tree_package 
+macro ( enable_building_file_parsers_core_package 
         install_lib_directory
         install_include_directory
         install_bin_directory 
@@ -31,11 +31,11 @@ macro ( enable_building_property_tree_package
         cxx_standard
         logfilepath)
 
-    set(property_tree_install_lib_directory "${install_lib_directory}")
-    set(property_tree_install_include_directory "${install_include_directory}")
-    set(property_tree_install_bin_directory "${install_bin_directory}" )
-    set(property_tree_cmake_c_compiler "${cmake_c_compiler}" )
-    set(property_tree_cmake_cxx_compiler "${cmake_cxx_compiler}" )
-    set(property_tree_cxx_standard "${cxx_standard}" )
-    set(property_tree_logfilepath "${logfilepath}")
+    set(file_parsers_core_install_lib_directory "${install_lib_directory}")
+    set(file_parsers_core_install_include_directory "${install_include_directory}")
+    set(file_parsers_core_install_bin_directory "${install_bin_directory}" )
+    set(file_parsers_core_cmake_c_compiler "${cmake_c_compiler}" )
+    set(file_parsers_core_cmake_cxx_compiler "${cmake_cxx_compiler}" )
+    set(file_parsers_core_cxx_standard "${cxx_standard}" )
+    set(file_parsers_core_logfilepath "${logfilepath}")
 endmacro()
