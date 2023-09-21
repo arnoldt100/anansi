@@ -1,10 +1,10 @@
-# This CMakeLists.txt file creates the library libproperty_tree.a
+# This CMakeLists.txt file creates the library libfile_parsers_core.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# property_tree_header_files or property_tree_implementation_files.
+# file_parsers_core_header_files or file_parsers_core_implementation_files.
 #
-# The target for the library is property_tree.
+# The target for the library is file_parsers_core.
 #
-# The following properties are set for the target property_tree.
+# The following properties are set for the target file_parsers_core.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "property_tree")
+    set(my_project_name "file_parsers_core")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -34,8 +34,8 @@
     # Verify key variables are set.                      -
     #                                                    -
     #-----------------------------------------------------
-    include(cmake_macros_and_functions/property_tree_build_prerequisites.cmake)
-    verify_property_tree_build_prerequisites_are_met()
+    include(cmake_macros_and_functions/file_parsers_core_build_prerequisites.cmake)
+    verify_file_parsers_core_build_prerequisites_are_met()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -55,36 +55,36 @@
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # property_tree_header_files.                        -
+    # file_parsers_core_header_files.                    -
     # A list of header files is stored in                -
     # this variable.                                     -
     #                                                    -
     #-----------------------------------------------------
-    set (property_tree_header_files
+    set (file_parsers_core_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BaseInputFile.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # property_tree_implementation_files.                -
+    # file_parsers_core_implementation_files.            -
     # A list of implementation files is stored in this   -
     # variable.                                          -
     #                                                    -
     #-----------------------------------------------------
-    set (property_tree_implementation_files
+    set (file_parsers_core_implementation_files
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BaseInputFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
-# with the property_tree targets.                                 @
+# with the file_parsers_core targets.                             @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #-----------------------------------------------------
 # Add the library associated with target             -
-# property_tree.                                     -
+# file_parsers_core.                                 -
 #                                                    -
 #-----------------------------------------------------
 add_library( ${target} STATIC 
@@ -96,8 +96,8 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-    PRIVATE "${property_tree_header_files}"
-    PRIVATE "${property_tree_implementation_files}" )
+    PRIVATE "${file_parsers_core_header_files}"
+    PRIVATE "${file_parsers_core_implementation_files}" )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -122,13 +122,13 @@ enable_compile_warnings(${target})
 #                                                    -
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
-                      property_tree_include "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
-                      CXX_STANDARD "${property_tree_cxx_standard}"
-                      PUBLIC_HEADER "${property_tree_header_files}" )
+                      file_parsers_core_include "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
+                      CXX_STANDARD "${file_parsers_core_cxx_standard}"
+                      PUBLIC_HEADER "${file_parsers_core_header_files}" )
 
 install( TARGETS "${target}"
-         ARCHIVE DESTINATION "${property_tree_install_lib_directory}" 
-         PUBLIC_HEADER DESTINATION "${property_tree_install_include_directory}" )
+         ARCHIVE DESTINATION "${file_parsers_core_install_lib_directory}" 
+         PUBLIC_HEADER DESTINATION "${file_parsers_core_install_include_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
