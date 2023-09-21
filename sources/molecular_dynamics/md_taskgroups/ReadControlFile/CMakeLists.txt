@@ -70,6 +70,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_header_files
          header_files/MasterProcess.h
+         header_files/MasterControlInputFileNodeKeys.h
          header_files/ControlFileXMLReceiver.h
          header_files/ControlFileXMLOwnershipImpl.hpp
          header_files/ControlFileXMLMPICommReceiver.h
@@ -93,6 +94,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
          implementation_files/MasterProcess.cpp
+         implementation_files/MasterControlInputFileNodeKeys.cpp
          implementation_files/ControlFileXMLReceiver.cpp
          implementation_files/ControlFileXMLOwnershipImpl.cpp
          implementation_files/ControlFileXMLMPICommReceiver.cpp
@@ -101,7 +103,7 @@
          implementation_files/ControlFileMacroReceiver.cpp
          implementation_files/ReadControlFileTraits.cpp 
          implementation_files/setup_controlfile_invoker.cpp
-	     implementation_files/disable_controlfile_invoker.cpp
+         implementation_files/disable_controlfile_invoker.cpp
          implementation_files/setup_ControlFileXMLReceiver.cpp
          implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
          implementation_files/setup_ControlFileMacroReceiver.cpp

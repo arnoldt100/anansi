@@ -25,6 +25,7 @@ namespace ANANSI
 //! 
 //! The command files have the general abstraction of 
 //! commands in file that have the form (command key, command parameters).
+//! Command files when pickeled return std::map<std::string,std::string>
 class CommandFiles
 {
     public:
@@ -168,25 +169,25 @@ class CommandFiles
                 T object_;
         };
 
-        friend void set_file_name(CommandFiles && command_file, CommandFileName filename)
+        friend void set_CommandFile_filename(CommandFiles && command_file, CommandFileName filename)
         {
             command_file.valuePtr_->setFileName(filename);
             return;
         }
 
-        friend void set_file_name(CommandFiles & command_file, CommandFileName filename)
+        friend void set_CommandFile_filename(CommandFiles & command_file, CommandFileName filename)
         {
             command_file.valuePtr_->setFileName(filename);
             return;
         }
 
-        friend void read_file(CommandFiles & command_file)
+        friend void read_CommandFile(CommandFiles & command_file)
         {
             command_file.valuePtr_->readCommandFile();
             return;
         }
 
-        friend void read_file(CommandFiles && command_file)
+        friend void read_CommandFile(CommandFiles && command_file)
         {
             command_file.valuePtr_->readCommandFile();
             return;

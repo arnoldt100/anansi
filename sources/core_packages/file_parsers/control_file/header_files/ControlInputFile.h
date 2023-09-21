@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MasterControlFileNodeKeys.h"
 #include "CommandFileName.h"
 
 namespace ANANSI

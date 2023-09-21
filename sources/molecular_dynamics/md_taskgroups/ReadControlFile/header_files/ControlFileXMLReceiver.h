@@ -193,9 +193,12 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
             boost::property_tree::ptree pt;
             const std::string filename = this->controlFileName_();
             boost::property_tree::read_xml(filename, pt);
-
             this->results_.setFileName(filename);
             this->results_.readPropertyTree(pt); 
+
+            set_CommandFile_filename(this->controlInputFile_,this->commandFileName_);
+            read_CommandFile(this->controlInputFile_);
+
         }
         catch(const boost::property_tree::xml_parser_error & my_error)
         {
