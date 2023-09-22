@@ -9,10 +9,29 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/algorithm/string.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ControlFilePickle.h"
+#include "ControlFileTraits.h"
+#include "MasterControlFileNodeKeys.h"
+#include "ControlFileName.h"
+#include "BaseInputFile.h"
+#include "add_values_to_property_tree.h"
+#include "pickle_ControlFile_property_tree.h"
+#include "unpickle_to_property_tree.h"
+#include "verify_controlfile_keys_are_valid.h"
+
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
+#include "MasterControlFileNodeKeys.h"
+#include "CommandFileName.h"
 
 namespace ANANSI
 {
@@ -49,6 +68,10 @@ class ControlInputFile
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        CommandFileName fileName_;
+        MasterControlFileNodeKeys masterNodeKeys_;
+        boost::property_tree::ptree pt_;
+        constexpr static char defaultValue_[] = {"default-null-value"};
 
 }; // -----  end of class ControlInputFile  -----
 

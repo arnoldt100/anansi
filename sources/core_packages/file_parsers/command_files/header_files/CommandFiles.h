@@ -29,7 +29,6 @@ namespace
         static std::string VALUE;
     };
     std::string DefaultValue::VALUE = {"default-null-value"};
-
     using InternalRepresentation = boost::property_tree::ptree;
     using PICKLETYPE = std::map<std::string,std::string>;
 };
@@ -85,7 +84,7 @@ class CommandFiles
                 CommandFilesConcept& operator=(CommandFilesConcept && other)=default;
 
                 // ====================  ACCESSORS     =======================================
-                virtual CommandFilesConcept* clone() const=0;
+                virtual std::unique_ptr<CommandFilesConcept> clone() const=0;
                 virtual void debugWriteToDisk(std::string filename) const=0;
                 virtual InternalRepresentation getInternalRepresentation () const=0;
                 virtual PICKLETYPE pickle() const=0;
@@ -104,14 +103,14 @@ class CommandFiles
                 // ====================  LIFECYCLE     =======================================
                 CommandFilesModel() :
                     CommandFilesConcept(),
-                    value_()
+                    object_()
                 {
                     return;
                 };
 
                 CommandFilesModel(const  CommandFilesModel & other) :
                     CommandFilesConcept(other),
-                    value_(other.value_)
+                    object_(other.object_)
                 {
                     if (this != &other)
                     {
@@ -120,17 +119,11 @@ class CommandFiles
 
                 CommandFilesModel(CommandFilesModel && other) :
                     CommandFilesConcept(std::move(other)),
-                    value_(std::move(other.value_))
+                    object_(std::move(other.object_))
                 {
                     if (this != &other)
                     {
                     }
-                };
-
-                CommandFilesModel(const T & in_value ) : 
-                    value_(in_value)
-                {
-                    return;
                 };
 
                 // ====================  OPERATORS     =======================================
@@ -139,7 +132,7 @@ class CommandFiles
                     if (this != &other)
                     {
                         CommandFilesConcept::operator=(other);
-                        this->value_ = other.value;
+                        this->object_ = other.value;
                     }
                     return *this;
                 }
@@ -149,47 +142,47 @@ class CommandFiles
                     if (this != &other)
                     {
                         CommandFilesConcept::operator=(std::move(other));
-                        this->value_ = std::move(other.value);
+                        this->object_ = std::move(other.value);
                     }
                     return *this;
                 }
 
-                CommandFilesModel* clone() const override
+                // ====================  ACCESSORS     =======================================
+                std::unique_ptr<CommandFilesConcept> clone () const override
                 {
-                    return new CommandFilesModel(*this);
+                    return std::make_unique<CommandFilesConcept>(*this);
                 }
 
-                // ====================  ACCESSORS     =======================================
                 void  debugWriteToDisk(const std::string filename) const override
                 {
-                    this->value_.writeToDisk(filename);
+                    debug_write_to_disk(this->object_);
                     return;
                 }
 
                 InternalRepresentation getInternalRepresentation( ) const override
                 {
-                    return this->value.getInternalRepresentation();
+                    get_internal_representation(this->object_);
                 }
 
                 // ====================  MUTATORS      =======================================
                 void readFile() override
                 {
-                    this->value_.readFile();
+                    read_file(this->object_);
                     return;
                 }
 
                 void setFileName(CommandFileName filename) override
                 {
-                    this->value_.setFileName(filename);
+                    set_file_name(this->object_);
                     return;
                 }
 
                 void unPickle( const PICKLETYPE & pickle_obj) override
                 {
-                    return this->value.unpickle(pickle_obj);
+                    unpickle_file(this->object_);
                 }
 
-                T value_;
+                T object_;
         };
 
         // ====================  METHODS       =======================================
