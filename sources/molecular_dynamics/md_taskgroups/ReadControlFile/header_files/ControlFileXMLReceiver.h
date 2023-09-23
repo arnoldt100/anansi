@@ -40,6 +40,7 @@
 #include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
 #include "ControlFileName.h"
+#include "CommandFileName.h"
 #include "MasterProcess.h"
 
 // ---------------------------------------------------
