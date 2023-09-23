@@ -34,6 +34,7 @@
 #include "ReceiverError.h"
 #include "ControlFileNodeKeyNotFound.h"
 #include "ControlFile.hpp"
+#include "MasterControlFileNodeKeys.h"
 #include "ControlInputFile.h"
 #include "CommandFiles.h"
 #include "ControlFileTask.h"

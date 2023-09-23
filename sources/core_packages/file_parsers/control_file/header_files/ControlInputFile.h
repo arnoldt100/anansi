@@ -16,7 +16,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-<<<<<<< HEAD
 #include "ControlFilePickle.h"
 #include "ControlFileTraits.h"
 #include "MasterControlFileNodeKeys.h"
@@ -47,6 +46,7 @@ class ControlInputFile
         // ====================  LIFECYCLE     =======================================
 
         ControlInputFile () :   // constructor
+            masterKeys_(),
             filename_()
         {
             return;
@@ -54,6 +54,7 @@ class ControlInputFile
 
 
         ControlInputFile (const ControlInputFile & other) :   // copy constructor
+            masterKeys_(other.masterKeys_),
             filename_(other.filename_)
         {
             if (this != &other)
@@ -64,6 +65,7 @@ class ControlInputFile
         }
 
         ControlInputFile (ControlInputFile && other) :  // copy-move constructor
+            masterKeys_(std::move(other.masterKeys_)),
             filename_(std::move(other.filename_))
         {
             if (this != &other)
@@ -104,7 +106,8 @@ class ControlInputFile
         {
             if (this != &other)
             {
-
+                this->masterKeys_ = other.masterKeys_;
+                this->filename_ = other.filename_;
             }
             return *this;
         } // assignment operator
@@ -113,7 +116,8 @@ class ControlInputFile
         {
             if (this != &other)
             {
-        
+                this->masterKeys_ = std::move(other.masterKeys_);
+                this->filename_ = std::move(other.filename_);
             }
             return *this;
         } // assignment-move operator
@@ -127,13 +131,22 @@ class ControlInputFile
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        KeyPolicyClass masterKeys_;
         CommandFileName filename_;
 
 }; // -----  end of class ControlInputFile  -----
 
-void set_file_name_alt(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename);
+template< typename T>
+void set_file_name_alt(T & object,ANANSI::CommandFileName filename)
+{
+    object.setFileName(filename);
+}
 
-void read_file(ANANSI::ControlInputFile & object);
+template<typename T>
+void read_file(T & object)
+{
+    object.readFile();
+}
 
 }; // namespace ANANSI
 

@@ -51,14 +51,14 @@ namespace ANANSI {
 
 //============================= OPERATORS ====================================
 
-void set_file_name_alt(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename)
-{
-    object.setFileName(filename);
-};
-
-void read_file(ANANSI::ControlInputFile & object)
-{
-    object.readFile();
-};
+// void set_file_name_alt(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename)
+// {
+//     object.setFileName(filename);
+// };
+// 
+// void read_file(ANANSI::ControlInputFile & object)
+// {
+//     object.readFile();
+// };
 
 }; // namespace ANANSI
