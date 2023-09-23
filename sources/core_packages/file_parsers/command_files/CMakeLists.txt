@@ -49,7 +49,7 @@
     # We get the path to the above header files.         -
     #-----------------------------------------------------
     # get_target_property(my_mm_include memory_management memory_management_include)
-    # get_target_property(my_property_tree_include property_tree property_tree_include)
+    get_target_property(my_file_parsers_core_include file_parsers_core file_parsers_core_include)
 
     #-----------------------------------------------------
     # Define the property name for the include directory.
@@ -71,8 +71,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (command_files_header_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFiles.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h)
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFiles.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -82,8 +81,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (command_files_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFiles.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFiles.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -115,7 +113,11 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_file_parsers_core_include})
+
+target_link_libraries(${target}
+                      PUBLIC file_parsers_core)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -48,8 +48,7 @@
     # We get the path to the above header files.         -
     #-----------------------------------------------------
     get_target_property(my_mm_include memory_management memory_management_include)
-    get_target_property(my_property_tree_include property_tree property_tree_include)
-    get_target_property(my_command_files_include command_files command_files_include)
+    get_target_property(my_file_parsers_core_include file_parsers_core file_parsers_core_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -149,14 +148,12 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions
-                           PRIVATE "${my_property_tree_include}"
-                           PRIVATE "${my_command_files_include}"
+                           PRIVATE "${my_file_parsers_core_include}"
                            PRIVATE "${Boost_INCLUDE_DIR}")
 
 target_link_libraries(${target}
                       PUBLIC communicator
-                      PUBLIC property_tree
-		              PUBLIC command_files
+                      PUBLIC file_parsers_core
                       PUBLIC "${Boost_LIBRARIES}")
 
 #-----------------------------------------------------

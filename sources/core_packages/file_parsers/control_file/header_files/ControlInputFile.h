@@ -16,6 +16,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+<<<<<<< HEAD
 #include "ControlFilePickle.h"
 #include "ControlFileTraits.h"
 #include "MasterControlFileNodeKeys.h"
@@ -36,28 +37,86 @@
 namespace ANANSI
 {
 
+//!  An abstraction for the control input file.
+//!
+//! \tparam  KeyPolicyClass The policy class for the keys values of the input file.
+template<typename KeyPolicyClass>
 class ControlInputFile
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ControlInputFile ();   // constructor
+        ControlInputFile () :   // constructor
+            filename_()
+        {
+            return;
+        }
 
-        ControlInputFile (const ControlInputFile & other);   // copy constructor
 
-        ControlInputFile (ControlInputFile && other);   // copy-move constructor
+        ControlInputFile (const ControlInputFile & other) :   // copy constructor
+            filename_(other.filename_)
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }
 
-        ~ControlInputFile ();  // destructor
+        ControlInputFile (ControlInputFile && other) :  // copy-move constructor
+            filename_(std::move(other.filename_))
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }		// -----  end of method ControlInputFile::ControlInputFile  -----
+
+
+        ~ControlInputFile ()  // destructor
+        {
+            return;
+        }
+
 
         // ====================  ACCESSORS     =======================================
+        ControlInputFile* clone() const
+        {
+            return new ControlInputFile(*this);
+        }
 
         // ====================  MUTATORS      =======================================
+        void setFileName(const CommandFileName & command_file_name)
+        {
+            this->filename_ = command_file_name;
+        }
+
+
+        void readFile()
+        {
+           return;
+        }
 
         // ====================  OPERATORS     =======================================
 
-        ControlInputFile& operator= ( const ControlInputFile &other ); // assignment operator
+        ControlInputFile& operator= ( const ControlInputFile &other ) // assignment operator
+        {
+            if (this != &other)
+            {
 
-        ControlInputFile& operator= ( ControlInputFile && other ); // assignment-move operator
+            }
+            return *this;
+        } // assignment operator
+
+        ControlInputFile& operator= ( ControlInputFile && other ) // assignment-move operator
+        {
+            if (this != &other)
+            {
+        
+            }
+            return *this;
+        } // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -68,14 +127,15 @@ class ControlInputFile
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        CommandFileName fileName_;
-        MasterControlFileNodeKeys masterNodeKeys_;
-        boost::property_tree::ptree pt_;
-        constexpr static char defaultValue_[] = {"default-null-value"};
+        CommandFileName filename_;
 
 }; // -----  end of class ControlInputFile  -----
 
+void set_file_name_alt(ANANSI::ControlInputFile & object,ANANSI::CommandFileName filename);
+
+void read_file(ANANSI::ControlInputFile & object);
 
 }; // namespace ANANSI
+
 
 #endif // ANANSI_ControlInputFile_INC

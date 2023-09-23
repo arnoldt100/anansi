@@ -8,8 +8,6 @@
 #include <memory>
 #include <string>
 #include <map>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/xml_parser.hpp>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -23,16 +21,11 @@
 namespace ANANSI
 {
 
-namespace
-{
-    struct DefaultValue {
-        static std::string VALUE;
-    };
-    std::string DefaultValue::VALUE = {"default-null-value"};
-    using InternalRepresentation = boost::property_tree::ptree;
-    using PICKLETYPE = std::map<std::string,std::string>;
-};
-
+//! \brief A typerasure for files command input files.
+//! 
+//! The command files have the general abstraction of 
+//! commands in file that have the form (command key, command parameters).
+//! Command files when pickeled return std::map<std::string,std::string>
 class CommandFiles
 {
     public:
@@ -40,28 +33,32 @@ class CommandFiles
 
         CommandFiles ();   // constructor
 
-        CommandFiles (const CommandFiles & other);   // copy constructor
+        explicit CommandFiles (const CommandFiles & other);   // copy constructor
 
         template<typename T> 
-        CommandFiles(T && value)
+        explicit CommandFiles(T && value) :
+            valuePtr_{new CommandFilesModel<T>(std::forward<T>(value))}
         {
-            this->valuePtr_ = std::make_unique<CommandFilesModel<T>>(std::move(value));
+            return;
         }
 
-        CommandFiles (CommandFiles && other);   // copy-move constructor
+        explicit CommandFiles (CommandFiles && other);   // copy-move constructor
 
         ~CommandFiles ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        CommandFiles clone () const
+        {
+            return CommandFiles(*this);
+        }
 
         // ====================  MUTATORS      =======================================
-        void read();
 
         // ====================  OPERATORS     =======================================
 
-        CommandFiles& operator= ( const CommandFiles &other ); // assignment operator
+        CommandFiles& operator=( const CommandFiles &other ); // assignment operator
 
-        CommandFiles& operator= ( CommandFiles && other ); // assignment-move operator
+        CommandFiles& operator=( CommandFiles && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -85,14 +82,11 @@ class CommandFiles
 
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<CommandFilesConcept> clone() const=0;
-                virtual void debugWriteToDisk(std::string filename) const=0;
-                virtual InternalRepresentation getInternalRepresentation () const=0;
-                virtual PICKLETYPE pickle() const=0;
 
                 // ====================  MUTATORS      =======================================
-                virtual void unPickle(const PICKLETYPE & pickle_obj)=0;
                 virtual void setFileName(CommandFileName filename)=0;
-                virtual void readFile()=0;
+                virtual void readCommandFile()=0;
+
         };
 
         // The model.
@@ -108,7 +102,7 @@ class CommandFiles
                     return;
                 };
 
-                CommandFilesModel(const  CommandFilesModel & other) :
+                CommandFilesModel(const CommandFilesModel & other) :
                     CommandFilesConcept(other),
                     object_(other.object_)
                 {
@@ -124,6 +118,12 @@ class CommandFiles
                     if (this != &other)
                     {
                     }
+                };
+
+                explicit CommandFilesModel(const T & in_value) : 
+                    object_(in_value)
+                {
+                    return;
                 };
 
                 // ====================  OPERATORS     =======================================
@@ -150,40 +150,48 @@ class CommandFiles
                 // ====================  ACCESSORS     =======================================
                 std::unique_ptr<CommandFilesConcept> clone () const override
                 {
-                    return std::make_unique<CommandFilesConcept>(*this);
-                }
-
-                void  debugWriteToDisk(const std::string filename) const override
-                {
-                    debug_write_to_disk(this->object_);
-                    return;
-                }
-
-                InternalRepresentation getInternalRepresentation( ) const override
-                {
-                    get_internal_representation(this->object_);
+                    return std::make_unique<CommandFilesModel>(*this);
                 }
 
                 // ====================  MUTATORS      =======================================
-                void readFile() override
-                {
-                    read_file(this->object_);
-                    return;
-                }
 
                 void setFileName(CommandFileName filename) override
                 {
-                    set_file_name(this->object_);
+                    set_file_name_alt(object_,filename);
                     return;
                 }
 
-                void unPickle( const PICKLETYPE & pickle_obj) override
+                void readCommandFile() override
                 {
-                    unpickle_file(this->object_);
+                    read_file(object_);
+                    return;
                 }
-
                 T object_;
         };
+
+        friend void set_CommandFile_filename(CommandFiles && command_file, CommandFileName filename)
+        {
+            command_file.valuePtr_->setFileName(filename);
+            return;
+        }
+
+        friend void set_CommandFile_filename(CommandFiles & command_file, CommandFileName filename)
+        {
+            command_file.valuePtr_->setFileName(filename);
+            return;
+        }
+
+        friend void read_CommandFile(CommandFiles & command_file)
+        {
+            command_file.valuePtr_->readCommandFile();
+            return;
+        }
+
+        friend void read_CommandFile(CommandFiles && command_file)
+        {
+            command_file.valuePtr_->readCommandFile();
+            return;
+        }
 
         // ====================  METHODS       =======================================
 
