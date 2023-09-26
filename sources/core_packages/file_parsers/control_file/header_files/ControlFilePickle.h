@@ -13,8 +13,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MasterControlFileNodeKeys.h"
-#include "ControlFileName.h"
 
 namespace ANANSI
 {
@@ -44,8 +42,9 @@ class ControlFilePickle
         //! \return The ControlFile class in its internal representation.
         template<typename InternalRepresentation_t,
                  typename PickleType_t,
+                 typename MasterControlFileNodeKeys_t,
                  typename DefaultValue_t> 
-        static InternalRepresentation_t unpickle(const MasterControlFileNodeKeys & control_file_keys,
+        static InternalRepresentation_t unpickle(const MasterControlFileNodeKeys_t & control_file_keys,
                                                  const PickleType_t & pickled_object)
         {
             InternalRepresentation_t ret_value;

@@ -17,13 +17,14 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ControlFilePickle.h"
+#include "CommandFileName.h"
 #include "ControlFileTraits.h"
 #include "ControlFileName.h"
 #include "BaseInputFile.h"
 #include "add_values_to_property_tree.hpp"
 #include "pickle_ControlFile_property_tree.h"
 #include "unpickle_to_property_tree.h"
-#include "verify_controlfile_keys_are_valid.h"
+#include "verify_controlfile_keys_are_valid.hpp"
 
 
 //--------------------------------------------------------//

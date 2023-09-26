@@ -73,7 +73,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (control_file_header_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlInputFile.hpp
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileTraits.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFile.h
@@ -93,7 +92,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (control_file_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlInputFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderControlFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BuilderFile.cpp
