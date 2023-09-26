@@ -31,18 +31,18 @@ class CommandFiles
     public:
         // ====================  LIFECYCLE     =======================================
 
-        CommandFiles ();   // constructor
+        explicit CommandFiles();   // constructor
 
         explicit CommandFiles (const CommandFiles & other);   // copy constructor
 
         template<typename T> 
-        explicit CommandFiles(T && value) :
-            valuePtr_{new CommandFilesModel<T>(std::forward<T>(value))}
+        CommandFiles(T && value) :
+            valuePtr_( new CommandFilesModel<T>(std::forward<T>(value)) )
         {
             return;
         }
 
-        explicit CommandFiles (CommandFiles && other);   // copy-move constructor
+        CommandFiles (CommandFiles && other);   // copy-move constructor
 
         ~CommandFiles ();  // destructor
 
