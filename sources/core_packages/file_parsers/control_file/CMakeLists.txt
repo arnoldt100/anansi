@@ -80,7 +80,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderControlFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BuilderFile.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/StandardFileFactory.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/add_values_to_property_tree.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/add_values_to_property_tree.hpp
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFilePickle.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/unpickle_to_property_tree.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/pickle_ControlFile_property_tree.h
