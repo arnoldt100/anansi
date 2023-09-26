@@ -15,26 +15,26 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "MasterControlFileNodeKeys.h"
+#include "MasterControlInputFileNodeKeys.h"
 
 
 namespace ANANSI
 {
 
-//! \brief Verifies that the node keys in property tree, pt, are found in MasterControlFileNodeKeys.
+//! \brief Verifies that the node keys in property tree, pt, are found in MasterControlInputFileNodeKeys.
 //!
-//! Each node key in pt is checked for existence in MasterControlFileNodeKeys. If the
-//! key is not found in MasterControlFileNodeKeys, then the error ControlFileNodeKeyNotFound is
+//! Each node key in pt is checked for existence in MasterControlInputFileNodeKeys. If the
+//! key is not found in MasterControlInputFileNodeKeys, then the error ControlFileNodeKeyNotFound is
 //! thrown.
 //! 
 //! \param[in] master_node_keys Contains the master node keys.
 //! \param[in] pt A property_tree of which the node keys are checked against master_node_keys.
 //!
 //! \throws ControlFileNodeKeyNotFound
-void verify_controlfile_keys_are_valid (const MasterControlFileNodeKeys & master_node_keys,
+void verify_controlfile_keys_are_valid (const MasterControlInputFileNodeKeys & master_node_keys,
                                         const boost::property_tree::ptree & pt );
 
-void parse_tree(const MasterControlFileNodeKeys & master_node_keys,const boost::property_tree::ptree & pt, std::string key);
+void parse_tree(const MasterControlInputFileNodeKeys & master_node_keys,const boost::property_tree::ptree & pt, std::string key);
 
 }; // namespace ANANSI
 

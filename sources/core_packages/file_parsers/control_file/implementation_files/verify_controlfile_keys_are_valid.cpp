@@ -22,7 +22,7 @@ namespace ANANSI
 //! The node keys in property tree pt are checked for existence against
 //! master_node_keys. If a node key in property tree pt isn't found in master_node_keys, then an
 //! exception is thrown.
-void verify_controlfile_keys_are_valid (const MasterControlFileNodeKeys & master_node_keys,
+void verify_controlfile_keys_are_valid (const MasterControlInputFileNodeKeys & master_node_keys,
                                         const boost::property_tree::ptree & pt )
 {
 
@@ -34,7 +34,7 @@ void verify_controlfile_keys_are_valid (const MasterControlFileNodeKeys & master
     return;
 }   // -----  end of function verify_controlfile_keys_are_valid  -----
 
-void parse_tree (const MasterControlFileNodeKeys & master_node_keys, const boost::property_tree::ptree & pt, std::string key)
+void parse_tree (const MasterControlInputFileNodeKeys & master_node_keys, const boost::property_tree::ptree & pt, std::string key)
 {   
     std::string nextkey;
 
