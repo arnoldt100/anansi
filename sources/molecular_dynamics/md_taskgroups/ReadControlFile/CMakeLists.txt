@@ -70,6 +70,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_header_files
          header_files/MasterProcess.h
+         header_files/verify_controlfile_keys_are_valid.h
          header_files/ControlFileXMLReceiver.h
          header_files/ControlFileXMLOwnershipImpl.hpp
          header_files/ControlFileXMLMPICommReceiver.h
@@ -93,6 +94,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
          implementation_files/MasterProcess.cpp
+         implementation_files/verify_controlfile_keys_are_valid.cpp
          implementation_files/MasterControlFileNodeKeys.cpp
          implementation_files/MasterControlInputFileNodeKeys.cpp
          implementation_files/ControlFileXMLReceiver.cpp
