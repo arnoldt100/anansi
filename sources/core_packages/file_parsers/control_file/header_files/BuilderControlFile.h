@@ -14,7 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "BuilderFile.h"
-#include "ControlFile.hpp"
+#include "ControlInputFile.hpp"
 
 namespace ANANSI
 {
@@ -24,7 +24,7 @@ namespace ANANSI
         public:
 
             // ====================  LIFECYCLE     =======================================
-            using Filetype_t = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
+            using Filetype_t = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
 
             // ====================  LIFECYCLE     =======================================
 
