@@ -10,7 +10,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "StandardFileFactory.h"
-#include "ControlFile.hpp"
+#include "ControlInputFile.hpp"
 
 namespace ANANSI {
 

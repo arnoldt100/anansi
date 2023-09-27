@@ -7,9 +7,9 @@
 //! concrete task for reading the control file.
 //!
 //! The master process in the communicator
-//! group reads the file. The result will be the a ControlFile
+//! group reads the file. The result will be the a ControlInputFile
 //! object will be populated on the master process. The non-master processes
-//! will have an empyty ControlFile object.
+//! will have an empyty ControlInputFile object.
 //!
 //! The result of this action is ControFile object. We need a
 //! ShareCopyOwnershipPolicy and a SharedType ownership for the result.
@@ -33,9 +33,8 @@
 #include "CommonMDTaskGroupHeaders.h"
 #include "ReceiverError.h"
 #include "ControlFileNodeKeyNotFound.h"
-#include "ControlFile.hpp"
-#include "MasterControlFileNodeKeys.h"
-#include "ControlInputFile.h"
+#include "ControlInputFile.hpp"
+#include "MasterControlInputFileNodeKeys.h"
 #include "CommandFiles.h"
 #include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
@@ -61,10 +60,10 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','x','m','l','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
-        using my_copy_type_ = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
-        using my_share_type_ = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
-        using my_transfer_type_ = ANANSI::ControlFile<ControlFileTraits::PICKLEPOLICY>;
+        using my_result_type_ = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
+        using my_copy_type_ = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
+        using my_share_type_ = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
+        using my_transfer_type_ = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
@@ -74,7 +73,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
-        ControlFileName controlFileName_;
         CommandFileName commandFileName_;
         MasterProcess masterProcess_;
 
@@ -167,7 +165,6 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
-        mutable CommandFiles controlInputFile_; 
         MyOwnershipPolicy_ ownershipPolicy_;
         
 }; // -----  end of class ControlFileXMLReceiver  -----
@@ -192,14 +189,8 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
     {
         try 
         {
-            boost::property_tree::ptree pt;
-            const std::string filename = this->controlFileName_();
-            boost::property_tree::read_xml(filename, pt);
-            this->results_.setFileName(filename);
-            this->results_.readPropertyTree(pt); 
-
-            set_CommandFile_filename(this->controlInputFile_,this->commandFileName_);
-            read_CommandFile(this->controlInputFile_);
+            set_CommandFile_filename(this->results_,this->commandFileName_);
+            read_CommandFile(this->results_);
 
         }
         catch(const boost::property_tree::xml_parser_error & my_error)
