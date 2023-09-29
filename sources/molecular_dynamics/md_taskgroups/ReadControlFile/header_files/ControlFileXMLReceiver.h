@@ -37,7 +37,6 @@
 #include "MasterControlInputFileNodeKeys.h"
 #include "CommandFiles.h"
 #include "ControlFileTask.h"
-#include "ControlFileXMLOwnershipImpl.hpp"
 #include "CommandFilesOwnershipImpl.hpp"
 #include "ControlFileName.h"
 #include "CommandFileName.h"

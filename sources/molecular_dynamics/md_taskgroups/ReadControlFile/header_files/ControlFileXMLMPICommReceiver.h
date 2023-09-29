@@ -31,8 +31,7 @@
 #include "CommandFiles.h"
 #include "ControlInputFile.hpp"
 #include "ControlFileCommunicator.h"
-#include "ControlFileXMLMPICommOwnershipImpl.hpp"
-#include "ControlFileXMLOwnershipImpl_2.hpp"
+#include "CommandFilesOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
 #include "OwnershipTypes.hpp"
 
@@ -67,7 +66,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        using MyOwnershipImpl_ = ControlFileXMLOwnershipImpl_2<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = CommandFilesOwnershipImpl<MyOwnershipImplTraits_>;
 
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
