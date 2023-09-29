@@ -10,7 +10,7 @@ declare -r anansi_cmake_build_dir="${ANANSI_TOP_LEVEL}/build"
 # The number of make threads.                        -
 #                                                    -
 #-----------------------------------------------------
-declare -r -i NM_MAKE_THREADS=4
+declare -r -i NM_MAKE_THREADS=1
 
 #-----------------------------------------------------
 # Define a log file                                  -

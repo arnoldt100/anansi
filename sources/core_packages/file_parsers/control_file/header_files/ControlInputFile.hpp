@@ -93,7 +93,6 @@ class ControlInputFile
             this->filename_ = command_file_name;
         }
 
-
         void readFile()
         {
            return;
@@ -138,12 +137,13 @@ class ControlInputFile
 template< typename T>
 void set_file_name_alt(T & object,ANANSI::CommandFileName filename)
 {
-    object.setFileName(filename);
+    // object.setFileName(filename);
 }
 
 template<typename T>
 void read_file(T & object)
 {
+    // Test
     object.readFile();
 }
 

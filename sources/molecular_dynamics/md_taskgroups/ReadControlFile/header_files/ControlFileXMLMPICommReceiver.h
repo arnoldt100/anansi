@@ -26,6 +26,9 @@
 #include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
+#include "MasterControlInputFileNodeKeys.h"
+#include "ControlFileTraits.h"
+#include "CommandFiles.h"
 #include "ControlInputFile.hpp"
 #include "ControlFileCommunicator.h"
 #include "ControlFileXMLMPICommOwnershipImpl.hpp"
@@ -53,10 +56,10 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'c','o','m','m','u', 'n','i','c','a','t','e','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
-        using my_copy_type_ = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
-        using my_share_type_ = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
-        using my_transfer_type_ = ANANSI::ControlInputFile<ControlFileTraits::PICKLEPOLICY>;
+        using my_result_type_ = ANANSI::CommandFiles;
+        using my_copy_type_ = ANANSI::CommandFiles;
+        using my_share_type_ = ANANSI::CommandFiles;
+        using my_transfer_type_ = ANANSI::CommandFiles;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
@@ -181,23 +184,22 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     // The worker processes uses the broadcasted pickled object to fill in their 
     // "this->results_".
     const bool i_am_master = this->communicator_->iAmMasterProcess();
-    receiver_result_t::PICKLETYPE  pickled_control_file;
+    ControlFileTraits::PICKLETYPE pickled_control_file;
     if ( i_am_master )
     {
-      pickled_control_file = this->results_.pickle();
+      // pickled_control_file = this->results_.pickle();
     }
    
     // Broadcast the pickled_control_file to the other worker processes.
     const std::size_t rank_to_broadcast = COMMUNICATOR::MASTER_TASK_ID;
-    const receiver_result_t::PICKLETYPE broadcasted_pickled_control_file =
+    const ControlFileTraits::PICKLETYPE broadcasted_pickled_control_file =
         this->communicator_->broadcastStdMap(pickled_control_file,rank_to_broadcast);
 
     // Use the broadcasted_pickled_obj to fill in this->results_ for the workers.
     if ( ! i_am_master )
     {
-        this->results_.unpickle(broadcasted_pickled_control_file);      
+        // this->results_.unpickle(broadcasted_pickled_control_file);      
     }
-
 
     // Synchronize all processes in the communicator group of
     // "this->communicator_" at this point.
@@ -209,7 +211,6 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverUndoAction_(Types & ... args) const
 {
-
     return;
 }
 

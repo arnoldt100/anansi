@@ -85,7 +85,7 @@ class CommandFiles
 
                 // ====================  MUTATORS      =======================================
                 virtual void setFileName(CommandFileName filename)=0;
-                virtual void readCommandFile()=0;
+                virtual void readFile()=0;
 
         };
 
@@ -161,9 +161,9 @@ class CommandFiles
                     return;
                 }
 
-                void readCommandFile() override
+                void readFile() override
                 {
-                    read_file(object_);
+                    object_.readFile();
                     return;
                 }
                 T object_;
@@ -183,13 +183,13 @@ class CommandFiles
 
         friend void read_CommandFile(CommandFiles & command_file)
         {
-            command_file.valuePtr_->readCommandFile();
+            // command_file.valuePtr_->readFile();
             return;
         }
 
         friend void read_CommandFile(CommandFiles && command_file)
         {
-            command_file.valuePtr_->readCommandFile();
+            // command_file.valuePtr_->readCommandFile();
             return;
         }
 

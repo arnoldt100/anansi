@@ -24,9 +24,9 @@ ControlFileXMLReceiver::ControlFileXMLReceiver() :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
     commandFileName_(),
     masterProcess_(),
-    results_(ControlInputFile<MasterControlInputFileNodeKeys>()),
     ownershipPolicy_()
 {
+
     return;
 }
 
@@ -96,6 +96,7 @@ template<>
 void ControlFileXMLReceiver::receiverModifyMyself_(CommandFileName & arg)
 {
     this->commandFileName_ = arg;
+    // set_CommandFile_filename(this->results_,this->commandFileName_);
 }
 
 template<>
