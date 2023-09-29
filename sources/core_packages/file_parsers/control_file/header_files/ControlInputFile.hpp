@@ -137,7 +137,7 @@ class ControlInputFile
 template< typename T>
 void set_file_name_alt(T & object,ANANSI::CommandFileName filename)
 {
-    // object.setFileName(filename);
+    object.setFileName(filename);
 }
 
 template<typename T>

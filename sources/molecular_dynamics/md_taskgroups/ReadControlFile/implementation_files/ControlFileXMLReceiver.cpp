@@ -26,7 +26,6 @@ ControlFileXMLReceiver::ControlFileXMLReceiver() :
     masterProcess_(),
     ownershipPolicy_()
 {
-
     return;
 }
 
@@ -86,7 +85,7 @@ ControlFileXMLReceiver::receiver_copy_t_ ControlFileXMLReceiver::receiverGetCopy
 
 
 template<>
-void ControlFileXMLReceiver::receiverModifyMyself_(ANANSI::CommandFiles & arg)
+void ControlFileXMLReceiver::receiverModifyMyself_(CommandFiles & arg)
 {
     this->results_ = arg;
     return;

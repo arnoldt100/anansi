@@ -38,6 +38,7 @@
 #include "CommandFiles.h"
 #include "ControlFileTask.h"
 #include "ControlFileXMLOwnershipImpl.hpp"
+#include "CommandFilesOwnershipImpl.hpp"
 #include "ControlFileName.h"
 #include "CommandFileName.h"
 #include "MasterProcess.h"
@@ -60,16 +61,21 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','x','m','l','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = ANANSI::CommandFiles;
-        using my_copy_type_ = ANANSI::CommandFiles;
-        using my_share_type_ = ANANSI::CommandFiles;
-        using my_transfer_type_ = ANANSI::CommandFiles;
+        using my_result_type_alt = CommandFiles;
+        using my_copy_type_alt = CommandFiles;
+        using my_share_type_alt = CommandFiles;
+        using my_transfer_type_alt = CommandFiles;
+
+        using my_result_type_ = CommandFiles;
+        using my_copy_type_ = CommandFiles;
+        using my_share_type_ = CommandFiles;
+        using my_transfer_type_ = CommandFiles;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        using MyOwnershipImpl_ = ControlFileXMLOwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = CommandFilesOwnershipImpl<MyOwnershipImplTraits_>;
 
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
@@ -184,6 +190,10 @@ template<typename... Types>
 void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
     std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
+
+    ControlInputFile<MasterControlInputFileNodeKeys> tmp_obj;
+    CommandFiles my_command_file(tmp_obj);
+    set_CommandFile_filename(my_command_file,this->commandFileName_);
 
     if (this->masterProcess_.operator()())
     {

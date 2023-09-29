@@ -157,7 +157,7 @@ class CommandFiles
 
                 void setFileName(CommandFileName filename) override
                 {
-                    set_file_name_alt(object_,filename);
+                    object_.setFileName(filename);
                     return;
                 }
 
@@ -183,13 +183,13 @@ class CommandFiles
 
         friend void read_CommandFile(CommandFiles & command_file)
         {
-            // command_file.valuePtr_->readFile();
+            command_file.valuePtr_->readFile();
             return;
         }
 
         friend void read_CommandFile(CommandFiles && command_file)
         {
-            // command_file.valuePtr_->readCommandFile();
+            command_file.valuePtr_->readFile();
             return;
         }
 

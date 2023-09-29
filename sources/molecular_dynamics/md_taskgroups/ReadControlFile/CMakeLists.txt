@@ -73,6 +73,8 @@
          header_files/MasterControlInputFileNodeKeys.h
          header_files/ControlFileXMLReceiver.h
          header_files/ControlFileXMLOwnershipImpl.hpp
+         header_files/ControlFileXMLOwnershipImpl_2.hpp
+         header_files/CommandFilesOwnershipImpl.h
          header_files/ControlFileXMLMPICommReceiver.h
          header_files/ControlFileXMLMPICommOwnershipImpl.hpp
          header_files/ControlFileMacroOwnershipImpl.hpp
@@ -97,6 +99,8 @@
          implementation_files/MasterControlInputFileNodeKeys.cpp
          implementation_files/ControlFileXMLReceiver.cpp
          implementation_files/ControlFileXMLOwnershipImpl.cpp
+         implementation_files/ControlFileXMLOwnershipImpl_2.cpp
+         implementation_files/CommandFilesOwnershipImpl.cpp
          implementation_files/ControlFileXMLMPICommReceiver.cpp
          implementation_files/ControlFileXMLMPICommOwnershipImpl.cpp
          implementation_files/ControlFileMacroOwnershipImpl.cpp

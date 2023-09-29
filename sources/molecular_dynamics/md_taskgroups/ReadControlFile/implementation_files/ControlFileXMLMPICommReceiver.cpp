@@ -22,6 +22,7 @@ namespace ANANSI {
 
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
     ReceiverInterface<ControlFileXMLMPICommReceiver>(),
+    results_(ControlInputFile<MasterControlInputFileNodeKeys>()),
     communicator_(),
     ownershipPolicy_()
 {
