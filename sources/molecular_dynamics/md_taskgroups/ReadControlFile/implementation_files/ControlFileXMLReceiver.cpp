@@ -24,6 +24,7 @@ ControlFileXMLReceiver::ControlFileXMLReceiver() :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
     commandFileName_(),
     masterProcess_(),
+    results_(ControlInputFile<MasterControlInputFileNodeKeys>()),
     ownershipPolicy_()
 {
     return;

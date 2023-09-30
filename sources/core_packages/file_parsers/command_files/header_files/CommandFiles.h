@@ -25,13 +25,11 @@ namespace ANANSI
 //! 
 //! The command files have the general abstraction of 
 //! commands in file that have the form (command key, command parameters).
-//! Command files when pickeled return PICKLEDTYPE.
-template <typename PICKLETRAIT=std::map<std::string,std::string>>
+//! Command files when pickeled return PICKLETYPE_t.
+template <typename PICKLETYPE_t=std::map<std::string,std::string>>
 class CommandFiles
 {
     public:
-
-        using PICKLEDTYPE = std::map<std::string,std::string>;
 
         // ====================  LIFECYCLE     =======================================
 
@@ -121,12 +119,12 @@ class CommandFiles
 
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<CommandFilesConcept> clone() const=0;
-                virtual PICKLEDTYPE pickle() const=0;
+                virtual PICKLETYPE_t pickle() const=0;
 
                 // ====================  MUTATORS      =======================================
                 virtual void setFileName(CommandFileName filename)=0;
                 virtual void readFile()=0;
-                virtual void unPickle(const PICKLEDTYPE & pickled_obj)=0;
+                virtual void unPickle(const PICKLETYPE_t & pickled_obj)=0;
 
         };
 
@@ -194,7 +192,7 @@ class CommandFiles
                     return std::make_unique<CommandFilesModel>(*this);
                 }
 
-                PICKLEDTYPE pickle() const override
+                PICKLETYPE_t pickle() const override
                 {
                     return object_.pickle_file(object_);
                 }
@@ -213,7 +211,7 @@ class CommandFiles
                     return;
                 }
 
-                void unPickle(const PICKLEDTYPE & pickled_obj) override
+                void unPickle(const PICKLETYPE_t & pickled_obj) override
                 {
                     object_.unpickle_file(object_,pickled_obj);
                     return;
@@ -246,22 +244,22 @@ class CommandFiles
             return;
         }
 
-        friend PICKLEDTYPE pickle_CommandFile(CommandFiles & command_file)
+        friend PICKLETYPE_t pickle_CommandFile(CommandFiles & command_file)
         {
             return command_file.valuePtr_->pickle();
         }
 
-        friend PICKLEDTYPE pickle_CommandFile(CommandFiles && command_file)
+        friend PICKLETYPE_t pickle_CommandFile(CommandFiles && command_file)
         {
             return command_file.valuePtr_->pickle();
         }
 
-        friend void unpickle_CommandFile(CommandFiles & command_file, const PICKLEDTYPE & pickled_file)
+        friend void unpickle_CommandFile(CommandFiles & command_file, const PICKLETYPE_t & pickled_file)
         {
             return command_file.valuePtr_->unPickle(pickled_file);
         }
 
-        friend void unpickle_CommandFile(CommandFiles & command_file, const PICKLEDTYPE && pickled_file)
+        friend void unpickle_CommandFile(CommandFiles & command_file, const PICKLETYPE_t && pickled_file)
         {
             return command_file.valuePtr_->unPickle(pickled_file);
         }
