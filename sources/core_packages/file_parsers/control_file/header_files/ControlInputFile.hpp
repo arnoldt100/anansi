@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -16,15 +17,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ControlFilePickle.h"
 #include "CommandFileName.h"
-#include "ControlFileTraits.h"
-#include "ControlFileName.h"
-#include "BaseInputFile.h"
-#include "add_values_to_property_tree.hpp"
-#include "pickle_ControlFile_property_tree.h"
-#include "unpickle_to_property_tree.h"
-#include "verify_controlfile_keys_are_valid.hpp"
 
 
 //--------------------------------------------------------//
@@ -39,10 +32,10 @@ namespace ANANSI
 //!
 //! The class ControlInputFile is a host class that is an abstraction
 //! for the set of control input files in Anansi. The keys values 
-//! are implemeneted via the KeyPolicyClass.
+//! are implemeneted via the MasterKeyPolicy.
 //!
-//! \tparam  KeyPolicyClass The policy class for the keys values of the input file.
-template<typename KeyPolicyClass>
+//! \tparam  MasterKeyPolicy The policy class for the keys values of the input file.
+template<typename MasterKeyPolicy>
 class ControlInputFile
 {
     public:
@@ -147,22 +140,22 @@ class ControlInputFile
 
         // ====================  STATIC        =======================================
 
-        static void set_file_name(ControlInputFile<KeyPolicyClass> & object,ANANSI::CommandFileName filename)
+        static void set_file_name(ControlInputFile<MasterKeyPolicy> & object,ANANSI::CommandFileName filename)
         {
             object.setFileName(filename);
         }
 
-        static void read_file(ControlInputFile<KeyPolicyClass> & object)
+        static void read_file(ControlInputFile<MasterKeyPolicy> & object)
         {
             object.readFile();
         }
 
-        static PICKLEDTYPE pickle_file(const ControlInputFile<KeyPolicyClass> & object)
+        static PICKLEDTYPE pickle_file(const ControlInputFile<MasterKeyPolicy> & object)
         {
             return object.pickleFile();
         }
 
-        static void unpickle_file(ControlInputFile<KeyPolicyClass> & object,const PICKLEDTYPE & pickled_file)
+        static void unpickle_file(ControlInputFile<MasterKeyPolicy> & object,const PICKLEDTYPE & pickled_file)
         {
             object.unpickeFile(pickled_file);
             return;
@@ -179,7 +172,7 @@ class ControlInputFile
         // ====================  DATA MEMBERS  =======================================
 
         //! The keys of the control input file. 
-        KeyPolicyClass masterKeys_;
+        MasterKeyPolicy masterKeys_;
 
         //! The file name that is to be read or written to.
         CommandFileName filename_;

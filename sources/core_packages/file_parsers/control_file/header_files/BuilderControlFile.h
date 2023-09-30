@@ -15,6 +15,7 @@
 //--------------------------------------------------------//
 #include "BuilderFile.h"
 #include "ControlInputFile.hpp"
+#include "ControlFileTraits.h"
 
 namespace ANANSI
 {
