@@ -61,7 +61,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_core_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/BaseInputFile.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h )
 
     #-----------------------------------------------------
@@ -72,7 +71,6 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_core_implementation_files
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/BaseInputFile.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
