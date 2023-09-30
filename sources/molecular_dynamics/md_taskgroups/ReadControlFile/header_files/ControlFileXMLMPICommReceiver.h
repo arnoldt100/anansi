@@ -56,10 +56,10 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'c','o','m','m','u', 'n','i','c','a','t','e','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = ANANSI::CommandFiles;
-        using my_copy_type_ = ANANSI::CommandFiles;
-        using my_share_type_ = ANANSI::CommandFiles;
-        using my_transfer_type_ = ANANSI::CommandFiles;
+        using my_result_type_ = ANANSI::CommandFiles<>;
+        using my_copy_type_ = ANANSI::CommandFiles<>;
+        using my_share_type_ = ANANSI::CommandFiles<>;
+        using my_transfer_type_ = ANANSI::CommandFiles<>;
 
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,

@@ -26,6 +26,7 @@ namespace ANANSI
 //! The command files have the general abstraction of 
 //! commands in file that have the form (command key, command parameters).
 //! Command files when pickeled return PICKLEDTYPE.
+template <typename PICKLETRAIT=std::map<std::string,std::string>>
 class CommandFiles
 {
     public:
@@ -34,9 +35,20 @@ class CommandFiles
 
         // ====================  LIFECYCLE     =======================================
 
-        explicit CommandFiles();   // constructor
+        CommandFiles() :
+            valuePtr_(nullptr)
+        {
+            return;
+        }
 
-        explicit CommandFiles (const CommandFiles & other);   // copy constructor
+        CommandFiles(CommandFiles const & other)
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = other.valuePtr_->clone();
+            }
+            return;
+        }
 
         template<typename T> 
         CommandFiles(T && value) :
@@ -45,9 +57,19 @@ class CommandFiles
             return;
         }
 
-        CommandFiles (CommandFiles && other);   // copy-move constructor
+        CommandFiles(CommandFiles && other)
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = std::move(other.valuePtr_); 
+            }
+            return;
+        }		// -----  end of method CommandFiles::CommandFiles  -----
 
-        ~CommandFiles ();  // destructor
+        ~CommandFiles()
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
         CommandFiles clone () const
@@ -59,9 +81,23 @@ class CommandFiles
 
         // ====================  OPERATORS     =======================================
 
-        CommandFiles& operator=( const CommandFiles &other ); // assignment operator
+        CommandFiles& operator= ( const CommandFiles &other )
+        {
+            if (this != &other)
+            {
+                this->valuePtr_  = other.valuePtr_->clone();
+            }
+            return *this;
+        } // assignment operator
 
-        CommandFiles& operator=( CommandFiles && other ); // assignment-move operator
+        CommandFiles& operator= ( CommandFiles && other )
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = std::move(other.valuePtr_); 
+            }
+            return *this;
+        } // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -236,6 +272,12 @@ class CommandFiles
         std::unique_ptr<CommandFilesConcept> valuePtr_;
 
 }; // -----  end of class CommandFiles  -----
+
+template<typename T>
+CommandFiles<T>::CommandFilesConcept::~CommandFilesConcept()
+{
+    return;
+}
 
 
 }; // namespace ANANSI
