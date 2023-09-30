@@ -35,7 +35,7 @@ class __classname__
         virtual ~__classname__ ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        __class_name__ * clone () const;
+        __classname__ * clone () const;
 
         // ====================  MUTATORS      =======================================
 
