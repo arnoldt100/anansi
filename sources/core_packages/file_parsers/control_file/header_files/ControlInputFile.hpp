@@ -37,11 +37,18 @@ namespace ANANSI
 
 //!  An abstraction for the control input file.
 //!
+//! The class ControlInputFile is a host class that is an abstraction
+//! for the set of control input files in Anansi. The keys values 
+//! are implemeneted via the KeyPolicyClass.
+//!
 //! \tparam  KeyPolicyClass The policy class for the keys values of the input file.
 template<typename KeyPolicyClass>
 class ControlInputFile
 {
     public:
+
+        using PICKLEDTYPE = std::map<std::string,std::string>;
+
         // ====================  LIFECYCLE     =======================================
 
         ControlInputFile () :   // constructor
@@ -82,20 +89,38 @@ class ControlInputFile
 
 
         // ====================  ACCESSORS     =======================================
+
+        //! Clones the class.
         ControlInputFile* clone() const
         {
             return new ControlInputFile(*this);
         }
 
-        // ====================  MUTATORS      =======================================
-        void setFileName(const CommandFileName & command_file_name)
+        PICKLEDTYPE pickleFile() const
         {
-            this->filename_ = command_file_name;
+            PICKLEDTYPE a_map;
+            return a_map;
         }
 
+        // ====================  MUTATORS      =======================================
+
+        //! Sets the file name of file to be  read or wriiten to.
+        //!
+        //! \param command_file_name[in] The file name.
+        void setFileName(const CommandFileName & file_name)
+        {
+            this->filename_ = file_name;
+        }
+
+        //! Reads the file designated by this->filename_.
         void readFile()
         {
            return;
+        }
+
+        void unpickeFile(const PICKLEDTYPE & pickled_obj )
+        {
+            return;
         }
 
         // ====================  OPERATORS     =======================================
@@ -120,6 +145,29 @@ class ControlInputFile
             return *this;
         } // assignment-move operator
 
+        // ====================  STATIC        =======================================
+
+        static void set_file_name(ControlInputFile<KeyPolicyClass> & object,ANANSI::CommandFileName filename)
+        {
+            object.setFileName(filename);
+        }
+
+        static void read_file(ControlInputFile<KeyPolicyClass> & object)
+        {
+            object.readFile();
+        }
+
+        static PICKLEDTYPE pickle_file(const ControlInputFile<KeyPolicyClass> & object)
+        {
+            return object.pickleFile();
+        }
+
+        static void unpickle_file(ControlInputFile<KeyPolicyClass> & object,const PICKLEDTYPE & pickled_file)
+        {
+            object.unpickeFile(pickled_file);
+            return;
+        }
+
     protected:
         // ====================  METHODS       =======================================
 
@@ -129,23 +177,14 @@ class ControlInputFile
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+
+        //! The keys of the control input file. 
         KeyPolicyClass masterKeys_;
+
+        //! The file name that is to be read or written to.
         CommandFileName filename_;
 
 }; // -----  end of class ControlInputFile  -----
-
-template< typename T>
-void set_file_name_alt(T & object,ANANSI::CommandFileName filename)
-{
-    object.setFileName(filename);
-}
-
-template<typename T>
-void read_file(T & object)
-{
-    // Test
-    object.readFile();
-}
 
 }; // namespace ANANSI
 

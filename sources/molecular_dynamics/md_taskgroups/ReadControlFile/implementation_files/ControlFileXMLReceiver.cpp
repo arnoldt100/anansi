@@ -95,7 +95,7 @@ template<>
 void ControlFileXMLReceiver::receiverModifyMyself_(CommandFileName & arg)
 {
     this->commandFileName_ = arg;
-    // set_CommandFile_filename(this->results_,this->commandFileName_);
+    set_CommandFile_filename(this->results_,this->commandFileName_);
 }
 
 template<>

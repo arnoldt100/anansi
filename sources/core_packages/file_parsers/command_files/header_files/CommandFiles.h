@@ -25,10 +25,13 @@ namespace ANANSI
 //! 
 //! The command files have the general abstraction of 
 //! commands in file that have the form (command key, command parameters).
-//! Command files when pickeled return std::map<std::string,std::string>
+//! Command files when pickeled return PICKLEDTYPE.
 class CommandFiles
 {
     public:
+
+        using PICKLEDTYPE = std::map<std::string,std::string>;
+
         // ====================  LIFECYCLE     =======================================
 
         explicit CommandFiles();   // constructor
@@ -82,10 +85,12 @@ class CommandFiles
 
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<CommandFilesConcept> clone() const=0;
+                virtual PICKLEDTYPE pickle() const=0;
 
                 // ====================  MUTATORS      =======================================
                 virtual void setFileName(CommandFileName filename)=0;
                 virtual void readFile()=0;
+                virtual void unPickle(const PICKLEDTYPE & pickled_obj)=0;
 
         };
 
@@ -153,19 +158,31 @@ class CommandFiles
                     return std::make_unique<CommandFilesModel>(*this);
                 }
 
+                PICKLEDTYPE pickle() const override
+                {
+                    return object_.pickle_file(object_);
+                }
+
                 // ====================  MUTATORS      =======================================
 
                 void setFileName(CommandFileName filename) override
                 {
-                    object_.setFileName(filename);
+                    object_.set_file_name(object_,filename);
                     return;
                 }
 
                 void readFile() override
                 {
-                    object_.readFile();
+                    object_.read_file(object_);
                     return;
                 }
+
+                void unPickle(const PICKLEDTYPE & pickled_obj) override
+                {
+                    object_.unpickle_file(object_,pickled_obj);
+                    return;
+                }
+
                 T object_;
         };
 
@@ -191,6 +208,26 @@ class CommandFiles
         {
             command_file.valuePtr_->readFile();
             return;
+        }
+
+        friend PICKLEDTYPE pickle_CommandFile(CommandFiles & command_file)
+        {
+            return command_file.valuePtr_->pickle();
+        }
+
+        friend PICKLEDTYPE pickle_CommandFile(CommandFiles && command_file)
+        {
+            return command_file.valuePtr_->pickle();
+        }
+
+        friend void unpickle_CommandFile(CommandFiles & command_file, const PICKLEDTYPE & pickled_file)
+        {
+            return command_file.valuePtr_->unPickle(pickled_file);
+        }
+
+        friend void unpickle_CommandFile(CommandFiles & command_file, const PICKLEDTYPE && pickled_file)
+        {
+            return command_file.valuePtr_->unPickle(pickled_file);
         }
 
         // ====================  METHODS       =======================================

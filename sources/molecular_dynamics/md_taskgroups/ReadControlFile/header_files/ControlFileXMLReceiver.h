@@ -198,7 +198,7 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
     {
         try 
         {
-            // read_CommandFile(this->results_);;
+            read_CommandFile(this->results_);;
         }
         catch(const boost::property_tree::xml_parser_error & my_error)
         {
