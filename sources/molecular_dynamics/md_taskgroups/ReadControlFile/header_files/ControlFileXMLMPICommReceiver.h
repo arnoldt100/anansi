@@ -27,9 +27,10 @@
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
 #include "MasterControlInputFileNodeKeys.h"
+#include "ReadControlFileResultsTraits.h"
 #include "ControlFileTraits.h"
-#include "CommandFiles.h"
 #include "ControlInputFile.hpp"
+#include "CommandFiles.h"
 #include "ControlFileCommunicator.h"
 #include "CommandFilesOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
@@ -56,11 +57,10 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'c','o','m','m','u', 'n','i','c','a','t','e','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = ANANSI::CommandFiles<>;
-        using my_copy_type_ = ANANSI::CommandFiles<>;
-        using my_share_type_ = ANANSI::CommandFiles<>;
-        using my_transfer_type_ = ANANSI::CommandFiles<>;
-
+        using my_result_type_ = ReadControlFileResultsTraits::result_t;
+        using my_copy_type_ = ReadControlFileResultsTraits::result_t;
+        using my_share_type_ = ReadControlFileResultsTraits::result_t;
+        using my_transfer_type_ =  ReadControlFileResultsTraits::result_t;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,

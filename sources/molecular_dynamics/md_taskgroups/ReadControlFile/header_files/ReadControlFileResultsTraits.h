@@ -13,13 +13,26 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "XMLFileReader.h"
+#include "XMLFileWriter.h"
+#include "CommandFiles.h"
+#include "ControlInputFile.hpp"
+#include "MasterControlInputFileNodeKeys.h"
 
 namespace ANANSI
 {
 
+//! This class defines common traits for classes in ReadControlFile directory.
 class ReadControlFileResultsTraits
 {
     public:
+        // ====================  ALIASES       =======================================
+        //! The type erasure for the input file. 
+        using result_t = CommandFiles<>;
+
+        //! The input file stored in the type erasure.
+        using ControlInputFile_t = ControlInputFile<MasterControlInputFileNodeKeys>;
+
         // ====================  LIFECYCLE     =======================================
 
         ReadControlFileResultsTraits ();   // constructor

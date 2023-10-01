@@ -40,6 +40,7 @@
 #include "CommandFilesOwnershipImpl.hpp"
 #include "CommandFileName.h"
 #include "MasterProcess.h"
+#include "ReadControlFileResultsTraits.h"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -59,10 +60,10 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','x','m','l','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = CommandFiles<>;
-        using my_copy_type_ = CommandFiles<>;
-        using my_share_type_ = CommandFiles<>;
-        using my_transfer_type_ = CommandFiles<>;
+        using my_result_type_ = ReadControlFileResultsTraits::result_t;
+        using my_copy_type_ = ReadControlFileResultsTraits::result_t;
+        using my_share_type_ = ReadControlFileResultsTraits::result_t;
+        using my_transfer_type_ =  ReadControlFileResultsTraits::result_t;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
