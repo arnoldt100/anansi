@@ -185,8 +185,9 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
     std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
 
-    ControlInputFile<MasterControlInputFileNodeKeys> tmp_obj;
-    CommandFiles my_command_file(tmp_obj);
+    ReadControlFileResultsTraits::ControlInputFile_t tmp_obj;
+    ReadControlFileResultsTraits::result_t my_command_file(tmp_obj);
+
     set_CommandFile_filename(my_command_file,this->commandFileName_);
 
     if (this->masterProcess_.operator()())

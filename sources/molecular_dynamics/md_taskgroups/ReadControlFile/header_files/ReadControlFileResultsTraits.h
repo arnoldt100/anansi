@@ -31,7 +31,7 @@ class ReadControlFileResultsTraits
         using result_t = CommandFiles<>;
 
         //! The input file stored in the type erasure.
-        using ControlInputFile_t = ControlInputFile<MasterControlInputFileNodeKeys>;
+        using ControlInputFile_t = ControlInputFile<MasterControlInputFileNodeKeys,XMLFileReader,XMLFileWriter>;
 
         // ====================  LIFECYCLE     =======================================
 

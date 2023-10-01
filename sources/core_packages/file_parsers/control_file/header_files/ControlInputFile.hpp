@@ -32,7 +32,11 @@ namespace ANANSI
 //! are implemeneted via the MasterKeyPolicy.
 //!
 //! \tparam  MasterKeyPolicy The policy class for the keys values of the input file.
-template<typename MasterKeyPolicy>
+//! \tparam ReaderPolicy The policy class for reading the file.
+//! \tparam WriterPolicy The policy class for writingthe file.
+template<typename MasterKeyPolicy,
+        typename ReaderPolicy,
+        typename WriterPolicy>
 class ControlInputFile
 {
     public:
@@ -137,22 +141,22 @@ class ControlInputFile
 
         // ====================  STATIC        =======================================
 
-        static void set_file_name(ControlInputFile<MasterKeyPolicy> & object,ANANSI::CommandFileName filename)
+        static void set_file_name(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy> & object,ANANSI::CommandFileName filename)
         {
             object.setFileName(filename);
         }
 
-        static void read_file(ControlInputFile<MasterKeyPolicy> & object)
+        static void read_file(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy> & object)
         {
             object.readFile();
         }
 
-        static PICKLEDTYPE pickle_file(const ControlInputFile<MasterKeyPolicy> & object)
+        static PICKLEDTYPE pickle_file(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy> & object)
         {
             return object.pickleFile();
         }
 
-        static void unpickle_file(ControlInputFile<MasterKeyPolicy> & object,const PICKLEDTYPE & pickled_file)
+        static void unpickle_file(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy> & object,const PICKLEDTYPE & pickled_file)
         {
             object.unpickeFile(pickled_file);
             return;
