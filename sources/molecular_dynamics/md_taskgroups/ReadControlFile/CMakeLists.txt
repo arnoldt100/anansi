@@ -69,19 +69,20 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_header_files
-         header_files/MasterProcess.h
-         header_files/MasterControlInputFileNodeKeys.h
-         header_files/ControlFileXMLReceiver.h
-         header_files/CommandFilesOwnershipImpl.hpp
-         header_files/ControlFileXMLMPICommReceiver.h
-         header_files/ControlFileMacroOwnershipImpl.hpp
-         header_files/ControlFileMacroReceiver.h
-         header_files/ReadControlFileTraits.h
-         header_files/setup_controlfile_invoker.h
-         header_files/disable_controlfile_invoker.h
-         header_files/setup_ControlFileXMLReceiver.h
-         header_files/setup_ControlFileXMLMPICommReceiver.h
-         header_files/setup_ControlFileMacroReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterProcess.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlInputFileNodeKeys.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileXMLReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFilesOwnershipImpl.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileXMLMPICommReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileMacroOwnershipImpl.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileMacroReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadControlFileTraits.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_controlfile_invoker.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_controlfile_invoker.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileXMLReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileXMLMPICommReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileMacroReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadControlFileResultsTraits.h
          )
 
     #-----------------------------------------------------
@@ -92,19 +93,20 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
-         implementation_files/MasterProcess.cpp
-         implementation_files/MasterControlInputFileNodeKeys.cpp
-         implementation_files/ControlFileXMLReceiver.cpp
-         implementation_files/CommandFilesOwnershipImpl.cpp
-         implementation_files/ControlFileXMLMPICommReceiver.cpp
-         implementation_files/ControlFileMacroOwnershipImpl.cpp
-         implementation_files/ControlFileMacroReceiver.cpp
-         implementation_files/ReadControlFileTraits.cpp 
-         implementation_files/setup_controlfile_invoker.cpp
-         implementation_files/disable_controlfile_invoker.cpp
-         implementation_files/setup_ControlFileXMLReceiver.cpp
-         implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
-         implementation_files/setup_ControlFileMacroReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterProcess.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlInputFileNodeKeys.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileXMLReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFilesOwnershipImpl.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileXMLMPICommReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileMacroOwnershipImpl.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileMacroReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadControlFileTraits.cpp 
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_controlfile_invoker.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_controlfile_invoker.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileXMLReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileMacroReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadControlFileResultsTraits.cpp
          )
 
     # -----------------------------------------------------
