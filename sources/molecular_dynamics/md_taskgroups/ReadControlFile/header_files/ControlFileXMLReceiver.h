@@ -38,7 +38,6 @@
 #include "CommandFiles.h"
 #include "ControlFileTask.h"
 #include "CommandFilesOwnershipImpl.hpp"
-#include "ControlFileName.h"
 #include "CommandFileName.h"
 #include "MasterProcess.h"
 
