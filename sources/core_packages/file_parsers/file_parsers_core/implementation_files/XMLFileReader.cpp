@@ -55,6 +55,13 @@ XMLFileReader * XMLFileReader::clone() const
     return new XMLFileReader(*this);
 }
 
+boost::property_tree::ptree XMLFileReader::read(const std::string filename) const
+{ 
+    boost::property_tree::ptree tree;
+    boost::property_tree::read_xml(filename, tree);
+    return tree;
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

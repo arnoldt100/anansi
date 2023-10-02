@@ -1,6 +1,6 @@
 #ifndef ANANSI_ControlInputFile_INC
 #define ANANSI_ControlInputFile_INC
-//! \file ControlInputFile.h
+//! \file ControlInputFile.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -35,8 +36,8 @@ namespace ANANSI
 //! \tparam ReaderPolicy The policy class for reading the file.
 //! \tparam WriterPolicy The policy class for writingthe file.
 template<typename MasterKeyPolicy,
-        typename ReaderPolicy,
-        typename WriterPolicy>
+         typename ReaderPolicy,
+         typename WriterPolicy>
 class ControlInputFile
 {
     public:
@@ -47,7 +48,8 @@ class ControlInputFile
 
         ControlInputFile () :   // constructor
             masterKeys_(),
-            filename_()
+            filename_(),
+            ptree_()
         {
             return;
         }
@@ -55,7 +57,8 @@ class ControlInputFile
 
         ControlInputFile (const ControlInputFile & other) :   // copy constructor
             masterKeys_(other.masterKeys_),
-            filename_(other.filename_)
+            filename_(other.filename_),
+            ptree_(other.ptree_)
         {
             if (this != &other)
             {
@@ -66,7 +69,8 @@ class ControlInputFile
 
         ControlInputFile (ControlInputFile && other) :  // copy-move constructor
             masterKeys_(std::move(other.masterKeys_)),
-            filename_(std::move(other.filename_))
+            filename_(std::move(other.filename_)),
+            ptree_(std::move(other.ptree_))
         {
             if (this != &other)
             {
@@ -109,7 +113,10 @@ class ControlInputFile
         //! Reads the file designated by this->filename_.
         void readFile()
         {
-           return;
+            const ReaderPolicy file_reader;
+            std::string file_name = this->filename_();
+            this->ptree_ = file_reader.read(file_name);
+            return;
         }
 
         void unpickeFile(const PICKLEDTYPE & pickled_obj )
@@ -177,6 +184,9 @@ class ControlInputFile
 
         //! The file name that is to be read or written to.
         CommandFileName filename_;
+
+        //! The internal representation of the file.
+        boost::property_tree::ptree ptree_;
 
 }; // -----  end of class ControlInputFile  -----
 

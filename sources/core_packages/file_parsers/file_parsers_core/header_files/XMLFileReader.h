@@ -13,6 +13,8 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -36,6 +38,8 @@ class XMLFileReader
 
         // ====================  ACCESSORS     =======================================
         XMLFileReader * clone () const;
+
+        boost::property_tree::ptree read(const std::string filename) const;
 
         // ====================  MUTATORS      =======================================
 

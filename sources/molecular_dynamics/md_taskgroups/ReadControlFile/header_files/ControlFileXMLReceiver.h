@@ -185,16 +185,11 @@ void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
     std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
 
-    ReadControlFileResultsTraits::ControlInputFile_t tmp_obj;
-    ReadControlFileResultsTraits::result_t my_command_file(tmp_obj);
-
-    set_CommandFile_filename(my_command_file,this->commandFileName_);
-
     if (this->masterProcess_.operator()())
     {
         try 
         {
-            read_CommandFile(this->results_);;
+            read_CommandFile(this->results_);
         }
         catch(const boost::property_tree::xml_parser_error & my_error)
         {
