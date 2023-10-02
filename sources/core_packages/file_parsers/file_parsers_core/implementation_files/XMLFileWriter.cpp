@@ -53,6 +53,12 @@ XMLFileWriter * XMLFileWriter::clone() const
     return new XMLFileWriter(*this);
 }
 
+void XMLFileWriter::write(const boost::property_tree::ptree & tree, const std::string filename) const
+{
+    boost::property_tree::write_xml(filename,tree);
+    return;
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

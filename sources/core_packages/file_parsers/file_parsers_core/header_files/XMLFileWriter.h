@@ -9,6 +9,8 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -32,6 +34,12 @@ class XMLFileWriter
 
         // ====================  ACCESSORS     =======================================
         XMLFileWriter * clone () const;
+
+        //! \brief Writes a Boost::property_tree::ptree in XML format to a file.
+        //!
+        //! tree[in] The Boost propert tree that is written.
+        //! filename[in] The file to write the Boost::property_tree.
+        void write( const boost::property_tree::ptree & tree, const std::string filename) const;
 
         // ====================  MUTATORS      =======================================
 
