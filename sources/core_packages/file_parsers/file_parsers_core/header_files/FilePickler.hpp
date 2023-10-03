@@ -21,42 +21,9 @@
 namespace ANANSI
 {
 
-class FilePickler
-{
-    public:
-        // ====================  LIFECYCLE     =======================================
-
-        FilePickler ();   // constructor
-
-        FilePickler (const FilePickler & other);   // copy constructor
-
-        FilePickler (FilePickler && other);   // copy-move constructor
-
-        virtual ~FilePickler ();  // destructor
-
-        // ====================  ACCESSORS     =======================================
-        FilePickler * clone () const;
-
-        // ====================  MUTATORS      =======================================
-
-        // ====================  OPERATORS     =======================================
-
-        FilePickler& operator= ( const FilePickler &other ); // assignment operator
-
-        FilePickler& operator= ( FilePickler && other ); // assignment-move operator
-
-    protected:
-        // ====================  METHODS       =======================================
-
-        // ====================  DATA MEMBERS  =======================================
-
-    private:
-        // ====================  METHODS       =======================================
-
-        // ====================  DATA MEMBERS  =======================================
-
-}; // -----  end of class FilePickler  -----
-
+template<typename InternalRepresentation_t,
+         typename PickleType_t>
+class FilePickler;
 
 }; // namespace ANANSI
 

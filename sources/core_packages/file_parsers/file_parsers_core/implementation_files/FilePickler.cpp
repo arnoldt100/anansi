@@ -20,59 +20,9 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-FilePickler::FilePickler()
-{
-    return;
-}
-
-FilePickler::FilePickler( FilePickler const & other)
-{
-    if (this != &other)
-    {
-    }
-    return;
-}
-
-FilePickler::FilePickler( FilePickler && other)
-{
-    if (this != &other)
-    {
-    }
-    return;
-}		// -----  end of method FilePickler::FilePickler  -----
-
-
-FilePickler::~FilePickler()
-{
-    return;
-}
-
-//============================= ACCESSORS ====================================
-
-FilePickler * FilePickler::clone() const
-{
-    return new FilePickler(*this);
-}
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-FilePickler& FilePickler::operator= ( const FilePickler &other )
-{
-    if (this != &other)
-    {
-    }
-    return *this;
-} // assignment operator
-
-FilePickler& FilePickler::operator= ( FilePickler && other )
-{
-    if (this != &other)
-    {
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -97,6 +47,5 @@ FilePickler& FilePickler::operator= ( FilePickler && other )
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
 
 } // namespace ANANSI
