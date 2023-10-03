@@ -176,6 +176,9 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
     std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
 
+    // Set the pickle type for command file.
+    using pickle_t = receiver_result_t::PICKLETYPE;
+
     // Synchronize all processes in the communicator group of
     // "this->communicator_" at this point.
     this->communicator_->synchronizationPoint();
@@ -185,10 +188,10 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     // The worker processes uses the broadcasted pickled object to fill in their 
     // "this->results_".
     const bool i_am_master = this->communicator_->iAmMasterProcess();
-    ControlFileTraits::PICKLETYPE pickled_control_file;
+    pickle_t pickled_control_file;
     if ( i_am_master )
     {
-      // pickled_control_file = this->results_.pickle();
+        // pickled_control_file = this->results_.pickle();
     }
    
     // Broadcast the pickled_control_file to the other worker processes.

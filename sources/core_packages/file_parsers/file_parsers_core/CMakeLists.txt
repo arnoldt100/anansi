@@ -63,7 +63,8 @@
     set (file_parsers_core_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileReader.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileWriter.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileWriter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePickler.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -75,7 +76,8 @@
     set (file_parsers_core_implementation_files
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileReader.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileWriter.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileWriter.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePickler.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

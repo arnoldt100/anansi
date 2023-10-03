@@ -31,6 +31,9 @@ class CommandFiles
 {
     public:
 
+        // ====================  ALIAS         =======================================
+        using PICKLETYPE = PICKLETYPE_t;
+
         // ====================  LIFECYCLE     =======================================
 
         CommandFiles() :
