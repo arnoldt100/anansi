@@ -34,10 +34,12 @@ namespace ANANSI
 //!
 //! \tparam  MasterKeyPolicy The policy class for the keys values of the input file.
 //! \tparam ReaderPolicy The policy class for reading the file.
-//! \tparam WriterPolicy The policy class for writingthe file.
+//! \tparam WriterPolicy The policy class for writing the file.
+//! \tparam PicklerPolicy The policy class for pickling the file.
 template<typename MasterKeyPolicy,
          typename ReaderPolicy,
-         typename WriterPolicy>
+         typename WriterPolicy,
+         typename PicklerPolicy>
 class ControlInputFile
 {
     public:
@@ -96,7 +98,8 @@ class ControlInputFile
 
         PICKLEDTYPE pickleFile() const
         {
-            PICKLEDTYPE a_map;
+            const PicklerPolicy pickler;
+            PICKLEDTYPE a_map =  pickler.pickle(ptree_);
             return a_map;
         }
 
@@ -148,22 +151,22 @@ class ControlInputFile
 
         // ====================  STATIC        =======================================
 
-        static void set_file_name(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy> & object,ANANSI::CommandFileName filename)
+        static void set_file_name(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object,ANANSI::CommandFileName filename)
         {
             object.setFileName(filename);
         }
 
-        static void read_file(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy> & object)
+        static void read_file(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object)
         {
             object.readFile();
         }
 
-        static PICKLEDTYPE pickle_file(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy> & object)
+        static PICKLEDTYPE pickle_file(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object)
         {
             return object.pickleFile();
         }
 
-        static void unpickle_file(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy> & object,const PICKLEDTYPE & pickled_file)
+        static void unpickle_file(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object,const PICKLEDTYPE & pickled_file)
         {
             object.unpickeFile(pickled_file);
             return;

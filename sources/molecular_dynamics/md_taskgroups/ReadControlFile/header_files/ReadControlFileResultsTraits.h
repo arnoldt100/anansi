@@ -18,6 +18,7 @@
 #include "CommandFiles.h"
 #include "ControlInputFile.hpp"
 #include "MasterControlInputFileNodeKeys.h"
+#include "FilePicklerPropertyTreeMap.hpp"
 
 namespace ANANSI
 {
@@ -31,7 +32,11 @@ class ReadControlFileResultsTraits
         using result_t = CommandFiles<>;
 
         //! The input file stored in the type erasure.
-        using ControlInputFile_t = ControlInputFile<MasterControlInputFileNodeKeys,XMLFileReader,XMLFileWriter>;
+        using ControlInputFile_t = ControlInputFile<MasterControlInputFileNodeKeys,
+                                                    XMLFileReader,
+                                                    XMLFileWriter,
+                                                    FilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>
+                                                   >;
 
         // ====================  LIFECYCLE     =======================================
 
