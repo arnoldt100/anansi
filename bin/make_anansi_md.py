@@ -25,6 +25,8 @@ from loggerutils.logger import create_logger
 
 def _main():
     args = _parse_arguments()
+ 
+    run_build_command_(args)
 
 ## Parses the command line arguments and returns A namespace.
 #
@@ -36,13 +38,6 @@ def _parse_arguments():
     # Create a string of the description of the 
     # program.
     program_description = "This program runs the make command to build Anansi."
-
-    # Create text for namspace option help.
-    nm_make_threads_help = ( f"""The number of make threads (i.e. make's -j option).\n"""
-                             f"""This must be a positive integer. The default value is 1.\n""" )
-
-    # Create text for funtion name option help.
-    target_help = ( f"""The name of the target to build.""" )
 
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
@@ -56,44 +51,59 @@ def _parse_arguments():
                            default=logging.WARNING,
                            help=create_logger_description() )
 
+    # Add an optional argument for the make target.
+    target_help = ( f"""The name of the target to build.\n"""
+                    f"""The default target is 'all'.\n\n""")
+
     my_parser.add_argument("--target",
                            required=False,
                            type=str,
+                           default="all",
                            help=target_help)
 
+    # Add an optional argument for the number of make threads.
+    nm_make_threads_help = ( f"""The number of make threads (i.e. make's -j option).\n"""
+                             f"""This must be a positive integer <= 4. The default value is 1.\n\n""" )
 
+    my_parser.add_argument("--nm-make-threads",
+                           type=int,
+                           default=1,
+                           choices=list(range(1,5)),
+                           help=nm_make_threads_help)
+
+    my_args = my_parser.parse_args()
+    return my_args
+
+## Run make command to build Anansi
+def run_build_command_(args):
+    import os
+    import shlex
+    import subprocess
+
+    # Define the CMake build directory. This is 
+    # the working directory for the make command
+    anansi_top_level=os.getenv("ANANSI_TOP_LEVEL")
+    anansi_cmake_build_dir=os.path.join(anansi_top_level,"build")
+    
+    # Define the make options.
+    options=""
+
+    nm_make_threads=args.nm_make_threads;
+    options+=" -j " + str(nm_make_threads) + " "
+
+    target=args.target
+    options+=" " + target + " "
+
+    # Use subprocess to run make command.
+    make_cmd = "make " + options
+    args_make = shlex.split(make_cmd)
+    process_make = subprocess.run(args_make,cwd=anansi_cmake_build_dir)
+
+    # Use subprocess to run make install command.
+    if process_make.check_returncode == 0:
+        make_install_cmd = "make install"
+        args_install = shlex.split(make_install_cmd)
+        process_make_install = subprocess.run(args_install,cwd=anansi_cmake_build_dir)
+    
 if __name__ == "__main__":
     _main()
-
-#  #-----------------------------------------------------
-#  # Define the Anansi buld directory.                  -
-#  #                                                    -
-#  #-----------------------------------------------------
-#  declare -r anansi_cmake_build_dir="${ANANSI_TOP_LEVEL}/build"
-#  
-#  #-----------------------------------------------------
-#  # The number of make threads.                        -
-#  #                                                    -
-#  #-----------------------------------------------------
-#  declare -r -i NM_MAKE_THREADS=2
-#  
-#  
-#  #-----------------------------------------------------
-#  # Define a log file                                  -
-#  #                                                    -
-#  #-----------------------------------------------------
-#  declare -r log_file="${ANANSI_TOP_LEVEL}/anansi_log.txt"
-#  
-#  #-----------------------------------------------------
-#  # No edits should be needed below this line.         -
-#  #                                                    -
-#  #-----------------------------------------------------
-#  
-#  if [ -f ${log_file} ]
-#  then
-#      rm -f ${log_file}
-#  fi
-#  
-#  cd ${anansi_cmake_build_dir}
-#  
-#  make -j ${NM_MAKE_THREADS} all && make install 
