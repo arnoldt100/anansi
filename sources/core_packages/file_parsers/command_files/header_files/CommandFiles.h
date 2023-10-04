@@ -1,6 +1,14 @@
 #ifndef ANANSI_CommandFiles_INC
 #define ANANSI_CommandFiles_INC
 //! \file CommandFiles.h
+//!
+//! Command files are have entries that have the general form
+//! key value where each key is unique. The key and value are
+//! are strings, the key string contains no blank spaces, and the 
+//! value is on 1 line in the file. 
+//!
+//! The class CommandFiles 
+//! is a Type Erasure 
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -21,7 +29,7 @@
 namespace ANANSI
 {
 
-//! \brief A typerasure for files command input files.
+//! \brief An abstraction for the command input files. 
 //! 
 //! The command files have the general abstraction of 
 //! commands in file that have the form (command key, command parameters).

@@ -1,7 +1,7 @@
 #ifndef ANANSI_FilePicklerPropertyTreeMap_INC
 #define ANANSI_FilePicklerPropertyTreeMap_INC
 
-//! \file FilePicklerPropertyTreeMap.h
+//! \file FilePicklerPropertyTreeMap.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//

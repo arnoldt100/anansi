@@ -944,6 +944,12 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/command_files/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/command_files/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/file_parsers_core/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/file_parsers_core/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/control_file/header_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/control_file/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/implementation_files
 
 
