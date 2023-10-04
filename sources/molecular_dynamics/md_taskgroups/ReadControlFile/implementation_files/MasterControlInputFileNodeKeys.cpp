@@ -19,6 +19,8 @@ namespace ANANSI {
 /////////////////////////////// PUBLIC ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
+std::string MasterControlInputFileNodeKeys::DefaultNullValue = std::string("default-null-value");
+
 //============================= LIFECYCLE ====================================
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :

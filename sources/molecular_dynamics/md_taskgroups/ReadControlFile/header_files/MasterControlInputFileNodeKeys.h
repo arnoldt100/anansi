@@ -20,6 +20,7 @@
 
 namespace ANANSI
 {
+
 //!  Contains the all control file node keys.
 //!
 //! All available keys of the control file are stored in this class. To add
@@ -29,6 +30,8 @@ namespace ANANSI
 class MasterControlInputFileNodeKeys
 {
     public:
+        static std::string DefaultNullValue;
+
         // ====================  LIFECYCLE     =======================================
 
         MasterControlInputFileNodeKeys ();   // constructor

@@ -99,7 +99,7 @@ class ControlInputFile
         PICKLEDTYPE pickleFile() const
         {
             const PicklerPolicy pickler;
-            PICKLEDTYPE a_map =  pickler.pickle(ptree_);
+            PICKLEDTYPE a_map =  pickler.template pickle<MasterKeyPolicy>(ptree_);
             return a_map;
         }
 

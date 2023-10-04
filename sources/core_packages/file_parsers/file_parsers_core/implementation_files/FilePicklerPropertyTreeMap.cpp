@@ -59,13 +59,6 @@ FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>>::clo
     return new FilePickler(*this);
 }
 
-std::map<std::string,std::string>
-FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>>::pickle(const boost::property_tree::ptree & tree) const
-{
-    std::map<std::string,std::string> a_map;
-    return a_map;
-}
-
 boost::property_tree::ptree
 FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>>::unPickle(const std::map<std::string,std::string> & a_map) const
 {

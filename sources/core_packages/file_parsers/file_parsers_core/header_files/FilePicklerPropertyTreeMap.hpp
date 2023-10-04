@@ -39,9 +39,33 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         // ====================  ACCESSORS     =======================================
         FilePickler * clone () const;
 
-       std::map<std::string,std::string> pickle(const boost::property_tree::ptree & tree) const;
+        template<typename MasterKeyPolicy_t>
+        std::map<std::string,std::string> pickle(const boost::property_tree::ptree & tree) const
+        {
+            const MasterKeyPolicy_t master_keys;
+            std::map<std::string,std::string> a_map;
+            const auto it_keys = master_keys.allKeysIterator();
+            for (auto it = it_keys.first; it != it_keys.second; ++it)
+            {
+                const std::string key(*it);
+                if ( master_keys.isCommentTag(key))
+                {
+                   continue; 
+                }
 
-       boost::property_tree::ptree unPickle(const std::map<std::string,std::string>& a_map) const;
+                if (auto search = tree.find(key); search != tree.not_found() )
+                {
+                    a_map[key] = tree.get<std::string>(key);
+                }
+                else
+                {
+                    a_map[key] = master_keys.DefaultNullValue;
+                }
+            }
+            return a_map;
+        }
+
+        boost::property_tree::ptree unPickle(const std::map<std::string,std::string>& a_map) const;
 
         // ====================  MUTATORS      =======================================
 
