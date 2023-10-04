@@ -98,12 +98,24 @@ def run_build_command_(args):
     make_cmd = "make " + options
     args_make = shlex.split(make_cmd)
     process_make = subprocess.run(args_make,cwd=anansi_cmake_build_dir)
+    if process_make.returncode == 0:
+        print ("The command " + "'" + make_cmd + "'" + " succeeded.\n\n")
+    else: 
+        print ("The command " + "'" + make_cmd + "'" + " failed.\n")
+        print ("The return code is " + str(process_make.returncode) + "\n\n")
+        return
 
     # Use subprocess to run make install command.
-    if process_make.check_returncode == 0:
-        make_install_cmd = "make install"
-        args_install = shlex.split(make_install_cmd)
-        process_make_install = subprocess.run(args_install,cwd=anansi_cmake_build_dir)
-    
+    make_install_cmd = "make install"
+    args_install = shlex.split(make_install_cmd)
+    process_make_install = subprocess.run(args_install,cwd=anansi_cmake_build_dir)
+    if process_make_install.returncode == 0:
+        print ("The command " + "'" + make_install_cmd + "'" + " succeeded.\n\n")
+    else:
+        print ("The command " + "'" + make_install_cmd + "'" + " failed.\n")
+        print ("The return code is " + str(process_make_install.returncode) + "\n\n")
+        return
+  
+
 if __name__ == "__main__":
     _main()

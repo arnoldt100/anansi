@@ -124,6 +124,8 @@ class ControlInputFile
 
         void unpickeFile(const PICKLEDTYPE & pickled_obj )
         {
+            const PicklerPolicy pickler;
+            this->ptree_ = pickler. template unPickle<MasterKeyPolicy>(pickled_obj);
             return;
         }
 

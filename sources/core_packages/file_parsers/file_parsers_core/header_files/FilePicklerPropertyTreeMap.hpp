@@ -65,7 +65,31 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
             return a_map;
         }
 
-        boost::property_tree::ptree unPickle(const std::map<std::string,std::string>& a_map) const;
+        template<typename MasterKeyPolicy_t>
+        boost::property_tree::ptree unPickle(const std::map<std::string,std::string>& a_map) const
+        {
+            const MasterKeyPolicy_t master_keys;
+            boost::property_tree::ptree tree;
+            const auto it_keys = master_keys.allKeysIterator();
+            for (auto it = it_keys.first; it != it_keys.second; ++it)
+            {
+                const std::string key(*it);
+                if ( master_keys.isCommentTag(key))
+                {
+                   continue; 
+                }
+                
+                if (auto search = tree.find(key); search != tree.not_found() )
+                {
+                    tree.put(key,a_map.at(key));
+                }
+                else
+                {
+                    tree.put(key,master_keys.DefaultNullValue);
+                }
+            }
+            return tree;
+        }
 
         // ====================  MUTATORS      =======================================
 
