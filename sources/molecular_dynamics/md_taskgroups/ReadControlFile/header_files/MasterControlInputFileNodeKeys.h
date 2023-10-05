@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <cstdarg>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -58,7 +59,9 @@ class MasterControlInputFileNodeKeys
         bool isCommentTag(const std::string key) const;
 
         // ====================  MUTATORS      =======================================
-        void addKey(const std::string key);
+        void addKey(const std::string & key);
+
+        void addKeys(const std::vector<std::string> & key);
 
         void addCommentTag(const std::string key);
 

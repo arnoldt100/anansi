@@ -3,6 +3,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <algorithm>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -46,6 +47,7 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
   this->addKey(std::string("time-step.units"));
   this->addKey(std::string("time-step.number-time-steps"));
   this->addKey(std::string("integration-methodology.ensemble"));
+  this->addKeys(std::string_view("integration-methodology"),std::string_view("ensemble"),std::string_view(""));
   return;
 }
 
@@ -108,9 +110,18 @@ bool MasterControlInputFileNodeKeys::isCommentTag(const std::string key) const
 }
 
 //============================= MUTATORS =====================================
-void MasterControlInputFileNodeKeys::addKey(const std::string keys)
+void MasterControlInputFileNodeKeys::addKey(const std::string & key)
 {
-    this->nodeKeys_.push_back(keys.c_str());
+    this->nodeKeys_.push_back(key.c_str());
+}
+
+void MasterControlInputFileNodeKeys::addKeys(const std::vector<std::string> & keys)
+{
+    for (const auto & tmpkey : keys)
+    {
+
+    }
+    return;
 }
 
 void MasterControlInputFileNodeKeys::addCommentTag(const std::string keys)
