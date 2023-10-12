@@ -18,6 +18,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "KeyPathSeparator.h"
 
 namespace ANANSI
 {
@@ -61,6 +62,7 @@ class MasterControlInputFileNodeKeys
         // ====================  MUTATORS      =======================================
         void addKey(const std::string & key);
 
+        //! Adds a key to the master list of keys.
         void addKeys(const std::vector<std::string> & key);
 
         void addCommentTag(const std::string key);

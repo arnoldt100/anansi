@@ -22,13 +22,13 @@ class KeyPathSeparator
     public:
         // ====================  LIFECYCLE     =======================================
 
-        KeyPathSeparator ();   // constructor
+        KeyPathSeparator ();  // Constructor
 
-        KeyPathSeparator (const KeyPathSeparator & other);   // copy constructor
+        KeyPathSeparator (const KeyPathSeparator & other);   // Copy constructor
 
-        KeyPathSeparator (KeyPathSeparator && other);   // copy-move constructor
+        KeyPathSeparator (KeyPathSeparator && other);   // Copy-move constructor
 
-        ~KeyPathSeparator ();  // destructor
+        ~KeyPathSeparator ();  // Destructor
 
         // ====================  ACCESSORS     =======================================
         KeyPathSeparator * clone () const;
@@ -37,9 +37,9 @@ class KeyPathSeparator
 
         // ====================  OPERATORS     =======================================
 
-        KeyPathSeparator& operator= ( const KeyPathSeparator &other ); // assignment operator
+        KeyPathSeparator& operator= ( const KeyPathSeparator &other ); // Assignment operator
 
-        KeyPathSeparator& operator= ( KeyPathSeparator && other ); // assignment-move operator
+        KeyPathSeparator& operator= ( KeyPathSeparator && other ); // Assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -47,6 +47,9 @@ class KeyPathSeparator
         // ====================  DATA MEMBERS  =======================================
 
     private:
+        // ====================  STATIC        =======================================
+        static constexpr char separator_char[] = ".";
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

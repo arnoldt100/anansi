@@ -39,6 +39,25 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         // ====================  ACCESSORS     =======================================
         FilePickler * clone () const;
 
+        //! \brief Converts the a boost::property_tree::ptree to a
+        //! std::map<std::string,std::string>.
+        //!
+        //! \details The internal representation of a command file is
+        //!  boost::property_tree::ptree. There are occasional needs to
+        //!  represent the command file in the form of std::map\<std::string,std::string\> for easier
+        //!  manipulation. For example, MPI communicators can't communicate
+        //!  ptree data types, but they can communicate a std::string by
+        //!  converting std::string to a 'char*' data types.
+        //!
+        //! \tparam MasterKeyPolicy_t The policy for the key types of the command file.
+        //! \param[in] tree The internal representation of the command file.
+        //! \return  The internal representation of a command file.<br>   
+        //! The internal representation of a command file is form std::map\<std::string,std::string\>.
+        //! A (key,value) entry in ptree is acccessd by <br>  
+        //! &emsp; <TT>value = tree.get<std::string>(key)</TT>
+        //! <br>  
+        //! We store this (key,value) in the std::map<std::string,std::string> as <br>  
+        //! &emsp;  <TT>a_map[key] = tree.get\<std::string\>(key)</TT> <br>   
         template<typename MasterKeyPolicy_t>
         std::map<std::string,std::string> pickle(const boost::property_tree::ptree & tree) const
         {

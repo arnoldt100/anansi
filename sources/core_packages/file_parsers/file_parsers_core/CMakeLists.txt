@@ -66,6 +66,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileWriter.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePickler.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/KeyPathSeparator.h
+	${CMAKE_CURRENT_SOURCE_DIR}/header_files/check_string_for_separator_char.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePicklerPropertyTreeMap.hpp)
 
     #-----------------------------------------------------
@@ -81,6 +82,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileWriter.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePickler.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/KeyPathSeparator.cpp
+	 ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/check_string_for_separator_char.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePicklerPropertyTreeMap.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
