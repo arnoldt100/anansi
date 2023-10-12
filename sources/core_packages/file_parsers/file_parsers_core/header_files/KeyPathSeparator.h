@@ -1,10 +1,6 @@
 #ifndef ANANSI_KeyPathSeparator_INC
 #define ANANSI_KeyPathSeparator_INC
 //! \file KeyPathSeparator.h
-//!
-//! \brief Brief description
-//!
-//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
