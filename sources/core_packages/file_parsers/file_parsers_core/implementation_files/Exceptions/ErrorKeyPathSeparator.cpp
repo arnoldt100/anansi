@@ -28,8 +28,11 @@ ErrorKeyPathSeparator::ErrorKeyPathSeparator( const std::array<char,2> & sep_cha
     sepChar_{sep_char},
     pathKey_{path_key}
 {
-    this->errorMessage_ =  std::string("The key string contains a character that matches the\n");
-    this->errorMessage_ += std::string("separator char '");
+    this->errorMessage_ =  std::string("The path_key '");
+    this->errorMessage_ +=  path_key;
+    this->errorMessage_ += std::string("' ");
+    this->errorMessage_ =  std::string("contains a character that matches the\n");
+    this->errorMessage_ += std::string("path separator charcter '");
     this->errorMessage_ += std::string(this->sepChar_.begin(),this->sepChar_.end());
     this->errorMessage_ += std::string("'.");
     return;
