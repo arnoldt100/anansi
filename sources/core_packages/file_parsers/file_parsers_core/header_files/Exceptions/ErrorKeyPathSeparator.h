@@ -1,10 +1,13 @@
-#ifndef ANANSI_KeyPathSeparator_INC
-#define ANANSI_KeyPathSeparator_INC
-//! \file KeyPathSeparator.h
+#ifndef ANANSI_ErrorKeyPathSeparator_INC
+#define ANANSI_ErrorKeyPathSeparator_INC
+//! \file ErrorKeyPathSeparator.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <exception>
+#include <array>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -17,32 +20,34 @@
 namespace ANANSI
 {
 
-class KeyPathSeparator
+//! \brief Error for key string containing the separator char.
+class ErrorKeyPathSeparator : public std::exception
 {
     public:
-        // ====================  STATIC        =======================================
-        static constexpr char separator_char[] = ".";
-
         // ====================  LIFECYCLE     =======================================
 
-        KeyPathSeparator ();  // Constructor
+        ErrorKeyPathSeparator ();   // constructor
 
-        KeyPathSeparator (const KeyPathSeparator & other);   // Copy constructor
+        ErrorKeyPathSeparator ( const std::array<char,1> & sep_char);   // constructor
 
-        KeyPathSeparator (KeyPathSeparator && other);   // Copy-move constructor
+        ErrorKeyPathSeparator (const ErrorKeyPathSeparator & other);   // copy constructor
 
-        ~KeyPathSeparator ();  // Destructor
+        ErrorKeyPathSeparator (ErrorKeyPathSeparator && other);   // copy-move constructor
+
+        ~ErrorKeyPathSeparator ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        KeyPathSeparator * clone () const;
+        ErrorKeyPathSeparator * clone () const;
+
+        const char* what() const noexcept override;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        KeyPathSeparator& operator= ( const KeyPathSeparator &other ); // Assignment operator
+        ErrorKeyPathSeparator& operator= ( const ErrorKeyPathSeparator &other ); // assignment operator
 
-        KeyPathSeparator& operator= ( KeyPathSeparator && other ); // Assignment-move operator
+        ErrorKeyPathSeparator& operator= ( ErrorKeyPathSeparator && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -50,14 +55,15 @@ class KeyPathSeparator
         // ====================  DATA MEMBERS  =======================================
 
     private:
-
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::array<char,1> sepChar_;
+        std::string errorMessage_;
 
-}; // -----  end of class KeyPathSeparator  -----
+}; // -----  end of class ErrorKeyPathSeparator  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_KeyPathSeparator_INC
+#endif // ANANSI_ErrorKeyPathSeparator_INC

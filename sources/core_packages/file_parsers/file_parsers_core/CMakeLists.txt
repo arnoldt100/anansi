@@ -66,8 +66,9 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileWriter.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePickler.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/KeyPathSeparator.h
-	${CMAKE_CURRENT_SOURCE_DIR}/header_files/check_string_for_separator_char.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePicklerPropertyTreeMap.hpp)
+	    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/check_string_for_separator_char.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePicklerPropertyTreeMap.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorKeyPathSeparator.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -82,8 +83,9 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileWriter.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePickler.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/KeyPathSeparator.cpp
-	 ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/check_string_for_separator_char.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePicklerPropertyTreeMap.cpp)
+	     ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/check_string_for_separator_char.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePicklerPropertyTreeMap.cpp 
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorKeyPathSeparator.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -116,6 +118,7 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions"
                            PRIVATE "${Boost_INCLUDE_DIR}" )
 
 target_link_libraries(${target}

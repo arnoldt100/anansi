@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 #include "MasterControlInputFileNodeKeys.h"
 #include "check_string_for_separator_char.h"
+#include "KeyPathSeparator.h"
 
 namespace ANANSI {
 
@@ -44,12 +45,12 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
 
         // These are the keys for the processor topology lattice type.
         std::vector<std::string> proc_topology_lt_key{std::string("processor-topology"),
-                                                           std::string("lattice-type")};
+                                                      std::string("lattice-type")};
         this->addKeys(proc_topology_lt_key);
 
         // These are the keys for the processor topology spatial decomposition.
         std::vector<std::string> proc_topology_mpi_decomp_key{std::string("processor-topology"),
-                                                               std::string("mpi-spatial-decomposition")};
+                                                              std::string("mpi-spatial-decomposition")};
         this->addKeys(proc_topology_mpi_decomp_key);
 
         // These are the keys for the number of compute units per spatial domain.
@@ -161,10 +162,10 @@ void MasterControlInputFileNodeKeys::addKey(const std::string & key)
 void MasterControlInputFileNodeKeys::addKeys(const std::vector<std::string> & keys)
 {
     // Check each key and make sure no key contains the path separator character.
-    // If a key contains the path separaor, then throw an error and abort the program.
+    // If a key contains the path separator, then throw an error and abort the program.
     for (const auto & tmpkey : keys)
     {
-        if ( check_string_for_separator_char(tmpkey) )
+        if ( check_string_for_separator_char<KeyPathSeparator>(tmpkey) )
         {
 
         }
