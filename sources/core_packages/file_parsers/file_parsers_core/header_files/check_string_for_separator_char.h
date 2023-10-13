@@ -15,7 +15,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ErrorKeyPathSeparator.h"
 
 namespace ANANSI
 {
@@ -32,9 +31,8 @@ template<typename PathSeparator_t>
 bool check_string_for_separator_char (const std::string & a_string)
 {
     bool found_sep_char = false;
-    if (auto pos = a_string.find(PathSeparator_t::separator_char); pos == std::string::npos)
+    if (auto pos = a_string.find(PathSeparator_t::separator_char[0]); pos == std::string::npos)
     {
-        throw ErrorKeyPathSeparator(PathSeparator_t::separator_char);
         found_sep_char = true;
     }
     return found_sep_char;

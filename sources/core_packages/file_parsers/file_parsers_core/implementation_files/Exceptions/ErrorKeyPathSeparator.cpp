@@ -24,8 +24,9 @@ ErrorKeyPathSeparator::ErrorKeyPathSeparator()
     return;
 }
 
-ErrorKeyPathSeparator::ErrorKeyPathSeparator( const std::array<char,1> & sep_char) : // constructor
-    sepChar_{sep_char}
+ErrorKeyPathSeparator::ErrorKeyPathSeparator( const std::array<char,2> & sep_char,const std::string & path_key) : // constructor
+    sepChar_{sep_char},
+    pathKey_{path_key}
 {
     this->errorMessage_ =  std::string("The key string contains a character that matches the\n");
     this->errorMessage_ += std::string("separator char '");
@@ -35,7 +36,8 @@ ErrorKeyPathSeparator::ErrorKeyPathSeparator( const std::array<char,1> & sep_cha
 }
 
 ErrorKeyPathSeparator::ErrorKeyPathSeparator( ErrorKeyPathSeparator const & other) :
-    sepChar_{other.sepChar_}
+    sepChar_{other.sepChar_},
+    pathKey_{other.pathKey_}
 {
     if (this != &other)
     {
@@ -44,7 +46,8 @@ ErrorKeyPathSeparator::ErrorKeyPathSeparator( ErrorKeyPathSeparator const & othe
 }
 
 ErrorKeyPathSeparator::ErrorKeyPathSeparator( ErrorKeyPathSeparator && other) :
-    sepChar_{std::move(other.sepChar_)}
+    sepChar_{std::move(other.sepChar_)},
+    pathKey_{std::move(other.pathKey_)}
 {
     if (this != &other)
     {
@@ -77,6 +80,8 @@ ErrorKeyPathSeparator& ErrorKeyPathSeparator::operator= ( const ErrorKeyPathSepa
 {
     if (this != &other)
     {
+        this->sepChar_ = other.sepChar_;
+        this->pathKey_ = other.pathKey_;
     }
     return *this;
 } // assignment operator
@@ -85,7 +90,8 @@ ErrorKeyPathSeparator& ErrorKeyPathSeparator::operator= ( ErrorKeyPathSeparator 
 {
     if (this != &other)
     {
-
+        this->sepChar_ = std::move(other.sepChar_);
+        this->pathKey_ = std::move(other.pathKey_);
     }
     return *this;
 } // assignment-move operator

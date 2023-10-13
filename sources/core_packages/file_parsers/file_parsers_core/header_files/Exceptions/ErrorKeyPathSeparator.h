@@ -28,7 +28,7 @@ class ErrorKeyPathSeparator : public std::exception
 
         ErrorKeyPathSeparator ();   // constructor
 
-        ErrorKeyPathSeparator ( const std::array<char,1> & sep_char);   // constructor
+        ErrorKeyPathSeparator ( const std::array<char,2> & sep_char, const std::string & path_key);   // constructor
 
         ErrorKeyPathSeparator (const ErrorKeyPathSeparator & other);   // copy constructor
 
@@ -58,7 +58,8 @@ class ErrorKeyPathSeparator : public std::exception
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::array<char,1> sepChar_;
+        std::array<char,2> sepChar_;
+        std::string pathKey_;
         std::string errorMessage_;
 
 }; // -----  end of class ErrorKeyPathSeparator  -----

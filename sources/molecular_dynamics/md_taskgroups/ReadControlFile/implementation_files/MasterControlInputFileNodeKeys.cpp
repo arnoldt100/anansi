@@ -14,6 +14,7 @@
 #include "MasterControlInputFileNodeKeys.h"
 #include "check_string_for_separator_char.h"
 #include "KeyPathSeparator.h"
+#include "ErrorKeyPathSeparator.h"
 
 namespace ANANSI {
 
@@ -31,8 +32,8 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
 {
         // The node key value boost::property_tree::ptree uses for an xml
         // comment. 
-        std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
-        this->addKeys(xml_comment_key);
+        const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
+        this->addCommentTag(xml_comment_key[0]);
 
         // The title key store the title of the simulation.
         std::vector<std::string> title_key{std::string("title")};
@@ -154,22 +155,34 @@ bool MasterControlInputFileNodeKeys::isCommentTag(const std::string key) const
 }
 
 //============================= MUTATORS =====================================
-void MasterControlInputFileNodeKeys::addKey(const std::string & key)
-{
-    this->nodeKeys_.push_back(key.c_str());
-}
-
 void MasterControlInputFileNodeKeys::addKeys(const std::vector<std::string> & keys)
 {
     // Check each key and make sure no key contains the path separator character.
     // If a key contains the path separator, then throw an error and abort the program.
-    for (const auto & tmpkey : keys)
+    std::string key("");
+    std::size_t iter_count = 0;
+    for (const auto & pathkey : keys)
     {
-        if ( check_string_for_separator_char<KeyPathSeparator>(tmpkey) )
+        if (iter_count >= 1)
         {
-
+            // Append path separation character
+            key.push_back(KeyPathSeparator::separator_char[0]);
         }
+
+        if ( check_string_for_separator_char<KeyPathSeparator>(pathkey) )
+        {
+            throw ErrorKeyPathSeparator(KeyPathSeparator::separator_char,pathkey);
+        }
+        
+        // Append the path key.
+        key.append(pathkey);
+
+        // Increment interation counter by 1.
+        iter_count += 1;
     }
+
+    // Form the key.
+
     return;
 }
 

@@ -16,7 +16,7 @@
 //--------------------------------------------------------//
 
 //--------------------------------------------------------//
-//--------------------- Package includes -----------------//
+//--------------------- Package includes -----------------/
 //--------------------------------------------------------//
 #include "KeyPathSeparator.h"
 
@@ -60,7 +60,6 @@ class MasterControlInputFileNodeKeys
         bool isCommentTag(const std::string key) const;
 
         // ====================  MUTATORS      =======================================
-        void addKey(const std::string & key);
 
         //! Adds a key to the master list of keys.
         void addKeys(const std::vector<std::string> & key);
