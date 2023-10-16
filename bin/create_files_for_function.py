@@ -58,7 +58,9 @@ def _parse_arguments():
                           f"""For example, most languages require function names to have only alphanumeric characters.\n""")
 
     # Create text for function typ help
-    functiontype_help = ( f"""The type of function to create.\n""" )
+    functiontype_help = ( f"""The type of function to create.\n"""
+                          f"""    general - the traditional function format.\n""" 
+                          f"""    template - A template function format.\n""" )
     
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
@@ -76,8 +78,8 @@ def _parse_arguments():
     my_parser.add_argument("--function-type",
                            type=str,
                            default="general",
-                           choices=list("general","template"),
-                           help=functiontype)
+                           choices=["general","template"],
+                           help=functiontype_help)
     
     # Adding mandatory argument group.
     mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
