@@ -102,7 +102,6 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInp
 {
     if (this != &other)
     {
-        
     }
     return;
 }
@@ -114,7 +113,6 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInp
 {
     if (this != &other)
     {
-        
     }
     return;
 }		// -----  end of method MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys  -----
@@ -129,7 +127,7 @@ MasterControlInputFileNodeKeys::~MasterControlInputFileNodeKeys()
 std::pair<std::vector<std::string>::const_iterator,
           std::vector<std::string>::const_iterator> MasterControlInputFileNodeKeys::allKeysIterator() const
 {
-    return std::pair(this->nodeKeys_.begin(),this->nodeKeys_.end());
+    return std::pair<std::vector<std::string>::const_iterator,std::vector<std::string>::const_iterator>(this->nodeKeys_.begin(),this->nodeKeys_.end());
 }
 
 bool MasterControlInputFileNodeKeys::find(const std::string key) const
@@ -177,7 +175,7 @@ void MasterControlInputFileNodeKeys::addKeys(const std::vector<std::string> & ke
         // Append the path key.
         key.append(pathkey);
 
-        // Increment interation counter by 1.
+        // Increment iteration counter by 1.
         iter_count += 1;
     }
 
