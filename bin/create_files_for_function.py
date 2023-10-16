@@ -4,12 +4,13 @@
 # 
 # This module intended to be executed as script. Typical usage is
 # 
-#     create_files_for_function.py --namespace <namespace> --function-name <functionname>
+#     create_files_for_function.py --namespace <namespace> --function-name <functionname> --function-type <functiontype>
 # 
 # where
 # 
 # \<namespace\> is the namespace for the function
 # \<functioname\> is the name of the function
+# \<functioname\> is the type of function (i.e. general, template, ...)
 # 
 
 # System imports
@@ -20,14 +21,22 @@ import argparse
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 
+_file_types = { "general" : ["functions.h","functions.cpp"],
+                 "function_template" : ["functions.hpp","functions.hpp.cpp"]
+              }
+
+_file_suffixes = { "general" : [".h",".cpp"],
+                 "function_template" : [".hpp",".cpp"]  }
+
 def _main():
     args = _parse_arguments()
 
     namespace = args.namespace
     function_name = args.function_name
+    function_type = args.function_type
 
-    _create_header_file(namespace,function_name)
-    _create_implementation_file(namespace,function_name)
+    _create_header_file(namespace,function_name,function_type)
+    _create_implementation_file(namespace,function_name,function_type)
 
 ## Parses the command line arguments and returns A namespace.
 #
@@ -48,6 +57,9 @@ def _parse_arguments():
     functionname_help = ( f"""The function name should conform to the language standards.\n """
                           f"""For example, most languages require function names to have only alphanumeric characters.\n""")
 
+    # Create text for function typ help
+    functiontype_help = ( f"""The type of function to create.\n""" )
+    
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
             description=program_description,
@@ -60,6 +72,13 @@ def _parse_arguments():
                            default=logging.WARNING,
                            help=create_logger_description() )
 
+    #Adding option function type.
+    my_parser.add_argument("--function-type",
+                           type=str,
+                           default="general",
+                           choices=list("general","template"),
+                           help=functiontype)
+    
     # Adding mandatory argument group.
     mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
 
@@ -74,15 +93,16 @@ def _parse_arguments():
                            help=functionname_help)
     my_args = my_parser.parse_args()
 
+
     return my_args 
 
-def _create_header_file(namespace,function_name):
+def _create_header_file(namespace,function_name,function_type):
     import os
     import re
     print("Creating header file " + function_name + ".h")
     anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(anansi_top_level,"templates","functions.h")
-    output_file = function_name + ".h"
+    template_file = os.path.join(anansi_top_level,"templates",_file_types["function_type"][0])
+    output_file = function_name + _file_suffixes["function_type"][0]
     preprocessor_name = namespace + "_" + function_name + "_INC"
     regex_array = [ (re.compile("__NAMESPACE__"),namespace),
                     (re.compile("__function__"),function_name),
@@ -93,13 +113,13 @@ def _create_header_file(namespace,function_name):
 
     return
 
-def _create_implementation_file(namespace,function_name):
+def _create_implementation_file(namespace,function_name,function_type):
     import os
     import re
     print("Creating implementation file " + function_name + ".cpp")
     anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(anansi_top_level,"templates","functions.cpp")
-    output_file = function_name + ".cpp"
+    template_file = os.path.join(anansi_top_level,"templates",_file_types["function_type"][1])
+    output_file = function_name + _file_suffixes["function_type"][1]
     regex_array = [ (re.compile("__NAMESPACE__"),namespace ),
                     (re.compile("__function__"),function_name),
                    ]
