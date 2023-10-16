@@ -22,11 +22,11 @@ from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 
 _file_types = { "general" : ["functions.h","functions.cpp"],
-                 "function_template" : ["functions.hpp","functions.hpp.cpp"]
+                 "template" : ["functions.hpp","functions.hpp.cpp"]
               }
 
 _file_suffixes = { "general" : [".h",".cpp"],
-                 "function_template" : [".hpp",".cpp"]  }
+                   "template" : [".hpp",".cpp"]  }
 
 def _main():
     args = _parse_arguments()
@@ -101,10 +101,10 @@ def _parse_arguments():
 def _create_header_file(namespace,function_name,function_type):
     import os
     import re
-    print("Creating header file " + function_name + ".h")
+    print("Creating header file for function " + function_name + ".")
     anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(anansi_top_level,"templates",_file_types["function_type"][0])
-    output_file = function_name + _file_suffixes["function_type"][0]
+    template_file = os.path.join(anansi_top_level,"templates",_file_types[function_type][0])
+    output_file = function_name + _file_suffixes[function_type][0]
     preprocessor_name = namespace + "_" + function_name + "_INC"
     regex_array = [ (re.compile("__NAMESPACE__"),namespace),
                     (re.compile("__function__"),function_name),
@@ -118,10 +118,10 @@ def _create_header_file(namespace,function_name,function_type):
 def _create_implementation_file(namespace,function_name,function_type):
     import os
     import re
-    print("Creating implementation file " + function_name + ".cpp")
+    print("Creating implementation file for function " + function_name + ".")
     anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(anansi_top_level,"templates",_file_types["function_type"][1])
-    output_file = function_name + _file_suffixes["function_type"][1]
+    template_file = os.path.join(anansi_top_level,"templates",_file_types[function_type][1])
+    output_file = function_name + _file_suffixes[function_type][1]
     regex_array = [ (re.compile("__NAMESPACE__"),namespace ),
                     (re.compile("__function__"),function_name),
                    ]
