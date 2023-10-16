@@ -1,10 +1,7 @@
-#ifndef ANANSI_PathKey_INC
-#define ANANSI_PathKey_INC
-//! \file PathKey.h
-//!
-//! \brief Brief description
-//!
-//! Detailed description
+#ifndef ANANSI_create_path_key_propertytree_INC
+#define ANANSI_create_path_key_propertytree_INC
+
+//! \file create_path_key_propertytree.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,18 +14,17 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "create_path_key.hpp"
+#include "PathKeyPropertyTree.hpp"
+
 
 namespace ANANSI
 {
 
-
-//! \brief The primary template for froming the path key.
-//!
-//! \tparam PathSepartor_t The policy for forming the path key.
-template<typename PathSepartor_t>
-class PathKey;
-
+//! \brief Stud text for brief description
+template<>
+void create_path_key< PathKey<boost::property_tree::ptree>> ( const std::vector<std::string> & keys );
 
 }; // namespace ANANSI
 
-#endif // ANANSI_PathKey_INC
+#endif // ANANSI_create_path_key_propertytree_INC

@@ -1,10 +1,7 @@
-#ifndef ANANSI_PathKey_INC
-#define ANANSI_PathKey_INC
+#ifndef ANANSI_PathKeyPropertyTree_INC
+#define ANANSI_PathKeyPropertyTree_INC
 //! \file PathKey.h
-//!
-//! \brief Brief description
-//!
-//! Detailed description
+
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -13,20 +10,22 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "PathKey.hpp"
 
 namespace ANANSI
 {
 
 
-//! \brief Forms the path key for the internal representation of the (key,value) pair.
+//! \brief Forms the path key for the internal representation of the (key,value) pair of boost property tree.
 //!
-//! \tparam PathSepartor_t The policy for forming the path key.
-template<typename PathSepartor_t>
-class PathKey
+//! The class template specialization is for the internal representation being a boost::propert_tree::ptree.
+template<>
+class PathKey<boost::property_tree::ptree>
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -72,7 +71,6 @@ class PathKey
         {
             if (this != &other)
             {
-                this = other.clone()
             }
             return *this;
         } // assignment operator
@@ -101,4 +99,4 @@ class PathKey
 
 }; // namespace ANANSI
 
-#endif // ANANSI_PathKey_INC
+#endif // ANANSI_PathKeyPropertyTree_INC

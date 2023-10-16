@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 #include "MasterControlInputFileNodeKeys.h"
 #include "check_string_for_separator_char.h"
+#include "create_path_key_propertytree.hpp"
 #include "KeyPathSeparator.h"
 #include "ErrorKeyPathSeparator.h"
 
@@ -155,32 +156,18 @@ bool MasterControlInputFileNodeKeys::isCommentTag(const std::string key) const
 //============================= MUTATORS =====================================
 void MasterControlInputFileNodeKeys::addKeys(const std::vector<std::string> & keys)
 {
-    // Check each key and make sure no key contains the path separator character.
+    // Check each key and make sure no invidual key contains the path separator character.
     // If a key contains the path separator, then throw an error and abort the program.
-    std::string key("");
-    std::size_t iter_count = 0;
     for (const auto & pathkey : keys)
     {
-        if (iter_count >= 1)
-        {
-            // Append path separation character
-            key.push_back(KeyPathSeparator::separator_char[0]);
-        }
-
         if ( check_string_for_separator_char<KeyPathSeparator>(pathkey) )
         {
             throw ErrorKeyPathSeparator(KeyPathSeparator::separator_char,pathkey);
         }
-        
-        // Append the path key.
-        key.append(pathkey);
-
-        // Increment iteration counter by 1.
-        iter_count += 1;
     }
 
-    // Form the key.
-
+    // Form the final path key from key.
+    create_path_key<PathKey<boost::property_tree::ptree>>(keys);
     return;
 }
 

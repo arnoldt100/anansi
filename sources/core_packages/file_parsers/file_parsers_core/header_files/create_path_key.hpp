@@ -1,14 +1,13 @@
-#ifndef ANANSI_PathKey_INC
-#define ANANSI_PathKey_INC
-//! \file PathKey.h
-//!
-//! \brief Brief description
-//!
-//! Detailed description
+#ifndef ANANSI_create_path_key_INC
+#define ANANSI_create_path_key_INC
+
+//! \file create_path_key.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <vector>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,17 +17,16 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
+
 namespace ANANSI
 {
 
-
-//! \brief The primary template for froming the path key.
+//! \brief Creates the path key for the internal representation (key,value) pair.
 //!
-//! \tparam PathSepartor_t The policy for forming the path key.
-template<typename PathSepartor_t>
-class PathKey;
-
+//! \tparam PathKeyPolicy_t The policy for generating the path key. 
+template< typename PathKeyPolicy_t >
+void create_path_key ( const std::vector<std::string> & keys );
 
 }; // namespace ANANSI
 
-#endif // ANANSI_PathKey_INC
+#endif // ANANSI_create_path_key_INC

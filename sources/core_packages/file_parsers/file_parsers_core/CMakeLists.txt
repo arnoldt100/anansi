@@ -68,7 +68,9 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/KeyPathSeparator.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PathKey.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PathKeyPropertyTree.hpp
-	    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/check_string_for_separator_char.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/check_string_for_separator_char.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/create_path_key.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/create_path_key_propertytree.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePicklerPropertyTreeMap.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorKeyPathSeparator.h)
 
@@ -87,7 +89,9 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PathKey.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PathKeyPropertyTree.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/KeyPathSeparator.cpp
-	     ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/check_string_for_separator_char.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/check_string_for_separator_char.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/create_path_key.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/create_path_key_propertytree.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePicklerPropertyTreeMap.cpp 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorKeyPathSeparator.cpp )
 

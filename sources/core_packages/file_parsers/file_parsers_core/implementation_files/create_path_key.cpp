@@ -1,11 +1,3 @@
-#ifndef ANANSI_PathKey_INC
-#define ANANSI_PathKey_INC
-//! \file PathKey.h
-//!
-//! \brief Brief description
-//!
-//! Detailed description
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -17,18 +9,10 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "create_path_key.hpp"
 
 namespace ANANSI
 {
 
-
-//! \brief The primary template for froming the path key.
-//!
-//! \tparam PathSepartor_t The policy for forming the path key.
-template<typename PathSepartor_t>
-class PathKey;
-
-
 }; // namespace ANANSI
 
-#endif // ANANSI_PathKey_INC
