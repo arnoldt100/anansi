@@ -157,16 +157,16 @@ void MasterControlInputFileNodeKeys::addKeys(const std::vector<std::string> & ke
 {
     // Check each key and make sure no invidual key contains the path separator character.
     // If a key contains the path separator, then throw an error and abort the program.
-    for (const auto & pathkey : keys)
+    for (const auto & tmpstr : keys)
     {
-        if ( check_string_for_separator_char<PathSeparatorTrait>(pathkey) )
+        if ( check_string_for_separator_char<PathSeparatorTrait>(tmpstr) )
         {
-            throw ErrorKeyPathSeparator(PathSeparatorTrait::separator_char,pathkey);
+            throw ErrorKeyPathSeparator(PathSeparatorTrait::separator_char,tmpstr);
         }
     }
 
     // Form the final path key from key.
-    create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
+    const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
     return;
 }
 
