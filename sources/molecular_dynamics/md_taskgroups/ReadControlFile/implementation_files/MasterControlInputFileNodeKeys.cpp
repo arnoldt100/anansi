@@ -37,62 +37,62 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
 
         // The title key store the title of the simulation.
         std::vector<std::string> title_key{std::string("title")};
-        this->addKeys(title_key);
+        this->addNodeKey_(title_key);
 
         // These are the tags for the control file. To and new tag
         // one simply appends the text tag string to nodekeys_.
         std::vector<std::string> units_key{std::string("Units")};
-        this->addKeys(units_key);
+        this->addNodeKey_(units_key);
 
         // These are the keys for the processor topology lattice type.
         std::vector<std::string> proc_topology_lt_key{std::string("processor-topology"),
                                                       std::string("lattice-type")};
-        this->addKeys(proc_topology_lt_key);
+        this->addNodeKey_(proc_topology_lt_key);
 
         // These are the keys for the processor topology spatial decomposition.
         std::vector<std::string> proc_topology_mpi_decomp_key{std::string("processor-topology"),
                                                               std::string("mpi-spatial-decomposition")};
-        this->addKeys(proc_topology_mpi_decomp_key);
+        this->addNodeKey_(proc_topology_mpi_decomp_key);
 
         // These are the keys for the number of compute units per spatial domain.
         std::vector<std::string> proc_topology_cu_key{std::string("processor-topology"),
                                                       std::string("compute-units-per-spatial-domain")};
-        this->addKeys(proc_topology_cu_key);
+        this->addNodeKey_(proc_topology_cu_key);
 
         // These are the keys for the initial configurtation filename.
         std::vector<std::string> ic_key{std::string("initial-configuration"),
                                         std::string("filename")};
-        this->addKeys(ic_key);
+        this->addNodeKey_(ic_key);
 
         // The keys for the molecular topology file name.
         std::vector<std::string> mt_filename_key{std::string("molecular-topology"),
                                                  std::string("filename")};
-        this->addKeys(mt_filename_key);
+        this->addNodeKey_(mt_filename_key);
 
         // The keys for the molecular interaction file name.
         std::vector<std::string> Hamiltonian_filename_key{std::string("Hamiltonian"),
                                                      std::string("filename")};
-        this->addKeys(Hamiltonian_filename_key);
+        this->addNodeKey_(Hamiltonian_filename_key);
 
         // The keys for the numerical value of the timestep
         std::vector<std::string> time_step_value_key{std::string("time-step"),
                                                      std::string("value")};
-        this->addKeys(time_step_value_key);
+        this->addNodeKey_(time_step_value_key);
 
         // The keys for the units of the time step.
         std::vector<std::string> time_step_units_key{std::string("time-step"),
                                                      std::string("units")};
-        this->addKeys(time_step_units_key);
+        this->addNodeKey_(time_step_units_key);
 
         // The keys for the number of time steps. 
         std::vector<std::string> time_step_nsteps_key{std::string("time-step"),
                                                      std::string("number-time-steps")};
-        this->addKeys(time_step_nsteps_key);
+        this->addNodeKey_(time_step_nsteps_key);
 
         // The keys for the integration methodology.
         std::vector<std::string> im_method_key {std::string("integration-methodology"),
                                         std::string("ensemble")}; 
-        this->addKeys(im_method_key);
+        this->addNodeKey_(im_method_key);
   return;
 }
 
@@ -153,22 +153,6 @@ bool MasterControlInputFileNodeKeys::isCommentTag(const std::string key) const
 }
 
 //============================= MUTATORS =====================================
-void MasterControlInputFileNodeKeys::addKeys(const std::vector<std::string> & keys)
-{
-    // Check each key and make sure no invidual key contains the path separator character.
-    // If a key contains the path separator, then throw an error and abort the program.
-    for (const auto & tmpstr : keys)
-    {
-        if ( check_string_for_separator_char<PathSeparatorTrait>(tmpstr) )
-        {
-            throw ErrorKeyPathSeparator(PathSeparatorTrait::separator_char,tmpstr);
-        }
-    }
-
-    // Form the final path key from key.
-    const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
-    return;
-}
 
 void MasterControlInputFileNodeKeys::addCommentTag(const std::string keys)
 {
@@ -216,6 +200,25 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( Mast
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+
+void MasterControlInputFileNodeKeys::addNodeKey_(const std::vector<std::string> & keys)
+{
+    // Check each key and make sure no invidual key contains the path separator character.
+    // If a key contains the path separator, then throw an error and abort the program.
+    for (const auto & tmpstr : keys)
+    {
+        if ( check_string_for_separator_char<PathSeparatorTrait>(tmpstr) )
+        {
+            throw ErrorKeyPathSeparator(PathSeparatorTrait::separator_char,tmpstr);
+        }
+    }
+
+    // Form the final path key from key and add key to nodeKeys_.
+    const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
+    this->nodeKeys_.push_back(path_key);
+    return;
+}
+
 
 //============================= OPERATORS ====================================
 

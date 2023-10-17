@@ -26,7 +26,6 @@ std::string create_path_key< PathKey<boost::property_tree::ptree>,
         {
             path_key += KeyPathSeparator::separator_char[0];
         }
-
         path_key += key;
         
     }

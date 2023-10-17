@@ -64,9 +64,6 @@ class MasterControlInputFileNodeKeys
 
         // ====================  MUTATORS      =======================================
 
-        //! Adds a key to the master list of keys.
-        void addKeys(const std::vector<std::string> & key);
-
         void addCommentTag(const std::string key);
 
         // ====================  OPERATORS     =======================================
@@ -82,6 +79,11 @@ class MasterControlInputFileNodeKeys
 
     private:
         // ====================  METHODS       =======================================
+
+        // ====================  MUTATORS      =======================================
+
+        //! Adds a key to the master list of keys.
+        void addNodeKey_(const std::vector<std::string> & key);
 
         // ====================  DATA MEMBERS  =======================================
         std::vector<std::string> nodeKeys_;
