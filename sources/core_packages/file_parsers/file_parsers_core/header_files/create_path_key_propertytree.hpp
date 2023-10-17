@@ -16,6 +16,7 @@
 //--------------------------------------------------------//
 #include "create_path_key.hpp"
 #include "PathKeyPropertyTree.hpp"
+#include "KeyPathSeparator.h"
 
 
 namespace ANANSI
@@ -23,7 +24,8 @@ namespace ANANSI
 
 //! \brief Stud text for brief description
 template<>
-void create_path_key< PathKey<boost::property_tree::ptree>> ( const std::vector<std::string> & keys );
+std::string create_path_key< PathKey<boost::property_tree::ptree>,
+                             KeyPathSeparator> ( const std::vector<std::string> & keys );
 
 }; // namespace ANANSI
 

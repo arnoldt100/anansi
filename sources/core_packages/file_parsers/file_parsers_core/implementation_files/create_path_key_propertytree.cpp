@@ -15,9 +15,11 @@ namespace ANANSI
 {
 
 template<>
-void create_path_key< PathKey<boost::property_tree::ptree>> ( const std::vector<std::string> & keys )
+std::string create_path_key< PathKey<boost::property_tree::ptree>,
+                             KeyPathSeparator> ( const std::vector<std::string> & keys )
 {
-    return;
+    return "";
 }
+
 }; // namespace ANANSI
 

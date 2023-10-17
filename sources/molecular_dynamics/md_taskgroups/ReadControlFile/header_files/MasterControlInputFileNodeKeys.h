@@ -14,6 +14,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------/
@@ -32,6 +33,8 @@ namespace ANANSI
 class MasterControlInputFileNodeKeys
 {
     public:
+        using PathSeparatorTrait = KeyPathSeparator;
+        using InternalRepresentationTrait = boost::property_tree::ptree;
         static std::string DefaultNullValue;
 
         // ====================  LIFECYCLE     =======================================

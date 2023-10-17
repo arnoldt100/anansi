@@ -14,7 +14,6 @@
 #include "MasterControlInputFileNodeKeys.h"
 #include "check_string_for_separator_char.h"
 #include "create_path_key_propertytree.hpp"
-#include "KeyPathSeparator.h"
 #include "ErrorKeyPathSeparator.h"
 
 namespace ANANSI {
@@ -160,14 +159,14 @@ void MasterControlInputFileNodeKeys::addKeys(const std::vector<std::string> & ke
     // If a key contains the path separator, then throw an error and abort the program.
     for (const auto & pathkey : keys)
     {
-        if ( check_string_for_separator_char<KeyPathSeparator>(pathkey) )
+        if ( check_string_for_separator_char<PathSeparatorTrait>(pathkey) )
         {
-            throw ErrorKeyPathSeparator(KeyPathSeparator::separator_char,pathkey);
+            throw ErrorKeyPathSeparator(PathSeparatorTrait::separator_char,pathkey);
         }
     }
 
     // Form the final path key from key.
-    create_path_key<PathKey<boost::property_tree::ptree>>(keys);
+    create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
     return;
 }
 
