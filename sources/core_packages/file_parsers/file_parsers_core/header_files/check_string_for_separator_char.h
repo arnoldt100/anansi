@@ -30,10 +30,10 @@ namespace ANANSI
 template<typename PathSeparator_t>
 bool check_string_for_separator_char (const std::string & a_string)
 {
-    bool found_sep_char = false;
-    if (auto pos = a_string.find(PathSeparator_t::separator_char[0]); pos == std::string::npos)
+    bool found_sep_char = true;
+    if (auto pos = a_string.find(PathSeparator_t::separator_char[0]); pos ==  std::string::npos)
     {
-        found_sep_char = true;
+        found_sep_char = false;
     }
     return found_sep_char;
 }

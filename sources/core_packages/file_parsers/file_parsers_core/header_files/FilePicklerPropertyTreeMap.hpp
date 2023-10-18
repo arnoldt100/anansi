@@ -61,6 +61,7 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         template<typename MasterKeyPolicy_t>
         std::map<std::string,std::string> pickle(const boost::property_tree::ptree & tree) const
         {
+            using path = boost::property_tree::ptree::path_type;
             const MasterKeyPolicy_t master_keys;
             std::map<std::string,std::string> a_map;
             const auto it_keys = master_keys.allKeysIterator();
@@ -72,14 +73,16 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
                    continue; 
                 }
 
-                if (auto search = tree.find(key); search != tree.not_found() )
-                {
-                    a_map[key] = tree.get<std::string>(key);
-                }
-                else
-                {
-                    a_map[key] = master_keys.DefaultNullValue;
-                }
+                a_map[key] = tree.get<std::string>(path(key,MasterKeyPolicy_t::PathSeparatorTrait::separator_char[0]),master_keys.DefaultNullValue);
+
+                // if (auto search = tree.find(key); search != tree.not_found() )
+                // {
+                //     a_map[key] = tree.get<std::string>(key);
+                // }
+                // else
+                // {
+                //     a_map[key] = master_keys.DefaultNullValue;
+                // }
             }
             return a_map;
         }

@@ -41,7 +41,7 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
 
         // These are the tags for the control file. To and new tag
         // one simply appends the text tag string to nodekeys_.
-        std::vector<std::string> units_key{std::string("Units")};
+        std::vector<std::string> units_key{std::string("units")};
         this->addNodeKey_(units_key);
 
         // These are the keys for the processor topology lattice type.
@@ -70,7 +70,7 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
         this->addNodeKey_(mt_filename_key);
 
         // The keys for the molecular interaction file name.
-        std::vector<std::string> Hamiltonian_filename_key{std::string("Hamiltonian"),
+        std::vector<std::string> Hamiltonian_filename_key{std::string("hamiltonian"),
                                                      std::string("filename")};
         this->addNodeKey_(Hamiltonian_filename_key);
 
