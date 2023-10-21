@@ -8,7 +8,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "__target___unit_tests")
+    set(my_project_name "file_parsers_core_unit_tests")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -27,34 +27,34 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # Here we define the sources and header files associated          @
-# with the __target___unit_test target.                           @
+# with the file_parsers_core_unit_test target.                    @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # __target___unit_tests_header_files                 -
+    # file_parsers_core_unit_tests_header_files          -
     # with the target header files.                      -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test___target__.h )
+    set (file_parsers_core_unit_tests_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_file_parsers_core.h )
 
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # __target___unit_tests_implementation_files         -
+    # file_parsers_core_unit_tests_implementation_files  -
     # associated with target implementation files.       -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test___target__.cpp )
+    set (file_parsers_core_unit_tests_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_file_parsers_core.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the implementation and header files associated  @
-# with the __target___unit_tests target.                          @
+# with the file_parsers_core_unit_tests target.                   @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -75,40 +75,38 @@
     #                                                    -
     #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${__target___unit_tests_header_files}
-                ${__target___unit_tests_implementation_files} )
+        PRIVATE ${file_parsers_core_unit_tests_header_files}
+                ${file_parsers_core_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property( <cla>_include_dir __target__ __target___include )
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                               PRIVATE ${<cla>_include_dir}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
     # (1) Boost libraries                                -
-    # (2) lib__target__.a                    -
+    # (2) libfile_parsers_core.a                         -
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
-                          PRIVATE __target__ ${Boost_LIBRARIES} )
+                          PRIVATE file_parsers_core ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # __target___unit_tests.                 -
+    # file_parsers_core_unit_tests.                      -
     #                                                    -
     #-----------------------------------------------------
     set_target_properties( ${target}
                            PROPERTIES
-                           PUBLIC_HEADER "${__target___unit_tests_header_files}" )
+                           PUBLIC_HEADER "${file_parsers_core_unit_tests_header_files}" )
 
     #-----------------------------------------------------
     # Here we define the installations rules for         -
-    # this target __target___unit_tests.                 -
+    # this target file_parsers_core_unit_tests.          -
     #                                                    -
     #-----------------------------------------------------
     install( TARGETS ${target}
