@@ -54,12 +54,16 @@ def get_all_tests():
                                   binary=test_binary_full_qualified_path,
                                   binary_arguments=test_arguments))
     return all_tests
-
+## Lists all tests
 def list_all_tests():
     all_tests = get_all_tests()
     for tmp_test in all_tests:
         tmp_test.printForDebugging()
-    
+
+## Runs all tests.
+def test_all_tests():
+    pass
+ 
 ## @fn _main ()
 ## @brief The main function.
 def _main():

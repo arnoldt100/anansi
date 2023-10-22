@@ -28,7 +28,7 @@ def _main():
     args = _parse_arguments()
     
     if args.test_all_targets:
-        pass
+        test_all_tests()
     elif args.list_all_targets:
         list_all_tests()
     elif args.test_targets:
