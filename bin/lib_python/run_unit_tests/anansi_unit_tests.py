@@ -55,6 +55,11 @@ def get_all_tests():
                                   binary_arguments=test_arguments))
     return all_tests
 
+def list_all_tests():
+    all_tests = get_all_tests()
+    for tmp_test in all_tests:
+        tmp_test.printForDebugging()
+    
 ## @fn _main ()
 ## @brief The main function.
 def _main():
