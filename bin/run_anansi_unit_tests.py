@@ -22,12 +22,13 @@ import argparse
 # Local imports
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
-from run_unit_tests.anansi_unit_tests import UnitTest
 from run_unit_tests.anansi_unit_tests import get_all_tests
 
 def _main():
     args = _parse_arguments()
     all_tests = get_all_tests()
+    for tmp_test in all_tests:
+        tmp_test.printForDebugging()
 
 def _parse_arguments():
     import logging

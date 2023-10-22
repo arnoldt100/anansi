@@ -1,9 +1,10 @@
-<!-- This file configures the unit tests to run.-->
+<!-- This file configures the unit tests to run. -->
+<data>
 
-<unit tests>
-    <file_parsers_core>
-        <active> yes <active>
-        <test binary>file_parser_core_unit_tests</test binary>
-        <test arguments> </test arguments>
-    </file_parsers_core>
-</unit tests>
+	<unit_test name = "file_parsers_core">
+		<active> yes </active>
+        <test_binary>file_parser_core_unit_tests</test_binary>
+        <test_arguments> </test_arguments>
+	</unit_test>
+
+</data>
