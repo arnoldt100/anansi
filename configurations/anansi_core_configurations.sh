@@ -28,6 +28,13 @@ else
     export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
 
     # ----------------------------------------------------
+    # The path to the XML file that configures Anansi's unit 
+    # tests.
+    # 
+    # ----------------------------------------------------
+    export ANANSI_UNIT_TEST_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_unit_tests.xml"
+
+    # ----------------------------------------------------
     # Define the anansi bin directory.
     #
     # ----------------------------------------------------
