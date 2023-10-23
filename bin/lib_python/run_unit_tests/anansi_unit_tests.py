@@ -39,8 +39,14 @@ class UnitTest:
         message = f"""Stud: runUnitTest, running unit test - {self._test_name}\n"""
         print(message)
         
+    def _get_cmd(self):
+        cmd = f"""{self._binary} {self._binary_arguments}"""
+        return cmd
+
+    command = property(fget=_get_cmd,doc="The command that runs the test.")
+
 ## Returns a list all Anansi's unit tests.
-def get_all_tests():
+def _get_all_tests():
     path_to_xml_file = os.getenv("ANANSI_UNIT_TEST_CONFIGURATION")
     root_path_unit_tests = os.getenv("ANANSI_INSTALL_BIN_DIRECTORY")
     tree = ET.parse(path_to_xml_file)
@@ -58,18 +64,35 @@ def get_all_tests():
                                   binary=test_binary_full_qualified_path,
                                   binary_arguments=test_arguments))
     return all_tests
+
+
 ## Lists all tests
 def list_all_tests():
-    all_tests = get_all_tests()
+    all_tests = _get_all_tests()
     for tmp_test in all_tests:
         tmp_test.printForDebugging()
 
 ## Runs all tests.
 def test_all_tests():
-    all_tests = get_all_tests()
+    all_tests = _get_all_tests()
     for tmp_test in all_tests:
-        tmp_test.runUnitTest()
-    
+       _run_a_test(tmp_test)
+  
+## Run a single test.
+#
+# @param a_test A test 
+def _run_a_test(a_test):
+    import subprocess
+    import shlex
+    print(a_test.command)
+    args = shlex.split(a_test.command)
+    try:
+        my_process = subprocess.run(args,check=True)
+    except FileNotFoundError as exc:
+        print(f"Unit test failed because the executable could not be found.\n{exc}")
+    except subprocess.CalledProcessError as exc:
+        print( f"Unit test failed because it did not return a successful return code. "
+               f"Returned {exc.returncode}\n{exc}" )
  
 ## @fn _main ()
 ## @brief The main function.
