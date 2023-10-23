@@ -35,6 +35,10 @@ class UnitTest:
         message += f"""===\n\n"""
         print(message)
 
+    def runUnitTest(self):
+        message = f"""Stud: runUnitTest, running unit test - {self._test_name}\n"""
+        print(message)
+        
 ## Returns a list all Anansi's unit tests.
 def get_all_tests():
     path_to_xml_file = os.getenv("ANANSI_UNIT_TEST_CONFIGURATION")
@@ -62,7 +66,10 @@ def list_all_tests():
 
 ## Runs all tests.
 def test_all_tests():
-    pass
+    all_tests = get_all_tests()
+    for tmp_test in all_tests:
+        tmp_test.runUnitTest()
+    
  
 ## @fn _main ()
 ## @brief The main function.

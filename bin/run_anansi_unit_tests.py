@@ -23,6 +23,7 @@ import argparse
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 from run_unit_tests.anansi_unit_tests import list_all_tests
+from run_unit_tests.anansi_unit_tests import test_all_tests
 
 def _main():
     args = _parse_arguments()
