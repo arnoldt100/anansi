@@ -51,6 +51,13 @@ export ANANSI_INSTALL_INCLUDE_DIRECTORY="${ANANSI_INSTALL_PREFIX}/include"
 export ANANSI_INSTALL_LIB_DIRECTORY="${ANANSI_INSTALL_PREFIX}/lib"
 
 #-----------------------------------------------------
+# Define the directory to store the Anansi unit test -
+# log files.                                         -
+#                                                    -
+#-----------------------------------------------------
+export ANANSI_TEST_LOG_BASE_DIRECTORY="RuyLopez-unit-test-logs"
+
+#-----------------------------------------------------
 # Define the anansi boost root path.                 -
 #                                                    -
 #-----------------------------------------------------
