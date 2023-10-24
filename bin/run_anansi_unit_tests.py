@@ -16,18 +16,26 @@
 # implemeneted a warning will be issued and the missing test is considered a failure.
 
 # System imports
+import logging
 import string
 import argparse
 
 # Local imports
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
+from loggerutils.logger import create_file_logger
 from run_unit_tests.anansi_unit_tests import list_all_tests
 from run_unit_tests.anansi_unit_tests import test_all_tests
 
 def _main():
     args = _parse_arguments()
-    
+   
+    # Create a logger.
+    logger_name = "Unit-Test-Logger"
+    logger_level = logging.INFO
+    logger_file = os.getenv("ANANSI_TEST_LOG_BASE_DIRECTORY")
+    my_logger = create_file_logger(logger_name,logger_level,logger_file)
+
     if args.test_all_targets:
         test_all_tests()
     elif args.list_all_targets:
@@ -36,7 +44,6 @@ def _main():
         pass
 
 def _parse_arguments():
-    import logging
 
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
@@ -72,6 +79,9 @@ def _parse_arguments():
 
     my_args = my_parser.parse_args()
     return my_args
+
+def _initialize_logging():
+    pass
 
 def _get_program_description():
     pd =  ("""This program runs Anansi's unit tests.\n""")

@@ -56,5 +56,31 @@ def create_logger(log_id, log_level):
     # add ch to logger
     logger.addHandler(ch)
 
+## @brief Creates and returns a logger object.
+##
+## @details Creates a logger object with name log_id and returns it.
+## log level log_level.
+##
+## @param log_id A string
+## @param log_level A logging level (e.g. logging.DEBUG, logging.INFO, etc.)
+## @param filename The file the logger writes to
+## @retval logger A logger object - see logging python documentation
+def create_file_logger(log_id, log_level,filename):
+    logger = logging.getLogger(log_id)
+    logger.setLevel(log_level)
+
+    # create console handler and set level to debug
+    ch = logging.FileHandler()
+    ch.setLevel(log_level)
+
+    # create formatter
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    # add formatter to ch
+    ch.setFormatter(formatter)
+
+    # add ch to logger
+    logger.addHandler(ch)
     return logger
 
