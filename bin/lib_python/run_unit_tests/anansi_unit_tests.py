@@ -3,7 +3,6 @@
 
 # System imports
 import logging
-import string
 import argparse
 import xml.etree.ElementTree as ET
 import os
@@ -73,14 +72,19 @@ def _get_all_tests():
 
 
 ## Lists all tests
-def list_all_tests():
+#
+# Lists oall tests using the primary_logger.
+# @param primary_logger An object that logs to a file.
+def list_all_tests(primary_logger):
     all_tests = _get_all_tests()
+    message = "\nBelow is a detailed list of all Anansi's unit tests:"
+    primary_logger.info(message)
     for tmp_test in all_tests:
         tmp_test.printForDebugging()
 
 ## Runs all tests.
-##
-## @param unit_test_logger The main logger for the unit tests.
+#
+# @param unit_test_logger The main logger for the unit tests.
 def test_all_tests(unit_test_logger):
 
     all_tests = _get_all_tests()
@@ -144,7 +148,6 @@ def _start_test_prologue_message(unit_test_logger,unit_tests):
     unit_test_logger.info(message)
 
 def _test_result_message(unit_test_logger,test_status):
-    header = ""
     message = f"""\n{test_status.testid} : {test_status.test_status}\n"""
     message += f"""\n\n"""
     unit_test_logger.info(message)

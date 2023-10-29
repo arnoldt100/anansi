@@ -17,20 +17,16 @@
 
 # System imports:
 import logging
-import string
 import argparse
 
 # Local imports
 from loggerutils.logger import create_logger_description
-from loggerutils.logger import create_logger
 from loggerutils.logger import create_file_logger
 from run_unit_tests.anansi_unit_tests import create_unit_test_log_file
 from run_unit_tests.anansi_unit_tests import list_all_tests
 from run_unit_tests.anansi_unit_tests import test_all_tests
 
 def _main():
-    import os
-
     args = _parse_arguments()
    
     # Create a logger.
@@ -39,7 +35,7 @@ def _main():
     if args.test_all_targets:
         test_all_tests(primary_logger)
     elif args.list_all_targets:
-        list_all_tests()
+        list_all_tests(primary_logger)
     elif args.test_targets:
         pass
 

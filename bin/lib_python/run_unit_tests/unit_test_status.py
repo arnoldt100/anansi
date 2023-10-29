@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 ## @package unit_test_status
+# This module 
+# 
 
 # System imports
 import logging
@@ -44,13 +46,13 @@ class TestStatus:
 # ------------------------------------------------------------------
 
 ## @fn _parse_arguments( )
-## @brief Parses the command line arguments.
-##
-## @details Parses the command line arguments and
-## returns A namespace.
-##
-## @return A namespace. The namespace contains attributes
-##         that are the command line arguments.
+# @brief Parses the command line arguments.
+#
+# @details Parses the command line arguments and
+# returns A namespace.
+#
+# @return A namespace. The namespace contains attributes
+#         that are the command line arguments.
 def _parse_arguments():
 
     # Create a string of the description of the 
