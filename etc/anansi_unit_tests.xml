@@ -1,15 +1,14 @@
 <!-- This file configures the unit tests to run. -->
 <data>
-	<unit_test name = "invoker">
-		<active> yes </active>
+   <unit_test name = "invoker">
+        <active> yes </active>
         <test_binary>invoker_unit_tests</test_binary>
         <test_arguments> </test_arguments>
-	</unit_test>
+   </unit_test>
 
-	<unit_test name = "file_parsers_core">
-		<active> yes </active>
+   <unit_test name = "file_parsers_core">
+        <active> yes </active>
         <test_binary>file_parsers_core_unit_tests</test_binary>
         <test_arguments> </test_arguments>
-	</unit_test>
-
+   </unit_test>
 </data>

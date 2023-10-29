@@ -50,6 +50,21 @@ class UnitTest:
 
     test_name = property(fget=_get_test_name,doc="The name of the unit test.")
 
+    def _get_active(self):
+        return self._active
+
+    active = property(fget=_get_active,doc="Indicates if test is active.")
+
+    def _get_binary(self):
+        return self._binary
+
+    binary = property(fget=_get_binary,doc="The name of the unit test binary.")
+
+    def _get_binary_args(self):
+        return self._binary_arguments
+
+    binary_args = property(fget=_get_binary_args,doc="The binary arguments.")
+
 ## Returns a list all Anansi's unit tests.
 def _get_all_tests():
     path_to_xml_file = os.getenv("ANANSI_UNIT_TEST_CONFIGURATION")
@@ -76,11 +91,55 @@ def _get_all_tests():
 # Lists oall tests using the primary_logger.
 # @param primary_logger An object that logs to a file.
 def list_all_tests(primary_logger):
+    # We define the separator.
+    separator = ":"
+    hidden_separator = "  "
+
+    # We define the widths for for the column 1, the text, and 
+    # the separating text between column 1 and the text.
+    col1_width = 30
+    sep_width = len(separator)
+    text_width = 50
+
+    # We define the horizontal border.
+    hborder = _horizontal_border("=",col1_width,sep_width,text_width)
+
+    frmt_row = _2_column_frmt_entry(col1_field_name='col1_name',
+                                    col1_width=col1_width,
+                                    col2_field_name='text',
+                                    col2_width=text_width,
+                                    sep_chars=hidden_separator)
+
     all_tests = _get_all_tests()
-    message = "\nBelow is a detailed list of all Anansi's unit tests:"
-    primary_logger.info(message)
+    message = "\nBelow is a detailed list of all Anansi's unit tests:\n"
+    skip_2_lines = "\n\n"
+
+    counter = 0
     for tmp_test in all_tests:
-        tmp_test.printForDebugging()
+        if counter == 0:
+            message += skip_2_lines
+
+        message += hborder
+
+        message += frmt_row.format(col1_name="Test Name",
+                                   sep_chars=separator,
+                                   text=tmp_test.test_name)
+
+        message += frmt_row.format(col1_name="Active",
+                                   sep_chars=separator,
+                                   text=tmp_test.active)
+
+        message += frmt_row.format(col1_name="Binary Name",
+                                   sep_chars=separator,
+                                   text=tmp_test.binary)
+
+        message += frmt_row.format(col1_name="Binary Arguments",
+                                   sep_chars=separator,
+                                   text=tmp_test.binary_args)
+        message += hborder
+        message += skip_2_lines
+        counter += 1
+    primary_logger.info(message)
 
 ## Runs all tests.
 #
@@ -118,6 +177,24 @@ def create_unit_test_log_file(base_dir, file_name="unit-test-log.txt"):
             pass
 
     return logger_file
+
+## Returns a horizonatal line composed of "chars".
+#
+# *widths are integer numbers whose sum is the number
+# 'chars' that make the horizontal line.
+def _horizontal_border(chars,*widths):
+    bwidth = 0
+    for arg in widths:
+        bwidth += arg
+    hline = chars * (bwidth)
+    hborder = "\n{0}".format(hline)
+    return hborder
+
+def _2_column_frmt_entry(col1_field_name="", col1_width=0, col2_field_name="", col2_width=0, sep_chars=""):
+    frmt = '\n{' + col1_field_name + ':' + str(col1_width) + '}' + \
+             '{sep_chars:' + str(len(sep_chars)) + '}' + \
+             '{' + col2_field_name + ':' + str(col2_width) + '}'
+    return frmt
 
 ## Run a single test.
 #
