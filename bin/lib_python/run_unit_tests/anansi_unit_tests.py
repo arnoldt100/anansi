@@ -151,7 +151,7 @@ def _test_result_message(unit_test_logger,test_status):
     return
 
 def _end_test_epilog_message(unit_test_logger,unit_tests):
-    test_id_width = 20
+    test_id_width = 30
     test_status_width = 11
     sep_width = 2
 
@@ -165,8 +165,9 @@ def _end_test_epilog_message(unit_test_logger,unit_tests):
     frmt1 = '\n{test_name:' + col1_frmt + '}' 
     frmt1 +=  '{sep_char:' + sep_frmt + '}'
     frmt1 +=  '{test_status:' + col2_frmt + '}'
-
-    message = "\nEnding run of Anansi's unit tests. Below is a summary of the results:\n"
+    message = "\nEpilog of Anansi's Unit Test:\n"
+    message +="\nBelow is a summary of the results of Anansi's unit tests."
+    message += "\nA non-zero integer indicates a failure.\n"
     message += hborder
     message += frmt1.format(test_name="Test ID", sep_char=" ", test_status= "Test Status")
     message += hborder
