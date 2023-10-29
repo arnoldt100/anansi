@@ -69,18 +69,18 @@ def create_file_logger(log_id, log_level,filename):
     logger = logging.getLogger(log_id)
     logger.setLevel(log_level)
 
-    # create console handler and set level to debug
-    ch = logging.FileHandler()
-    ch.setLevel(log_level)
+    # create file handler and set level "log_level"
+    fh = logging.FileHandler(filename)
+    fh.setLevel(log_level)
 
     # create formatter
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     # add formatter to ch
-    ch.setFormatter(formatter)
+    fh.setFormatter(formatter)
 
     # add ch to logger
-    logger.addHandler(ch)
+    logger.addHandler(fh)
     return logger
 

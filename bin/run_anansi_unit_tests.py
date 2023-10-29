@@ -15,7 +15,7 @@
 # will run the unite tests for test_target 1, test_target 2, and test_target 3. If the test is not
 # implemeneted a warning will be issued and the missing test is considered a failure.
 
-# System imports
+# System imports:
 import logging
 import string
 import argparse
@@ -24,20 +24,20 @@ import argparse
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 from loggerutils.logger import create_file_logger
+from run_unit_tests.anansi_unit_tests import create_unit_test_log_file
 from run_unit_tests.anansi_unit_tests import list_all_tests
 from run_unit_tests.anansi_unit_tests import test_all_tests
 
 def _main():
+    import os
+
     args = _parse_arguments()
    
     # Create a logger.
-    logger_name = "Unit-Test-Logger"
-    logger_level = logging.INFO
-    logger_file = os.getenv("ANANSI_TEST_LOG_BASE_DIRECTORY")
-    my_logger = create_file_logger(logger_name,logger_level,logger_file)
+    primary_logger = _initialize_logging()
 
     if args.test_all_targets:
-        test_all_tests()
+        test_all_tests(primary_logger)
     elif args.list_all_targets:
         list_all_tests()
     elif args.test_targets:
@@ -81,7 +81,12 @@ def _parse_arguments():
     return my_args
 
 def _initialize_logging():
-    pass
+    import os
+
+    log_file_name = create_unit_test_log_file(os.getenv("ANANSI_UNIT_TEST_LOG_DIRECTORY")) 
+    logger_level = logging.INFO
+    my_logger = create_file_logger("unit_test_logger",logger_level,log_file_name)
+    return my_logger
 
 def _get_program_description():
     pd =  ("""This program runs Anansi's unit tests.\n""")
@@ -111,3 +116,4 @@ def _get_test_targets_description():
 
 if __name__ == "__main__":
     _main()
+
