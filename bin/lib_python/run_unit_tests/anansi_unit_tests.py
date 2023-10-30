@@ -34,10 +34,6 @@ class UnitTest:
         message += f"""Binary arguments: {self._binary_arguments}\n"""
         message += f"""===\n\n"""
         print(message)
-
-    def runUnitTest(self):
-        message = f"""Stud: runUnitTest, running unit test - {self._test_name}\n"""
-        print(message)
         
     def _get_cmd(self):
         cmd = f"""{self._binary} {self._binary_arguments}"""
@@ -196,7 +192,7 @@ def _2_column_frmt_entry(col1_field_name="", col1_width=0, col2_field_name="", c
              '{' + col2_field_name + ':' + str(col2_width) + '}'
     return frmt
 
-## Run a single test.
+## Run a single test and returns the status/result of the test.
 #
 # @param a_test A test that is to run 
 # 
@@ -206,7 +202,7 @@ def _run_a_test(a_test):
     test_status = [None]
     args = shlex.split(a_test.command)
     try:
-        my_process = subprocess.run(args)
+        my_process = subprocess.run(args,capture_output=True)
         test_status[0] = TestStatus(a_test.test_name,
                                     stdout=my_process.stdout,
                                     stderr=my_process.stderr,
@@ -225,8 +221,46 @@ def _start_test_prologue_message(unit_test_logger,unit_tests):
     unit_test_logger.info(message)
 
 def _test_result_message(unit_test_logger,test_status):
-    message = f"""\n{test_status.testid} : {test_status.test_status}\n"""
-    message += f"""\n\n"""
+    # We define the separator.
+    separator = ":"
+    hidden_separator = "  "
+
+    # We define the widths for for the column 1, the text, and 
+    # the separating text between column 1 and the text.
+    col1_width = 30
+    sep_width = len(separator)
+    text_width = 50
+
+    frmt_row = _2_column_frmt_entry(col1_field_name='col1_name',
+                                    col1_width=col1_width,
+                                    col2_field_name='text',
+                                    col2_width=text_width,
+                                    sep_chars=hidden_separator)
+
+    # We define the horizontal border.
+    hborder = _horizontal_border("=",col1_width,sep_width,text_width)
+    skip_1_lines = "\n"
+
+    message = hborder 
+    message += frmt_row.format(col1_name="Test Name",
+                               sep_chars=separator,
+                               text=test_status.testid)
+    message += frmt_row.format(col1_name="STDOUT",
+                               sep_chars = separator,
+                               text = test_status.stdout.decode() )
+    message += frmt_row.format(col1_name="STDERR",
+                               sep_chars = separator,
+                               text = test_status.stderr.decode() )
+    message += hborder 
+    message += skip_1_lines
+
+    # message = f"""\n{test_status.testid} : {test_status.test_status}\n"""
+
+
+    # Append stdout to message.
+
+    # Append stderr to message.
+
     unit_test_logger.info(message)
     return
 
