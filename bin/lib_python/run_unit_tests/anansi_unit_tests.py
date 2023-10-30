@@ -148,9 +148,11 @@ def test_all_tests(unit_test_logger):
 
     all_tests_results = []
     for tmp_test in all_tests:
-        test_status = _run_a_test(tmp_test)
-        _test_result_message(unit_test_logger,test_status)
-        all_tests_results.append(test_status) 
+
+        if tmp_test.active == "yes" :
+            test_status = _run_a_test(tmp_test)
+            _test_result_message(unit_test_logger,test_status)
+            all_tests_results.append(test_status) 
 
     _end_test_epilog_message(unit_test_logger,all_tests_results)
 
