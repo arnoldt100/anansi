@@ -85,7 +85,7 @@ def create_file_logger(log_id, log_level,filename):
 def _file_logger_format():
     skip_2_lines = "\n\n"
     count = 1
-    border = "#----------#"
+    border = "#@-@-@-@-@-@-@-@-@-@-#"
     my_log_format = _horizontal_border(border,count)
     my_log_format += '\n%(asctime)s - %(name)s - %(levelname)s'
     my_log_format += _horizontal_border(border,count)

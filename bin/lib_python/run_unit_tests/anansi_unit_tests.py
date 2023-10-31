@@ -72,9 +72,12 @@ def _get_all_tests():
         tag = unit_test.tag
         name = unit_test.attrib["name"]
         active = unit_test.find('active').text
+        active = active.strip()
         test_binary = unit_test.find('test_binary').text
+        test_binary = test_binary.strip()
         test_binary_full_qualified_path = os.path.join(root_path_unit_tests,test_binary)
         test_arguments = unit_test.find('test_arguments').text 
+        test_arguments = test_arguments.strip()
         all_tests.append(UnitTest(test_name=name,
                                   active=active,
                                   binary=test_binary_full_qualified_path,
@@ -150,7 +153,11 @@ def test_all_tests(unit_test_logger):
     for tmp_test in all_tests:
 
         if tmp_test.active == "yes" :
-            test_status = _run_a_test(tmp_test)
+            test_status = _run_active_test(tmp_test)
+            _test_result_message(unit_test_logger,test_status)
+            all_tests_results.append(test_status) 
+        elif tmp_test.active == "no" :
+            test_status = _run_not_active_test(tmp_test)
             _test_result_message(unit_test_logger,test_status)
             all_tests_results.append(test_status) 
 
@@ -194,11 +201,11 @@ def _2_column_frmt_entry(col1_field_name="", col1_width=0, col2_field_name="", c
              '{' + col2_field_name + ':' + str(col2_width) + '}'
     return frmt
 
-## Run a single test and returns the status/result of the test.
+## Runs a single active test and returns the status/result of the test.
 #
 # @param a_test A test that is to run 
 # 
-def _run_a_test(a_test):
+def _run_active_test(a_test):
     import subprocess
     import shlex
     test_status = [None]
@@ -213,6 +220,19 @@ def _run_a_test(a_test):
         print(f"Unit test failed because the executable could not be found.\n{exc}")
     return test_status[0]
 
+## Runs a single not-active test and returns the status/result of the test.
+#
+# @param a_test A test that is to run 
+# 
+def _run_not_active_test(a_test):
+    stdout_not_active = "Test is inactive".encode()
+    stderr_not_active = "Test is inactive".encode()
+    ret_code = 0
+    test_status = TestStatus(a_test.test_name,
+                             stdout=stdout_not_active,
+                             stderr=stderr_not_active,
+                             test_status=ret_code)
+    return test_status
 
 def _start_test_prologue_message(unit_test_logger,unit_tests):
     message = "\nStarting run of the below Anansi's unit tests:"
@@ -255,14 +275,6 @@ def _test_result_message(unit_test_logger,test_status):
                                text = test_status.stderr.decode() )
     message += hborder 
     message += skip_1_lines
-
-    # message = f"""\n{test_status.testid} : {test_status.test_status}\n"""
-
-
-    # Append stdout to message.
-
-    # Append stderr to message.
-
     unit_test_logger.info(message)
     return
 
