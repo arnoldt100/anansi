@@ -1,6 +1,10 @@
-#ifndef ANANSI_NodeKeys_INC
-#define ANANSI_NodeKeys_INC
-//! \file NodeKeys.h
+#ifndef __filepreprocessordefine__
+#define __filepreprocessordefine__
+//! \file __header_filename__
+//!
+//! \brief Brief description
+//!
+//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -15,39 +19,39 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace ANANSI
+namespace __NAMESPACE__
 {
 
-class NodeKeys
+class __classname__
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        NodeKeys();   // constructor
+        __classname__();   // constructor
 
         template<typename T>
-        NodeKeys(T && value) :
-            valuePtr_( new NodeKeysModel<T>(std::forward<T>(value)) )
+        __classname__(T && value) :
+            valuePtr_( new __classname__Model<T>(std::forward<T>(value)) )
         {
             return;
         }
 
-        NodeKeys(const NodeKeys & other);   // copy constructor
+        __classname__(const __classname__ & other);   // copy constructor
 
-        NodeKeys(NodeKeys && other);   // copy-move constructor
+        __classname__(__classname__ && other);   // copy-move constructor
 
-        ~NodeKeys();  // destructor
+        ~__classname__();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        NodeKeys* clone() const;
+        __classname__* clone() const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        NodeKeys& operator=( const NodeKeys &other ); // assignment operator
+        __classname__& operator=( const __classname__ &other ); // assignment operator
 
-        NodeKeys& operator=( NodeKeys && other ); // assignment-move operator
+        __classname__& operator=( __classname__ && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -57,21 +61,21 @@ class NodeKeys
     private:
 
         // The concept
-        class NodeKeysConcept
+        class __classname__Concept
         {
             public: 
                 // ====================  LIFECYCLE     =======================================
-                NodeKeysConcept() = default;
-                NodeKeysConcept(const NodeKeysConcept & other) = default;
-                NodeKeysConcept(NodeKeysConcept && other) = default;
-                virtual ~NodeKeysConcept()=0;
+                __classname__Concept() = default;
+                __classname__Concept(const __classname__Concept & other) = default;
+                __classname__Concept(__classname__Concept && other) = default;
+                virtual ~__classname__Concept()=0;
 
                 // ====================  OPERATORS     =======================================
-                NodeKeysConcept& operator=(const NodeKeysConcept & other)=default;
-                NodeKeysConcept& operator=(NodeKeysConcept && other)=default;
+                __classname__Concept& operator=(const __classname__Concept & other)=default;
+                __classname__Concept& operator=(__classname__Concept && other)=default;
 
                 // ====================  ACCESSORS     =======================================
-                virtual std::unique_ptr<NodeKeysConcept> clone() const=0;
+                virtual std::unique_ptr<__classname__Concept> clone() const=0;
 
                 // ====================  MUTATORS      =======================================
 
@@ -79,19 +83,19 @@ class NodeKeys
 
         // The model.
         template <typename T>
-        class NodeKeysModel : public NodeKeysConcept
+        class __classname__Model : public __classname__Concept
         {
             public:
                 // ====================  LIFECYCLE     =======================================
-                NodeKeysModel() :
-                    NodeKeysConcept(),
+                __classname__Model() :
+                    __classname__Concept(),
                     object_()
                 {
                     return;
                 };
 
-                NodeKeysModel(const NodeKeysModel & other) :
-                    NodeKeysConcept(other),
+                __classname__Model(const __classname__Model & other) :
+                    __classname__Concept(other),
                     object_(other.object_)
                 {
                     if (this != &other)
@@ -99,8 +103,8 @@ class NodeKeys
                     }
                 };
 
-                NodeKeysModel(NodeKeysModel && other) :
-                    NodeKeysConcept(std::move(other)),
+                __classname__Model(__classname__Model && other) :
+                    __classname__Concept(std::move(other)),
                     object_(std::move(other.object_))
                 {
                     if (this != &other)
@@ -108,37 +112,37 @@ class NodeKeys
                     }
                 };
 
-                explicit NodeKeysModel(const T & in_value) : 
+                explicit __classname__Model(const T & in_value) : 
                     object_(in_value)
                 {
                     return;
                 };
 
                 // ====================  OPERATORS     =======================================
-                NodeKeysModel& operator=(const NodeKeysModel & other) 
+                __classname__Model& operator=(const __classname__Model & other) 
                 {
                     if (this != &other)
                     {
-                        NodeKeysConcept::operator=(other);
+                        __classname__Concept::operator=(other);
                         this->object_ = other.value;
                     }
                     return *this;
                 }
 
-                NodeKeysModel& operator=( NodeKeysModel && other) 
+                __classname__Model& operator=( __classname__Model && other) 
                 {
                     if (this != &other)
                     {
-                        NodeKeysConcept::operator=(std::move(other));
+                        __classname__Concept::operator=(std::move(other));
                         this->object_ = std::move(other.value);
                     }
                     return *this;
                 }
 
                 // ====================  ACCESSORS     =======================================
-                std::unique_ptr<NodeKeysConcept> clone() const override
+                std::unique_ptr<__classname__Concept> clone() const override
                 {
-                    return std::make_unique<NodeKeysModel>(*this);
+                    return std::make_unique<__classname__Model>(*this);
                 }
 
                 // ====================  MUTATORS      =======================================
@@ -150,11 +154,11 @@ class NodeKeys
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        std::unique_ptr<NodeKeysConcept> valuePtr_;
+        std::unique_ptr<__classname__Concept> valuePtr_;
 
-}; // -----  end of class NodeKeys  -----
+}; // -----  end of class __classname__  -----
 
 
-}; // namespace ANANSI
+}; // namespace __NAMESPACE__
 
-#endif // ANANSI_NodeKeys_INC
+#endif //__filepreprocessordefine__ 

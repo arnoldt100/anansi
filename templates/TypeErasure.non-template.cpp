@@ -10,9 +10,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NodeKeys.h"
+#include "__classname__.h"
 
-namespace ANANSI {
+namespace __NAMESPACE__ {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -20,13 +20,13 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-NodeKeys::NodeKeys() :
+__classname__::__classname__() :
     valuePtr_(nullptr)
 {
     return;
 }
 
-NodeKeys::NodeKeys( NodeKeys const & other)
+__classname__::__classname__( __classname__ const & other)
 {
     if (this != &other)
     {
@@ -35,41 +35,39 @@ NodeKeys::NodeKeys( NodeKeys const & other)
     return;
 }
 
-NodeKeys::NodeKeys( NodeKeys && other)
+__classname__::__classname__( __classname__ && other)
 {
     if (this != &other)
     {
         this->valuePtr_ = std::move(other.valuePtr_); 
     }
     return;
-}		// -----  end of method NodeKeys::NodeKeys  -----
+}		// -----  end of method __classname__::__classname__  -----
 
 
-NodeKeys::~NodeKeys()
+__classname__::~__classname__()
 {
     return;
 }
 
-NodeKeys::NodeKeysConcept::~NodeKeysConcept()
+__classname__::__classname__Concept::~__classname__Concept()
 {
     return;
 }
-
-
 
 
 //============================= ACCESSORS ====================================
 
-NodeKeys * NodeKeys::clone() const
+__classname__ * __classname__::clone() const
 {
-    return new NodeKeys(*this);
+    return new __classname__(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-NodeKeys& NodeKeys::operator= ( const NodeKeys &other )
+__classname__& __classname__::operator= ( const __classname__ & other )
 {
     if (this != &other)
     {
@@ -78,7 +76,7 @@ NodeKeys& NodeKeys::operator= ( const NodeKeys &other )
     return *this;
 } // assignment operator
 
-NodeKeys& NodeKeys::operator= ( NodeKeys && other )
+__classname__& __classname__::operator= ( __classname__ && other )
 {
     if (this != &other)
     {
@@ -112,4 +110,4 @@ NodeKeys& NodeKeys::operator= ( NodeKeys && other )
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+}; // namespace __NAMESPACE__

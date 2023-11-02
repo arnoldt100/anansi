@@ -25,9 +25,10 @@ def _main():
 
     namespace = args.namespace
     class_name = args.class_name
+    class_type = args.class_type
 
-    _create_header_file(namespace,class_name)
-    _create_implementation_file(namespace,class_name)
+    _create_header_file(namespace,class_name,class_type)
+    _create_implementation_file(namespace,class_name,class_type)
 
 ## Parses the command line arguments and returns A namespace.
 #
@@ -47,6 +48,11 @@ def _parse_arguments():
     # Create text for funtion name option help.
     classname_help = ( f"""The class name should conform to the language standards.\n """
                        f"""For example, most languages require class names to have only alphanumeric characters.\n""")
+
+    # Create text for funtion name option help.
+    classtype_help = ( f"""The class type can be: .\n """
+                       f"""Standard - Normal C++ class.\n """
+                       f"""TypeErasure-Non-Template - TypeErasure Base Class.\n """)
 
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
@@ -72,17 +78,24 @@ def _parse_arguments():
                            required=True,
                            type=str,
                            help=classname_help)
+
+    mandatory_args_group.add_argument("--class-type",
+                           required=True,
+                           type=str,
+                           choices=["TypeErasure-Non-Template","Standard"],
+                           help=classtype_help)
+
     my_args = my_parser.parse_args()
 
     return my_args 
 
-def _create_header_file(namespace,class_name):
+def _create_header_file(namespace,class_name,class_type):
     import os
     import re
-    print("Creating header file " + class_name + ".h")
+    (template_file,dummy_file,header_file_suffix,i_file_suffix) = _select_template_files(class_type)
+    print("Creating header file " + class_name + header_file_suffix)
     anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(anansi_top_level,"templates","Class.h")
-    output_file = class_name + ".h"
+    output_file = class_name + header_file_suffix
     preprocessor_name = namespace + "_" + class_name + "_INC"
     regex_array = [ (re.compile("__NAMESPACE__"),namespace),
                     (re.compile("__classname__"),class_name),
@@ -94,13 +107,13 @@ def _create_header_file(namespace,class_name):
 
     return
 
-def _create_implementation_file(namespace,class_name):
+def _create_implementation_file(namespace,class_name,class_type):
     import os
     import re
-    print("Creating implementation file " + class_name + ".cpp")
+    (dummy_file,template_file,header_file_suffix,i_file_suffix) = _select_template_files(class_type)
+    print("Creating implementation file " + class_name + i_file_suffix)
     anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    template_file = os.path.join(anansi_top_level,"templates","Class.cpp")
-    output_file = class_name + ".cpp"
+    output_file = class_name + i_file_suffix
     regex_array = [ (re.compile("__NAMESPACE__"),namespace ),
                     (re.compile("__classname__"),class_name),
                     (re.compile("__filename__"),class_name),
@@ -126,6 +139,20 @@ def _parse_file(regex_array,template_file, output_file):
                     tmp_record = regex_pattern.sub(replacement,tmp_record)    
                 output_fileobj.write(tmp_record)
 
+
+def _select_template_files(class_type):
+    import os
+    anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
+    i_file_suffix = ".cpp"
+    if class_type == "Standard":
+        h_template_file = os.path.join(anansi_top_level,"templates","Class.h")
+        i_template_file = os.path.join(anansi_top_level,"templates","Class.cpp")
+        header_file_suffix = ".h"
+    elif class_type == "TypeErasure-Non-Template":
+        h_template_file = os.path.join(anansi_top_level,"templates","TypeErasure.non-template.h")
+        i_template_file = os.path.join(anansi_top_level,"templates","TypeErasure.non-template.cpp")
+        header_file_suffix = ".h"
+    return (h_template_file,i_template_file,header_file_suffix,i_file_suffix)
 
 if __name__ == "__main__":
     _main()
