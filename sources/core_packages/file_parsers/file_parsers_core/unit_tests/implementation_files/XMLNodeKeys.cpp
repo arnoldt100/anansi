@@ -10,9 +10,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "__header_filename__"
+#include "XMLNodeKeys.h"
 
-namespace __NAMESPACE__ {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -20,15 +20,13 @@ namespace __NAMESPACE__ {
 
 //============================= LIFECYCLE ====================================
 
-__classname__::__classname__()
+XMLNodeKeys::XMLNodeKeys()
 {
-	// TODO Auto-generated constructor stub
     return;
 }
 
-__classname__::__classname__( __classname__ const & other)
+XMLNodeKeys::XMLNodeKeys( XMLNodeKeys const & other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
         
@@ -36,34 +34,32 @@ __classname__::__classname__( __classname__ const & other)
     return;
 }
 
-__classname__::__classname__( __classname__ && other)
+XMLNodeKeys::XMLNodeKeys( XMLNodeKeys && other)
 {
-	// TODO Auto-generated constructor stub
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method __classname__::__classname__  -----
+}		// -----  end of method XMLNodeKeys::XMLNodeKeys  -----
 
 
-__classname__::~__classname__()
+XMLNodeKeys::~XMLNodeKeys()
 {
-	// TODO Auto-generated destructor stub
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-__classname__ * __classname__::clone() const
+XMLNodeKeys * XMLNodeKeys::clone() const
 {
-    return new __classname__(*this);
+    return new XMLNodeKeys(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-__classname__& __classname__::operator= ( const __classname__ &other )
+XMLNodeKeys& XMLNodeKeys::operator= ( const XMLNodeKeys &other )
 {
     if (this != &other)
     {
@@ -71,7 +67,7 @@ __classname__& __classname__::operator= ( const __classname__ &other )
     return *this;
 } // assignment operator
 
-__classname__& __classname__::operator= ( __classname__ && other )
+XMLNodeKeys& XMLNodeKeys::operator= ( XMLNodeKeys && other )
 {
     if (this != &other)
     {
@@ -105,4 +101,4 @@ __classname__& __classname__::operator= ( __classname__ && other )
 //============================= OPERATORS ====================================
 
 
-} // namespace __NAMESPACE__
+} // namespace ANANSI

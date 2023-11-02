@@ -20,6 +20,7 @@
 //--------------------- Package includes -----------------/
 //--------------------------------------------------------//
 #include "KeyPathSeparator.h"
+#include "NodeKeys.h"
 
 namespace ANANSI
 {
