@@ -6,6 +6,7 @@
 
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
+#include "NodeKeys.h"
 
 namespace utf = boost::unit_test;
 

@@ -17,6 +17,15 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    #-----------------------------------------------------
+    # This target needs access to the following header   -
+    # files:                                             -
+    #                                                    -
+    #   file_parsers_core target header files            -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_file_parsers_core_include file_parsers_core file_parsers_core_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -86,6 +95,7 @@
     #-----------------------------------------------------
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                               PRIVATE ${my_file_parsers_core_include} 
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
@@ -95,7 +105,8 @@
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
-                          PRIVATE file_parsers_core ${Boost_LIBRARIES} )
+                          PUBLIC file_parsers_core 
+                          PUBLIC ${Boost_LIBRARIES})
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
@@ -104,6 +115,7 @@
     #-----------------------------------------------------
     set_target_properties( ${target}
                            PROPERTIES
+                           CXX_STANDARD "${file_parsers_core_cxx_standard}"
                            PUBLIC_HEADER "${file_parsers_core_unit_tests_header_files}" )
 
     #-----------------------------------------------------
