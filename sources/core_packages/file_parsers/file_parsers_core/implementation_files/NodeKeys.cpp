@@ -56,8 +56,6 @@ NodeKeys::NodeKeysConcept::~NodeKeysConcept()
 }
 
 
-
-
 //============================= ACCESSORS ====================================
 
 NodeKeys * NodeKeys::clone() const
@@ -69,7 +67,7 @@ NodeKeys * NodeKeys::clone() const
 
 //============================= OPERATORS ====================================
 
-NodeKeys& NodeKeys::operator= ( const NodeKeys &other )
+NodeKeys& NodeKeys::operator= ( const NodeKeys & other )
 {
     if (this != &other)
     {
@@ -112,4 +110,4 @@ NodeKeys& NodeKeys::operator= ( NodeKeys && other )
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+}; // namespace ANANSI

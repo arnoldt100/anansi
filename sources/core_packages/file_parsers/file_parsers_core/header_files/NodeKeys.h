@@ -1,6 +1,10 @@
 #ifndef ANANSI_NodeKeys_INC
 #define ANANSI_NodeKeys_INC
 //! \file NodeKeys.h
+//!
+//! \brief Brief description
+//!
+//! Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//

@@ -161,4 +161,4 @@ class __classname__
 
 }; // namespace __NAMESPACE__
 
-#endif //__filepreprocessordefine__ 
+#endif // __filepreprocessordefine__

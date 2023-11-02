@@ -1,6 +1,6 @@
 #ifndef __filepreprocessordefine__
 #define __filepreprocessordefine__
-//! \file __filename__.h
+//! \file __header_filename__
 //!
 //! \brief Brief description
 //!

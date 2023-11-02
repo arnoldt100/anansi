@@ -50,9 +50,9 @@ def _parse_arguments():
                        f"""For example, most languages require class names to have only alphanumeric characters.\n""")
 
     # Create text for funtion name option help.
-    classtype_help = ( f"""The class type can be: .\n """
-                       f"""Standard - Normal C++ class.\n """
-                       f"""TypeErasure-Non-Template - TypeErasure Base Class.\n """)
+    classtype_help = ( f"""The class type can be: \n """
+                       f"""\tStandard - Normal C++ class.\n """
+                       f"""\tTypeErasure-Non-Template - TypeErasure Base Class.\n """)
 
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
@@ -96,10 +96,12 @@ def _create_header_file(namespace,class_name,class_type):
     print("Creating header file " + class_name + header_file_suffix)
     anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
     output_file = class_name + header_file_suffix
+    header_file_name = class_name + header_file_suffix
     preprocessor_name = namespace + "_" + class_name + "_INC"
     regex_array = [ (re.compile("__NAMESPACE__"),namespace),
                     (re.compile("__classname__"),class_name),
                     (re.compile("__filename__"),class_name),
+                    (re.compile("__header_filename__"),header_file_name),
                     (re.compile("__filepreprocessordefine__"), preprocessor_name),
                    ]
 
@@ -114,9 +116,11 @@ def _create_implementation_file(namespace,class_name,class_type):
     print("Creating implementation file " + class_name + i_file_suffix)
     anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
     output_file = class_name + i_file_suffix
+    header_file_name = class_name + header_file_suffix
     regex_array = [ (re.compile("__NAMESPACE__"),namespace ),
                     (re.compile("__classname__"),class_name),
                     (re.compile("__filename__"),class_name),
+                    (re.compile("__header_filename__"),header_file_name)
                    ]
     _parse_file(regex_array,template_file,output_file)
     return
