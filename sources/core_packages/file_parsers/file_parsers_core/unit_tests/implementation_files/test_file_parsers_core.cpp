@@ -13,3 +13,4 @@ BOOST_FIXTURE_TEST_CASE( unpickling_boost_property_tree, FileParsersCoreFixture 
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
