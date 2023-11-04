@@ -6,6 +6,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -29,6 +30,7 @@ class NodeKeys
         NodeKeys(T && value) :
             valuePtr_( new NodeKeysModel<T>(std::forward<T>(value)) )
         {
+            std::cout << "In templated NodeKeys cstr." << std::endl;
             return;
         }
 

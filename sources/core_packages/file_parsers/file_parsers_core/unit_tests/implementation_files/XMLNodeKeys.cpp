@@ -2,6 +2,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -27,6 +28,8 @@ XMLNodeKeys::XMLNodeKeys() :
     nodeKeys_(),
     commentNodeKeys_()
 {
+        std::cout << "Initializing XMLNodeKeys" << std::endl;
+
         // The node key value boost::property_tree::ptree uses for an xml
         // comment. 
         const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
@@ -109,7 +112,6 @@ XMLNodeKeys::XMLNodeKeys( XMLNodeKeys && other)
     }
     return;
 }		// -----  end of method XMLNodeKeys::XMLNodeKeys  -----
-
 
 XMLNodeKeys::~XMLNodeKeys()
 {

@@ -31,17 +31,7 @@ class FileParsersCoreFixture
 {
     public:
         FileParsersCoreFixture() :
-            nodeKeys(ANANSI::XMLNodeKeys())
-        {
-           return; 
-        }
-
-        ~FileParsersCoreFixture()
-        {
-           return; 
-        }
-
-        void setup()
+            nodeKeys{ANANSI::XMLNodeKeys()}
         {
             // Initialize the keys that are in the test XML input data file.
             keys.clear();
@@ -58,12 +48,12 @@ class FileParsersCoreFixture
             keys.push_back("time-step.number-time-steps");
             keys.push_back("integration-methodology.ensemble");
             std::cout << "setup of FileParsersCoreFixture." << std::endl;
-
+            return; 
         }
 
-        void teardown()
+        ~FileParsersCoreFixture()
         {
-            std::cout << "teardown of FileParsersCoreFixture." << std::endl;
+           return; 
         }
 
         // ====================  DATA MEMBERS  =======================================
