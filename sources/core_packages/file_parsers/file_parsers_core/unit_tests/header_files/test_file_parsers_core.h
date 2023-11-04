@@ -27,7 +27,7 @@
 
 namespace utf = boost::unit_test;
 
-class FileParsersCoreFixtur: 
+class FileParsersCoreFixture:
 {
     public:
         FileParsersCoreFixture() :
