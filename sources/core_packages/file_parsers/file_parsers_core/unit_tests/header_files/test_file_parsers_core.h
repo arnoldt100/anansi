@@ -22,14 +22,16 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "NodeKeys.h"
+#include "XMLNodeKeys.h"
 #include "FilePicklerPropertyTreeMap.hpp"
 
 namespace utf = boost::unit_test;
 
-class FileParsersCoreFixture 
+class FileParsersCoreFixtur: 
 {
     public:
-        FileParsersCoreFixture()
+        FileParsersCoreFixture() :
+            nodeKeys(ANANSI::XMLNodeKeys())
         {
            return; 
         }
@@ -44,6 +46,7 @@ class FileParsersCoreFixture
             std::cout << "setup of FileParsersCoreFixture." << std::endl;
 
             // Read the xml file and assign to a property tree.
+
         }
 
         void teardown()
@@ -53,7 +56,7 @@ class FileParsersCoreFixture
 
         // ====================  DATA MEMBERS  =======================================
 
-        ANANSI::NodeKeys nodeKey;
+        ANANSI::NodeKeys nodeKeys;
         ANANSI::FilePickler<boost::property_tree::ptree,std::map<std::string,std::string>> pickler;
         boost::property_tree::ptree ptree;
 
