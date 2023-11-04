@@ -2,6 +2,11 @@
 
 BOOST_AUTO_TEST_SUITE( Test_Suite_FileParsersCore )
 
+BOOST_FIXTURE_TEST_CASE( FindNodeKeys, FileParsersCoreFixture )
+{
+  BOOST_TEST( 2 < 1, "The NodeKeys::find is incorrect" );
+}
+
 BOOST_FIXTURE_TEST_CASE( pickling_boost_property_tree, FileParsersCoreFixture )
 {
   BOOST_TEST( 2 < 1, "The test pickling_boost_property_tree is incorrect" );

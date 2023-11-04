@@ -73,6 +73,8 @@ class NodeKeys
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<NodeKeysConcept> clone() const=0;
 
+                virtual bool find(const std::string key) const=0;
+
                 // ====================  MUTATORS      =======================================
 
         };
@@ -141,11 +143,27 @@ class NodeKeys
                     return std::make_unique<NodeKeysModel>(*this);
                 }
 
+                bool find(const std::string key) const override
+                {
+                    // const bool retval = object_.find(key);
+                    const bool retval = true;
+                    return retval;
+                }
+
                 // ====================  MUTATORS      =======================================
 
                 T object_;
         };
         
+        friend bool find ( const NodeKeys && node_keys, const std::string key)
+        {
+            return node_keys.valuePtr_->find(key);
+        }
+        
+        friend bool find ( const NodeKeys & node_keys, const std::string key)
+        {
+            return node_keys.valuePtr_->find(key);
+        }
         
         // ====================  METHODS       =======================================
 

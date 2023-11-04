@@ -27,7 +27,7 @@
 
 namespace utf = boost::unit_test;
 
-class FileParsersCoreFixture:
+class FileParsersCoreFixture
 {
     public:
         FileParsersCoreFixture() :
@@ -43,6 +43,27 @@ class FileParsersCoreFixture:
 
         void setup()
         {
+            // Initialize the keys that are in the test XML input data file.
+            keys.clear();
+            keys.push_back("title");
+            keys.push_back("units");
+            keys.push_back("processor-topology");
+            keys.push_back("processor-topology.lattice-type");
+            keys.push_back("processor-topology.mpi-spatial-decompositionce-type");
+            keys.push_back("processor-topology.compute-units-per-spatial-domain");
+            keys.push_back("initial-configuration");
+            keys.push_back("initial-configuration.filename");
+            keys.push_back("molecular-topology");
+            keys.push_back("molecular-topology.filename");
+            keys.push_back("hamiltonian");
+            keys.push_back("hamiltonian.filename");
+            keys.push_back("time-step");
+            keys.push_back("time-step.value");
+            keys.push_back("time-step.units");
+            keys.push_back("time-step.number-time-steps");
+            keys.push_back("integration-methodology");
+            keys.push_back("integration-methodology.ensemble");
+
             std::cout << "setup of FileParsersCoreFixture." << std::endl;
 
             // Read the xml file and assign to a property tree.
@@ -56,6 +77,7 @@ class FileParsersCoreFixture:
 
         // ====================  DATA MEMBERS  =======================================
 
+        std::vector<std::string> keys;
         ANANSI::NodeKeys nodeKeys;
         ANANSI::FilePickler<boost::property_tree::ptree,std::map<std::string,std::string>> pickler;
         boost::property_tree::ptree ptree;

@@ -22,7 +22,7 @@ namespace ANANSI
 {
 
 
-//! \brief The primary template for froming the path key.
+//! \brief The primary template for forming the path key.
 //!
 //! \tparam PathSepartor_t The policy for forming the path key.
 template<typename PathSepartor_t>
