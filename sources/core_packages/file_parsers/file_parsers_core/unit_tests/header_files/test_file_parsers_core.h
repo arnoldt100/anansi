@@ -47,26 +47,17 @@ class FileParsersCoreFixture
             keys.clear();
             keys.push_back("title");
             keys.push_back("units");
-            keys.push_back("processor-topology");
             keys.push_back("processor-topology.lattice-type");
             keys.push_back("processor-topology.mpi-spatial-decompositionce-type");
             keys.push_back("processor-topology.compute-units-per-spatial-domain");
-            keys.push_back("initial-configuration");
             keys.push_back("initial-configuration.filename");
-            keys.push_back("molecular-topology");
             keys.push_back("molecular-topology.filename");
-            keys.push_back("hamiltonian");
             keys.push_back("hamiltonian.filename");
-            keys.push_back("time-step");
             keys.push_back("time-step.value");
             keys.push_back("time-step.units");
             keys.push_back("time-step.number-time-steps");
-            keys.push_back("integration-methodology");
             keys.push_back("integration-methodology.ensemble");
-
             std::cout << "setup of FileParsersCoreFixture." << std::endl;
-
-            // Read the xml file and assign to a property tree.
 
         }
 

@@ -73,7 +73,7 @@ class NodeKeys
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<NodeKeysConcept> clone() const=0;
 
-                virtual bool find(const std::string key) const=0;
+                virtual bool doesKeyExist(const std::string key) const=0;
 
                 // ====================  MUTATORS      =======================================
 
@@ -143,10 +143,9 @@ class NodeKeys
                     return std::make_unique<NodeKeysModel>(*this);
                 }
 
-                bool find(const std::string key) const override
+                bool doesKeyExist(const std::string key) const override
                 {
-                    // const bool retval = object_.find(key);
-                    const bool retval = true;
+                    const bool retval = object_.does_key_exist(object_,key);
                     return retval;
                 }
 
@@ -155,14 +154,14 @@ class NodeKeys
                 T object_;
         };
         
-        friend bool find ( const NodeKeys && node_keys, const std::string key)
+        friend bool does_key_exist ( const NodeKeys && node_keys, const std::string key)
         {
-            return node_keys.valuePtr_->find(key);
+            return node_keys.valuePtr_->doesKeyExist(key);
         }
         
-        friend bool find ( const NodeKeys & node_keys, const std::string key)
+        friend bool does_key_exist ( const NodeKeys & node_keys, const std::string key)
         {
-            return node_keys.valuePtr_->find(key);
+            return node_keys.valuePtr_->doesKeyExist(key);
         }
         
         // ====================  METHODS       =======================================

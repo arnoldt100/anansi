@@ -56,9 +56,7 @@ class XMLNodeKeys
         XMLNodeKeys& operator= ( XMLNodeKeys && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================
-        static bool find(const XMLNodeKeys & object, const std::string key);
-
-        static std::string DefaultNullValue;
+        static bool does_key_exist(const XMLNodeKeys & object, const std::string key);
 
     protected:
         // ====================  METHODS       =======================================
@@ -69,6 +67,10 @@ class XMLNodeKeys
         // ====================  ALIASES       =======================================
 
         using InternalRepresentationTrait_ = boost::property_tree::ptree;
+
+        // ====================  STATIC        =======================================
+
+        static std::string DefaultNullValue_;
 
         // ====================  MUTATORS      =======================================
         void addCommentTag_(const std::string & key);

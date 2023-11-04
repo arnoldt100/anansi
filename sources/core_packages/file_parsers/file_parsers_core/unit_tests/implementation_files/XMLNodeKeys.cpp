@@ -125,7 +125,13 @@ XMLNodeKeys * XMLNodeKeys::clone() const
 
 bool XMLNodeKeys::isKeyPresent(const std::string key) const
 {
-    return false;
+    bool key_found = true;
+    auto it = std::find (this->nodeKeys_.begin(), this->nodeKeys_.end(), key);
+    if ( it == this->nodeKeys_.end() )
+    {
+        key_found = false;
+    }
+    return key_found;
 }
 //============================= MUTATORS =====================================
 
@@ -150,12 +156,10 @@ XMLNodeKeys& XMLNodeKeys::operator= ( XMLNodeKeys && other )
 
 // ====================  STATIC        =======================================
 
-bool XMLNodeKeys::find(const XMLNodeKeys & object, const std::string key)
+bool XMLNodeKeys::does_key_exist(const XMLNodeKeys & object, const std::string key)
 {
     return object.isKeyPresent(key);
 }
-
-std::string XMLNodeKeys::DefaultNullValue = std::string("default-null-value");
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -172,7 +176,9 @@ std::string XMLNodeKeys::DefaultNullValue = std::string("default-null-value");
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-    
+
+std::string XMLNodeKeys::DefaultNullValue_ = std::string("default-null-value");
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
