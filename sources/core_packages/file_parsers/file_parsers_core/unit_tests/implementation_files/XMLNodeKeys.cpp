@@ -137,12 +137,15 @@ bool XMLNodeKeys::isKeyPresent(const std::string key) const
     return key_found;
 }
 
-
 std::pair<XMLNodeKeys::VCI_t_,XMLNodeKeys::VCI_t_> XMLNodeKeys::allKeysIterator() const
 {
     return std::pair<XMLNodeKeys::VCI_t_,XMLNodeKeys::VCI_t_>(this->nodeKeys_.begin(),this->nodeKeys_.end());
 }
 
+std::array<char,2> XMLNodeKeys::separatorChar() const
+{
+    return KeyPathSeparator::separator_char;
+}
 
 //============================= MUTATORS =====================================
 
@@ -179,6 +182,11 @@ std::pair<XMLNodeKeys::VCI_t_,
           XMLNodeKeys::VCI_t_> XMLNodeKeys::all_keys_iterator(const XMLNodeKeys & object)
 {
     return object.allKeysIterator();
+}
+
+std::array<char,2> XMLNodeKeys::separator_char(const XMLNodeKeys & object)
+{
+    return object.separatorChar();
 }
 
 

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <array>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -80,6 +81,8 @@ class NodeKeys
 
                 virtual std::pair<std::vector<std::string>::const_iterator,
                                   std::vector<std::string>::const_iterator> allKeysIterator() const=0;
+
+                 virtual std::array<char,2> separatorChar() const = 0;
 
                 // ====================  MUTATORS      =======================================
 
@@ -161,6 +164,11 @@ class NodeKeys
                     return object_.all_keys_iterator(object_);
                 }
 
+                 std::array<char,2> separatorChar() const override
+                 {
+                    return object_._separator_char(object_);
+                 }
+                
                 // ====================  MUTATORS      =======================================
 
                 T object_;
@@ -175,7 +183,12 @@ class NodeKeys
         {
             return node_keys.valuePtr_->doesKeyExist(key);
         }
-       
+      
+        friend std::array<char,2> separator_char(const NodeKeys & node_keys)
+        {
+            return node_keys.valuePtr_->separatorChar();
+        }
+
         //! \brief Returns iterators to the begin and end of the master list of 
         //! control file node keys. 
         //!

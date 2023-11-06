@@ -54,6 +54,8 @@ class XMLNodeKeys
         std::pair<std::vector<std::string>::const_iterator,
                   std::vector<std::string>::const_iterator> allKeysIterator() const;
 
+        std::array<char,2> separatorChar() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -66,6 +68,8 @@ class XMLNodeKeys
         static bool does_key_exist(const XMLNodeKeys & object, const std::string key);
 
         static std::pair<VCI_t_,VCI_t_> all_keys_iterator(const XMLNodeKeys & object);
+
+        static std::array<char,2> separator_char(const XMLNodeKeys & object);
 
     protected:
         // ====================  METHODS       =======================================
