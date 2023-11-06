@@ -166,7 +166,7 @@ class NodeKeys
 
                  std::array<char,2> separatorChar() const override
                  {
-                    return object_._separator_char(object_);
+                    return object_.separator_char(object_);
                  }
                 
                 // ====================  MUTATORS      =======================================
