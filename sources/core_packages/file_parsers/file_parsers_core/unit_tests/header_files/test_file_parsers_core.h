@@ -38,7 +38,7 @@ class FileParsersCoreFixture
             keys.push_back("title");
             keys.push_back("units");
             keys.push_back("processor-topology.lattice-type");
-            keys.push_back("processor-topology.mpi-spatial-decompositionce-type");
+            keys.push_back("processor-topology.mpi-spatial-decomposition");
             keys.push_back("processor-topology.compute-units-per-spatial-domain");
             keys.push_back("initial-configuration.filename");
             keys.push_back("molecular-topology.filename");
@@ -47,7 +47,6 @@ class FileParsersCoreFixture
             keys.push_back("time-step.units");
             keys.push_back("time-step.number-time-steps");
             keys.push_back("integration-methodology.ensemble");
-            std::cout << "setup of FileParsersCoreFixture." << std::endl;
             return; 
         }
 

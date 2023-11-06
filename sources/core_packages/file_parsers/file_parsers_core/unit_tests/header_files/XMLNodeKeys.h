@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 #include <string>
 #include <vector>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -27,6 +28,9 @@ namespace ANANSI
 
 class XMLNodeKeys
 {
+    private:
+        using VCI_t_ = std::vector<std::string>::const_iterator;
+
     public:
         // ====================  ALIASES       =======================================
 
@@ -47,6 +51,9 @@ class XMLNodeKeys
 
         bool isKeyPresent(const std::string key) const;
 
+        std::pair<std::vector<std::string>::const_iterator,
+                  std::vector<std::string>::const_iterator> allKeysIterator() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -57,6 +64,8 @@ class XMLNodeKeys
 
         // ====================  STATIC        =======================================
         static bool does_key_exist(const XMLNodeKeys & object, const std::string key);
+
+        static std::pair<VCI_t_,VCI_t_> all_keys_iterator(const XMLNodeKeys & object);
 
     protected:
         // ====================  METHODS       =======================================

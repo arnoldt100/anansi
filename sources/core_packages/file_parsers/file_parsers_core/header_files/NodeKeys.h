@@ -7,6 +7,8 @@
 //--------------------------------------------------------//
 #include <memory>
 #include <iostream>
+#include <vector>
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -30,7 +32,6 @@ class NodeKeys
         NodeKeys(T && value) :
             valuePtr_( new NodeKeysModel<T>(std::forward<T>(value)) )
         {
-            std::cout << "In templated NodeKeys cstr." << std::endl;
             return;
         }
 
@@ -76,6 +77,9 @@ class NodeKeys
                 virtual std::unique_ptr<NodeKeysConcept> clone() const=0;
 
                 virtual bool doesKeyExist(const std::string key) const=0;
+
+                virtual std::pair<std::vector<std::string>::const_iterator,
+                                  std::vector<std::string>::const_iterator> allKeysIterator() const=0;
 
                 // ====================  MUTATORS      =======================================
 
@@ -151,6 +155,12 @@ class NodeKeys
                     return retval;
                 }
 
+                std::pair<std::vector<std::string>::const_iterator,
+                          std::vector<std::string>::const_iterator> allKeysIterator() const override
+                {
+                    return object_.all_keys_iterator(object_);
+                }
+
                 // ====================  MUTATORS      =======================================
 
                 T object_;
@@ -165,7 +175,20 @@ class NodeKeys
         {
             return node_keys.valuePtr_->doesKeyExist(key);
         }
-        
+       
+        //! \brief Returns iterators to the begin and end of the master list of 
+        //! control file node keys. 
+        //!
+        //! The first  and second member elements are respectively 
+        //! constant iterators to the beginning and the end of the list.
+        //!
+        //! \return std::pair<std::vector<std::string>::const_iterator, std::vector<std::string>::const_iterator>. 
+        std::pair<std::vector<std::string>::const_iterator,
+                  std::vector<std::string>::const_iterator>
+        friend all_keys_iterator(const NodeKeys & node_keys) 
+        {
+            return node_keys.valuePtr_->allKeysIterator();
+        }
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

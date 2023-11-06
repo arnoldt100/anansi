@@ -28,8 +28,6 @@ XMLNodeKeys::XMLNodeKeys() :
     nodeKeys_(),
     commentNodeKeys_()
 {
-        std::cout << "Initializing XMLNodeKeys" << std::endl;
-
         // The node key value boost::property_tree::ptree uses for an xml
         // comment. 
         const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
@@ -100,7 +98,8 @@ XMLNodeKeys::XMLNodeKeys( XMLNodeKeys const & other)
 {
     if (this != &other)
     {
-        
+        this->nodeKeys_ = other.nodeKeys_; 
+        this->commentNodeKeys_ = other.commentNodeKeys_;
     }
     return;
 }
@@ -109,6 +108,8 @@ XMLNodeKeys::XMLNodeKeys( XMLNodeKeys && other)
 {
     if (this != &other)
     {
+        this->nodeKeys_ = std::move(other.nodeKeys_); 
+        this->commentNodeKeys_ = std::move(other.commentNodeKeys_);
     }
     return;
 }		// -----  end of method XMLNodeKeys::XMLNodeKeys  -----
@@ -135,6 +136,14 @@ bool XMLNodeKeys::isKeyPresent(const std::string key) const
     }
     return key_found;
 }
+
+
+std::pair<XMLNodeKeys::VCI_t_,XMLNodeKeys::VCI_t_> XMLNodeKeys::allKeysIterator() const
+{
+    return std::pair<XMLNodeKeys::VCI_t_,XMLNodeKeys::VCI_t_>(this->nodeKeys_.begin(),this->nodeKeys_.end());
+}
+
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -143,6 +152,8 @@ XMLNodeKeys& XMLNodeKeys::operator= ( const XMLNodeKeys &other )
 {
     if (this != &other)
     {
+        this->nodeKeys_ = other.nodeKeys_; 
+        this->commentNodeKeys_ = other.commentNodeKeys_;
     }
     return *this;
 } // assignment operator
@@ -151,7 +162,8 @@ XMLNodeKeys& XMLNodeKeys::operator= ( XMLNodeKeys && other )
 {
     if (this != &other)
     {
-
+        this->nodeKeys_ = std::move(other.nodeKeys_); 
+        this->commentNodeKeys_ = std::move(other.commentNodeKeys_);
     }
     return *this;
 } // assignment-move operator
@@ -162,6 +174,13 @@ bool XMLNodeKeys::does_key_exist(const XMLNodeKeys & object, const std::string k
 {
     return object.isKeyPresent(key);
 }
+
+std::pair<XMLNodeKeys::VCI_t_,
+          XMLNodeKeys::VCI_t_> XMLNodeKeys::all_keys_iterator(const XMLNodeKeys & object)
+{
+    return object.allKeysIterator();
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
