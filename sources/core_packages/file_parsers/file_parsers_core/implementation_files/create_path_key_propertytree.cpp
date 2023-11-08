@@ -16,7 +16,7 @@ namespace ANANSI
 
 template<>
 std::string create_path_key< PathKey<boost::property_tree::ptree>,
-                             KeyPathSeparator> ( const std::vector<std::string> & keys )
+                             KeyPathSeparatorPeriod> ( const std::vector<std::string> & keys )
 {
     std::string path_key;
     std::vector<std::string>::size_type iter_count = 0;
@@ -24,7 +24,7 @@ std::string create_path_key< PathKey<boost::property_tree::ptree>,
     {
         if (iter_count > 0)
         {
-            path_key += KeyPathSeparator::separator_char[0];
+            path_key += KeyPathSeparatorPeriod::separator_char[0];
         }
         path_key += key;
         iter_count += 1;

@@ -21,7 +21,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "KeyPathSeparator.h"
+#include "KeyPathSeparatorPeriod.h"
 
 namespace ANANSI
 {
@@ -34,7 +34,7 @@ class XMLNodeKeys
     public:
         // ====================  ALIASES       =======================================
 
-        using PathSeparatorTrait = KeyPathSeparator;
+        using PathSeparatorTrait = KeyPathSeparatorPeriod;
 
         // ====================  LIFECYCLE     =======================================
 

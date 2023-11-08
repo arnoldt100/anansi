@@ -144,7 +144,7 @@ std::pair<XMLNodeKeys::VCI_t_,XMLNodeKeys::VCI_t_> XMLNodeKeys::allKeysIterator(
 
 std::array<char,2> XMLNodeKeys::separatorChar() const
 {
-    return KeyPathSeparator::separator_char;
+    return KeyPathSeparatorPeriod::separator_char;
 }
 
 //============================= MUTATORS =====================================
