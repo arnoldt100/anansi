@@ -19,7 +19,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------/
 //--------------------------------------------------------//
-#include "KeyPathSeparator.h"
+#include "KeyPathSeparatorPeriod.h"
 #include "NodeKeys.h"
 
 namespace ANANSI
@@ -34,7 +34,7 @@ namespace ANANSI
 class MasterControlInputFileNodeKeys
 {
     public:
-        using PathSeparatorTrait = KeyPathSeparator;
+        using PathSeparatorTrait = KeyPathSeparatorPeriod;
         using InternalRepresentationTrait = boost::property_tree::ptree;
         static std::string DefaultNullValue;
 
