@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_SUITE( Test_Suite_FileParsersCore )
 
 BOOST_AUTO_TEST_CASE( FindNodeKey)
 {
-    FileParsersCoreFixture f;
+    ANANSI::NodeKeysFixture f;
 
     boost::format frmter_found("Testing key %1%, Key status : %2%.\n");
     boost::format frmter_not_found("Warning, key not found! Testing key %1%, Key status : %2%.\n");
@@ -43,14 +43,21 @@ BOOST_AUTO_TEST_CASE( FindNodeKey)
     BOOST_TEST(all_keys_found, message);
 }
 
-BOOST_FIXTURE_TEST_CASE( pickling_boost_property_tree, FileParsersCoreFixture )
+BOOST_AUTO_TEST_CASE( pickling_boost_property_tree)
 {
-  BOOST_TEST( 2 < 1, "The test pickling_boost_property_tree is incorrect" );
+    ANANSI::XMLReaderFixture f;
+    // Read the xml with the XMLReader.
+
+    // Pickle the xml file.
+
+    // Verify the pickled xml file is correct.
+    BOOST_TEST( 2 < 1, "The test pickling_boost_property_tree is incorrect" );
 }
 
-BOOST_FIXTURE_TEST_CASE( unpickling_boost_property_tree, FileParsersCoreFixture )
+BOOST_AUTO_TEST_CASE( unpickling_boost_property_tree )
 {
-  BOOST_TEST(2 < 1, "The test unpickling_boost_property_tree is incorrect.");
+    ANANSI::XMLReaderFixture f;
+    BOOST_TEST(2 < 1, "The test unpickling_boost_property_tree is incorrect.");
 }
 
 BOOST_AUTO_TEST_SUITE_END()
