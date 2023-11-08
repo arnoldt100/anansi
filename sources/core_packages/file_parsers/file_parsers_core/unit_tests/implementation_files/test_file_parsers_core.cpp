@@ -45,9 +45,10 @@ BOOST_AUTO_TEST_CASE( FindNodeKey)
 
 BOOST_AUTO_TEST_CASE( pickling_boost_property_tree)
 {
-    ANANSI::XMLReaderFixture f;
     // Read the xml with the XMLReader.
-
+    ANANSI::XMLReaderFixture f;
+    char * anansi_top_level = std::getenv("ANANSI_TOP_LEVEL");
+    
     // Pickle the xml file.
 
     // Verify the pickled xml file is correct.
