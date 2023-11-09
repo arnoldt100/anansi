@@ -6,11 +6,12 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/filesystem.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "XMLReaderFixture.h"
+#include "PathToDataFilesFileParserCore.h"
 
 namespace ANANSI {
 
@@ -18,64 +19,71 @@ namespace ANANSI {
 /////////////////////////////// PUBLIC ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
+// ====================  STATIC        =======================================
+std::string PathToDataFilesFileParserCore::pathToXMLControlFile()
+{
+    char * anansi_top_level = std::getenv("ANANSI_TOP_LEVEL");
+    boost::filesystem::path p;
+    p /= anansi_top_level;
+    p /= "data_files";
+    p /= "file_parsers_core";
+    p /= "water_simulation.anansi";
+    std::string my_path(p.c_str());
+    return my_path;
+}
+
 //============================= LIFECYCLE ====================================
 
-XMLReaderFixture::XMLReaderFixture() :
-    xmlFileReader()
+PathToDataFilesFileParserCore::PathToDataFilesFileParserCore()
 {
     return;
 }
 
-XMLReaderFixture::XMLReaderFixture( XMLReaderFixture const & other) :
-    xmlFileReader()
+PathToDataFilesFileParserCore::PathToDataFilesFileParserCore( PathToDataFilesFileParserCore const & other)
 {
     if (this != &other)
     {
-        this->xmlFileReader = other.xmlFileReader;
     }
     return;
 }
 
-XMLReaderFixture::XMLReaderFixture( XMLReaderFixture && other)
+PathToDataFilesFileParserCore::PathToDataFilesFileParserCore( PathToDataFilesFileParserCore && other)
 {
     if (this != &other)
     {
-        this->xmlFileReader = std::move(other.xmlFileReader);
     }
     return;
-}   // -----  end of method XMLReaderFixture::XMLReaderFixture  -----
+}		// -----  end of method PathToDataFilesFileParserCore::PathToDataFilesFileParserCore  -----
 
 
-XMLReaderFixture::~XMLReaderFixture()
+PathToDataFilesFileParserCore::~PathToDataFilesFileParserCore()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-XMLReaderFixture * XMLReaderFixture::clone() const
+PathToDataFilesFileParserCore * PathToDataFilesFileParserCore::clone() const
 {
-    return new XMLReaderFixture(*this);
+    return new PathToDataFilesFileParserCore(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-XMLReaderFixture& XMLReaderFixture::operator= ( const XMLReaderFixture &other )
+PathToDataFilesFileParserCore& PathToDataFilesFileParserCore::operator= ( const PathToDataFilesFileParserCore &other )
 {
     if (this != &other)
     {
-        this->xmlFileReader = other.xmlFileReader;
     }
     return *this;
 } // assignment operator
 
-XMLReaderFixture& XMLReaderFixture::operator= ( XMLReaderFixture && other )
+PathToDataFilesFileParserCore& PathToDataFilesFileParserCore::operator= ( PathToDataFilesFileParserCore && other )
 {
     if (this != &other)
     {
-        this->xmlFileReader = std::move(other.xmlFileReader);
     }
     return *this;
 } // assignment-move operator

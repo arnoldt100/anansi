@@ -68,7 +68,7 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
             for (auto it = it_keys.first; it != it_keys.second; ++it)
             {
                 const std::string key(*it);
-                if ( master_keys.isCommentTag(key))
+                if ( master_keys.isCommentKey(key))
                 {
                    continue; 
                 }
@@ -96,7 +96,7 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
             for (auto it = it_keys.first; it != it_keys.second; ++it)
             {
                 const std::string key(*it);
-                if ( master_keys.isCommentTag(key))
+                if ( master_keys.isCommentKey(key))
                 {
                    continue; 
                 }

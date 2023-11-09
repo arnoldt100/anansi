@@ -48,10 +48,11 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_core_unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLNodeKeys.h
-	${CMAKE_CURRENT_SOURCE_DIR}/header_files/NodeKeysFixture.h
-	${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLReaderFixture.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_file_parsers_core.h )
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PathToDataFilesFileParserCore.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLNodeKeys.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NodeKeysFixture.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLReaderFixture.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_file_parsers_core.h )
 
 
     #-----------------------------------------------------
@@ -61,10 +62,11 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_core_unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLNodeKeys.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NodeKeysFixture.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLReaderFixture.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_file_parsers_core.cpp )
+    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PathToDataFilesFileParserCore.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLNodeKeys.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NodeKeysFixture.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLReaderFixture.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_file_parsers_core.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

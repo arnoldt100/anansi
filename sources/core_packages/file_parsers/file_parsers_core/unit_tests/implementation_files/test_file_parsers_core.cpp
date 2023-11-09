@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <boost/format.hpp>
+#include <boost/filesystem.hpp>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -11,6 +12,9 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "test_file_parsers_core.h"
+#include "PathToDataFilesFileParserCore.h"
+#include "XMLFileReader.h"
+#include "FilePicklerPropertyTreeMap.hpp"
 
 BOOST_AUTO_TEST_SUITE( Test_Suite_FileParsersCore )
 
@@ -45,11 +49,16 @@ BOOST_AUTO_TEST_CASE( FindNodeKey)
 
 BOOST_AUTO_TEST_CASE( pickling_boost_property_tree)
 {
-    // Read the xml with the XMLReader.
     ANANSI::XMLReaderFixture f;
-    char * anansi_top_level = std::getenv("ANANSI_TOP_LEVEL");
     
+    // Read the xml with the XMLReader.
+    ANANSI::XMLFileReader my_file_reader;
+    std::string path = ANANSI::PathToDataFilesFileParserCore::pathToXMLControlFile();
+    boost::property_tree::ptree my_ptree = my_file_reader.read(path);
+
     // Pickle the xml file.
+    ANANSI::FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>> my_pickler;
+    std::map<std::string,std::string> pickled_file = my_pickler.pickle<ANANSI::XMLNodeKeys>(my_ptree);
 
     // Verify the pickled xml file is correct.
     BOOST_TEST( 2 < 1, "The test pickling_boost_property_tree is incorrect" );

@@ -61,7 +61,7 @@ class MasterControlInputFileNodeKeys
 
         bool find(const std::string key) const;
 
-        bool isCommentTag(const std::string key) const;
+        bool isCommentKey(const std::string key) const;
 
         // ====================  MUTATORS      =======================================
 

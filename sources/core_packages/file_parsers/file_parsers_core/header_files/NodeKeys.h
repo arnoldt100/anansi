@@ -79,10 +79,14 @@ class NodeKeys
 
                 virtual bool doesKeyExist(const std::string key) const=0;
 
+                virtual bool isCommentKey(const std::string key) const=0;
+
                 virtual std::pair<std::vector<std::string>::const_iterator,
                                   std::vector<std::string>::const_iterator> allKeysIterator() const=0;
 
                  virtual std::array<char,2> separatorChar() const = 0;
+
+                 virtual std::string defaultNullValue() const=0;
 
                 // ====================  MUTATORS      =======================================
 
@@ -164,16 +168,22 @@ class NodeKeys
                     return object_.all_keys_iterator(object_);
                 }
 
-                 std::array<char,2> separatorChar() const override
-                 {
-                    return object_.separator_char(object_);
-                 }
-                
+                std::array<char,2> separatorChar() const override
+                {
+                   return object_.separator_char(object_);
+                }
+               
+                bool isCommentKey(const std::string key) const override
+                {
+                    return object_.is_comment_key(object_,key);
+                }
+
                 // ====================  MUTATORS      =======================================
 
                 T object_;
         };
-        
+       
+
         friend bool does_key_exist ( const NodeKeys && node_keys, const std::string key)
         {
             return node_keys.valuePtr_->doesKeyExist(key);
@@ -187,6 +197,11 @@ class NodeKeys
         friend std::array<char,2> separator_char(const NodeKeys & node_keys)
         {
             return node_keys.valuePtr_->separatorChar();
+        }
+
+        friend bool is_comment_key(const NodeKeys & node_keys, const std::string key)
+        {
+            return node_keys.valuePtr_->isCommentKey(key);
         }
 
         //! \brief Returns iterators to the begin and end of the master list of 

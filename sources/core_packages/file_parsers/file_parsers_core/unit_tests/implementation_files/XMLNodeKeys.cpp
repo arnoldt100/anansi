@@ -147,6 +147,17 @@ std::array<char,2> XMLNodeKeys::separatorChar() const
     return KeyPathSeparatorPeriod::separator_char;
 }
 
+bool XMLNodeKeys::isCommentKey(const std::string key) const
+{
+    bool key_is_comment = true;
+    auto it = std::find (this->commentNodeKeys_.begin(), this->commentNodeKeys_.end(), key);
+    if ( it == this->commentNodeKeys_.end() )
+    {
+        key_is_comment = false;
+    }
+    return key_is_comment;
+
+}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -189,6 +200,15 @@ std::array<char,2> XMLNodeKeys::separator_char(const XMLNodeKeys & object)
     return object.separatorChar();
 }
 
+bool is_comment_key(const XMLNodeKeys & object, const std::string key)
+{
+    return object.isCommentKey(key);
+}
+
+std::string default_null_value(const XMLNodeKeys & object)
+{
+    return object.defaultNullValue();
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

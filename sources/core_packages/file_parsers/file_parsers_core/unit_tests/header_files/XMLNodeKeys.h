@@ -56,6 +56,8 @@ class XMLNodeKeys
 
         std::array<char,2> separatorChar() const;
 
+        bool isCommentKey(const std::string key) const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -65,11 +67,16 @@ class XMLNodeKeys
         XMLNodeKeys& operator= ( XMLNodeKeys && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================
+
         static bool does_key_exist(const XMLNodeKeys & object, const std::string key);
 
         static std::pair<VCI_t_,VCI_t_> all_keys_iterator(const XMLNodeKeys & object);
 
         static std::array<char,2> separator_char(const XMLNodeKeys & object);
+
+        static bool is_comment_key(const XMLNodeKeys & object, const std::string key);
+
+        static std::string default_null_value(const XMLNodeKeys & object);
 
     protected:
         // ====================  METHODS       =======================================

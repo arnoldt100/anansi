@@ -141,7 +141,7 @@ bool MasterControlInputFileNodeKeys::find(const std::string key) const
     return key_found;
 }
 
-bool MasterControlInputFileNodeKeys::isCommentTag(const std::string key) const
+bool MasterControlInputFileNodeKeys::isCommentKey(const std::string key) const
 {
     bool key_is_comment = true;
     auto it = std::find (this->commentNodeKeys_.begin(), this->commentNodeKeys_.end(), key);
