@@ -33,7 +33,7 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
         // The node key value boost::property_tree::ptree uses for an xml
         // comment. 
         const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
-        this->addCommentTag(xml_comment_key[0]);
+        this->addCommentTag_(xml_comment_key[0]);
 
         // The title key store the title of the simulation.
         std::vector<std::string> title_key{std::string("title")};
@@ -124,13 +124,21 @@ MasterControlInputFileNodeKeys::~MasterControlInputFileNodeKeys()
 }
 
 //============================= ACCESSORS ====================================
-std::pair<std::vector<std::string>::const_iterator,
-          std::vector<std::string>::const_iterator> MasterControlInputFileNodeKeys::allKeysIterator() const
+
+MasterControlInputFileNodeKeys * MasterControlInputFileNodeKeys::clone() const
+{
+    return new MasterControlInputFileNodeKeys(*this);
+}
+
+
+
+std::pair<MasterControlInputFileNodeKeys::VCI_t_,
+          MasterControlInputFileNodeKeys::VCI_t_> MasterControlInputFileNodeKeys::allKeysIterator() const
 {
     return std::pair<std::vector<std::string>::const_iterator,std::vector<std::string>::const_iterator>(this->nodeKeys_.begin(),this->nodeKeys_.end());
 }
 
-bool MasterControlInputFileNodeKeys::find(const std::string key) const
+bool MasterControlInputFileNodeKeys::isKeyPresent(const std::string key) const
 {
     bool key_found = true;
     auto it = std::find (this->nodeKeys_.begin(), this->nodeKeys_.end(), key);
@@ -152,11 +160,16 @@ bool MasterControlInputFileNodeKeys::isCommentKey(const std::string key) const
     return key_is_comment;
 }
 
+
+std::string MasterControlInputFileNodeKeys::defaultNullValue() const
+{
+    return MasterControlInputFileNodeKeys::DefaultNullValue_;
+}
 //============================= MUTATORS =====================================
 
-void MasterControlInputFileNodeKeys::addCommentTag(const std::string keys)
+std::array<char,2> MasterControlInputFileNodeKeys::separatorChar() const
 {
-    this->commentNodeKeys_.push_back(keys.c_str());
+    return KeyPathSeparatorPeriod::separator_char;
 }
 
 //============================= OPERATORS ====================================
@@ -179,6 +192,14 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( Mast
     return *this;
 } // assignment-move operator
 
+// ====================  STATIC        =======================================
+
+bool MasterControlInputFileNodeKeys::does_key_exist(const MasterControlInputFileNodeKeys & object, const std::string key)
+{
+    return object.isKeyPresent(key);
+}
+
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -195,11 +216,19 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( Mast
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
     
+// ====================  STATIC        =======================================
+std::string MasterControlInputFileNodeKeys::DefaultNullValue_ = std::string("default-null-value");
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+
+void MasterControlInputFileNodeKeys::addCommentTag_(const std::string & keys)
+{
+    this->commentNodeKeys_.push_back(keys.c_str());
+}
 
 void MasterControlInputFileNodeKeys::addNodeKey_(const std::vector<std::string> & keys)
 {

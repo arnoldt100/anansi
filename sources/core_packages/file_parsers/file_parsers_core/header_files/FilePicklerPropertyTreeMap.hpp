@@ -18,6 +18,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "FilePickler.hpp"
+#include "NodeKeys.h"
 
 namespace ANANSI
 {
@@ -61,19 +62,24 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         template<typename MasterKeyPolicy_t>
         std::map<std::string,std::string> pickle(const boost::property_tree::ptree & tree) const
         {
+
             using path = boost::property_tree::ptree::path_type;
             const MasterKeyPolicy_t master_keys;
+            NodeKeys node_keys<MasterKeyPolicy_t>(MasterKeyPolicy_t{});
+            auto it_keys = all_keys_iterator(node_keys);
+            const std::array<char,2> sep_char = separator_char(node_keys);
+            const std::string default_value = default_null_value(node_keys);
+
             std::map<std::string,std::string> a_map;
-            const auto it_keys = master_keys.allKeysIterator();
             for (auto it = it_keys.first; it != it_keys.second; ++it)
             {
                 const std::string key(*it);
-                if ( master_keys.isCommentKey(key))
+                if ( is_comment_key(node_keys,key))
                 {
                    continue; 
                 }
 
-                a_map[key] = tree.get<std::string>(path(key,MasterKeyPolicy_t::PathSeparatorTrait::separator_char[0]),master_keys.DefaultNullValue);
+                a_map[key] = tree.get<std::string>(path(key,sep_char[0]), default_value);
 
                 // if (auto search = tree.find(key); search != tree.not_found() )
                 // {
@@ -92,11 +98,13 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         {
             const MasterKeyPolicy_t master_keys;
             boost::property_tree::ptree tree;
-            const auto it_keys = master_keys.allKeysIterator();
+            const NodeKeys node_keys(MasterKeyPolicy_t);
+            const std::string default_value = default_null_value(node_keys);
+            auto it_keys = all_keys_iterator(node_keys);
             for (auto it = it_keys.first; it != it_keys.second; ++it)
             {
                 const std::string key(*it);
-                if ( master_keys.isCommentKey(key))
+                if ( is_comment_key(node_keys,key))
                 {
                    continue; 
                 }
@@ -107,7 +115,7 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
                 }
                 else
                 {
-                    tree.put(key,master_keys.DefaultNullValue);
+                    tree.put(key,default_value);
                 }
             }
             return tree;

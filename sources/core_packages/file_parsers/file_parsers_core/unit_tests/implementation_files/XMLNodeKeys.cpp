@@ -156,8 +156,13 @@ bool XMLNodeKeys::isCommentKey(const std::string key) const
         key_is_comment = false;
     }
     return key_is_comment;
-
 }
+
+std::string XMLNodeKeys::defaultNullValue() const
+{
+    return XMLNodeKeys::DefaultNullValue_;
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -225,6 +230,8 @@ std::string default_null_value(const XMLNodeKeys & object)
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
+
+// ====================  STATIC        =======================================
 
 std::string XMLNodeKeys::DefaultNullValue_ = std::string("default-null-value");
 

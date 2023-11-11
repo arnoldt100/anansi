@@ -33,6 +33,10 @@ namespace ANANSI
 //! class, the program will throw an exception and terminate.
 class MasterControlInputFileNodeKeys
 {
+    private:
+
+        using VCI_t_ = std::vector<std::string>::const_iterator;
+
     public:
         using PathSeparatorTrait = KeyPathSeparatorPeriod;
         using InternalRepresentationTrait = boost::property_tree::ptree;
@@ -49,6 +53,9 @@ class MasterControlInputFileNodeKeys
         ~MasterControlInputFileNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+
+        MasterControlInputFileNodeKeys * clone () const;
+        
         //! \brief Returns iterators to the begin and end of the master list of 
         //! control file node keys. 
         //!
@@ -56,16 +63,19 @@ class MasterControlInputFileNodeKeys
         //! constant iterators to the beginning and the end of the list.
         //!
         //! \return std::pair<std::vector<std::string>::const_iterator, std::vector<std::string>::const_iterator>. 
-        std::pair<std::vector<std::string>::const_iterator,
-                  std::vector<std::string>::const_iterator> allKeysIterator() const;
+        std::pair<MasterControlInputFileNodeKeys::VCI_t_,
+                  MasterControlInputFileNodeKeys::VCI_t_> allKeysIterator() const;
 
-        bool find(const std::string key) const;
+        bool isKeyPresent(const std::string key) const;
 
         bool isCommentKey(const std::string key) const;
 
+        std::array<char,2> separatorChar() const;
+
+        std::string defaultNullValue() const;
+
         // ====================  MUTATORS      =======================================
 
-        void addCommentTag(const std::string key);
 
         // ====================  OPERATORS     =======================================
 
@@ -73,15 +83,27 @@ class MasterControlInputFileNodeKeys
 
         MasterControlInputFileNodeKeys& operator= ( MasterControlInputFileNodeKeys && other ); // assignment-move operator
 
+        // ====================  STATIC        =======================================
+
+        static bool does_key_exist(const MasterControlInputFileNodeKeys & object, const std::string key);
+
     protected:
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
 
     private:
-        // ====================  METHODS       =======================================
+        // ====================  ALIASES       =======================================
+
+        using InternalRepresentationTrait_ = boost::property_tree::ptree;
+
+        // ====================  STATIC        =======================================
+
+        static std::string DefaultNullValue_;
 
         // ====================  MUTATORS      =======================================
+
+        void addCommentTag_(const std::string & key);
 
         //! Adds a key to the master list of keys.
         void addNodeKey_(const std::vector<std::string> & key);

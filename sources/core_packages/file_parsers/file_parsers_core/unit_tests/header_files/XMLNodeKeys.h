@@ -58,6 +58,8 @@ class XMLNodeKeys
 
         bool isCommentKey(const std::string key) const;
 
+        std::string defaultNullValue() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

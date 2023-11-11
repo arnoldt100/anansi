@@ -84,9 +84,9 @@ class NodeKeys
                 virtual std::pair<std::vector<std::string>::const_iterator,
                                   std::vector<std::string>::const_iterator> allKeysIterator() const=0;
 
-                 virtual std::array<char,2> separatorChar() const = 0;
+                virtual std::array<char,2> separatorChar() const=0;
 
-                 virtual std::string defaultNullValue() const=0;
+                virtual std::string defaultNullValue() const=0;
 
                 // ====================  MUTATORS      =======================================
 
@@ -158,7 +158,7 @@ class NodeKeys
 
                 bool doesKeyExist(const std::string key) const override
                 {
-                    const bool retval = object_.does_key_exist(object_,key);
+                    bool retval = object_.does_key_exist(object_,key);
                     return retval;
                 }
 
@@ -178,6 +178,10 @@ class NodeKeys
                     return object_.is_comment_key(object_,key);
                 }
 
+                std::string defaultNullValue() const override
+                {
+                    return object_.default_null_value(object_); 
+                }
                 // ====================  MUTATORS      =======================================
 
                 T object_;
@@ -204,6 +208,10 @@ class NodeKeys
             return node_keys.valuePtr_->isCommentKey(key);
         }
 
+        friend std::string default_null_value(const NodeKeys & node_keys)
+        {
+            return node_keys.valuePtr_->defaultNullValue();
+        }
         //! \brief Returns iterators to the begin and end of the master list of 
         //! control file node keys. 
         //!
