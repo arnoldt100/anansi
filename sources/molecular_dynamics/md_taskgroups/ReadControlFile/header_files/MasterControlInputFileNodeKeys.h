@@ -87,6 +87,14 @@ class MasterControlInputFileNodeKeys
 
         static bool does_key_exist(const MasterControlInputFileNodeKeys & object, const std::string key);
 
+        static bool is_comment_key(const MasterControlInputFileNodeKeys & object, const std::string key);
+        
+        static std::pair<VCI_t_,VCI_t_> all_keys_iterator(const MasterControlInputFileNodeKeys & object);
+
+        static std::array<char,2> separator_char(const MasterControlInputFileNodeKeys & object);
+
+        static std::string default_null_value(const MasterControlInputFileNodeKeys & object);
+
     protected:
         // ====================  METHODS       =======================================
 

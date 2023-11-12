@@ -187,12 +187,6 @@ class NodeKeys
                 T object_;
         };
        
-
-        friend bool does_key_exist ( const NodeKeys && node_keys, const std::string key)
-        {
-            return node_keys.valuePtr_->doesKeyExist(key);
-        }
-        
         friend bool does_key_exist ( const NodeKeys & node_keys, const std::string key)
         {
             return node_keys.valuePtr_->doesKeyExist(key);

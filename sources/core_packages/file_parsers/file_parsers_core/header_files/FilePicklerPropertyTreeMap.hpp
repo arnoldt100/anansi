@@ -65,7 +65,7 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
 
             using path = boost::property_tree::ptree::path_type;
             std::map<std::string,std::string> a_map;
-            // NodeKeys node_keys(MasterKeyPolicy_t());
+            NodeKeys node_keys(MasterKeyPolicy_t{});
             // auto it_keys = all_keys_iterator(node_keys);
             // const std::array<char,2> sep_char = separator_char(node_keys);
             // const std::string default_value = default_null_value(node_keys);
@@ -97,7 +97,7 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         {
             const MasterKeyPolicy_t master_keys;
             boost::property_tree::ptree tree;
-            // const NodeKeys node_keys(MasterKeyPolicy_t);
+            const NodeKeys node_keys(MasterKeyPolicy_t{});
             // const std::string default_value = default_null_value(node_keys);
             // auto it_keys = all_keys_iterator(node_keys);
             // for (auto it = it_keys.first; it != it_keys.second; ++it)

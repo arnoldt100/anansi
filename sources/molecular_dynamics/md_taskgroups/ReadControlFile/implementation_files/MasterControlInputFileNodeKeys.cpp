@@ -130,8 +130,6 @@ MasterControlInputFileNodeKeys * MasterControlInputFileNodeKeys::clone() const
     return new MasterControlInputFileNodeKeys(*this);
 }
 
-
-
 std::pair<MasterControlInputFileNodeKeys::VCI_t_,
           MasterControlInputFileNodeKeys::VCI_t_> MasterControlInputFileNodeKeys::allKeysIterator() const
 {
@@ -159,7 +157,6 @@ bool MasterControlInputFileNodeKeys::isCommentKey(const std::string key) const
     }
     return key_is_comment;
 }
-
 
 std::string MasterControlInputFileNodeKeys::defaultNullValue() const
 {
@@ -199,6 +196,26 @@ bool MasterControlInputFileNodeKeys::does_key_exist(const MasterControlInputFile
     return object.isKeyPresent(key);
 }
 
+bool MasterControlInputFileNodeKeys::is_comment_key(const MasterControlInputFileNodeKeys & object, const std::string key)
+{
+    return object.isCommentKey(key);
+}
+
+std::pair<MasterControlInputFileNodeKeys::VCI_t_,
+          MasterControlInputFileNodeKeys::VCI_t_> MasterControlInputFileNodeKeys::all_keys_iterator(const MasterControlInputFileNodeKeys & object)
+{
+    return object.allKeysIterator();
+}
+
+std::string MasterControlInputFileNodeKeys::default_null_value(const MasterControlInputFileNodeKeys & object)
+{
+    return object.defaultNullValue();
+}
+
+std::array<char,2> MasterControlInputFileNodeKeys::separator_char(const MasterControlInputFileNodeKeys & object)
+{
+    return object.separatorChar();
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
