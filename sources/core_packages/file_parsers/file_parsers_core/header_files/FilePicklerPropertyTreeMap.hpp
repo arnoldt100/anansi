@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
+#include <boost/algorithm/string.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -62,33 +63,24 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         template<typename MasterKeyPolicy_t>
         std::map<std::string,std::string> pickle(const boost::property_tree::ptree & tree) const
         {
-
             using path = boost::property_tree::ptree::path_type;
             std::map<std::string,std::string> a_map;
             NodeKeys node_keys(MasterKeyPolicy_t{});
-            // auto it_keys = all_keys_iterator(node_keys);
-            // const std::array<char,2> sep_char = separator_char(node_keys);
-            // const std::string default_value = default_null_value(node_keys);
+            auto it_keys = all_keys_iterator(node_keys);
+            const std::array<char,2> sep_char = separator_char(node_keys);
+            const std::string default_value = default_null_value(node_keys);
 
-            // for (auto it = it_keys.first; it != it_keys.second; ++it)
-            // {
-            //     const std::string key(*it);
-            //     if ( is_comment_key(node_keys,key))
-            //     {
-            //        continue; 
-            //     }
-
-            //     a_map[key] = tree.get<std::string>(path(key,sep_char[0]), default_value);
-
-            //     // if (auto search = tree.find(key); search != tree.not_found() )
-            //     // {
-            //     //     a_map[key] = tree.get<std::string>(key);
-            //     // }
-            //     // else
-            //     // {
-            //     //     a_map[key] = master_keys.DefaultNullValue;
-            //     // }
-            // }
+            for (auto it = it_keys.first; it != it_keys.second; ++it)
+            {
+                const std::string key(*it);
+                if ( is_comment_key(node_keys,key))
+                {
+                   continue; 
+                }
+                std::string tmp_str = tree.get<std::string>(path(key,sep_char[0]), default_value);
+                boost::algorithm::trim(tmp_str);
+                a_map[key] = tmp_str;
+            }
             return a_map;
         }
 

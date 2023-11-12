@@ -26,7 +26,7 @@ std::string PathToDataFilesFileParserCore::pathToXMLControlFile()
     boost::filesystem::path p;
     p /= anansi_top_level;
     p /= "data_files";
-    p /= "file_parsers_core";
+    p /= "file_parser_core";
     p /= "water_simulation.anansi";
     std::string my_path(p.c_str());
     return my_path;

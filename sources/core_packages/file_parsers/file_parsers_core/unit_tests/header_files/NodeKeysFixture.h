@@ -47,6 +47,7 @@ class NodeKeysFixture
         // ====================  DATA MEMBERS  =======================================
 
         std::vector<std::string> keys;
+        std::vector<std::string> values;
         ANANSI::NodeKeys nodeKeys;
 
     protected:
