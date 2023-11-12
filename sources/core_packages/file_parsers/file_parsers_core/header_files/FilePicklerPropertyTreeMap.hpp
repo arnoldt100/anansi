@@ -64,32 +64,31 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         {
 
             using path = boost::property_tree::ptree::path_type;
-            const MasterKeyPolicy_t master_keys;
-            NodeKeys node_keys<MasterKeyPolicy_t>(MasterKeyPolicy_t{});
-            auto it_keys = all_keys_iterator(node_keys);
-            const std::array<char,2> sep_char = separator_char(node_keys);
-            const std::string default_value = default_null_value(node_keys);
-
             std::map<std::string,std::string> a_map;
-            for (auto it = it_keys.first; it != it_keys.second; ++it)
-            {
-                const std::string key(*it);
-                if ( is_comment_key(node_keys,key))
-                {
-                   continue; 
-                }
+            // NodeKeys node_keys(MasterKeyPolicy_t());
+            // auto it_keys = all_keys_iterator(node_keys);
+            // const std::array<char,2> sep_char = separator_char(node_keys);
+            // const std::string default_value = default_null_value(node_keys);
 
-                a_map[key] = tree.get<std::string>(path(key,sep_char[0]), default_value);
+            // for (auto it = it_keys.first; it != it_keys.second; ++it)
+            // {
+            //     const std::string key(*it);
+            //     if ( is_comment_key(node_keys,key))
+            //     {
+            //        continue; 
+            //     }
 
-                // if (auto search = tree.find(key); search != tree.not_found() )
-                // {
-                //     a_map[key] = tree.get<std::string>(key);
-                // }
-                // else
-                // {
-                //     a_map[key] = master_keys.DefaultNullValue;
-                // }
-            }
+            //     a_map[key] = tree.get<std::string>(path(key,sep_char[0]), default_value);
+
+            //     // if (auto search = tree.find(key); search != tree.not_found() )
+            //     // {
+            //     //     a_map[key] = tree.get<std::string>(key);
+            //     // }
+            //     // else
+            //     // {
+            //     //     a_map[key] = master_keys.DefaultNullValue;
+            //     // }
+            // }
             return a_map;
         }
 
@@ -98,26 +97,26 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
         {
             const MasterKeyPolicy_t master_keys;
             boost::property_tree::ptree tree;
-            const NodeKeys node_keys(MasterKeyPolicy_t);
-            const std::string default_value = default_null_value(node_keys);
-            auto it_keys = all_keys_iterator(node_keys);
-            for (auto it = it_keys.first; it != it_keys.second; ++it)
-            {
-                const std::string key(*it);
-                if ( is_comment_key(node_keys,key))
-                {
-                   continue; 
-                }
-                
-                if (auto search = tree.find(key); search != tree.not_found() )
-                {
-                    tree.put(key,a_map.at(key));
-                }
-                else
-                {
-                    tree.put(key,default_value);
-                }
-            }
+            // const NodeKeys node_keys(MasterKeyPolicy_t);
+            // const std::string default_value = default_null_value(node_keys);
+            // auto it_keys = all_keys_iterator(node_keys);
+            // for (auto it = it_keys.first; it != it_keys.second; ++it)
+            // {
+            //     const std::string key(*it);
+            //     if ( is_comment_key(node_keys,key))
+            //     {
+            //        continue; 
+            //     }
+            //     
+            //     if (auto search = tree.find(key); search != tree.not_found() )
+            //     {
+            //         tree.put(key,a_map.at(key));
+            //     }
+            //     else
+            //     {
+            //         tree.put(key,default_value);
+            //     }
+            // }
             return tree;
         }
 

@@ -194,6 +194,11 @@ bool XMLNodeKeys::does_key_exist(const XMLNodeKeys & object, const std::string k
     return object.isKeyPresent(key);
 }
 
+bool XMLNodeKeys::does_key_exist(const XMLNodeKeys && object, const std::string key)
+{
+    return object.isKeyPresent(key);
+}
+
 std::pair<XMLNodeKeys::VCI_t_,
           XMLNodeKeys::VCI_t_> XMLNodeKeys::all_keys_iterator(const XMLNodeKeys & object)
 {
@@ -205,12 +210,27 @@ std::array<char,2> XMLNodeKeys::separator_char(const XMLNodeKeys & object)
     return object.separatorChar();
 }
 
-bool is_comment_key(const XMLNodeKeys & object, const std::string key)
+std::array<char,2> XMLNodeKeys::separator_char(const XMLNodeKeys && object)
+{
+    return object.separatorChar();
+}
+
+bool XMLNodeKeys::is_comment_key(const XMLNodeKeys & object, const std::string key)
 {
     return object.isCommentKey(key);
 }
 
-std::string default_null_value(const XMLNodeKeys & object)
+bool XMLNodeKeys::is_comment_key(const XMLNodeKeys && object, const std::string key)
+{
+    return object.isCommentKey(key);
+}
+
+std::string XMLNodeKeys::default_null_value(const XMLNodeKeys & object)
+{
+    return object.defaultNullValue();
+}
+
+std::string XMLNodeKeys::default_null_value(const XMLNodeKeys && object)
 {
     return object.defaultNullValue();
 }
