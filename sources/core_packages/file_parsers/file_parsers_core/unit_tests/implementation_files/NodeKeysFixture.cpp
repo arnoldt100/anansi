@@ -2,6 +2,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <tuple>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -25,44 +26,64 @@ NodeKeysFixture::NodeKeysFixture() :
             nodeKeys{ANANSI::XMLNodeKeys()}
 {
     // Initialize the keys that are in the test XML input data file.
-    keys.clear();
-    values.clear();
+    this->keys.clear();
+    this->values.clear();
+    this->keyValues.clear();
 
-    keys.push_back("title");
-    values.push_back("Argon Dimer Simulation");
+    auto p = [this](auto key_values)
+    { 
+        this->keys.push_back(std::get<0>(key_values));
+        this->values.push_back(std::get<1>(key_values));
+    };
 
-    keys.push_back("units");
-    values.push_back("real");
+    std::tuple<std::string,std::string> key_values = {"title","Argon Dimer Simulation"};
+    p(key_values);
+    // this->keys.push_back(std::get<0>(key_values));
+    // this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("processor-topology.lattice-type");
-    values.push_back("Rectangular");
+    key_values = {"units","real"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("processor-topology.mpi-spatial-decomposition");
-    values.push_back("1 1 2");
+    key_values = {"processor-topology.lattice-type","Rectangular"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("processor-topology.compute-units-per-spatial-domain");
-    values.push_back("1");
+    key_values = {"processor-topology.mpi-spatial-decomposition","1 1 2"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("initial-configuration.filename");
-    values.push_back("ar2.initialconfiguration");
+    key_values = {"processor-topology.compute-units-per-spatial-domain","1"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("molecular-topology.filename");
-    values.push_back("ar2.topology");
+    key_values = {"initial-configuration.filename","ar2.initialconfiguration"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("hamiltonian.filename");
-    values.push_back("ar2.hamiltonian");
+    key_values = {"molecular-topology.filename","ar2.topology"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("time-step.value");
-    values.push_back("1.0");
+    key_values = {"hamiltonian.filename","ar2.hamiltonian"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("time-step.units");
-    values.push_back("femtosecond");
+    key_values = {"time-step.value","1.0"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("time-step.number-time-steps");
-    values.push_back("100000");
+    key_values = {"time-step.units","femtosecond"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
-    keys.push_back("integration-methodology.ensemble");
-    values.push_back("NVE");
+    key_values = {"time-step.number-time-steps","100000"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
+
+    key_values = {"integration-methodology.ensemble","NVE"};
+    this->keys.push_back(std::get<0>(key_values));
+    this->values.push_back(std::get<1>(key_values));
 
     return;
 }
@@ -73,6 +94,7 @@ NodeKeysFixture::NodeKeysFixture( NodeKeysFixture const & other)
     {
         this->keys = other.keys;
         this->values = other.values;
+        this->keyValues = other.keyValues;
         this->nodeKeys = other.nodeKeys;
     }
     return;
@@ -84,6 +106,7 @@ NodeKeysFixture::NodeKeysFixture( NodeKeysFixture && other)
     {
         this->keys = std::move(other.keys);
         this->values = std::move(other.values);
+        this->keyValues = std::move(other.keyValues);
         this->nodeKeys = std::move(other.nodeKeys);
     }
     return;
@@ -112,6 +135,7 @@ NodeKeysFixture& NodeKeysFixture::operator= (const NodeKeysFixture &other )
     {
         this->keys = other.keys;
         this->values = other.values;
+        this->keyValues = other.keyValues;
         this->nodeKeys = other.nodeKeys;
     }
     return *this;
@@ -123,6 +147,7 @@ NodeKeysFixture& NodeKeysFixture::operator=( NodeKeysFixture && other )
     {
         this->keys = std::move(other.keys);
         this->values = std::move(other.values);
+        this->keyValues = std::move(other.keyValues);
         this->nodeKeys = std::move(other.nodeKeys);
     }
     return *this;

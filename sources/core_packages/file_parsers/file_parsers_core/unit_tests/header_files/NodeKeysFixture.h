@@ -7,6 +7,7 @@
 //--------------------------------------------------------//
 #include <vector>
 #include <string>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -48,6 +49,7 @@ class NodeKeysFixture
 
         std::vector<std::string> keys;
         std::vector<std::string> values;
+        std::map<std::string,std::string> keyValues;
         ANANSI::NodeKeys nodeKeys;
 
     protected:
