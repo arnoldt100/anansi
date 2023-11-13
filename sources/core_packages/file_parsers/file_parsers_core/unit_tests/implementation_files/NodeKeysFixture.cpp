@@ -34,6 +34,7 @@ NodeKeysFixture::NodeKeysFixture() :
     { 
         this->keys.push_back(std::get<0>(key_values));
         this->values.push_back(std::get<1>(key_values));
+        this->keyValues[std::get<0>(key_values)] = std::get<1>(key_values);
     };
 
     std::tuple<std::string,std::string> key_values = {"title","Argon Dimer Simulation"};
@@ -42,10 +43,10 @@ NodeKeysFixture::NodeKeysFixture() :
     // this->values.push_back(std::get<1>(key_values));
 
     key_values = {"units","real"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"processor-topology.lattice-type","Rectangular"};
+    p(key_values);
     this->keys.push_back(std::get<0>(key_values));
     this->values.push_back(std::get<1>(key_values));
 
