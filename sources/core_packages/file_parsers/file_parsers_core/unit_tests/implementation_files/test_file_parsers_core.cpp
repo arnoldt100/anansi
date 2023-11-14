@@ -49,19 +49,20 @@ BOOST_AUTO_TEST_CASE( FindNodeKey)
 
 BOOST_AUTO_TEST_CASE( pickling_boost_property_tree)
 {
-    ANANSI::XMLReaderFixture f;
-    
-    // Read the xml with the XMLReader.
-    ANANSI::XMLFileReader my_file_reader;
-    std::string path = ANANSI::PathToDataFilesFileParserCore::pathToXMLControlFile();
-    boost::property_tree::ptree my_ptree = my_file_reader.read(path);
+    ANANSI::NodeKeysFixture my_node_keys_fixture;
+    ANANSI::XMLReaderFixture my_xml_reader_fixture;
 
-    // Pickle the xml file.
+    // Pickle the property tree that comes from the xml file. We use ANANSI::FilePickler
+    // to do the pickling to std::map<std::string,std::string>
+    boost::property_tree::ptree my_ptree = my_xml_reader_fixture.getPropertyTree();
     ANANSI::FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>> my_pickler;
     std::map<std::string,std::string> pickled_file = my_pickler.pickle<ANANSI::XMLNodeKeys>(my_ptree);
 
-    // Verify the pickled xml file is correct.
-    BOOST_TEST( 2 < 1, "The test pickling_boost_property_tree is incorrect" );
+    // Verify the pickled xml file (which is the generated std::map) is correct.
+    std::map<std::string,std::string> correct_pickled_file = my_node_keys_fixture.getMap();
+
+    bool xml_pickled_correctly = false;
+    BOOST_TEST( xml_pickled_correctly, "The test pickling_boost_property_tree failed." );
 }
 
 BOOST_AUTO_TEST_CASE( unpickling_boost_property_tree )
