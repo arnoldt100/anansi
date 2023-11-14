@@ -100,7 +100,6 @@ NodeKeysFixture::NodeKeysFixture( NodeKeysFixture && other)
     return;
 }		// -----  end of method NodeKeysFixture::NodeKeysFixture  -----
 
-
 NodeKeysFixture::~NodeKeysFixture()
 {
     return;

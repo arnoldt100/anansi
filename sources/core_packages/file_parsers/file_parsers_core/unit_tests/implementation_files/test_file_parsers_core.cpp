@@ -15,6 +15,7 @@
 #include "PathToDataFilesFileParserCore.h"
 #include "XMLFileReader.h"
 #include "FilePicklerPropertyTreeMap.hpp"
+#include "compare_pickled_files.h"
 
 BOOST_AUTO_TEST_SUITE( Test_Suite_FileParsersCore )
 
@@ -53,15 +54,16 @@ BOOST_AUTO_TEST_CASE( pickling_boost_property_tree)
     ANANSI::XMLReaderFixture my_xml_reader_fixture;
 
     // Pickle the property tree that comes from the xml file. We use ANANSI::FilePickler
-    // to do the pickling to std::map<std::string,std::string>
+    // to do the pickling of property_tree to std::map<std::string,std::string>
     boost::property_tree::ptree my_ptree = my_xml_reader_fixture.getPropertyTree();
     ANANSI::FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>> my_pickler;
     std::map<std::string,std::string> pickled_file = my_pickler.pickle<ANANSI::XMLNodeKeys>(my_ptree);
 
-    // Verify the pickled xml file (which is the generated std::map) is correct.
+    // Verify the pickled xml file, pickled_file (which is a std::map), is correct
+    // by comparing to the correct pickled file.
     std::map<std::string,std::string> correct_pickled_file = my_node_keys_fixture.getMap();
 
-    bool xml_pickled_correctly = false;
+    bool xml_pickled_correctly = ANANSI::compare_pickled_files(correct_pickled_file,pickled_file );
     BOOST_TEST( xml_pickled_correctly, "The test pickling_boost_property_tree failed." );
 }
 

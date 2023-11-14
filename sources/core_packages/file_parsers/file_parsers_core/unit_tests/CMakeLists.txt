@@ -52,6 +52,7 @@
     ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLNodeKeys.h
     ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NodeKeysFixture.h
     ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLReaderFixture.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/header_files/compare_pickled_files.h
     ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_file_parsers_core.h )
 
 
@@ -66,6 +67,7 @@
     ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLNodeKeys.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NodeKeysFixture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLReaderFixture.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/compare_pickled_files.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_file_parsers_core.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
