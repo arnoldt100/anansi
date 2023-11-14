@@ -27,6 +27,7 @@ echo "---"
 
 echo ""
 echo ""
+echo ""
 
 # Start of short option help test.
 echo "---"
