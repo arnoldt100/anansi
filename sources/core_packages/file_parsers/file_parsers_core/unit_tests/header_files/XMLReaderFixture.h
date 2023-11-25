@@ -36,6 +36,8 @@ class XMLReaderFixture
         // ====================  ACCESSORS     =======================================
         XMLReaderFixture * clone () const;
 
+        boost::property_tree::ptree getPropertyTree() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

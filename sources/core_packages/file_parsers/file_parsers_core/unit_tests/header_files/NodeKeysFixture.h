@@ -37,6 +37,8 @@ class NodeKeysFixture
         // ====================  ACCESSORS     =======================================
         NodeKeysFixture * clone () const;
 
+        std::map<std::string,std::string> getMap() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

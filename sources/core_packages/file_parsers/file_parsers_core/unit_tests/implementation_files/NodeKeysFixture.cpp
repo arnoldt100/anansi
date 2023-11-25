@@ -65,16 +65,13 @@ NodeKeysFixture::NodeKeysFixture() :
     p(key_values);
 
     key_values = {"time-step.units","femtosecond"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"time-step.number-time-steps","100000"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"integration-methodology.ensemble","NVE"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     return;
 }
@@ -103,7 +100,6 @@ NodeKeysFixture::NodeKeysFixture( NodeKeysFixture && other)
     return;
 }		// -----  end of method NodeKeysFixture::NodeKeysFixture  -----
 
-
 NodeKeysFixture::~NodeKeysFixture()
 {
     return;
@@ -114,6 +110,11 @@ NodeKeysFixture::~NodeKeysFixture()
 NodeKeysFixture * NodeKeysFixture::clone() const
 {
     return new NodeKeysFixture(*this);
+}
+
+std::map<std::string,std::string> NodeKeysFixture::getMap() const
+{
+    return this->keyValues;
 }
 
 //============================= MUTATORS =====================================

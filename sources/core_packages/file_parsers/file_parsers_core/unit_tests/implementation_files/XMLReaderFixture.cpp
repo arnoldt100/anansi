@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "XMLReaderFixture.h"
+#include "PathToDataFilesFileParserCore.h"
 
 namespace ANANSI {
 
@@ -87,6 +88,11 @@ XMLReaderFixture& XMLReaderFixture::operator= ( XMLReaderFixture && other )
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+boost::property_tree::ptree XMLReaderFixture::getPropertyTree() const
+{
+    std::string path = ANANSI::PathToDataFilesFileParserCore::pathToXMLControlFile();
+    return this->xmlFileReader.read(path);
+}
 
 //============================= MUTATORS =====================================
 
