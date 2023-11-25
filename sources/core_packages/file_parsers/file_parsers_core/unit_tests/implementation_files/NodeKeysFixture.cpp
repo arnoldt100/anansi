@@ -39,40 +39,30 @@ NodeKeysFixture::NodeKeysFixture() :
 
     std::tuple<std::string,std::string> key_values = {"title","Argon Dimer Simulation"};
     p(key_values);
-    // this->keys.push_back(std::get<0>(key_values));
-    // this->values.push_back(std::get<1>(key_values));
 
     key_values = {"units","real"};
     p(key_values);
 
     key_values = {"processor-topology.lattice-type","Rectangular"};
     p(key_values);
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
 
     key_values = {"processor-topology.mpi-spatial-decomposition","1 1 2"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"processor-topology.compute-units-per-spatial-domain","1"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"initial-configuration.filename","ar2.initialconfiguration"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"molecular-topology.filename","ar2.topology"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"hamiltonian.filename","ar2.hamiltonian"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"time-step.value","1.0"};
-    this->keys.push_back(std::get<0>(key_values));
-    this->values.push_back(std::get<1>(key_values));
+    p(key_values);
 
     key_values = {"time-step.units","femtosecond"};
     this->keys.push_back(std::get<0>(key_values));
