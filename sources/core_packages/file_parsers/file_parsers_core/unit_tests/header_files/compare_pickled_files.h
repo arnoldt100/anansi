@@ -21,8 +21,12 @@
 namespace ANANSI
 {
 
-//! \brief Stud text for brief description
-void compare_pickled_files (std::map<> );
+//! \brief Compares pickled_file to correct_pickle_file.
+//!
+//! \detail Compares pickled_file to correct_pickle_file. If the pickle_file
+//! is the same as correct_pickle_file then 'true' is returned, otherwise 'false; is returned.
+bool compare_pickled_files (const std::map<std::string,std::string> & correct_pickle_file,
+                            const std::map<std::string,std::string> & pickled_file);
 
 
 }; // namespace ANANSI

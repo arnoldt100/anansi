@@ -14,9 +14,10 @@
 namespace ANANSI
 {
 
-void compare_pickled_files ()
+bool compare_pickled_files (const std::map<std::string,std::string> & correct_pickle_file,
+                            const std::map<std::string,std::string> & pickled_file)
 {
-    return ;
+    return false;
 }   // -----  end of function compare_pickled_files  -----
 
 
