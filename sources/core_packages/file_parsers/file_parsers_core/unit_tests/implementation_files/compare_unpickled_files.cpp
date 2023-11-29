@@ -1,8 +1,3 @@
-#ifndef  test_file_parsers_core_INC
-#define  test_file_parsers_core_INC
-
-#define BOOST_TEST_MODULE File Parsers Core
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -10,13 +5,20 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/test/included/unit_test.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "compare_unpickled_files.h"
 
-namespace utf = boost::unit_test;
+namespace ANANSI
+{
+
+void compare_unpickled_files ()
+{
+    return false;
+}   // -----  end of function compare_unpickled_files  -----
 
 
-#endif   // ----- #ifndef test_file_parsers_core_INC  ----- 
+}; // namespace ANANSI
+

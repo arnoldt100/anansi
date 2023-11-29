@@ -26,6 +26,7 @@
 #include "XMLFileReader.h"
 #include "FilePicklerPropertyTreeMap.hpp"
 #include "compare_pickled_files.h"
+#include "compare_unpickled_files.h"
 
 BOOST_AUTO_TEST_SUITE( Test_Suite_FileParsersCore )
 
@@ -80,8 +81,22 @@ BOOST_AUTO_TEST_CASE( pickling_boost_property_tree)
 
 BOOST_AUTO_TEST_CASE( unpickling_boost_property_tree )
 {
-    ANANSI::XMLReaderFixture f;
-    BOOST_TEST(2 < 1, "The test unpickling_boost_property_tree is incorrect.");
+
+    // Unpickle the std::map in NodeKeysFixture to create a boost::ptree. This boost::ptree is the experimental
+    // boost::ptree.
+    ANANSI::NodeKeysFixture my_node_keys_fixture;
+    std::map<std::string,std::string> tmp_map = my_node_keys_fixture.getMap();
+    ANANSI::FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>> my_pickler;
+    boost::property_tree::ptree my_exp_ptree = my_pickler.unPickle<ANANSI::XMLNodeKeys>(tmp_map);
+     
+
+    // Get the boost::ptree from the XMLFileReader. This is the correct boost::ptree
+    ANANSI::XMLReaderFixture my_xml_reader_fixture;
+    boost::property_tree::ptree my_correct_ptree = my_xml_reader_fixture.getPropertyTree();
+
+    // Compare the correct and test boost::ptrees. They should contain the same key-value pairs.
+    bool value = compare_unpickled_files();
+    BOOST_TEST(value, "The test unpickling_boost_property_tree is incorrect.");
 }
 
 BOOST_AUTO_TEST_SUITE_END()
