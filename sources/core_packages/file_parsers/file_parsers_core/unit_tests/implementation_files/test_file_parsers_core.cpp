@@ -61,10 +61,11 @@ BOOST_AUTO_TEST_CASE( pickling_boost_property_tree)
 
     // Verify the pickled xml file, pickled_file (which is a std::map), is correct
     // by comparing to the correct pickled file.
+    bool xml_pickled_correctly;
+    std::string message;
     std::map<std::string,std::string> correct_pickled_file = my_node_keys_fixture.getMap();
-
-    bool xml_pickled_correctly = ANANSI::compare_pickled_files(correct_pickled_file,pickled_file);
-    BOOST_TEST( xml_pickled_correctly, "The test pickling_boost_property_tree failed." );
+    std::tie(xml_pickled_correctly,message) = ANANSI::compare_pickled_files(correct_pickled_file,pickled_file);
+    BOOST_TEST( xml_pickled_correctly, message.c_str() );
 }
 
 BOOST_AUTO_TEST_CASE( unpickling_boost_property_tree )
