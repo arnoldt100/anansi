@@ -14,7 +14,7 @@
 namespace ANANSI
 {
 
-void compare_unpickled_files ()
+bool compare_unpickled_files ()
 {
     return false;
 }   // -----  end of function compare_unpickled_files  -----
