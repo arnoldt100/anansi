@@ -1,17 +1,27 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <boost/format.hpp>
-#include <boost/filesystem.hpp>
+#include <iostream>
+#include <cstdlib>
+#include <map>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/format.hpp>
+#include <boost/filesystem.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "test_file_parsers_core.h"
+#include "NodeKeys.h"
+#include "XMLNodeKeys.h"
+#include "NodeKeysFixture.h"
+#include "XMLReaderFixture.h"
 #include "PathToDataFilesFileParserCore.h"
 #include "XMLFileReader.h"
 #include "FilePicklerPropertyTreeMap.hpp"

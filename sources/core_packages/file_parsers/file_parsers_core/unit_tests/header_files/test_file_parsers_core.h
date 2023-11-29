@@ -6,10 +6,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <iostream>
-#include <cstdlib>
-#include <map>
-#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -21,11 +17,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NodeKeys.h"
-#include "XMLNodeKeys.h"
-#include "NodeKeysFixture.h"
-#include "XMLReaderFixture.h"
-#include "FilePicklerPropertyTreeMap.hpp"
 
 namespace utf = boost::unit_test;
 
