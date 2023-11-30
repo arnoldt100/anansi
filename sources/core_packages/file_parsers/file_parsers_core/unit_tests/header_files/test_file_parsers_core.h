@@ -18,5 +18,4 @@
 
 namespace utf = boost::unit_test;
 
-
 #endif   // ----- #ifndef test_file_parsers_core_INC  ----- 
