@@ -39,7 +39,6 @@ namespace {
                 {
                     frmter_key_value_same % key.c_str() % value_A % value_B;
                     message += frmter_key_value_same.str();
-
                 }
                 else
                 {
