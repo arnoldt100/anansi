@@ -90,25 +90,29 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
             const MasterKeyPolicy_t master_keys;
             boost::property_tree::ptree tree;
             const NodeKeys node_keys(MasterKeyPolicy_t{});
-            // const std::string default_value = default_null_value(node_keys);
-            // auto it_keys = all_keys_iterator(node_keys);
-            // for (auto it = it_keys.first; it != it_keys.second; ++it)
-            // {
-            //     const std::string key(*it);
-            //     if ( is_comment_key(node_keys,key))
-            //     {
-            //        continue; 
-            //     }
-            //     
-            //     if (auto search = tree.find(key); search != tree.not_found() )
-            //     {
-            //         tree.put(key,a_map.at(key));
-            //     }
-            //     else
-            //     {
-            //         tree.put(key,default_value);
-            //     }
-            // }
+            const std::string default_value = default_null_value(node_keys);
+            auto it_keys = all_keys_iterator(node_keys);
+            for (auto it = it_keys.first; it != it_keys.second; ++it)
+            {
+                std::string key(*it);
+                boost::algorithm::trim(key);
+                if ( is_comment_key(node_keys,key))
+                {
+                   continue; 
+                }
+               
+                std::string value;
+                if (auto search = tree.find(key); search != tree.not_found() )
+                {
+                    value = a_map.at(key);
+                }
+                else
+                {
+                    value = default_value;
+                }
+                boost::algorithm::trim(value);
+                tree.put(key,value);
+            }
             return tree;
         }
 
