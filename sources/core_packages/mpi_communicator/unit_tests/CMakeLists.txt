@@ -8,7 +8,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "__target___unit_tests")
+    set(my_project_name "mpi_communicator_unit_tests")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -27,34 +27,34 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # Here we define the sources and header files associated          @
-# with the __target___unit_test target.                           @
+# with the mpi_communicator_unit_test target.                     @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # __target___unit_tests_header_files                 -
+    # mpi_communicator_unit_tests_header_files           -
     # with the target header files.                      -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___unit_tests_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test___target__.h )
+    set (mpi_communicator_unit_tests_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_mpi_communicator.h )
 
 
     #-----------------------------------------------------
     # Here we define the variable                        -
-    # __target___unit_tests_implementation_files         -
+    # mpi_communicator_unit_tests_implementation_files   -
     # associated with target implementation files.       -
     #                                                    -
     #-----------------------------------------------------
-    set (__target___unit_tests_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test___target__.cpp )
+    set (mpi_communicator_unit_tests_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_mpi_communicator.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the implementation and header files associated  @
-# with the __target___unit_tests target.                          @
+# with the mpi_communicator_unit_tests target.                    @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -75,45 +75,47 @@
     #                                                    -
     #-----------------------------------------------------
     target_sources(${target}
-        PRIVATE ${__target___unit_tests_header_files}
-                ${__target___unit_tests_implementation_files} )
+                   PRIVATE ${mpi_communicator_unit_tests_header_files}
+                   PRIVATE ${mpi_communicator_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
     #                                                    -
     #-----------------------------------------------------
-    get_target_property( <cla>_include_dir __target__ __target___include )
+    get_target_property( mpi_communicator_unit_tests_include_dir mpi_communicator mpi_communicator_include )
     target_include_directories(${target} 
-                               PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                               PRIVATE ${<cla>_include_dir}
+                               PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                               PRIVATE ${mpi_communicator_unit_tests_include_dir}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
     # (1) Boost libraries                                -
-    # (2) lib__target__.a                    -
+    # (2) libmpi_communicator.a                          -
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
-                          PRIVATE __target__ ${Boost_LIBRARIES} )
+                          PUBLIC mpi_communicator 
+                          PUBLIC ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------
     # Here we set the properties on target               -
-    # __target___unit_tests.                 -
+    # mpi_communicator_unit_tests.                       -
     #                                                    -
     #-----------------------------------------------------
     set_target_properties( ${target}
                            PROPERTIES
-                           PUBLIC_HEADER "${__target___unit_tests_header_files}" )
+                           CXX_STANDARD ${mpi_communicator_cxx_standard}
+                           PUBLIC_HEADER "${mpi_communicator_unit_tests_header_files}" )
 
     #-----------------------------------------------------
     # Here we define the installations rules for         -
-    # this target __target___unit_tests.                 -
+    # this target mpi_communicator_unit_tests.                 -
     #                                                    -
     #-----------------------------------------------------
     install( TARGETS ${target}
-             RUNTIME DESTINATION ${anansi_install_bin_directory} 
-             PUBLIC_HEADER DESTINATION ${anansi_install_include_directory} )
+             RUNTIME DESTINATION ${mpi_communicator_install_bin_directory} 
+             PUBLIC_HEADER DESTINATION ${mpi_communicator_install_include_directory} )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

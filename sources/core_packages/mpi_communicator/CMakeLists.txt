@@ -242,4 +242,4 @@ install( TARGETS ${target}
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-# add_subdirectory(unit_tests)
+add_subdirectory(unit_tests)

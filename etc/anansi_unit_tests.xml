@@ -1,8 +1,8 @@
 <!-- This file configures the unit tests to run. -->
 <data>
-   <unit_test name = "invoker">
-        <active> no </active>
-        <test_binary>invoker_unit_tests</test_binary>
+   <unit_test name = "communicator">
+        <active> yes </active>
+        <test_binary>communicator_unit_tests</test_binary>
         <test_arguments> </test_arguments>
    </unit_test>
 
@@ -12,8 +12,14 @@
         <test_arguments> </test_arguments>
    </unit_test>
 
+   <unit_test name = "invoker">
+        <active> no </active>
+        <test_binary>invoker_unit_tests</test_binary>
+        <test_arguments> </test_arguments>
+   </unit_test>
+
    <unit_test name = "string_utilities">
-        <active> yes </active>
+        <active> no </active>
         <test_binary>string_utilities_unit_tests</test_binary>
         <test_arguments> </test_arguments>
    </unit_test>
