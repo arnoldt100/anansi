@@ -1,6 +1,8 @@
 #ifndef test_mpi_communicator_INC
 #define test_mpi_communicator_INC
 
+#define BOOST_TEST_MODULE MPI Communicator
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
