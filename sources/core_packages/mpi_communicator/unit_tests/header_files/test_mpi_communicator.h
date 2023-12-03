@@ -1,7 +1,5 @@
-#ifndef ANANSI_test_mpi_communicator_INC
-#define ANANSI_test_mpi_communicator_INC
-
-//! \file test_mpi_communicator.h
+#ifndef test_mpi_communicator_INC
+#define test_mpi_communicator_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -10,19 +8,13 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/test/included/unit_test.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-
-namespace ANANSI
-{
-
-//! \brief Stud text for brief description
-void test_mpi_communicator ( <+argument_list+> );
+namespace utf = boost::unit_test;
 
 
-}; // namespace ANANSI
-
-#endif // ANANSI_test_mpi_communicator_INC
+#endif // test_mpi_communicator_INC
