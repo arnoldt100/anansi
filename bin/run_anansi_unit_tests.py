@@ -94,7 +94,7 @@ def _get_program_description():
     pd += ("""To list the available tests do\n\n""")
     pd += ("""  run_unit_tests.py --list-test-targets\n\n""")
     pd += ("""To run all available tests do\n\n""")
-    pd += ("""  run_unit_tests.py ---test-all-targets\n\n""")
+    pd += ("""  run_unit_tests.py --test-all-targets\n\n""")
     return pd
 
 def _get_test_all_targets_description():
