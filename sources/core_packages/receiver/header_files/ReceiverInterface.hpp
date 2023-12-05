@@ -81,14 +81,16 @@ class ReceiverInterface
             static void do_action(const Derived & derived, Types... args)
             {
                 void (Derived::*fn)(Types... args) const = &Accessor_::receiverDoAction_;
-                return (derived.*fn)(args...);
+                (derived.*fn)(args...);
+                return;
             };
 
             template<typename... Types>
             static void undo_action(const Derived & derived, Types... args)
             {
                 void (Derived::*fn)(Types... args) const = &Accessor_::receiverUndoAction_;
-                return (derived.*fn)(args...);
+                (derived.*fn)(args...);
+                return;
             }
 
             //! Returns the task label of the receiver.
@@ -121,7 +123,8 @@ class ReceiverInterface
             static void disable_receiver(Derived & derived, Types... args)
             {
                 void (Derived::*fn)(Types... args) = &Accessor_::disableReceiver_;
-                return (derived.*fn)(args...);
+                (derived.*fn)(args...);
+                return;
             }
 
             template<typename T>
@@ -135,7 +138,8 @@ class ReceiverInterface
             static void enable_receiver(Derived & derived, Types... args)
             {
                 void (Derived::*fn)(Types... args) = &Accessor_::enableReceiver_;
-                return (derived.*fn)(args...);
+                (derived.*fn)(args...);
+                return; 
             }
         };
 

@@ -61,7 +61,25 @@ class GenericTaskInvokerFactory
             return;
         }
 
+        
+        // ====================  STATIC         ====================================== 
+        static auto initializeInvoker() 
+        {
+            std::shared_ptr<GenericTaskInvokerFactory<AbstractProductsTypeList,
+                                                      ConcreteProductsTypeList>
+                           > invoker_factory = 
+            std::make_shared<GenericTaskInvokerFactory<AbstractProductsTypeList,
+                                                       ConcreteProductsTypeList>
+                            >();
+
+            std::shared_ptr<ANANSI::GenericTaskInvoker<AbstractProductsTypeList,
+                                                       ConcreteProductsTypeList>
+                           > t1= invoker_factory->create_shared_ptr();
+            return t1;
+        }
+        
         // ====================  ACCESSORS     =======================================
+
         template < typename... Types>
         std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,
                                            ConcreteProductsTypeList,

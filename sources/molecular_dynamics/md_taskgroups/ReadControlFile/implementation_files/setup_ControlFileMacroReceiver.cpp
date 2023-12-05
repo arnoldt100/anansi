@@ -32,7 +32,7 @@ void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
 
     // ---------------------------------------------------
     // Get the task label for the task
-    // GenericMDTask<ControlFile,ControlFileMacroReceiver>
+    // GenericMDTask<ControlFileMacroReceiver>
     //
     // ---------------------------------------------------
     auto constexpr task_label = concrete_receiver_t::TASKLABEL;
@@ -48,7 +48,7 @@ void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
 
     // ---------------------------------------------------
     // Create the receiver of concrete task 
-    // GenericMDTask<MC,ControlFileMacroReceiver> 
+    // GenericMDTask<ControlFileMacroReceiver>
     // ---------------------------------------------------
     auto control_file_xmlmacro_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();

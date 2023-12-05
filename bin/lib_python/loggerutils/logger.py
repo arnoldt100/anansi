@@ -47,8 +47,8 @@ def create_logger(log_id, log_level):
     ch.setLevel(log_level)
 
     # create formatter
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    my_log_format = _file_logger_format()
+    formatter = logging.Formatter(my_log_format)
 
     # add formatter to ch
     ch.setFormatter(formatter)
@@ -56,5 +56,52 @@ def create_logger(log_id, log_level):
     # add ch to logger
     logger.addHandler(ch)
 
+## @brief Creates and returns a logger object.
+##
+## @details Creates a logger object with name log_id and returns it.
+## log level log_level.
+##
+## @param log_id A string
+## @param log_level A logging level (e.g. logging.DEBUG, logging.INFO, etc.)
+## @param filename The file the logger writes to
+## @retval logger A logger object - see logging python documentation
+def create_file_logger(log_id, log_level,filename):
+    logger = logging.getLogger(log_id)
+    logger.setLevel(log_level)
+
+    # create file handler and set level "log_level"
+    fh = logging.FileHandler(filename)
+    fh.setLevel(log_level)
+    my_log_format = _file_logger_format()
+
+    formatter = logging.Formatter(my_log_format)
+    # add formatter to ch
+    fh.setFormatter(formatter)
+
+    # add ch to logger
+    logger.addHandler(fh)
     return logger
 
+def _file_logger_format():
+    skip_2_lines = "\n\n"
+    count = 1
+    border = "#@-@-@-@-@-@-@-@-@-@-#"
+    my_log_format = _horizontal_border(border,count)
+    my_log_format += '\n%(asctime)s - %(name)s - %(levelname)s'
+    my_log_format += _horizontal_border(border,count)
+    my_log_format += '\n%(message)s\n'
+    my_log_format += _horizontal_border(border,count)
+    my_log_format += skip_2_lines
+    return my_log_format
+
+## Returns a horizonatal line composed of "chars".
+#
+# *widths are integer numbers whose sum is the number
+# 'chars' that make the horizontal line.
+def _horizontal_border(chars,*widths):
+    bwidth = 0
+    for arg in widths:
+        bwidth += arg
+    hline = chars * (bwidth)
+    hborder = "\n{0}".format(hline)
+    return hborder

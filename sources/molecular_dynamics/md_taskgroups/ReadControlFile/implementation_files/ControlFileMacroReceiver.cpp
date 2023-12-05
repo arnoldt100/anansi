@@ -102,7 +102,7 @@ template<>
 void ControlFileMacroReceiver::receiverModifyMyself_<std::shared_ptr<ANANSI::AnansiTask>>(std::shared_ptr<ANANSI::AnansiTask> & a_task)
 {
     const auto task_label= a_task->taskLabel();
-    this->compenentTasks_[task_label] = a_task;
+    this->componentTasks_[task_label] = a_task;
     return;
 }
 

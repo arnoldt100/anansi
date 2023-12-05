@@ -63,8 +63,8 @@ class DummyTraits
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
-                                                       GenericMDTask<DummyAbstractTask1,DummyConcreteTaskReceiver1>,
-                                                       GenericMDTask<DummyAbstractTask2,DummyConcreteTaskReceiver2>
+                                                       GenericMDTask<DummyConcreteTaskReceiver1>,
+                                                       GenericMDTask<DummyConcreteTaskReceiver2>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist <

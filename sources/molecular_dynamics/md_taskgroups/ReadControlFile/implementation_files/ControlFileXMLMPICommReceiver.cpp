@@ -22,16 +22,18 @@ namespace ANANSI {
 
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
     ReceiverInterface<ControlFileXMLMPICommReceiver>(),
-    ownershipPolicy_(),
-    results_(0)
+    results_(ReadControlFileResultsTraits::ControlInputFile_t()),
+    communicator_(),
+    ownershipPolicy_()
 {
     return;
 }
 
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver( ControlFileXMLMPICommReceiver && other) :
     ReceiverInterface<ControlFileXMLMPICommReceiver>(std::move(other)),
-    ownershipPolicy_(std::move(other.ownershipPolicy_)),
-    results_(std::move(other.results_))
+    results_(std::move(other.results_)),
+    communicator_(std::move(other.communicator_)),
+    ownershipPolicy_(std::move(other.ownershipPolicy_))
 {
     if (this != &other)
     {
@@ -56,8 +58,9 @@ ControlFileXMLMPICommReceiver& ControlFileXMLMPICommReceiver::operator= ( Contro
     if (this != &other)
     {
         ReceiverInterface<ControlFileXMLMPICommReceiver>::operator=(std::move(other));
-        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->results_ = std::move(other.results_);
+        this->communicator_ = std::move(other.communicator_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
 } // assignment-move operator
@@ -79,12 +82,18 @@ ControlFileXMLMPICommReceiver::receiver_copy_t_ ControlFileXMLMPICommReceiver::r
 //============================= MUTATORS =====================================
 
 template<>
-void ControlFileXMLMPICommReceiver::receiverModifyMyself_(int & arg)
+void ControlFileXMLMPICommReceiver::receiverModifyMyself_(CommandFiles<> & arg)
 {
     this->results_ = arg;
     return;
 }
 
+template<>
+void ControlFileXMLMPICommReceiver::receiverModifyMyself_(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
+{
+    this->communicator_ = std::move(arg);
+    return;
+}
 ControlFileXMLMPICommReceiver::receiver_share_t_ ControlFileXMLMPICommReceiver::receiverShareOwnershipOfResults_()
 {
     ControlFileXMLMPICommReceiver::receiver_share_t_ my_shared_result = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);

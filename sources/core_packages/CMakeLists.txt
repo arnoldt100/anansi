@@ -17,7 +17,7 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/core_packages_bu
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 # ----------------------------------------------------
-#  Verify that all beuild prerequisites are satisfied 
+#  Verify that all build prerequisites are satisfied 
 # for target 'core_packages'.
 # 
 # ----------------------------------------------------

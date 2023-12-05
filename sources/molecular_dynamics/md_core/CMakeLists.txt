@@ -47,7 +47,7 @@
     get_target_property(my_command_line_include_dir command_line_arguments command_line_arguments_include)
     get_target_property(simulation_parameters_include_dir simulation_parameters simulation_parameters_include)
     get_target_property(my_cc_include counterclass counterclass_include)
-    get_target_property(my_cf_include  file_parsers file_parsers_include)
+    get_target_property(my_cf_include  control_file control_file_include)
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_s_include  simulation simulation_include)
     get_target_property(my_ss_include  simulation_state simulation_state_include)
@@ -101,8 +101,7 @@
         header_files/MDSimulationStateFactory.h
         header_files/ISEStatus.h
         header_files/AnansiMolecularDynamicsFactory.h 
-        header_files/AnansiMDStateInt2Type.hpp
-        header_files/initialize_controlfile_invoker_and_taskfactory.h)
+        header_files/AnansiMDStateInt2Type.hpp)
     
     # ----------------------------------------------------
     # These files are for communicattion environment invoker.
@@ -131,8 +130,7 @@
         implementation_files/MDSimulationStateFactory.cpp
         implementation_files/ISEStatus.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp 
-        implementation_files/AnansiMDStateInt2Type.cpp
-        implementation_files/initialize_controlfile_invoker_and_taskfactory.cpp)
+        implementation_files/AnansiMDStateInt2Type.cpp)
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -186,7 +184,7 @@ target_link_libraries("${md_core_target}"
                       PUBLIC initmpienvtask
                       PUBLIC initworldcommunicatortask
                       PUBLIC genericmdtask
-                      PUBLIC file_parsers
+                      PUBLIC control_file
                       PUBLIC simulation
                       PUBLIC simulation_state
                       PUBLIC mpi_communicator

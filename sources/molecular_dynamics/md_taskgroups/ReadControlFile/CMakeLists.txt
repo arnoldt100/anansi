@@ -69,18 +69,20 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_header_files
-         header_files/MasterProcess.h
-         header_files/ControlFileXMLReceiver.h
-         header_files/ControlFileXMLOwnershipImpl.hpp
-         header_files/ControlFileXMLMPICommReceiver.h
-         header_files/ControlFileXMLMPICommOwnershipImpl.hpp
-         header_files/ControlFileMacroOwnershipImpl.hpp
-         header_files/ControlFileMacroReceiver.h
-         header_files/ReadControlFileTraits.h
-         header_files/setup_controlfile_receivers.h
-         header_files/setup_ControlFileXMLReceiver.h
-         header_files/setup_ControlFileXMLMPICommReceiver.h
-         header_files/setup_ControlFileMacroReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterProcess.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlInputFileNodeKeys.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileXMLReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFilesOwnershipImpl.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileXMLMPICommReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileMacroOwnershipImpl.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileMacroReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadControlFileTraits.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_controlfile_invoker.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_controlfile_invoker.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileXMLReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileXMLMPICommReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileMacroReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadControlFileResultsTraits.h
          )
 
     #-----------------------------------------------------
@@ -91,18 +93,20 @@
     #                                                    -
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
-         implementation_files/MasterProcess.cpp
-         implementation_files/ControlFileXMLReceiver.cpp
-         implementation_files/ControlFileXMLOwnershipImpl.cpp
-         implementation_files/ControlFileXMLMPICommReceiver.cpp
-         implementation_files/ControlFileXMLMPICommOwnershipImpl.cpp
-         implementation_files/ControlFileMacroOwnershipImpl.cpp
-         implementation_files/ControlFileMacroReceiver.cpp
-         implementation_files/ReadControlFileTraits.cpp 
-         implementation_files/setup_controlfile_receivers.cpp
-         implementation_files/setup_ControlFileXMLReceiver.cpp
-         implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
-         implementation_files/setup_ControlFileMacroReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterProcess.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlInputFileNodeKeys.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileXMLReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFilesOwnershipImpl.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileXMLMPICommReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileMacroOwnershipImpl.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileMacroReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadControlFileTraits.cpp 
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_controlfile_invoker.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_controlfile_invoker.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileXMLReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileMacroReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadControlFileResultsTraits.cpp
          )
 
     # -----------------------------------------------------
@@ -110,13 +114,15 @@
     # 
     # -----------------------------------------------------
     get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
+    get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
     get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
-    get_target_property(my_file_parsers_include  file_parsers file_parsers_include)
+    get_target_property(my_control_file_include control_file control_file_include)
+    get_target_property(my_command_files_include command_files command_files_include)
 
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -154,19 +160,23 @@ target_include_directories(${target}
                            PRIVATE "${my_genericmdtask_include}" 
                            PRIVATE "${my_generic_abstract_factory_include}"
                            PRIVATE "${my_invoker_include}"
-                           PRIVATE "${my_file_parsers_include}")
+                           PRIVATE "${my_control_file_include}"
+                           PRIVATE "${my_command_files_include}"
+                           PRIVATE "${my_mpi_communicator_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
+                      PUBLIC control_file
                       PUBLIC common_md_taskgroup_headers
+                      PUBLIC mdownershippolicies
                       PUBLIC genericmdtask
                       PUBLIC generic_abstract_factory
                       PUBLIC invoker
-                      PUBLIC mdownershippolicies
-                      PUBLIC file_parsers) 
+                      PUBLIC command_files
+                      PUBLIC mpi_communicator) 
 
 
 #-----------------------------------------------------

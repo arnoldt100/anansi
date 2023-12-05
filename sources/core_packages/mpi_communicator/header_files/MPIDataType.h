@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 #include <cstddef>
 #include "mpi.h"
+#include <cstddef>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -61,7 +62,6 @@ class MPI_DATA_TYPE<unsigned long>
 template<>
 class MPI_DATA_TYPE<bool>
 {
-
     public:
         MPI_DATA_TYPE();
 

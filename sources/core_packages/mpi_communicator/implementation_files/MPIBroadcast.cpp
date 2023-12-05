@@ -16,6 +16,7 @@
 #include "ErrorMPIBroadcast.h"
 #include "MPIDataType.h"
 #include "AssertValidValueForType.hpp"
+#include "MPIGenericException.h"
 
 namespace ANANSI {
 

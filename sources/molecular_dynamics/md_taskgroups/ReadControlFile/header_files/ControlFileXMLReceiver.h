@@ -1,16 +1,15 @@
 #ifndef  ANANSI_ControlFileXMLReceiver_INC
 #define  ANANSI_ControlFileXMLReceiver_INC
 
-//! @file ControlFileXMLReceiver.h
+//! \file ControlFileXMLReceiver.h
 //!
-//! Class ControlFileXMLReceiver is the concrete task for reading the control
-//! file.
+//! \brief Class ControlFileXMLReceiver is the reciever for 
+//! concrete task for reading the control file.
 //!
-//! The reading of the control file is distributed across a group of
-//! processes in a communicator group. The master process in the communicator
-//! group reads the file. The result will be the a ControlFile
+//! The master process in the communicator
+//! group reads the file. The result will be the a ControlInputFile
 //! object will be populated on the master process. The non-master processes
-//! will have an empyty ControlFile object.
+//! will have an empyty ControlInputFile object.
 //!
 //! The result of this action is ControFile object. We need a
 //! ShareCopyOwnershipPolicy and a SharedType ownership for the result.
@@ -20,6 +19,7 @@
 //--------------------------------------------------------//
 #include <string>
 #include <iostream>
+#include <exception>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -31,12 +31,16 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
-
-#include "ControlFile.h"
+#include "ReceiverError.h"
+#include "ControlFileNodeKeyNotFound.h"
+#include "ControlInputFile.hpp"
+#include "MasterControlInputFileNodeKeys.h"
+#include "CommandFiles.h"
 #include "ControlFileTask.h"
-#include "ControlFileXMLOwnershipImpl.hpp"
-#include "ControlFileName.h"
+#include "CommandFilesOwnershipImpl.hpp"
+#include "CommandFileName.h"
 #include "MasterProcess.h"
+#include "ReadControlFileResultsTraits.h"
 
 // ---------------------------------------------------
 // Uncomment the ownership policies as required for 
@@ -56,20 +60,20 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         static constexpr char tmpstr_[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'r','e','a','d','_','x','m','l','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = ANANSI::ControlFile;
-        using my_copy_type_ = ANANSI::ControlFile;
-        using my_share_type_ = ANANSI::ControlFile;
-        using my_transfer_type_ = ANANSI::ControlFile;
+        using my_result_type_ = ReadControlFileResultsTraits::result_t;
+        using my_copy_type_ = ReadControlFileResultsTraits::result_t;
+        using my_share_type_ = ReadControlFileResultsTraits::result_t;
+        using my_transfer_type_ =  ReadControlFileResultsTraits::result_t;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        using MyOwnershipImpl_ = ControlFileXMLOwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = CommandFilesOwnershipImpl<MyOwnershipImplTraits_>;
 
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
-        ControlFileName controlFileName_;
+        CommandFileName commandFileName_;
         MasterProcess masterProcess_;
 
     public:
@@ -92,7 +96,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         ControlFileXMLReceiver ();   // constructor
 
-        ControlFileXMLReceiver (const ControlFileXMLReceiver & other) = delete;   // copy constructor
+        ControlFileXMLReceiver (const ControlFileXMLReceiver & other) = delete;   // copy constructo
 
         ControlFileXMLReceiver (ControlFileXMLReceiver && other);   // copy-move constructor
 
@@ -179,10 +183,38 @@ void ControlFileXMLReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
+    std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
+
     if (this->masterProcess_.operator()())
     {
-        std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
+        try 
+        {
+            read_CommandFile(this->results_);
+        }
+        catch(const boost::property_tree::xml_parser_error & my_error)
+        {
+            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'boost::property_tree::xml_parser_error'.\n"; 
+            error_message += "The boost::property_tree::xml_parser errored during reading the XML formatted control file.\n";
+            error_message += "Some typical causes are the following:\n";
+            error_message += "(1) Check every <tag> has a matching <\\tag>.\n" ;
+            error_message += "(2) Check all comments are properly enclosed <!--  A dummy comment.   -->\n" ;
+            throw RECEIVER::ReceiverError(error_message);
+        }
+        catch (const ControlFileNodeKeyNotFound & my_error)
+        {
+            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'ControlFileNodeKeyNotFound'.\n"; 
+            error_message += std::string(my_error.what());
+            throw RECEIVER::ReceiverError(error_message);
+
+        }
+        catch (const std::exception& my_error)
+        {
+            std::string error_message = "In ConcreteTaskReceiver::receiverDoAction_ caught error 'std::exception'.\n"; 
+            error_message += std::string(my_error.what());
+            throw RECEIVER::ReceiverError(error_message);
+        }
     }
+
     return;
 }
 

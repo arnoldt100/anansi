@@ -1,8 +1,8 @@
 #ifndef __filepreprocessordefine__
 #define __filepreprocessordefine__
-//! @file __filename__
+//! \file __header_filename__
 //!
-//! Brief description
+//! \brief Brief description
 //!
 //! Detailed description
 
@@ -21,10 +21,6 @@
 namespace __NAMESPACE__
 {
 
-// =====================================================================================
-//        Class:  __classname__
-//  Description:  
-//  =====================================================================================
 class __classname__
 {
     public:
@@ -39,6 +35,7 @@ class __classname__
         virtual ~__classname__ ();  // destructor
 
         // ====================  ACCESSORS     =======================================
+        __classname__ * clone () const;
 
         // ====================  MUTATORS      =======================================
 

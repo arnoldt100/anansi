@@ -16,7 +16,7 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
-#                                                                 @a
+#                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     #-----------------------------------------------------
@@ -75,7 +75,9 @@
     set (writetexttoconsoletask_header_files
          header_files/WriteTextToConsoleTaskReceiver.h
          header_files/WriteTextToConsoleTaskOwnershipImpl.hpp
-         header_files/WriteTextToConsoleTaskTraits.h)
+         header_files/WriteTextToConsoleTaskTraits.h
+         header_files/setup_core_logging_invoker.h
+	 header_files/setup_WriteTextToConsoleTaskReceiver.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -87,7 +89,9 @@
     set (writetexttoconsoletask_implementation_files
          implementation_files/WriteTextToConsoleTaskReceiver.cpp
          implementation_files/WriteTextToConsoleTaskOwnershipImpl.cpp
-         implementation_files/WriteTextToConsoleTaskTraits.cpp)
+         implementation_files/WriteTextToConsoleTaskTraits.cpp
+         implementation_files/setup_core_logging_invoker.cpp
+	 implementation_files/setup_WriteTextToConsoleTaskReceiver.cpp)
 
 
     # -----------------------------------------------------
@@ -95,8 +99,7 @@
     # 
     # -----------------------------------------------------
     get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
-    get_target_property(my_tasks_include tasks tasks_include) 
-    get_target_property(my_receiver_include receiver receiver_include )
+    get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
@@ -137,6 +140,7 @@ target_include_directories(${target}
                            PRIVATE "${my_mdownershippolicies_include}"
                            PRIVATE "${my_genericmdtask_include}"
                            PRIVATE "${my_generic_abstract_factory_include}"
+                           PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_logger_include}"
                            PRIVATE "${my_communicator_include}")
 
@@ -149,6 +153,7 @@ target_link_libraries(${target}
                       PUBLIC logger
                       PUBLIC mdownershippolicies
                       PUBLIC generic_abstract_factory
+                      PUBLIC invoker
                       PUBLIC genericmdtask
                       PUBLIC communicator)
 

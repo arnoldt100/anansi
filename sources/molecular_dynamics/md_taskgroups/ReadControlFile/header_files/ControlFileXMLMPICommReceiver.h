@@ -11,6 +11,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -21,11 +22,17 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPICommunicator.h"
 #include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
 #include "ReceiverInterface.hpp"
+#include "MasterControlInputFileNodeKeys.h"
+#include "ReadControlFileResultsTraits.h"
+#include "ControlFileTraits.h"
+#include "ControlInputFile.hpp"
+#include "CommandFiles.h"
 #include "ControlFileCommunicator.h"
-#include "ControlFileXMLMPICommOwnershipImpl.hpp"
+#include "CommandFilesOwnershipImpl.hpp"
 #include "TaskLabel.hpp"
 #include "OwnershipTypes.hpp"
 
@@ -36,7 +43,7 @@
 // ---------------------------------------------------
 // #include "NullOwnershipPolicy.hpp"
 // #include "TransferOwnershipPolicy.hpp"
-#include "ShareCopyOwnershipPolicy.hpp"
+#include "CopyOwnershipPolicy.hpp"
 // #include "TransferCopyOwnershipPolicy.hpp""
 // #include "ShareOwnershipPolicy.hpp"
 // #include "CopyOwnershipPolicy.hpp"
@@ -50,18 +57,18 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'c','o','m','m','u', 'n','i','c','a','t','e','_','c','o','n','t','r','o','l','_','f','i','l','e'};
 
-        using my_result_type_ = int;
-        using my_copy_type_ = int;
-        using my_share_type_ = int;
-        using my_transfer_type_ = int;
+        using my_result_type_ = ReadControlFileResultsTraits::result_t;
+        using my_copy_type_ = ReadControlFileResultsTraits::result_t;
+        using my_share_type_ = ReadControlFileResultsTraits::result_t;
+        using my_transfer_type_ =  ReadControlFileResultsTraits::result_t;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        using MyOwnershipImpl_ = ControlFileXMLMPICommOwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = CommandFilesOwnershipImpl<MyOwnershipImplTraits_>;
 
-        using MyOwnershipPolicy_ = ANANSI::ShareCopyOwnershipPolicy<MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
     public:
         // ====================  TYPEDEFS     =======================================
@@ -158,6 +165,8 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         // ====================  DATA MEMBERS  =======================================
 
         mutable receiver_result_t results_;
+        std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
+
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class ControlFileXMLMPICommReceiver  -----
@@ -166,6 +175,40 @@ template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
     std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
+
+    // Set the pickle type for  command file.
+    using pickle_t = receiver_result_t::PICKLETYPE;
+
+    // Synchronize all processes in the communicator group of
+    // "this->communicator_" at this point.
+    this->communicator_->synchronizationPoint();
+
+    // Only the master process will pickle it's results, this->results_, which is the ControlFile.
+    // The master process then broadcasts this pickled object to the other worker processes.
+    // The worker processes uses the broadcasted pickled object to fill in their 
+    // "this->results_".
+    const bool i_am_master = this->communicator_->iAmMasterProcess();
+    pickle_t pickled_control_file;
+    if ( i_am_master )
+    {
+        pickled_control_file = pickle_CommandFile(this->results_);
+    }
+   
+    // Broadcast the pickled_control_file to the other worker processes.
+    const std::size_t rank_to_broadcast = COMMUNICATOR::MASTER_TASK_ID;
+    const ControlFileTraits::PICKLETYPE broadcasted_pickled_control_file =
+        this->communicator_->broadcastStdMap(pickled_control_file,rank_to_broadcast);
+
+    // Use the broadcasted_pickled_obj to fill in this->results_ for the workers.
+    if ( ! i_am_master )
+    {
+        unpickle_CommandFile(this->results_,broadcasted_pickled_control_file);      
+    }
+
+    // Synchronize all processes in the communicator group of
+    // "this->communicator_" at this point.
+    this->communicator_->synchronizationPoint();
+
     return;
 }
 
@@ -184,6 +227,10 @@ void ControlFileXMLMPICommReceiver::enableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileXMLMPICommReceiver::disableReceiver_(Types &... args)
 {
+    if (this->communicator_)
+    {
+        this->communicator_->freeCommunicator();
+    }
     return;
 }
 

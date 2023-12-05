@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "__filename__.h"
+#include "__header_filename__"
 
 namespace __NAMESPACE__ {
 
@@ -41,7 +41,6 @@ __classname__::__classname__( __classname__ && other)
 	// TODO Auto-generated constructor stub
     if (this != &other)
     {
-        
     }
     return;
 }		// -----  end of method __classname__::__classname__  -----
@@ -55,6 +54,11 @@ __classname__::~__classname__()
 
 //============================= ACCESSORS ====================================
 
+__classname__ * __classname__::clone() const
+{
+    return new __classname__(*this);
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -63,7 +67,6 @@ __classname__& __classname__::operator= ( const __classname__ &other )
 {
     if (this != &other)
     {
-
     }
     return *this;
 } // assignment operator

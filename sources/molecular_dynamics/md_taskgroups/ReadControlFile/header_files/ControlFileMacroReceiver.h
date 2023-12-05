@@ -1,11 +1,12 @@
 #ifndef  ANANSI_ControlFileMacroReceiver_INC
 #define  ANANSI_ControlFileMacroReceiver_INC
 
-//! @file ControlFileMacroReceiver.h
+//! \file ControlFileMacroReceiver.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <boost/test/unit_test_parameters.hpp>
 #include <map>
 #include <iostream>
 
@@ -18,6 +19,7 @@
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
 
+#include "GenericMDTaskUtilities.hpp"
 #include "ControlFileMacroOwnershipImpl.hpp"
 #include "ControlFileXMLReceiver.h"
 #include "ControlFileXMLMPICommReceiver.h"
@@ -28,7 +30,7 @@ namespace ANANSI
 
 //! Assembles the ControlFileXMLReceiver and ControlFileXMLMPICommReceiver commands.
 //!
-//! These assemble commands will have the result of all MPI tasks in the
+//! These assembled commands will have the result of all MPI tasks in the
 //! communicator group of ControlFileXMLMPICommReceiver to contain the information
 //! contained in control file.
 class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFileMacroReceiver>
@@ -65,8 +67,8 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         // Place here the concrete commponent receivers required for receiver to 
         // do its work.
         using MyComponentReceiverTypelist = 
-            MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver::MyParentTask,ControlFileXMLReceiver>,
-                              GenericMDTask<ControlFileXMLMPICommReceiver::MyParentTask,ControlFileXMLMPICommReceiver>>;
+            MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver>,
+                              GenericMDTask<ControlFileXMLMPICommReceiver>>;
 
 
         template<RECEIVER::OwnershipTypes Q>
@@ -154,7 +156,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
-        std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> compenentTasks_;
+        std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> componentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class ControlFileMacroReceiver  -----
@@ -174,15 +176,41 @@ void ControlFileMacroReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
-    // The first step is to execute the task of reading the control file.
-    auto task_label_1 = ControlFileXMLReceiver::TASKLABEL;
-    std::vector<std::string> flags;
-    this->compenentTasks_.at(task_label_1)->doAction(flags);
+    // (1) The first step is to execute the task of reading the control file via ControlFileXMLReceiver.
+    //     Only the master process reads the control file. As the number of processes increases, one doesn't 
+    //     want all processes reading the same file.
+    // (2) Get the results of the ControlFileXMLReceiver and copy to ControlFileXMLMPICommReceiver 
+    // (3) ControlFileXMLMPICommReceiver communicates control file to other processes.
+    // (4) Get the results of the ControlFileXMLMPICommReceiver and copy to ControlFileXMLReceiver
 
-    // The second step is to communicate the control file to the
-    // other processes in the communicator group.
-    auto task_label_2 = ControlFileXMLMPICommReceiver::TASKLABEL;
-    this->compenentTasks_.at(task_label_2)->doAction(flags);
+    try {
+        // (1) The first step is to execute the task of reading the control file via ControlFileXMLReceiver. 
+        auto task_1_label = ControlFileXMLReceiver::TASKLABEL;
+        std::vector<std::string> flags;
+        this->componentTasks_.at(task_1_label)->doAction(flags);
+
+        // (2) Get the results of the ControlFileXMLReceiver and copy to ControlFileXMLMPICommReceiver 
+        auto task_2_label = ControlFileXMLMPICommReceiver::TASKLABEL;
+        auto results = 
+          GenericMDTaskUtilities<ControlFileXMLReceiver>::getCopyofTaskResults(this->componentTasks_.at(task_1_label));
+        GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::modifyTask(this->componentTasks_.at(task_2_label),results);
+
+        // (3) ControlFileXMLMPICommReceiver to communicate control file to other processes.
+        this->componentTasks_.at(task_2_label)->doAction(flags);
+    
+        // (4) Get the results of the ControlFileXMLMPICommReceiver and copy to ControlFileXMLReceiver
+
+    } 
+    catch ( const RECEIVER::ReceiverError & my_error)
+    {
+        std::cout << my_error.what() << std::endl;
+        // Send signal to abort program.
+    }
+    catch (const std::exception& my_error) 
+    {
+        std::cout << my_error.what() << std::endl;
+        // Send signal to abort program.
+    }
     return;
 }
 

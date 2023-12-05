@@ -1,10 +1,3 @@
-/*
- * MPICommunicator.cpp
- *
- *  Created on: Oct 15, 2018
- *      Author: arnoldt
- */
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -33,9 +26,13 @@
 #include "MPIAllgather.h"
 #include "MPIGather.h"
 #include "MPIBroadcast.h"
+#include "BroadcastVectorStringCache.h"
+#include "MPIBarrier.h"
 #include "convert_sequence_of_chars_to_vector_string.h"
+#include "cache_stdmap.h"
 #include "ErrorMPIBroadcast.h"
 #include "Array1d.hpp"
+#include "VectorStringCache.h"
 
 namespace ANANSI
 {
@@ -45,6 +42,7 @@ std::string MPICommunicator::HOSTNAME_NOT_DEFINED("Hostname not defined");
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= LIFECYCLE ====================================
@@ -87,7 +85,7 @@ MPICommunicator::~MPICommunicator()
 //============================= MUTATORS =====================================
 
 void
-MPICommunicator::_initializeWorldCommunicator()
+MPICommunicator::initializeWorldCommunicator_()
 {
 
     // Create a copy of the MPI world communicator.
@@ -173,25 +171,32 @@ MPICommunicator& MPICommunicator::operator=(Communicator && other)
 //============================= ACCESSORS ====================================
 
 
+void MPICommunicator::synchronizationPoint_() const
+{
+    ANANSI::MPIBarrier::Barrier(this->_mpiCommunicator);
+    return;
+}
+
+
 std::string
-MPICommunicator::_broadcastStdString(const std::string & str_to_bcast, const std::size_t bcast_rank) const
+MPICommunicator::broadcastStdString_(const std::string & str_to_bcast, const std::size_t broadcast_rank) const
 {
     std::string ret_value;
     try 
     {
         // First broadcast the length of the string that is to be broadcasted.
         // The variable str_len1 is only properly defined on the communicator
-        // with rank bcast_rank. 
+        // with rank broadcast_rank. 
         const std::size_t str_len1 = str_to_bcast.length();
         const std::size_t bcast_str_len = ANANSI::MPI_Broadcast<std::size_t>::Broadcast(str_len1,
                                                                               this->_mpiCommunicator,
-                                                                              bcast_rank);
+                                                                              broadcast_rank);
 
         // Broadcast the string to all other ranks.
         ret_value = ANANSI::MPI_Broadcast<std::string>::Broadcast(str_to_bcast,
                                                                   bcast_str_len,
                                                                   this->_mpiCommunicator,
-                                                                  bcast_rank);
+                                                                  broadcast_rank);
     }
     catch (ANANSI::ErrorMPIBroadcast<char> const & my_mpi_exception )
     {
@@ -209,22 +214,19 @@ MPICommunicator::_broadcastStdString(const std::string & str_to_bcast, const std
 
 
 std::size_t
-MPICommunicator::_getSizeofCommunicator(const std::string & id) const
+MPICommunicator::getSizeofCommunicator_() const
 {
     std::size_t my_size;
     try
     {
-        if (id == "world_communicator")
-        {
-            int world_comm_group_size;
-            int mpi_return_code = MPI_Comm_size(this->_mpiCommunicator,&world_comm_group_size);
+        int world_comm_group_size;
+        int mpi_return_code = MPI_Comm_size(this->_mpiCommunicator,&world_comm_group_size);
 
-            if (mpi_return_code != MPI_SUCCESS)
-            {
-                throw ANANSI::MPICommSizeException();
-            }
-            my_size = static_cast<std::size_t>(world_comm_group_size);
+        if (mpi_return_code != MPI_SUCCESS)
+        {
+            throw ANANSI::MPICommSizeException();
         }
+        my_size = static_cast<std::size_t>(world_comm_group_size);
     }
     catch (ANANSI::MPICommSizeException const & my_mpi_exception)
     {
@@ -236,7 +238,7 @@ MPICommunicator::_getSizeofCommunicator(const std::string & id) const
 
 // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
 void
-MPICommunicator::_createSubcommunicator(const std::string & tag) 
+MPICommunicator::createSubcommunicator_(const std::string & tag) 
 {
     std::map<std::string, std::size_t> aglobaltagmap = 
         COMMUNICATOR::Communicator::formGlobalMap(tag,*this);
@@ -267,7 +269,7 @@ MPICommunicator::_createSubcommunicator(const std::string & tag)
 }
 
 int
-MPICommunicator::_getCommunicatorRank() const
+MPICommunicator::getCommunicatorRank_() const
 {
     int rank;
     try
@@ -289,7 +291,7 @@ MPICommunicator::_getCommunicatorRank() const
 }
 
 COMMUNICATOR::Communicator*
-MPICommunicator::_duplicateCommunicator() const 
+MPICommunicator::duplicateCommunicator_() const 
 {
   MPICommunicator* aMPICommunicator = nullptr;
 
@@ -316,7 +318,7 @@ MPICommunicator::_duplicateCommunicator() const
 }
 
 std::size_t
-MPICommunicator::_getMaximum(std::size_t const value) const 
+MPICommunicator::getMaximum_(std::size_t const value) const 
 {
     std::vector<std::size_t> vec = {value};
     std::vector<std::size_t> vec_maximum;
@@ -334,13 +336,12 @@ MPICommunicator::_getMaximum(std::size_t const value) const
         std::abort();
     }
 
-
     return vec_maximum[0];
 }
 
 
 char*
-MPICommunicator::_allGather(
+MPICommunicator::allGather_(
         char const * aCString,
         const std::size_t aLengthMaximum,
         std::size_t & offset_size,
@@ -391,7 +392,7 @@ MPICommunicator::_allGather(
 }
 
 char*
-MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
+MPICommunicator::gather_(const std::size_t task_id_to_gather_data_on,
                          char const * aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
@@ -401,13 +402,13 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
 
 
     #ifdef ANANASI_DBD_VALID_VALUES
-    DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(task_id_to_gather_dat_on);
+    DEBUGGING::AssertValidValueForType::isValidValueForCast<std::size_t,int>(task_id_to_gather_data_on);
     #endif
     MEMORY_MANAGEMENT::Array1d<std::size_t> my_int_array_factory;
     char* recv_buffer_ptr = nullptr;
     try
     {
-        recv_buffer_ptr = ANANSI::MPI_GATHER<char>::Gather(static_cast<int>(task_id_to_gather_dat_on),
+        recv_buffer_ptr = ANANSI::MPI_GATHER<char>::Gather(static_cast<int>(task_id_to_gather_data_on),
                                                            this->_mpiCommunicator,
                                                            offset_size,
                                                            aCString,
@@ -445,7 +446,7 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_dat_on,
 }
 
 std::unique_ptr<char[]>
-MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
+MPICommunicator::gather_(const std::size_t task_id_to_gather_data_on,
                          const std::unique_ptr<char[]> & aCString,
                          const std::size_t aLengthMaximum,
                          std::size_t & offset_size, 
@@ -495,7 +496,7 @@ MPICommunicator::_gather(const std::size_t task_id_to_gather_data_on,
 
 
 std::vector<std::string>
-MPICommunicator::_gatherString(const std::string & data_to_gather,
+MPICommunicator::gatherString_(const std::string & data_to_gather,
                                const std::size_t task_id_to_gather_data_on ) const
 {
     MEMORY_MANAGEMENT::Array1d<char> my_char_array_factory;
@@ -505,11 +506,11 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
 
     // Get the maximum length of tag with respect to the communicator group.
     const std::size_t slength = data_to_gather.length();
-    const std::size_t slength_maximum = this->_getMaximum(slength);
+    const std::size_t slength_maximum = this->getMaximum_(slength);
 
     // Form and c string with length tag_length + 1, and 
     // then copy the tag in a c string.
-    const std::size_t slength_maximum_adj = slength_maximum  + 1;
+    const std::size_t slength_maximum_adj = slength_maximum + 1;
     char* data_ptr = my_char_array_factory.createArray(data_to_gather,
                                                        slength_maximum_adj);
 
@@ -519,7 +520,7 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
     std::unique_ptr<std::size_t[]> start_offsets;
     std::unique_ptr<std::size_t[]> end_offsets;
     
-    std::unique_ptr<char[]> all_data = this->_gather(task_id_to_gather_data_on,
+    std::unique_ptr<char[]> all_data = this->gather_(task_id_to_gather_data_on,
                                                      data,
                                                      static_cast<std::size_t> (slength_maximum_adj),
                                                      offset_size,
@@ -541,7 +542,7 @@ MPICommunicator::_gatherString(const std::string & data_to_gather,
 }
 
 std::vector<int>
-MPICommunicator::_gatherInt(const int & data_to_gather,
+MPICommunicator::gatherInt_(const int & data_to_gather,
                             const std::size_t task_id_to_gather_data_on) const
 {
     MEMORY_MANAGEMENT::Array1d<int> my_int_array_factory;
@@ -563,16 +564,61 @@ MPICommunicator::_gatherInt(const int & data_to_gather,
     return gathered_data; 
 }
 
-bool
-MPICommunicator::_getGlobalStatus(const bool & data_to_reduce) const 
-{
-    std::vector<bool> in_buffer = {data_to_reduce};
-    MPIReductionOperation::reduction_operation_type mpi_op(MPIReductionOperation::logical_and); 
-    const std::vector<bool> my_global_status = 
-        ANANSI::MPI_ALLREDUCE<bool,MPIReductionOperation::reduction_operation_type>::REDUCE(this->_mpiCommunicator,
-                                                                                                  in_buffer,
-                                                                                                  mpi_op); 
-    return my_global_status[0];
+//! \brief Broadcasts data of type std::map<std::string,std::string> from
+//!        the process broadcast_rank to the remaining
+//!        processes in the MPI communicator group.
+//!
+//! The data type std::map<std::string,std::string> is flattened/transformed to
+//! a tuple of type
+//!
+//!   std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache>
+//!
+//! The key-values pairs of std::map<std::string,std::string> are respectively
+//! stored in 0'th and 1'st element of the tuple.
+//! STRING_UTILITIES::VectorStringCache is simply a container; int, int*, and
+//! char*; for storing a group of strings for broadcasting convenience.
+//! Each tuple element is broadcasted. The tuple pair is then reformed, and
+//! function uncache_stdmap is used to reform the
+//! std::map<std::string,std::string> which is returned to the invoking
+//! function.
+//!
+//! \param[in] a_map The object to broadcasted.
+//! \param[in] broadcast_rank The MPI rank of the broadcaster.
+//! \return The broadcasted a_map.
+std::map<std::string,std::string>
+MPICommunicator::broadcastStdMap_( const std::map<std::string,std::string> & a_map, const std::size_t broadcast_rank) const
+{   
+    // The variable "b_map" will store the broadcasted "a_map".
+    std::map<std::string,std::string> b_map;
+    if (this->isParallel_())
+    {
+        bool i_am_broadcast_rank = this->sameCommunicatorRank(static_cast<int>(broadcast_rank));
+        std::tuple<STRING_UTILITIES::VectorStringCache,STRING_UTILITIES::VectorStringCache> key_value;
+        if ( i_am_broadcast_rank )
+        {
+            key_value = STRING_UTILITIES::cache_stdmap(a_map);
+        }
+
+        // Broadcast the key and key values to the worker processes.  
+        auto bkey_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<0>(key_value),
+                                                                                        this->_mpiCommunicator,
+                                                                                        broadcast_rank);
+
+        auto bvalue_cache = MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(std::get<1>(key_value),
+                                                                                          this->_mpiCommunicator,
+                                                                                          broadcast_rank);
+
+        // The variable "bkey_value_tuple" stores the broadcasted
+        // "key_value_tuple". Use bkey_value_tuple to reform the broadcasted
+        // std::map "a_map".
+        auto bkey_value_tuple = std::make_tuple(bkey_cache,bvalue_cache);
+        b_map = STRING_UTILITIES::uncache_stdmap(bkey_value_tuple);
+    }
+    else
+    {
+        b_map = a_map;
+    }
+    return b_map;
 }
 
 //============================= MUTATORS =====================================

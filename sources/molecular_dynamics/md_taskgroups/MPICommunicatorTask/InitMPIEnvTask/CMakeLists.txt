@@ -71,7 +71,9 @@
     set (initmpienvtask_header_files
          header_files/InitMPIEnvTaskOwnershipImpl.h
          header_files/InitMPIEnvTaskReceiver.h
-         header_files/InitMPIEnvTaskTraits.h )
+         header_files/InitMPIEnvTaskTraits.h 
+         header_files/setup_mpi_communication_environment_invoker.h
+	     header_files/setup_InitMPIEnvTaskReceiver.h )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -83,18 +85,21 @@
     set (initmpienvtask_implementation_files
          implementation_files/InitMPIEnvTaskOwnershipImpl.cpp
          implementation_files/InitMPIEnvTaskReceiver.cpp
-         implementation_files/InitMPIEnvTaskTraits.cpp )
+         implementation_files/InitMPIEnvTaskTraits.cpp
+         implementation_files/setup_mpi_communication_environment_invoker.cpp
+	     implementation_files/setup_InitMPIEnvTaskReceiver.cpp)
 
     # -----------------------------------------------------
     # Set various variables for include directories.
     # 
     # -----------------------------------------------------
-    get_target_property(my_common_md_taskgroup_headers common_md_taskgroup_headers common_md_taskgroup_headers_include)
-    get_target_property(my_tasks_include tasks tasks_include)
-    get_target_property(my_receiver_include receiver receiver_include )
+    get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
+    get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
+    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
+    get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -126,13 +131,13 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
-                           PRIVATE "${my_common_md_taskgroup_headers}"
-                           PRIVATE ${my_tasks_include}
-                           PRIVATE ${my_genericmdtask_include} 
-                           PRIVATE ${my_receiver_include} 
-                           PRIVATE ${my_communicator_include}
-                           PRIVATE ${my_mdownershippolicies_include}
-                           PRIVATE ${my_mpi_communicator_include})
+                           PRIVATE "${my_common_md_taskgroup_headers_include}"
+                           PRIVATE "${my_mdownershippolicies_include}"
+                           PRIVATE "${my_genericmdtask_include}" 
+                           PRIVATE "${my_generic_abstract_factory_include}"
+                           PRIVATE "${my_invoker_include}"
+                           PRIVATE "${my_mpi_communicator_include}"
+                           PRIVATE "${my_command_line_arguments_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -140,11 +145,12 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries(${target}
                       PUBLIC common_md_taskgroup_headers
-                      PUBLIC tasks
-                      PUBLIC genericmdtask
-                      PUBLIC receiver
                       PUBLIC mdownershippolicies
-                      PUBLIC mpi_communicator)
+                      PUBLIC genericmdtask
+                      PUBLIC generic_abstract_factory
+                      PUBLIC invoker
+                      PUBLIC mpi_communicator
+                      PUBLIC command_line_arguments)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

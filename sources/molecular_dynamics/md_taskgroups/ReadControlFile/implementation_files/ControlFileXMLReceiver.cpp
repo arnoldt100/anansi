@@ -22,9 +22,9 @@ namespace ANANSI {
 
 ControlFileXMLReceiver::ControlFileXMLReceiver() :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
-    controlFileName_(),
+    commandFileName_(),
     masterProcess_(),
-    results_(),
+    results_(ReadControlFileResultsTraits::ControlInputFile_t()),
     ownershipPolicy_()
 {
     return;
@@ -32,7 +32,7 @@ ControlFileXMLReceiver::ControlFileXMLReceiver() :
 
 ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver && other) :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(std::move(other)),
-    controlFileName_(std::move(other.controlFileName_)),
+    commandFileName_(std::move(other.commandFileName_)),
     masterProcess_(std::move(other.masterProcess_)),
     results_(std::move(other.results_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_))
@@ -60,7 +60,7 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
     if (this != &other)
     {
         ReceiverInterface<ControlFileXMLReceiver>::operator=(std::move(other));
-        this->controlFileName_ = std::move(other.controlFileName_);
+        this->commandFileName_ = std::move(other.commandFileName_);
         this->masterProcess_ = std::move(other.masterProcess_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
@@ -84,18 +84,19 @@ ControlFileXMLReceiver::receiver_copy_t_ ControlFileXMLReceiver::receiverGetCopy
 
 //============================= MUTATORS =====================================
 
+
 template<>
-void ControlFileXMLReceiver::receiverModifyMyself_(ControlFile & arg)
+void ControlFileXMLReceiver::receiverModifyMyself_(CommandFiles<> & arg)
 {
     this->results_ = arg;
     return;
 }
 
 template<>
-void ControlFileXMLReceiver::receiverModifyMyself_(ControlFileName & arg)
+void ControlFileXMLReceiver::receiverModifyMyself_(CommandFileName & arg)
 {
-    this->controlFileName_ = arg;
-    return;
+    this->commandFileName_ = arg;
+    set_CommandFile_filename(this->results_,this->commandFileName_);
 }
 
 template<>

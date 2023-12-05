@@ -29,12 +29,12 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
     // ---------------------------------------------------
     using my_abstract_tasks = ReadControlFileTraits::abstract_products; // The abstract task typelist.
     using my_concrete_tasks = ReadControlFileTraits::concrete_products; // The concrete tasks typelist.
-    using base_receiver_t = ANANSI::ControlFileTask; // The base class for the task we are setting up. 
-    using concrete_receiver_t = ANANSI::ControlFileXMLReceiver; // The concrete tasks we are setting up.
+    using base_receiver_t = ANANSI::ControlFileXMLReceiver::MyParentTask; // The base class for the task we are setting up. 
+    using concrete_receiver_t = ANANSI::ControlFileXMLReceiver; // The concrete receiver we are setting up.
 
     // ---------------------------------------------------
     // Get the task label for the task
-    // GenericMDTask<ControlFile,ControlFileXMLReceiver>
+    // GenericMDTask<ControlFileXMLReceiver>
     //
     // ---------------------------------------------------
     auto constexpr task_label = concrete_receiver_t::TASKLABEL;
@@ -50,7 +50,8 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
 
     // ---------------------------------------------------
     // Create the receiver of concrete task 
-    // GenericMDTask<ControlFile,ControlFileXMLReceiver> 
+    // GenericMDTask<ControlFileXMLReceiver>
+    //
     // ---------------------------------------------------
     auto control_file_xml_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
@@ -59,8 +60,8 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
     // Now setup the receiver 
     //
     // ---------------------------------------------------
-    ControlFileName my_control_file_name(controlfile_name);
-    control_file_xml_receiver->modifyReceiver(my_control_file_name);
+    CommandFileName my_command_file_name(controlfile_name);
+    control_file_xml_receiver->modifyReceiver(my_command_file_name);
 
     MasterProcess my_master_process(master_process);
     control_file_xml_receiver->modifyReceiver(my_master_process);

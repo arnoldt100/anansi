@@ -1,0 +1,34 @@
+<!-- This file configures the unit tests to run. -->
+<data>
+
+   <unit_test name = "file_parsers_core">
+        <active> yes </active>
+        <test_binary>file_parsers_core_unit_tests</test_binary>
+        <test_arguments> </test_arguments>
+   </unit_test>
+
+   <unit_test name = "string_utilities">
+        <active> yes </active>
+        <test_binary>string_utilities_unit_tests</test_binary>
+        <test_arguments> </test_arguments>
+   </unit_test>
+
+   <unit_test name = "mpi_communicator">
+        <active> no </active>
+        <test_binary>mpi_communicator_unit_tests</test_binary>
+        <test_arguments> </test_arguments>
+   </unit_test>
+
+   <unit_test name = "invoker">
+        <active> no </active>
+        <test_binary>invoker_unit_tests</test_binary>
+        <test_arguments> </test_arguments>
+   </unit_test>
+
+   <unit_test name = "communicator">
+        <active> no </active>
+        <test_binary>communicator_unit_tests</test_binary>
+        <test_arguments> </test_arguments>
+   </unit_test>
+
+</data>

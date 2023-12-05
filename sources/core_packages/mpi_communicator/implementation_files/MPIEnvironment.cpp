@@ -60,7 +60,7 @@ std::string MPIEnvironment::currentMPIEnvironmentState() const
 
 //============================= MUTATORS =====================================
 template <>
-void MPIEnvironment::addMember(COMMANDLINE::CommandLineArguments & cmd_line_args)
+void MPIEnvironment::addMember(const COMMANDLINE::CommandLineArguments & cmd_line_args)
 {
     this->cmdLineArgs_ = cmd_line_args;
     return;

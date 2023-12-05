@@ -1,3 +1,5 @@
+//! \file MPI_Broadcast
+
 #ifndef  ANANSI_MPIBroadcast_INC
 #define  ANANSI_MPIBroadcast_INC
 
@@ -53,6 +55,7 @@ class MPI_Broadcast<std::string>
                                  const MPI_Comm mpi_comm,
                                  const std::size_t bcast_rank);
 };
+
 
 }; // namespace ANANSI
 
