@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
+#include <tuple>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -104,9 +105,10 @@ std::unique_ptr<char[]> broadcast_ca_array(const MPI_Comm & mpi_comm,
     }
 
     std::unique_ptr<char[]> buffer_ca = std::make_unique<char[]>(ca_array_length);
+    std::size_t number_of_chars;
     if ( static_cast<std::size_t>(rank) == bcast_rank)
     {
-        buffer_ca = data_to_broadcast.getArrayOfCharacters();
+        std::tie(buffer_ca,number_of_chars) = data_to_broadcast.getArrayOfCharacters();
     }
     else
     {
