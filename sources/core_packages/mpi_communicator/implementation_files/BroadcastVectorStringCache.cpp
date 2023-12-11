@@ -114,8 +114,9 @@ std::unique_ptr<char[]> broadcast_ca_array(const MPI_Comm & mpi_comm,
     {
         for ( auto ip=static_cast<std::size_t>(0); ip < ca_array_length; ++ip )
         {
-            buffer_ca[ip] = ' '; 
+            buffer_ca[ip] = 'z';
         }
+        buffer_ca[ca_array_length] = '\0';
     }
 
     mpi_error = MPI_Bcast(buffer_ca.get(),static_cast<int>(ca_array_length),
@@ -126,6 +127,7 @@ std::unique_ptr<char[]> broadcast_ca_array(const MPI_Comm & mpi_comm,
         std::string error_message("Error broadcasting VectorStringCache.");
         throw ANANSI::ErrorMPIBroadcast<STRING_UTILITIES::VectorStringCache>(error_message);
     }
+
     return buffer_ca;
 } // End of function STRING_UTILITIES::(unique)::details::broadcast_ca_array
 
