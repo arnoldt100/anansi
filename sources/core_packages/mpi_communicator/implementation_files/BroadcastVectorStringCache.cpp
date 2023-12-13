@@ -172,6 +172,10 @@ MPI_Broadcast<STRING_UTILITIES::VectorStringCache>::Broadcast(
                                                   std::move(broadcasted_buffer_ncpv),
                                                   ca_array_length,
                                                   std::move(broadcasted_buffer_ca));
+
+    ret_value.printToStdOut();
+
+
     return ret_value;
 }
 
