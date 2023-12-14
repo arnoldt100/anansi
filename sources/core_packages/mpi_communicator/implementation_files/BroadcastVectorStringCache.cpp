@@ -104,8 +104,13 @@ std::unique_ptr<char[]> broadcast_ca_array(const MPI_Comm & mpi_comm,
         throw ANANSI::MPIGenericException();
     }
 
-    std::unique_ptr<char[]> buffer_ca = std::make_unique<char[]>(ca_array_length);
+    if (rank == 0)
+    {
+        data_to_broadcast.printToStdOut();
+    }
+
     std::size_t number_of_chars;
+    std::unique_ptr<char[]> buffer_ca = std::make_unique<char[]>(ca_array_length);
     if ( static_cast<std::size_t>(rank) == bcast_rank)
     {
         std::tie(buffer_ca,number_of_chars) = data_to_broadcast.getArrayOfCharacters();
