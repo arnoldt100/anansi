@@ -14,7 +14,7 @@
    </unit_test>
 
    <unit_test name = "mpi_communicator">
-        <active> no </active>
+        <active> yes </active>
         <test_binary>mpi_communicator_unit_tests</test_binary>
         <test_arguments> </test_arguments>
    </unit_test>
