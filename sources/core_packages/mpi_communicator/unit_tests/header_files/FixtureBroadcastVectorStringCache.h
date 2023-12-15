@@ -42,7 +42,7 @@ class FixtureBroadcastVectorStringCache
 
         FixtureBroadcastVectorStringCache& operator= ( FixtureBroadcastVectorStringCache && other ); // assignment-move operator
 
-        STRING_UTILITIES::VectorStringCache experimentalVecStringCache;
+        STRING_UTILITIES::VectorStringCache experimentalVecStringCache1;
     protected:
         // ====================  METHODS       =======================================
 

@@ -2,6 +2,9 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
+#include <vector>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,12 +22,14 @@
 
 //============================= LIFECYCLE ====================================
 
-FixtureBroadcastVectorStringCache::FixtureBroadcastVectorStringCache()
+FixtureBroadcastVectorStringCache::FixtureBroadcastVectorStringCache() :
+    experimentalVecStringCache1{}
 {
     return;
 }
 
-FixtureBroadcastVectorStringCache::FixtureBroadcastVectorStringCache( FixtureBroadcastVectorStringCache const & other)
+FixtureBroadcastVectorStringCache::FixtureBroadcastVectorStringCache( FixtureBroadcastVectorStringCache const & other) :
+    experimentalVecStringCache1{other.experimentalVecStringCache1}
 {
     if (this != &other)
     {
@@ -33,7 +38,8 @@ FixtureBroadcastVectorStringCache::FixtureBroadcastVectorStringCache( FixtureBro
     return;
 }
 
-FixtureBroadcastVectorStringCache::FixtureBroadcastVectorStringCache( FixtureBroadcastVectorStringCache && other)
+FixtureBroadcastVectorStringCache::FixtureBroadcastVectorStringCache( FixtureBroadcastVectorStringCache && other)  :
+    experimentalVecStringCache1{std::move(other.experimentalVecStringCache1)}
 {
     if (this != &other)
     {
@@ -57,6 +63,12 @@ FixtureBroadcastVectorStringCache * FixtureBroadcastVectorStringCache::clone() c
 //============================= MUTATORS =====================================
 void FixtureBroadcastVectorStringCache::setup()
 {
+    std::vector<std::string> my_test_string_1{std::string("ABCDEFG"),
+                                              std::string("12345678"),
+                                              std::string("abcdefghi")};
+
+    this->experimentalVecStringCache1 = STRING_UTILITIES::VectorStringCache(my_test_string_1);
+
     return;
 }
 
@@ -71,6 +83,7 @@ FixtureBroadcastVectorStringCache& FixtureBroadcastVectorStringCache::operator= 
 {
     if (this != &other)
     {
+        this->experimentalVecStringCache1 = other.experimentalVecStringCache1;
     }
     return *this;
 } // assignment operator
@@ -79,7 +92,7 @@ FixtureBroadcastVectorStringCache& FixtureBroadcastVectorStringCache::operator= 
 {
     if (this != &other)
     {
-
+        this->experimentalVecStringCache1 = std::move(other.experimentalVecStringCache1);
     }
     return *this;
 } // assignment-move operator
