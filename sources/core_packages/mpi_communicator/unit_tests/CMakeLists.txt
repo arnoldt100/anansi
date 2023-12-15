@@ -17,6 +17,8 @@
     #-----------------------------------------------------
     set(target ${my_project_name})
 
+    get_target_property(my_su_include string_utilities string_utilities_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -40,6 +42,7 @@
     #-----------------------------------------------------
     set (mpi_communicator_unit_tests_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/test_mpi_communicator.h
+	${CMAKE_CURRENT_SOURCE_DIR}/header_files/verify_VectorStringCacheBroadcast.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FixtureBroadcastVectorStringCache.h)
 
 
@@ -51,6 +54,7 @@
     #-----------------------------------------------------
     set (mpi_communicator_unit_tests_implementation_files
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/test_mpi_communicator.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/verify_VectorStringCacheBroadcast.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FixtureBroadcastVectorStringCache.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -87,6 +91,8 @@
     get_target_property( mpi_communicator_unit_tests_include_dir mpi_communicator mpi_communicator_include )
     target_include_directories(${target} 
                                PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                               PRIVATE ${MPI_C_INCLUDE_DIRS}
+			                   PRIVATE ${my_su_include}
                                PRIVATE ${mpi_communicator_unit_tests_include_dir}
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
@@ -97,7 +103,9 @@
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
+                          PUBLIC MPI::MPI_C
                           PUBLIC mpi_communicator 
+			              PUBLIC string_utilities
                           PUBLIC ${Boost_LIBRARIES} )
 
     #-----------------------------------------------------

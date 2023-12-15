@@ -1,6 +1,13 @@
+#ifndef NONE_verify_VectorStringCacheBroadcast_INC
+#define NONE_verify_VectorStringCacheBroadcast_INC
+
+//! \file verify_VectorStringCacheBroadcast.h
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <tuple>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -9,23 +16,11 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "test_mpi_communicator.h"
-#include "BroadcastVectorStringCache.h"
-#include "FixtureBroadcastVectorStringCache.h"
-#include "verify_VectorStringCacheBroadcast.h"
+#include "VectorStringCache.h"
 
 
-BOOST_AUTO_TEST_SUITE( Test_Suite_MPI_Communicator )
-
-BOOST_FIXTURE_TEST_CASE( mpi_communicator_test, FixtureBroadcastVectorStringCache )
-{
-    std::string message;
-    bool status;
-
-    std::tie(status,message) = verify_VectorStringCacheBroadcast(experimentalVecStringCache1);
-    BOOST_TEST(status, message.c_str());
-}
-
-BOOST_AUTO_TEST_SUITE_END()
+//! \brief Stud text for brief description
+std::tuple<bool,std::string> verify_VectorStringCacheBroadcast (STRING_UTILITIES::VectorStringCache const & my_cahce); 
 
 
+#endif // NONE_verify_VectorStringCacheBroadcast_INC

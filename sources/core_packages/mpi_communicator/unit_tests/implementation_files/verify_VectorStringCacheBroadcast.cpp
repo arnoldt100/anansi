@@ -9,23 +9,15 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "test_mpi_communicator.h"
-#include "BroadcastVectorStringCache.h"
-#include "FixtureBroadcastVectorStringCache.h"
 #include "verify_VectorStringCacheBroadcast.h"
 
 
-BOOST_AUTO_TEST_SUITE( Test_Suite_MPI_Communicator )
-
-BOOST_FIXTURE_TEST_CASE( mpi_communicator_test, FixtureBroadcastVectorStringCache )
+std::tuple<bool,std::string> verify_VectorStringCacheBroadcast (STRING_UTILITIES::VectorStringCache const & my_cahce)
 {
-    std::string message;
-    bool status;
+    bool my_status;
+    std::string my_message;
+    return std::tie(my_status,my_message);
+}   // -----  end of function verify_VectorStringCacheBroadcast  -----
 
-    std::tie(status,message) = verify_VectorStringCacheBroadcast(experimentalVecStringCache1);
-    BOOST_TEST(status, message.c_str());
-}
-
-BOOST_AUTO_TEST_SUITE_END()
 
 
