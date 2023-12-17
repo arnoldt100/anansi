@@ -11,6 +11,8 @@ import os
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 from run_unit_tests.unit_test_status import TestStatus
+# from run_unit_tests.execution_command import MPIExecutionCommand
+import run_unit_tests.execution_command
 
 ## @class UnitTest
 class UnitTest:
@@ -78,6 +80,17 @@ def _get_all_tests():
         test_binary_full_qualified_path = os.path.join(root_path_unit_tests,test_binary)
         test_arguments = unit_test.find('test_arguments').text 
         test_arguments = test_arguments.strip()
+
+        parallel_test = unit_test.find('parallel')
+        if parallel_test:
+                parallel_type = parallel_test.find('type').text
+                parallel_type = parallel_type.strip()
+                if parallel_type == "mpi":
+                    nm_mpi_threads = (parallel_test.find('nm_mpi_threads').text).strip()
+                    run_command = run_unit_tests.execution_command.MPIExecutionCommand(test_binary,nm_mpi_threads)
+                    print ("nm_mpi_threads=",nm_mpi_threads)
+                    print(run_command.command)
+
         all_tests.append(UnitTest(test_name=name,
                                   active=active,
                                   binary=test_binary_full_qualified_path,

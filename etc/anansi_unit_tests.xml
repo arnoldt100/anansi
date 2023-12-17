@@ -15,6 +15,10 @@
 
    <unit_test name = "mpi_communicator">
         <active> yes </active>
+        <parallel>
+            <type> mpi </type>
+            <nm_mpi_threads> 2 </nm_mpi_threads>
+        </parallel>
         <test_binary>mpi_communicator_unit_tests</test_binary>
         <test_arguments> </test_arguments>
    </unit_test>
