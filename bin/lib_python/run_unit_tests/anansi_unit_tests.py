@@ -11,8 +11,8 @@ import os
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 from run_unit_tests.unit_test_status import TestStatus
-# from run_unit_tests.execution_command import MPIExecutionCommand
-import run_unit_tests.execution_command
+from run_unit_tests.execution_command import NoParallelExecution
+from run_unit_tests.execution_command import MPIExecutionCommand
 
 ## @class UnitTest
 class UnitTest:
@@ -22,11 +22,13 @@ class UnitTest:
     # @param active The state of running this test. If active is true, then the test will be run. Otherwise the test will not be run.
     # @param binary The path to the unit test binary.
     # @param binary_argumerent The command line arguments of the unit test binary.
-    def __init__(self,test_name,active=False,binary=None,binary_arguments=None):
+    # @param execution_policy The policy for executing the binary.
+    def __init__(self,test_name,active=False,binary=None,binary_arguments=None, execution_policy=NoParallelExecution):
         self._test_name = test_name
         self._active = active
         self._binary = binary
         self._binary_arguments = binary_arguments
+        self._execution_policy = execution_policy
     
     def printForDebugging(self):
         message =  f"""===\n"""
@@ -38,7 +40,7 @@ class UnitTest:
         print(message)
         
     def _get_cmd(self):
-        cmd = f"""{self._binary} {self._binary_arguments}"""
+        cmd = self._execution_policy.command(self._binary,self._binary_arguments);
         return cmd
 
     command = property(fget=_get_cmd,doc="The command that runs the test.")
@@ -87,9 +89,13 @@ def _get_all_tests():
                 parallel_type = parallel_type.strip()
                 if parallel_type == "mpi":
                     nm_mpi_threads = (parallel_test.find('nm_mpi_threads').text).strip()
-                    run_command = run_unit_tests.execution_command.MPIExecutionCommand(test_binary,nm_mpi_threads)
-                    print ("nm_mpi_threads=",nm_mpi_threads)
-                    print(run_command.command)
+                    run_command = MPIExecutionCommand(nm_mpi_threads)
+                    print(run_command.command(test_binary,test_arguments))
+        else:
+            run_command = NoParallelExecution()
+            print(run_command.command(test_binary,test_arguments))
+
+
 
         all_tests.append(UnitTest(test_name=name,
                                   active=active,

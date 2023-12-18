@@ -6,29 +6,48 @@ import abc
 
 class BaseExecutionCommand(abc.ABC):
 
-    @property
     @abc.abstractmethod
-    def command(self):
+    def command(self,binary_name,args):
         return;
 
 class NoParallelExecution(BaseExecutionCommand):
-    def __init__(self,binary_name):
-        self._binaryName = binary_name
-        self._myCommand = f"""{self._binaryName}"""
+    def __init__(self):
+        self._myCommand = "{my_binary_name} {my_args}"
 
-    @property
-    def command(self):
-        return self._myCommand;
+    def command(self,binary_name,args=None):
+        if args == None:
+            args = " "
+        return self._myCommand.format(my_binary_name=binary_name,
+                                      my_args=args);
 
 class MPIExecutionCommand(BaseExecutionCommand):
 
-    def __init__(self,binary_name,nm_procs):
+    def __init__(self,nm_procs):
         self._numberOfProcessors = nm_procs
-        self._binaryName = binary_name
-        self._myCommand = f""" mpirun -np {self._numberOfProcessors} {self._binaryName} """
+        self._myCommand = "mpirun -np {my_nm_mpi_threads} {my_binary_name} {my_args}"
 
-    @property
-    def command(self):
-        return self._myCommand;
+    def command(self,binary_name,args=None):
+        if args == None:
+            args = " "       
+        return self._myCommand.format(my_nm_mpi_threads=self._numberOfProcessors,
+                                      my_binary_name=binary_name,
+                                      my_args=args);
 
+class ExcutionPolicyFactory:
+    def __init__(self):
+        pass
+
+    @classmethod
+    def create(cls,unit_test):
+        parallel_test = unit_test.find('parallel')
+        run_policy = NoParallelExecution()
+        if parallel_test:
+                parallel_type = parallel_test.find('type').text
+                parallel_type = parallel_type.strip()
+                if parallel_type == "mpi":
+                    nm_mpi_threads = (parallel_test.find('nm_mpi_threads').text).strip()
+                    run_policy = MPIExecutionCommand(nm_mpi_threads)
+        else:
+            run_policy = NoParallelExecution()
+        return run_policy
 
