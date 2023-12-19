@@ -23,8 +23,10 @@ class NoParallelExecution(BaseExecutionCommand):
 class MPIExecutionCommand(BaseExecutionCommand):
 
     def __init__(self,nm_procs):
+        import os
         self._numberOfProcessors = nm_procs
-        self._myCommand = "mpirun -np {my_nm_mpi_threads} {my_binary_name} {my_args}"
+        mpiruncommand = os.getenv("ANANSI_MPI_RUN_COMMAND")
+        self._myCommand = mpiruncommand + " {my_nm_mpi_threads} {my_binary_name} {my_args}"
 
     def command(self,binary_name,args=None):
         if args == None:
@@ -33,7 +35,7 @@ class MPIExecutionCommand(BaseExecutionCommand):
                                       my_binary_name=binary_name,
                                       my_args=args);
 
-class ExcutionPolicyFactory:
+class ExecutionPolicyFactory:
     def __init__(self):
         pass
 

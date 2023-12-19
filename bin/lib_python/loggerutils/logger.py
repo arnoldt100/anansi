@@ -55,6 +55,7 @@ def create_logger(log_id, log_level):
 
     # add ch to logger
     logger.addHandler(ch)
+    return logger
 
 ## @brief Creates and returns a logger object.
 ##

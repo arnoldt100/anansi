@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 ## @package anansi_unit_tests
 
+
 # System imports
 import logging
 import argparse
@@ -13,6 +14,7 @@ from loggerutils.logger import create_logger
 from run_unit_tests.unit_test_status import TestStatus
 from run_unit_tests.execution_command import NoParallelExecution
 from run_unit_tests.execution_command import MPIExecutionCommand
+from run_unit_tests.execution_command import ExecutionPolicyFactory
 
 ## @class UnitTest
 class UnitTest:
@@ -82,25 +84,13 @@ def _get_all_tests():
         test_binary_full_qualified_path = os.path.join(root_path_unit_tests,test_binary)
         test_arguments = unit_test.find('test_arguments').text 
         test_arguments = test_arguments.strip()
-
-        parallel_test = unit_test.find('parallel')
-        if parallel_test:
-                parallel_type = parallel_test.find('type').text
-                parallel_type = parallel_type.strip()
-                if parallel_type == "mpi":
-                    nm_mpi_threads = (parallel_test.find('nm_mpi_threads').text).strip()
-                    run_command = MPIExecutionCommand(nm_mpi_threads)
-                    print(run_command.command(test_binary,test_arguments))
-        else:
-            run_command = NoParallelExecution()
-            print(run_command.command(test_binary,test_arguments))
-
-
+        test_execution_policy = ExecutionPolicyFactory.create(unit_test)
 
         all_tests.append(UnitTest(test_name=name,
                                   active=active,
                                   binary=test_binary_full_qualified_path,
-                                  binary_arguments=test_arguments))
+                                  binary_arguments=test_arguments,
+                                  execution_policy=test_execution_policy))
     return all_tests
 
 
