@@ -17,6 +17,10 @@ from run_unit_tests.execution_command import MPIExecutionCommand
 from run_unit_tests.execution_command import ExecutionPolicyFactory
 
 ## @class UnitTest
+##
+## UnitTest is an abstraction for the unit_test nodes in the
+## the XML file anansi_unit_tests.xml. Each unit test consists
+## 
 class UnitTest:
 
     ## The constructor

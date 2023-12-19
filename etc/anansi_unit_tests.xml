@@ -1,20 +1,31 @@
 <!-- This file configures the unit tests to run. -->
+
 <data>
 
    <unit_test name = "file_parsers_core">
         <active> yes </active>
+	<execution_policy>
+		<policy> NoParallelExecution </policy>
+	</execution_policy>
         <test_binary>file_parsers_core_unit_tests</test_binary>
         <test_arguments> </test_arguments>
    </unit_test>
 
    <unit_test name = "string_utilities">
         <active> yes </active>
+	<execution_policy>
+		<policy> NoParallelExecution </policy>
+	</execution_policy>
         <test_binary>string_utilities_unit_tests</test_binary>
         <test_arguments> </test_arguments>
    </unit_test>
 
    <unit_test name = "mpi_communicator">
         <active> yes </active>
+	<execution_policy>
+		<policy> MPIExecutionCommand </policy>
+            	<nm_mpi_threads> 2 </nm_mpi_threads>
+	</execution_policy>
         <parallel>
             <type> mpi </type>
             <nm_mpi_threads> 2 </nm_mpi_threads>
@@ -25,12 +36,18 @@
 
    <unit_test name = "invoker">
         <active> no </active>
+	<execution_policy>
+		<policy> NoParallelExecution </policy>
+	</execution_policy>
         <test_binary>invoker_unit_tests</test_binary>
         <test_arguments> </test_arguments>
    </unit_test>
 
    <unit_test name = "communicator">
         <active> no </active>
+	<execution_policy>
+		<policy> NoParallelExecution </policy>
+	</execution_policy>
         <test_binary>communicator_unit_tests</test_binary>
         <test_arguments> </test_arguments>
    </unit_test>

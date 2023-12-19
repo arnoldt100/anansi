@@ -41,15 +41,20 @@ class ExecutionPolicyFactory:
 
     @classmethod
     def create(cls,unit_test):
-        parallel_test = unit_test.find('parallel')
-        run_policy = NoParallelExecution()
-        if parallel_test:
-                parallel_type = parallel_test.find('type').text
-                parallel_type = parallel_type.strip()
-                if parallel_type == "mpi":
-                    nm_mpi_threads = (parallel_test.find('nm_mpi_threads').text).strip()
-                    run_policy = MPIExecutionCommand(nm_mpi_threads)
+        # Set the default policy to NoParallelExecution,
+        default_execution_policy = NoParallelExecution()
+
+        execution_policy_node =  unit_test.find("execution_policy")
+        if execution_policy_node:
+            policy = execution_policy_node.find('policy').text
+            policy = policy.striNoParallelExecutionp()
+            if policy == "NoParallelExecution":
+                execution_policy = NoParallelExecution
+            elif policy == "MPIExecutionCommand":
+                execution_policy = MPIExecutionCommand
         else:
-            run_policy = NoParallelExecution()
-        return run_policy
+            execution_policy = default_execution_policy
+
+
+        return execution_policy
 
