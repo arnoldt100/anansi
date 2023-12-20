@@ -9,6 +9,8 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+// #include <boost/test/included/unit_test.hpp>
+#include "mpi.h"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -63,6 +65,8 @@ FixtureBroadcastVectorStringCache * FixtureBroadcastVectorStringCache::clone() c
 //============================= MUTATORS =====================================
 void FixtureBroadcastVectorStringCache::setup()
 {
+    // Initialze the MPI environment.
+
     std::vector<std::string> my_test_string_1{std::string("ABCDEFG"),
                                               std::string("12345678"),
                                               std::string("abcdefghi")};
@@ -74,6 +78,7 @@ void FixtureBroadcastVectorStringCache::setup()
 
 void FixtureBroadcastVectorStringCache::teardown()
 {
+
     return;
 }
 

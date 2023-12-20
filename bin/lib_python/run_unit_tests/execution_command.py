@@ -47,14 +47,15 @@ class ExecutionPolicyFactory:
         execution_policy_node =  unit_test.find("execution_policy")
         if execution_policy_node:
             policy = execution_policy_node.find('policy').text
-            policy = policy.striNoParallelExecutionp()
+            policy = policy.strip()
             if policy == "NoParallelExecution":
-                execution_policy = NoParallelExecution
+                execution_policy = NoParallelExecution()
             elif policy == "MPIExecutionCommand":
-                execution_policy = MPIExecutionCommand
+                nm_procs = execution_policy_node.find("nm_mpi_threads").text
+                nm_procs = nm_procs.strip()
+                execution_policy = MPIExecutionCommand(nm_procs)
         else:
             execution_policy = default_execution_policy
-
 
         return execution_policy
 

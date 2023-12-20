@@ -81,13 +81,19 @@ def _get_all_tests():
     for unit_test in root.findall('unit_test'):
         tag = unit_test.tag
         name = unit_test.attrib["name"]
+
         active = unit_test.find('active').text
         active = active.strip()
+
         test_binary = unit_test.find('test_binary').text
         test_binary = test_binary.strip()
         test_binary_full_qualified_path = os.path.join(root_path_unit_tests,test_binary)
-        test_arguments = unit_test.find('test_arguments').text 
+
+        test_arguments = unit_test.find('test_arguments').text
         test_arguments = test_arguments.strip()
+        if test_arguments == "No Arguments":
+            test_arguments = None
+            
         test_execution_policy = ExecutionPolicyFactory.create(unit_test)
 
         all_tests.append(UnitTest(test_name=name,
