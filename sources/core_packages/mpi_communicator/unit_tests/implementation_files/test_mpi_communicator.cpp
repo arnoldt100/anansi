@@ -29,10 +29,7 @@ BOOST_FIXTURE_TEST_CASE( mpi_communicator_test, FixtureBroadcastVectorStringCach
 
     std::tie(status,message) = verify_VectorStringCacheBroadcast(experimentalVecStringCache1);
 
-    if (my_rank==1)
-    {
-        BOOST_TEST(status, message.c_str());
-    }
+    BOOST_TEST(status, message.c_str());
 
     mpi_error = MPI_Finalize();
 }
