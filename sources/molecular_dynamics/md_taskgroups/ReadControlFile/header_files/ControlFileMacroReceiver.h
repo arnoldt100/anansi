@@ -199,6 +199,9 @@ void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
         this->componentTasks_.at(task_2_label)->doAction(flags);
     
         // (4) Get the results of the ControlFileXMLMPICommReceiver and copy to ControlFileXMLReceiver
+        auto results2  = 
+          GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::getCopyofTaskResults(this->componentTasks_.at(task_2_label));
+        GenericMDTaskUtilities<ControlFileXMLReceiver>::modifyTask(this->componentTasks_.at(task_1_label),results2);
 
     } 
     catch ( const RECEIVER::ReceiverError & my_error)
