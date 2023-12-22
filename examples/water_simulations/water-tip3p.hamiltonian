@@ -1,0 +1,42 @@
+<data>
+<tip3p-molecule>
+        <!--    This is rigid molecule with the following parameters:
+                
+                O1----H
+                       \
+                        \       
+                         O2
+
+                O-H bond distance (Angstroms) :  0.9572 
+                H-O-H angle (radians) : 1.82421813
+                A (kcal-(Angstroms)^12/mole : 582.0 
+                B (kcal-(Angstroms)^6/mole : 595.0
+                Charge of O atom (e) :   −0.834
+                Charge of H atom (e):   +0.417
+
+        -->
+        
+        <type = rigid-molecule> 
+                <bonds>
+                        <O-H> 0.9572 </O-H>
+                </bonds> 
+                <angles>
+                        <O-H-O>  1.82421813  </O-H-O>
+                </angles>
+        </type>
+
+        <Electrostatics>
+                <O> −0.834 </O>
+                <H> +0.417 </H>
+        </Electrostatics>
+
+        <Nonbonded>
+                <O-O>
+                        <12-6-Lennard-Jones>
+                                <A> 582.0 </A>
+                                <B> 595.0 </B>
+                        </12-6-Lennard-Jones>
+                </O-O>
+        </Nobonded>
+</tip3p-molecule>
+</data>
