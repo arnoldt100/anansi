@@ -183,8 +183,6 @@ void ControlFileXMLReceiver::disableReceiver_(Types &... args)
 template<typename... Types>
 void ControlFileXMLReceiver::receiverDoAction_(Types &... args) const
 {
-    std::cout << "Stub for ControlFileXMLReceiver::receiverDoAction_" << std::endl;
-
     if (this->masterProcess_.operator()())
     {
         try 

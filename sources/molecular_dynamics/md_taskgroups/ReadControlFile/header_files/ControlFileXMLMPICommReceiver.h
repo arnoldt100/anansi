@@ -174,8 +174,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 template<typename... Types>
 void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
 {
-    std::cout << "Stub for ControlFileXMLMPICommReceiver::receiverDoAction_" << std::endl;
-
     // Set the pickle type for  command file.
     using pickle_t = receiver_result_t::PICKLETYPE;
 
