@@ -8,7 +8,7 @@
 		<policy> NoParallelExecution </policy>
 	</execution_policy>
         <test_binary>file_parsers_core_unit_tests</test_binary>
-        <test_arguments> </test_arguments>
+        <test_arguments>No Arguments</test_arguments>
    </unit_test>
 
    <unit_test name = "string_utilities">
@@ -17,7 +17,7 @@
 		<policy> NoParallelExecution </policy>
 	</execution_policy>
         <test_binary>string_utilities_unit_tests</test_binary>
-        <test_arguments> </test_arguments>
+        <test_arguments> No Arguments </test_arguments>
    </unit_test>
 
    <unit_test name = "mpi_communicator">
@@ -31,7 +31,7 @@
             <nm_mpi_threads> 2 </nm_mpi_threads>
         </parallel>
         <test_binary>mpi_communicator_unit_tests</test_binary>
-        <test_arguments> </test_arguments>
+        <test_arguments> No Arguments </test_arguments>
    </unit_test>
 
    <unit_test name = "invoker">
@@ -40,7 +40,7 @@
 		<policy> NoParallelExecution </policy>
 	</execution_policy>
         <test_binary>invoker_unit_tests</test_binary>
-        <test_arguments> </test_arguments>
+        <test_arguments>No Arguments </test_arguments>
    </unit_test>
 
    <unit_test name = "communicator">
@@ -49,7 +49,7 @@
 		<policy> NoParallelExecution </policy>
 	</execution_policy>
         <test_binary>communicator_unit_tests</test_binary>
-        <test_arguments> </test_arguments>
+        <test_arguments> No Arguments </test_arguments>
    </unit_test>
 
 </data>

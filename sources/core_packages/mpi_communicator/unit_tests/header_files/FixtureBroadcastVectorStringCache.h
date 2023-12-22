@@ -28,7 +28,7 @@ class FixtureBroadcastVectorStringCache
 
         ~FixtureBroadcastVectorStringCache ();  // destructor
 
-        // ====================  ACCESSORS     =======================================
+        // ====================  ACCESSORS     ======================================= v
         FixtureBroadcastVectorStringCache * clone () const;
 
         // ====================  MUTATORS      =======================================

@@ -177,11 +177,11 @@ template<typename... Types>
 void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 {
     // (1) The first step is to execute the task of reading the control file via ControlFileXMLReceiver.
-    //     Only the master process reads the control file. As the number of processes increases, one doesn't 
+    //     Only the master process reads the control file because as the number of processes increases, one doesn't 
     //     want all processes reading the same file.
-    // (2) Get the results of the ControlFileXMLReceiver and copy to ControlFileXMLMPICommReceiver 
+    // (2) Get the results of the ControlFileXMLReceiver task and copy to ControlFileXMLMPICommReceiver 
     // (3) ControlFileXMLMPICommReceiver communicates control file to other processes.
-    // (4) Get the results of the ControlFileXMLMPICommReceiver and copy to ControlFileXMLReceiver
+    // (4) Get the results of the ControlFileXMLMPICommReceiver and copy back to the ControlFileXMLReceiver
 
     try {
         // (1) The first step is to execute the task of reading the control file via ControlFileXMLReceiver. 
@@ -191,14 +191,17 @@ void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
 
         // (2) Get the results of the ControlFileXMLReceiver and copy to ControlFileXMLMPICommReceiver 
         auto task_2_label = ControlFileXMLMPICommReceiver::TASKLABEL;
-        auto results = 
+        auto task_1_results = 
           GenericMDTaskUtilities<ControlFileXMLReceiver>::getCopyofTaskResults(this->componentTasks_.at(task_1_label));
-        GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::modifyTask(this->componentTasks_.at(task_2_label),results);
+        GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::modifyTask(this->componentTasks_.at(task_2_label),task_1_results);
 
         // (3) ControlFileXMLMPICommReceiver to communicate control file to other processes.
         this->componentTasks_.at(task_2_label)->doAction(flags);
     
         // (4) Get the results of the ControlFileXMLMPICommReceiver and copy to ControlFileXMLReceiver
+        auto task_2_results  = 
+          GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::getCopyofTaskResults(this->componentTasks_.at(task_2_label));
+        GenericMDTaskUtilities<ControlFileXMLReceiver>::modifyTask(this->componentTasks_.at(task_1_label),task_2_results);
 
     } 
     catch ( const RECEIVER::ReceiverError & my_error)
