@@ -1,42 +1,92 @@
 <data>
-<tip3p-molecule>
-        <!--    This is rigid molecule with the following parameters:
-                
-                O1----H
-                       \
-                        \       
-                         O2
+<molecular groups> 
+        <tip3p-rigid-molecule>
+                <!--    This is the tip3p [1] rigid water molecule with the following parameters:
+                        
+                        H1----O
+                               \
+                                \       
+                                 H2
 
-                O-H bond distance (Angstroms) :  0.9572 
-                H-O-H angle (radians) : 1.82421813
-                A (kcal-(Angstroms)^12/mole : 582.0 
-                B (kcal-(Angstroms)^6/mole : 595.0
-                Charge of O atom (e) :   −0.834
-                Charge of H atom (e):   +0.417
+                        O-H bond distance (Angstroms) :  0.9572 
+                        H-O-H angle (radians) : 1.82421813
 
-        -->
-        
-        <type = rigid-molecule> 
-                <bonds>
-                        <O-H> 0.9572 </O-H>
-                </bonds> 
-                <angles>
-                        <O-H-O>  1.82421813  </O-H-O>
-                </angles>
-        </type>
+                        Lennard-Jones 12-6 interaction for O atoms.
+                        V(r_OO) = 4*epsilon*( (sigma/r_OO)^12 - (sigma/r_OO)^6 ) where
+                            epsilon (Kilojoules/mole) : 0.6360
+                            sigma (Angstroms) : 3.15075
+                        Charge of O atom (e) :  −0.834
+                        Charge of H atom (e):   +0.417
 
-        <Electrostatics>
-                <O> −0.834 </O>
-                <H> +0.417 </H>
-        </Electrostatics>
+                        [1] Comparison of Simple Potential Functions for Simulating Liquid Water
+                        William L. Jorgensen; Jayaraman Chandrasekhar; Jeffry D. Madura; Roger W. Impey; Michael L. Klein
+                        J. Chem. Phys. 79, 926–935 (1983)
 
-        <Nonbonded>
-                <O-O>
-                        <12-6-Lennard-Jones>
-                                <A> 582.0 </A>
-                                <B> 595.0 </B>
-                        </12-6-Lennard-Jones>
-                </O-O>
-        </Nobonded>
-</tip3p-molecule>
+                -->
+
+                <!-- This section defines the intramolecular interactions in the group. There are none 
+                     for tip3p because it is a rigid molecule. -->
+                <intramolecular interactions>
+                </intramolecular interactions>
+
+                <!-- This section defines the electrostatic properties in the group -->
+                <electrostatics>
+                    <monopoles>
+                        <!-- Atom label    Charge (units of e) -->
+                        <!-- -----------   ---------------------->
+                        <1> O              −0.834 </1> 
+                        <2> H1              0.417 </2> 
+                        <3> H2              0.417 </3> 
+                    </monopoles>
+                </electrostatics>
+        </tip3p-rigid-molecule>
+
+        <argon-atom>
+                <!-- This is a solitary argon atom with the topology 
+                     of a point atom. Argon atoms that are distance r apart
+                     interact with a Lennard-Jones 12-6 interaction:
+
+                            Ar <-------r--------> Ar  
+
+                            V(r) = 4*epsilon*( (sigma/r)^12 - (sigma/r)^6 ) or
+                            epsilon (Kilojoules/mole) : 0.997
+                            sigma (Angstroms) : 3.40
+                -->
+
+                <!-- This section defines the intramolecular interactions in the group. There are none 
+                     for it is a point atom. -->
+                <intramolecular interactions>
+                </intramolecular interactions>
+
+                <!-- This section defines the electrostatic properties in the group. 
+                     There are none for the argon atom. -->
+                <electrostatics>
+                </electrostatics>
+        </argon-atom>
+</molecular groups> 
+
+<Intermolecular Interactions>
+    <Nonbonded>
+            <tip3p_OO>
+                <type> 12-6-Lennard-Jones </type>
+                <!-- V(r) = 4*epsilon*( (sigma/r)^12 - (sigma/r)^6 ) -->
+                <parameters>
+                    <!--    Interacting Atoms                                                Epsilon (Kjoules/mole)        Sigma (Angstroms) -->
+                    <!--    ---------------------------------------------                    -------                       ----------------- -->
+                    <1>     tip3p-rigid-molecule O  tip3p-rigid-molecule O                   0.6360                        3.15075           </1>
+                </parameters>
+            </tip3p_OO>
+
+            <ar-ar>
+                <type> 12-6-Lennard-Jones </type>
+                <!-- V(r) = 4*epsilon*( (sigma/r)^12 - (sigma/r)^6 ) -->
+                <parameters>
+                    <!--    Interacting Atoms                                                Epsilon (Kjoules/mole)       Sigma (Angstroms) -->
+                    <!--    ---------------------------------------------                    ------                       ----------------- -->
+                    <1>     argon-atom Ar  argon-atom Ar                                     0.997                        3.400             </1>
+                </parameters>
+            </ar-ar>
+    </Nobonded>
+</Intermolecular Interactions>
+
 </data>
