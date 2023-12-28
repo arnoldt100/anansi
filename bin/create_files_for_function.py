@@ -49,7 +49,7 @@ def _parse_arguments():
     # program.
     program_description = "This program creates the skeletal header and implementation files for a function."
 
-    # Create text for namspace option help.
+    # Create text for namespace option help.
     namespace_help = ( f"""The namespace should conform to the language standards.\n """
                        f"""For example, most languages require namespaces to have only alphanumeric characters.\n""")
 

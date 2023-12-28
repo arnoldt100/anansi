@@ -6,8 +6,76 @@ import string
 import argparse
 
 # Local imports
+import logging
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
+
+## @fn _parse_arguments( )
+## @brief Parses the command line arguments.
+##
+## @details Parses the command line arguments and
+## returns A namespace.
+##
+## @return A namespace. The namespace contains attributes
+##         that are the command line arguments.
+def _parse_arguments():
+
+    # Create a string of the description of the 
+    # program
+    program_description = ( f"""This program creates water boxes for Anansi.\n\n"""
+                            f"""Typical uage is : create_water_box.py --type-of-water <...> rectangular_bounding_region --origin <...> --dimensions <...>\n\n"""
+                            f"""For help on a subcommand do : create_water_box.py <subcommand> --help\n"""
+                            f"""All lengths and coordinates are in angstroms. """ )
+
+    # Create text for 'type of water' option help.
+    type_of_water_help = ( f"""The type of water (model) to fill the bounding.\n""")
+
+    # Create text for 'type of bounding region' option help.
+    type_of_water_help = ( f"""The type of bounding region.\n""")
+
+
+    # Create an argument parser.
+    my_parser = argparse.ArgumentParser(
+            description=program_description,
+            formatter_class=argparse.RawTextHelpFormatter,
+            add_help=True)
+
+    # Add an optional argument for the logging level.
+    my_parser.add_argument("--log-level",
+                           type=int,
+                           default=logging.WARNING,
+                           help=create_logger_description() )
+
+    # Adding mandatory argument group.
+    mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
+
+    mandatory_args_group.add_argument("--type-of-water",
+                           required=True,
+                           type=str,
+                           choices=["tip3p"],
+                           help=type_of_water_help)
+
+    # Adding subparser for commands for defining the bounding region.
+    bounding_region_subparser = my_parser.add_subparsers(help="Commands to create different types of bounding regions.",
+                                                         title="Subcommand arguments for creating types of bounding regions")
+
+    # Adding parser for the rectangular region.
+    parser_rect = bounding_region_subparser.add_parser("rectangular_bounding_region",help="Create a rectangular bounding region.") 
+    parser_rect.add_argument("--origin",required=True,type=float,help="The origin of the bounding rectangular box.")
+    parser_rect.add_argument("--dimensions",required=True,nargs=3,type=float,help="The dimension of the rectangular bounding box",
+                             metavar=("x-length","y-length","z-length"))
+
+    # Adding parser for the spherical region.
+    parser_sphere = bounding_region_subparser.add_parser("spherical_bounding_region",help="Create a spherical bounding region.") 
+    parser_sphere.add_argument("--origin",required=True,type=float,nargs=3,help="The origin of bounding sphere; in cartesian coordinates.",
+                               metavar=("x","y","z") )
+    parser_sphere.add_argument("--radius",required=True,type=float,help="The radius of the bounding sphere.")
+
+    # make the sphere and rectangular args exclusive.
+
+    my_args = my_parser.parse_args()
+
+    return my_args 
 
 ## @fn main ()
 ## @brief The main function.
@@ -23,34 +91,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-## @fn _parse_arguments( )
-## @brief Parses the command line arguments.
-##
-## @details Parses the command line arguments and
-## returns A namespace.
-##
-## @return A namespace. The namespace contains attributes
-##         that are the command line arguments.
-def _parse_arguments():
-
-    # Create a string of the description of the 
-    # program
-    program_description = "This program creates water boxes for Anansi." 
-
-    # Create an argument parser.
-    my_parser = argparse.ArgumentParser(
-            description=program_description,
-            formatter_class=argparse.RawTextHelpFormatter,
-            add_help=True)
-
-    # Add an optional argument for the logging level.
-    my_parser.add_argument("--log-level",
-                           type=int,
-                           default=logging.WARNING,
-                           help=create_logger_description() )
-
-    my_args = my_parser.parse_args()
-
-    return my_args 
 
