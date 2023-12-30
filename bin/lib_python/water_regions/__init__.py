@@ -1,2 +1,4 @@
 __all__ = ["rectangular",
-           "spherical"]
+           "spherical",
+           "region",
+           "tip3p"]

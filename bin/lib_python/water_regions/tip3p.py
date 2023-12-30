@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-## @package spherical
+## @package tip3p
 
 # System imports
 import string
@@ -8,29 +8,19 @@ import argparse
 # Local imports
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
-from water_regions.region import Region
 
-def class Spherical(Region):
+class tip3p:
     def __init__(self):
         pass
 
-    def _write_to_file(self):
+    def rotate(self):
         pass
 
-## @fn main ()
-## @brief The main function.
-def main():
-    args = _parse_arguments()
+    def translate(self):
+        pass
 
-    logger = _create_logger(log_id='__LoggerID__',
-                           log_level=args.log_level)
-
-    logger.info("Start of main program")
-
-    logger.info("End of main program")
-
-if __name__ == "__main__":
-    main()
+    def reset(self):
+        pass
 
 ## @fn _parse_arguments( )
 ## @brief Parses the command line arguments.
@@ -62,3 +52,17 @@ def _parse_arguments():
 
     return my_args 
 
+## @fn main ()
+## @brief The main function.
+def main():
+    args = _parse_arguments()
+
+    logger = _create_logger(log_id='__LoggerID__',
+                           log_level=args.log_level)
+
+    logger.info("Start of main program")
+
+    logger.info("End of main program")
+
+if __name__ == "__main__":
+    main()

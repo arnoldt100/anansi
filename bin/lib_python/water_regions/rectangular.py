@@ -8,12 +8,13 @@ import argparse
 # Local imports
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
+from water_regions.region import Region
 
-def class Rectangular:
+class Rectangular(Region):
     def __init__(self):
         pass
 
-    def write_to_file(self):
+    def _write_to_file(self):
         pass
 
 ## @fn _parse_arguments( )

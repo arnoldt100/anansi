@@ -9,14 +9,15 @@ import argparse
 import logging
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
+import water_regions.rectangular
 
 ## @fn _parse_arguments( )
 ## @brief Parses the command line arguments.
 ##
 ## @details Parses the command line arguments and
-## returns A namespace.
+## returns a tuple of namespaces.
 ##
-## @return A namespace. The namespace contains attributes
+## @return A tuple of namespaces. The namespaces contains attributes
 ##         that are the command line arguments.
 def _parse_arguments():
 
@@ -57,11 +58,13 @@ def _parse_arguments():
 
     # Adding subparser for commands for defining the bounding region.
     bounding_region_subparser = my_parser.add_subparsers(help="Commands to create different types of bounding regions.",
-                                                         title="Subcommand arguments for creating types of bounding regions")
+                                                         title="Subcommand arguments for creating types of bounding regions",
+                                                         dest="subparser_name")
 
     # Adding parser for the rectangular region.
     parser_rect = bounding_region_subparser.add_parser("rectangular_bounding_region",help="Create a rectangular bounding region.") 
-    parser_rect.add_argument("--origin",required=True,type=float,help="The origin of the bounding rectangular box.")
+    parser_rect.add_argument("--origin",required=True,nargs=3,type=float,help="The origin of the bounding rectangular box.",
+                             metavar=("x-origin","y-origin","z-origin"))
     parser_rect.add_argument("--dimensions",required=True,nargs=3,type=float,help="The dimension of the rectangular bounding box",
                              metavar=("x-length","y-length","z-length"))
 
@@ -71,21 +74,44 @@ def _parse_arguments():
                                metavar=("x","y","z") )
     parser_sphere.add_argument("--radius",required=True,type=float,help="The radius of the bounding sphere.")
 
-    # make the sphere and rectangular args exclusive.
-
     my_args = my_parser.parse_args()
 
     return my_args 
+
+def _region_factory(args):
+    my_region = None
+    # Choose what kind of bounding region to fill in.
+    if args.subparser_name == "rectangular_bounding_region":
+        my_region = water_regions.rectangular.Rectangular()
+    elif args.subparser_name == "spherical_bounding_region":
+        my_region = water_regions.spherical.Spherical()
+    return my_region
+
+def _water_molecule_factory(args):
+    my_molecule = None
+    # Choose what kind of bounding region to fill in.
+    if args.subparser_name == "tip3p":
+        my_molecule = tip3p()
+    return my_molecule
+
+def _fill_region_with_water(region, water_molecule):
+    pass
 
 ## @fn main ()
 ## @brief The main function.
 def main():
     args = _parse_arguments()
 
-    logger = _create_logger(log_id='main_logger',
+    logger = create_logger(log_id='main_logger',
                            log_level=args.log_level)
 
     logger.info("Start of main program")
+
+    # Choose what kind of molecule to fill in the region.
+
+    my_molecule = _water_molecule_factory(args)
+
+    my_region = _region_factory(args)
 
     logger.info("End of main program")
 
