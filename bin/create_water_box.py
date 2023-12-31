@@ -9,7 +9,9 @@ import argparse
 import logging
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
-import water_regions.rectangular
+import molecular_regions.rectangular
+import molecular_regions.spherical
+import molecular_regions.tip3p
 
 ## @fn _parse_arguments( )
 ## @brief Parses the command line arguments.
@@ -24,7 +26,7 @@ def _parse_arguments():
     # Create a string of the description of the 
     # program
     program_description = ( f"""This program creates water boxes for Anansi.\n\n"""
-                            f"""Typical uage is : create_water_box.py --type-of-water <...> rectangular_bounding_region --origin <...> --dimensions <...>\n\n"""
+                            f"""Typical uage is : create_water_box.py --type-of-molecule <...> rectangular_bounding_region --origin <...> --dimensions <...>\n\n"""
                             f"""For help on a subcommand do : create_water_box.py <subcommand> --help\n"""
                             f"""All lengths and coordinates are in angstroms. """ )
 
@@ -50,7 +52,7 @@ def _parse_arguments():
     # Adding mandatory argument group.
     mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
 
-    mandatory_args_group.add_argument("--type-of-water",
+    mandatory_args_group.add_argument("--type-of-molecule",
                            required=True,
                            type=str,
                            choices=["tip3p"],
@@ -82,19 +84,19 @@ def _region_factory(args):
     my_region = None
     # Choose what kind of bounding region to fill in.
     if args.subparser_name == "rectangular_bounding_region":
-        my_region = water_regions.rectangular.Rectangular()
+        my_region = molecular_regions.rectangular.Rectangular()
     elif args.subparser_name == "spherical_bounding_region":
-        my_region = water_regions.spherical.Spherical()
+        my_region = molecular_regions.spherical.Spherical()
     return my_region
 
 def _water_molecule_factory(args):
     my_molecule = None
     # Choose what kind of bounding region to fill in.
-    if args.subparser_name == "tip3p":
-        my_molecule = tip3p()
+    if args.type_of_molecule == "tip3p":
+        my_molecule = molecular_regions.tip3p.tip3p()
     return my_molecule
 
-def _fill_region_with_water(region, water_molecule):
+def _fill_region_with_water(region, molecule):
     pass
 
 ## @fn main ()
@@ -110,7 +112,6 @@ def main():
     # Choose what kind of molecule to fill in the region.
 
     my_molecule = _water_molecule_factory(args)
-
     my_region = _region_factory(args)
 
     logger.info("End of main program")

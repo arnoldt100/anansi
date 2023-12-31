@@ -2,17 +2,22 @@
 ## @package rectangular
 
 # System imports
+import numpy as np
 import string
 import argparse
 
 # Local imports
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
-from water_regions.region import Region
+from molecular_regions.region import Region
 
 class Rectangular(Region):
-    def __init__(self):
-        pass
+    ## 
+    def __init__(self,
+                 origin=np.array([0.00,0.00,0.00]),
+                 dimensions=np.array([10.00,10.00,10.00]):
+        self._origin = origin
+        self._dimensions = dimensions
 
     def _write_to_file(self):
         pass
