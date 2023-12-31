@@ -1,0 +1,17 @@
+<data>
+    <Type of Coordinate System> 3D Cartesian Coordinates </Type of Coordinate System>
+    <origin> 0.00 0.00 0.00 </origin>
+    <bounding region> 
+       <x> -1000.00 1000.00 </x> 
+       <y> -1000.00 1000.00 </y> 
+       <z> -1000.00 1000.00 </z> 
+    </bounding region> 
+
+    <boundary conditions> 
+       <x> periodic </x> 
+       <y> periodic </y> 
+       <z> periodic </z> 
+    </bounding conditions> 
+
+</data>
+

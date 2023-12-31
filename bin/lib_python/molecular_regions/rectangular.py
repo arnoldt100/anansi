@@ -15,7 +15,7 @@ class Rectangular(Region):
     ## 
     def __init__(self,
                  origin=np.array([0.00,0.00,0.00]),
-                 dimensions=np.array([10.00,10.00,10.00]):
+                 dimensions=np.array([10.00,10.00,10.00])):
         self._origin = origin
         self._dimensions = dimensions
 

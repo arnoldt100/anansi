@@ -13,7 +13,6 @@ from molecular_regions.region import Region
 
 class Spherical(Region):
     def __init__(self,
-                 origin=None,
                  origin=np.array([0.00,0.00,0.00]),
                  radius=10.00):
         self._origin = origin

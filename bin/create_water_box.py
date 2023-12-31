@@ -99,6 +99,9 @@ def _water_molecule_factory(args):
 def _fill_region_with_water(region, molecule):
     pass
 
+def _fill_region_with_molecules():
+    pass
+
 ## @fn main ()
 ## @brief The main function.
 def main():
@@ -113,6 +116,8 @@ def main():
 
     my_molecule = _water_molecule_factory(args)
     my_region = _region_factory(args)
+    _fill_region_with_molecules()
+
 
     logger.info("End of main program")
 
