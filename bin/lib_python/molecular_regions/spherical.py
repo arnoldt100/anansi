@@ -18,6 +18,10 @@ class Spherical(Region):
         self._origin = origin
         self._radius = radius
 
+    def _volume(self):
+        volume = (4.00/3.00)*(np.pi)*((self._radius)**3)
+        return volume
+
     def _write_to_file(self):
         pass
 

@@ -12,12 +12,15 @@ from loggerutils.logger import create_logger
 from molecular_regions.region import Region
 
 class Rectangular(Region):
-    ## 
     def __init__(self,
                  origin=np.array([0.00,0.00,0.00]),
                  dimensions=np.array([10.00,10.00,10.00])):
         self._origin = origin
         self._dimensions = dimensions
+
+    def _volume(self):
+        volume = (self._dimensions[0])*(self._dimensions[1])*(self._dimensions[2])
+        return volume
 
     def _write_to_file(self):
         pass

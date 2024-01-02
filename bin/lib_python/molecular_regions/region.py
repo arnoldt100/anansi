@@ -15,6 +15,20 @@ class Region(abc.ABC):
     def __init__(self):
         pass
 
+    ## Returns the volume of the region.
+    ## 
+    ## The volume of region.
+    @property
+    def volume(self):
+        return self._volume()
+
+    @abc.abstractmethod
+    def _volume(self):
+        pass
+
+    ## Write the region to disk.
+    ## 
+    ## The volume of region.
     def write_to_file(self):
         self._write_to_file();
 

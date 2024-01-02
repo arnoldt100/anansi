@@ -49,6 +49,11 @@ def _parse_arguments():
                            default=logging.WARNING,
                            help=create_logger_description() )
 
+    my_parser.add_argument("--output-file-name",
+                           type=str,
+                           default="a_water_box",
+                           help="The prefix for the output file name." )
+
     # Adding mandatory argument group.
     mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
 
@@ -96,11 +101,14 @@ def _water_molecule_factory(args):
         my_molecule = molecular_regions.tip3p.tip3p()
     return my_molecule
 
-def _fill_region_with_water(region, molecule):
-    pass
+def _fill_region_with_molecules(args,molecule,region,my_logger):
+    # Given the volume of the region and the density of the molecule, compute
+    # the number of molecules to place in the region.
+    volume = region.volume
+    message = (f"""The volume of the region is {volume}.\n""")
+    my_logger.info(message)
 
-def _fill_region_with_molecules():
-    pass
+    return
 
 ## @fn main ()
 ## @brief The main function.
@@ -115,9 +123,10 @@ def main():
     # Choose what kind of molecule to fill in the region.
 
     my_molecule = _water_molecule_factory(args)
-    my_region = _region_factory(args)
-    _fill_region_with_molecules()
 
+    my_region = _region_factory(args)
+
+    _fill_region_with_molecules(args,my_molecule,my_region,logger)
 
     logger.info("End of main program")
 
