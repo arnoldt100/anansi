@@ -4,6 +4,7 @@
 # System imports
 import string
 import argparse
+import numpy as np
 
 # Local imports
 import logging
@@ -74,6 +75,10 @@ def _parse_arguments():
                              metavar=("x-origin","y-origin","z-origin"))
     parser_rect.add_argument("--dimensions",required=True,nargs=3,type=float,help="The dimension of the rectangular bounding box",
                              metavar=("x-length","y-length","z-length"))
+    parser_rect.add_argument("--boundary-conditions",required=True,nargs=3,type=str,help="The boundary conditions rectangular bounding box",
+                             choices=["pbc","no-pbc"],
+                             metavar=("x-boundary-conditions","y-boundary-condtions","z-boundary-condtions"))
+
 
     # Adding parser for the spherical region.
     parser_sphere = bounding_region_subparser.add_parser("spherical_bounding_region",help="Create a spherical bounding region.") 
@@ -87,9 +92,21 @@ def _parse_arguments():
 
 def _region_factory(args):
     my_region = None
+    my_output_file_name = args.output_file_name + ".coordinatesystem"
+
     # Choose what kind of bounding region to fill in.
     if args.subparser_name == "rectangular_bounding_region":
-        my_region = molecular_regions.rectangular.Rectangular()
+        my_origin = np.array([args.origin[0],
+                              args.origin[1],
+                              args.origin[2]])
+        my_dimensions = np.array([args.dimensions[0],
+                                  args.dimensions[1],
+                                  args.dimensions[2]])
+        my_pbc = np.array([args.boundary_conditions[0], 
+                           args.boundary_conditions[1],
+                           args.boundary_conditions[2]])
+        my_region = molecular_regions.rectangular.Rectangular(my_output_file_name,
+                                                              origin=my_origin,pbc=my_pbc,dimensions=my_dimensions)
     elif args.subparser_name == "spherical_bounding_region":
         my_region = molecular_regions.spherical.Spherical()
     return my_region
@@ -102,12 +119,28 @@ def _water_molecule_factory(args):
     return my_molecule
 
 def _fill_region_with_molecules(args,molecule,region,my_logger):
+    import math
     # Given the volume of the region and the density of the molecule, compute
     # the number of molecules to place in the region.
     volume = region.volume
     message = (f"""The volume of the region is {volume}.\n""")
     my_logger.info(message)
 
+    number_density = molecule.number_density
+    message = (f"""The molecule number density is {number_density}.\n""")
+    my_logger.info(message)
+
+    number_of_molecules = math.ceil(volume*number_density)
+    message = (f"""The number of molecules is {number_of_molecules}.\n""")
+    my_logger.info(message)
+    
+    for ip in range(0,number_of_molecules):
+        pass
+
+    return
+
+def _create_coordinate_system(args,region,my_logger):
+    region.write_to_file()
     return
 
 ## @fn main ()
@@ -125,6 +158,8 @@ def main():
     my_molecule = _water_molecule_factory(args)
 
     my_region = _region_factory(args)
+
+    _create_coordinate_system(args,my_region,logger)
 
     _fill_region_with_molecules(args,my_molecule,my_region,logger)
 

@@ -2,6 +2,7 @@
 ## @package region
 
 # System imports
+import logging
 import string
 import argparse
 import abc
@@ -13,7 +14,7 @@ from loggerutils.logger import create_logger
 
 class Region(abc.ABC):
     def __init__(self):
-        pass
+        return
 
     ## Returns the volume of the region.
     ## 
@@ -71,7 +72,7 @@ def _parse_arguments():
 def main():
     args = _parse_arguments()
 
-    logger = _create_logger(log_id='__LoggerID__',
+    logger = create_logger(log_id='__LoggerID__',
                            log_level=args.log_level)
 
     logger.info("Start of main program")

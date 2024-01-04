@@ -10,6 +10,7 @@ from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 
 class tip3p:
+    group_type = "tip3p-rigid-molecule"
     def __init__(self):
         pass
 
@@ -21,6 +22,11 @@ class tip3p:
 
     def reset(self):
         pass
+
+    ## The nuber of water molecules per angstroms^3
+    @property
+    def number_density(self):
+        return ((3.34)*(10**-2))
 
 ## @fn _parse_arguments( )
 ## @brief Parses the command line arguments.
