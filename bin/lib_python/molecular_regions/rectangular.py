@@ -176,6 +176,11 @@ class Rectangular(Region):
 
         ET.dump(top_level_node)
 
+        my_et = ET.ElementTree(top_level_node)
+        my_et.write(self._filename,encoding="us-ascii",
+                    method="xml",
+                    short_empty_elements=True)
+
         return
 
 ## @fn _parse_arguments( )
