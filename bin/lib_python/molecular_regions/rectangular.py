@@ -13,6 +13,23 @@ from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 from molecular_regions.region import Region
 
+def _indent(elem, level=0):
+   # Add indentation
+   indent_size = "    "
+   i = "\n" + level * indent_size
+   if len(elem):
+      if not elem.text or not elem.text.strip():
+         elem.text = i + indent_size
+      if not elem.tail or not elem.tail.strip():
+         elem.tail = i
+      for elem in elem:
+         _indent(elem, level + 1)
+      if not elem.tail or not elem.tail.strip():
+         elem.tail = i
+   else:
+      if level and (not elem.tail or not elem.tail.strip()):
+         elem.tail = i
+
 class Rectangular(Region):
     def __init__(self, 
                  filename,
@@ -34,7 +51,21 @@ class Rectangular(Region):
         return volume
 
     def _origin_xml_element(self):
-        pass
+        my_element = ET.Element("origin") 
+
+        x_element = ET.Element("x") 
+        x_element.text = f"""{self._origin[0]}"""
+        my_element.append(x_element)
+
+        y_element = ET.Element("y") 
+        y_element.text = f"""{self._origin[1]}"""
+        my_element.append(y_element)
+
+        z_element = ET.Element("z") 
+        z_element.text = f"""{self._origin[2]}"""
+        my_element.append(z_element)
+
+        return my_element
 
     def _bounding_region_xml_element(self):
         pass
@@ -45,6 +76,17 @@ class Rectangular(Region):
     def _type_of_coordinate_system_element(self):
         my_element = ET.Element("Type of Coordinate System") 
         my_element.text = self.TYPE_OF_COORDINATE_SYSTEM
+
+        # Append the origin element
+        my_origin_element = self._origin_xml_element()
+        my_element.append(my_origin_element)
+
+        stud_element = ET.Element("Stud") 
+        stud_element.text = f"""Stud element text"""
+        my_element.append(stud_element)
+
+
+
         return my_element
 
     def _write_to_file(self):
@@ -54,16 +96,18 @@ class Rectangular(Region):
         # Create the element <Type of Coordinate System>
         my_tocs_element = self._type_of_coordinate_system_element()
 
-        # Create sthe origin element
-
-        # Create sthe bounding region element
+        # Create the bounding region element
 
         # Create the boundary condition element.
 
         # Append the element <Type of Coordinate System> to 
         # the top level node <data>
         top_level_node.append(my_tocs_element) 
-        ET.indent(top_level_node,space=self.__XML_INDENT)
+
+        _indent(top_level_node)
+
+        ET.dump(top_level_node)
+
         print(ET.tostring(top_level_node,encoding='unicode'))
 
         return
