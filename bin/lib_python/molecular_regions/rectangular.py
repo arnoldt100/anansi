@@ -118,7 +118,26 @@ class Rectangular(Region):
         return my_element
 
     def _boundary_conditions_xml_element(self):
-        pass
+        my_element = ET.Element("boundary conditions") 
+
+        # Create x boundary condition XML Element.
+        x_bc_element = ET.Element("x")
+        x_bc_element.text= f"""{self._pbc[0]}"""
+
+        # Create y boundary condition XML Element.
+        y_bc_element = ET.Element("y")
+        y_bc_element.text= f"""{self._pbc[1]}"""
+
+        # Create z boundary condition XML Element.
+        z_bc_element = ET.Element("z")
+        z_bc_element.text= f"""{self._pbc[2]}"""
+
+        # Append elenents to the parent element "my_element".
+        my_element.append(x_bc_element)
+        my_element.append(y_bc_element)
+        my_element.append(z_bc_element)
+
+        return my_element
 
     def _type_of_coordinate_system_element(self):
         my_element = ET.Element("Coordinate System") 
@@ -131,6 +150,10 @@ class Rectangular(Region):
         # Append the origin element
         my_origin_element = self._origin_xml_element()
         my_element.append(my_origin_element)
+
+        # Append the boundary condition element.
+        my_boundary_condition_element = self._boundary_conditions_xml_element()
+        my_element.append(my_boundary_condition_element)
 
         return my_element
 
@@ -152,8 +175,6 @@ class Rectangular(Region):
         _indent(top_level_node)
 
         ET.dump(top_level_node)
-
-        print(ET.tostring(top_level_node,encoding='unicode'))
 
         return
 
