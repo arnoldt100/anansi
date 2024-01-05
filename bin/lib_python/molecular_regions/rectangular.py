@@ -78,30 +78,36 @@ class Rectangular(Region):
     def __bounding_region_xml_element(self):
         my_element = ET.Element("bounding region") 
 
-        my_low = lambda a : self._origin[a]
-        my_high = lambda a : self._origin[a] + self._dimensions[a]
+        # Here we define useful lamdas for calculating the 
+        # upper and lower bounds of this rectangular region.
+        region_lower_bound = lambda a : self._origin[a]
+        region_upper_bound = lambda a : self._origin[a] + self._dimensions[a]
 
-        x_low_value = my_low(0)
-        x_high_value = my_high(0)
+        # Create upper and lower x dimension bounds XML Elements
+        x_low_value = region_lower_bound(0)
         x_lower_element = ET.Element("x-lower") 
         x_lower_element.text = f"""{x_low_value}"""
+        x_high_value = region_upper_bound(0)
         x_upper_element = ET.Element("x-upper") 
         x_upper_element.text = f"""{x_high_value}"""
 
-        y_low_value = my_low(1)
-        y_high_value = my_high(1)
+        # Create upper and lower y dimension bounds XML Elements
+        y_low_value = region_lower_bound(1)
         y_lower_element = ET.Element("y-lower") 
         y_lower_element.text = f"""{y_low_value}"""
+        y_high_value = region_upper_bound(1)
         y_upper_element = ET.Element("y-upper") 
         y_upper_element.text = f"""{y_high_value}"""
 
-        z_low_value = my_low(2)
-        z_high_value = my_high(2)
+        # Create upper and lower z dimension bounds XML Elements
+        z_low_value = region_lower_bound(2)
         z_lower_element = ET.Element("z-lower") 
         z_lower_element.text = f"""{z_low_value}"""
+        z_high_value = region_upper_bound(2)
         z_upper_element = ET.Element("z-upper") 
         z_upper_element.text = f"""{z_high_value}"""
 
+        # Append elenents to the parent element "my_element".
         my_element.append(x_lower_element)
         my_element.append(x_upper_element)
         my_element.append(y_lower_element)
