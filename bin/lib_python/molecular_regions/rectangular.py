@@ -24,18 +24,47 @@ class Rectangular(Region):
         self._dimensions = dimensions
         self._pbc = pbc
 
+    __XML_INDENT = "    "
+
+    def _type_of_coordinate_system(self):
+        return "3D Cartesian Coordinates" 
+
     def _volume(self):
         volume = (self._dimensions[0])*(self._dimensions[1])*(self._dimensions[2])
         return volume
 
-    def _write_to_file(self):
-        # Create a <data> node.
-        root_node = ET.TreeBuilder()
-        root_node.start("data")
-        root_node.end("data")
+    def _origin_xml_element(self):
+        pass
 
-        tree = ET.ElementTree(elemenet=root_node)
-        tree.write(self._filename)
+    def _bounding_region_xml_element(self):
+        pass
+
+    def _boundary_conditions_xml_element(self):
+        pass
+
+    def _type_of_coordinate_system_element(self):
+        my_element = ET.Element("Type of Coordinate System") 
+        my_element.text = self.TYPE_OF_COORDINATE_SYSTEM
+        return my_element
+
+    def _write_to_file(self):
+        # Create the top level node <data>.
+        top_level_node = ET.Element("data")
+
+        # Create the element <Type of Coordinate System>
+        my_tocs_element = self._type_of_coordinate_system_element()
+
+        # Create sthe origin element
+
+        # Create sthe bounding region element
+
+        # Create the boundary condition element.
+
+        # Append the element <Type of Coordinate System> to 
+        # the top level node <data>
+        top_level_node.append(my_tocs_element) 
+        ET.indent(top_level_node,space=self.__XML_INDENT)
+        print(ET.tostring(top_level_node,encoding='unicode'))
 
         return
 

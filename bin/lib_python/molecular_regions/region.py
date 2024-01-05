@@ -23,8 +23,17 @@ class Region(abc.ABC):
     def volume(self):
         return self._volume()
 
+
     @abc.abstractmethod
     def _volume(self):
+        pass
+
+    @property
+    def TYPE_OF_COORDINATE_SYSTEM(self):
+        return self._type_of_coordinate_system()
+
+    @abc.abstractmethod
+    def _type_of_coordinate_system(self):
         pass
 
     ## Write the region to disk.

@@ -1,11 +1,24 @@
 <data>
     <Type of Coordinate System> 3D Cartesian Coordinates
-        <origin> 0.00 0.00 0.00 </origin>
+        <origin> 
+            <x>0.00</x>
+            <y>0.00</y>
+            <z>0.00</z>
+        </origin>
 
         <bounding region> 
-           <x> -1000.00 1000.00 </x> 
-           <y> -1000.00 1000.00 </y> 
-           <z> -1000.00 1000.00 </z> 
+           <x>
+             <lower> -1000.00 </lower>
+             <upper> 1000.00 </upper>
+           </x>
+           <y> 
+                <lower> -1000.00 </lower>
+                <upper> 1000.00 </upper>
+            </y>
+           <z>
+                <lower> -1000.00 </lower>
+                <upper> 1000.00 </upper>
+           </z>
         </bounding region> 
 
         <boundary conditions> 
