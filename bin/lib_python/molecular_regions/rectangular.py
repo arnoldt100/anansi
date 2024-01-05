@@ -164,22 +164,18 @@ class Rectangular(Region):
         # Create the element <Type of Coordinate System>
         my_tocs_element = self._type_of_coordinate_system_element()
 
-        # Create the bounding region element
-
-        # Create the boundary condition element.
-
         # Append the element <Type of Coordinate System> to 
         # the top level node <data>
         top_level_node.append(my_tocs_element) 
 
-        _indent(top_level_node)
+        # We indent the the tree for human readability.
+        ET.ElementTree.indent(top_level_node)
 
-        ET.dump(top_level_node)
-
-        my_et = ET.ElementTree(top_level_node)
-        my_et.write(self._filename,encoding="us-ascii",
-                    method="xml",
-                    short_empty_elements=True)
+        # Convert to an ElementTree class and write to file.
+        my_tree = ET.ElementTree(top_level_node)
+        my_tree.write(self._filename,encoding="us-ascii",
+                      method="xml",
+                      short_empty_elements=True)
 
         return
 
