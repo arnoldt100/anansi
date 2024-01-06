@@ -118,7 +118,7 @@ def _water_molecule_factory(args):
         my_molecule = molecular_regions.tip3p.tip3p()
     return my_molecule
 
-def _fill_region_with_molecules(args,molecule,region,my_logger):
+def _create_coordinates(args,molecule,region,my_logger):
     import math
     # Given the volume of the region and the density of the molecule, compute
     # the number of molecules to place in the region.
@@ -161,7 +161,7 @@ def main():
 
     _create_coordinate_system(args,my_region,logger)
 
-    _fill_region_with_molecules(args,my_molecule,my_region,logger)
+    _create_coordinates(args,my_molecule,my_region,logger)
 
     logger.info("End of main program")
 

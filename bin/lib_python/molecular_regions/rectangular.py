@@ -4,7 +4,6 @@
 # System imports
 import logging
 import numpy as np
-import string
 import argparse
 import xml.etree.ElementTree as ET
 
@@ -13,22 +12,23 @@ from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 from molecular_regions.region import Region
 
-def _indent(elem, level=0):
-   # Add indentation
-   indent_size = "    "
-   i = "\n" + level * indent_size
-   if len(elem):
-      if not elem.text or not elem.text.strip():
-         elem.text = i + indent_size
-      if not elem.tail or not elem.tail.strip():
-         elem.tail = i
-      for elem in elem:
-         _indent(elem, level + 1)
-      if not elem.tail or not elem.tail.strip():
-         elem.tail = i
-   else:
-      if level and (not elem.tail or not elem.tail.strip()):
-         elem.tail = i
+
+class AtomicCooridnate:
+    def __init__(self,):
+
+        self._atomSymbol =
+class Coordinates:
+
+    #  ====================  LIFECYCLE     =======================================
+    def __init__(self) :
+        self._atomicCoordinates = []
+
+
+    #  ====================  PUBLIC        =======================================
+
+    #  ====================  PROTECTED     =======================================
+
+    #  ====================  PRIVATE       =======================================
 
 class Rectangular(Region):
 
@@ -169,7 +169,7 @@ class Rectangular(Region):
         top_level_node.append(my_tocs_element) 
 
         # We indent the the tree for human readability.
-        ET.ElementTree.indent(top_level_node)
+        ET.indent(top_level_node)
 
         # Convert to an ElementTree class and write to file.
         my_tree = ET.ElementTree(top_level_node)
