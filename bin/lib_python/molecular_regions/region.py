@@ -23,7 +23,6 @@ class Region(abc.ABC):
     def volume(self):
         return self._volume()
 
-
     @abc.abstractmethod
     def _volume(self):
         pass
@@ -34,6 +33,20 @@ class Region(abc.ABC):
 
     @abc.abstractmethod
     def _type_of_coordinate_system(self):
+        pass
+
+    def get_random_point_inside(self):
+        return self._get_random_point_inside()
+
+    @abc.abstractmethod
+    def _get_random_point_inside(self):
+        pass
+
+    def get_random_rotation_matrix(self):
+        return self._get_random_rotation_matrix()
+
+    @abc.abstractmethod
+    def _get_random_rotation_matrix(self):
         pass
 
     ## Write the region to disk.

@@ -2,10 +2,12 @@
 ## @package rectangular
 
 # System imports
+import random
 import logging
 import numpy as np
 import argparse
 import xml.etree.ElementTree as ET
+import math
 
 # Local imports
 from loggerutils.logger import create_logger_description
@@ -13,12 +15,34 @@ from loggerutils.logger import create_logger
 from molecular_regions.region import Region
 
 
-class AtomicCooridnate:
-    def __init__(self,):
+class AtomicCoordinate:
+    #  ====================  LIFECYCLE     =======================================
+    def __init__(self,atom_id,atom_symbol,x,y,z):
+        self._atomID = atom_id
+        self._atomSymbol = atom_symbol
+        self._x = x
+        self._y = y
+        self._z = z
 
-        self._atomSymbol =
+    #  ====================  PUBLIC        =======================================
+
+    #  ====================  PROTECTED     =======================================
+
+    #  ====================  PRIVATE       =======================================
+
+
+class Molecule:
+    #  ====================  LIFECYCLE     =======================================
+    def __init__(self,atoms):
+        self._atoms = atoms
+
+    #  ====================  PUBLIC        =======================================
+
+    #  ====================  PROTECTED     =======================================
+
+    #  ====================  PRIVATE       =======================================
+
 class Coordinates:
-
     #  ====================  LIFECYCLE     =======================================
     def __init__(self) :
         self._atomicCoordinates = []
@@ -45,12 +69,51 @@ class Rectangular(Region):
 
     #  ====================  PUBLIC        =======================================
 
-    #  ====================  PROTECTED     =======================================
 
     #  ====================  PRIVATE       =======================================
 
     __XML_INDENT = "    "
 
+    def __get_z_rotation_matrix(self,alpha):
+        R_z = np.ndarray((3,3))
+        R_z[0,0] = math.cos(alpha)
+        R_z[0,1] = -math.sin(alpha)
+        R_z[0,2] = 0.00
+        R_z[1,1] = math.sin(alpha)
+        R_z[1,1] = math.cos(alpha)
+        R_z[1,2] = 0
+        R_z[2,0] = 0 
+        R_z[2,1] = 0 
+        R_z[2,2] = 1
+        return R_z
+
+    def __get_y_rotation_matrix(self,beta):
+        R_y = np.ndarray((3,3))
+        R_y[0,0] = math.cos(beta)
+        R_y[0,1] = 0.00
+        R_y[0,2] = math.sin(beta)
+        R_y[1,1] = 0.00
+        R_y[1,1] = 0.00
+        R_y[1,2] = 1.00
+        R_y[2,0] = -math.sin(beta)
+        R_y[2,1] = 0.00
+        R_y[2,2] = math.cos(beta)
+        return R_y 
+
+    def __get_x_rotation_matrix(self,gamma):
+        R_x = np.ndarray((3,3))
+        R_x[0,0] = 1.00
+        R_x[0,1] = 0.00
+        R_x[0,2] = 0.00
+        R_x[1,1] = 0.00
+        R_x[1,1] = math.cos(gamma)
+        R_x[1,2] = -math.sin(gamma)
+        R_x[2,0] = 0.00
+        R_x[2,1] = math.sin(gamma)
+        R_x[2,2] = math.cos(gamma)
+        return R_x 
+
+    #  ====================  PROTECTED     =======================================
     def _type_of_coordinate_system(self):
         return "3D Cartesian Coordinates" 
 
@@ -176,8 +239,30 @@ class Rectangular(Region):
         my_tree.write(self._filename,encoding="us-ascii",
                       method="xml",
                       short_empty_elements=True)
-
         return
+
+    def _get_random_point_inside(self):
+        dx = self._origin[0] + self._dimensions[0]*random.random()
+        dy = self._origin[1] + self._dimensions[1]*random.random()
+        dz = self._origin[2] + self._dimensions[2]*random.random()
+        return np.array([dx,dy,dz])
+
+    def _get_random_rotation_matrix(self):
+        # alpha = 0.00 + 2*math.pi*random.random() # z-axiz
+        alpha = math.pi # z-axiz
+        R_z = self.__get_z_rotation_matrix(alpha)
+
+        # beta = 0.00 + 2*math.pi*random.random() # y-axis
+        beta = 0.00
+        R_y = self.__get_y_rotation_matrix(beta)
+
+        # gamma = 0.00 + 2*math.pi*random.random() # x-axis
+        gamma = 0.00
+        R_x = self.__get_x_rotation_matrix(gamma)
+
+        R_yx = np.matmul(R_y,R_x)
+        R_zyx = np.matmul(R_z,R_yx) 
+        return R_zyx
 
 ## @fn _parse_arguments( )
 ## @brief Parses the command line arguments.

@@ -77,7 +77,7 @@ def _parse_arguments():
                              metavar=("x-length","y-length","z-length"))
     parser_rect.add_argument("--boundary-conditions",required=True,nargs=3,type=str,help="The boundary conditions rectangular bounding box",
                              choices=["pbc","no-pbc"],
-                             metavar=("x-boundary-conditions","y-boundary-condtions","z-boundary-condtions"))
+                             metavar=("x-boundary-conditions","y-boundary-conditions","z-boundary-conditions"))
 
 
     # Adding parser for the spherical region.
@@ -113,7 +113,7 @@ def _region_factory(args):
 
 def _water_molecule_factory(args):
     my_molecule = None
-    # Choose what kind of bounding region to fill in.
+    # Choose what kind of molcule to fill in region.
     if args.type_of_molecule == "tip3p":
         my_molecule = molecular_regions.tip3p.tip3p()
     return my_molecule
@@ -135,7 +135,12 @@ def _create_coordinates(args,molecule,region,my_logger):
     my_logger.info(message)
     
     for ip in range(0,number_of_molecules):
-        pass
+        my_molecule = molecule
+        translation_vector = region.get_random_point_inside()
+        print(f"""Translation vector [{translation_vector[0]},{translation_vector[1]},{translation_vector[2]}]\n""")
+       
+        R = region.get_random_rotation_matrix()
+        print(R)
 
     return
 

@@ -4,6 +4,8 @@
 # System imports
 import string
 import argparse
+import numpy as np
+import math
 
 # Local imports
 from loggerutils.logger import create_logger_description
@@ -11,17 +13,51 @@ from loggerutils.logger import create_logger
 
 class tip3p:
     group_type = "tip3p-rigid-molecule"
+
+    atomic_symbols = {"tip3p-O1" : "O",
+                      "tip3p-H2" : "H",
+                      "tip3p-H3" : "H"}
+
+    atomic_labels = {"tip3p-O1" : "O",
+                     "tip3p-H2" : "H1",
+                     "tip3p-H3" : "H2"}
+
+    atomic_monopoles = {"tip3p-O1" : -0.834,
+                        "tip3p-H2" : 0.417,
+                        "tip3p-H3" : 0.417}
+
+    atom_mass = {"tip3p-O1" : 15.999,
+                 "tip3p-H2" : 1.00784,
+                 "tip3p-H3" : 1.00784 }
+
+    bond_constraints = { 
+                         "1" : ["tip3p-O1","tip3p-H1",0.9572],
+                         "2" : ["tip3p-O1","tip3p-H2",0.9572]
+                       }
+
+    angle_constraint = {
+                         "1" : ["tip3p-H1","tip3p-O1","tip3p-H2" ,1.82421813],
+                       }
+    initial_coordinates = {
+                           "tip3p-O1" : np.array([0.00,0.00,0.00]),
+                           "tip3p-H2" : np.array([0.00,0.9572,0.00]),
+                           "tip3p-H3" : np.array([0.00,
+                                                 0.9572*math.cos(104.52*(math.pi/180.00)),
+                                                 0.9572*math.sin(104.52*(math.pi/180.00))]) 
+                          }
+
     def __init__(self):
-        pass
+        self._coordinates = self.initial_coordinates
+                                                    
 
-    def rotate(self):
-        pass
+    def rotate(self,phi,theta,psi):
+        return
 
-    def translate(self):
-        pass
+    def translate(self,dr):
+        return
 
     def reset(self):
-        pass
+        self._coordinates = self.initial_coordinates 
 
     ## The nuber of water molecules per angstroms^3
     @property
