@@ -79,7 +79,7 @@ class Rectangular(Region):
         R_z[0,0] = math.cos(alpha)
         R_z[0,1] = -math.sin(alpha)
         R_z[0,2] = 0.00
-        R_z[1,1] = math.sin(alpha)
+        R_z[1,0] = math.sin(alpha)
         R_z[1,1] = math.cos(alpha)
         R_z[1,2] = 0
         R_z[2,0] = 0 
@@ -92,9 +92,9 @@ class Rectangular(Region):
         R_y[0,0] = math.cos(beta)
         R_y[0,1] = 0.00
         R_y[0,2] = math.sin(beta)
-        R_y[1,1] = 0.00
-        R_y[1,1] = 0.00
-        R_y[1,2] = 1.00
+        R_y[1,0] = 0.00
+        R_y[1,1] = 1.00
+        R_y[1,2] = 0.00
         R_y[2,0] = -math.sin(beta)
         R_y[2,1] = 0.00
         R_y[2,2] = math.cos(beta)
@@ -105,7 +105,7 @@ class Rectangular(Region):
         R_x[0,0] = 1.00
         R_x[0,1] = 0.00
         R_x[0,2] = 0.00
-        R_x[1,1] = 0.00
+        R_x[1,0] = 0.00
         R_x[1,1] = math.cos(gamma)
         R_x[1,2] = -math.sin(gamma)
         R_x[2,0] = 0.00
@@ -249,15 +249,15 @@ class Rectangular(Region):
 
     def _get_random_rotation_matrix(self):
         # alpha = 0.00 + 2*math.pi*random.random() # z-axiz
-        alpha = math.pi # z-axiz
+        # alpha = 0.00
         R_z = self.__get_z_rotation_matrix(alpha)
 
         # beta = 0.00 + 2*math.pi*random.random() # y-axis
-        beta = 0.00
+        # beta = 0.00
         R_y = self.__get_y_rotation_matrix(beta)
 
         # gamma = 0.00 + 2*math.pi*random.random() # x-axis
-        gamma = 0.00
+        # gamma = 0.00
         R_x = self.__get_x_rotation_matrix(gamma)
 
         R_yx = np.matmul(R_y,R_x)

@@ -5,6 +5,7 @@
 import string
 import argparse
 import numpy as np
+import copy
 
 # Local imports
 import logging
@@ -135,13 +136,21 @@ def _create_coordinates(args,molecule,region,my_logger):
     my_logger.info(message)
     
     for ip in range(0,number_of_molecules):
-        my_molecule = molecule
-        translation_vector = region.get_random_point_inside()
-        print(f"""Translation vector [{translation_vector[0]},{translation_vector[1]},{translation_vector[2]}]\n""")
-       
-        R = region.get_random_rotation_matrix()
-        print(R)
+        my_molecule = copy.deepcopy(molecule)
 
+        # First rotate water molecule.
+        R = region.get_random_rotation_matrix()
+        print()
+        print(f"""Molecule # {ip+1}: """)
+        print(R)
+        my_molecule.rotate(R)
+
+        # Second, translate the water molecule.
+        translation_vector = region.get_random_point_inside()
+        # print(f"""Translation vector [{translation_vector[0]},{translation_vector[1]},{translation_vector[2]}]\n""")
+        my_molecule.translate(translation_vector)
+      
+        my_molecule.print_coordinates()
     return
 
 def _create_coordinate_system(args,region,my_logger):

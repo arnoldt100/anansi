@@ -6,6 +6,7 @@ import string
 import argparse
 import numpy as np
 import math
+import copy
 
 # Local imports
 from loggerutils.logger import create_logger_description
@@ -47,17 +48,32 @@ class tip3p:
                           }
 
     def __init__(self):
-        self._coordinates = self.initial_coordinates
+        self._coordinates = copy.deepcopy(self.initial_coordinates)
                                                     
 
-    def rotate(self,phi,theta,psi):
+    def rotate(self,R):
+        # Rotate atom "tip3p-O1" with rotation matrix R.
+        M1 = np.matmul(R,self._coordinates["tip3p-O1"])
+        self._coordinates["tip3p-O1"] = M1
+
+        M2 = np.matmul(R,self._coordinates["tip3p-H2"])
+        self._coordinates["tip3p-H2"] = M2
+
+        M3 = np.matmul(R,self._coordinates["tip3p-H3"])
+        self._coordinates["tip3p-H3"] = M3
         return
 
     def translate(self,dr):
         return
 
+    def print_coordinates(self):
+        print(f"""tip3p-O1: {self._coordinates["tip3p-O1"]} """)
+        print(f"""tip3p-H2: {self._coordinates["tip3p-H2"]} """)
+        print(f"""tip3p-H3: {self._coordinates["tip3p-H3"]} """)
+        return
+
     def reset(self):
-        self._coordinates = self.initial_coordinates 
+        self._coordinates = copy.deepcopy(self.initial_coordinates) 
 
     ## The nuber of water molecules per angstroms^3
     @property
