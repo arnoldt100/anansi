@@ -136,26 +136,38 @@ def _create_coordinates(args,molecule,region,my_logger):
     my_logger.info(message)
     
     for ip in range(0,number_of_molecules):
-        my_molecule = copy.deepcopy(molecule)
-
-        # First rotate water molecule.
-        R = region.get_random_rotation_matrix()
         print()
         print(f"""Molecule # {ip+1}: """)
-        print(R)
-        my_molecule.rotate(R)
+        valid_molecule = False
+        my_molecule = None
+        while not valid_molecule : 
+            my_molecule = copy.deepcopy(molecule)
 
-        # Second, translate the water molecule.
-        translation_vector = region.get_random_point_inside()
-        # print(f"""Translation vector [{translation_vector[0]},{translation_vector[1]},{translation_vector[2]}]\n""")
-        my_molecule.translate(translation_vector)
-      
+            # First rotate water molecule.
+            R = region.get_random_rotation_matrix()
+            my_molecule.rotate(R)
+
+            # Second, translate the water molecule.
+            translation_vector = region.get_random_point_inside()
+            my_molecule.translate(translation_vector)
+    
+            valid_molecule = _verify_molecule_is_valid(my_molecule,region)
+
+            if not valid_molecule:
+                print("Invalid molecule")
         my_molecule.print_coordinates()
+
+
     return
 
 def _create_coordinate_system(args,region,my_logger):
     region.write_to_file()
     return
+
+def _verify_molecule_is_valid(molecule,region):
+    valid_molecule = molecule.valid_molecule()
+    molecule_in_region = region.inside(molecule.points)
+    return (valid_molecule and molecule_in_region)
 
 ## @fn main ()
 ## @brief The main function.

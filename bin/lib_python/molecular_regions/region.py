@@ -49,6 +49,13 @@ class Region(abc.ABC):
     def _get_random_rotation_matrix(self):
         pass
 
+    def inside(self,points):
+        return self._inside(points)
+
+    @abc.abstractmethod
+    def _inside(self,points):
+        pass
+
     ## Write the region to disk.
     ## 
     ## The volume of region.

@@ -113,6 +113,14 @@ class Rectangular(Region):
         R_x[2,2] = math.cos(gamma)
         return R_x 
 
+    def __within(self,index,value):
+        lower_bound = self._origin[index]
+        upper_bound = lower_bound  + self._dimensions[index]
+        within_bounds = False
+        if ( lower_bound <= value ) and ( value <= upper_bound ): 
+            within_bounds = True
+        return within_bounds
+
     #  ====================  PROTECTED     =======================================
     def _type_of_coordinate_system(self):
         return "3D Cartesian Coordinates" 
@@ -248,21 +256,26 @@ class Rectangular(Region):
         return np.array([dx,dy,dz])
 
     def _get_random_rotation_matrix(self):
-        # alpha = 0.00 + 2*math.pi*random.random() # z-axiz
-        # alpha = 0.00
+        alpha = 0.00 + 2*math.pi*random.random() # z-axiz
         R_z = self.__get_z_rotation_matrix(alpha)
 
-        # beta = 0.00 + 2*math.pi*random.random() # y-axis
-        # beta = 0.00
+        beta = 0.00 + 2*math.pi*random.random() # y-axis
         R_y = self.__get_y_rotation_matrix(beta)
 
-        # gamma = 0.00 + 2*math.pi*random.random() # x-axis
-        # gamma = 0.00
+        gamma = 0.00 + 2*math.pi*random.random() # x-axis
         R_x = self.__get_x_rotation_matrix(gamma)
 
         R_yx = np.matmul(R_y,R_x)
         R_zyx = np.matmul(R_z,R_yx) 
         return R_zyx
+
+    def _inside(self,points):
+        all_points_inside = True
+        for a_point in points:
+            if  not ( self.__within(0,a_point[0]) and self.__within(1,a_point[1]) and self.__within(2,a_point[2]) ) :
+                all_points_inside = False
+                break
+        return all_points_inside
 
 ## @fn _parse_arguments( )
 ## @brief Parses the command line arguments.
