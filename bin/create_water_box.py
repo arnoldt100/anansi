@@ -15,6 +15,8 @@ import molecular_regions.rectangular
 import molecular_regions.spherical
 import molecular_regions.tip3p
 
+#  ====================  PROTECTED     =======================================
+
 ## @fn _parse_arguments( )
 ## @brief Parses the command line arguments.
 ##
@@ -120,21 +122,35 @@ def _water_molecule_factory(args):
     return my_molecule
 
 def _create_coordinates(args,molecule,region,my_logger):
+
+    number_of_molecules = __compute_number_molecules_in_region(molecule,region)
+  
+    all_molecules = __generate_molecules(molecule,region,number_of_molecules)
+
+    return
+
+def _create_coordinate_system(args,region,my_logger):
+    region.write_to_file()
+    return
+
+#  ====================  PRIVATE       =======================================
+
+def __verify_molecule_is_valid(molecule,region):
+    valid_molecule = molecule.valid_molecule()
+    molecule_in_region = region.inside(molecule.points)
+    return (valid_molecule and molecule_in_region)
+
+
+def __compute_number_molecules_in_region(molecule,region):
     import math
     # Given the volume of the region and the density of the molecule, compute
     # the number of molecules to place in the region.
     volume = region.volume
-    message = (f"""The volume of the region is {volume}.\n""")
-    my_logger.info(message)
-
     number_density = molecule.number_density
-    message = (f"""The molecule number density is {number_density}.\n""")
-    my_logger.info(message)
-
     number_of_molecules = math.ceil(volume*number_density)
-    message = (f"""The number of molecules is {number_of_molecules}.\n""")
-    my_logger.info(message)
-   
+    return number_of_molecules
+
+def __generate_molecules(molecule,region,number_of_molecules):
     all_molecules = []
     for ip in range(0,number_of_molecules):
         print()
@@ -152,22 +168,13 @@ def _create_coordinates(args,molecule,region,my_logger):
             translation_vector = region.get_random_point_inside()
             my_molecule.translate(translation_vector)
     
-            valid_molecule = _verify_molecule_is_valid(my_molecule,region)
+            valid_molecule = __verify_molecule_is_valid(my_molecule,region)
 
         my_molecule.print_coordinates()
         all_molecules.append(my_molecule)
+    return all_molecules
 
-    
-    return
-
-def _create_coordinate_system(args,region,my_logger):
-    region.write_to_file()
-    return
-
-def _verify_molecule_is_valid(molecule,region):
-    valid_molecule = molecule.valid_molecule()
-    molecule_in_region = region.inside(molecule.points)
-    return (valid_molecule and molecule_in_region)
+#  ====================  PUBLIC        =======================================
 
 ## @fn main ()
 ## @brief The main function.
