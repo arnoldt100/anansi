@@ -6,6 +6,7 @@ import string
 import argparse
 import numpy as np
 import copy
+import xml.etree.ElementTree as ET
 
 # Local imports
 import logging
@@ -54,11 +55,16 @@ def _parse_arguments():
                            help=create_logger_description() )
 
     my_parser.add_argument("--output-file-name",
-                           type=str,
-                           default="a_water_box",
-                           help="The prefix for the output file name." )
+                       type=str,
+                       default="a_water_box",
+                       help="The prefix for the output file name." )
 
-    # Adding mandatory argument group.
+    my_parser.add_argument("--region-name",
+                       type=str,
+                       default="All atoms",
+                       help="The name of the region.")
+
+    # Adding mandatorgument group.
     mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
 
     mandatory_args_group.add_argument("--type-of-molecule",
@@ -127,6 +133,8 @@ def _create_coordinates(args,molecule,region,my_logger):
   
     all_molecules = __generate_molecules(molecule,region,number_of_molecules)
 
+    __dump_coordinates_in_xml(args,all_molecules,region)
+
     return
 
 def _create_coordinate_system(args,region,my_logger):
@@ -134,12 +142,44 @@ def _create_coordinate_system(args,region,my_logger):
     return
 
 #  ====================  PRIVATE       =======================================
+def __region_name_element(region_name):
+        my_element = ET.Element("Region Name") 
+        my_element.text = region_name
+        return my_element
+
+def __type_of_coordinate_system_element(region):
+        my_element = ET.Element("Coordinate System") 
+        my_element.text = region.TYPE_OF_COORDINATE_SYSTEM
+        return my_element
 
 def __verify_molecule_is_valid(molecule,region):
     valid_molecule = molecule.valid_molecule()
     molecule_in_region = region.inside(molecule.points)
     return (valid_molecule and molecule_in_region)
 
+def __coordinates_elements(all_molecules):
+    my_element = ET.Element("Coordinates, Velocities, ...")
+
+    my_comment = ET.Comment(text=" Atom;      Symbol;         Group-ID;       Group-Type;             x,y and z Coordinates; x, y and z Velocities ")
+    my_element.append(my_comment)
+
+    groupid = 0
+    index = 0
+    for a_molecule in all_molecules:
+        groupid += 1
+
+        my_molecule_iterator = a_molecule.get_iterator()
+        for my_atom in my_molecule_iterator:
+            index += 1
+
+            my_atom_element = ET.Element(f"""{index}""" )
+            my_text = f"""Stud text"""
+            my_atom_element.text = my_text 
+
+            my_element.append(my_atom_element)
+
+
+    return my_element
 
 def __compute_number_molecules_in_region(molecule,region):
     import math
@@ -173,6 +213,33 @@ def __generate_molecules(molecule,region,number_of_molecules):
         my_molecule.print_coordinates()
         all_molecules.append(my_molecule)
     return all_molecules
+
+def __dump_coordinates_in_xml(args,all_molecules,region):
+    # Create the top level node <data>.
+    top_level_node = ET.Element("data")
+
+    region_name_element = __region_name_element(args.region_name)
+    top_level_node.append(region_name_element)
+
+    # Create the element <Type of Coordinate System>
+    tocs_element = __type_of_coordinate_system_element(region)
+    top_level_node.append(tocs_element)
+
+    my_coordinates_elements = __coordinates_elements(all_molecules)
+    top_level_node.append(my_coordinates_elements)
+
+
+    # We indent the the tree for human readability.
+    ET.indent(top_level_node)
+
+    # Convert to an ElementTree class and write to file.
+    my_tree = ET.ElementTree(top_level_node)
+
+    my_output_file_name = args.output_file_name + ".coordinates"
+    my_tree.write(my_output_file_name,encoding="us-ascii",
+                  method="xml",
+                  short_empty_elements=True)
+    return
 
 #  ====================  PUBLIC        =======================================
 

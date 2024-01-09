@@ -65,6 +65,9 @@ class tip3p:
         self._initial_velocities = copy.deepcopy(self.initial_velocities)                                            
 
     #  ====================  PUBLIC        =======================================
+    def get_iterator(self):
+        return iter(self.atomic_symbols)
+
     def rotate(self,R):
         # Rotate atom "tip3p-O1" with rotation matrix R.
         M1 = np.matmul(R,self._coordinates["tip3p-O1"])
