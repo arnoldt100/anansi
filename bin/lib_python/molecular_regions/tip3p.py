@@ -20,9 +20,9 @@ class tip3p:
                       "tip3p-H2" : "H",
                       "tip3p-H3" : "H"}
 
-    atomic_labels = {"tip3p-O1" : "O",
-                     "tip3p-H2" : "H1",
-                     "tip3p-H3" : "H2"}
+    atomic_labels = {"tip3p-O1" : "O1",
+                     "tip3p-H2" : "H2",
+                     "tip3p-H3" : "H3"}
 
     atomic_monopoles = {"tip3p-O1" : -0.834,
                         "tip3p-H2" : 0.417,
@@ -61,10 +61,17 @@ class tip3p:
 
     #  ====================  LIFECYCLE     =======================================
     def __init__(self):
+        self.__group_id = 0
         self._coordinates = copy.deepcopy(self.initial_coordinates)
-        self._initial_velocities = copy.deepcopy(self.initial_velocities)                                            
+        self._initial_velocities = copy.deepcopy(self.initial_velocities)
+        self.__atom_index = { "tip3p-O1" : 1,
+                              "tip3p-H2" : 2,
+                              "tip3p-H3" : 3 }
 
     #  ====================  PUBLIC        =======================================
+    def get_xml(self,atom_label):
+        return f"""{atom_label} {self.atomic_labels[atom_label]}"""
+
     def get_iterator(self):
         return iter(self.atomic_symbols)
 
@@ -98,6 +105,23 @@ class tip3p:
 
     def reset(self):
         self._coordinates = copy.deepcopy(self.initial_coordinates) 
+
+    def reset_atom_indices(self,offset):
+        for key,value in self.__atom_index.items():
+            value += offset
+        return
+
+    @property
+    def number_of_atoms(self):
+        return len(self.atomic_labels)
+
+    @property
+    def group_index(self):
+        return self.__group_id
+
+    @group_index.setter
+    def group_index(self,id):
+        self.__group_id = id
 
     ## The nuber of water molecules per angstroms^3
     @property

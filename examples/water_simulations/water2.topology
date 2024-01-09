@@ -26,23 +26,23 @@
         <atoms>
             <!-- Atom label    Mass (atomic mass units) -->
             <!-- ----------    ------------------------ -->
-            <1>  H1            1.00784 </1>
-            <2>  O             15.999  </2>
-            <3>  H2            1.00784 </3>
+            <1>  tip3p-H2            1.00784 </1>
+            <2>  tip3p-O1            15.999  </2>
+            <3>  tip3p-H3            1.00784 </3>
         </atoms>
 
         <constraints>
             <bonds>
                 <!-- Atom-1 label   Atom-2 label   Distance(Angstroms) -->
                 <!-- ------------   ------------   ------------------- -->
-                <1>  O              H1             0.9572 </1>
-                <2>  O              H2             0.9572 </2>
+                <1>  tip3p-O1       tip3p-H2             0.9572 </1>
+                <2>  tip3p-O1       tip3p-H3             0.9572 </2>
             </bonds> 
 
             <angles>
                 <!-- Atom-1 label   Atom-2 label    Atom-3 label   Angle (Radians) -->
                 <!-- ------------   ------------    ------------   --------------- -->
-                <1>  H1             O               H2             1.82421813  </1>
+                <1>  tip3p-H3          tip3p-O1     tip3p-H2       1.82421813  </1>
             </angles>
         </constraints>
 </tip3p-rigid-molecule>

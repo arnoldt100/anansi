@@ -163,17 +163,15 @@ def __coordinates_elements(all_molecules):
     my_comment = ET.Comment(text=" Atom;      Symbol;         Group-ID;       Group-Type;             x,y and z Coordinates; x, y and z Velocities ")
     my_element.append(my_comment)
 
-    groupid = 0
     index = 0
     for a_molecule in all_molecules:
-        groupid += 1
 
         my_molecule_iterator = a_molecule.get_iterator()
-        for my_atom in my_molecule_iterator:
+        for my_atom_label in my_molecule_iterator:
             index += 1
 
             my_atom_element = ET.Element(f"""{index}""" )
-            my_text = f"""Stud text"""
+            my_text = a_molecule.get_xml(my_atom_label)
             my_atom_element.text = my_text 
 
             my_element.append(my_atom_element)
@@ -192,6 +190,7 @@ def __compute_number_molecules_in_region(molecule,region):
 
 def __generate_molecules(molecule,region,number_of_molecules):
     all_molecules = []
+    atom_offset = 0
     for ip in range(0,number_of_molecules):
         print()
         print(f"""Molecule # {ip+1}: """)
@@ -199,6 +198,8 @@ def __generate_molecules(molecule,region,number_of_molecules):
         my_molecule = None
         while not valid_molecule : 
             my_molecule = copy.deepcopy(molecule)
+            
+            my_molecule.group_index = ip
 
             # First rotate water molecule.
             R = region.get_random_rotation_matrix()
@@ -210,6 +211,8 @@ def __generate_molecules(molecule,region,number_of_molecules):
     
             valid_molecule = __verify_molecule_is_valid(my_molecule,region)
 
+        atom_offset += my_molecule.number_of_atoms
+        my_molecule.reset_atom_indices(atom_offset)
         my_molecule.print_coordinates()
         all_molecules.append(my_molecule)
     return all_molecules
