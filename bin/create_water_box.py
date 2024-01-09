@@ -134,7 +134,8 @@ def _create_coordinates(args,molecule,region,my_logger):
     number_of_molecules = math.ceil(volume*number_density)
     message = (f"""The number of molecules is {number_of_molecules}.\n""")
     my_logger.info(message)
-    
+   
+    all_molecules = []
     for ip in range(0,number_of_molecules):
         print()
         print(f"""Molecule # {ip+1}: """)
@@ -153,11 +154,10 @@ def _create_coordinates(args,molecule,region,my_logger):
     
             valid_molecule = _verify_molecule_is_valid(my_molecule,region)
 
-            if not valid_molecule:
-                print("Invalid molecule")
         my_molecule.print_coordinates()
+        all_molecules.append(my_molecule)
 
-
+    
     return
 
 def _create_coordinate_system(args,region,my_logger):

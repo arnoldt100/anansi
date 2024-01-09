@@ -53,10 +53,16 @@ class tip3p:
                                                  0.9572*math.sin(104.52*(math.pi/180.00))]) 
                           }
 
+    initial_velocities = {
+                           "tip3p-O1" : np.array([0.00,0.00,0.00]),
+                           "tip3p-H2" : np.array([0.00,0.0000,0.00]),
+                           "tip3p-H3" : np.array([0.00,0.00,0.00])
+                          }
+
     #  ====================  LIFECYCLE     =======================================
     def __init__(self):
         self._coordinates = copy.deepcopy(self.initial_coordinates)
-                                                    
+        self._initial_velocities = copy.deepcopy(self.initial_velocities)                                            
 
     #  ====================  PUBLIC        =======================================
     def rotate(self,R):
