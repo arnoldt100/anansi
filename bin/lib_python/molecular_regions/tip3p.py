@@ -63,14 +63,15 @@ class tip3p:
     def __init__(self):
         self.__group_id = 0
         self._coordinates = copy.deepcopy(self.initial_coordinates)
-        self._initial_velocities = copy.deepcopy(self.initial_velocities)
+        self._velocities = copy.deepcopy(self.initial_velocities)
         self.__atom_index = { "tip3p-O1" : 1,
                               "tip3p-H2" : 2,
                               "tip3p-H3" : 3 }
 
     #  ====================  PUBLIC        =======================================
     def get_xml(self,atom_label):
-        return f"""{atom_label} {self.atomic_labels[atom_label]}"""
+        my_text =  f"""{atom_label}; {self.atomic_labels[atom_label]}; {self.__atom_index[atom_label]}; {self.__group_id}; {self.group_type};  """
+        return my_text
 
     def get_iterator(self):
         return iter(self.atomic_symbols)
@@ -101,14 +102,18 @@ class tip3p:
         print(f"""tip3p-O1: {self._coordinates["tip3p-O1"]} """)
         print(f"""tip3p-H2: {self._coordinates["tip3p-H2"]} """)
         print(f"""tip3p-H3: {self._coordinates["tip3p-H3"]} """)
+        print(f"""group_index: {self.group_index}""")
         return
 
     def reset(self):
         self._coordinates = copy.deepcopy(self.initial_coordinates) 
 
     def reset_atom_indices(self,offset):
+
+        ip = 0
         for key,value in self.__atom_index.items():
-            value += offset
+            ip += 1
+            self.__atom_index[key] = offset + ip
         return
 
     @property

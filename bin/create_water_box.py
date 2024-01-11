@@ -57,12 +57,12 @@ def _parse_arguments():
     my_parser.add_argument("--output-file-name",
                        type=str,
                        default="a_water_box",
-                       help="The prefix for the output file name." )
+                       help="The prefix for the output file name. The default prefix is 'a_water_box'," )
 
     my_parser.add_argument("--region-name",
                        type=str,
                        default="All atoms",
-                       help="The name of the region.")
+                       help="The name of the region. The default name is 'All atoms'.")
 
     # Adding mandatorgument group.
     mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
@@ -160,7 +160,7 @@ def __verify_molecule_is_valid(molecule,region):
 def __coordinates_elements(all_molecules):
     my_element = ET.Element("Coordinates, Velocities, ...")
 
-    my_comment = ET.Comment(text=" Atom;      Symbol;         Group-ID;       Group-Type;             x,y and z Coordinates; x, y and z Velocities ")
+    my_comment = ET.Comment(text=" Atom;    Symbol;     Atom Index;    Group-ID;    Group-Type;     x,y and z Coordinates; x, y and z Velocities ")
     my_element.append(my_comment)
 
     index = 0
@@ -211,8 +211,9 @@ def __generate_molecules(molecule,region,number_of_molecules):
     
             valid_molecule = __verify_molecule_is_valid(my_molecule,region)
 
-        atom_offset += my_molecule.number_of_atoms
+        atom_offset = ip*(my_molecule.number_of_atoms)
         my_molecule.reset_atom_indices(atom_offset)
+
         my_molecule.print_coordinates()
         all_molecules.append(my_molecule)
     return all_molecules
