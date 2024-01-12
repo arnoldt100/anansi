@@ -15,6 +15,7 @@ from loggerutils.logger import create_logger
 import molecular_regions.rectangular
 import molecular_regions.spherical
 import molecular_regions.tip3p
+from molecular_regions import molecule_xml_element
 
 #  ====================  PROTECTED     =======================================
 
@@ -157,11 +158,25 @@ def __verify_molecule_is_valid(molecule,region):
     molecule_in_region = region.inside(molecule.points)
     return (valid_molecule and molecule_in_region)
 
+def __compute_total_number_of_atoms(all_molecules):
+    number_of_atoms = 0
+    for a_molecule in all_molecules:
+            number_of_atoms += a_molecule.number_of_atoms
+
+    return number_of_atoms
+
 def __coordinates_elements(all_molecules):
     my_element = ET.Element("Coordinates, Velocities, ...")
 
-    my_comment = ET.Comment(text=" Atom;    Symbol;     Atom Index;    Group-ID;    Group-Type;     x,y and z Coordinates; x, y and z Velocities ")
+    total_number_of_atoms = __compute_total_number_of_atoms(all_molecules)
+    my_nm_atoms_element = ET.Element("Total Number of Atoms")
+    my_nm_atoms_element.text = str(total_number_of_atoms)
+    my_element.append(my_nm_atoms_element) 
+
+    # my_comment = ET.Comment(text=" Atom;    Symbol;     Atom Index;    Group-ID;    Group-Type;     x,y and z Coordinates; x, y and z Velocities ")
+    my_comment = ET.Comment(text=all_molecules[0].get_comment_header())
     my_element.append(my_comment)
+
 
     index = 0
     for a_molecule in all_molecules:
@@ -171,11 +186,10 @@ def __coordinates_elements(all_molecules):
             index += 1
 
             my_atom_element = ET.Element(f"""{index}""" )
-            my_text = a_molecule.get_xml(my_atom_label)
-            my_atom_element.text = my_text 
 
+            for a_xml_element in a_molecule.get_xml_elements(my_atom_label):
+                my_atom_element.append(a_xml_element)
             my_element.append(my_atom_element)
-
 
     return my_element
 

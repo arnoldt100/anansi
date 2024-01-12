@@ -7,11 +7,13 @@ import argparse
 import numpy as np
 import math
 import copy
+import xml.etree.ElementTree as ET
 
 # Local imports
 import logging
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
+from molecular_regions import molecule_xml_element
 
 class tip3p:
     group_type = "tip3p-rigid-molecule"
@@ -20,9 +22,9 @@ class tip3p:
                       "tip3p-H2" : "H",
                       "tip3p-H3" : "H"}
 
-    atomic_labels = {"tip3p-O1" : "O1",
-                     "tip3p-H2" : "H2",
-                     "tip3p-H3" : "H3"}
+    atom_labels = {"tip3p-O1" : "O1",
+                   "tip3p-H2" : "H2",
+                   "tip3p-H3" : "H3"}
 
     atomic_monopoles = {"tip3p-O1" : -0.834,
                         "tip3p-H2" : 0.417,
@@ -69,11 +71,72 @@ class tip3p:
                               "tip3p-H3" : 3 }
 
     #  ====================  PUBLIC        =======================================
+    def get_comment_header(self):
+        text = molecule_xml_element.Labels_Format["atom_label"].format(atom_label = molecule_xml_element.Fields["atom_label"])
+        text += molecule_xml_element.Labels_Format["atom_symbol_label"].format(atom_symbol_label = molecule_xml_element.Fields["atom_symbol_label"])
+        text += molecule_xml_element.Labels_Format["atom_index_label"].format(atom_index_label = molecule_xml_element.Fields["atom_index_label"])
+        text += molecule_xml_element.Labels_Format["global_group_index"].format(global_group_index = molecule_xml_element.Fields["global_group_index"])
+        text += molecule_xml_element.Labels_Format["atom_molecule_type_label"].format(atom_molecule_type_label = molecule_xml_element.Fields["atom_molecule_type_label"])
+        text += molecule_xml_element.Labels_Format["x_coordinate_label"].format(x_coordinate_label = molecule_xml_element.Fields["x_coordinate_label"])
+        text += molecule_xml_element.Labels_Format["y_coordinate_label"].format(y_coordinate_label = molecule_xml_element.Fields["y_coordinate_label"])
+        text += molecule_xml_element.Labels_Format["z_coordinate_label"].format(z_coordinate_label = molecule_xml_element.Fields["z_coordinate_label"])
+        return text
+
     def get_xml(self,atom_label):
-        my_text =  f"""{atom_label}; {self.atomic_labels[atom_label]}; {self.__atom_index[atom_label]}; {self.__group_id}; {self.group_type};  """
+        my_text =  f"""{atom_label}; {self.atom_labels[atom_label]}; {self.__atom_index[atom_label]}; {self.__group_id}; {self.group_type};  """
         my_text += f"""{self._coordinates[atom_label][0]} {self._coordinates[atom_label][1]} {self._coordinates[atom_label][2]};"""
         my_text += f"""{self._velocities[atom_label][0]} {self._velocities[atom_label][1]} {self._velocities[atom_label][2]}"""
         return my_text
+
+    def get_xml_elements(self,atom_label):
+        all_xml_elements = []
+        my_element = ET.Element(molecule_xml_element.Fields["atom_label"])
+        my_element.text = atom_label
+        all_xml_elements.append(my_element )
+
+        atom_symbol_element = ET.Element(molecule_xml_element.Fields["atom_symbol_label"])
+        atom_symbol_element.text = self.atomic_symbols[atom_label]
+        all_xml_elements.append(atom_symbol_element )
+        
+        atom_index_element = ET.Element(molecule_xml_element.Fields["atom_index_label"])
+        atom_index_element.text = molecule_xml_element.Values_Format["atom_index_label"].format(atom_index_label=self.__atom_index[atom_label])
+        all_xml_elements.append(atom_index_element )
+
+        global_group_index_element = ET.Element(molecule_xml_element.Fields["global_group_index"])
+        global_group_index_element.text = molecule_xml_element.Values_Format["global_group_index"].format(global_group_index=self.__group_id)
+        all_xml_elements.append(global_group_index_element)
+
+        group_type_element = ET.Element(molecule_xml_element.Fields["atom_molecule_type_label"])
+        group_type_element.text = molecule_xml_element.Values_Format["atom_molecule_type_label"].format(atom_molecule_type_label=self.group_type)
+        all_xml_elements.append(group_type_element)
+
+        x_coord_element = ET.Element(molecule_xml_element.Fields["x_coordinate_label"])
+        x_coord_element.text = molecule_xml_element.Values_Format["x_coordinate_label"].format(x_coordinate_label=self._coordinates[atom_label][0]) 
+        all_xml_elements.append(x_coord_element)
+
+        y_coord_element = ET.Element(molecule_xml_element.Fields["y_coordinate_label"])
+        y_coord_element.text = molecule_xml_element.Values_Format["y_coordinate_label"].format(y_coordinate_label=self._coordinates[atom_label][1]) 
+        all_xml_elements.append(y_coord_element)
+
+        z_coord_element = ET.Element(molecule_xml_element.Fields["z_coordinate_label"])
+        z_coord_element.text = molecule_xml_element.Values_Format["z_coordinate_label"].format(z_coordinate_label=self._coordinates[atom_label][2]) 
+        all_xml_elements.append(z_coord_element)
+
+        x_velocity_element = ET.Element(molecule_xml_element.Fields["x_velocity_label"])
+        x_velocity_element.text = molecule_xml_element.Values_Format["x_velocity_label"].format(x_velocity_label=self._velocities[atom_label][0]) 
+        all_xml_elements.append(x_velocity_element)
+
+        y_velocity_element = ET.Element(molecule_xml_element.Fields["y_velocity_label"])
+        y_velocity_element.text = molecule_xml_element.Values_Format["y_velocity_label"].format(y_velocity_label=self._velocities[atom_label][1]) 
+        all_xml_elements.append(y_velocity_element)
+
+        z_velocity_element = ET.Element(molecule_xml_element.Fields["z_velocity_label"])
+        z_velocity_element.text = molecule_xml_element.Values_Format["z_velocity_label"].format(z_velocity_label=self._velocities[atom_label][2]) 
+        all_xml_elements.append(z_velocity_element)
+
+
+        return all_xml_elements
+
 
     def get_iterator(self):
         return iter(self.atomic_symbols)
@@ -120,7 +183,7 @@ class tip3p:
 
     @property
     def number_of_atoms(self):
-        return len(self.atomic_labels)
+        return len(self.atom_labels)
 
     @property
     def group_index(self):
