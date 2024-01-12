@@ -16,12 +16,15 @@
 
 <!-- Specification for the initial configuration of the system. -->
 <initial-configuration>
-    <filename> water2.initialconfiguration </filename>
+    <filename> a_water_box.initialconfiguration.coordinates</filename>
 </initial-configuration>
+
+<!-- Specification for the coordinate system -->
+<coordinate-system> a_water_box.coordinatesystem </coordinate-system>
 
 <!-- Specification of atomic/molecular topology -->
 <molecular-topology>
-	<filename> water2.topology </filename>
+	<filename> water.topology </filename>
 </molecular-topology>
 
 <!-- Force field specification -->

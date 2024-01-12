@@ -59,10 +59,14 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
                                                       std::string("compute-units-per-spatial-domain")};
         this->addNodeKey_(proc_topology_cu_key);
 
-        // These are the keys for the initial configurtation filename.
+        // These are the keys for the initial configuration filename.
         std::vector<std::string> ic_key{std::string("initial-configuration"),
                                         std::string("filename")};
         this->addNodeKey_(ic_key);
+
+        // These are the keys for the coordinate system.
+        std::vector<std::string> cs_key{std::string("coordinate-system")};
+        this->addNodeKey_(cs_key);
 
         // The keys for the molecular topology file name.
         std::vector<std::string> mt_filename_key{std::string("molecular-topology"),
