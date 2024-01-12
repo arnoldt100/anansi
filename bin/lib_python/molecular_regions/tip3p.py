@@ -71,6 +71,8 @@ class tip3p:
     #  ====================  PUBLIC        =======================================
     def get_xml(self,atom_label):
         my_text =  f"""{atom_label}; {self.atomic_labels[atom_label]}; {self.__atom_index[atom_label]}; {self.__group_id}; {self.group_type};  """
+        my_text += f"""{self._coordinates[atom_label][0]} {self._coordinates[atom_label][1]} {self._coordinates[atom_label][2]};"""
+        my_text += f"""{self._velocities[atom_label][0]} {self._velocities[atom_label][1]} {self._velocities[atom_label][2]}"""
         return my_text
 
     def get_iterator(self):
