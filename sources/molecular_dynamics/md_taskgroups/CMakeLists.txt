@@ -107,6 +107,27 @@
     #  (End of section)
     # ----------------------------------------------------
 
+
+    # ----------------------------------------------------
+    #  This section configures targets in simulationdecomposition
+    # 
+    # ----------------------------------------------------
+
+    package_config_begin_delimiter("simulationdecomposition" "${md_taskgroups_logfilepath}")
+
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/SimulationDecomposition/cmake_macros_and_functions/simulationdecomposition.cmake )
+    enable_building_simulationdecomposition_package("${md_taskgroups_install_lib_directory}"
+                                                    "${md_taskgroups_install_include_directory}"
+                                                    "${md_taskgroups_install_bin_directory}"
+                                                    "${md_taskgroups_cxx_standard}"
+                                                    "${md_taskgroups_logfilepath}")
+    add_subdirectory(SimulationDecomposition)
+
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+
     # ----------------------------------------------------
     #  This section configures targets in CoreLoggingTasks
     # 

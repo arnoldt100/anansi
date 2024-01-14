@@ -46,7 +46,7 @@ main( int argc, char** argv )
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
-    // Initialize the initial condtions of the simulation.             @
+    // Initialize the initial conditions of the simulation.            @
     //                                                                 @
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     md_ptr->initializeInitialConditions();

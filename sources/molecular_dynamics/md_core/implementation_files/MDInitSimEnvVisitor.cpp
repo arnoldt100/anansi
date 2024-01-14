@@ -61,7 +61,7 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
     std::cout << "MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
 
     // ---------------------------------------------------
-    // The comunication environment must be first enabled for many other tasks
+    // The communication environment must be first enabled for many other tasks
     // are dependent on the communication environment.  
     // ---------------------------------------------------
     a_sim.enableCommunicationEnvironment();

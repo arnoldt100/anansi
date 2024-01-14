@@ -217,6 +217,20 @@ class AnansiMolecularDynamics final : public Simulation
         void
         disableControlFileTasks();
 
+        //! \brief Enables the simulation decomposition.
+        //!
+        //! AnansiMolecularDynamics::mdSimulationDecompositionInvk_ inkakes
+        //! a task that enables the simulation decomposition. 
+        void 
+        enableSimulationDecomposition();
+
+        //! \brief Disables the simulation decomposition.
+        //!
+        //! AnansiMolecularDynamics::mdSimulationDecompositionInvk_ inkakes
+        //! a task that disables the simulation decomposition. 
+        void 
+        disableSimulationDecomposition();
+
         // ====================  OPERATORS =======================================
 
         AnansiMolecularDynamics &

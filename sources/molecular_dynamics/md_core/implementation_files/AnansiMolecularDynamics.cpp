@@ -26,6 +26,8 @@
 #include "disable_controlfile_invoker.h"
 #include "setup_mpi_communication_environment_invoker.h"
 #include "setup_mpi_world_communicator_invoker.h"
+#include "setup_simulationdecomposition_invoker.h"
+#include "disable_simulationdecomposition_invoker.h"
 
 namespace ANANSI
 {
@@ -251,7 +253,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
 
     // ---------------------------------------------------
     // Run macro task command for the Control file. This macro task cammand 
-    // action results in every process storing the infromation of th control 
+    // action results in every process storing the information of the control
     // file. See class RECEIVER::ControlFileMacroReceiver for more details.
     //
     // ---------------------------------------------------
@@ -281,6 +283,18 @@ AnansiMolecularDynamics::enableCoreLoggingTasks()
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     setup_core_logging_invoker(this->mdCoreLoggingInvk_,std::move(world_communicator));
 
+    return;
+}
+
+void AnansiMolecularDynamics::enableSimulationDecomposition()
+{
+    setup_simulationdecomposition_invoker();
+    return;
+}
+
+void AnansiMolecularDynamics::disableSimulationDecomposition()
+{
+    disable_simulationdecomposition_invoker();
     return;
 }
 
