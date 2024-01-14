@@ -7,7 +7,10 @@
 <!-- Specification for the units of the simulation. -->
 <units>real</units>
 
-<!-- Compute units and MPI spatial decomposition. -->
+<!-- Workload Decomposition -->
+<workload-decomposition> domain-decomposition </workload-decomposition>
+
+<!-- Compute elements and MPI spatial decomposition. -->
 <processor-topology> 
     <lattice-type> Rectangular </lattice-type>
     <mpi-spatial-decomposition> 1 1 2 </mpi-spatial-decomposition>

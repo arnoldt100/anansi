@@ -14,13 +14,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-
+#include "WorkLoadParameters.h"
 
 namespace ANANSI
 {
 
-void setup_simulationdecomposition_invoker ();
-
+void setup_simulationdecomposition_invoker (const WorkLoadParameters & work_load_parameters);
 
 }; // namespace ANANSI
 

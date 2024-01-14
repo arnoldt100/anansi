@@ -14,7 +14,7 @@
 namespace ANANSI
 {
 
-void setup_simulationdecomposition_invoker ()
+void setup_simulationdecomposition_invoker (const WorkLoadParameters & work_load_parameters)
 {
     return;
 }   // -----  end of function setup_simulationdecomposition_invoker  -----

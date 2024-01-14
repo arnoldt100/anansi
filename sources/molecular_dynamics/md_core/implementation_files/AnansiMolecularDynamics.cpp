@@ -21,6 +21,7 @@
 #include "InitMPIEnvTaskReceiver.h"
 #include "ConsoleMessageContainer.h"
 
+#include "WorkLoadParameters.h"
 #include "setup_core_logging_invoker.h"
 #include "setup_controlfile_invoker.h"
 #include "disable_controlfile_invoker.h"
@@ -28,6 +29,7 @@
 #include "setup_mpi_world_communicator_invoker.h"
 #include "setup_simulationdecomposition_invoker.h"
 #include "disable_simulationdecomposition_invoker.h"
+#include "WorkLoadParameters.h"
 
 namespace ANANSI
 {
@@ -288,7 +290,10 @@ AnansiMolecularDynamics::enableCoreLoggingTasks()
 
 void AnansiMolecularDynamics::enableSimulationDecomposition()
 {
-    setup_simulationdecomposition_invoker();
+    WorkLoadParameters workload_parameters;
+
+    setup_simulationdecomposition_invoker(workload_parameters);
+
     return;
 }
 

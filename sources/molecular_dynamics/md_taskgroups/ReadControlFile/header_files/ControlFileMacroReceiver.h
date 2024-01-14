@@ -64,7 +64,7 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
 
         using MyParentTask = MacroCommand<ControlFileXMLReceiver,ControlFileXMLMPICommReceiver>;
 
-        // Place here the concrete commponent receivers required for receiver to 
+        // Place here the concrete component receivers required for receiver to
         // do its work.
         using MyComponentReceiverTypelist = 
             MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver>,

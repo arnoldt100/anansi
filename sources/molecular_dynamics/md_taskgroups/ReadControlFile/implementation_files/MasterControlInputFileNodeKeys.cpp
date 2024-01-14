@@ -49,6 +49,9 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
                                                       std::string("lattice-type")};
         this->addNodeKey_(proc_topology_lt_key);
 
+        std::vector<std::string> workload_decomposition_key{std::string("workload-decomposition")};
+        this->addNodeKey_(workload_decomposition_key);
+
         // These are the keys for the processor topology spatial decomposition.
         std::vector<std::string> proc_topology_mpi_decomp_key{std::string("processor-topology"),
                                                               std::string("mpi-spatial-decomposition")};
