@@ -108,7 +108,7 @@ class GenericMDTask : public Receiver::MyParentTask
 
         // ====================  MUTATORS      =======================================
 
-        //! This method is mot used, but a simple placeholder.
+        //! This method is not used, but a simple placeholder.
         template<typename... T>
         typename FunctorImpl::ResultType operator()(T &... args)
         {

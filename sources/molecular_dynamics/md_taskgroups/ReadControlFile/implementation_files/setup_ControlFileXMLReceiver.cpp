@@ -10,14 +10,14 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "setup_ControlFileXMLReceiver.h"
+#include "setup_ControlFileXMLTask.h"
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
 
 namespace ANANSI
 {
 
-void setup_ControlFileXMLReceiver (const std::string controlfile_name,
+void setup_ControlFileXMLTask (const std::string controlfile_name,
                                    const bool master_process,  
                                    std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                               ReadControlFileTraits::concrete_products>
@@ -80,7 +80,7 @@ void setup_ControlFileXMLReceiver (const std::string controlfile_name,
     control_file_invoker->addTask(task_label,my_task);
 
     return;
-}   // -----  end of function setup_ControlFileXMLReceiver 
+}   // -----  end of function setup_ControlFileXMLTask 
 
 
 }; // namespace ANANSI

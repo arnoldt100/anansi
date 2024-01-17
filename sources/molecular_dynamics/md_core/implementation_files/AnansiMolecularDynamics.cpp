@@ -246,7 +246,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
       this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<InitWorldCommunicatorTaskReceiver::TASKLABEL>();
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // Setup all receivers for the control file invoker.
+    // Setup all tasks for the control file invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     setup_controlfile_invoker(controlfile_name,

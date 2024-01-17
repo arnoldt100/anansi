@@ -14,7 +14,7 @@
 //--------------------------------------------------------//
 #include "setup_controlfile_invoker.h"
 #include "setup_ControlFileXMLMPICommReceiver.h"
-#include "setup_ControlFileXMLReceiver.h"
+#include "setup_ControlFileXMLTask.h"
 #include "setup_ControlFileMacroReceiver.h"
 #include "GenericTaskInvokerFactory.hpp"
 
@@ -38,7 +38,7 @@ void setup_controlfile_invoker (const std::string controlfile_name,
     //      - ControlFileMacroReceiver
 
     bool master_process = my_world_communicator->iAmMasterProcess();
-    setup_ControlFileXMLReceiver(controlfile_name,master_process,control_file_invoker);
+    setup_ControlFileXMLTask(controlfile_name,master_process,control_file_invoker);
 
     setup_ControlFileXMLMPICommReceiver(control_file_invoker, std::move(my_world_communicator)); 
 
