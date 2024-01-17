@@ -1,5 +1,5 @@
-#ifndef ANANSI_setup_ControlFileMacroReceiver_INC
-#define ANANSI_setup_ControlFileMacroReceiver_INC
+#ifndef ANANSI_setup_ControlFileMacroTask_INC
+#define ANANSI_setup_ControlFileMacroTask_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -19,11 +19,11 @@
 namespace ANANSI
 {
 
-void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
-                                                                                ReadControlFileTraits::concrete_products>
-                                                    > control_file_invoker);
+void setup_ControlFileMacroTask (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                                            ReadControlFileTraits::concrete_products>
+                                                > control_file_invoker);
 
 
 }; /* namespace ANANSI */
 
-#endif /* ANANSI_setup_ControlFileMacroReceiver_INC */
+#endif /* ANANSI_setup_ControlFileMacroTask_INC */

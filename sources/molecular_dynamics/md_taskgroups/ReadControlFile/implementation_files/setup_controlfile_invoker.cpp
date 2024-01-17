@@ -15,7 +15,7 @@
 #include "setup_controlfile_invoker.h"
 #include "setup_ControlFileXMLMPICommTask.h"
 #include "setup_ControlFileXMLTask.h"
-#include "setup_ControlFileMacroReceiver.h"
+#include "setup_ControlFileMacroTask.h"
 #include "GenericTaskInvokerFactory.hpp"
 
 namespace ANANSI
@@ -42,7 +42,7 @@ void setup_controlfile_invoker (const std::string controlfile_name,
 
     setup_ControlFileXMLMPICommTask(control_file_invoker, std::move(my_world_communicator)); 
 
-    setup_ControlFileMacroReceiver(control_file_invoker);
+    setup_ControlFileMacroTask(control_file_invoker);
 
 
     return;

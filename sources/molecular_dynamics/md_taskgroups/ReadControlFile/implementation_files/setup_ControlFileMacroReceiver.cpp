@@ -10,16 +10,16 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "setup_ControlFileMacroReceiver.h"
+#include "setup_ControlFileMacroTask.h"
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
 
 namespace ANANSI
 {
 
-void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
-                                                                                ReadControlFileTraits::concrete_products>
-                                                    > control_file_invoker)
+void setup_ControlFileMacroTask (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                                            ReadControlFileTraits::concrete_products>
+                                                > control_file_invoker)
 {
     // ---------------------------------------------------
     // We define some type aliases to reduce the amount of typing.
@@ -84,5 +84,5 @@ void setup_ControlFileMacroReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
 }   /* -----  end of function __function__  ----- */
 
 
-}; /* namespace __NAMESPACE__ */
+}; /* namespace ANANSI */
 
