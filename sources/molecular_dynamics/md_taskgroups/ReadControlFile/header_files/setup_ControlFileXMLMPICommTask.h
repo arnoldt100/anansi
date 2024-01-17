@@ -1,5 +1,5 @@
-#ifndef ANANSI_setup_ControlFileXMLMPICommReceiver_INC
-#define ANANSI_setup_ControlFileXMLMPICommReceiver_INC
+#ifndef ANANSI_setup_ControlFileXMLMPICommTask_INC
+#define ANANSI_setup_ControlFileXMLMPICommTasj_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -18,11 +18,11 @@
 
 namespace ANANSI {
 
-void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+void setup_ControlFileXMLMPICommTask (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                                      ReadControlFileTraits::concrete_products>
                                                          > control_file_invoker,
                                           std::unique_ptr<COMMUNICATOR::Communicator> my_world_communicator);
 
 
 }; /* namespace ANANSI */
-#endif /* ANANSI_setup_ControlFileXMLMPICommReceiver_INC */
+#endif /* ANANSI_setup_ControlFileXMLMPICommTask_INC */

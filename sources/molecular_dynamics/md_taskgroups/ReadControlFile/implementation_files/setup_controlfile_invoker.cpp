@@ -40,7 +40,7 @@ void setup_controlfile_invoker (const std::string controlfile_name,
     bool master_process = my_world_communicator->iAmMasterProcess();
     setup_ControlFileXMLTask(controlfile_name,master_process,control_file_invoker);
 
-    setup_ControlFileXMLMPICommReceiver(control_file_invoker, std::move(my_world_communicator)); 
+    setup_ControlFileXMLMPICommTask(control_file_invoker, std::move(my_world_communicator)); 
 
     setup_ControlFileMacroReceiver(control_file_invoker);
 

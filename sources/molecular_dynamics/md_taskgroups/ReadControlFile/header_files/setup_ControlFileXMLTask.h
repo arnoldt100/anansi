@@ -1,5 +1,5 @@
-#ifndef ANANSI_setup_ControlFileXMLReceiver_INC
-#define ANANSI_setup_ControlFileXMLReceiver_INC
+#ifndef ANANSI_setup_ControlFileXMLTask_INC
+#define ANANSI_setup_ControlFileXMLTask_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -27,4 +27,4 @@ void setup_ControlFileXMLTask (const std::string controlfile_name,
                                                   > control_file_invoker);
 }; /* namespace ANANSI */
 
-#endif // ANANSI_setup_ControlFileXMLReceiver_INC
+#endif // ANANSI_setup_ControlFileXMLTask_INC

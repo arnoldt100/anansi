@@ -16,7 +16,7 @@
 namespace ANANSI
 {
 
-void setup_ControlFileXMLMPICommReceiver (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+void setup_ControlFileXMLMPICommTask (std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
                                                                                      ReadControlFileTraits::concrete_products>
                                                          > control_filexmlmpi_invoker,
                                           std::unique_ptr<COMMUNICATOR::Communicator> my_world_communicator)
