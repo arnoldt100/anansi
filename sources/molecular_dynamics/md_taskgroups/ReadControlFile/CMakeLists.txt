@@ -80,7 +80,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_controlfile_invoker.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_controlfile_invoker.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileXMLTask.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileXMLMPICommReceiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileXMLMPICommTask.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_ControlFileMacroReceiver.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadControlFileResultsTraits.h
          )
@@ -103,8 +103,8 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadControlFileTraits.cpp 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_controlfile_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_controlfile_invoker.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileXMLReceiver.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileXMLMPICommReceiver.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileXMLTask.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileXMLMPICommTask.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_ControlFileMacroReceiver.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadControlFileResultsTraits.cpp
          )

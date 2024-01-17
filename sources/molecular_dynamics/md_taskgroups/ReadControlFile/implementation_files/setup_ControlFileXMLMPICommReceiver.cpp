@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "setup_ControlFileXMLMPICommReceiver.h"
+#include "setup_ControlFileXMLMPICommTask.h"
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
 

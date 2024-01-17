@@ -13,7 +13,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "setup_controlfile_invoker.h"
-#include "setup_ControlFileXMLMPICommReceiver.h"
+#include "setup_ControlFileXMLMPICommTask.h"
 #include "setup_ControlFileXMLTask.h"
 #include "setup_ControlFileMacroReceiver.h"
 #include "GenericTaskInvokerFactory.hpp"
