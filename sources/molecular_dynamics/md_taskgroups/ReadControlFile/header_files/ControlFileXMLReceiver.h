@@ -3,13 +3,13 @@
 
 //! \file ControlFileXMLReceiver.h
 //!
-//! \brief Class ControlFileXMLReceiver is the reciever for 
+//! \brief Class ControlFileXMLReceiver is the receiver for
 //! concrete task for reading the control file.
 //!
 //! The master process in the communicator
 //! group reads the file. The result will be the a ControlInputFile
 //! object will be populated on the master process. The non-master processes
-//! will have an empyty ControlInputFile object.
+//! will have an empty ControlInputFile object.
 //!
 //! The result of this action is ControFile object. We need a
 //! ShareCopyOwnershipPolicy and a SharedType ownership for the result.
@@ -52,7 +52,7 @@
 namespace ANANSI
 {
 
-//! Resposible for reading the control file.
+//! Responsible for reading the control file.
 class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLReceiver>
 {
     private:
