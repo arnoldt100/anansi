@@ -166,7 +166,6 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         mutable receiver_result_t results_;
         std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
-
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class ControlFileXMLMPICommReceiver  -----

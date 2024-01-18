@@ -107,7 +107,6 @@ class ControlFileMacroOwnershipImpl : public RECEIVER::BaseOwnershipImplementati
             return result;
         }
 
-
         // ====================  DATA MEMBERS  =======================================
 
     private:

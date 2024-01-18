@@ -33,7 +33,7 @@ namespace ANANSI
 //! These assembled commands will have the result of all MPI tasks in the
 //! communicator group of ControlFileXMLMPICommReceiver to contain the information
 //! contained in control file.
-class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFileMacroReceiver>
+class ControlFileMacroReceiver : public RECEIVER::ReceiverInterface<ControlFileMacroReceiver>
 {
     private:
         //! The command label for the task associated with this receiver.
@@ -43,10 +43,10 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
         //! The ownership types for the result. 
         //!
         //! Currently we use a dummy int result.
-        using my_result_type_ = int;
-        using my_copy_type_ = int;
-        using my_share_type_ = int;
-        using my_transfer_type_ = int;
+        using my_result_type_ = ReadControlFileResultsTraits::result_t;
+        using my_copy_type_ = ReadControlFileResultsTraits::result_t;
+        using my_share_type_ = ReadControlFileResultsTraits::result_t;
+        using my_transfer_type_ = ReadControlFileResultsTraits::result_t;
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
@@ -70,10 +70,8 @@ class ControlFileMacroReceiver :  public RECEIVER::ReceiverInterface<ControlFile
             MPL::mpl_typelist<GenericMDTask<ControlFileXMLReceiver>,
                               GenericMDTask<ControlFileXMLMPICommReceiver>>;
 
-
         template<RECEIVER::OwnershipTypes Q>
-        using MyOwnershipTypes = 
-        typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
+        using MyOwnershipTypes = typename RECEIVER::ReceiverResultOwnershipType<Q,MyOwnershipImpl_>;
 
         using receiver_result_t = my_result_type_;
 
@@ -203,6 +201,9 @@ void ControlFileMacroReceiver::receiverDoAction_(Types & ... args) const
           GenericMDTaskUtilities<ControlFileXMLMPICommReceiver>::getCopyofTaskResults(this->componentTasks_.at(task_2_label));
         GenericMDTaskUtilities<ControlFileXMLReceiver>::modifyTask(this->componentTasks_.at(task_1_label),task_2_results);
 
+        // (5) Copy the results from ControlFileXMLReceiver to this receiver ControlFileMacroReceiver.
+        this->results_ =
+            GenericMDTaskUtilities<ControlFileXMLReceiver>::getCopyofTaskResults(this->componentTasks_.at(task_1_label));
     } 
     catch ( const RECEIVER::ReceiverError & my_error)
     {

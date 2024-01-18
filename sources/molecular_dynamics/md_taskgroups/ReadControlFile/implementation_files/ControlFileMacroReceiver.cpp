@@ -25,7 +25,7 @@ class AnansiTask;
 
 ControlFileMacroReceiver::ControlFileMacroReceiver() :
     ReceiverInterface<ControlFileMacroReceiver>(),
-    results_(0),
+    results_(ReadControlFileResultsTraits::ControlInputFile_t()),
     ownershipPolicy_()
 {
     return;
@@ -93,8 +93,9 @@ ControlFileMacroReceiver::receiver_share_t_ ControlFileMacroReceiver::receiverSh
 }
 
 template<>
-void ControlFileMacroReceiver::receiverModifyMyself_(int & alpha)
+void ControlFileMacroReceiver::receiverModifyMyself_(CommandFiles<> & arg)
 {
+    this->results_ = arg;
     return;
 }
 
