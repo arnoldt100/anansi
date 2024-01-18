@@ -71,6 +71,7 @@
     set (readcontrolfile_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterProcess.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlInputFileNodeKeys.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlInputFileParameters.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileXMLReceiver.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFilesOwnershipImpl.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileXMLMPICommReceiver.h
@@ -95,6 +96,7 @@
     set (readcontrolfile_implementation_files
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterProcess.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlInputFileNodeKeys.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlInputFileParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileXMLReceiver.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFilesOwnershipImpl.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileXMLMPICommReceiver.cpp
@@ -123,7 +125,7 @@
     get_target_property(my_mdownershippolicies_include mdownershippolicies mdownershippolicies_include )
     get_target_property(my_control_file_include control_file control_file_include)
     get_target_property(my_command_files_include command_files command_files_include)
-
+    get_target_property(my_simulationdecomposition_include simulationdecomposition simulationdecomposition_include)
     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -162,7 +164,8 @@ target_include_directories(${target}
                            PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_control_file_include}"
                            PRIVATE "${my_command_files_include}"
-                           PRIVATE "${my_mpi_communicator_include}")
+                           PRIVATE "${my_mpi_communicator_include}"
+                           PRIVATE "${my_simulationdecomposition_include}" )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -176,7 +179,8 @@ target_link_libraries(${target}
                       PUBLIC generic_abstract_factory
                       PUBLIC invoker
                       PUBLIC command_files
-                      PUBLIC mpi_communicator) 
+                      PUBLIC mpi_communicator
+                      PUBLIC simulationdecomposition) 
 
 
 #-----------------------------------------------------
