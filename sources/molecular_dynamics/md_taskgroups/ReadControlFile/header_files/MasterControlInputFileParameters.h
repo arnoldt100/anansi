@@ -14,6 +14,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
+#include "GenericTaskInvoker.hpp"
+#include "ReadControlFileTraits.h"
 
 namespace ANANSI
 {
@@ -44,7 +46,10 @@ class MasterControlInputFileParameters
         MasterControlInputFileParameters& operator= ( MasterControlInputFileParameters && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================
-        SimulationDecompositionParameters static GetSimulationDecompositionParameters();
+        SimulationDecompositionParameters static GetSimulationDecompositionParameters(
+        		std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+                                                           ReadControlFileTraits::concrete_products> 
+                               > & control_file_invoker);
 
     protected:
         // ====================  METHODS       =======================================

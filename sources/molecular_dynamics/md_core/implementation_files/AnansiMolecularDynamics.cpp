@@ -291,10 +291,11 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
 {
     // The workload decomposition is stored in the master control file. The master control file
     // is the result of the task associated with the ControlFileMacroReceiver. This task
-    // is stored in the invoker mdControlFileInvk_. We use the utility function "get_master_control_parameters"
+    // is stored in the invoker mdControlFileInvk_. We use the utility function
+	// "MasterControlInputFileParameters::GetSimulationDecompositionParameters"
     // to get the workload parameters.
     SimulationDecompositionParameters workload_parameters =
-        MasterControlInputFileParameters::GetSimulationDecompositionParameters();
+        MasterControlInputFileParameters::GetSimulationDecompositionParameters(this->mdControlFileInvk_);
 
     setup_simulationdecomposition_invoker(workload_parameters);
     return;

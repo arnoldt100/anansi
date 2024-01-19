@@ -1,4 +1,3 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -60,7 +59,10 @@ MasterControlInputFileParameters * MasterControlInputFileParameters::clone() con
 //============================= OPERATORS ====================================
 
 //============================= STATIC    ====================================
-SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulationDecompositionParameters()
+SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulationDecompositionParameters(
+		std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
+        ReadControlFileTraits::concrete_products>
+       > & control_file_invoker)
 {
     SimulationDecompositionParameters sim_decomposition_parameters;
     return sim_decomposition_parameters;
