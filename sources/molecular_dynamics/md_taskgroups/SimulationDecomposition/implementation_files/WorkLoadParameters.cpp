@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorkLoadParameters.h"
+#include "SimulationDecompositionParameters.h"
 
 namespace ANANSI {
 
@@ -19,17 +19,17 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-WorkLoadParameters::WorkLoadParameters()
+SimulationDecompositionParameters::SimulationDecompositionParameters()
 {
     return;
 }
 
-WorkLoadParameters::WorkLoadParameters(std::unique_ptr<COMMUNICATOR::Communicator> world_communicator)
+SimulationDecompositionParameters::SimulationDecompositionParameters(std::unique_ptr<COMMUNICATOR::Communicator> world_communicator)
 {
     return;
 }
 
-WorkLoadParameters::WorkLoadParameters( WorkLoadParameters const & other)
+SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters const & other)
 {
     if (this != &other)
     {
@@ -38,32 +38,32 @@ WorkLoadParameters::WorkLoadParameters( WorkLoadParameters const & other)
     return;
 }
 
-WorkLoadParameters::WorkLoadParameters( WorkLoadParameters && other)
+SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters && other)
 {
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method WorkLoadParameters::WorkLoadParameters  -----
+}		// -----  end of method SimulationDecompositionParameters::SimulationDecompositionParameters  -----
 
 
-WorkLoadParameters::~WorkLoadParameters()
+SimulationDecompositionParameters::~SimulationDecompositionParameters()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-WorkLoadParameters * WorkLoadParameters::clone() const
+SimulationDecompositionParameters * SimulationDecompositionParameters::clone() const
 {
-    return new WorkLoadParameters(*this);
+    return new SimulationDecompositionParameters(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-WorkLoadParameters& WorkLoadParameters::operator= ( const WorkLoadParameters &other )
+SimulationDecompositionParameters& SimulationDecompositionParameters::operator= ( const SimulationDecompositionParameters &other )
 {
     if (this != &other)
     {
@@ -71,7 +71,7 @@ WorkLoadParameters& WorkLoadParameters::operator= ( const WorkLoadParameters &ot
     return *this;
 } // assignment operator
 
-WorkLoadParameters& WorkLoadParameters::operator= ( WorkLoadParameters && other )
+SimulationDecompositionParameters& SimulationDecompositionParameters::operator= ( SimulationDecompositionParameters && other )
 {
     if (this != &other)
     {

@@ -60,10 +60,10 @@ MasterControlInputFileParameters * MasterControlInputFileParameters::clone() con
 //============================= OPERATORS ====================================
 
 //============================= STATIC    ====================================
-WorkLoadParameters  MasterControlInputFileParameters::GetWorkLoad()
+SimulationDecompositionParameters MasterControlInputFileParameters::GetWorkLoad()
 {
-    WorkLoadParameters work_load_parameters;
-    return work_load_parameters;
+    SimulationDecompositionParameters sim_decomposition_parameters;
+    return sim_decomposition_parameters;
 }
 
 MasterControlInputFileParameters& MasterControlInputFileParameters::operator= ( const MasterControlInputFileParameters &other )

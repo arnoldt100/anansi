@@ -13,7 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "WorkLoadParameters.h"
+#include "SimulationDecompositionParameters.h"
 
 namespace ANANSI
 {
@@ -44,7 +44,7 @@ class MasterControlInputFileParameters
         MasterControlInputFileParameters& operator= ( MasterControlInputFileParameters && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================
-        WorkLoadParameters static GetWorkLoad();
+        SimulationControlParameters static GetWorkLoad();
 
     protected:
         // ====================  METHODS       =======================================

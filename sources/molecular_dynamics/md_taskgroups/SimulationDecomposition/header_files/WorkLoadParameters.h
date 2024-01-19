@@ -1,6 +1,6 @@
-#ifndef ANANSI_WorkLoadParameters_INC
-#define ANANSI_WorkLoadParameters_INC
-//! \file WorkLoadParameters.h
+#ifndef ANANSI_SimulationDecompositionParameters_INC
+#define ANANSI_SimulationDecompositionParameters_INC
+//! \file SimulationDecompositionParameters.h
 //!
 //! \brief Brief description
 //!
@@ -23,31 +23,31 @@
 namespace ANANSI
 {
 
-class WorkLoadParameters
+class SimulationDecompositionParameters
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        WorkLoadParameters ();   // constructor
+        SimulationDecompositionParameters ();   // constructor
 
-        WorkLoadParameters (std::unique_ptr<COMMUNICATOR::Communicator> world_communicator);   // constructor
+        SimulationDecompositionParameters (std::unique_ptr<COMMUNICATOR::Communicator> world_communicator);   // constructor
 
-        WorkLoadParameters (const WorkLoadParameters & other);   // copy constructor
+        SimulationDecompositionParameters (const SimulationDecompositionParameters & other);   // copy constructor
 
-        WorkLoadParameters (WorkLoadParameters && other);   // copy-move constructor
+        SimulationDecompositionParameters (SimulationDecompositionParameters && other);   // copy-move constructor
 
-        ~WorkLoadParameters ();  // destructor
+        ~SimulationDecompositionParameters ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        WorkLoadParameters * clone () const;
+        SimulationDecompositionParameters * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        WorkLoadParameters& operator= ( const WorkLoadParameters &other ); // assignment operator
+        SimulationDecompositionParameters& operator= ( const SimulationDecompositionParameters &other ); // assignment operator
 
-        WorkLoadParameters& operator= ( WorkLoadParameters && other ); // assignment-move operator
+        SimulationDecompositionParameters& operator= ( SimulationDecompositionParameters && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -59,9 +59,9 @@ class WorkLoadParameters
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class WorkLoadParameters  -----
+}; // -----  end of class SimulationDecompositionParameters  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_WorkLoadParameters_INC
+#endif // ANANSI_SimulationDecompositionParameters_INC
