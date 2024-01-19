@@ -112,6 +112,8 @@ class GenericTaskInvokerUtilities
         }
 
 
+
+            
         //! Returns a shared type of the result of a concrete task.
         //!
         //! @tparam A typelist of concrete task types.

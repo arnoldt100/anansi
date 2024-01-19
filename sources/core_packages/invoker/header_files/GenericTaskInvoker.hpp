@@ -220,6 +220,16 @@ class GenericTaskInvoker
         } // assignment-move operator
 
 
+        // ====================  STATIC        =======================================
+        //! Returns a copy of the result of a concrete task.
+        template <LABEL_t COMMAND_LABEL>
+        static void getCopyOfInvokerTaskResult(std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,ConcreteTasksTypeList,LABEL_t>> & my_invoker )
+        {
+            return;
+        }
+            
+
+
     protected:
         // ====================  METHODS       =======================================
 
