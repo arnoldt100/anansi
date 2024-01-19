@@ -12,7 +12,7 @@
 
 <!-- Compute elements and MPI spatial decomposition. -->
 <processor-topology> 
-    <lattice-type> Rectangular </lattice-type>
+    <lattice-type> rectangular </lattice-type>
     <mpi-spatial-decomposition> 1 1 2 </mpi-spatial-decomposition>
     <compute-units-per-spatial-domain> 1 </compute-units-per-spatial-domain>
 </processor-topology> 

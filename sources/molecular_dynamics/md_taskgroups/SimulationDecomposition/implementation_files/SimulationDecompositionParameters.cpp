@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,17 +20,24 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-SimulationDecompositionParameters::SimulationDecompositionParameters()
+SimulationDecompositionParameters::SimulationDecompositionParameters() :
+    workLoadDecomposition_{""},
+    processorTopologyLatticeType_{""},
+    processorTopologySpatialDecomposition_(""),
+    numberProcessorComputeUnitsPerDomain_("")
 {
+    this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecomposition_();
+    this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType_();
+    this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition_();
+    this->numberProcessorComputeUnitsPerDomain_ = SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain_();
     return;
 }
 
-SimulationDecompositionParameters::SimulationDecompositionParameters(std::unique_ptr<COMMUNICATOR::Communicator> world_communicator)
-{
-    return;
-}
-
-SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters const & other)
+SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters const & other) :
+    workLoadDecomposition_{other.workLoadDecomposition_},
+    processorTopologyLatticeType_{other.processorTopologyLatticeType_},
+    processorTopologySpatialDecomposition_{other.processorTopologySpatialDecomposition_},
+    numberProcessorComputeUnitsPerDomain_{other.numberProcessorComputeUnitsPerDomain_}
 {
     if (this != &other)
     {
@@ -38,7 +46,11 @@ SimulationDecompositionParameters::SimulationDecompositionParameters( Simulation
     return;
 }
 
-SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters && other)
+SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters && other) :
+    workLoadDecomposition_{std::move(other.workLoadDecomposition_)},
+    processorTopologyLatticeType_{std::move(other.processorTopologyLatticeType_)},
+    processorTopologySpatialDecomposition_{std::move(other.processorTopologySpatialDecomposition_)},
+    numberProcessorComputeUnitsPerDomain_{std::move(other.numberProcessorComputeUnitsPerDomain_)}
 {
     if (this != &other)
     {
@@ -63,10 +75,14 @@ SimulationDecompositionParameters * SimulationDecompositionParameters::clone() c
 
 //============================= OPERATORS ====================================
 
-SimulationDecompositionParameters& SimulationDecompositionParameters::operator= ( const SimulationDecompositionParameters &other )
+SimulationDecompositionParameters& SimulationDecompositionParameters::operator=( const SimulationDecompositionParameters &other )
 {
     if (this != &other)
     {
+        this->workLoadDecomposition_= other.workLoadDecomposition_;
+        this->processorTopologyLatticeType_ = other.processorTopologyLatticeType_;
+        this->processorTopologySpatialDecomposition_ = other.processorTopologySpatialDecomposition_;
+        this->numberProcessorComputeUnitsPerDomain_ = other.numberProcessorComputeUnitsPerDomain_;
     }
     return *this;
 } // assignment operator
@@ -75,7 +91,10 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
 {
     if (this != &other)
     {
-
+        this->workLoadDecomposition_= std::move(other.workLoadDecomposition_);
+        this->processorTopologyLatticeType_ = std::move(other.processorTopologyLatticeType_);
+        this->processorTopologySpatialDecomposition_ = std::move(other.processorTopologySpatialDecomposition_);
+        this->numberProcessorComputeUnitsPerDomain_ = std::move(other.numberProcessorComputeUnitsPerDomain_);
     }
     return *this;
 } // assignment-move operator
@@ -104,5 +123,25 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
 
 //============================= OPERATORS ====================================
 
+//============================= STATIC    ====================================
+std::string SimulationDecompositionParameters::DefaultWorkLoadDecomposition_()
+{
+    return std::string("domain-decomposition");
+}
+
+std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType_()
+{
+    return std::string("rectangular");
+}
+
+std::string SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition_()
+{
+    return std::string("1 1 1");
+}
+
+std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain_()
+{
+    return std::string("1");
+}
 
 } // namespace ANANSI
