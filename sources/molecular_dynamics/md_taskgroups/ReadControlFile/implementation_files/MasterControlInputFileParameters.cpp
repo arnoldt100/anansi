@@ -60,7 +60,7 @@ MasterControlInputFileParameters * MasterControlInputFileParameters::clone() con
 //============================= OPERATORS ====================================
 
 //============================= STATIC    ====================================
-SimulationDecompositionParameters MasterControlInputFileParameters::GetWorkLoad()
+SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulationDecompositionParameters()
 {
     SimulationDecompositionParameters sim_decomposition_parameters;
     return sim_decomposition_parameters;

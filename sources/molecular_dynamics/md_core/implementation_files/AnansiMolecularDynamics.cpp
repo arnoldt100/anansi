@@ -21,7 +21,7 @@
 #include "InitMPIEnvTaskReceiver.h"
 #include "ConsoleMessageContainer.h"
 #include "MasterControlInputFileParameters.h"
-#include "SimulationContolParameters.h"
+#include "SimulationDecompositionParameters.h"
 #include "setup_core_logging_invoker.h"
 #include "setup_controlfile_invoker.h"
 #include "disable_controlfile_invoker.h"
@@ -293,7 +293,7 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
     // is the result of the task associated with the ControlFileMacroReceiver. This task
     // is stored in the invoker mdControlFileInvk_. We use the utility function "get_master_control_parameters"
     // to get the workload parameters.
-    SimulationDecompositionParameters workload_parameters = MasterControlInputFileParameters::GetWorkLoad();
+    SimulationDecompositionParameters workload_parameters = MasterControlInputFileParameters::GetSimulationDecompositionParameters();
 
     setup_simulationdecomposition_invoker(workload_parameters);
 

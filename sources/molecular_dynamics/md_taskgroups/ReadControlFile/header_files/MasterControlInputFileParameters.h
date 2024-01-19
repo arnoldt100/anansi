@@ -44,7 +44,7 @@ class MasterControlInputFileParameters
         MasterControlInputFileParameters& operator= ( MasterControlInputFileParameters && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================
-        SimulationControlParameters static GetWorkLoad();
+        SimulationDecompositionParameters static GetSimulationDecompositionParameters();
 
     protected:
         // ====================  METHODS       =======================================
