@@ -293,10 +293,10 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
     // is the result of the task associated with the ControlFileMacroReceiver. This task
     // is stored in the invoker mdControlFileInvk_. We use the utility function "get_master_control_parameters"
     // to get the workload parameters.
-    SimulationDecompositionParameters workload_parameters = MasterControlInputFileParameters::GetSimulationDecompositionParameters();
+    SimulationDecompositionParameters workload_parameters =
+        MasterControlInputFileParameters::GetSimulationDecompositionParameters();
 
     setup_simulationdecomposition_invoker(workload_parameters);
-
     return;
 }
 
