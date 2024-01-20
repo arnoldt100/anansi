@@ -72,7 +72,8 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
     using abstract_tasks = ReadControlFileTraits::abstract_products;
     using concrete_tasks = ReadControlFileTraits::concrete_products;
     constexpr auto task_label = ControlFileMacroReceiver::TASKLABEL;
-
+    
+    
     GenericTaskInvoker<abstract_tasks,concrete_tasks>::getCopyOfInvokerTaskResult<task_label>(control_file_invoker);
 
     return sim_decomposition_parameters;

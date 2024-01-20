@@ -76,7 +76,7 @@ class GenericTaskInvokerUtilities
                            ReceiverArgsTypes &...receiver_args)
         {
             using concrete_task_type = 
-                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::TYPE;
 
             std::shared_ptr<concrete_task_type> concrete_task =
                 AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
@@ -96,7 +96,7 @@ class GenericTaskInvokerUtilities
         getCopyOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
         {
             using concrete_task_type = 
-                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::TYPE;
 
             using receiver_copy_t = typename  GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE,
                                                                                LABEL_t,
@@ -125,7 +125,7 @@ class GenericTaskInvokerUtilities
         getShareOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
         {
             using concrete_task_type = 
-                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::TYPE;
 
             using receiver_share_t =
                 typename  GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE,
@@ -154,7 +154,7 @@ class GenericTaskInvokerUtilities
         transferTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
         {
             using concrete_task_type = 
-                typename ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+                typename ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::TYPE;
 
             using receiver_transfer_t = 
                 typename  GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE,

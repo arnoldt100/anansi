@@ -32,15 +32,9 @@ namespace ANANSI
         {
             public:
                 using TYPE = 
-                    typename ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::concrete_type;
+                    typename ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::TYPE;
         };
     };
-
-template <RECEIVER::OwnershipTypes T,
-         typename LABEL_t,
-         LABEL_t COMMAND_LABEL,
-         typename ConcreteTasksTypeList>
-struct GenericTaskInvokerOwnershipTypes; 
 
 template <typename LABEL_t,LABEL_t COMMAND_LABEL,typename ConcreteTasksTypeList>
 struct GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE,LABEL_t,COMMAND_LABEL,ConcreteTasksTypeList> 

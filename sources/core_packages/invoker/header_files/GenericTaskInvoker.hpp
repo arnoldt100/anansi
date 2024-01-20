@@ -222,12 +222,15 @@ class GenericTaskInvoker
 
         // ====================  STATIC        =======================================
         //! Returns a copy of the result of a concrete task.
+        //!
+        //! We get a "COPYTYPE" of the concrete tasks results.
         template <LABEL_t TASK_LABEL>
         static void getCopyOfInvokerTaskResult(std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,
                                                                                   ConcreteTasksTypeList,
                                                                                   LABEL_t>
                                                               > & my_invoker )
         {
+
             return;
         }
             

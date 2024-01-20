@@ -15,6 +15,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "OwnershipTypes.hpp"
 #include "TaskLabel.hpp" 
 #include "MPLAliases.hpp"
 
@@ -26,6 +27,7 @@ namespace ANANSI
 //  Description:  
 //  =====================================================================================
 
+namespace {
 //! A utility class for aiding in searching the tasks typelist.
 //!
 //! This class sole function is to store the TaskLabel for a task type.
@@ -39,7 +41,7 @@ class TaskLabelContainer_
         //! 
         //! The type L must have a static member TASKLABEL.
         constexpr static ANANSI::TaskLabel value = L::TASKLABEL; 
-};
+}; 
 
 //! The primary template for searching
 //!
@@ -83,6 +85,7 @@ class IndexOfLabel
     public :
         enum { value = IndexOfLabel_<TList,Key,label_index>::value};
 };
+
 
 class GenericTaskUtilities
 {
@@ -132,7 +135,9 @@ class GenericTaskUtilities
 
 }; // -----  end of class GenericTaskUtilities  -----
 
-//! Gets the result type for the concrete task that has label MY_LABEL.
+}; // Anonymous namespace
+
+//! Gets the concrete task type for the concrete task that has label MY_LABEL.
 //!
 //! @tparam ConcreteProductTypeList A typelist of concrete tasks.
 //! MY_LABEL The label we seek  to match in the concrete tasks.
@@ -146,7 +151,36 @@ ConcreteTypeForCorrespondingLabel
         static const int concreteindex_ =
             ANANSI::GenericTaskUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
     public:
-        using concrete_type = MPL::mpl_at_c<ConcreteTasksTypeList,concreteindex_>;
+        using TYPE = MPL::mpl_at_c<ConcreteTasksTypeList,concreteindex_>;
+};
+
+template <RECEIVER::OwnershipTypes T,
+         typename LABEL_t,
+         LABEL_t COMMAND_LABEL,
+         typename ConcreteTasksTypeList>
+struct GenericTaskInvokerOwnershipTypes; 
+
+//! Gets the concrete result type for the concrete task that has label MY_LABEL.
+//!
+//! @tparam ConcreteProductTypeList A typelist of concrete tasks.
+//! MY_LABEL The label we seek  to match in the concrete tasks.
+template <typename ConcreteTasksTypeList,
+          typename LABEL_t,
+          LABEL_t COMMAND_LABEL>
+class
+ConcreteResultTypeForCorrespondingLabel
+{
+    private:
+        static const int concreteindex_ =
+            ANANSI::GenericTaskUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+
+        using concrete_type_ = MPL::mpl_at_c<ConcreteTasksTypeList,concreteindex_>;
+    
+    public:
+
+        using COPYTYPE = concrete_type_::COPYTYPE; 
+        using SHARETYPE = concrete_type_::SHARETYPE; 
+        using TRANSFERTYPE = concrete_type_::TRANSFERTYPE; 
 };
 
 }; // namespace ANANSI

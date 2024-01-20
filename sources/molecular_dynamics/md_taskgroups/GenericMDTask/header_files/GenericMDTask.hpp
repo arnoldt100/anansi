@@ -43,9 +43,18 @@ class GenericMDTask : public Receiver::MyParentTask
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = typename Receiver:: template MyOwnershipTypes<Q>;
 
+        using RESULT_TYPE = typename Receiver::receiver_result_t;
+
+        using RESULT_COPYTYPE = typename MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+
+        using RESULT_SHARETYPE = typename MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+
+        using RESULT_TRANSFERTYPE = typename MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+
         // ====================  STATIC       =======================================
         static constexpr ANANSI::TaskLabel TASKLABEL =
             Receiver::TASKLABEL;
+
 
         // ====================  LIFECYCLE     =======================================
 
@@ -95,10 +104,6 @@ class GenericMDTask : public Receiver::MyParentTask
         }
 
         //! Gets the result of getCopyOfResults
-        //!
-        //! Returns a copy of the receiver results.  The calling function
-        //! gets a copy results via a unique_ptr. The original results does not 
-        //! reset to default values.
         auto getCopyOfResults() const
         {
             receiver_copy_t results = 
@@ -173,9 +178,6 @@ class GenericMDTask : public Receiver::MyParentTask
         }
 
         //! Gets the result of shareOwnershipOfResults
-        //!
-        //! Returns a shared_ptr of the receiver results.  The calling function
-        //! shares ownership of the receiver results via a shared_ptr.
         auto shareOwnershipOfResults()
         {
             receiver_share_t results = 
@@ -184,10 +186,6 @@ class GenericMDTask : public Receiver::MyParentTask
         }
 
         //! Gets the result of takeOwnershipOfResults
-        //!
-        //! Returns a unique_ptr of the receiver results.  The calling function
-        //! takes ownership of the receiver results via a unique_ptr. The original results 
-        //! resets to default values.
         auto takeOwnershipOfResults()
         {
             receiver_transfer_t results = 
@@ -222,15 +220,14 @@ class GenericMDTask : public Receiver::MyParentTask
 
         // ====================  DATA MEMBERS  =======================================
 
-
     private:
 
         // ====================  TYPE ALIASES  =======================================
         using receiver_t = Receiver;
         using task_result_t = typename Receiver::receiver_result_t;
-        using receiver_copy_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
-        using receiver_share_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
-        using receiver_transfer_t =  typename MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+        using receiver_copy_t =  RESULT_COPYTYPE;
+        using receiver_share_t =  RESULT_SHARETYPE;
+        using receiver_transfer_t =  RESULT_TRANSFERTYPE;
 
         // ====================  METHODS       =======================================
 
