@@ -24,7 +24,7 @@
 #include "AnansiTask.h"
 #include "AnansiTaskUtilities.hpp"
 #include "MPLAliases.hpp"
-#include "ReceiverUtilities.hpp"
+#include "GenericTaskUtilities.hpp"
 #include "OwnershipTypes.hpp"
 #include "ReceiverTypeUtilities.hpp"
 

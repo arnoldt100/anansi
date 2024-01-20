@@ -89,10 +89,7 @@ class ReceiverUtilities
     public:
         // ====================  LIFECYCLE     =======================================
 
-        //! Gets the result type for the concrete task that has label MY_LABEL.
-        //!
-        //! @tparam ConcreteProductTypeList A typelist of concrete tasks.
-        //! MY_LABEL The label we seek  to match in the concrete tasks.
+
         template<typename ConcreteProductTypeList,
                  ANANSI::TaskLabel KEY>
         constexpr static auto getLocationInTypeList()
@@ -135,6 +132,10 @@ class ReceiverUtilities
 
 }; // -----  end of class ReceiverUtilities  -----
 
+//! Gets the result type for the concrete task that has label MY_LABEL.
+//!
+//! @tparam ConcreteProductTypeList A typelist of concrete tasks.
+//! MY_LABEL The label we seek  to match in the concrete tasks.
 template <typename ConcreteTasksTypeList,
           typename LABEL_t,
           LABEL_t COMMAND_LABEL>

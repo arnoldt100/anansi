@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ReceiverUtilities.hpp"
+#include "GenericTaskUtilities.hpp"
 
 namespace ANANSI {
 

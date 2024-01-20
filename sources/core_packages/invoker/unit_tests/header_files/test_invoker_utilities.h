@@ -15,7 +15,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ReceiverUtilities.hpp"
+#include "GenericTaskUtilities.hpp"
 #include "TaskLabelContainerFixture.h"
 
 namespace ANANSI 

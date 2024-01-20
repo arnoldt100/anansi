@@ -71,7 +71,7 @@
     set (invoker_header_files
         header_files/GenericTaskInvoker.hpp
         header_files/GenericTaskInvokerUtilities.hpp
-        header_files/ReceiverUtilities.hpp
+        header_files/GenericTaskUtilities.hpp
         header_files/ReceiverTypeUtilities.hpp
         header_files/GenericTaskInvokerFactory.hpp )
 
@@ -84,7 +84,7 @@
     #-----------------------------------------------------
     set (invoker_implementation_files
          implementation_files/GenericTaskInvoker.cpp
-         implementation_files/ReceiverUtilities.cpp
+         implementation_files/GenericTaskUtilities.cpp
          implementation_files/ReceiverTypeUtilities.cpp
          implementation_files/GenericTaskInvokerUtilities.cpp
          implementation_files/GenericTaskInvokerFactory.cpp )

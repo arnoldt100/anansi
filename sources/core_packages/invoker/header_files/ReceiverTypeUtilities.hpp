@@ -19,7 +19,7 @@
 //--------------------------------------------------------//
 #include "OwnershipTypes.hpp"
 #include "TaskLabel.hpp"
-#include "ReceiverUtilities.hpp"
+#include "GenericTaskUtilities.hpp"
 
 namespace ANANSI
 {
