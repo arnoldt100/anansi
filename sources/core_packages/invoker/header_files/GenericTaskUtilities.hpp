@@ -1,7 +1,7 @@
-#ifndef ANANSI_ReceiverUtilities_INC
-#define ANANSI_ReceiverUtilities_INC
+#ifndef ANANSI_GenericTaskUtilities_INC
+#define ANANSI_GenericTaskUtilities_INC
 
-//! @file ReceiverUtilities.hpp
+//! @file GenericTaskUtilities.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -22,7 +22,7 @@ namespace ANANSI
 {
 
 // =====================================================================================
-//        Class:  ReceiverUtilities
+//        Class:  GenericTaskUtilities
 //  Description:  
 //  =====================================================================================
 
@@ -84,7 +84,7 @@ class IndexOfLabel
         enum { value = IndexOfLabel_<TList,Key,label_index>::value};
 };
 
-class ReceiverUtilities
+class GenericTaskUtilities
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -102,13 +102,13 @@ class ReceiverUtilities
 
         // ====================  LIFECYCLE     =======================================
 
-        ReceiverUtilities ();   // constructor
+        GenericTaskUtilities ();   // constructor
 
-        ReceiverUtilities (const ReceiverUtilities & other);   // copy constructor
+        GenericTaskUtilities (const GenericTaskUtilities & other);   // copy constructor
 
-        ReceiverUtilities (ReceiverUtilities && other);   // copy-move constructor
+        GenericTaskUtilities (GenericTaskUtilities && other);   // copy-move constructor
 
-        ~ReceiverUtilities ();  // destructor
+        ~GenericTaskUtilities ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -116,9 +116,9 @@ class ReceiverUtilities
 
         // ====================  OPERATORS     =======================================
 
-        ReceiverUtilities& operator= ( const ReceiverUtilities &other ); // assignment operator
+        GenericTaskUtilities& operator= ( const GenericTaskUtilities &other ); // assignment operator
 
-        ReceiverUtilities& operator= ( ReceiverUtilities && other ); // assignment-move operator
+        GenericTaskUtilities& operator= ( GenericTaskUtilities && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -130,7 +130,7 @@ class ReceiverUtilities
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class ReceiverUtilities  -----
+}; // -----  end of class GenericTaskUtilities  -----
 
 //! Gets the result type for the concrete task that has label MY_LABEL.
 //!
@@ -144,11 +144,11 @@ ConcreteTypeForCorrespondingLabel
 {
     private:
         static const int concreteindex_ =
-            ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+            ANANSI::GenericTaskUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
     public:
         using concrete_type = MPL::mpl_at_c<ConcreteTasksTypeList,concreteindex_>;
 };
 
 }; // namespace ANANSI
 
-#endif // ANANSI_ReceiverUtilities_INC
+#endif // ANANSI_GenericTaskUtilities_INC

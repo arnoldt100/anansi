@@ -182,7 +182,7 @@ class GenericTaskInvokerUtilities
             // This is the lcation of the corresponding concrete product in typelist
             // ConcreteTasksTypeList that has tasklabel COMMAND_LABEL.
             constexpr int concrete_index =
-                ANANSI::ReceiverUtilities::getLocationInTypeList<ConcreteTasksTypeList,
+                ANANSI::GenericTaskUtilities::getLocationInTypeList<ConcreteTasksTypeList,
                 COMMAND_LABEL>();
 
             // If the corresponding concrete product is not found then abort.

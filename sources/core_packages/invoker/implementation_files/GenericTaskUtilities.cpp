@@ -20,12 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ReceiverUtilities::ReceiverUtilities()
+GenericTaskUtilities::GenericTaskUtilities()
 {
     return;
 }
 
-ReceiverUtilities::ReceiverUtilities( ReceiverUtilities const & other)
+GenericTaskUtilities::GenericTaskUtilities( GenericTaskUtilities const & other)
 {
     if (this != &other)
     {
@@ -34,17 +34,17 @@ ReceiverUtilities::ReceiverUtilities( ReceiverUtilities const & other)
     return;
 }
 
-ReceiverUtilities::ReceiverUtilities( ReceiverUtilities && other)
+GenericTaskUtilities::GenericTaskUtilities( GenericTaskUtilities && other)
 {
     if (this != &other)
     {
         
     }
     return;
-}		// -----  end of method ReceiverUtilities::ReceiverUtilities  -----
+}		// -----  end of method GenericTaskUtilities::GenericTaskUtilities  -----
 
 
-ReceiverUtilities::~ReceiverUtilities()
+GenericTaskUtilities::~GenericTaskUtilities()
 {
     return;
 }
@@ -55,7 +55,7 @@ ReceiverUtilities::~ReceiverUtilities()
 
 //============================= OPERATORS ====================================
 
-ReceiverUtilities& ReceiverUtilities::operator= ( const ReceiverUtilities &other )
+GenericTaskUtilities& GenericTaskUtilities::operator= ( const GenericTaskUtilities &other )
 {
     if (this != &other)
     {
@@ -64,7 +64,7 @@ ReceiverUtilities& ReceiverUtilities::operator= ( const ReceiverUtilities &other
     return *this;
 } // assignment operator
 
-ReceiverUtilities& ReceiverUtilities::operator= ( ReceiverUtilities && other )
+GenericTaskUtilities& GenericTaskUtilities::operator= ( GenericTaskUtilities && other )
 {
     if (this != &other)
     {
