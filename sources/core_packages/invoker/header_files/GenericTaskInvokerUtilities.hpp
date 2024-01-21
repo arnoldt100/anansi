@@ -26,7 +26,6 @@
 #include "MPLAliases.hpp"
 #include "GenericTaskUtilities.hpp"
 #include "OwnershipTypes.hpp"
-#include "ReceiverTypeUtilities.hpp"
 
 namespace ANANSI
 {
@@ -168,30 +167,6 @@ class GenericTaskInvokerUtilities
             receiver_transfer_t  ret_val = concrete_task->takeOwnershipOfResults();
 
             return ret_val;
-        }
-
-        template <typename ConcreteTasksTypeList, ANANSI::TaskLabel COMMAND_LABEL>
-        static void
-        verifyConcreteProductInTypeList()
-        {
-
-            // We compute the range of concrete products in ConcreteTasksTypeList.
-            constexpr auto nm_products =
-                static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteTasksTypeList>::value);
-
-            // This is the lcation of the corresponding concrete product in typelist
-            // ConcreteTasksTypeList that has tasklabel COMMAND_LABEL.
-            constexpr int concrete_index =
-                ANANSI::GenericTaskUtilities::getLocationInTypeList<ConcreteTasksTypeList,
-                COMMAND_LABEL>();
-
-            // If the corresponding concrete product is not found then abort.
-            if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
-            {
-                // :TODO:11/15/2022 10:00:29 AM:: Abort program
-                // for a nonrecoverable error has occurred.
-            }
-
         }
 
         // ====================  ACCESSORS     =======================================

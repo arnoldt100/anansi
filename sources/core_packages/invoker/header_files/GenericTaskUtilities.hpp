@@ -135,7 +135,6 @@ class GenericTaskUtilities
 
 }; // -----  end of class GenericTaskUtilities  -----
 
-}; // Anonymous namespace
 
 //! Gets the concrete task type for the concrete task that has label MY_LABEL.
 //!
@@ -154,11 +153,85 @@ ConcreteTypeForCorrespondingLabel
         using TYPE = MPL::mpl_at_c<ConcreteTasksTypeList,concreteindex_>;
 };
 
+template < typename LABEL_t,
+           LABEL_t COMMAND_LABEL,
+           typename ConcreteTasksTypeList>
+struct GenericTaskInvokerOwnershipConcreteType
+{
+    public:
+        using TYPE = 
+            typename ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::TYPE;
+};
+
 template <RECEIVER::OwnershipTypes T,
          typename LABEL_t,
          LABEL_t COMMAND_LABEL,
          typename ConcreteTasksTypeList>
 struct GenericTaskInvokerOwnershipTypes; 
+
+template <typename LABEL_t,LABEL_t COMMAND_LABEL,typename ConcreteTasksTypeList>
+struct GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE,LABEL_t,COMMAND_LABEL,ConcreteTasksTypeList> 
+{
+    private:
+        using concrete_task_type_ = 
+            typename GenericTaskInvokerOwnershipConcreteType<LABEL_t,COMMAND_LABEL,ConcreteTasksTypeList>::TYPE;
+
+    public:
+        using TYPE = 
+            typename concrete_task_type_:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+};
+
+template <typename LABEL_t,LABEL_t COMMAND_LABEL,typename ConcreteTasksTypeList>
+struct GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE,LABEL_t,COMMAND_LABEL,ConcreteTasksTypeList> 
+{
+    private:
+        using concrete_task_type_ = 
+            typename GenericTaskInvokerOwnershipConcreteType<LABEL_t,COMMAND_LABEL,ConcreteTasksTypeList>::TYPE;
+
+    public:
+        using TYPE = 
+            typename concrete_task_type_:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::SHARETYPE>::TYPE;
+};
+
+template <typename LABEL_t,LABEL_t COMMAND_LABEL,typename ConcreteTasksTypeList>
+struct GenericTaskInvokerOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE,LABEL_t,COMMAND_LABEL,ConcreteTasksTypeList> 
+{
+    private:
+        using concrete_task_type_ = 
+            typename GenericTaskInvokerOwnershipConcreteType<LABEL_t,COMMAND_LABEL,ConcreteTasksTypeList>::TYPE;
+
+    public:
+        using TYPE = 
+            typename concrete_task_type_:: template MyOwnershipTypes<RECEIVER::OwnershipTypes::TRANSFERTYPE>::TYPE;
+};
+
+
+}; // end of Anonymous namespace
+
+
+//! Verifies the a concrete task has label COMMAND_LABEL.
+template <typename ConcreteTasksTypeList, ANANSI::TaskLabel COMMAND_LABEL>
+void
+verifyConcreteProductInTypeList()
+{
+
+    // We compute the range of concrete products in ConcreteTasksTypeList.
+    constexpr auto nm_products =
+        static_cast<MPL::mpl_size_type>(MPL::mpl_size<ConcreteTasksTypeList>::value);
+
+    // This is the lcation of the corresponding concrete product in typelist
+    // ConcreteTasksTypeList that has tasklabel COMMAND_LABEL.
+    constexpr int concrete_index =
+        ANANSI::GenericTaskUtilities::getLocationInTypeList<ConcreteTasksTypeList,
+        COMMAND_LABEL>();
+
+    // If the corresponding concrete product is not found then abort.
+    if constexpr ( not ((0 <= concrete_index ) and (concrete_index < nm_products)) )
+    {
+        // :TODO:11/15/2022 10:00:29 AM:: Abort program
+        // for a nonrecoverable error has occurred.
+    }
+} // end of verifyConcreteProductInTypeList
 
 //! Gets the concrete result type for the concrete task that has label MY_LABEL.
 //!
@@ -178,10 +251,11 @@ ConcreteResultTypeForCorrespondingLabel
     
     public:
 
-        using COPYTYPE = concrete_type_::COPYTYPE; 
-        using SHARETYPE = concrete_type_::SHARETYPE; 
-        using TRANSFERTYPE = concrete_type_::TRANSFERTYPE; 
+        using COPYTYPE = typename concrete_type_::COPYTYPE; 
+        using SHARETYPE = typename concrete_type_::SHARETYPE; 
+        using TRANSFERTYPE = typename concrete_type_::TRANSFERTYPE; 
 };
+
 
 }; // namespace ANANSI
 

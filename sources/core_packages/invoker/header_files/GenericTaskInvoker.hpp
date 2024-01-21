@@ -22,8 +22,6 @@
 #include "GenericTaskInvokerUtilities.hpp"
 #include "MPLAliases.hpp"
 #include "TaskLabel.hpp"
-#include "GenericTaskUtilities.hpp"
-#include "ReceiverTypeUtilities.hpp"
 
 namespace ANANSI
 {
@@ -147,7 +145,7 @@ class GenericTaskInvoker
         modifyTask( ReceiverArgsTypes &... args)
         {
 
-            GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+            verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
@@ -165,7 +163,7 @@ class GenericTaskInvoker
         auto
         getCopyOfTaskResults()
         {
-            GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+            verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
@@ -182,7 +180,7 @@ class GenericTaskInvoker
         auto
         shareTaskResults()
         {
-            GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+            verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
@@ -197,7 +195,7 @@ class GenericTaskInvoker
         template <LABEL_t COMMAND_LABEL>
         auto getHandleToTask()
         {
-            GenericTaskInvokerUtilities::verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+            verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
@@ -218,7 +216,6 @@ class GenericTaskInvoker
             }
             return *this;
         } // assignment-move operator
-
 
         // ====================  STATIC        =======================================
         //! Returns a copy of the result of a concrete task.
