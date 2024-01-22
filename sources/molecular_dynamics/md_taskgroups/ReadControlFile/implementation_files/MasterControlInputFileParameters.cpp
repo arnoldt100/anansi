@@ -10,7 +10,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MasterControlInputFileParameters.h"
-
+#include "GenericTaskInvokerUtilities.hpp"
 namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,10 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
     // 'SimulationDecompositionParameters' object and return it.
     using abstract_tasks = ReadControlFileTraits::abstract_products;
     using concrete_tasks = ReadControlFileTraits::concrete_products;
+    using label_t = decltype(ControlFileMacroReceiver::TASKLABEL);
     constexpr auto task_label = ControlFileMacroReceiver::TASKLABEL;
     
-    GenericTaskInvoker<abstract_tasks,concrete_tasks>::getCopyOfInvokerTaskResult<task_label>(control_file_invoker);
+    auto my_copy_results = GenericTaskInvokerUtilities::getCopyOfInvokerTaskResult<abstract_tasks,concrete_tasks,label_t,task_label>(control_file_invoker);
 
     return sim_decomposition_parameters;
 }

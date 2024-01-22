@@ -26,6 +26,7 @@
 #include "MPLAliases.hpp"
 #include "GenericTaskUtilities.hpp"
 #include "OwnershipTypes.hpp"
+#include "GenericTaskInvoker.hpp"
 
 namespace ANANSI
 {
@@ -64,6 +65,31 @@ class GenericTaskInvokerUtilities
         }
 
         // ====================  STATIC        =======================================
+        //! Returns a copy of the result of a concrete task.
+        //!
+        //! We get a "COPYTYPE" of the concrete tasks results.
+        template <typename AbstractProductsTypeList,
+                  typename ConcreteTasksTypeList,
+                  typename LABEL_t,
+                  LABEL_t TASK_LABEL>
+        static auto getCopyOfInvokerTaskResult(std::shared_ptr<GenericTaskInvoker<AbstractProductsTypeList,
+                                                                                  ConcreteTasksTypeList >
+                                                              > & my_invoker )
+        {
+
+            // Alias the result type of the task that has correspondong label
+            // "LABEL_t".
+            using my_copy_t = 
+                typename ConcreteOwnershipTypeForCorrespondingLabel<ConcreteTasksTypeList,
+                                                                    LABEL_t,
+                                                                    TASK_LABEL,
+                                                                    RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+
+            // Get a copy of the RECEIVER::OwnershipTypes::COPYTYPE for the
+            // corresponding task for label "LABEL_t".
+            auto my_copy_results = my_invoker->template getCopyOfTaskResults<TASK_LABEL>(); 
+            return my_copy_results ;
+        }
 
         // ====================  ACCESSORS     =======================================
 
