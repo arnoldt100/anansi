@@ -192,6 +192,23 @@ class GenericTaskInvoker
             return results;
         }
 
+        //! Shares the results for the task corresponding to COMMAND_LABEL.
+        //!
+        //! @tparam COMMAND_LABEL The label of the task for which we seek the results.
+        template<LABEL_t COMMAND_LABEL>
+        auto
+        transferTaskResults()
+        {
+            verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+
+            std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
+
+            auto results = transferTaskReceiverResults<ConcreteTasksTypeList,
+                                                       LABEL_t,     
+                                                       COMMAND_LABEL>(task);
+            return results;
+        }
+
         //! Returns a 'handle' to the concrete task.
         template <LABEL_t COMMAND_LABEL>
         auto getHandleToTask()
@@ -242,7 +259,6 @@ class GenericTaskInvoker
             auto my_copy_results = my_invoker->template getCopyOfTaskResults<TASK_LABEL>(); 
             return;
         }
-            
 
 
     protected:

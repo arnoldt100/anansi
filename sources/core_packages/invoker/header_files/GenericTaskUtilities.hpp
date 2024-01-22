@@ -293,7 +293,7 @@ getCopyOfTaskReceiverResults(std::shared_ptr<ANANSI::AnansiTask> &task)
                                                                        COMMAND_LABEL,
                                                                        ConcreteTasksTypeList>::TYPE;
 
-    std::shared_ptr<concrete_task_type> concrete_task =
+    const std::shared_ptr<concrete_task_type> concrete_task =
         AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
 
     receiver_copy_t ret_val = concrete_task->getCopyOfResults();
