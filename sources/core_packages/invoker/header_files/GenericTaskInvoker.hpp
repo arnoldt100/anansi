@@ -150,7 +150,6 @@ class GenericTaskInvoker
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
-            // This should be task utilities.
             modifyTaskReceiver<ConcreteTasksTypeList,
                                LABEL_t,
                                COMMAND_LABEL,
@@ -169,10 +168,9 @@ class GenericTaskInvoker
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
-            // This should be task utilities.
-            auto results = 
-                GenericTaskInvokerUtilities::getCopyOfTaskReceiverResults<ConcreteTasksTypeList,LABEL_t,     
-                    COMMAND_LABEL>(task);
+            auto results = getCopyOfTaskReceiverResults<ConcreteTasksTypeList,
+                                                        LABEL_t,     
+                                                        COMMAND_LABEL>(task);
             return results;
         }
 
@@ -187,10 +185,9 @@ class GenericTaskInvoker
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
-            // This should be task utilities.
-            auto results = 
-                GenericTaskInvokerUtilities::getShareOfTaskReceiverResults<ConcreteTasksTypeList,LABEL_t,     
-                    COMMAND_LABEL>(task);
+            auto results = getShareOfTaskReceiverResults<ConcreteTasksTypeList,
+                                                         LABEL_t,     
+                                                         COMMAND_LABEL>(task);
 
             return results;
         }
