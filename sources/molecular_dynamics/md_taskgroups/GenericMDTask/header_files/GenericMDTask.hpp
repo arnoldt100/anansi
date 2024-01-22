@@ -93,23 +93,8 @@ class GenericMDTask : public Receiver::MyParentTask
 
 
         // ====================  ACCESSORS     =======================================
-        AnansiTaskParameters::task_size_t taskIndex_() const override
-        {
-            return this->taskConcreteTypeListIndex_;
-        }
 
-        ANANSI::TaskLabel taskLabel_() const override
-        {
-            return TASKLABEL;
-        }
 
-        //! Gets the result of getCopyOfResults
-        auto getCopyOfResults() const
-        {
-            receiver_copy_t results = 
-                this->receiver_->getCopyOfResults();
-            return results;
-        }
 
         // ====================  MUTATORS      =======================================
 
@@ -176,6 +161,14 @@ class GenericMDTask : public Receiver::MyParentTask
             this->receiver_->modifyReceiver(args...);
             return;
         }
+        
+        //! Gets the result of getCopyOfResults
+        auto getCopyOfResults() const
+        {
+            receiver_copy_t results = 
+                this->receiver_->getCopyOfResults();
+            return results;
+        }
 
         //! Gets the result of shareOwnershipOfResults
         auto shareOwnershipOfResults()
@@ -229,7 +222,17 @@ class GenericMDTask : public Receiver::MyParentTask
         using receiver_share_t =  RESULT_SHARETYPE;
         using receiver_transfer_t =  RESULT_TRANSFERTYPE;
 
-        // ====================  METHODS       =======================================
+        // ====================  MUTATORS      =======================================
+
+        AnansiTaskParameters::task_size_t taskIndex_() const override
+        {
+            return this->taskConcreteTypeListIndex_;
+        }
+
+        ANANSI::TaskLabel taskLabel_() const override
+        {
+            return TASKLABEL;
+        }
 
         // ====================  DATA MEMBERS  =======================================
         std::shared_ptr<FunctorImpl> funcImpl_;
