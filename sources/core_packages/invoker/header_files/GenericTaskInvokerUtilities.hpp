@@ -65,25 +65,6 @@ class GenericTaskInvokerUtilities
 
         // ====================  STATIC        =======================================
 
-        //! Modifies the receiver of the concrete type located at concrete_index.
-        template <typename ConcreteTasksTypeList,
-                  typename LABEL_t, 
-                  LABEL_t COMMAND_LABEL,
-                  typename... ReceiverArgsTypes>
-        static void
-        modifyTaskReceiver(std::shared_ptr<ANANSI::AnansiTask> &task,
-                           ReceiverArgsTypes &...receiver_args)
-        {
-            using concrete_task_type = 
-                typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::TYPE;
-
-            std::shared_ptr<concrete_task_type> concrete_task =
-                AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
-            concrete_task->modifyReceiver(receiver_args...);
-
-            return;
-        }
-
         //! Returns a copy of the result of a concrete task.
         //!
         //! @tparam A typelist of concrete task types.

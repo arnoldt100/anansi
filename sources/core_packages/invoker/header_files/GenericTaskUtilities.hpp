@@ -7,6 +7,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -17,6 +18,8 @@
 //--------------------------------------------------------//
 #include "OwnershipTypes.hpp"
 #include "TaskLabel.hpp" 
+#include "AnansiTask.h"
+#include "AnansiTaskUtilities.hpp"
 #include "MPLAliases.hpp"
 
 namespace ANANSI
@@ -101,7 +104,6 @@ class GenericTaskUtilities
             auto constexpr index = IndexOfLabel<TL_SEQUENCE_t,KEY>::value;
             return index;
         }
-
 
         // ====================  LIFECYCLE     =======================================
 
@@ -233,29 +235,45 @@ verifyConcreteProductInTypeList()
     }
 } // end of verifyConcreteProductInTypeList
 
-//! Gets the concrete result type for the concrete task that has label MY_LABEL.
+//! Gets the concrete oswnership type for the result of concrete task that has label MY_LABEL.
 //!
 //! @tparam ConcreteProductTypeList A typelist of concrete tasks.
 //! MY_LABEL The label we seek  to match in the concrete tasks.
 template <typename ConcreteTasksTypeList,
           typename LABEL_t,
-          LABEL_t COMMAND_LABEL>
+          LABEL_t COMMAND_LABEL,
+          RECEIVER::OwnershipTypes Q>
 class
-ConcreteResultTypeForCorrespondingLabel
+ConcreteOwnershipTypeForCorrespondingLabel
 {
     private:
-        static const int concreteindex_ =
+        static constexpr int concreteindex_ =
             ANANSI::GenericTaskUtilities::getLocationInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
 
         using concrete_type_ = MPL::mpl_at_c<ConcreteTasksTypeList,concreteindex_>;
     
     public:
-
-        using COPYTYPE = typename concrete_type_::COPYTYPE; 
-        using SHARETYPE = typename concrete_type_::SHARETYPE; 
-        using TRANSFERTYPE = typename concrete_type_::TRANSFERTYPE; 
+        using TYPE = typename concrete_type_:: template MyOwnershipTypes<Q>::TYPE;
 };
 
+//! Modifies the receiver of the concrete type located at concrete_index.
+template <typename ConcreteTasksTypeList,
+          typename LABEL_t, 
+          LABEL_t COMMAND_LABEL,
+          typename... ReceiverArgsTypes>
+void
+modifyTaskReceiver(std::shared_ptr<ANANSI::AnansiTask> &task,
+                   ReceiverArgsTypes &...receiver_args)
+{
+    using concrete_task_type = 
+        typename  ConcreteTypeForCorrespondingLabel<ConcreteTasksTypeList,LABEL_t,COMMAND_LABEL>::TYPE;
+
+    std::shared_ptr<concrete_task_type> concrete_task =
+        AnansiTaskUtilities<ANANSI::AnansiTask,concrete_task_type>::asConcreteTask(task);
+    concrete_task->modifyReceiver(receiver_args...);
+
+    return;
+};
 
 }; // namespace ANANSI
 

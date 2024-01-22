@@ -20,6 +20,7 @@
 //--------------------------------------------------------//
 #include "AnansiTask.h"
 #include "GenericTaskInvokerUtilities.hpp"
+#include "GenericTaskUtilities.hpp"
 #include "MPLAliases.hpp"
 #include "TaskLabel.hpp"
 
@@ -149,10 +150,11 @@ class GenericTaskInvoker
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
-            GenericTaskInvokerUtilities::modifyTaskReceiver<ConcreteTasksTypeList,
-                                        LABEL_t,
-                                        COMMAND_LABEL,
-                                        ReceiverArgsTypes...>(task,args...);
+            // This should be task utilities.
+            modifyTaskReceiver<ConcreteTasksTypeList,
+                               LABEL_t,
+                               COMMAND_LABEL,
+                               ReceiverArgsTypes...>(task,args...);
             return;
         }
 
@@ -167,6 +169,7 @@ class GenericTaskInvoker
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
+            // This should be task utilities.
             auto results = 
                 GenericTaskInvokerUtilities::getCopyOfTaskReceiverResults<ConcreteTasksTypeList,LABEL_t,     
                     COMMAND_LABEL>(task);
@@ -184,6 +187,7 @@ class GenericTaskInvoker
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
+            // This should be task utilities.
             auto results = 
                 GenericTaskInvokerUtilities::getShareOfTaskReceiverResults<ConcreteTasksTypeList,LABEL_t,     
                     COMMAND_LABEL>(task);
@@ -228,6 +232,17 @@ class GenericTaskInvoker
                                                               > & my_invoker )
         {
 
+            // Alias the result type of the task that has correspondong label
+            // "LABEL_t".
+            using my_copy_t = 
+                typename ConcreteOwnershipTypeForCorrespondingLabel<ConcreteTasksTypeList,
+                                                                    LABEL_t,
+                                                                    TASK_LABEL,
+                                                                    RECEIVER::OwnershipTypes::COPYTYPE>::TYPE;
+
+            // Get a copy of the RECEIVER::OwnershipTypes::COPYTYPE for the
+            // corresponding task for label "LABEL_t".
+            auto my_copy_results = my_invoker->template getCopyOfTaskResults<TASK_LABEL>(); 
             return;
         }
             

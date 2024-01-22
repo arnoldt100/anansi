@@ -61,7 +61,7 @@ MasterControlInputFileParameters * MasterControlInputFileParameters::clone() con
 //============================= STATIC    ====================================
 SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulationDecompositionParameters(
 		std::shared_ptr<ANANSI::GenericTaskInvoker<ReadControlFileTraits::abstract_products,
-        ReadControlFileTraits::concrete_products>
+                                                   ReadControlFileTraits::concrete_products>
        > & control_file_invoker)
 {
     SimulationDecompositionParameters sim_decomposition_parameters;
@@ -72,7 +72,6 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
     using abstract_tasks = ReadControlFileTraits::abstract_products;
     using concrete_tasks = ReadControlFileTraits::concrete_products;
     constexpr auto task_label = ControlFileMacroReceiver::TASKLABEL;
-    
     
     GenericTaskInvoker<abstract_tasks,concrete_tasks>::getCopyOfInvokerTaskResult<task_label>(control_file_invoker);
 
