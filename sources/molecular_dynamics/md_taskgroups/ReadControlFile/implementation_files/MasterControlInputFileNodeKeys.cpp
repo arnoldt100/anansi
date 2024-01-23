@@ -28,6 +28,7 @@ std::string MasterControlInputFileNodeKeys::DefaultNullValue = std::string("defa
 //============================= LIFECYCLE ====================================
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
+    xmlNodeKey_(),
     nodeKeys_(),
     commentNodeKeys_()
 {
@@ -105,6 +106,7 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
 }
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInputFileNodeKeys const & other) :
+    xmlNodeKey_(other.xmlNodeKey_),
     nodeKeys_(other.nodeKeys_),
     commentNodeKeys_(other.commentNodeKeys_)
 {
@@ -115,6 +117,7 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInp
 }
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInputFileNodeKeys && other) :
+    xmlNodeKey_(std::move(other.xmlNodeKey_)),
     nodeKeys_(std::move(other.nodeKeys_)),
     commentNodeKeys_(std::move(other.commentNodeKeys_))
 
@@ -183,7 +186,9 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( cons
 {
     if (this != &other)
     {
+        this->xmlNodeKey_ = other.xmlNodeKey_;
         this->nodeKeys_ = other.nodeKeys_;
+        this->commentNodeKeys_ = other.commentNodeKeys_;
     }
     return *this;
 } // assignment operator
@@ -192,7 +197,9 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( Mast
 {
     if (this != &other)
     {
+        this->xmlNodeKey_ = std::move(other.xmlNodeKey_);
         this->nodeKeys_ = std::move(other.nodeKeys_);
+        this->commentNodeKeys_ = std::move(other.commentNodeKeys_);
     }
     return *this;
 } // assignment-move operator

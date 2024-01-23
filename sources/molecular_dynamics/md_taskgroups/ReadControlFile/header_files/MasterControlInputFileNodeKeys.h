@@ -10,6 +10,7 @@
 #include <vector>
 #include <utility>
 #include <cstdarg>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -117,6 +118,8 @@ class MasterControlInputFileNodeKeys
         void addNodeKey_(const std::vector<std::string> & key);
 
         // ====================  DATA MEMBERS  =======================================
+
+        std::map<std::string,std::string> xmlNodeKey_; 
         std::vector<std::string> nodeKeys_;
         std::vector<std::string> commentNodeKeys_;
 
