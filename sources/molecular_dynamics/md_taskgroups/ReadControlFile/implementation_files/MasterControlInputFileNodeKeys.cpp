@@ -28,7 +28,7 @@ std::string MasterControlInputFileNodeKeys::DefaultNullValue = std::string("defa
 //============================= LIFECYCLE ====================================
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
-    xmlNodeKey_(),
+    nodeKeys2_(),
     nodeKeys_(),
     commentNodeKeys_()
 {
@@ -37,19 +37,22 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
         const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
         this->addCommentTag_(xml_comment_key[0]);
 
-        // The title key store the title of the simulation.
-        std::vector<std::string> title_key{std::string("title")};
-        this->addNodeKey_(title_key);
+        std::string title_key{"Simulation_Title"};
+        std::vector<std::string> title_mc_tags{std::string("title")};
+        this->addNodeKey2_(title_key,title_mc_tags);
+        this->addNodeKey_(title_mc_tags);
 
-        // These are the tags for the control file. To and new tag
-        // one simply appends the text tag string to nodekeys_.
-        std::vector<std::string> units_key{std::string("units")};
-        this->addNodeKey_(units_key);
+        std::string Simulation_Units{"Simulation_Units"};
+        std::vector<std::string> units_mc_tags{std::string("units")};
+        this->addNodeKey2_(Simulation_Units,units_mc_tags);
+        this->addNodeKey_(units_mc_tags);
 
         // These are the keys for the processor topology lattice type.
-        std::vector<std::string> proc_topology_lt_key{std::string("processor-topology"),
+        std::string Simulation_Procssor_Lattice_Topology{"Simulation_Processor_Lattice_Topology"};
+        std::vector<std::string> proc_topology_lt_tags{std::string("processor-topology"),
                                                       std::string("lattice-type")};
-        this->addNodeKey_(proc_topology_lt_key);
+        this->addNodeKey2_(Simulation_Procssor_Lattice_Topology,proc_topology_lt_tags);
+        this->addNodeKey_(proc_topology_lt_tags);
 
         std::vector<std::string> workload_decomposition_key{std::string("workload-decomposition")};
         this->addNodeKey_(workload_decomposition_key);
@@ -106,7 +109,7 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
 }
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInputFileNodeKeys const & other) :
-    xmlNodeKey_(other.xmlNodeKey_),
+    nodeKeys2_(other.nodeKeys2_),
     nodeKeys_(other.nodeKeys_),
     commentNodeKeys_(other.commentNodeKeys_)
 {
@@ -117,7 +120,7 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInp
 }
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInputFileNodeKeys && other) :
-    xmlNodeKey_(std::move(other.xmlNodeKey_)),
+    nodeKeys2_(std::move(other.nodeKeys2_)),
     nodeKeys_(std::move(other.nodeKeys_)),
     commentNodeKeys_(std::move(other.commentNodeKeys_))
 
@@ -173,6 +176,12 @@ std::string MasterControlInputFileNodeKeys::defaultNullValue() const
 {
     return MasterControlInputFileNodeKeys::DefaultNullValue_;
 }
+
+
+std::string MasterControlInputFileNodeKeys::workload_decomposition_type_node_key() const
+{
+    return std::string("workload-decomposition"); 
+}
 //============================= MUTATORS =====================================
 
 std::array<char,2> MasterControlInputFileNodeKeys::separatorChar() const
@@ -186,7 +195,7 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( cons
 {
     if (this != &other)
     {
-        this->xmlNodeKey_ = other.xmlNodeKey_;
+        this->nodeKeys2_ = other.nodeKeys2_;
         this->nodeKeys_ = other.nodeKeys_;
         this->commentNodeKeys_ = other.commentNodeKeys_;
     }
@@ -197,7 +206,7 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( Mast
 {
     if (this != &other)
     {
-        this->xmlNodeKey_ = std::move(other.xmlNodeKey_);
+        this->nodeKeys2_ = std::move(other.nodeKeys2_);
         this->nodeKeys_ = std::move(other.nodeKeys_);
         this->commentNodeKeys_ = std::move(other.commentNodeKeys_);
     }
@@ -280,6 +289,23 @@ void MasterControlInputFileNodeKeys::addNodeKey_(const std::vector<std::string> 
     return;
 }
 
+void MasterControlInputFileNodeKeys::addNodeKey2_(const std::string & key, const std::vector<std::string> & keys)
+{
+    // Check each key and make sure no invidual key contains the path separator character.
+    // If a key contains the path separator, then throw an error and abort the program.
+    for (const auto & tmpstr : keys)
+    {
+        if ( check_string_for_separator_char<PathSeparatorTrait>(tmpstr) )
+        {
+            throw ErrorKeyPathSeparator(PathSeparatorTrait::separator_char,tmpstr);
+        }
+    }
+
+    // Form the final path key from key and add key to nodeKeys_.
+    const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
+    this->nodeKeys2_[key] = path_key;
+    return;
+}
 
 //============================= OPERATORS ====================================
 
