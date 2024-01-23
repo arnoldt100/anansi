@@ -108,7 +108,7 @@ class ControlInputFile
         //! \param[in] key The key of the node.
         //! \return A std::string is returned, and it is the value of the
         //! node for the boost property tree "ptree_".
-        std::string getValue(const std::vector<std::string> & key) const
+        std::string getValue(const std::string & key) const
         {
             std::string ret_value = "Junk"; // this->ptree_.template get<std::string>(key.c_str());
             return ret_value;
@@ -185,7 +185,7 @@ class ControlInputFile
             return;
         }
 
-        static std::string get_value(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object, const std::vector<std::string> & key)
+        static std::string get_value(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object, const std::string & key)
         {
         	std::string ret_value = object.getValue(key);
         	return ret_value;
