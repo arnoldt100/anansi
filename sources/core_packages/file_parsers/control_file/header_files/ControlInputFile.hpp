@@ -103,9 +103,20 @@ class ControlInputFile
             return a_map;
         }
 
+        //! Returns the node value in ptree_ for the corresponding key.
+        //!
+        //! \param[in] key The key of the node.
+        //! \return A std::string is returned, and it is the value of the
+        //! node for the boost property tree "ptree_".
+        std::string getValue(const std::string & key) const
+        {
+            std::string ret_value = this->ptree_.template get<std::string>(key.c_str());
+            return ret_value;
+        }
+
         // ====================  MUTATORS      =======================================
 
-        //! Sets the file name of file to be  read or wriiten to.
+        //! Sets the file name of file to be  read or written to.
         //!
         //! \param command_file_name[in] The file name.
         void setFileName(const CommandFileName & file_name)
@@ -172,6 +183,12 @@ class ControlInputFile
         {
             object.unpickeFile(pickled_file);
             return;
+        }
+
+        static std::string get_value(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object, const std::string & key)
+        {
+        	std::string ret_value = object.getValue(key);
+        	return ret_value;
         }
 
     protected:

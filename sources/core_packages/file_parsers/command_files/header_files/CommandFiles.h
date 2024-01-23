@@ -131,6 +131,7 @@ class CommandFiles
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<CommandFilesConcept> clone() const=0;
                 virtual PICKLETYPE_t pickle() const=0;
+                virtual std::string getValue(const std::string key) const=0;
 
                 // ====================  MUTATORS      =======================================
                 virtual void setFileName(CommandFileName filename)=0;
@@ -208,6 +209,12 @@ class CommandFiles
                     return object_.pickle_file(object_);
                 }
 
+                std::string getValue(const std::string key) const override
+                {
+                	std::string ret_value = object_.get_value(object_,key);
+                	return ret_value;
+                }
+
                 // ====================  MUTATORS      =======================================
 
                 void setFileName(CommandFileName filename) override
@@ -270,9 +277,21 @@ class CommandFiles
             return command_file.valuePtr_->unPickle(pickled_file);
         }
 
-        friend void unpickle_CommandFile(CommandFiles & command_file, const PICKLETYPE_t && pickled_file)
+        friend void unpickle_CommandFile(CommandFiles && command_file, const PICKLETYPE_t & pickled_file)
         {
             return command_file.valuePtr_->unPickle(pickled_file);
+        }
+
+        friend std::string get_value_CommandFile(CommandFiles & command_file, std::string key)
+        {
+        	std::string value = command_file.valuePtr_->getValue(key);
+            return value;
+        }
+
+        friend std::string get_value_CommandFile(CommandFiles && command_file, std::string key)
+        {
+        	std::string value = command_file.valuePtr_->getValue(key);
+            return value;
         }
 
         // ====================  METHODS       =======================================

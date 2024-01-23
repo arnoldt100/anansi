@@ -67,19 +67,20 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
     a_sim.enableCommunicationEnvironment();
     
     // ---------------------------------------------------
-    // The world communicator task object is now enabled.
+    // The next step is to enable the world communicator.
     // ---------------------------------------------------
     a_sim.enableWorldCommunicator();
 
     // ---------------------------------------------------
-    // The core logging tasks are enabled.
+    // The next step is to enabke the core logger.
     // ---------------------------------------------------
     a_sim.enableCoreLoggingTasks();
 
     // ---------------------------------------------------
-    // The control file tasks are enabled.
+    // The next step is to enable the control file tasks.
     // ---------------------------------------------------
     a_sim.enableControlFileTasks();
+
 
     return;
 }

@@ -59,6 +59,12 @@ MDInitInitialConditionsVisitor::~MDInitInitialConditionsVisitor()
 void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     std::cout << "MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
+
+    // ---------------------------------------------------
+    // The first enable the simulatiom decomposition.
+    // ---------------------------------------------------
+    a_sim.enableSimulationDecomposition();
+
     return;
 }
 
