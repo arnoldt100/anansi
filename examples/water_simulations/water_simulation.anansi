@@ -36,11 +36,10 @@
 </hamiltonian>
 
 <!-- Specification for the time step. -->
-<time-step>
-    <value> 1.0 </value>
-    <units> femtosecond </units>
-    <number-time-steps> 100000 </number-time-steps>
-</time-step>
+<time-step>1.0 femtosecond </time-step>
+
+<!-- Specification for the number of time step. -->
+<number-time-steps> 100000 </number-time-steps>
 
 <!-- Specification for the integration method -->
 <integration-methodology>

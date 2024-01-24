@@ -32,79 +32,79 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
     nodeKeys_(),
     commentNodeKeys_()
 {
-        // The node key value boost::property_tree::ptree uses for an xml
-        // comment. 
-        const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
-        this->addCommentTag_(xml_comment_key[0]);
+    // The node key value boost::property_tree::ptree uses for an xml
+    // comment. 
+    const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
+    this->addCommentTag_(xml_comment_key[0]);
 
-        std::string title_key{"Simulation_Title"};
-        std::vector<std::string> title_mc_tags{std::string("title")};
-        this->addNodeKey2_(title_key,title_mc_tags);
-        this->addNodeKey_(title_mc_tags);
+    std::string title_key{"Simulation_Title"};
+    std::vector<std::string> title_mc_tags{std::string("title")};
+    this->addNodeKey2_(title_key,title_mc_tags);
 
-        std::string Simulation_Units{"Simulation_Units"};
-        std::vector<std::string> units_mc_tags{std::string("units")};
-        this->addNodeKey2_(Simulation_Units,units_mc_tags);
-        this->addNodeKey_(units_mc_tags);
+    std::string Simulation_Units{"Simulation_Units"};
+    std::vector<std::string> units_mc_tags{std::string("units")};
+    this->addNodeKey2_(Simulation_Units,units_mc_tags);
 
-        // These are the keys for the processor topology lattice type.
-        std::string Simulation_Procssor_Lattice_Topology{"Simulation_Processor_Lattice_Topology"};
-        std::vector<std::string> proc_topology_lt_tags{std::string("processor-topology"),
-                                                      std::string("lattice-type")};
-        this->addNodeKey2_(Simulation_Procssor_Lattice_Topology,proc_topology_lt_tags);
-        this->addNodeKey_(proc_topology_lt_tags);
+    std::string Simulation_Workload_Decomposition_Type{"Simulation_Workload_Decomposition_Type"};
+    std::vector<std::string> workload_decomposition_key{std::string("workload-decomposition")};
+    this->addNodeKey2_(Simulation_Workload_Decomposition_Type,workload_decomposition_key);
 
-        std::vector<std::string> workload_decomposition_key{std::string("workload-decomposition")};
-        this->addNodeKey_(workload_decomposition_key);
+    // These are the keys for the processor topology lattice type.
+    std::string Simulation_Processor_Lattice_Topology{"Simulation_Processor_Lattice_Topology"};
+    std::vector<std::string> proc_topology_lt_tags{std::string("processor-topology"),
+                                                   std::string("lattice-type")};
+    this->addNodeKey2_(Simulation_Processor_Lattice_Topology,proc_topology_lt_tags);
 
-        // These are the keys for the processor topology spatial decomposition.
-        std::vector<std::string> proc_topology_mpi_decomp_key{std::string("processor-topology"),
-                                                              std::string("mpi-spatial-decomposition")};
-        this->addNodeKey_(proc_topology_mpi_decomp_key);
+    // These are the keys for the processor topology spatial decomposition.
+    std::string Simulation_Processor_Spatial_Decomposition{"Simulation_Processor_Spatial_Decomposition"};
+    std::vector<std::string> proc_topology_mpi_decomp_key{std::string("processor-topology"),
+                                                          std::string("mpi-spatial-decomposition")};
+    this->addNodeKey2_(Simulation_Processor_Spatial_Decomposition,proc_topology_mpi_decomp_key);
 
-        // These are the keys for the number of compute units per spatial domain.
-        std::vector<std::string> proc_topology_cu_key{std::string("processor-topology"),
-                                                      std::string("compute-units-per-spatial-domain")};
-        this->addNodeKey_(proc_topology_cu_key);
+    // These are the keys for the number of compute units per spatial domain.
+    std::string Simulation_Processor_CU_Per_Domain{"Simulation_Processor_Compute_Units_Per_Spatial_Domain"};
+    std::vector<std::string> proc_topology_cu_key{std::string("processor-topology"),
+                                                  std::string("compute-units-per-spatial-domain")};
+    this->addNodeKey2_(Simulation_Processor_CU_Per_Domain,proc_topology_cu_key);
 
-        // These are the keys for the initial configuration filename.
-        std::vector<std::string> ic_key{std::string("initial-configuration"),
-                                        std::string("filename")};
-        this->addNodeKey_(ic_key);
+    // These are the keys for the initial configuration filename.
+    std::string Simulation_Initial_Configuration{"Simulation_Initial_Configuration"};
+    std::vector<std::string> ic_key{std::string("initial-configuration"),
+                                    std::string("filename")};
+    this->addNodeKey2_(Simulation_Initial_Configuration,ic_key);
 
-        // These are the keys for the coordinate system.
-        std::vector<std::string> cs_key{std::string("coordinate-system")};
-        this->addNodeKey_(cs_key);
+    // These are the keys for the coordinate system.
+    std::string Simulation_Coordinate_System{"Simulation_Coordinate_System"};
+    std::vector<std::string> cs_key{std::string("coordinate-system")};
+    this->addNodeKey2_(Simulation_Coordinate_System,cs_key);
 
-        // The keys for the molecular topology file name.
-        std::vector<std::string> mt_filename_key{std::string("molecular-topology"),
+    // The keys for the molecular topology file name.
+    std::string Simulation_Molecular_Topology{"Simulation_Molecular_Topology"};
+    std::vector<std::string> mt_filename_key{std::string("molecular-topology"),
+                                             std::string("filename")};
+    this->addNodeKey2_(Simulation_Molecular_Topology,mt_filename_key);
+
+    // The keys for the molecular interaction file name.
+    std::string Simulation_Hamiltonian{"Simulation_Hamiltonian"};
+    std::vector<std::string> Hamiltonian_filename_key{std::string("hamiltonian"),
                                                  std::string("filename")};
-        this->addNodeKey_(mt_filename_key);
+    this->addNodeKey2_(Simulation_Hamiltonian,Hamiltonian_filename_key);
 
-        // The keys for the molecular interaction file name.
-        std::vector<std::string> Hamiltonian_filename_key{std::string("hamiltonian"),
-                                                     std::string("filename")};
-        this->addNodeKey_(Hamiltonian_filename_key);
+    // The keys for the numerical value of the timestep
+    std::string Simulation_Time_Step{"Simulation_Time_Step"};
+    std::vector<std::string> time_step_key{std::string("time-step")};
+    this->addNodeKey2_(Simulation_Time_Step,time_step_key);
 
-        // The keys for the numerical value of the timestep
-        std::vector<std::string> time_step_value_key{std::string("time-step"),
-                                                     std::string("value")};
-        this->addNodeKey_(time_step_value_key);
+    // The keys for the number of time steps. 
+    std::string Simulation_Total_Number_Of_Timesteps{"Simulation_Total_Number_Of_Timesteps"};
+    std::vector<std::string> time_step_nsteps_key{std::string("number-time-steps")};
+    this->addNodeKey2_(Simulation_Total_Number_Of_Timesteps,time_step_nsteps_key);
 
-        // The keys for the units of the time step.
-        std::vector<std::string> time_step_units_key{std::string("time-step"),
-                                                     std::string("units")};
-        this->addNodeKey_(time_step_units_key);
-
-        // The keys for the number of time steps. 
-        std::vector<std::string> time_step_nsteps_key{std::string("time-step"),
-                                                     std::string("number-time-steps")};
-        this->addNodeKey_(time_step_nsteps_key);
-
-        // The keys for the integration methodology.
-        std::vector<std::string> im_method_key {std::string("integration-methodology"),
-                                        std::string("ensemble")}; 
-        this->addNodeKey_(im_method_key);
+    // The keys for the integration methodology.
+    std::string Simulation_Integration_Methodology{"Simulation_Integration_Methodology"};
+    std::vector<std::string> im_method_key {std::string("integration-methodology"),
+                                            std::string("ensemble")}; 
+    this->addNodeKey2_(Simulation_Integration_Methodology,im_method_key);
   return;
 }
 
