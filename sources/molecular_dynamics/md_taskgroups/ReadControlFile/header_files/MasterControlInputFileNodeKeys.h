@@ -118,8 +118,7 @@ class MasterControlInputFileNodeKeys
         void addCommentTag_(const std::string & key);
 
         //! Adds a key to the master list of keys.
-        void addNodeKey_(const std::vector<std::string> & key);
-        void addNodeKey2_(const std::string & key,const std::vector<std::string> & key_values);
+        void addNodeKey_(const std::string & key,const std::vector<std::string> & key_values);
 
         // ====================  DATA MEMBERS  =======================================
         std::map<std::string,std::string> nodeKeys2_;
