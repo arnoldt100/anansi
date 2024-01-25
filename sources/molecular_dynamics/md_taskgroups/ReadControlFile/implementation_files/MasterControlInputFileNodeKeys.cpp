@@ -304,6 +304,7 @@ void MasterControlInputFileNodeKeys::addNodeKey2_(const std::string & key, const
     // Form the final path key from key and add key to nodeKeys_.
     const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
     this->nodeKeys2_[key] = path_key;
+    this->nodeKeys_.push_back(path_key);
     return;
 }
 
