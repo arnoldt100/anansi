@@ -115,7 +115,7 @@ class ControlInputFile
             return ret_value;
         }
 
-        //! Returns the default node value in ptree_ for the corresponding key.
+        //! Returns the default node value in ptree_.
         std::string getDefaultNullValue() const
         {
             return this->masterKeys_.defaultNullValue();
