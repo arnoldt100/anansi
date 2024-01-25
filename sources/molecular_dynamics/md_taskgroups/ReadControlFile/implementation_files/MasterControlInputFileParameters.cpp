@@ -78,10 +78,13 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
     using label_t = decltype(ControlFileMacroReceiver::TASKLABEL);
     constexpr auto task_label = ControlFileMacroReceiver::TASKLABEL;
     
-    auto my_copy_results = GenericTaskInvokerUtilities::getCopyOfInvokerTaskResult<abstract_tasks,concrete_tasks,label_t,task_label>(control_file_invoker);
+    auto my_copy_results = GenericTaskInvokerUtilities::getCopyOfInvokerTaskResult<abstract_tasks,
+                                                                                   concrete_tasks,
+                                                                                   label_t,
+                                                                                   task_label>(control_file_invoker);
 
-    // Get the value for the type of workload decomposition. The node key is "workload-decomposition".
-    // const std::string wd = get_value_CommandFile(my_copy_results,std::string("workload-decomposition"));
+    // Get the value for the type of workload decomposition - The global key for this is "Simulation_Workload_Decomposition_Type".
+    const std::string wd_type = get_value_CommandFile(my_copy_results,std::string("Simulation_Workload_Decomposition_Type"));
 
     // Get the value for the lattice type for the processor topology.
     // const std::string pt_mpi_lattice_type = get_value_CommandFile(my_copy_results,std::string("processor-topology.lattice-type"));

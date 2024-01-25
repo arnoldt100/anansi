@@ -76,7 +76,7 @@ class MasterControlInputFileNodeKeys
         std::string defaultNullValue() const;
 
         //! Returns the node key for the workload decomposition type.
-        std::string workload_decomposition_type_node_key() const;
+        std::string node_key( const std::string & global_key) const;
 
         // ====================  MUTATORS      =======================================
 
@@ -118,7 +118,7 @@ class MasterControlInputFileNodeKeys
         void addCommentTag_(const std::string & key);
 
         //! Adds a key to the master list of keys.
-        void addNodeKey_(const std::string & key,const std::vector<std::string> & key_values);
+        void addNodeKey_(const std::string & global_key,const std::vector<std::string> & key_values);
 
         // ====================  DATA MEMBERS  =======================================
         std::map<std::string,std::string> nodeKeys2_;

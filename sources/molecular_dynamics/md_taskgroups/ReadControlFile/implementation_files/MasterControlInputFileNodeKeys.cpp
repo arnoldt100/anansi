@@ -178,10 +178,11 @@ std::string MasterControlInputFileNodeKeys::defaultNullValue() const
 }
 
 
-std::string MasterControlInputFileNodeKeys::workload_decomposition_type_node_key() const
+std::string MasterControlInputFileNodeKeys::node_key( const std::string & global_key) const
 {
-    return std::string("workload-decomposition"); 
+    return this->nodeKeys2_.at(global_key);
 }
+
 //============================= MUTATORS =====================================
 
 std::array<char,2> MasterControlInputFileNodeKeys::separatorChar() const
@@ -271,7 +272,7 @@ void MasterControlInputFileNodeKeys::addCommentTag_(const std::string & keys)
     this->commentNodeKeys_.push_back(keys.c_str());
 }
 
-void MasterControlInputFileNodeKeys::addNodeKey_(const std::string & key, const std::vector<std::string> & keys)
+void MasterControlInputFileNodeKeys::addNodeKey_(const std::string & global_key, const std::vector<std::string> & keys)
 {
     // Check each key and make sure no invidual key contains the path separator character.
     // If a key contains the path separator, then throw an error and abort the program.
@@ -285,7 +286,7 @@ void MasterControlInputFileNodeKeys::addNodeKey_(const std::string & key, const 
 
     // Form the final path key from key and add key to nodeKeys_.
     const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
-    this->nodeKeys2_[key] = path_key;
+    this->nodeKeys2_[global_key] = path_key;
     this->nodeKeys_.push_back(path_key);
     return;
 }
