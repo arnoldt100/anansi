@@ -115,6 +115,12 @@ class ControlInputFile
             return ret_value;
         }
 
+        //! Returns the default node value in ptree_ for the corresponding key.
+        std::string getDefaultNullValue() const
+        {
+            return this->masterKeys_.defaultNullValue();
+        }
+
         // ====================  MUTATORS      =======================================
 
         //! Sets the file name of file to be  read or written to.
@@ -189,6 +195,12 @@ class ControlInputFile
         static std::string get_value(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object, const std::string & global_key)
         {
         	std::string ret_value = object.getValue(global_key);
+        	return ret_value;
+        }
+
+        static std::string get_default_null_value(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object)
+        {
+        	std::string ret_value = object.getDefaultNullValue();
         	return ret_value;
         }
 

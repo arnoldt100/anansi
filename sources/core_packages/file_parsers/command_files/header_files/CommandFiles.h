@@ -132,7 +132,8 @@ class CommandFiles
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<CommandFilesConcept> clone() const=0;
                 virtual PICKLETYPE_t pickle() const=0;
-                virtual std::string getValue(const std::string & key) const=0;
+                virtual std::string getValue(const std::string & global_key) const=0;
+                virtual std::string getDefaultNullValue() const=0;
 
                 // ====================  MUTATORS      =======================================
                 virtual void setFileName(CommandFileName filename)=0;
@@ -216,6 +217,11 @@ class CommandFiles
                 	return ret_value;
                 }
 
+                std::string getDefaultNullValue() const override
+                {
+                	std::string ret_value = object_.get_default_null_value(object_);
+                	return ret_value;
+                }
                 // ====================  MUTATORS      =======================================
 
                 void setFileName(CommandFileName filename) override
@@ -294,6 +300,19 @@ class CommandFiles
         	std::string value = command_file.valuePtr_->getValue(key);
             return value;
         }
+
+        friend std::string get_default_null_value(CommandFiles & command_file)
+        {
+        	std::string value = command_file.valuePtr_->getDefaultNullValue();
+            return value;
+        }
+
+        friend std::string get_default_null_value(CommandFiles && command_file)
+        {
+        	std::string value = command_file.valuePtr_->getDefaultNullValue();
+            return value;
+        }
+
 
         // ====================  METHODS       =======================================
 
