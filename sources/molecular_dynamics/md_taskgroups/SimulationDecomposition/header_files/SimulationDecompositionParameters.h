@@ -32,6 +32,11 @@ class SimulationDecompositionParameters
 
         SimulationDecompositionParameters ();   // constructor
 
+        SimulationDecompositionParameters(const std::string work_load_decomposition,
+                                          const std::string processor_topology_lattice_type,
+                                          const std::string processor_topology_spatial_decomposition,
+                                          const std::string number_processor_compute_units_per_domain);
+
         SimulationDecompositionParameters (const SimulationDecompositionParameters & other);   // copy constructor
 
         SimulationDecompositionParameters (SimulationDecompositionParameters && other);   // copy-move constructor

@@ -33,6 +33,14 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     return;
 }
 
+SimulationDecompositionParameters::SimulationDecompositionParameters(const std::string work_load_decomposition,
+                                          const std::string processor_topology_lattice_type,
+                                          const std::string processor_topology_spatial_decomposition,
+                                          const std::string number_processor_compute_units_per_domain)
+{
+    return;
+}
+
 SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters const & other) :
     workLoadDecomposition_{other.workLoadDecomposition_},
     processorTopologyLatticeType_{other.processorTopologyLatticeType_},
