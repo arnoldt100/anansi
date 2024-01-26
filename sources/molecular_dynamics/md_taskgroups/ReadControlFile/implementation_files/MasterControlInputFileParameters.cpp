@@ -82,7 +82,7 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
                                                                                    label_t,
                                                                                    task_label>(control_file_invoker);
 
-    // Get the value for the type of workload decomposition - The global key for this is "Simulation_Workload_Decomposition_Type".
+    // Get the value for the type of workload for a default value".
     const std::string default_null_value = get_default_null_value_CommandFile(my_copy_results);
 
     // Get the value for the type of workload decomposition - The global key for this is "Simulation_Workload_Decomposition_Type".
@@ -97,7 +97,11 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
     // Get the value for the processor topology number of compute units per spatial domain.
     const std::string pt_number_cu_per_domain = get_value_CommandFile(my_copy_results,std::string("Simulation_Processor_Compute_Units_Per_Spatial_Domain"));
 
-    SimulationDecompositionParameters sim_decomposition_parameters;
+    SimulationDecompositionParameters sim_decomposition_parameters(default_null_value,
+    		                                                       wd_type,
+																   pt_mpi_lattice_type,
+																   pt_mpi_spatial_decompostion,
+																   pt_number_cu_per_domain);
 
     return sim_decomposition_parameters;
 }

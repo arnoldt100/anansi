@@ -78,9 +78,6 @@ class SimulationDecompositionParameters
         //! The default value is "domain-decomposition".
         std::string workLoadDecomposition_;
 
-        //! Stores the valid work load decomposition values.
-        std::map<std::string,std::string> validWorkLoadDecompositionValues_;
-
         //! \brief Stores the lattice type for the spatial workload decomposition.
         //!
         //! \detailed Only 1 valid accepted value - "rectangular".
@@ -101,15 +98,22 @@ class SimulationDecompositionParameters
 
         // ====================  STATIC        =======================================
 
-        //! Returns a std::map of valid values for the workload decomposition types.
-        static std::map<std::string,std::string> ValidWorkLoadDecompositionValues_();
+        //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
+        //!  are the internal flags/values used within the program.
+        static std::map<std::string,std::string> validWorkLoadDecompositionValues_;
 
         //! Returns the default value for the workload decomposition type.
         static std::string DefaultWorkLoadDecomposition_();
 
+        //! Returns the default value for the lattice type topology of the spatial decomposition.
         static std::string DefaultProcessorTopologyLatticeType_();
+
+        //! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
         static std::string DefaultProcessorTopologySpatialDecomposition_();
+
+        //! Returns the default number of compute units per spatial domain.
         static std::string DefaultNumberProcessorComputeUnitsPerDomain_();
+
 
 }; // -----  end of class SimulationDecompositionParameters  -----
 
