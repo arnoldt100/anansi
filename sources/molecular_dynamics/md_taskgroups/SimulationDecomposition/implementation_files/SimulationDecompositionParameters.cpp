@@ -47,6 +47,10 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
     {
         this->workLoadDecomposition_ = std::get<std::string>(wld);
     }
+    else
+    {
+    	throw ErrorInvalidSimulationDecompositionValue();
+    }
 
     return;
 }
@@ -165,6 +169,11 @@ std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoad
 
 //============================= STATIC    ====================================
 
+std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues_{
+    {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
+    {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
+};
+
 std::string SimulationDecompositionParameters::DefaultWorkLoadDecomposition_()
 {
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at("spatial-data-domain-decomposition"); 
@@ -185,9 +194,5 @@ std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnit
     return std::string("1");
 }
 
-std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues_{
-    {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
-    {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
-};
 
 } // namespace ANANSI
