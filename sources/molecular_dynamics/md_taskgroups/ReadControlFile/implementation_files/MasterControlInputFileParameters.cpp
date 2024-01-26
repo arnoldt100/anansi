@@ -67,7 +67,6 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
                                                    ReadControlFileTraits::concrete_products>
        > & control_file_invoker)
 {
-    SimulationDecompositionParameters sim_decomposition_parameters;
 
     // Get the result of the control_file_invoker macro command. 
     // This result contains the parameters for the decomposition of the
@@ -84,6 +83,9 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
                                                                                    task_label>(control_file_invoker);
 
     // Get the value for the type of workload decomposition - The global key for this is "Simulation_Workload_Decomposition_Type".
+    const std::string default_null_value = get_default_null_value_CommandFile(my_copy_results);
+
+    // Get the value for the type of workload decomposition - The global key for this is "Simulation_Workload_Decomposition_Type".
     const std::string wd_type = get_value_CommandFile(my_copy_results,std::string("Simulation_Workload_Decomposition_Type"));
 
     // Get the value for the lattice type for the processor topology.
@@ -94,6 +96,8 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
 
     // Get the value for the processor topology number of compute units per spatial domain.
     const std::string pt_number_cu_per_domain = get_value_CommandFile(my_copy_results,std::string("Simulation_Processor_Compute_Units_Per_Spatial_Domain"));
+
+    SimulationDecompositionParameters sim_decomposition_parameters;
 
     return sim_decomposition_parameters;
 }

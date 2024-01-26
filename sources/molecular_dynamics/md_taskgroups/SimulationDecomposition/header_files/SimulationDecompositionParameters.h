@@ -12,6 +12,7 @@
 #include <memory>
 #include <string>
 #include <tuple>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -77,6 +78,9 @@ class SimulationDecompositionParameters
         //! The default value is "domain-decomposition".
         std::string workLoadDecomposition_;
 
+        //! Stores the valid work load decomposition values.
+        std::map<std::string,std::string> validWorkLoadDecompositionValues_;
+
         //! \brief Stores the lattice type for the spatial workload decomposition.
         //!
         //! \detailed Only 1 valid accepted value - "rectangular".
@@ -89,15 +93,20 @@ class SimulationDecompositionParameters
         //! "b" is the dimension of the workload decomposition for the first coordinate.
         //! "c" is the dimension of the workload decomposition for the second coordinate.
         //! For rectangular coordinates a, b and c are respectively the x,
-        //! y and z dimenensions spatial decomposition.
+        //! y and z dimensions spatial decomposition.
         std::string processorTopologySpatialDecomposition_;
-
 
         //! \brief Stores the number of compute units per spatial decomposition.
         std::string numberProcessorComputeUnitsPerDomain_;
 
         // ====================  STATIC        =======================================
+
+        //! Returns a std::map of valid values for the workload decomposition types.
+        static std::map<std::string,std::string> ValidWorkLoadDecompositionValues_();
+
+        //! Returns the default value for the workload decomposition type.
         static std::string DefaultWorkLoadDecomposition_();
+
         static std::string DefaultProcessorTopologyLatticeType_();
         static std::string DefaultProcessorTopologySpatialDecomposition_();
         static std::string DefaultNumberProcessorComputeUnitsPerDomain_();

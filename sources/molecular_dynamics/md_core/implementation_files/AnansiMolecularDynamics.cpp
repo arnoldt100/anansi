@@ -294,7 +294,9 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
     // is stored in the invoker mdControlFileInvk_. We use the utility function
 	// "MasterControlInputFileParameters::GetSimulationDecompositionParameters"
     // to get the workload parameters.
-    SimulationDecompositionParameters workload_parameters =
+    SimulationDecompositionParameters workload_parameters;
+
+    workload_parameters =
         MasterControlInputFileParameters::GetSimulationDecompositionParameters(this->mdControlFileInvk_);
 
     setup_simulationdecomposition_invoker(workload_parameters);

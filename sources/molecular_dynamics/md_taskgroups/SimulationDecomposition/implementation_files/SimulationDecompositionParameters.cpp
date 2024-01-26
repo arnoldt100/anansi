@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
+#include "ErrorInvalidSimulationDecompositionValue.h"
 
 namespace ANANSI {
 
@@ -22,10 +23,12 @@ namespace ANANSI {
 
 SimulationDecompositionParameters::SimulationDecompositionParameters() :
     workLoadDecomposition_{""},
+	validWorkLoadDecompositionValues_{},
     processorTopologyLatticeType_{""},
     processorTopologySpatialDecomposition_(""),
     numberProcessorComputeUnitsPerDomain_("")
 {
+    this->validWorkLoadDecompositionValues_ = SimulationDecompositionParameters::ValidWorkLoadDecompositionValues_();
     this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecomposition_();
     this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType_();
     this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition_();
@@ -39,18 +42,19 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
                                           const std::string processor_topology_spatial_decomposition,
                                           const std::string number_processor_compute_units_per_domain)
 {
-    // Compute the work load decomposition type.
-    const auto wld = this->_computeWorkLoadDecomposition(default_null_value,work_load_decomposition);
-    if ( std::get<bool>(wld) )
+    // Compute the work load decomposition type and assifgn to member attribute
+    // "this->workLoadDecomposition_".
+    const std::tuple<bool,std::string> wld = this->_computeWorkLoadDecomposition(default_null_value,work_load_decomposition);
+    if ( std::get<bool>(wld))
     {
         this->workLoadDecomposition_ = std::get<std::string>(wld);
     }
-
     return;
 }
 
 SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters const & other) :
     workLoadDecomposition_{other.workLoadDecomposition_},
+	validWorkLoadDecompositionValues_{other.validWorkLoadDecompositionValues_},
     processorTopologyLatticeType_{other.processorTopologyLatticeType_},
     processorTopologySpatialDecomposition_{other.processorTopologySpatialDecomposition_},
     numberProcessorComputeUnitsPerDomain_{other.numberProcessorComputeUnitsPerDomain_}
@@ -64,6 +68,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters( Simulation
 
 SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters && other) :
     workLoadDecomposition_{std::move(other.workLoadDecomposition_)},
+	validWorkLoadDecompositionValues_{std::move(other.validWorkLoadDecompositionValues_)},
     processorTopologyLatticeType_{std::move(other.processorTopologyLatticeType_)},
     processorTopologySpatialDecomposition_{std::move(other.processorTopologySpatialDecomposition_)},
     numberProcessorComputeUnitsPerDomain_{std::move(other.numberProcessorComputeUnitsPerDomain_)}
@@ -96,6 +101,7 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator=(
     if (this != &other)
     {
         this->workLoadDecomposition_= other.workLoadDecomposition_;
+        this->validWorkLoadDecompositionValues_ = other.validWorkLoadDecompositionValues_;
         this->processorTopologyLatticeType_ = other.processorTopologyLatticeType_;
         this->processorTopologySpatialDecomposition_ = other.processorTopologySpatialDecomposition_;
         this->numberProcessorComputeUnitsPerDomain_ = other.numberProcessorComputeUnitsPerDomain_;
@@ -108,6 +114,7 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
     if (this != &other)
     {
         this->workLoadDecomposition_= std::move(other.workLoadDecomposition_);
+        this->validWorkLoadDecompositionValues_ = std::move(other.validWorkLoadDecompositionValues_);
         this->processorTopologyLatticeType_ = std::move(other.processorTopologyLatticeType_);
         this->processorTopologySpatialDecomposition_ = std::move(other.processorTopologySpatialDecomposition_);
         this->numberProcessorComputeUnitsPerDomain_ = std::move(other.numberProcessorComputeUnitsPerDomain_);
@@ -168,9 +175,25 @@ std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoad
 //============================= OPERATORS ====================================
 
 //============================= STATIC    ====================================
+
+
+std::map<std::string,std::string> SimulationDecompositionParameters::ValidWorkLoadDecompositionValues_()
+{
+	const std::string replicated_data_domain_decomposition = "replicated-data-domain-decomposition";
+	const std::string spatial_data_domain_decomposition = "spatial-data-domain-decomposition";
+	const std::string default_data_decomposition = spatial_data_domain_decomposition;
+
+	std::map<std::string,std::string> ret_value;
+	ret_value["default-data-decomposotion"] = default_data_decomposition;
+	ret_value["replicated-data-domain-decomposition"] =  replicated_data_domain_decomposition;
+	ret_value["spatial_data_domain_decomposition"] = spatial_data_domain_decomposition;
+	return ret_value;
+}
+
 std::string SimulationDecompositionParameters::DefaultWorkLoadDecomposition_()
 {
-    return std::string("domain-decomposition");
+	std::map<std::string,std::string> valid_values = SimulationDecompositionParameters::ValidWorkLoadDecompositionValues_();
+    return valid_values.at("default-data-decomposotion");
 }
 
 std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType_()

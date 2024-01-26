@@ -301,13 +301,13 @@ class CommandFiles
             return value;
         }
 
-        friend std::string get_default_null_value(CommandFiles & command_file)
+        friend std::string get_default_null_value_CommandFile(CommandFiles & command_file)
         {
         	std::string value = command_file.valuePtr_->getDefaultNullValue();
             return value;
         }
 
-        friend std::string get_default_null_value(CommandFiles && command_file)
+        friend std::string get_default_null_value_CommandFile(CommandFiles && command_file)
         {
         	std::string value = command_file.valuePtr_->getDefaultNullValue();
             return value;
