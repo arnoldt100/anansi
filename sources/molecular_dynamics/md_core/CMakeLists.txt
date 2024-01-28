@@ -63,6 +63,7 @@
     get_target_property(my_receiver_include receiver receiver_include )
     get_target_property(my_readcontrolfile_include readcontrolfile readcontrolfile_include )
     get_target_property(my_simulationdecomposition_include simulationdecomposition simulationdecomposition_include)
+    get_target_property(my_debugging_utilities_include debugging_utilities debugging_utilities_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -171,7 +172,8 @@ target_include_directories( "${md_core_target}"
                             PRIVATE "${my_receiver_include}"
                             PRIVATE "${my_readcontrolfile_include}"
                             PRIVATE "${my_writetexttoconsoletask_include}"
-                            PRIVATE "${my_simulationdecomposition_include}")
+                            PRIVATE "${my_simulationdecomposition_include}"
+                            PRIVATE "${my_debugging_utilities_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -198,7 +200,8 @@ target_link_libraries("${md_core_target}"
                       PUBLIC readcontrolfile
                       PUBLIC writetexttoconsoletask
                       PUBLIC simulationdecomposition
-                      PUBLIC "${Boost_LIBRARIES}" )
+                      PUBLIC "${Boost_LIBRARIES}" 
+                      PRIVATE "${debugging_utilities}")
 
 #-----------------------------------------------------
 # We associate the source files with the md_core_target.

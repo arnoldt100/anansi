@@ -134,9 +134,10 @@ class CommandFiles
                 virtual PICKLETYPE_t pickle() const=0;
                 virtual std::string getValue(const std::string & global_key) const=0;
                 virtual std::string getDefaultNullValue() const=0;
+                virtual void writeFile(const std::string filename) const=0;
 
                 // ====================  MUTATORS      =======================================
-                virtual void setFileName(CommandFileName filename)=0;
+                virtual void setFileName(const CommandFileName filename)=0;
                 virtual void readFile()=0;
                 virtual void unPickle(const PICKLETYPE_t & pickled_obj)=0;
 
@@ -222,9 +223,15 @@ class CommandFiles
                 	std::string ret_value = object_.get_default_null_value(object_);
                 	return ret_value;
                 }
+
+                void writeFile(const std::string filename) const override
+                {
+                    object_.write_file(object_,filename);
+                    return;
+                }
                 // ====================  MUTATORS      =======================================
 
-                void setFileName(CommandFileName filename) override
+                void setFileName(const CommandFileName filename) override
                 {
                     object_.set_file_name(object_,filename);
                     return;
@@ -245,15 +252,27 @@ class CommandFiles
                 T object_;
         };
 
-        friend void set_CommandFile_filename(CommandFiles && command_file, CommandFileName filename)
+        friend void set_CommandFile_filename(CommandFiles && command_file, const CommandFileName filename)
         {
             command_file.valuePtr_->setFileName(filename);
             return;
         }
 
-        friend void set_CommandFile_filename(CommandFiles & command_file, CommandFileName filename)
+        friend void set_CommandFile_filename(CommandFiles & command_file, const CommandFileName filename)
         {
             command_file.valuePtr_->setFileName(filename);
+            return;
+        }
+
+        friend void write_file_CommandFile(CommandFiles & command_file, const std::string filename)
+        {
+            command_file.valuePtr_->writeFile(filename);
+            return;
+        }
+
+        friend void write_file_CommandFile(CommandFiles && command_file, const std::string filename)
+        {
+            command_file.valuePtr_->writeFile(filename);
             return;
         }
 

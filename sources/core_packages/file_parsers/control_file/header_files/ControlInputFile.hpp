@@ -121,6 +121,12 @@ class ControlInputFile
             return this->masterKeys_.defaultNullValue();
         }
 
+        void writeFile(const std::string filename) const
+        {
+            const WriterPolicy file_writer;
+            file_writer.write(this->ptree_,filename);
+            return;
+        }
         // ====================  MUTATORS      =======================================
 
         //! Sets the file name of file to be  read or written to.
@@ -171,7 +177,7 @@ class ControlInputFile
 
         // ====================  STATIC        =======================================
 
-        static void set_file_name(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object,ANANSI::CommandFileName filename)
+        static void set_file_name(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object,const ANANSI::CommandFileName filename)
         {
             object.setFileName(filename);
         }
@@ -189,6 +195,13 @@ class ControlInputFile
         static void unpickle_file(ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object,const PICKLEDTYPE & pickled_file)
         {
             object.unpickeFile(pickled_file);
+            return;
+        }
+
+        static void write_file(const ControlInputFile<MasterKeyPolicy,ReaderPolicy,WriterPolicy,PicklerPolicy> & object, const std::string filename)
+        {
+            object.writeFile(filename);
+
             return;
         }
 

@@ -50,7 +50,9 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
+    get_target_property(my_debugging_utilities_include  debugging_utilities  debugging_utilities_include  )  
     get_target_property(my_comm_include  communicator communicator_include)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -113,8 +115,8 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target}
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_comm_include})
 
 #-----------------------------------------------------

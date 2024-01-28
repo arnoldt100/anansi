@@ -29,6 +29,7 @@
 #include "setup_mpi_world_communicator_invoker.h"
 #include "setup_simulationdecomposition_invoker.h"
 #include "disable_simulationdecomposition_invoker.h"
+#include "BaseException.h"
 
 namespace ANANSI
 {
@@ -381,11 +382,11 @@ AnansiMolecularDynamics::initializeInitialConditions_()
 
     try
     {
-        this->mdState_->execute(this);
+     this->mdState_->execute(this);
     }
-    catch ()
+    catch ( MOUSEION::BaseException & my_error)
     {
-
+        my_error.what();
     }
 
     // Change the state of "this", a AnansiMolecularDynamics object, to

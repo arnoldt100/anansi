@@ -14,11 +14,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "BaseException.h"
 
 namespace ANANSI
 {
 
-class ErrorInvalidSimulationDecompositionValue : public std::exception
+class ErrorInvalidSimulationDecompositionValue : public MOUSEION::BaseException
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -29,7 +30,7 @@ class ErrorInvalidSimulationDecompositionValue : public std::exception
 
         ErrorInvalidSimulationDecompositionValue (ErrorInvalidSimulationDecompositionValue && other);   // copy-move constructor
 
-        virtual ~ErrorInvalidSimulationDecompositionValue ();  // destructor
+        ~ErrorInvalidSimulationDecompositionValue ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         const char* what() const noexcept;

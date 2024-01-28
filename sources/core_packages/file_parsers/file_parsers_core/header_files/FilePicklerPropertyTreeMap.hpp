@@ -96,15 +96,20 @@ class FilePickler<boost::property_tree::ptree, std::map<std::string,std::string>
             {
                 std::string key(*it);
                 boost::algorithm::trim(key);
+
+                // If this is a commnent key then skip to next entry.
                 if ( is_comment_key(node_keys,key))
                 {
                    continue; 
                 }
                
+                // Search for the key in "a_map". If the key is in a_map, then use the 
+                // corresponding value of a_map[key] to fill in "ptree". If the key isn't in 
+                // "a_map" the use the default value.
                 std::string value;
-                if (auto search = tree.find(key); search != tree.not_found() )
+                if (auto search = a_map.find(key); search != a_map.end())
                 {
-                    value = a_map.at(key);
+                    value = search->second;
                 }
                 else
                 {

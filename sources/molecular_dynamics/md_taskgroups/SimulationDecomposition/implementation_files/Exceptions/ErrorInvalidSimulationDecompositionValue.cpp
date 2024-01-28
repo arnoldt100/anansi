@@ -2,6 +2,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 #include <string>
 
 //--------------------------------------------------------//
@@ -21,12 +22,14 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue()
+ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue() :
+    MOUSEION::BaseException{}
 {
     return;
 }
 
-ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue( ErrorInvalidSimulationDecompositionValue const & other)
+ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue( ErrorInvalidSimulationDecompositionValue const & other) :
+    MOUSEION::BaseException{other}
 {
     if (this != &other)
     {
@@ -35,7 +38,8 @@ ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionVal
     return;
 }
 
-ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue( ErrorInvalidSimulationDecompositionValue && other)
+ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue( ErrorInvalidSimulationDecompositionValue && other) :
+MOUSEION::BaseException{std::move(other)}
 {
     if (this != &other)
     {
@@ -69,6 +73,7 @@ ErrorInvalidSimulationDecompositionValue& ErrorInvalidSimulationDecompositionVal
 {
     if (this != &other)
     {
+        MOUSEION::BaseException::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -77,6 +82,7 @@ ErrorInvalidSimulationDecompositionValue& ErrorInvalidSimulationDecompositionVal
 {
     if (this != &other)
     {
+        MOUSEION::BaseException::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator
