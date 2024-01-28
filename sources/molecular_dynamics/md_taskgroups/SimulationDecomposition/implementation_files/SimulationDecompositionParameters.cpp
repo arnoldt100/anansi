@@ -34,7 +34,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     return;
 }
 
-SimulationDecompositionParameters::SimulationDecompositionParameters(const std::string default_null_value,
+SimulationDecompositionParameters::SimulationDecompositionParameters(const std::string flag_default_null_value,
                                           const std::string work_load_decomposition,
                                           const std::string processor_topology_lattice_type,
                                           const std::string processor_topology_spatial_decomposition,
@@ -42,7 +42,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
 {
     // Compute the work load decomposition type and assign to member attribute.
     // "this->workLoadDecomposition_".
-    const std::tuple<bool,std::string> wld = this->_computeWorkLoadDecomposition(default_null_value,work_load_decomposition);
+    const std::tuple<bool,std::string> wld = this->_computeWorkLoadDecomposition(flag_default_null_value,work_load_decomposition);
     if ( std::get<bool>(wld))
     {
         this->workLoadDecomposition_ = std::get<std::string>(wld);
@@ -144,12 +144,12 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
 //============================= MUTATORS =====================================
 
 //!
-std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoadDecomposition(const std::string default_null_value,const std::string node_value)
+std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoadDecomposition(const std::string flag_default_null_value,const std::string node_value)
 {
     std::string ret_value;
     bool valid_node_value = true;
 
-    if (node_value == default_null_value)
+    if (node_value == flag_default_null_value)
     {
         ret_value =  SimulationDecompositionParameters::DefaultWorkLoadDecomposition_();
     }

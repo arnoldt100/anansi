@@ -221,7 +221,7 @@ class ControlInputFile
         CommandFileName filename_;
 
         //! The internal representation of the file.
-        MasterKeyPolicy::InternalRepresentationTrait ptree_;
+        typename MasterKeyPolicy::InternalRepresentationTrait ptree_;
 
 }; // -----  end of class ControlInputFile  -----
 

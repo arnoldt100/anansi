@@ -375,12 +375,18 @@ AnansiMolecularDynamics::processCommandLine_()
 void
 AnansiMolecularDynamics::initializeInitialConditions_()
 {
-
     // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDInitInitialConditions.
     this->mdState_ = this->mdInitInitialConditions_;
 
-    this->mdState_->execute(this);
+    try
+    {
+        this->mdState_->execute(this);
+    }
+    catch ()
+    {
+
+    }
 
     // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDNullSimulationState.

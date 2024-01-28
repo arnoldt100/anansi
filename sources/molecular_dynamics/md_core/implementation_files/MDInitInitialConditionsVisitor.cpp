@@ -61,7 +61,7 @@ void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
     std::cout << "MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
 
     // ---------------------------------------------------
-    // The first enable the simulatiom decomposition.
+    // The first step is to enable the simulation decomposition.
     // ---------------------------------------------------
     a_sim.enableSimulationDecomposition();
 

@@ -34,7 +34,7 @@ class SimulationDecompositionParameters
 
         SimulationDecompositionParameters ();   // constructor
 
-        SimulationDecompositionParameters(const std::string default_null_value,
+        SimulationDecompositionParameters(const std::string flag_default_null_value,
                                           const std::string work_load_decomposition,
                                           const std::string processor_topology_lattice_type,
                                           const std::string processor_topology_spatial_decomposition,
