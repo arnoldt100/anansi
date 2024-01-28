@@ -59,13 +59,10 @@ XMLFileReader * XMLFileReader::clone() const
 
 boost::property_tree::ptree XMLFileReader::read(const std::string filename) const
 {  
-    std::istringstream s1(filename);
-    std::istream s2(s1.rdbuf());
-
     boost::property_tree::ptree tree;
-    boost::property_tree::read_xml(s2,
+    boost::property_tree::read_xml(filename,
                                    tree,
-                                   boost::property_tree::xml_parser::trim_whitespace);
+                                   boost::property_tree::xml_parser::no_comments);
 
     return tree;
 }
