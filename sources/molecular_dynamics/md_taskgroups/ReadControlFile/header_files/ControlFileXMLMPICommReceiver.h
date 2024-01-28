@@ -196,15 +196,24 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     const ControlFileTraits::PICKLETYPE broadcasted_pickled_control_file =
         this->communicator_->broadcastStdMap(pickled_control_file,rank_to_broadcast);
 
-    // Use the broadcasted_pickled_obj to fill in this->results_ for the workers.
-    if ( ! i_am_master )
-    {
-        unpickle_CommandFile(this->results_,broadcasted_pickled_control_file);      
-    }
+    // Use the broadcasted_pickled_obj to fill in this->results_ for the master and the workers.
+    // This ensures all processes have the same  internal representation.
+     unpickle_CommandFile(this->results_,broadcasted_pickled_control_file);      
 
     // Synchronize all processes in the communicator group of
     // "this->communicator_" at this point.
     this->communicator_->synchronizationPoint();
+
+    if (  i_am_master )
+    {
+        const std::string filename_master("master_ptree");
+        write_file_CommandFile(this->results_,filename_master);
+    }
+    else
+    {
+        const std::string filename_nonmaster("nonmaster_ptree");
+        write_file_CommandFile(this->results_,filename_nonmaster);
+    }
 
     return;
 }
