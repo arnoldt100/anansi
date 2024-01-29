@@ -197,7 +197,7 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
         this->communicator_->broadcastStdMap(pickled_control_file,rank_to_broadcast);
 
     // Use the broadcasted_pickled_obj to fill in this->results_ for the master and the workers.
-    // This ensures all processes have the same  internal representation.
+    // This ensures all processes have the same internal representation.
      unpickle_CommandFile(this->results_,broadcasted_pickled_control_file);      
 
     // Synchronize all processes in the communicator group of
