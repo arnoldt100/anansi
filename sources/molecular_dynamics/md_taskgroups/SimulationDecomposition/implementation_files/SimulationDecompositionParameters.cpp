@@ -144,14 +144,16 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
 //============================= MUTATORS =====================================
 
 //!
-std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoadDecomposition(const std::string flag_default_null_value,const std::string node_value)
+std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoadDecomposition(const std::string flag_default_null_value,
+                                                                                              const std::string node_value)
 {
     std::string ret_value;
     bool valid_node_value = true;
 
-    if (node_value == flag_default_null_value)
+    if ( (node_value == flag_default_null_value) && 
+         SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory_()  )
     {
-        ret_value =  SimulationDecompositionParameters::DefaultWorkLoadDecomposition_();
+    	throw ErrorInvalidSimulationDecompositionValue();
     }
     else if (this->validWorkLoadDecompositionValues_.contains(node_value))
     {
@@ -177,6 +179,11 @@ std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLo
 std::string SimulationDecompositionParameters::DefaultWorkLoadDecomposition_()
 {
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at("spatial-data-domain-decomposition"); 
+}
+
+bool SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory_()
+{
+    return true;
 }
 
 std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType_()

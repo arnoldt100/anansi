@@ -105,6 +105,9 @@ class SimulationDecompositionParameters
         //! Returns the default value for the workload decomposition type.
         static std::string DefaultWorkLoadDecomposition_();
 
+        //! Returns a boolean indicating if the key for workload decompostion is mandatory.
+        static bool WorkLoadDecompositionKeyIsMandatory_();
+
         //! Returns the default value for the lattice type topology of the spatial decomposition.
         static std::string DefaultProcessorTopologyLatticeType_();
 
