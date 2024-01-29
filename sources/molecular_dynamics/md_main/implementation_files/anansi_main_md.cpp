@@ -4,6 +4,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -20,6 +21,7 @@
 int
 main( int argc, char** argv )
 {
+    auto exit_status = EXIT_SUCCESS;
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
@@ -30,40 +32,49 @@ main( int argc, char** argv )
     std::shared_ptr<ANANSI::SimulationFactory> my_md_factory(new ANANSI::AnansiMolecularDynamicsFactory(argc,argv));
     std::shared_ptr<ANANSI::Simulation> md_ptr = my_md_factory->create_shared_ptr();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Process the command line.                                       @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->processCommandLine();
+    try 
+    {
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Process the command line.                                       @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->processCommandLine();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Initialize the the simulation execution environment.            @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->initializeSimulationEnvironment();
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Initialize the the simulation execution environment.            @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->initializeSimulationEnvironment();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Initialize the initial conditions of the simulation.            @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->initializeInitialConditions();
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Initialize the initial conditions of the simulation.            @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->initializeInitialConditions();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Perform the simulation.                                         @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->performSimulation();
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Perform the simulation.                                         @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->performSimulation();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Terminate the simulation.                                       @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->terminateSimulationEnvironment();
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Terminate the simulation.                                       @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->terminateSimulationEnvironment();
 
-    return EXIT_SUCCESS;
+    }
+    catch (const std::exception&) 
+    {
+        md_ptr->terminateSimulationEnvironment();
+        exit_status = EXIT_FAILURE; 
+    }
+
+    return exit_status;
 }
