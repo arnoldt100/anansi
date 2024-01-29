@@ -1,4 +1,3 @@
-
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -23,13 +22,22 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue() :
-    MOUSEION::BaseException{}
+    MOUSEION::BaseException{},
+    errorMessage_{}
+{
+    return;
+}
+
+ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue(const std::string message) :
+    MOUSEION::BaseException{},
+    errorMessage_{message}
 {
     return;
 }
 
 ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue( ErrorInvalidSimulationDecompositionValue const & other) :
-    MOUSEION::BaseException{other}
+    MOUSEION::BaseException{other},
+    errorMessage_{other.errorMessage_}
 {
     if (this != &other)
     {
@@ -39,7 +47,9 @@ ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionVal
 }
 
 ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue( ErrorInvalidSimulationDecompositionValue && other) :
-MOUSEION::BaseException{std::move(other)}
+MOUSEION::BaseException{std::move(other)},
+    errorMessage_{std::move(other.errorMessage_)}
+
 {
     if (this != &other)
     {
@@ -56,8 +66,7 @@ ErrorInvalidSimulationDecompositionValue::~ErrorInvalidSimulationDecompositionVa
 //============================= ACCESSORS ====================================
 const char* ErrorInvalidSimulationDecompositionValue::what() const noexcept 
 {
-    std::string message{"Stud message for invalid Simulation decomposition value."};
-    return message.c_str();
+    return this->errorMessage_.c_str();
 }
 
 ErrorInvalidSimulationDecompositionValue * ErrorInvalidSimulationDecompositionValue::clone() const
@@ -74,6 +83,7 @@ ErrorInvalidSimulationDecompositionValue& ErrorInvalidSimulationDecompositionVal
     if (this != &other)
     {
         MOUSEION::BaseException::operator=(other);
+        this->errorMessage_ = other.errorMessage_;
     }
     return *this;
 } // assignment operator
@@ -83,6 +93,7 @@ ErrorInvalidSimulationDecompositionValue& ErrorInvalidSimulationDecompositionVal
     if (this != &other)
     {
         MOUSEION::BaseException::operator=(std::move(other));
+        this->errorMessage_ = std::move(other.errorMessage_);
     }
     return *this;
 } // assignment-move operator

@@ -117,6 +117,8 @@ class SimulationDecompositionParameters
         //! Returns the default number of compute units per spatial domain.
         static std::string DefaultNumberProcessorComputeUnitsPerDomain_();
 
+        //! Returns the error message for missing workload decomposition tag.
+        static std::string ErrorMessageMissingWorkloadDecompositionTag();
 
 }; // -----  end of class SimulationDecompositionParameters  -----
 

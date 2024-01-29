@@ -153,7 +153,8 @@ std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoad
     if ( (node_value == flag_default_null_value) && 
          SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory_()  )
     {
-    	throw ErrorInvalidSimulationDecompositionValue();
+        std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionTag();
+    	throw ErrorInvalidSimulationDecompositionValue(error_message);
     }
     else if (this->validWorkLoadDecompositionValues_.contains(node_value))
     {
@@ -201,5 +202,19 @@ std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnit
     return std::string("1");
 }
 
+std::string SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionTag()
+{
+    std::map<std::string,std::string> allowed_values = SimulationDecompositionParameters::validWorkLoadDecompositionValues_;
+    std::string message;
+    message += "The workload decompostion tag is mandatory\n";
+    message += "and the allowed values are the following:\n";
+    for (auto const& [key, val] : allowed_values )
+    {
+        message += "    ";
+        message += val;
+        message += "\n";
+    }
+    return message;
+}
 
 } // namespace ANANSI

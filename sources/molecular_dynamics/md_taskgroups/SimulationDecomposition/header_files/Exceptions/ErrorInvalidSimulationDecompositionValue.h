@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 #include <exception>
 
 //--------------------------------------------------------//
@@ -25,6 +26,8 @@ class ErrorInvalidSimulationDecompositionValue : public MOUSEION::BaseException
         // ====================  LIFECYCLE     =======================================
 
         ErrorInvalidSimulationDecompositionValue ();   // constructor
+
+        ErrorInvalidSimulationDecompositionValue (const std::string message);   // constructor
 
         ErrorInvalidSimulationDecompositionValue (const ErrorInvalidSimulationDecompositionValue & other);   // copy constructor
 
@@ -54,6 +57,7 @@ class ErrorInvalidSimulationDecompositionValue : public MOUSEION::BaseException
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::string errorMessage_;
 
 }; // -----  end of class ErrorInvalidSimulationDecompositionValue  -----
 

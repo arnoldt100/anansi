@@ -384,9 +384,10 @@ AnansiMolecularDynamics::initializeInitialConditions_()
     {
      this->mdState_->execute(this);
     }
-    catch ( MOUSEION::BaseException & my_error)
+    catch ( const MOUSEION::BaseException & my_error)
     {
-        my_error.what();
+        std::cout << my_error.what()  << std::endl;
+        this->mdState_ = this->mdNullSimulationState_;
     }
 
     // Change the state of "this", a AnansiMolecularDynamics object, to
