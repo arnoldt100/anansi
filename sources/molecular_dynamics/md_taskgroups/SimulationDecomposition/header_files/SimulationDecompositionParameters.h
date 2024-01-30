@@ -120,6 +120,9 @@ class SimulationDecompositionParameters
         //! Returns the error message for missing workload decomposition tag.
         static std::string ErrorMessageMissingWorkloadDecompositionTag();
 
+        //! Returns the error message for missing workload decomposition tag.
+        static std::string ErrorInvalidWorkloadDecompositionVales();
+
 }; // -----  end of class SimulationDecompositionParameters  -----
 
 

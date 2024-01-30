@@ -30,6 +30,8 @@
 #include "setup_simulationdecomposition_invoker.h"
 #include "disable_simulationdecomposition_invoker.h"
 #include "BaseException.h"
+#include "SimulationDecompositionParameters.h"
+#include "ErrorInvalidSimulationDecompositionValue.h"
 
 namespace ANANSI
 {
@@ -384,7 +386,7 @@ AnansiMolecularDynamics::initializeInitialConditions_()
     {
      this->mdState_->execute(this);
     }
-    catch ( const MOUSEION::BaseException & my_error)
+    catch ( const ErrorInvalidSimulationDecompositionValue & my_error)
     {
         std::cout << my_error.what()  << std::endl;
         this->mdState_ = this->mdNullSimulationState_;

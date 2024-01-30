@@ -11,7 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
-#include "ErrorInvalidSimulationDecompositionValue.h"
+#include "ErrorInvalidSimulationDecompositionParameters.h"
 
 namespace ANANSI {
 
@@ -49,7 +49,8 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
     }
     else
     {
-    	throw ErrorInvalidSimulationDecompositionValue();
+    	std::string error_message = SimulationDecompositionParameters::ErrorInvalidWorkloadDecompositionVales();
+    	throw ErrorInvalidSimulationDecompositionParameters(error_message);
     }
 
     return;
@@ -154,7 +155,7 @@ std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoad
          SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory_()  )
     {
         std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionTag();
-    	throw ErrorInvalidSimulationDecompositionValue(error_message);
+    	throw ErrorInvalidSimulationDecompositionParameters(error_message);
     }
     else if (this->validWorkLoadDecompositionValues_.contains(node_value))
     {
@@ -206,8 +207,17 @@ std::string SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecomp
 {
     std::map<std::string,std::string> allowed_values = SimulationDecompositionParameters::validWorkLoadDecompositionValues_;
     std::string message;
-    message += "The workload decompostion tag is mandatory\n";
-    message += "and the allowed values are the following:\n";
+    message += "The workload decomposition tag is missing from the input file.\n";
+    message += "but the tag is mandatory to run the program.\n";
+    return message;
+}
+
+std::string SimulationDecompositionParameters::ErrorInvalidWorkloadDecompositionVales()
+{
+    std::map<std::string,std::string> allowed_values = SimulationDecompositionParameters::validWorkLoadDecompositionValues_;
+    std::string message;
+    message += "The workload decomposition value is incorrect in the input file.\n";
+    message += "The allowed values are the following:\n";
     for (auto const& [key, val] : allowed_values )
     {
         message += "    ";
@@ -216,5 +226,7 @@ std::string SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecomp
     }
     return message;
 }
+
+
 
 } // namespace ANANSI
