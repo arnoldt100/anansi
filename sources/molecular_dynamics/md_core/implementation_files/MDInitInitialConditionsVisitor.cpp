@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MDInitInitialConditionsVisitor.h"
+#include "ErrorInvalidSimulationDecompositionParameters.h"
 
 namespace ANANSI {
 
@@ -63,7 +64,14 @@ void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
     // ---------------------------------------------------
     // The first step is to enable the simulation decomposition.
     // ---------------------------------------------------
-    a_sim.enableSimulationDecomposition();
+    try 
+    {
+        a_sim.enableSimulationDecomposition();
+    }
+    catch (const ErrorInvalidSimulationDecompositionParameters & my_error) 
+    {
+        std::cout << my_error.what()  << std::endl;
+    }
 
     return;
 }

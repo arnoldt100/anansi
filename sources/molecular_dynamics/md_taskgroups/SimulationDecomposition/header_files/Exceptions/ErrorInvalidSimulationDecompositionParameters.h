@@ -1,6 +1,6 @@
-#ifndef ANANSI_ErrorInvalidSimulationDecompositionValue_INC
-#define ANANSI_ErrorInvalidSimulationDecompositionValue_INC
-//! \file ErrorInvalidSimulationDecompositionValue.h
+#ifndef ANANSI_ErrorInvalidSimulationDecompositionParameters_INC
+#define ANANSI_ErrorInvalidSimulationDecompositionParameters_INC
+//! \file ErrorInvalidSimulationDecompositionParameters.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -20,33 +20,33 @@
 namespace ANANSI
 {
 
-class ErrorInvalidSimulationDecompositionValue : public MOUSEION::BaseException
+class ErrorInvalidSimulationDecompositionParameters : public MOUSEION::BaseException
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ErrorInvalidSimulationDecompositionValue ();   // constructor
+        ErrorInvalidSimulationDecompositionParameters ();   // constructor
 
-        ErrorInvalidSimulationDecompositionValue (const std::string message);   // constructor
+        ErrorInvalidSimulationDecompositionParameters (const std::string message);   // constructor
 
-        ErrorInvalidSimulationDecompositionValue (const ErrorInvalidSimulationDecompositionValue & other);   // copy constructor
+        ErrorInvalidSimulationDecompositionParameters (const ErrorInvalidSimulationDecompositionParameters & other);   // copy constructor
 
-        ErrorInvalidSimulationDecompositionValue (ErrorInvalidSimulationDecompositionValue && other);   // copy-move constructor
+        ErrorInvalidSimulationDecompositionParameters (ErrorInvalidSimulationDecompositionParameters && other);   // copy-move constructor
 
-        ~ErrorInvalidSimulationDecompositionValue ();  // destructor
+        ~ErrorInvalidSimulationDecompositionParameters ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         const char* what() const noexcept;
 
-        ErrorInvalidSimulationDecompositionValue * clone () const;
+        ErrorInvalidSimulationDecompositionParameters * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        ErrorInvalidSimulationDecompositionValue& operator= ( const ErrorInvalidSimulationDecompositionValue &other ); // assignment operator
+        ErrorInvalidSimulationDecompositionParameters& operator= ( const ErrorInvalidSimulationDecompositionParameters &other ); // assignment operator
 
-        ErrorInvalidSimulationDecompositionValue& operator= ( ErrorInvalidSimulationDecompositionValue && other ); // assignment-move operator
+        ErrorInvalidSimulationDecompositionParameters& operator= ( ErrorInvalidSimulationDecompositionParameters && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -59,9 +59,9 @@ class ErrorInvalidSimulationDecompositionValue : public MOUSEION::BaseException
         // ====================  DATA MEMBERS  =======================================
         std::string errorMessage_;
 
-}; // -----  end of class ErrorInvalidSimulationDecompositionValue  -----
+}; // -----  end of class ErrorInvalidSimulationDecompositionParameters  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_ErrorInvalidSimulationDecompositionValue_INC
+#endif // ANANSI_ErrorInvalidSimulationDecompositionParameters_INC

@@ -11,7 +11,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ErrorInvalidSimulationDecompositionValue.h"
+#include "ErrorInvalidSimulationDecompositionParameters.h"
 
 namespace ANANSI {
 
@@ -21,21 +21,21 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue() :
+ErrorInvalidSimulationDecompositionParameters::ErrorInvalidSimulationDecompositionParameters() :
     MOUSEION::BaseException{},
     errorMessage_{}
 {
     return;
 }
 
-ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue(const std::string message) :
+ErrorInvalidSimulationDecompositionParameters::ErrorInvalidSimulationDecompositionParameters(const std::string message) :
     MOUSEION::BaseException{},
     errorMessage_{message}
 {
     return;
 }
 
-ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue( ErrorInvalidSimulationDecompositionValue const & other) :
+ErrorInvalidSimulationDecompositionParameters::ErrorInvalidSimulationDecompositionParameters( ErrorInvalidSimulationDecompositionParameters const & other) :
     MOUSEION::BaseException{other},
     errorMessage_{other.errorMessage_}
 {
@@ -46,7 +46,7 @@ ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionVal
     return;
 }
 
-ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue( ErrorInvalidSimulationDecompositionValue && other) :
+ErrorInvalidSimulationDecompositionParameters::ErrorInvalidSimulationDecompositionParameters( ErrorInvalidSimulationDecompositionParameters && other) :
 MOUSEION::BaseException{std::move(other)},
     errorMessage_{std::move(other.errorMessage_)}
 
@@ -55,30 +55,30 @@ MOUSEION::BaseException{std::move(other)},
     {
     }
     return;
-}		// -----  end of method ErrorInvalidSimulationDecompositionValue::ErrorInvalidSimulationDecompositionValue  -----
+}		// -----  end of method ErrorInvalidSimulationDecompositionParameters::ErrorInvalidSimulationDecompositionParameters  -----
 
 
-ErrorInvalidSimulationDecompositionValue::~ErrorInvalidSimulationDecompositionValue()
+ErrorInvalidSimulationDecompositionParameters::~ErrorInvalidSimulationDecompositionParameters()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-const char* ErrorInvalidSimulationDecompositionValue::what() const noexcept 
+const char* ErrorInvalidSimulationDecompositionParameters::what() const noexcept 
 {
     return this->errorMessage_.c_str();
 }
 
-ErrorInvalidSimulationDecompositionValue * ErrorInvalidSimulationDecompositionValue::clone() const
+ErrorInvalidSimulationDecompositionParameters * ErrorInvalidSimulationDecompositionParameters::clone() const
 {
-    return new ErrorInvalidSimulationDecompositionValue(*this);
+    return new ErrorInvalidSimulationDecompositionParameters(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-ErrorInvalidSimulationDecompositionValue& ErrorInvalidSimulationDecompositionValue::operator=( const ErrorInvalidSimulationDecompositionValue &other )
+ErrorInvalidSimulationDecompositionParameters& ErrorInvalidSimulationDecompositionParameters::operator=( const ErrorInvalidSimulationDecompositionParameters &other )
 {
     if (this != &other)
     {
@@ -88,7 +88,7 @@ ErrorInvalidSimulationDecompositionValue& ErrorInvalidSimulationDecompositionVal
     return *this;
 } // assignment operator
 
-ErrorInvalidSimulationDecompositionValue& ErrorInvalidSimulationDecompositionValue::operator=( ErrorInvalidSimulationDecompositionValue && other )
+ErrorInvalidSimulationDecompositionParameters& ErrorInvalidSimulationDecompositionParameters::operator=( ErrorInvalidSimulationDecompositionParameters && other )
 {
     if (this != &other)
     {

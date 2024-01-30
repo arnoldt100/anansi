@@ -31,7 +31,7 @@
 #include "disable_simulationdecomposition_invoker.h"
 #include "BaseException.h"
 #include "SimulationDecompositionParameters.h"
-#include "ErrorInvalidSimulationDecompositionValue.h"
+#include "ErrorInvalidSimulationDecompositionParameters.h"
 
 namespace ANANSI
 {
@@ -292,17 +292,24 @@ AnansiMolecularDynamics::enableCoreLoggingTasks()
 
 void AnansiMolecularDynamics::enableSimulationDecomposition()
 {
-    // The workload decomposition is stored in the master control file. The master control file
-    // is the result of the task associated with the ControlFileMacroReceiver. This task
-    // is stored in the invoker mdControlFileInvk_. We use the utility function
-	// "MasterControlInputFileParameters::GetSimulationDecompositionParameters"
-    // to get the workload parameters.
-    SimulationDecompositionParameters workload_parameters;
+    try 
+    {
+        // The workload decomposition is stored in the master control file. The master control file
+        // is the result of the task associated with the ControlFileMacroReceiver. This task
+        // is stored in the invoker mdControlFileInvk_. We use the utility function
+        // "MasterControlInputFileParameters::GetSimulationDecompositionParameters"
+        // to get the workload parameters.
+        SimulationDecompositionParameters workload_parameters =
+            MasterControlInputFileParameters::GetSimulationDecompositionParameters(this->mdControlFileInvk_);
 
-    workload_parameters =
-        MasterControlInputFileParameters::GetSimulationDecompositionParameters(this->mdControlFileInvk_);
-
-    setup_simulationdecomposition_invoker(workload_parameters);
+        setup_simulationdecomposition_invoker(workload_parameters);
+        
+    }
+    catch (const ErrorInvalidSimulationDecompositionParameters & my_error) 
+    {
+        std::cout << my_error.what()  << std::endl;
+        
+    }
     return;
 }
 
@@ -382,15 +389,7 @@ AnansiMolecularDynamics::initializeInitialConditions_()
     // state MDInitInitialConditions.
     this->mdState_ = this->mdInitInitialConditions_;
 
-    try
-    {
      this->mdState_->execute(this);
-    }
-    catch ( const ErrorInvalidSimulationDecompositionValue & my_error)
-    {
-        std::cout << my_error.what()  << std::endl;
-        this->mdState_ = this->mdNullSimulationState_;
-    }
 
     // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDNullSimulationState.

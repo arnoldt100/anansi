@@ -118,10 +118,11 @@ class SimulationDecompositionParameters
         static std::string DefaultNumberProcessorComputeUnitsPerDomain_();
 
         //! Returns the error message for missing workload decomposition tag.
-        static std::string ErrorMessageMissingWorkloadDecompositionTag();
+        static std::string ErrorMessageMissingWorkloadDecompositionNodeTag();
 
-        //! Returns the error message for missing workload decomposition tag.
-        static std::string ErrorInvalidWorkloadDecompositionVales();
+        //! Returns the error message for missing workload decomposition value.
+        static std::string ErrorInvalidWorkloadDecompositionNodeValue(const std::string invalid_value);
+        
 
 }; // -----  end of class SimulationDecompositionParameters  -----
 
