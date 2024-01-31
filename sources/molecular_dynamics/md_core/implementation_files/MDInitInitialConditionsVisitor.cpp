@@ -12,8 +12,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MDInitInitialConditionsVisitor.h"
-#include "ErrorInvalidSimulationDecompositionParameters.h"
-#include "BaseException.h"
+#include "SimulationDecompositionParameters.h"
+#include "GenericErrorClass.hpp"
 
 namespace ANANSI {
 
@@ -70,10 +70,10 @@ void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
     {
         a_sim.enableSimulationDecomposition();
     }
-    catch (const MOUSEION::BaseException & my_error) 
+    catch (const MOUSEION::GenericErrorClass<SimulationDecompositionParameters> & my_error) 
     {
     	std::string message{my_error.what()};
-
+        throw MOUSEION::GenericErrorClass<AnansiMolecularDynamics>();
     	// Throw error for invalid init initial conditions.
     }
 

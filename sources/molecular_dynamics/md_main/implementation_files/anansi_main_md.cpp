@@ -16,6 +16,7 @@
 #include "anansi_main_md.h"
 #include "AnansiMolecularDynamics.h"
 #include "AnansiMolecularDynamicsFactory.h"
+#include "GenericErrorClass.hpp"
 
 
 int
@@ -70,9 +71,10 @@ main( int argc, char** argv )
         md_ptr->terminateSimulationEnvironment();
 
     }
-    catch (const std::exception&) 
+    catch (const MOUSEION::GenericErrorClass<ANANSI::AnansiMolecularDynamics> & my_error) 
     {
     	// Catch error for one of the above steps.
+        std::cout << my_error.what() << std::endl;
         md_ptr->terminateSimulationEnvironment();
         exit_status = EXIT_FAILURE; 
     }
