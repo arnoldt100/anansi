@@ -49,7 +49,8 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
     // "this->workLoadDecomposition_".
     std::tuple<bool,std::string> wld;
 
-    try {
+    try 
+    {
         wld = this->_computeWorkLoadDecomposition(flag_default_null_value,work_load_decomposition);
     }
     catch (const ErrorMissingSimulationWorkloadDecompositionParameters & my_error) 
@@ -62,6 +63,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
         const std::string error_message{my_error.what()};
         throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
     }
+
     this->workLoadDecomposition_ = std::get<std::string>(wld);
 
     return;
@@ -175,7 +177,7 @@ std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoad
     else
     {
     	std::string error_message = SimulationDecompositionParameters::ErrorInvalidWorkloadDecompositionNodeValue(node_value);
-    	throw ErrorInvalidSimulationWorkloadDecompositionType();
+    	throw ErrorInvalidSimulationWorkloadDecompositionType(error_message);
     }
     return std::make_tuple(valid_node_value,ret_value);
 }
@@ -216,10 +218,31 @@ std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnit
 
 std::string SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag()
 {
-    std::map<std::string,std::string> allowed_values = SimulationDecompositionParameters::validWorkLoadDecompositionValues_;
     std::string message;
-    message += "The workload decomposition tag is missing from the input file.\n";
-    message += "but the tag is mandatory to run the program.\n";
+
+    boost::format s1_frmt("%1%\n");
+    boost::format s2_frmt("    %1%\n");
+    boost::format s3_frmt("    %1%\n\n");
+
+    const char* header = R"""(# ----------------------)""";
+
+    // Add header to message.
+    s1_frmt % header;
+    message = s1_frmt.str();
+
+    // Add warning.
+    const char* warning1 = R"""(Warning! The workload decomposition tag is missing from the input file)""";
+    s1_frmt % warning1;
+    message += s1_frmt.str();
+
+    const char* warning2 = R"""(but the tag is mandatory to run the program.)""";
+    s1_frmt % warning2;
+    message += s1_frmt.str();
+
+    // Add footer to message.
+    const char* footer = R"""(# ----------------------)""";
+    s1_frmt % footer;
+    message += s1_frmt.str();
     return message;
 }
 
