@@ -1,6 +1,6 @@
-#ifndef ANANSI_ErrorInvalidWorkloadDecompositionType_INC
-#define ANANSI_ErrorInvalidWorkloadDecompositionType_INC
-//! \file ErrorInvalidWorkloadDecompositionType.h
+#ifndef ANANSI_ErrorInvalidSimulationWorkloadDecompositionType_INC
+#define ANANSI_ErrorInvalidSimulationWorkloadDecompositionType_INC
+//! \file ErrorInvalidSimulationWorkloadDecompositionType.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -13,36 +13,35 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "BaseException.h"
 
 namespace ANANSI
 {
 
-class ErrorInvalidWorkloadDecompositionType : MOUSEION::BaseException
+class ErrorInvalidSimulationWorkloadDecompositionType 
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ErrorInvalidWorkloadDecompositionType ();   // constructor
+        ErrorInvalidSimulationWorkloadDecompositionType ();   // constructor
 
-        ErrorInvalidWorkloadDecompositionType (const ErrorInvalidWorkloadDecompositionType & other);   // copy constructor
+        ErrorInvalidSimulationWorkloadDecompositionType (const ErrorInvalidSimulationWorkloadDecompositionType & other);   // copy constructor
 
-        ErrorInvalidWorkloadDecompositionType (ErrorInvalidWorkloadDecompositionType && other);   // copy-move constructor
+        ErrorInvalidSimulationWorkloadDecompositionType (ErrorInvalidSimulationWorkloadDecompositionType && other);   // copy-move constructor
 
-        virtual ~ErrorInvalidWorkloadDecompositionType ();  // destructor
+        virtual ~ErrorInvalidSimulationWorkloadDecompositionType ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         const char* what() const noexcept; 
 
-        ErrorInvalidWorkloadDecompositionType * clone () const;
+        ErrorInvalidSimulationWorkloadDecompositionType * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        ErrorInvalidWorkloadDecompositionType& operator= ( const ErrorInvalidWorkloadDecompositionType &other ); // assignment operator
+        ErrorInvalidSimulationWorkloadDecompositionType& operator= ( const ErrorInvalidSimulationWorkloadDecompositionType &other ); // assignment operator
 
-        ErrorInvalidWorkloadDecompositionType& operator= ( ErrorInvalidWorkloadDecompositionType && other ); // assignment-move operator
+        ErrorInvalidSimulationWorkloadDecompositionType& operator= ( ErrorInvalidSimulationWorkloadDecompositionType && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -54,9 +53,9 @@ class ErrorInvalidWorkloadDecompositionType : MOUSEION::BaseException
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class ErrorInvalidWorkloadDecompositionType  -----
+}; // -----  end of class ErrorInvalidSimulationWorkloadDecompositionType  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_ErrorInvalidWorkloadDecompositionType_INC
+#endif // ANANSI_ErrorInvalidSimulationWorkloadDecompositionType_INC

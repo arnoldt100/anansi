@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -9,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ErrorInvalidSimulationWorkloadDecompositionType.h"
+#include "ErrorMissingSimulationWorkloadDecompositionParameters.h"
 
 namespace ANANSI {
 
@@ -19,12 +20,23 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType()
+ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters() :
+    MOUSEION::BaseException{},
+    errorMessage_{}
 {
     return;
 }
 
-ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType( ErrorInvalidSimulationWorkloadDecompositionType const & other)
+ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters(const std::string message) :
+    MOUSEION::BaseException{},
+    errorMessage_{message}
+{
+    return;
+}
+
+ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters( ErrorMissingSimulationWorkloadDecompositionParameters const & other) :
+    MOUSEION::BaseException{other},
+    errorMessage_{other.errorMessage_}
 {
     if (this != &other)
     {
@@ -33,44 +45,53 @@ ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadD
     return;
 }
 
-ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType( ErrorInvalidSimulationWorkloadDecompositionType && other)
+ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters( ErrorMissingSimulationWorkloadDecompositionParameters && other) : 
+    MOUSEION::BaseException{std::move(other)},
+    errorMessage_{std::move(other.errorMessage_)}
 {
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType  -----
+}		// -----  end of method ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters  -----
 
 
-ErrorInvalidSimulationWorkloadDecompositionType::~ErrorInvalidSimulationWorkloadDecompositionType()
+ErrorMissingSimulationWorkloadDecompositionParameters::~ErrorMissingSimulationWorkloadDecompositionParameters()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-
-ErrorInvalidSimulationWorkloadDecompositionType * ErrorInvalidSimulationWorkloadDecompositionType::clone() const
+const char* ErrorMissingSimulationWorkloadDecompositionParameters::what () const noexcept
 {
-    return new ErrorInvalidSimulationWorkloadDecompositionType(*this);
+    return this->errorMessage_.c_str();
+}
+
+ErrorMissingSimulationWorkloadDecompositionParameters * ErrorMissingSimulationWorkloadDecompositionParameters::clone() const
+{
+    return new ErrorMissingSimulationWorkloadDecompositionParameters(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-ErrorInvalidSimulationWorkloadDecompositionType& ErrorInvalidSimulationWorkloadDecompositionType::operator= ( const ErrorInvalidSimulationWorkloadDecompositionType &other )
+ErrorMissingSimulationWorkloadDecompositionParameters& ErrorMissingSimulationWorkloadDecompositionParameters::operator= ( const ErrorMissingSimulationWorkloadDecompositionParameters &other ) 
 {
     if (this != &other)
     {
+        MOUSEION::BaseException::operator=(other);
+        this->errorMessage_ = other.errorMessage_;
     }
     return *this;
 } // assignment operator
 
-ErrorInvalidSimulationWorkloadDecompositionType& ErrorInvalidSimulationWorkloadDecompositionType::operator= ( ErrorInvalidSimulationWorkloadDecompositionType && other )
+ErrorMissingSimulationWorkloadDecompositionParameters& ErrorMissingSimulationWorkloadDecompositionParameters::operator= ( ErrorMissingSimulationWorkloadDecompositionParameters && other )
 {
     if (this != &other)
     {
-
+        MOUSEION::BaseException::operator=(std::move(other));
+        this->errorMessage_ = std::move(other.errorMessage_);
     }
     return *this;
 } // assignment-move operator

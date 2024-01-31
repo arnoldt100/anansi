@@ -12,6 +12,9 @@
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
+#include "ErrorInvalidSimulationWorkloadDecompositionType.h"
+#include "ErrorMissingSimulationWorkloadDecompositionParameters.h"
+
 #include <boost/format.hpp>
 
 namespace ANANSI {
@@ -148,7 +151,7 @@ std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoad
          SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory_()  )
     {
         std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag();
-    	throw ErrorInvalidSimulationDecompositionParameters(error_message);
+    	throw ErrorMissingSimulationWorkloadDecompositionParameters(error_message);
     }
     else if (this->validWorkLoadDecompositionValues_.contains(node_value))
     {
@@ -157,7 +160,7 @@ std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoad
     else
     {
     	std::string error_message = SimulationDecompositionParameters::ErrorInvalidWorkloadDecompositionNodeValue(node_value);
-    	throw ErrorInvalidSimulationDecompositionParameters(error_message);
+    	throw ErrorInvalidSimulationWorkloadDecompositionType();
     }
     return std::make_tuple(valid_node_value,ret_value);
 }

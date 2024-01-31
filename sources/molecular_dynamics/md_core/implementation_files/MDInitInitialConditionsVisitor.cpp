@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 #include "MDInitInitialConditionsVisitor.h"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
+#include "BaseException.h"
 
 namespace ANANSI {
 
@@ -69,10 +70,9 @@ void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
     {
         a_sim.enableSimulationDecomposition();
     }
-    catch (const ErrorInvalidSimulationDecompositionParameters & my_error) 
+    catch (const MOUSEION::BaseException & my_error) 
     {
     	std::string message{my_error.what()};
-        // std::cout << message.c_str()  << std::endl;
 
     	// Throw error for invalid init initial conditions.
     }
