@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
+#include "GenericErrorClass.hpp"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
 #include "ErrorInvalidSimulationWorkloadDecompositionType.h"
 #include "ErrorMissingSimulationWorkloadDecompositionParameters.h"
@@ -46,7 +47,21 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
 {
     // Compute the work load decomposition type and assign to member attribute.
     // "this->workLoadDecomposition_".
-    const std::tuple<bool,std::string> wld = this->_computeWorkLoadDecomposition(flag_default_null_value,work_load_decomposition);
+    std::tuple<bool,std::string> wld;
+
+    try {
+        wld = this->_computeWorkLoadDecomposition(flag_default_null_value,work_load_decomposition);
+    }
+    catch (const ErrorMissingSimulationWorkloadDecompositionParameters & my_error) 
+    {
+        const std::string error_message{my_error.what()};
+        throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
+    }
+    catch (const ErrorInvalidSimulationWorkloadDecompositionType & my_error) 
+    {
+        const std::string error_message{my_error.what()};
+        throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
+    }
     this->workLoadDecomposition_ = std::get<std::string>(wld);
 
     return;

@@ -19,12 +19,24 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType()
+ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType() :
+    MOUSEION::BaseException{},
+    errorMessage_{}
 {
     return;
 }
 
-ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType( ErrorInvalidSimulationWorkloadDecompositionType const & other)
+ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType(const std::string message) :
+    MOUSEION::BaseException{},
+    errorMessage_{message}
+{
+    return;
+}
+
+ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType( ErrorInvalidSimulationWorkloadDecompositionType const & other) :
+    MOUSEION::BaseException{other},
+    errorMessage_{other.errorMessage_}
+
 {
     if (this != &other)
     {
@@ -33,7 +45,10 @@ ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadD
     return;
 }
 
-ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType( ErrorInvalidSimulationWorkloadDecompositionType && other)
+ErrorInvalidSimulationWorkloadDecompositionType::ErrorInvalidSimulationWorkloadDecompositionType( ErrorInvalidSimulationWorkloadDecompositionType && other) : 
+    MOUSEION::BaseException{std::move(other)},
+    errorMessage_{std::move(other.errorMessage_)}
+
 {
     if (this != &other)
     {
@@ -48,6 +63,11 @@ ErrorInvalidSimulationWorkloadDecompositionType::~ErrorInvalidSimulationWorkload
 }
 
 //============================= ACCESSORS ====================================
+const char* ErrorInvalidSimulationWorkloadDecompositionType::what() const noexcept
+{
+    return this->errorMessage_.c_str();
+}
+
 
 ErrorInvalidSimulationWorkloadDecompositionType * ErrorInvalidSimulationWorkloadDecompositionType::clone() const
 {
@@ -62,6 +82,8 @@ ErrorInvalidSimulationWorkloadDecompositionType& ErrorInvalidSimulationWorkloadD
 {
     if (this != &other)
     {
+        MOUSEION::BaseException::operator=(other);
+        this->errorMessage_ = other.errorMessage_;
     }
     return *this;
 } // assignment operator
@@ -70,7 +92,8 @@ ErrorInvalidSimulationWorkloadDecompositionType& ErrorInvalidSimulationWorkloadD
 {
     if (this != &other)
     {
-
+        MOUSEION::BaseException::operator=(std::move(other));
+        this->errorMessage_ = std::move(other.errorMessage_);
     }
     return *this;
 } // assignment-move operator

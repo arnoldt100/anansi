@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,22 +14,25 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "BaseException.h"
 
 namespace ANANSI
 {
 
-class ErrorInvalidSimulationWorkloadDecompositionType 
+class ErrorInvalidSimulationWorkloadDecompositionType : MOUSEION::BaseException 
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         ErrorInvalidSimulationWorkloadDecompositionType ();   // constructor
 
+        ErrorInvalidSimulationWorkloadDecompositionType ( const std::string message);   // constructor
+
         ErrorInvalidSimulationWorkloadDecompositionType (const ErrorInvalidSimulationWorkloadDecompositionType & other);   // copy constructor
 
         ErrorInvalidSimulationWorkloadDecompositionType (ErrorInvalidSimulationWorkloadDecompositionType && other);   // copy-move constructor
 
-        virtual ~ErrorInvalidSimulationWorkloadDecompositionType ();  // destructor
+        ~ErrorInvalidSimulationWorkloadDecompositionType ();  // destructor
 
         // ====================  ACCESSORS     =======================================
         const char* what() const noexcept; 
@@ -52,6 +56,7 @@ class ErrorInvalidSimulationWorkloadDecompositionType
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::string errorMessage_;
 
 }; // -----  end of class ErrorInvalidSimulationWorkloadDecompositionType  -----
 
