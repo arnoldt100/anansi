@@ -307,8 +307,10 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
     }
     catch (const ErrorInvalidSimulationDecompositionParameters & my_error) 
     {
-        std::cout << my_error.what()  << std::endl;
-        
+    	std::string message{my_error.what()};
+        std::cout << message.c_str()  << std::endl;
+
+        // Throw error for invalid simulation decomposition.
     }
     return;
 }

@@ -72,6 +72,7 @@ main( int argc, char** argv )
     }
     catch (const std::exception&) 
     {
+    	// Catch error for one of the above steps.
         md_ptr->terminateSimulationEnvironment();
         exit_status = EXIT_FAILURE; 
     }

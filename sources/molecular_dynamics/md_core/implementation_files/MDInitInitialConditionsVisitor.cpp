@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -70,7 +71,10 @@ void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
     }
     catch (const ErrorInvalidSimulationDecompositionParameters & my_error) 
     {
-        std::cout << my_error.what()  << std::endl;
+    	std::string message{my_error.what()};
+        // std::cout << message.c_str()  << std::endl;
+
+    	// Throw error for invalid init initial conditions.
     }
 
     return;
