@@ -46,6 +46,33 @@ class SimulationDecompositionParameters
 
         ~SimulationDecompositionParameters ();  // destructor
 
+        // ====================  STATIC        =======================================
+
+        //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
+        //!  are the internal flags/values used within the program.
+        static std::map<std::string,std::string> validWorkLoadDecompositionValues;
+
+        //! Returns the default value for the workload decomposition type.
+        static std::string DefaultWorkLoadDecomposition();
+
+        //! Returns a boolean indicating if the key for workload decompostion is mandatory.
+        static bool WorkLoadDecompositionKeyIsMandatory();
+
+        //! Returns the default value for the lattice type topology of the spatial decomposition.
+        static std::string DefaultProcessorTopologyLatticeType();
+
+        //! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
+        static std::string DefaultProcessorTopologySpatialDecomposition();
+
+        //! Returns the default number of compute units per spatial domain.
+        static std::string DefaultNumberProcessorComputeUnitsPerDomain();
+
+        //! Returns the error message for missing workload decomposition tag.
+        static std::string ErrorMessageMissingWorkloadDecompositionNodeTag();
+
+        //! Returns the error message for missing workload decomposition value.
+        static std::string ErrorMessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value);
+        
         // ====================  ACCESSORS     =======================================
         SimulationDecompositionParameters * clone () const;
 
@@ -96,33 +123,6 @@ class SimulationDecompositionParameters
         //! \brief Stores the number of compute units per spatial decomposition.
         std::string numberProcessorComputeUnitsPerDomain_;
 
-        // ====================  STATIC        =======================================
-
-        //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
-        //!  are the internal flags/values used within the program.
-        static std::map<std::string,std::string> validWorkLoadDecompositionValues_;
-
-        //! Returns the default value for the workload decomposition type.
-        static std::string DefaultWorkLoadDecomposition_();
-
-        //! Returns a boolean indicating if the key for workload decompostion is mandatory.
-        static bool WorkLoadDecompositionKeyIsMandatory_();
-
-        //! Returns the default value for the lattice type topology of the spatial decomposition.
-        static std::string DefaultProcessorTopologyLatticeType_();
-
-        //! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
-        static std::string DefaultProcessorTopologySpatialDecomposition_();
-
-        //! Returns the default number of compute units per spatial domain.
-        static std::string DefaultNumberProcessorComputeUnitsPerDomain_();
-
-        //! Returns the error message for missing workload decomposition tag.
-        static std::string ErrorMessageMissingWorkloadDecompositionNodeTag();
-
-        //! Returns the error message for missing workload decomposition value.
-        static std::string ErrorInvalidWorkloadDecompositionNodeValue(const std::string invalid_value);
-        
 
 }; // -----  end of class SimulationDecompositionParameters  -----
 

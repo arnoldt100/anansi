@@ -18,6 +18,8 @@
 
 #include <boost/format.hpp>
 
+#include "SDPConstructorHelpers.h"
+
 namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -32,10 +34,10 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     processorTopologySpatialDecomposition_(""),
     numberProcessorComputeUnitsPerDomain_("")
 {
-    this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecomposition_();
-    this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType_();
-    this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition_();
-    this->numberProcessorComputeUnitsPerDomain_ = SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain_();
+    this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecomposition();
+    this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType();
+    this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition();
+    this->numberProcessorComputeUnitsPerDomain_ = SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain();
     return;
 }
 
@@ -64,6 +66,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
         throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
     }
 
+    this->workLoadDecomposition_ = ANANSI::SDPConstructorHelpers::workload_decomposition_type(work_load_decomposition,flag_default_null_value);
     this->workLoadDecomposition_ = std::get<std::string>(wld);
 
     return;
@@ -98,6 +101,140 @@ SimulationDecompositionParameters::SimulationDecompositionParameters( Simulation
 SimulationDecompositionParameters::~SimulationDecompositionParameters()
 {
     return;
+}
+
+std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoadDecomposition(const std::string flag_default_null_value,
+                                                                                              const std::string node_value)
+{
+    std::string ret_value;
+    bool valid_node_value = true;
+
+    if ( (node_value == flag_default_null_value) && 
+         SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory()  )
+    {
+        std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag();
+    	throw ErrorMissingSimulationWorkloadDecompositionParameters(error_message);
+    }
+    else if (this->validWorkLoadDecompositionValues.contains(node_value))
+    {
+        ret_value = this->validWorkLoadDecompositionValues.at(node_value);
+    }
+    else
+    {
+    	std::string error_message = SimulationDecompositionParameters::ErrorMessageInvalidWorkloadDecompositionNodeValue(node_value);
+    	throw ErrorInvalidSimulationWorkloadDecompositionType(error_message);
+    }
+    return std::make_tuple(valid_node_value,ret_value);
+}
+
+//============================= OPERATORS ====================================
+
+//============================= STATIC    ====================================
+
+std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues{
+    {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
+    {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
+};
+
+std::string SimulationDecompositionParameters::DefaultWorkLoadDecomposition()
+{
+    return SimulationDecompositionParameters::validWorkLoadDecompositionValues.at("spatial-data-domain-decomposition"); 
+}
+
+bool SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory()
+{
+    return true;
+}
+
+std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType()
+{
+    return std::string("rectangular");
+}
+
+std::string SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition()
+{
+    return std::string("1 1 1");
+}
+
+std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain()
+{
+    return std::string("1");
+}
+
+std::string SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag()
+{
+    std::string message;
+
+    boost::format s1_frmt("%1%\n");
+    boost::format s2_frmt("    %1%\n");
+    boost::format s3_frmt("    %1%\n\n");
+
+    const char* header = R"""(# ----------------------)""";
+
+    // Add header to message.
+    s1_frmt % header;
+    message = s1_frmt.str();
+
+    // Add warning.
+    const char* warning1 = R"""(Warning! The workload decomposition tag is missing from the input file)""";
+    s1_frmt % warning1;
+    message += s1_frmt.str();
+
+    const char* warning2 = R"""(but the tag is mandatory to run the program.)""";
+    s1_frmt % warning2;
+    message += s1_frmt.str();
+
+    // Add footer to message.
+    const char* footer = R"""(# ----------------------)""";
+    s1_frmt % footer;
+    message += s1_frmt.str();
+    return message;
+}
+
+std::string SimulationDecompositionParameters::ErrorMessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value)
+{
+    std::string message;
+
+    boost::format s1_frmt("%1%\n");
+    boost::format s2_frmt("    %1%\n");
+    boost::format s3_frmt("    %1%\n\n");
+
+    const char* header = R"""(# ----------------------)""";
+
+    // Add header to message.
+    s1_frmt % header;
+    message = s1_frmt.str();
+
+    // Add warning.
+    const char* warning1 = R"""(Warning! Invalid parameter for simulation workload decomposition type.)""";
+    s1_frmt % warning1;
+    message += s1_frmt.str();
+
+    const char* warning2 = R"""(The decomposition workload type:)""";
+    s1_frmt % warning2;
+    message += s1_frmt.str();
+
+
+    s3_frmt % invalid_value.c_str();
+    message += s3_frmt.str();
+
+    const char* warning3 = R"""(is an invalid value. The following values are valid choices:)""";
+    s1_frmt % warning3;
+    message += s1_frmt.str();
+
+    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues )
+    {
+        s2_frmt % value.c_str();
+        message += s2_frmt.str();
+    }
+    s2_frmt % "";
+    message += s2_frmt.str();
+
+    // Add footer to message.
+    const char* footer = R"""(# ----------------------)""";
+    s1_frmt % footer;
+    message += s1_frmt.str();
+    return message;
 }
 
 //============================= ACCESSORS ====================================
@@ -157,156 +294,6 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
 
 //============================= MUTATORS =====================================
 
-//!
-std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoadDecomposition(const std::string flag_default_null_value,
-                                                                                              const std::string node_value)
-{
-    std::string ret_value;
-    bool valid_node_value = true;
-
-    if ( (node_value == flag_default_null_value) && 
-         SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory_()  )
-    {
-        std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag();
-    	throw ErrorMissingSimulationWorkloadDecompositionParameters(error_message);
-    }
-    else if (this->validWorkLoadDecompositionValues_.contains(node_value))
-    {
-        ret_value = this->validWorkLoadDecompositionValues_.at(node_value);
-    }
-    else
-    {
-    	std::string error_message = SimulationDecompositionParameters::ErrorInvalidWorkloadDecompositionNodeValue(node_value);
-    	throw ErrorInvalidSimulationWorkloadDecompositionType(error_message);
-    }
-    return std::make_tuple(valid_node_value,ret_value);
-}
-
-//============================= OPERATORS ====================================
-
-//============================= STATIC    ====================================
-
-std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues_{
-    {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
-    {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
-};
-
-std::string SimulationDecompositionParameters::DefaultWorkLoadDecomposition_()
-{
-    return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at("spatial-data-domain-decomposition"); 
-}
-
-bool SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory_()
-{
-    return true;
-}
-
-std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType_()
-{
-    return std::string("rectangular");
-}
-
-std::string SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition_()
-{
-    return std::string("1 1 1");
-}
-
-std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain_()
-{
-    return std::string("1");
-}
-
-std::string SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag()
-{
-    std::string message;
-
-    boost::format s1_frmt("%1%\n");
-    boost::format s2_frmt("    %1%\n");
-    boost::format s3_frmt("    %1%\n\n");
-
-    const char* header = R"""(# ----------------------)""";
-
-    // Add header to message.
-    s1_frmt % header;
-    message = s1_frmt.str();
-
-    // Add warning.
-    const char* warning1 = R"""(Warning! The workload decomposition tag is missing from the input file)""";
-    s1_frmt % warning1;
-    message += s1_frmt.str();
-
-    const char* warning2 = R"""(but the tag is mandatory to run the program.)""";
-    s1_frmt % warning2;
-    message += s1_frmt.str();
-
-    // Add footer to message.
-    const char* footer = R"""(# ----------------------)""";
-    s1_frmt % footer;
-    message += s1_frmt.str();
-    return message;
-}
-
-std::string SimulationDecompositionParameters::ErrorInvalidWorkloadDecompositionNodeValue(const std::string invalid_value)
-{
-    std::string message;
-
-    boost::format s1_frmt("%1%\n");
-    boost::format s2_frmt("    %1%\n");
-    boost::format s3_frmt("    %1%\n\n");
-
-    const char* header = R"""(# ----------------------)""";
-
-    // Add header to message.
-    s1_frmt % header;
-    message = s1_frmt.str();
-
-    // Add warning.
-    const char* warning1 = R"""(Warning! Invalid parameter for simulation workload decomposition type.)""";
-    s1_frmt % warning1;
-    message += s1_frmt.str();
-
-    const char* warning2 = R"""(The decomposition workload type:)""";
-    s1_frmt % warning2;
-    message += s1_frmt.str();
-
-
-    s3_frmt % invalid_value.c_str();
-    message += s3_frmt.str();
-
-    const char* warning3 = R"""(is an invalid value. The following values are valid choices:)""";
-    s1_frmt % warning3;
-    message += s1_frmt.str();
-
-    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues_ )
-    {
-        s2_frmt % value.c_str();
-        message += s2_frmt.str();
-    }
-    s2_frmt % "";
-    message += s2_frmt.str();
-
-    // Add footer to message.
-    const char* footer = R"""(# ----------------------)""";
-    s1_frmt % footer;
-    message += s1_frmt.str();
-
-
-
-
-
-    // boost::format frmter_not_found("# Warning! Invalid parameter for simulation workload decompositiion type.\n");
-    // std::map<std::string,std::string> allowed_values = SimulationDecompositionParameters::validWorkLoadDecompositionValues_;
-    // std::string message;
-    // message += "The workload decomposition value is incorrect in the input file.\n";
-    // message += "The allowed values are the following:\n";
-    // for (auto const& [key, val] : allowed_values )
-    // {
-    //     message += "    ";
-    //     message += val;
-    //     message += "\n";
-    // }
-    return message;
-}
 
 
 
