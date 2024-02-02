@@ -15,7 +15,6 @@
 #include "check_string_for_separator_char.h"
 #include "create_path_key_propertytree.hpp"
 #include "ErrorKeyPathSeparator.h"
-#include "SimulationDecompositionParameters.h"
 
 namespace ANANSI {
 
