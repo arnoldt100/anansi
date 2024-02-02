@@ -29,7 +29,7 @@ std::string parse_processor_topology_lattice_type(const std::string a_string,
         if ( (a_string == flag_default_null_value) && 
              SimulationDecompositionParameters::ProcessorTopologyLatticeTypeKeyIsMandatory()  )
         {
-            std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingMandatoryNodeTag("processor topology lattice type");
+            std::string error_message = SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("processor topology lattice type");
             throw ErrorMissingSimulationWorkloadDecompositionParameters(error_message);
         }
         else if (SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues.contains(a_string))
@@ -38,7 +38,7 @@ std::string parse_processor_topology_lattice_type(const std::string a_string,
         }
         else
         {
-            std::string error_message = SimulationDecompositionParameters::ErrorMessageInvalidProcessorTopologyLatticeTypeValues(a_string);
+            std::string error_message = SimulationDecompositionParameters::MessageInvalidProcessorTopologyLatticeTypeValues(a_string);
             throw ErrorInvalidSimulationDecompositionParameters(error_message);
         }
     }

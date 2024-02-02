@@ -47,23 +47,27 @@ class SimulationDecompositionParameters
 
         // ====================  STATIC        =======================================
 
+        // Error message for missing mandotory node tag.
+        static std::string MessageMissingMandatoryNodeTag(const std::string node_tag);
+
         // -----------------------------------------------------
         // This section is for the workload decomposition type 
         // parameters.
         //
         // -----------------------------------------------------
+        
+        //! Returns the default value for the workload decomposition type.
+        static std::string DefaultWorkLoadDecomposition();
+
         //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
         //!  are the internal flags/values used within the program.
         static std::map<std::string,std::string> validWorkLoadDecompositionValues;
 
-        //! Returns the default value for the workload decomposition type.
-        static std::string DefaultWorkLoadDecomposition();
-
         //! Returns a boolean indicating if the key for workload decompostion is mandatory.
         static bool WorkLoadDecompositionKeyIsMandatory();
 
-
-        static std::string ErrorMessageMissingMandatoryNodeTag(const std::string node_tag);
+        //! Returns the error message for invalid worload decomposition type value.
+        static std::string MessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value);
 
         // -----------------------------------------------------
         // This section is for the processor lattice type 
@@ -80,6 +84,10 @@ class SimulationDecompositionParameters
         //! Returns a boolean indicating if the key for processor lattice type is mandatory.
         static bool ProcessorTopologyLatticeTypeKeyIsMandatory();
 
+        //! Returns the error message for invalid processor topology lattice type values.
+        static std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value);
+        
+
 
         //! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
         static std::string DefaultProcessorTopologySpatialDecomposition();
@@ -87,12 +95,6 @@ class SimulationDecompositionParameters
         //! Returns the default number of compute units per spatial domain.
         static std::string DefaultNumberProcessorComputeUnitsPerDomain();
 
-        //! Returns the error message for invalid workload decomposition value.
-        static std::string ErrorMessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value);
-        //
-        //! Returns the error message for invalid processor topology lattice type values.
-        static std::string ErrorMessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value);
-        
         
         // ====================  ACCESSORS     =======================================
         SimulationDecompositionParameters * clone () const;

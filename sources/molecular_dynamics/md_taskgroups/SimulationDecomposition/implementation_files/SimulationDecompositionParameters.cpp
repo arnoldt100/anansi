@@ -139,7 +139,7 @@ std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnit
     return std::string("1");
 }
 
-std::string SimulationDecompositionParameters::ErrorMessageMissingMandatoryNodeTag(const std::string node_tag)
+std::string SimulationDecompositionParameters::MessageMissingMandatoryNodeTag(const std::string node_tag)
 {
     std::string message;
 
@@ -164,7 +164,7 @@ std::string SimulationDecompositionParameters::ErrorMessageMissingMandatoryNodeT
     return message;
 }
 
-std::string SimulationDecompositionParameters::ErrorMessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)
+std::string SimulationDecompositionParameters::MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)
 {
     std::string message;
 
@@ -198,7 +198,7 @@ std::string SimulationDecompositionParameters::ErrorMessageInvalidProcessorTopol
 }
         
 
-std::string SimulationDecompositionParameters::ErrorMessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value)
+std::string SimulationDecompositionParameters::MessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value)
 {
     std::string message;
 
