@@ -92,6 +92,11 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 
 //============================= STATIC    ====================================
 
+// -----------------------------------------------------
+// This section is for the workload decomposition type 
+// parameters.
+//
+// -----------------------------------------------------
 std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues{
     {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
     {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
@@ -107,10 +112,25 @@ bool SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory()
     return true;
 }
 
+// -----------------------------------------------------
+// This section is for the processor lattice type 
+// parameters.
+//
+// -----------------------------------------------------
+std::map<std::string,std::string> SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues{
+    {"rectangular", "rectangular"}
+};
+
 std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType()
 {
     return std::string("rectangular");
 }
+
+bool SimulationDecompositionParameters::ProcessorTopologyLatticeTypeKeyIsMandatory()
+{
+    return true;
+}
+
 
 std::string SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition()
 {
@@ -122,28 +142,21 @@ std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnit
     return std::string("1");
 }
 
-std::string SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag()
+std::string SimulationDecompositionParameters::ErrorMessageMissingMandatoryNodeTag(const std::string node_tag)
 {
     std::string message;
 
+    boost::format warning_frmt("Warning! The tag for the '%1%' is missing from the input file\nbut the tag is mandatory to run the program.\n");
     boost::format s1_frmt("%1%\n");
-    boost::format s2_frmt("    %1%\n");
-    boost::format s3_frmt("    %1%\n\n");
-
-    const char* header = R"""(# ----------------------)""";
 
     // Add header to message.
+    const char* header = R"""(# ----------------------)""";
     s1_frmt % header;
     message = s1_frmt.str();
 
-    // Add warning.
-    const char* warning1 = R"""(Warning! The workload decomposition tag is missing from the input file)""";
-    s1_frmt % warning1;
-    message += s1_frmt.str();
-
-    const char* warning2 = R"""(but the tag is mandatory to run the program.)""";
-    s1_frmt % warning2;
-    message += s1_frmt.str();
+    // Add warning to message.
+    warning_frmt % node_tag.c_str();
+    message += warning_frmt.str();
 
     // Add footer to message.
     const char* footer = R"""(# ----------------------)""";
@@ -151,6 +164,7 @@ std::string SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecomp
     message += s1_frmt.str();
     return message;
 }
+
 
 std::string SimulationDecompositionParameters::ErrorMessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value)
 {

@@ -47,6 +47,11 @@ class SimulationDecompositionParameters
 
         // ====================  STATIC        =======================================
 
+        // -----------------------------------------------------
+        // This section is for the workload decomposition type 
+        // parameters.
+        //
+        // -----------------------------------------------------
         //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
         //!  are the internal flags/values used within the program.
         static std::map<std::string,std::string> validWorkLoadDecompositionValues;
@@ -57,17 +62,30 @@ class SimulationDecompositionParameters
         //! Returns a boolean indicating if the key for workload decompostion is mandatory.
         static bool WorkLoadDecompositionKeyIsMandatory();
 
+
+        static std::string ErrorMessageMissingMandatoryNodeTag(const std::string node_tag);
+
+        // -----------------------------------------------------
+        // This section is for the processor lattice type 
+        // parameters.
+        //
+        // -----------------------------------------------------
         //! Returns the default value for the lattice type topology of the spatial decomposition.
         static std::string DefaultProcessorTopologyLatticeType();
+
+        //! \brief A std::map where the keys are the valid processor lattice tyoe values, and the corresponding values
+        //!  are the internal flags/values used within the program.
+        static std::map<std::string,std::string> validProcessorTopologyLatticeTypeValues;
+
+        //! Returns a boolean indicating if the key for processor lattice type is mandatory.
+        static bool ProcessorTopologyLatticeTypeKeyIsMandatory();
+
 
         //! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
         static std::string DefaultProcessorTopologySpatialDecomposition();
 
         //! Returns the default number of compute units per spatial domain.
         static std::string DefaultNumberProcessorComputeUnitsPerDomain();
-
-        //! Returns the error message for missing workload decomposition tag.
-        static std::string ErrorMessageMissingWorkloadDecompositionNodeTag();
 
         //! Returns the error message for missing workload decomposition value.
         static std::string ErrorMessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value);

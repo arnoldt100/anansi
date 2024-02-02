@@ -31,7 +31,7 @@ namespace SDPConstructorHelpers
             if ( (a_string == flag_default_null_value) && 
                  SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory()  )
             {
-                std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag();
+                std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingMandatoryNodeTag("workload decomposition type");
                 throw ErrorMissingSimulationWorkloadDecompositionParameters(error_message);
             }
             else if (SimulationDecompositionParameters::validWorkLoadDecompositionValues.contains(a_string))
