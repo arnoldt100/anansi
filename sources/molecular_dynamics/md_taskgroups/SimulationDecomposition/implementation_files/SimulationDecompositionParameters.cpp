@@ -147,12 +147,14 @@ std::string SimulationDecompositionParameters::ErrorMessageMissingMandatoryNodeT
     std::string message;
 
     boost::format warning_frmt("Warning! The tag for the '%1%' is missing from the input file\nbut the tag is mandatory to run the program.\n");
+    boost::format header_frmt("%1%\n%2%\n%3%\n");
     boost::format s1_frmt("%1%\n");
 
     // Add header to message.
     const char* header = R"""(# ----------------------)""";
-    s1_frmt % header;
-    message = s1_frmt.str();
+    const char* header_message = R"""(# Error Message)""";
+    header_frmt % header % header_message % header ;
+    message = header_frmt.str();
 
     // Add warning to message.
     warning_frmt % node_tag.c_str();
@@ -165,45 +167,65 @@ std::string SimulationDecompositionParameters::ErrorMessageMissingMandatoryNodeT
     return message;
 }
 
+std::string SimulationDecompositionParameters::ErrorMessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)
+{
+    std::string message;
+
+    boost::format warning_frmt("Warning! Invalid input parameter '%1%' for lattice topology type.\nValid values are the following:\n");
+    boost::format header_frmt("%1%\n%2%\n%3%\n");
+    boost::format s1_frmt("%1%\n");
+    boost::format s2_frmt("    %1%\n");
+
+    // Add header to message.
+    const char* header = R"""(# ----------------------)""";
+    const char* header_message = R"""(# Error Message)""";
+    header_frmt % header % header_message % header;
+    message += header_frmt.str();
+
+    // Add warning to message.
+    warning_frmt % invalid_value.c_str();
+    message += warning_frmt.str();
+    for (const auto [key,value] : SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues )
+    {
+        s2_frmt % value.c_str();
+        message += s2_frmt.str();
+    }
+    s1_frmt % "";
+    message += s1_frmt.str();
+
+    // Add footer to message.
+    const char* footer = R"""(# ----------------------)""";
+    s1_frmt % footer;
+    message += s1_frmt.str();
+    return message;
+}
+        
 
 std::string SimulationDecompositionParameters::ErrorMessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value)
 {
     std::string message;
 
+    boost::format warning_frmt("Warning! Invalid input parameter '%1%' for workload decomposition type.\nValid values are the following:\n");
+    boost::format header_frmt("%1%\n%2%\n%3%\n");
     boost::format s1_frmt("%1%\n");
     boost::format s2_frmt("    %1%\n");
-    boost::format s3_frmt("    %1%\n\n");
-
-    const char* header = R"""(# ----------------------)""";
 
     // Add header to message.
-    s1_frmt % header;
-    message = s1_frmt.str();
+    const char* header = R"""(# ----------------------)""";
+    const char* header_message = R"""(# Error Message)""";
+    header_frmt % header % header_message % header;
+    message += header_frmt.str();
 
-    // Add warning.
-    const char* warning1 = R"""(Warning! Invalid parameter for simulation workload decomposition type.)""";
-    s1_frmt % warning1;
-    message += s1_frmt.str();
-
-    const char* warning2 = R"""(The decomposition workload type:)""";
-    s1_frmt % warning2;
-    message += s1_frmt.str();
-
-
-    s3_frmt % invalid_value.c_str();
-    message += s3_frmt.str();
-
-    const char* warning3 = R"""(is an invalid value. The following values are valid choices:)""";
-    s1_frmt % warning3;
-    message += s1_frmt.str();
-
-    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues )
+    // Add warning to message.
+    warning_frmt % invalid_value.c_str();
+    message += warning_frmt.str();
+    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues)
     {
         s2_frmt % value.c_str();
         message += s2_frmt.str();
     }
-    s2_frmt % "";
-    message += s2_frmt.str();
+    s1_frmt % "";
+    message += s1_frmt.str();
 
     // Add footer to message.
     const char* footer = R"""(# ----------------------)""";

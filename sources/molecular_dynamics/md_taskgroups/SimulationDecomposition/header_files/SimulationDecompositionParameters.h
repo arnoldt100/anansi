@@ -87,8 +87,12 @@ class SimulationDecompositionParameters
         //! Returns the default number of compute units per spatial domain.
         static std::string DefaultNumberProcessorComputeUnitsPerDomain();
 
-        //! Returns the error message for missing workload decomposition value.
+        //! Returns the error message for invalid workload decomposition value.
         static std::string ErrorMessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value);
+        //
+        //! Returns the error message for invalid processor topology lattice type values.
+        static std::string ErrorMessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value);
+        
         
         // ====================  ACCESSORS     =======================================
         SimulationDecompositionParameters * clone () const;
