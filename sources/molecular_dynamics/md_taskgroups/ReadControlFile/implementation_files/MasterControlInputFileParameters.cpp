@@ -10,6 +10,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MasterControlInputFileParameters.h"
+#include "MasterControlInternalNodeKeys.h"
 #include "GenericTaskInvokerUtilities.hpp"
 #include "CommandFiles.h"
 namespace ANANSI {
@@ -86,8 +87,9 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
     // to indicate to use the default value for that particular parameter.
     const std::string flag_default_null_value = get_default_null_value_CommandFile(my_copy_results);
 
-    // Get the value for the type of workload decomposition - The global key for this is "Simulation_Workload_Decomposition_Type".
-    const std::string wd_type = get_value_CommandFile(my_copy_results,std::string("Simulation_Workload_Decomposition_Type"));
+    // Get the value for the type of workload decomposition - The global key for this is 
+    // "MasterControlInternalNodeKeys::Simulation_Workload_Decomposition_Type".
+    const std::string wd_type = get_value_CommandFile(my_copy_results,std::string(MasterControlInternalNodeKeys::Simulation_Workload_Decomposition_Type));
 
     // Get the value for the lattice type for the processor topology.
     const std::string pt_mpi_lattice_type = get_value_CommandFile(my_copy_results,std::string("Simulation_Processor_Lattice_Topology"));

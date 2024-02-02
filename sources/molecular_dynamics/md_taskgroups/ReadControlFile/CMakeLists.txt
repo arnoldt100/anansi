@@ -70,6 +70,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_header_files
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterProcess.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlInternalNodeKeys.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlInputFileNodeKeys.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MasterControlInputFileParameters.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ControlFileXMLReceiver.h
@@ -95,6 +96,7 @@
     #-----------------------------------------------------
     set (readcontrolfile_implementation_files
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterProcess.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlInternalNodeKeys.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlInputFileNodeKeys.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MasterControlInputFileParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ControlFileXMLReceiver.cpp
