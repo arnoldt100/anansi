@@ -18,7 +18,7 @@
 
 #include <boost/format.hpp>
 
-#include "SDPConstructorHelpers.h"
+#include "WorkloadDecompositionTypeHelpers.h"
 
 namespace ANANSI {
 
@@ -47,27 +47,8 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
                                           const std::string processor_topology_spatial_decomposition,
                                           const std::string number_processor_compute_units_per_domain)
 {
-    // Compute the work load decomposition type and assign to member attribute.
-    // "this->workLoadDecomposition_".
-    std::tuple<bool,std::string> wld;
-
-    try 
-    {
-        wld = this->_computeWorkLoadDecomposition(flag_default_null_value,work_load_decomposition);
-    }
-    catch (const ErrorMissingSimulationWorkloadDecompositionParameters & my_error) 
-    {
-        const std::string error_message{my_error.what()};
-        throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
-    }
-    catch (const ErrorInvalidSimulationWorkloadDecompositionType & my_error) 
-    {
-        const std::string error_message{my_error.what()};
-        throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
-    }
-
-    this->workLoadDecomposition_ = ANANSI::SDPConstructorHelpers::workload_decomposition_type(work_load_decomposition,flag_default_null_value);
-    this->workLoadDecomposition_ = std::get<std::string>(wld);
+    this->workLoadDecomposition_ =
+        ANANSI::SDPConstructorHelpers::workload_decomposition_type(work_load_decomposition,flag_default_null_value);
 
     return;
 }
@@ -101,30 +82,6 @@ SimulationDecompositionParameters::SimulationDecompositionParameters( Simulation
 SimulationDecompositionParameters::~SimulationDecompositionParameters()
 {
     return;
-}
-
-std::tuple<bool,std::string> SimulationDecompositionParameters::_computeWorkLoadDecomposition(const std::string flag_default_null_value,
-                                                                                              const std::string node_value)
-{
-    std::string ret_value;
-    bool valid_node_value = true;
-
-    if ( (node_value == flag_default_null_value) && 
-         SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory()  )
-    {
-        std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingWorkloadDecompositionNodeTag();
-    	throw ErrorMissingSimulationWorkloadDecompositionParameters(error_message);
-    }
-    else if (this->validWorkLoadDecompositionValues.contains(node_value))
-    {
-        ret_value = this->validWorkLoadDecompositionValues.at(node_value);
-    }
-    else
-    {
-    	std::string error_message = SimulationDecompositionParameters::ErrorMessageInvalidWorkloadDecompositionNodeValue(node_value);
-    	throw ErrorInvalidSimulationWorkloadDecompositionType(error_message);
-    }
-    return std::make_tuple(valid_node_value,ret_value);
 }
 
 //============================= OPERATORS ====================================

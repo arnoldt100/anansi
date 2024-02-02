@@ -11,7 +11,6 @@
 //--------------------------------------------------------//
 #include <memory>
 #include <string>
-#include <tuple>
 #include <map>
 
 //--------------------------------------------------------//
@@ -94,7 +93,6 @@ class SimulationDecompositionParameters
         // ====================  ACCESSORS     =======================================
 
         // ====================  MUTATORS      =======================================
-        std::tuple<bool,std::string> _computeWorkLoadDecomposition(const std::string default_null_value,const std::string node_value);
 
         // ====================  OPERATORS     =======================================
 

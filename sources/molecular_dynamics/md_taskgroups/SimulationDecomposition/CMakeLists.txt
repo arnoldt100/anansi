@@ -87,6 +87,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SDPConstructorHelpers.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/WorkloadDecompositionTypeHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorInvalidSimulationWorkloadDecompositionType.h
 	     ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingSimulationWorkloadDecompositionParameters.h)
@@ -103,6 +104,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SDPConstructorHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/WorkloadDecompositionTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorInvalidSimulationWorkloadDecompositionType.cpp 
 	     ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorMissingSimulationWorkloadDecompositionParameters.cpp)
