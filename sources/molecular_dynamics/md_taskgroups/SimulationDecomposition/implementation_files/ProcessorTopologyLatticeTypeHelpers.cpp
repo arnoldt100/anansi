@@ -27,14 +27,14 @@ std::string parse_processor_topology_lattice_type(const std::string a_string,
     try
     {
         if ( (a_string == flag_default_null_value) && 
-             SimulationDecompositionParameters::ProcessorTopologyLatticeTypeKeyIsMandatory()  )
+             SimulationDecompositionParameters::IsProcessorTopologyLatticeTypeMandatory()  )
         {
             std::string error_message = SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("processor topology lattice type");
             throw ErrorMissingSimulationDecompositionParameters(error_message);
         }
-        else if (SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues.contains(a_string))
+        else if (SimulationDecompositionParameters::IsValidProcessorTopologyLatticeTypeValues(a_string))
         {
-            my_processor_topology_lattice_type = SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues.at(a_string);
+            my_processor_topology_lattice_type = SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(a_string);
         }
         else
         {

@@ -27,20 +27,19 @@ std::string workload_decomposition_type (const std::string a_string,
     std::string my_workload_decomposition_type = "";
     try 
     {
-
         if ( (a_string == flag_default_null_value) && 
-             SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory()  )
+             SimulationDecompositionParameters::IsWorkLoadDecompositionTypeMandatory()  )
         {
             std::string error_message = SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("workload decomposition type");
             throw ErrorMissingSimulationDecompositionParameters(error_message);
         }
-        else if (SimulationDecompositionParameters::validWorkLoadDecompositionValues.contains(a_string))
+        else if (SimulationDecompositionParameters::IsValidWorkLoadDecompositionTypeValues(a_string))
         {
-            my_workload_decomposition_type = SimulationDecompositionParameters::validWorkLoadDecompositionValues.at(a_string);
+            my_workload_decomposition_type = SimulationDecompositionParameters::WorkLoadDecompositionTypeValues(a_string);
         }
         else
         {
-            std::string error_message = SimulationDecompositionParameters::MessageInvalidWorkloadDecompositionNodeValue(a_string);
+            std::string error_message = SimulationDecompositionParameters::MessageInvalidWorkloadDecompositionTypeValues(a_string);
             throw ErrorInvalidSimulationDecompositionParameters(error_message);
         }
     }

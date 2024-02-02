@@ -32,7 +32,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     processorTopologySpatialDecomposition_(""),
     numberProcessorComputeUnitsPerDomain_("")
 {
-    this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecomposition();
+    this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecompositionType();
     this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType();
     this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition();
     this->numberProcessorComputeUnitsPerDomain_ = SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain();
@@ -87,46 +87,132 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 
 //============================= OPERATORS ====================================
 
-//============================= STATIC    ====================================
+//============================= STATIC    ===================================
 
 // -----------------------------------------------------
 // This section is for the workload decomposition type 
 // parameters.
 //
 // -----------------------------------------------------
-std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues{
-    {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
-    {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
-};
 
-std::string SimulationDecompositionParameters::DefaultWorkLoadDecomposition()
+std::string SimulationDecompositionParameters::DefaultWorkLoadDecompositionType()
 {
-    return SimulationDecompositionParameters::validWorkLoadDecompositionValues.at("spatial-data-domain-decomposition"); 
+    return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at("spatial-data-domain-decomposition"); 
 }
 
-bool SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory()
+bool SimulationDecompositionParameters::IsValidWorkLoadDecompositionTypeValues(const std::string node_value)
+{
+    return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.contains(node_value);
+}
+
+std::string SimulationDecompositionParameters::WorkLoadDecompositionTypeValues( const std::string node_value)
+{
+    return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at(node_value); 
+}
+
+bool SimulationDecompositionParameters::IsWorkLoadDecompositionTypeMandatory()
 {
     return true;
 }
 
+std::string SimulationDecompositionParameters::MessageInvalidWorkloadDecompositionTypeValues(const std::string invalid_value)
+{
+    std::string message;
+
+    boost::format warning_frmt("Warning! Invalid input parameter '%1%' for workload decomposition type.\nValid values are the following:\n");
+    boost::format header_frmt("%1%\n%2%\n%3%\n");
+    boost::format s1_frmt("%1%\n");
+    boost::format s2_frmt("    %1%\n");
+
+    // Add header to message.
+    const char* header = R"""(# ----------------------)""";
+    const char* header_message = R"""(# Error Message)""";
+    header_frmt % header % header_message % header;
+    message += header_frmt.str();
+
+    // Add warning to message.
+    warning_frmt % invalid_value.c_str();
+    message += warning_frmt.str();
+    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues_)
+    {
+        s2_frmt % value.c_str();
+        message += s2_frmt.str();
+    }
+    s1_frmt % "";
+    message += s1_frmt.str();
+
+    // Add footer to message.
+    const char* footer = R"""(# ----------------------)""";
+    s1_frmt % footer;
+    message += s1_frmt.str();
+    return message;
+}
+
+
 // -----------------------------------------------------
 // This section is for the processor lattice type 
-// parameters.
+// parameters - ProcessorTopologyLatticeType
 //
 // -----------------------------------------------------
-std::map<std::string,std::string> SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues{
-    {"rectangular", "rectangular"}
-};
-
 std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType()
 {
     return std::string("rectangular");
 }
 
-bool SimulationDecompositionParameters::ProcessorTopologyLatticeTypeKeyIsMandatory()
+bool SimulationDecompositionParameters::IsValidProcessorTopologyLatticeTypeValues(const std::string node_value)
+{
+    return SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_.contains(node_value);
+}
+
+std::string SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(const std::string node_value)
+{
+    return SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_.at(node_value);
+}
+
+bool SimulationDecompositionParameters::IsProcessorTopologyLatticeTypeMandatory()
 {
     return true;
 }
+
+std::string SimulationDecompositionParameters::MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)
+{
+    std::string message;
+
+    boost::format warning_frmt("Warning! Invalid input parameter '%1%' for lattice topology type.\nValid values are the following:\n");
+    boost::format header_frmt("%1%\n%2%\n%3%\n");
+    boost::format s1_frmt("%1%\n");
+    boost::format s2_frmt("    %1%\n");
+
+    // Add header to message.
+    const char* header = R"""(# ----------------------)""";
+    const char* header_message = R"""(# Error Message)""";
+    header_frmt % header % header_message % header;
+    message += header_frmt.str();
+
+    // Add warning to message.
+    warning_frmt % invalid_value.c_str();
+    message += warning_frmt.str();
+    for (const auto [key,value] : SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_ )
+    {
+        s2_frmt % value.c_str();
+        message += s2_frmt.str();
+    }
+    s1_frmt % "";
+    message += s1_frmt.str();
+
+    // Add footer to message.
+    const char* footer = R"""(# ----------------------)""";
+    s1_frmt % footer;
+    message += s1_frmt.str();
+    return message;
+}
+
+
+// -----------------------------------------------------
+// This section is for the processor topology spatial decomposition
+// parameters.
+//
+// -----------------------------------------------------
 
 
 std::string SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition()
@@ -134,10 +220,17 @@ std::string SimulationDecompositionParameters::DefaultProcessorTopologySpatialDe
     return std::string("1 1 1");
 }
 
+// -----------------------------------------------------
+// This section is for the processor topology compute units per domain
+// parameters.
+//
+// -----------------------------------------------------
 std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain()
 {
     return std::string("1");
 }
+
+
 
 std::string SimulationDecompositionParameters::MessageMissingMandatoryNodeTag(const std::string node_tag)
 {
@@ -164,72 +257,7 @@ std::string SimulationDecompositionParameters::MessageMissingMandatoryNodeTag(co
     return message;
 }
 
-std::string SimulationDecompositionParameters::MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)
-{
-    std::string message;
 
-    boost::format warning_frmt("Warning! Invalid input parameter '%1%' for lattice topology type.\nValid values are the following:\n");
-    boost::format header_frmt("%1%\n%2%\n%3%\n");
-    boost::format s1_frmt("%1%\n");
-    boost::format s2_frmt("    %1%\n");
-
-    // Add header to message.
-    const char* header = R"""(# ----------------------)""";
-    const char* header_message = R"""(# Error Message)""";
-    header_frmt % header % header_message % header;
-    message += header_frmt.str();
-
-    // Add warning to message.
-    warning_frmt % invalid_value.c_str();
-    message += warning_frmt.str();
-    for (const auto [key,value] : SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues )
-    {
-        s2_frmt % value.c_str();
-        message += s2_frmt.str();
-    }
-    s1_frmt % "";
-    message += s1_frmt.str();
-
-    // Add footer to message.
-    const char* footer = R"""(# ----------------------)""";
-    s1_frmt % footer;
-    message += s1_frmt.str();
-    return message;
-}
-        
-
-std::string SimulationDecompositionParameters::MessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value)
-{
-    std::string message;
-
-    boost::format warning_frmt("Warning! Invalid input parameter '%1%' for workload decomposition type.\nValid values are the following:\n");
-    boost::format header_frmt("%1%\n%2%\n%3%\n");
-    boost::format s1_frmt("%1%\n");
-    boost::format s2_frmt("    %1%\n");
-
-    // Add header to message.
-    const char* header = R"""(# ----------------------)""";
-    const char* header_message = R"""(# Error Message)""";
-    header_frmt % header % header_message % header;
-    message += header_frmt.str();
-
-    // Add warning to message.
-    warning_frmt % invalid_value.c_str();
-    message += warning_frmt.str();
-    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues)
-    {
-        s2_frmt % value.c_str();
-        message += s2_frmt.str();
-    }
-    s1_frmt % "";
-    message += s1_frmt.str();
-
-    // Add footer to message.
-    const char* footer = R"""(# ----------------------)""";
-    s1_frmt % footer;
-    message += s1_frmt.str();
-    return message;
-}
 
 //============================= ACCESSORS ====================================
 
@@ -285,6 +313,18 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+
+std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues_{
+    {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
+    {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
+};
+
+std::map<std::string,std::string> SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_{
+    {"rectangular", "rectangular"}
+};
+
+
+//============================= STATIC    ====================================
 
 //============================= MUTATORS =====================================
 

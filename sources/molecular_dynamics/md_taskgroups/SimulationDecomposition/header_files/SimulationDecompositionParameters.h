@@ -52,37 +52,42 @@ class SimulationDecompositionParameters
 
         // -----------------------------------------------------
         // This section is for the workload decomposition type 
-        // parameters.
+        // parameters - WorkLoadDecompositionType
         //
         // -----------------------------------------------------
         
         //! Returns the default value for the workload decomposition type.
-        static std::string DefaultWorkLoadDecomposition();
+        static std::string DefaultWorkLoadDecompositionType();
 
-        //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
-        //!  are the internal flags/values used within the program.
-        static std::map<std::string,std::string> validWorkLoadDecompositionValues;
+        //! \brief Returns a boolean that indicates if the node value is valid.
+        static bool IsValidWorkLoadDecompositionTypeValues(const std::string node_value);
+
+        //! \brief Returns a internal workload decomposition value for the given node_value.
+        static std::string WorkLoadDecompositionTypeValues(const std::string node_value);
 
         //! Returns a boolean indicating if the key for workload decompostion is mandatory.
-        static bool WorkLoadDecompositionKeyIsMandatory();
+        static bool IsWorkLoadDecompositionTypeMandatory();
 
         //! Returns the error message for invalid worload decomposition type value.
-        static std::string MessageInvalidWorkloadDecompositionNodeValue(const std::string invalid_value);
+        static std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string invalid_value);
 
         // -----------------------------------------------------
         // This section is for the processor lattice type 
-        // parameters.
+        // parameters - ProcessorTopologyLatticeType
         //
         // -----------------------------------------------------
+        
         //! Returns the default value for the lattice type topology of the spatial decomposition.
         static std::string DefaultProcessorTopologyLatticeType();
 
-        //! \brief A std::map where the keys are the valid processor lattice tyoe values, and the corresponding values
-        //!  are the internal flags/values used within the program.
-        static std::map<std::string,std::string> validProcessorTopologyLatticeTypeValues;
+        //! \brief Returns a boolean that indicates if the node value is valid.
+        static bool IsValidProcessorTopologyLatticeTypeValues(const std::string node_value);
+
+        //! \brief Returns a internal processor lattice type value for the given node_value.
+        static std::string ProcessorTopologyLatticeTypeValues(const std::string node_value);
 
         //! Returns a boolean indicating if the key for processor lattice type is mandatory.
-        static bool ProcessorTopologyLatticeTypeKeyIsMandatory();
+        static bool IsProcessorTopologyLatticeTypeMandatory();
 
         //! Returns the error message for invalid processor topology lattice type values.
         static std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value);
@@ -119,6 +124,16 @@ class SimulationDecompositionParameters
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
+
+        //============================= STATIC    ====================================
+
+        //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
+        //!  are the internal flags/values used within the program.
+        static std::map<std::string,std::string> validWorkLoadDecompositionValues_;
+        
+        //! \brief A std::map where the keys are the valid processor lattice tyoe values, and the corresponding values
+        //!  are the internal flags/values used within the program.
+        static std::map<std::string,std::string> validProcessorTopologyLatticeTypeValues_;
 
         // ====================  DATA MEMBERS  =======================================
         //! \brief Stores the type of workload decomposition.
