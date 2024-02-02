@@ -19,6 +19,7 @@
 #include <boost/format.hpp>
 
 #include "WorkloadDecompositionTypeHelpers.h"
+#include "ProcessorTopologyLatticeTypeHelpers.h"
 
 namespace ANANSI {
 
@@ -43,12 +44,15 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
 
 SimulationDecompositionParameters::SimulationDecompositionParameters(const std::string flag_default_null_value,
                                           const std::string work_load_decomposition,
-                                          const std::string processor_topology_lattice_type,
+                                          const std::string processor_topology_lattice,
                                           const std::string processor_topology_spatial_decomposition,
                                           const std::string number_processor_compute_units_per_domain)
 {
     this->workLoadDecomposition_ =
         ANANSI::SDPConstructorHelpers::workload_decomposition_type(work_load_decomposition,flag_default_null_value);
+
+    this->processorTopologyLatticeType_ =
+        ANANSI::SDPConstructorHelpers::parse_processor_topology_lattice_type(processor_topology_lattice,flag_default_null_value);
 
     return;
 }
