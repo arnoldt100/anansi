@@ -12,7 +12,6 @@
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
 #include "GenericErrorClass.hpp"
-#include "ErrorInvalidSimulationDecompositionParameters.h"
 #include "ErrorInvalidSimulationWorkloadDecompositionType.h"
 #include "ErrorMissingSimulationWorkloadDecompositionParameters.h"
 

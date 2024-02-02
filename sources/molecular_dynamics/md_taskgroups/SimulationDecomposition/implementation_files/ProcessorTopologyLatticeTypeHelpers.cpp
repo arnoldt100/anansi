@@ -10,6 +10,10 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "SimulationDecompositionParameters.h"
+#include "GenericErrorClass.hpp"
+#include "ErrorInvalidSimulationDecompositionParameters.h"
+#include "ErrorMissingSimulationWorkloadDecompositionParameters.h"
 
 namespace ANANSI
 {
@@ -26,24 +30,24 @@ std::string parse_processor_topology_lattice_type(const std::string a_string,
              SimulationDecompositionParameters::ProcessorTopologyLatticeTypeKeyIsMandatory()  )
         {
             std::string error_message = SimulationDecompositionParameters::ErrorMessageMissingMandatoryNodeTag("processor topology lattice type");
-            throw ErrorMissingProcessorTopologyLatticeTypeParameters(error_message);
+            throw ErrorMissingSimulationWorkloadDecompositionParameters(error_message);
         }
         else if (SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues.contains(a_string))
         {
-            my_workload_decomposition_type = SimulationDecompositionParameters::validWorkLoadDecompositionValues.at(a_string);
+            my_processor_topology_lattice_type = SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues.at(a_string);
         }
         else
         {
             std::string error_message = SimulationDecompositionParameters::ErrorMessageInvalidProcessorTopologyLatticeTypeValues(a_string);
-            throw ErrorInvalidProcessorTopologyLatticeType(error_message);
+            throw ErrorInvalidSimulationDecompositionParameters(error_message);
         }
     }
-    catch (const ErrorMissingProcessorTopologyLatticeTypeParameters & my_error)
+    catch (const ErrorMissingSimulationWorkloadDecompositionParameters & my_error) 
     {
             const std::string error_message{my_error.what()};
             throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
     }
-    catch (const ErrorInvalidProcessorTopologyLatticeType & my_error)
+    catch (const ErrorInvalidSimulationDecompositionParameters& my_error) 
     {
             const std::string error_message{my_error.what()};
             throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 

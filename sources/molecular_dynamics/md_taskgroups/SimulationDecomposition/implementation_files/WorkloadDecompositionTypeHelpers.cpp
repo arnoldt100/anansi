@@ -14,7 +14,6 @@
 #include "SimulationDecompositionParameters.h"
 #include "GenericErrorClass.hpp"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
-#include "ErrorInvalidSimulationWorkloadDecompositionType.h"
 #include "ErrorMissingSimulationWorkloadDecompositionParameters.h"
 
 namespace ANANSI
@@ -42,7 +41,7 @@ std::string workload_decomposition_type (const std::string a_string,
         else
         {
             std::string error_message = SimulationDecompositionParameters::ErrorMessageInvalidWorkloadDecompositionNodeValue(a_string);
-            throw ErrorInvalidSimulationWorkloadDecompositionType(error_message);
+            throw ErrorInvalidSimulationDecompositionParameters(error_message);
         }
     }
     catch (const ErrorMissingSimulationWorkloadDecompositionParameters & my_error) 
@@ -50,7 +49,7 @@ std::string workload_decomposition_type (const std::string a_string,
         const std::string error_message{my_error.what()};
         throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
     }
-    catch (const ErrorInvalidSimulationWorkloadDecompositionType & my_error) 
+    catch (const ErrorInvalidSimulationDecompositionParameters& my_error) 
     {
         const std::string error_message{my_error.what()};
         throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 

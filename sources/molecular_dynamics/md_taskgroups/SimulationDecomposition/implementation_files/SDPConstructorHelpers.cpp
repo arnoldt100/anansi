@@ -11,9 +11,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SDPConstructorHelpers.h"
-#include "ErrorInvalidSimulationDecompositionParameters.h"
-#include "ErrorInvalidSimulationWorkloadDecompositionType.h"
-#include "ErrorMissingSimulationWorkloadDecompositionParameters.h"
 
 namespace ANANSI
 {
