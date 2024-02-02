@@ -32,7 +32,7 @@ std::string workload_decomposition_type (const std::string a_string,
              SimulationDecompositionParameters::WorkLoadDecompositionKeyIsMandatory()  )
         {
             std::string error_message = SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("workload decomposition type");
-            throw ErrorMissingSimulationWorkloadDecompositionParameters(error_message);
+            throw ErrorMissingSimulationDecompositionParameters(error_message);
         }
         else if (SimulationDecompositionParameters::validWorkLoadDecompositionValues.contains(a_string))
         {

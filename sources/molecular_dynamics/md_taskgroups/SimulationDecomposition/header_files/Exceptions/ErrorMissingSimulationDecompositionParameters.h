@@ -1,6 +1,6 @@
-#ifndef ANANSI_ErrorMissingSimulationWorkloadDecompositionParameters_INC
-#define ANANSI_ErrorMissingSimulationWorkloadDecompositionParameters_INC
-//! \file ErrorMissingSimulationWorkloadDecompositionParameters.h
+#ifndef ANANSI_ErrorMissingSimulationDecompositionParameters_INC
+#define ANANSI_ErrorMissingSimulationDecompositionParameters_INC
+//! \file ErrorMissingSimulationDecompositionParameters.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -20,34 +20,34 @@
 namespace ANANSI
 {
 
-class ErrorMissingSimulationWorkloadDecompositionParameters : MOUSEION::BaseException
+class ErrorMissingSimulationDecompositionParameters : MOUSEION::BaseException
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        ErrorMissingSimulationWorkloadDecompositionParameters ();   // constructor
+        ErrorMissingSimulationDecompositionParameters ();   // constructor
 
-        ErrorMissingSimulationWorkloadDecompositionParameters (const std::string message);   // constructor
+        ErrorMissingSimulationDecompositionParameters (const std::string message);   // constructor
 
-        ErrorMissingSimulationWorkloadDecompositionParameters (const ErrorMissingSimulationWorkloadDecompositionParameters & other);   // copy constructor
+        ErrorMissingSimulationDecompositionParameters (const ErrorMissingSimulationDecompositionParameters & other);   // copy constructor
 
-        ErrorMissingSimulationWorkloadDecompositionParameters (ErrorMissingSimulationWorkloadDecompositionParameters && other);   // copy-move constructor
+        ErrorMissingSimulationDecompositionParameters (ErrorMissingSimulationDecompositionParameters && other);   // copy-move constructor
 
-        ~ErrorMissingSimulationWorkloadDecompositionParameters ();  // destructor
+        ~ErrorMissingSimulationDecompositionParameters ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         const char* what () const noexcept;
 
-        ErrorMissingSimulationWorkloadDecompositionParameters * clone () const;
+        ErrorMissingSimulationDecompositionParameters * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        ErrorMissingSimulationWorkloadDecompositionParameters& operator= ( const ErrorMissingSimulationWorkloadDecompositionParameters &other ); // assignment operator
+        ErrorMissingSimulationDecompositionParameters& operator= ( const ErrorMissingSimulationDecompositionParameters &other ); // assignment operator
 
-        ErrorMissingSimulationWorkloadDecompositionParameters& operator= ( ErrorMissingSimulationWorkloadDecompositionParameters && other ); // assignment-move operator
+        ErrorMissingSimulationDecompositionParameters& operator= ( ErrorMissingSimulationDecompositionParameters && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -60,9 +60,9 @@ class ErrorMissingSimulationWorkloadDecompositionParameters : MOUSEION::BaseExce
         // ====================  DATA MEMBERS  =======================================
         std::string errorMessage_;
 
-}; // -----  end of class ErrorMissingSimulationWorkloadDecompositionParameters  -----
+}; // -----  end of class ErrorMissingSimulationDecompositionParameters  -----
 
 
 }; // namespace ANANSI
 
-#endif // ANANSI_ErrorMissingSimulationWorkloadDecompositionParameters_INC
+#endif // ANANSI_ErrorMissingSimulationDecompositionParameters_INC

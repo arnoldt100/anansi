@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ErrorMissingSimulationWorkloadDecompositionParameters.h"
+#include "ErrorMissingSimulationDecompositionParameters.h"
 
 namespace ANANSI {
 
@@ -20,21 +20,21 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters() :
+ErrorMissingSimulationDecompositionParameters::ErrorMissingSimulationDecompositionParameters() :
     MOUSEION::BaseException{},
     errorMessage_{}
 {
     return;
 }
 
-ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters(const std::string message) :
+ErrorMissingSimulationDecompositionParameters::ErrorMissingSimulationDecompositionParameters(const std::string message) :
     MOUSEION::BaseException{},
     errorMessage_{message}
 {
     return;
 }
 
-ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters( ErrorMissingSimulationWorkloadDecompositionParameters const & other) :
+ErrorMissingSimulationDecompositionParameters::ErrorMissingSimulationDecompositionParameters( ErrorMissingSimulationDecompositionParameters const & other) :
     MOUSEION::BaseException{other},
     errorMessage_{other.errorMessage_}
 {
@@ -45,7 +45,7 @@ ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWor
     return;
 }
 
-ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters( ErrorMissingSimulationWorkloadDecompositionParameters && other) : 
+ErrorMissingSimulationDecompositionParameters::ErrorMissingSimulationDecompositionParameters( ErrorMissingSimulationDecompositionParameters && other) : 
     MOUSEION::BaseException{std::move(other)},
     errorMessage_{std::move(other.errorMessage_)}
 {
@@ -53,30 +53,30 @@ ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWor
     {
     }
     return;
-}		// -----  end of method ErrorMissingSimulationWorkloadDecompositionParameters::ErrorMissingSimulationWorkloadDecompositionParameters  -----
+}		// -----  end of method ErrorMissingSimulationDecompositionParameters::ErrorMissingSimulationDecompositionParameters  -----
 
 
-ErrorMissingSimulationWorkloadDecompositionParameters::~ErrorMissingSimulationWorkloadDecompositionParameters()
+ErrorMissingSimulationDecompositionParameters::~ErrorMissingSimulationDecompositionParameters()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-const char* ErrorMissingSimulationWorkloadDecompositionParameters::what () const noexcept
+const char* ErrorMissingSimulationDecompositionParameters::what () const noexcept
 {
     return this->errorMessage_.c_str();
 }
 
-ErrorMissingSimulationWorkloadDecompositionParameters * ErrorMissingSimulationWorkloadDecompositionParameters::clone() const
+ErrorMissingSimulationDecompositionParameters * ErrorMissingSimulationDecompositionParameters::clone() const
 {
-    return new ErrorMissingSimulationWorkloadDecompositionParameters(*this);
+    return new ErrorMissingSimulationDecompositionParameters(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-ErrorMissingSimulationWorkloadDecompositionParameters& ErrorMissingSimulationWorkloadDecompositionParameters::operator= ( const ErrorMissingSimulationWorkloadDecompositionParameters &other ) 
+ErrorMissingSimulationDecompositionParameters& ErrorMissingSimulationDecompositionParameters::operator= ( const ErrorMissingSimulationDecompositionParameters &other ) 
 {
     if (this != &other)
     {
@@ -86,7 +86,7 @@ ErrorMissingSimulationWorkloadDecompositionParameters& ErrorMissingSimulationWor
     return *this;
 } // assignment operator
 
-ErrorMissingSimulationWorkloadDecompositionParameters& ErrorMissingSimulationWorkloadDecompositionParameters::operator= ( ErrorMissingSimulationWorkloadDecompositionParameters && other )
+ErrorMissingSimulationDecompositionParameters& ErrorMissingSimulationDecompositionParameters::operator= ( ErrorMissingSimulationDecompositionParameters && other )
 {
     if (this != &other)
     {

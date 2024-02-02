@@ -90,7 +90,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/WorkloadDecompositionTypeHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ProcessorTopologyLatticeTypeHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingSimulationWorkloadDecompositionParameters.h)
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -107,7 +107,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ProcessorTopologyLatticeTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/WorkloadDecompositionTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorMissingSimulationWorkloadDecompositionParameters.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorMissingSimulationDecompositionParameters.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
