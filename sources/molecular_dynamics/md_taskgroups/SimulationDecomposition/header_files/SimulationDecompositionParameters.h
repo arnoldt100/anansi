@@ -103,6 +103,15 @@ class SimulationDecompositionParameters
         //! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
         std::array<int,3> DefaultProcessorTopologyLatticeSpatiolDimensions();
 
+        //! \brief Returns a boolean that indicates if the node value is valid.
+        static bool IsValidProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value);
+
+
+        //! Returns a boolean indicating if the key for processor lattice type is mandatory.
+        static bool IsProccesorTopologyLatticeSpatialDimensionsMandatory();
+
+        // -- more to do --
+
         //! Returns the default number of compute units per spatial domain.
         static std::string DefaultNumberProcessorComputeUnitsPerDomain();
 

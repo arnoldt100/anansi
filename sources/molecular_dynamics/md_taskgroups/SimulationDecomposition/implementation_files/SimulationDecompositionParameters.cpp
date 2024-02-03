@@ -224,6 +224,21 @@ std::array<int,3> SimulationDecompositionParameters::DefaultProcessorTopologyLat
     return my_default_value;
 }
 
+bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value)
+{
+    // We need to form an array of 3 positive integers. If the string can be parsed to form an 
+    // array of 3 positive integers, then we return true, otherwise return false.
+    bool valid_value = true;
+
+    return valid_value;
+}
+
+//! Returns a boolean indicating if the key for processor lattice type is mandatory.
+bool SimulationDecompositionParameters::IsProccesorTopologyLatticeSpatialDimensionsMandatory()
+{
+    return true;
+}
+
 
 // -----------------------------------------------------
 // This section is for the processor topology compute units per domain
@@ -234,6 +249,8 @@ std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnit
 {
     return std::string("1");
 }
+
+
 
 
 
