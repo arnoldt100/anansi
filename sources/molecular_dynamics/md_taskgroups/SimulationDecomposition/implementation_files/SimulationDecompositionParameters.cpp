@@ -17,6 +17,7 @@
 
 #include "WorkloadDecompositionTypeHelpers.h"
 #include "ProcessorTopologyLatticeTypeHelpers.h"
+#include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
 
 namespace ANANSI {
 
@@ -29,12 +30,12 @@ namespace ANANSI {
 SimulationDecompositionParameters::SimulationDecompositionParameters() :
     workLoadDecomposition_{""},
     processorTopologyLatticeType_{""},
-    processorTopologySpatialDecomposition_(""),
+    processorTopologySpatialDecomposition_{1,1,1},
     numberProcessorComputeUnitsPerDomain_("")
 {
     this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecompositionType();
     this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType();
-    this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition();
+    this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatiolDimensions();
     this->numberProcessorComputeUnitsPerDomain_ = SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain();
     return;
 }
@@ -50,6 +51,9 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
 
     this->processorTopologyLatticeType_ =
         ANANSI::SDPConstructorHelpers::parse_processor_topology_lattice_type(processor_topology_lattice,flag_default_null_value);
+
+    this->processorTopologySpatialDecomposition_ = 
+        ANANSI::SDPConstructorHelpers::parse_proccesor_topology_lattice_spatial_dimensions(processor_topology_spatial_decomposition,flag_default_null_value);
 
     return;
 }
@@ -214,11 +218,12 @@ std::string SimulationDecompositionParameters::MessageInvalidProcessorTopologyLa
 //
 // -----------------------------------------------------
 
-
-std::string SimulationDecompositionParameters::DefaultProcessorTopologySpatialDecomposition()
+std::array<int,3> SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatiolDimensions()
 {
-    return std::string("1 1 1");
+    std::array<int,3> my_default_value{1,1,1};
+    return my_default_value;
 }
+
 
 // -----------------------------------------------------
 // This section is for the processor topology compute units per domain

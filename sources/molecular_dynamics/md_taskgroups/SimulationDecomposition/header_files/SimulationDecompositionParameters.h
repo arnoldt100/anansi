@@ -12,6 +12,7 @@
 #include <memory>
 #include <string>
 #include <map>
+#include <array>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -94,8 +95,13 @@ class SimulationDecompositionParameters
         
 
 
+        // -----------------------------------------------------
+        // This section is for the processor lattice type 
+        // parameters - ProccesorTopologyLatticeSpatialDimensions
+        //
+        // -----------------------------------------------------
         //! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
-        static std::string DefaultProcessorTopologySpatialDecomposition();
+        std::array<int,3> DefaultProcessorTopologyLatticeSpatiolDimensions();
 
         //! Returns the default number of compute units per spatial domain.
         static std::string DefaultNumberProcessorComputeUnitsPerDomain();
@@ -149,13 +155,13 @@ class SimulationDecompositionParameters
 
         //! \brief Stores the  spatial workload decomposition dimension.
         //!
-        //! \detailed The string has the form af "a b c" where
+        //! \details The array has the for [a,b,c] where 
         //! "a" is the dimension of the workload decomposition for the 0'th coordinate.
         //! "b" is the dimension of the workload decomposition for the first coordinate.
         //! "c" is the dimension of the workload decomposition for the second coordinate.
         //! For rectangular coordinates a, b and c are respectively the x,
         //! y and z dimensions spatial decomposition.
-        std::string processorTopologySpatialDecomposition_;
+        std::array<int,3> processorTopologySpatialDecomposition_;
 
         //! \brief Stores the number of compute units per spatial decomposition.
         std::string numberProcessorComputeUnitsPerDomain_;
