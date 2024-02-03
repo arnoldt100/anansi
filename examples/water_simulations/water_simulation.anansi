@@ -39,7 +39,7 @@
 <time-step>2.0 femtosecond </time-step>
 
 <!-- Specification for the number of time step. -->
-<number-time-steps> 100000 </number-time-steps>
+<total-number-time-steps> 100000 </total-number-time-steps>
 
 <!-- Specification for the integration method -->
 <integration-methodology>

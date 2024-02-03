@@ -121,8 +121,8 @@ class MasterControlInputFileNodeKeys
         void addNodeKey_(const std::string & global_key,const std::vector<std::string> & key_values);
 
         // ====================  DATA MEMBERS  =======================================
-        std::map<std::string,std::string> nodeKeys2_;
-        std::vector<std::string> nodeKeys_;
+        std::map<std::string,std::string> internalToExternalKeyMapping_;
+        std::vector<std::string> externalNodeKeys_;
         std::vector<std::string> commentNodeKeys_;
 
 }; // -----  end of class MasterControlInputFileNodeKeys  -----

@@ -89,16 +89,20 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
 
     // Get the value for the type of workload decomposition - The global key for this is 
     // "MasterControlInternalNodeKeys::Simulation_Workload_Decomposition_Type".
-    const std::string wd_type = get_value_CommandFile(my_copy_results,std::string(MasterControlInternalNodeKeys::Simulation_Workload_Decomposition_Type));
+    const std::string wd_type = 
+        get_value_CommandFile(my_copy_results,std::string(MasterControlInternalNodeKeys::Simulation_Workload_Decomposition_Type));
 
     // Get the value for the lattice type for the processor topology.
-    const std::string pt_mpi_lattice_type = get_value_CommandFile(my_copy_results,std::string("Simulation_Processor_Lattice_Topology"));
+    const std::string pt_mpi_lattice_type = 
+        get_value_CommandFile(my_copy_results,std::string(MasterControlInternalNodeKeys::Simulation_Processor_Lattice_Topology_Type));
 
     // Get the value for the processor topology mpi spatial decomposition.
-    const std::string pt_mpi_spatial_decompostion = get_value_CommandFile(my_copy_results,std::string("Simulation_Processor_Spatial_Decomposition"));
+    const std::string pt_mpi_spatial_decompostion = 
+        get_value_CommandFile(my_copy_results,std::string(MasterControlInternalNodeKeys::Simulation_Processor_Lattice_Topology_Dimensions));
 
     // Get the value for the processor topology number of compute units per spatial domain.
-    const std::string pt_number_cu_per_domain = get_value_CommandFile(my_copy_results,std::string("Simulation_Processor_Compute_Units_Per_Spatial_Domain"));
+    const std::string pt_number_cu_per_domain = 
+        get_value_CommandFile(my_copy_results,std::string(MasterControlInternalNodeKeys::Simulation_Number_Compute_Units_Per_Spatial_Domain));
 
     SimulationDecompositionParameters sim_decomposition_parameters(flag_default_null_value,
                                                                    wd_type,

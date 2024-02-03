@@ -85,6 +85,18 @@ class MasterControlInternalNodeKeys
         static constexpr std::string_view Simulation_Hamiltonian = 
             "Simulation_Hamiltonian";
 
+        // The internal key for the numerical value for the timestep.
+        static constexpr std::string_view Simulation_Timestep = 
+            "Simulation_Timestep";
+
+        // The internal key for the total number of timesteps.
+        static constexpr std::string_view Simulation_Total_Number_Timesteps = 
+            "Simulation_Total_Number_Timesteps";
+
+        // The internal key for the simulation integration methodology.
+        static constexpr std::string_view Simulation_Integration_Methodology = 
+            "Simulation_Integration_Methodology";
+
     protected:
         // ====================  METHODS       =======================================
 

@@ -33,8 +33,8 @@ std::string MasterControlInputFileNodeKeys::DefaultNullValue = std::string("defa
 //! in the master control input file. The external keys are used by the 
 //! program users to set the paramaters of the program's execution.
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
-    nodeKeys2_(),
-    nodeKeys_(),
+    internalToExternalKeyMapping_(),
+    externalNodeKeys_(),
     commentNodeKeys_()
 {
     // The boost::property_tree::ptree uses an xml
@@ -101,26 +101,27 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
     this->addNodeKey_(internalSimulationHamiltonianKey,externalSimulationHamiltonianKey);
 
     // The keys for the numerical value of the timestep
-    std::string Simulation_Time_Step{"Simulation_Time_Step"};
-    std::vector<std::string> time_step_key{std::string("time-step")};
-    this->addNodeKey_(Simulation_Time_Step,time_step_key);
+    std::string internalSimulationTimestepKey{MasterControlInternalNodeKeys::Simulation_Timestep};
+    std::vector<std::string> externalSimulationTimestepKey{std::string("time-step")};
+    this->addNodeKey_(internalSimulationTimestepKey,externalSimulationTimestepKey);
 
     // The keys for the number of time steps. 
-    std::string Simulation_Total_Number_Of_Timesteps{"Simulation_Total_Number_Of_Timesteps"};
-    std::vector<std::string> time_step_nsteps_key{std::string("number-time-steps")};
-    this->addNodeKey_(Simulation_Total_Number_Of_Timesteps,time_step_nsteps_key);
+    std::string internalSimulationTotalNumberTimestepsKey{"Simulation_Total_Number_Timesteps"};
+    std::vector<std::string> externalSimulationTotalNumberTimestepsKey{std::string("total-number-time-steps")};
+    this->addNodeKey_(internalSimulationTotalNumberTimestepsKey,externalSimulationTimestepKey);
 
     // The keys for the integration methodology.
-    std::string Simulation_Integration_Methodology{"Simulation_Integration_Methodology"};
-    std::vector<std::string> im_method_key {std::string("integration-methodology"),
-                                            std::string("ensemble")}; 
-    this->addNodeKey_(Simulation_Integration_Methodology,im_method_key);
-  return;
+    std::string internalSimulationIntegrationMethodologyKey{MasterControlInternalNodeKeys::Simulation_Integration_Methodology};
+    std::vector<std::string> externalSimulationIntegrationMethodologyKey {std::string("integration-methodology"),
+                                                                          std::string("ensemble")}; 
+    this->addNodeKey_(internalSimulationIntegrationMethodologyKey,externalSimulationIntegrationMethodologyKey);
+
+    return;
 }
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInputFileNodeKeys const & other) :
-    nodeKeys2_(other.nodeKeys2_),
-    nodeKeys_(other.nodeKeys_),
+    internalToExternalKeyMapping_(other.internalToExternalKeyMapping_),
+    externalNodeKeys_(other.externalNodeKeys_),
     commentNodeKeys_(other.commentNodeKeys_)
 {
     if (this != &other)
@@ -130,8 +131,8 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInp
 }
 
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys( MasterControlInputFileNodeKeys && other) :
-    nodeKeys2_(std::move(other.nodeKeys2_)),
-    nodeKeys_(std::move(other.nodeKeys_)),
+    internalToExternalKeyMapping_(std::move(other.internalToExternalKeyMapping_)),
+    externalNodeKeys_(std::move(other.externalNodeKeys_)),
     commentNodeKeys_(std::move(other.commentNodeKeys_))
 
 {
@@ -157,14 +158,14 @@ MasterControlInputFileNodeKeys * MasterControlInputFileNodeKeys::clone() const
 std::pair<MasterControlInputFileNodeKeys::VCI_t_,
           MasterControlInputFileNodeKeys::VCI_t_> MasterControlInputFileNodeKeys::allKeysIterator() const
 {
-    return std::pair<std::vector<std::string>::const_iterator,std::vector<std::string>::const_iterator>(this->nodeKeys_.begin(),this->nodeKeys_.end());
+    return std::pair<std::vector<std::string>::const_iterator,std::vector<std::string>::const_iterator>(this->externalNodeKeys_.begin(),this->externalNodeKeys_.end());
 }
 
 bool MasterControlInputFileNodeKeys::isKeyPresent(const std::string key) const
 {
     bool key_found = true;
-    auto it = std::find (this->nodeKeys_.begin(), this->nodeKeys_.end(), key);
-    if ( it == this->nodeKeys_.end() )
+    auto it = std::find (this->externalNodeKeys_.begin(), this->externalNodeKeys_.end(), key);
+    if ( it == this->externalNodeKeys_.end() )
     {
         key_found = false;
     }
@@ -190,7 +191,7 @@ std::string MasterControlInputFileNodeKeys::defaultNullValue() const
 
 std::string MasterControlInputFileNodeKeys::node_key( const std::string & global_key) const
 {
-    return this->nodeKeys2_.at(global_key);
+    return this->internalToExternalKeyMapping_.at(global_key);
 }
 
 //============================= MUTATORS =====================================
@@ -206,8 +207,8 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( cons
 {
     if (this != &other)
     {
-        this->nodeKeys2_ = other.nodeKeys2_;
-        this->nodeKeys_ = other.nodeKeys_;
+        this->internalToExternalKeyMapping_ = other.internalToExternalKeyMapping_;
+        this->externalNodeKeys_ = other.externalNodeKeys_;
         this->commentNodeKeys_ = other.commentNodeKeys_;
     }
     return *this;
@@ -217,8 +218,8 @@ MasterControlInputFileNodeKeys& MasterControlInputFileNodeKeys::operator= ( Mast
 {
     if (this != &other)
     {
-        this->nodeKeys2_ = std::move(other.nodeKeys2_);
-        this->nodeKeys_ = std::move(other.nodeKeys_);
+        this->internalToExternalKeyMapping_ = std::move(other.internalToExternalKeyMapping_);
+        this->externalNodeKeys_ = std::move(other.externalNodeKeys_);
         this->commentNodeKeys_ = std::move(other.commentNodeKeys_);
     }
     return *this;
@@ -282,11 +283,11 @@ void MasterControlInputFileNodeKeys::addCommentTag_(const std::string & keys)
     this->commentNodeKeys_.push_back(keys.c_str());
 }
 
-void MasterControlInputFileNodeKeys::addNodeKey_(const std::string & global_key, const std::vector<std::string> & keys)
+void MasterControlInputFileNodeKeys::addNodeKey_(const std::string & internal_key, const std::vector<std::string> & external_keys)
 {
-    // Check each key and make sure no invidual key contains the path separator character.
-    // If a key contains the path separator, then throw an error and abort the program.
-    for (const auto & tmpstr : keys)
+    // Check each key and make sure no invidual external key contains the path separator character.
+    // If an external key contains the path separator, then throw an error and abort the program.
+    for (const auto & tmpstr : external_keys)
     {
         if ( check_string_for_separator_char<PathSeparatorTrait>(tmpstr) )
         {
@@ -294,10 +295,10 @@ void MasterControlInputFileNodeKeys::addNodeKey_(const std::string & global_key,
         }
     }
 
-    // Form the final path key from key and add key to nodeKeys_.
-    const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(keys);
-    this->nodeKeys2_[global_key] = path_key;
-    this->nodeKeys_.push_back(path_key);
+    // Form the final path key from key and add key to externalNodeKeys_.
+    const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(external_keys);
+    this->internalToExternalKeyMapping_[internal_key] = path_key;
+    this->externalNodeKeys_.push_back(path_key);
     return;
 }
 
