@@ -73,6 +73,18 @@ class MasterControlInternalNodeKeys
         static constexpr std::string_view Simulation_Initial_Configuration = 
             "Simulation_Initial_Configuration";
 
+        // The internal key for the simulation coordinate system.
+        static constexpr std::string_view Simulation_Coordinate_System = 
+            "Simulation_Coordinate_System";
+
+        // The internal key for the simulation molecular topology
+        static constexpr std::string_view Simulation_Molecular_Topology = 
+            "Simulation_Molecular_Topology";
+
+        // The internal key for the simulation Hamiltonian.
+        static constexpr std::string_view Simulation_Hamiltonian = 
+            "Simulation_Hamiltonian";
+
     protected:
         // ====================  METHODS       =======================================
 

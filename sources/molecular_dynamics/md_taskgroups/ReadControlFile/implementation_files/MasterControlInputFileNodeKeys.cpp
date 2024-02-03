@@ -70,35 +70,35 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
                       externalSimulationProcessorLatticeTopologyDimensionsKey);
 
     // These are the keys for the number of compute units per spatial domain.
-    std::string internalSimulationNumberComputeUnitsPerSpatial_Domain{MasterControlInternalNodeKeys::Simulation_Number_Compute_Units_Per_Spatial_Domain};
-    std::vector<std::string> externalSimulationNumberComputeUnitsPerSpatial_Domain{std::string("processor-topology"),
-                                                                                   std::string("compute-units-per-spatial-domain")};
-    this->addNodeKey_(internalSimulationNumberComputeUnitsPerSpatial_Domain,
-                      externalSimulationNumberComputeUnitsPerSpatial_Domain);
+    std::string internalSimulationNumberComputeUnitsPerSpatialDomainKey{MasterControlInternalNodeKeys::Simulation_Number_Compute_Units_Per_Spatial_Domain};
+    std::vector<std::string> externalSimulationNumberComputeUnitsPerSpatialDomainKey{std::string("processor-topology"),
+                                                                                     std::string("compute-units-per-spatial-domain")};
+    this->addNodeKey_(internalSimulationNumberComputeUnitsPerSpatialDomainKey,
+                      externalSimulationNumberComputeUnitsPerSpatialDomainKey);
 
     // These are the keys for the initial configuration filename.
-    std::string internalSimulationInitialConfiguration{MasterControlInternalNodeKeys::Simulation_Initial_Configuration};
-    std::vector<std::string> externalSimulationInitialConfiguration{std::string("initial-configuration"),
-                                                                    std::string("filename")};
-    this->addNodeKey_(internalSimulationInitialConfiguration,
-                      externalSimulationInitialConfiguration);
+    std::string internalSimulationInitialConfigurationKey{MasterControlInternalNodeKeys::Simulation_Initial_Configuration};
+    std::vector<std::string> externalSimulationInitialConfigurationKey{std::string("initial-configuration"),
+                                                                       std::string("filename")};
+    this->addNodeKey_(internalSimulationInitialConfigurationKey,
+                      externalSimulationInitialConfigurationKey);
 
-    // These are the keys for the coordinate system.
-    std::string Simulation_Coordinate_System{"Simulation_Coordinate_System"};
-    std::vector<std::string> cs_key{std::string("coordinate-system")};
-    this->addNodeKey_(Simulation_Coordinate_System,cs_key);
+    // These are the keys for the simulation coordinate system.
+    std::string internalSimulationCoordinateSystemkey{MasterControlInternalNodeKeys::Simulation_Coordinate_System};
+    std::vector<std::string> externalSimulationCoordinateSystemKey{std::string("coordinate-system")};
+    this->addNodeKey_(internalSimulationCoordinateSystemkey,externalSimulationCoordinateSystemKey);
 
     // The keys for the molecular topology file name.
-    std::string Simulation_Molecular_Topology{"Simulation_Molecular_Topology"};
-    std::vector<std::string> mt_filename_key{std::string("molecular-topology"),
-                                             std::string("filename")};
-    this->addNodeKey_(Simulation_Molecular_Topology,mt_filename_key);
+    std::string internalSimulationMolecularTopologyKey{MasterControlInternalNodeKeys::Simulation_Molecular_Topology};
+    std::vector<std::string> externalMolecularTopologyKey{std::string("molecular-topology"),
+                                                          std::string("filename")};
+    this->addNodeKey_(internalSimulationMolecularTopologyKey,externalMolecularTopologyKey);
 
     // The keys for the molecular interaction file name.
-    std::string Simulation_Hamiltonian{"Simulation_Hamiltonian"};
-    std::vector<std::string> Hamiltonian_filename_key{std::string("hamiltonian"),
-                                                 std::string("filename")};
-    this->addNodeKey_(Simulation_Hamiltonian,Hamiltonian_filename_key);
+    std::string internalSimulationHamiltonianKey{MasterControlInternalNodeKeys::Simulation_Hamiltonian};
+    std::vector<std::string> externalSimulationHamiltonianKey{std::string("hamiltonian"),
+                                                              std::string("filename")};
+    this->addNodeKey_(internalSimulationHamiltonianKey,externalSimulationHamiltonianKey);
 
     // The keys for the numerical value of the timestep
     std::string Simulation_Time_Step{"Simulation_Time_Step"};
