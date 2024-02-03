@@ -57,28 +57,31 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
     this->addNodeKey_(internalKeySimulationWorkloadDecompositionKey,externalWorkloadDecompositionKey);
 
     // These are the keys for the processor topology lattice type.
-    std::string internalSimulationProcessorLatticeTopologyKey{MasterControlInternalNodeKeys::Simulation_Processor_Lattice_Topology};
+    std::string internalSimulationProcessorLatticeTopologyKey{MasterControlInternalNodeKeys::Simulation_Processor_Lattice_Topology_Type};
     std::vector<std::string> externalSimulationProcessorLatticeTopologyKey{std::string("processor-topology"),
                                                                             std::string("lattice-type")};
     this->addNodeKey_(internalSimulationProcessorLatticeTopologyKey,externalSimulationProcessorLatticeTopologyKey);
 
-    // These are the keys for the processor topology spatial decomposition.
-    std::string internalSimulationProcessorSpatialDecompositionKey{MasterControlInternalNodeKeys::Simulation_Processor_Spatial_Decomposition};
-    std::vector<std::string> externalSimulationProcessorSpatialDecompositionKey{std::string("processor-topology"),
-                                                                                std::string("mpi-spatial-decomposition")};
-    this->addNodeKey_(internalSimulationProcessorSpatialDecompositionKey,externalSimulationProcessorSpatialDecompositionKey);
+    // These are the keys for the processor lattice topology spatial dimensions.
+    std::string internalSimulationProcessorLatticeTopologyDimensionsKey{MasterControlInternalNodeKeys::Simulation_Processor_Lattice_Topology_Dimensions};
+    std::vector<std::string> externalSimulationProcessorLatticeTopologyDimensionsKey{std::string("processor-topology"),
+                                                                                     std::string("mpi-spatial-decomposition")};
+    this->addNodeKey_(internalSimulationProcessorLatticeTopologyDimensionsKey,
+                      externalSimulationProcessorLatticeTopologyDimensionsKey);
 
     // These are the keys for the number of compute units per spatial domain.
-    std::string Simulation_Processor_CU_Per_Domain{"Simulation_Processor_Compute_Units_Per_Spatial_Domain"};
-    std::vector<std::string> proc_topology_cu_key{std::string("processor-topology"),
-                                                  std::string("compute-units-per-spatial-domain")};
-    this->addNodeKey_(Simulation_Processor_CU_Per_Domain,proc_topology_cu_key);
+    std::string internalSimulationNumberComputeUnitsPerSpatial_Domain{MasterControlInternalNodeKeys::Simulation_Number_Compute_Units_Per_Spatial_Domain};
+    std::vector<std::string> externalSimulationNumberComputeUnitsPerSpatial_Domain{std::string("processor-topology"),
+                                                                                   std::string("compute-units-per-spatial-domain")};
+    this->addNodeKey_(internalSimulationNumberComputeUnitsPerSpatial_Domain,
+                      externalSimulationNumberComputeUnitsPerSpatial_Domain);
 
     // These are the keys for the initial configuration filename.
-    std::string Simulation_Initial_Configuration{"Simulation_Initial_Configuration"};
-    std::vector<std::string> ic_key{std::string("initial-configuration"),
-                                    std::string("filename")};
-    this->addNodeKey_(Simulation_Initial_Configuration,ic_key);
+    std::string internalSimulationInitialConfiguration{MasterControlInternalNodeKeys::Simulation_Initial_Configuration};
+    std::vector<std::string> externalSimulationInitialConfiguration{std::string("initial-configuration"),
+                                                                    std::string("filename")};
+    this->addNodeKey_(internalSimulationInitialConfiguration,
+                      externalSimulationInitialConfiguration);
 
     // These are the keys for the coordinate system.
     std::string Simulation_Coordinate_System{"Simulation_Coordinate_System"};

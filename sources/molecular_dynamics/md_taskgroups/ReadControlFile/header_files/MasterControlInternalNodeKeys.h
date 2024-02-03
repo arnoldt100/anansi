@@ -57,11 +57,21 @@ class MasterControlInternalNodeKeys
         //! The internal key for the the type of workload decomposition.
         static constexpr std::string_view Simulation_Workload_Decomposition_Type = "Simulation_Workload_Decomposition_Type";
 
-        // The internal key for the processor topology lattice type.
-        static constexpr std::string_view Simulation_Processor_Lattice_Topology = "Simulation_Processor_Lattice_Topology";
+        // The internal key for the processor lattice topology type.
+        static constexpr std::string_view Simulation_Processor_Lattice_Topology_Type = 
+            "Simulation_Processor_Lattice_Topology_Type";
 
-        // The internal key for the workload processor spatial decomposition.
-        static constexpr std::string_view Simulation_Processor_Spatial_Decomposition = "Simulation_Processor_Spatial_Decomposition";
+        // The internal key for the workload processor lattice topology spatial decomposition dimeensions.
+        static constexpr std::string_view Simulation_Processor_Lattice_Topology_Dimensions  = 
+            "Simulation_Processor_Lattice_Topology_Dimensions";
+
+        // The internal key for the number of compute units per spatial domain.
+        static constexpr std::string_view Simulation_Number_Compute_Units_Per_Spatial_Domain = 
+            "Simulation_Number_Compute_Units_Per_Spatial_Domain";
+
+        // The internal key for the initial simulation molecular configuration.
+        static constexpr std::string_view Simulation_Initial_Configuration = 
+            "Simulation_Initial_Configuration";
 
     protected:
         // ====================  METHODS       =======================================
