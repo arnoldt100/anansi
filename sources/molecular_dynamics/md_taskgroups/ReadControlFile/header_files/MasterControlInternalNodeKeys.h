@@ -51,9 +51,17 @@ class MasterControlInternalNodeKeys
 
         MasterControlInternalNodeKeys& operator= ( MasterControlInternalNodeKeys && other ); // assignment-move operator
 
+        //! The internal key for the the simulation title
+        static constexpr std::string_view Simulation_Title = "Simulation_Title";
 
         //! The internal key for the the type of workload decomposition.
         static constexpr std::string_view Simulation_Workload_Decomposition_Type = "Simulation_Workload_Decomposition_Type";
+
+        // The internal key for the processor topology lattice type.
+        static constexpr std::string_view Simulation_Processor_Lattice_Topology = "Simulation_Processor_Lattice_Topology";
+
+        // The internal key for the workload processor spatial decomposition.
+        static constexpr std::string_view Simulation_Processor_Spatial_Decomposition = "Simulation_Processor_Spatial_Decomposition";
 
     protected:
         // ====================  METHODS       =======================================

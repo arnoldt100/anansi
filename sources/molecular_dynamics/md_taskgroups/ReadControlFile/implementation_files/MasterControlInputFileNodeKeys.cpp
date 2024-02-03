@@ -42,9 +42,10 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
     const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
     this->addCommentTag_(xml_comment_key[0]);
 
-    std::string title_key{"Simulation_Title"};
-    std::vector<std::string> title_mc_tags{std::string("title")};
-    this->addNodeKey_(title_key,title_mc_tags);
+    //! Adding node key for the simulation title.
+    const std::string internalSimulationTitleKey{MasterControlInternalNodeKeys::Simulation_Title};
+    std::vector<std::string> externalSimulationTitleKey{std::string("title")};
+    this->addNodeKey_(internalSimulationTitleKey,externalSimulationTitleKey);
 
     std::string Simulation_Units{"Simulation_Units"};
     std::vector<std::string> units_mc_tags{std::string("units")};
@@ -56,16 +57,16 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
     this->addNodeKey_(internalKeySimulationWorkloadDecompositionKey,externalWorkloadDecompositionKey);
 
     // These are the keys for the processor topology lattice type.
-    std::string Simulation_Processor_Lattice_Topology{"Simulation_Processor_Lattice_Topology"};
-    std::vector<std::string> proc_topology_lt_tags{std::string("processor-topology"),
-                                                   std::string("lattice-type")};
-    this->addNodeKey_(Simulation_Processor_Lattice_Topology,proc_topology_lt_tags);
+    std::string internalSimulationProcessorLatticeTopologyKey{MasterControlInternalNodeKeys::Simulation_Processor_Lattice_Topology};
+    std::vector<std::string> externalSimulationProcessorLatticeTopologyKey{std::string("processor-topology"),
+                                                                            std::string("lattice-type")};
+    this->addNodeKey_(internalSimulationProcessorLatticeTopologyKey,externalSimulationProcessorLatticeTopologyKey);
 
     // These are the keys for the processor topology spatial decomposition.
-    std::string Simulation_Processor_Spatial_Decomposition{"Simulation_Processor_Spatial_Decomposition"};
-    std::vector<std::string> proc_topology_mpi_decomp_key{std::string("processor-topology"),
-                                                          std::string("mpi-spatial-decomposition")};
-    this->addNodeKey_(Simulation_Processor_Spatial_Decomposition,proc_topology_mpi_decomp_key);
+    std::string internalSimulationProcessorSpatialDecompositionKey{MasterControlInternalNodeKeys::Simulation_Processor_Spatial_Decomposition};
+    std::vector<std::string> externalSimulationProcessorSpatialDecompositionKey{std::string("processor-topology"),
+                                                                                std::string("mpi-spatial-decomposition")};
+    this->addNodeKey_(internalSimulationProcessorSpatialDecompositionKey,externalSimulationProcessorSpatialDecompositionKey);
 
     // These are the keys for the number of compute units per spatial domain.
     std::string Simulation_Processor_CU_Per_Domain{"Simulation_Processor_Compute_Units_Per_Spatial_Domain"};
