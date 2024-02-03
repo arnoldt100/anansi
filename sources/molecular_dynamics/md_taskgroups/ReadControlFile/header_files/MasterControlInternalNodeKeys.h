@@ -18,7 +18,14 @@
 namespace ANANSI
 {
 
-//! This class contains the internal keys wit respect to the master control file.
+//! This class contains the internal keys with respect to the master control file.
+//! 
+//! The internal program keys correspond to the external node tags
+//! in the master control input file. These internal program keys are not exposed 
+//! to the program users but are intended to used by the program developers 
+//! to have a consistent key throughout the program. This permits the developer 
+//! the developer to reduce the dependence of the extenal keys in the master control
+//! input file within the program.
 class MasterControlInternalNodeKeys
 {
     public:
@@ -45,6 +52,7 @@ class MasterControlInternalNodeKeys
         MasterControlInternalNodeKeys& operator= ( MasterControlInternalNodeKeys && other ); // assignment-move operator
 
 
+        //! The internal key for the the type of workload decomposition.
         static constexpr std::string_view Simulation_Workload_Decomposition_Type = "Simulation_Workload_Decomposition_Type";
 
     protected:

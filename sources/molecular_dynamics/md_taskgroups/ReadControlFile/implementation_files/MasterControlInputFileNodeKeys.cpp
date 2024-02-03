@@ -27,12 +27,17 @@ std::string MasterControlInputFileNodeKeys::DefaultNullValue = std::string("defa
 
 //============================= LIFECYCLE ====================================
 
+//! This class contains the external keys with respect to the master control file.
+//! 
+//! The external keys correspond to the external node tags
+//! in the master control input file. The external keys are used by the 
+//! program users to set the paramaters of the program's execution.
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
     nodeKeys2_(),
     nodeKeys_(),
     commentNodeKeys_()
 {
-    // The node key value boost::property_tree::ptree uses for an xml
+    // The boost::property_tree::ptree uses an xml
     // comment. 
     const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
     this->addCommentTag_(xml_comment_key[0]);
@@ -45,9 +50,10 @@ MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
     std::vector<std::string> units_mc_tags{std::string("units")};
     this->addNodeKey_(Simulation_Units,units_mc_tags);
 
-    std::string Simulation_Workload_Decomposition_Type{"Simulation_Workload_Decomposition_Type"};
-    std::vector<std::string> workload_decomposition_key{std::string("workload-decomposition")};
-    this->addNodeKey_(Simulation_Workload_Decomposition_Type,workload_decomposition_key);
+    //! Adding node key for the workload decomposition.
+    const std::string internalKeySimulationWorkloadDecompositionKey{MasterControlInternalNodeKeys::Simulation_Workload_Decomposition_Type};
+    const std::vector<std::string> externalWorkloadDecompositionKey{std::string("workload-decomposition")};
+    this->addNodeKey_(internalKeySimulationWorkloadDecompositionKey,externalWorkloadDecompositionKey);
 
     // These are the keys for the processor topology lattice type.
     std::string Simulation_Processor_Lattice_Topology{"Simulation_Processor_Lattice_Topology"};
