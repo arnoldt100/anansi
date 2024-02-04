@@ -246,6 +246,22 @@ bool SimulationDecompositionParameters::IsProccesorTopologyLatticeSpatialDimensi
 std::string SimulationDecompositionParameters::MessageInvalidProccesorTopologyLatticeSpatialDimensions(const std::string invalid_value)
 {
     std::string message;
+    boost::format warning_frmt0("Warning! Invalid input parameter '%1%' for lattice topology spatial dimenssions.\n");
+    boost::format warning_frmt1("The parameter must have form  of '<spaces>a<spaces>b<spaces>c<spaces>' where\n");
+    boost::format warning_frmt2("%|4T|%|s|\n");
+    boost::format s1_frmt("%1%\n");
+    
+    // Add header to message.
+    boost::format header_frmt("%1%\n%2%\n%3%\n");
+    const char* header = R"""(# ----------------------)""";
+    const char* header_message = R"""(# Error Message)""";
+    header_frmt % header % header_message % header;
+    message += header_frmt.str();
+
+    // Add footer to message.
+    const char* footer = R"""(# ----------------------)""";
+    s1_frmt % footer;
+    message += s1_frmt.str();
     return message;
 }
 
