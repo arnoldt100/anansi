@@ -2,6 +2,8 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <regex>
+#include <iterator>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -219,8 +221,25 @@ bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDi
 {
     // We need to form an array of 3 positive integers. If the string can be parsed to form an 
     // array of 3 positive integers, then we return true, otherwise return false.
-    bool valid_value = false;
+    bool valid_value = true;
 
+    std::regex rgx("[\\s+]");
+    auto value_begin = std::sregex_iterator(node_value.begin(), node_value.end(), rgx);
+    auto value_end = std::sregex_iterator();
+
+    // There must be 3 items or return false.
+    const std::size_t count = std::distance(value_begin, value_end); 
+    if (count != 3)
+    {
+        valid_value = false;
+    }
+   
+    // Each word must an integer.
+    std::regex rgx_int("^[0-9]*$");
+    for (std::sregex_iterator word = value_begin; word != value_end; ++word)
+    {
+        std::smatch match = *word;
+    }
     return valid_value;
 }
 
