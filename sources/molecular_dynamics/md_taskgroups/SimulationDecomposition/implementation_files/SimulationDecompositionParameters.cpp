@@ -52,13 +52,13 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
     this->processorTopologyLatticeType_ =
         ANANSI::SDPConstructorHelpers::parse_processor_topology_lattice_type(processor_topology_lattice,flag_default_null_value);
 
-    this->processorTopologySpatialDecomposition_ = 
+    this->processorTopologySpatialDecomposition_ =
         ANANSI::SDPConstructorHelpers::parse_proccesor_topology_lattice_spatial_dimensions(processor_topology_spatial_decomposition,flag_default_null_value);
 
     return;
 }
 
-SimulationDecompositionParameters::SimulationDecompositionParameters( SimulationDecompositionParameters const & other) :
+SimulationDecompositionParameters::SimulationDecompositionParameters(SimulationDecompositionParameters const & other) :
     workLoadDecomposition_{other.workLoadDecomposition_},
     processorTopologyLatticeType_{other.processorTopologyLatticeType_},
     processorTopologySpatialDecomposition_{other.processorTopologySpatialDecomposition_},
@@ -66,7 +66,6 @@ SimulationDecompositionParameters::SimulationDecompositionParameters( Simulation
 {
     if (this != &other)
     {
-        
     }
     return;
 }
@@ -228,17 +227,27 @@ bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDi
 {
     // We need to form an array of 3 positive integers. If the string can be parsed to form an 
     // array of 3 positive integers, then we return true, otherwise return false.
-    bool valid_value = true;
+    bool valid_value = false;
 
     return valid_value;
 }
 
-//! Returns a boolean indicating if the key for processor lattice type is mandatory.
+std::array<int,3> SimulationDecompositionParameters::ProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value)
+{
+    std::array<int,3> my_default_value{1,1,1};
+    return my_default_value;
+}
+
 bool SimulationDecompositionParameters::IsProccesorTopologyLatticeSpatialDimensionsMandatory()
 {
     return true;
 }
 
+std::string SimulationDecompositionParameters::MessageInvalidProccesorTopologyLatticeSpatialDimensions(const std::string invalid_value)
+{
+    std::string message;
+    return message;
+}
 
 // -----------------------------------------------------
 // This section is for the processor topology compute units per domain
