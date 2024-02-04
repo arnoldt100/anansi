@@ -26,7 +26,6 @@ namespace ANANSI
 namespace SDPConstructorHelpers
 {
 
-
 }; // end of namespace SDPConstructorHelpers 
 }; // end of namespace ANANSI
 

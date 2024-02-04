@@ -122,6 +122,8 @@ class SimulationDecompositionParameters
         //! Returns the default number of compute units per spatial domain.
         static std::string DefaultNumberProcessorComputeUnitsPerDomain();
 
+
+
         
         // ====================  ACCESSORS     =======================================
         SimulationDecompositionParameters * clone () const;
@@ -148,6 +150,13 @@ class SimulationDecompositionParameters
         // ====================  OPERATORS     =======================================
 
         //============================= STATIC    ====================================
+
+        static constexpr char* ErrorMessageHeader_ = R"""(
+# ----------------------
+# Error Message
+# ----------------------)""";
+
+        static constexpr char* ErrorMessageFooter_ = R"""(# ----------------------)""";
 
         //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
         //!  are the internal flags/values used within the program.
