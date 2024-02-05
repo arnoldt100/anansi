@@ -8,18 +8,17 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/format.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
 #include "GenericErrorClass.hpp"
-
-#include <boost/format.hpp>
-
 #include "WorkloadDecompositionTypeHelpers.h"
 #include "ProcessorTopologyLatticeTypeHelpers.h"
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
+#include "count_words_in_string.h"
 
 namespace ANANSI {
 
@@ -223,22 +222,28 @@ bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDi
     // array of 3 positive integers, then we return true, otherwise return false.
     bool valid_value = true;
 
-    std::regex rgx("[\\s+]");
-    auto value_begin = std::sregex_iterator(node_value.begin(), node_value.end(), rgx);
-    auto value_end = std::sregex_iterator();
-
     // There must be 3 items or return false.
-    const std::size_t count = std::distance(value_begin, value_end); 
+    auto count = STRING_UTILITIES::count_words_in_string(node_value);
     if (count != 3)
     {
         valid_value = false;
+        return valid_value;
     }
    
-    // Each word must an integer.
-    std::regex rgx_int("^[0-9]*$");
-    for (std::sregex_iterator word = value_begin; word != value_end; ++word)
+    // Each word must a positive integer.
+    std::regex rgx_whitespace("[\\s+]");
+    auto first_word = std::sregex_iterator(node_value.begin(), node_value.end(), rgx_whitespace);
+    auto last_word = std::sregex_iterator();
+
+    std::regex rgx_int("^\\d+([^.,])?$");
+    for (std::sregex_iterator word = first_word; word != last_word; ++word)
     {
         std::smatch match = *word;
+        std::string match_str = match.str();
+        if (std::regex_match(match_str,) )
+        {
+
+        }
     }
     return valid_value;
 }
