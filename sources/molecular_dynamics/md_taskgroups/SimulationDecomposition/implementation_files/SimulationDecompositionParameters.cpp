@@ -2,8 +2,6 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
-#include <regex>
-#include <iterator>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -20,6 +18,7 @@
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
 #include "count_words_in_string.h"
 #include "match_string_to_positive_integer.h"
+#include "words_in_string_are_positive_integers.h"
 
 namespace ANANSI {
 
@@ -223,28 +222,20 @@ bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDi
     // array of 3 positive integers, then we return true, otherwise return false.
     bool valid_value = true;
 
-    // There must be 3 items or return false.
+    // There must be only 3 words or return false.
     auto count = STRING_UTILITIES::count_words_in_string(node_value);
     if (count != 3)
     {
-        std::cout << "nm words found:" << count << std::endl;
         valid_value = false;
         return valid_value;
     }
    
     // Each word must a positive integer.
-    std::regex rgx_whitespace("[^\\s+]");
-    auto first_word = std::sregex_iterator(node_value.begin(), node_value.end(), rgx_whitespace);
-    auto last_word = std::sregex_iterator();
-    for (std::sregex_iterator word = first_word; word != last_word; ++word)
+    const bool all_words_positive_integers = STRING_UTILITIES::words_in_string_are_positive_integers(node_value);
+    if (! all_words_positive_integers )
     {
-         std::smatch match = *word;
-         std::string match_str = match.str();
-         std::cout << "Verifying string is an integer:" << match_str.c_str() << std::endl;
-         if ( ! STRING_UTILITIES::match_string_to_positive_integer(match_str) )
-         {
-             valid_value = false;
-         }
+        valid_value = false;
+        return valid_value;
     }
     return valid_value;
 }
