@@ -29,12 +29,14 @@ std::array<int,3> parse_proccesor_topology_lattice_spatial_dimensions(const std:
        if ( (a_string == flag_default_null_value) && 
              SimulationDecompositionParameters::IsProccesorTopologyLatticeSpatialDimensionsMandatory() )
        {
-            std::string error_message = SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("processor topology lattice spatial dimensions");
+            std::string error_message = 
+                SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("processor topology lattice spatial dimensions");
             throw ErrorMissingSimulationDecompositionParameters(error_message);
        }
        else if (SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDimensionsValues(a_string))
        {
-            my_lattice_topology_spatial_dimensions = SimulationDecompositionParameters::ProccesorTopologyLatticeSpatialDimensionsValues(a_string);;
+            my_lattice_topology_spatial_dimensions = 
+                SimulationDecompositionParameters::ProccesorTopologyLatticeSpatialDimensionsValues(a_string);;
        }
        else
        {

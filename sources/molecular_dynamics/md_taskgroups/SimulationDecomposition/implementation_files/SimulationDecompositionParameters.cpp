@@ -19,6 +19,7 @@
 #include "ProcessorTopologyLatticeTypeHelpers.h"
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
 #include "count_words_in_string.h"
+#include "match_string_to_positive_integer.h"
 
 namespace ANANSI {
 
@@ -226,24 +227,24 @@ bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDi
     auto count = STRING_UTILITIES::count_words_in_string(node_value);
     if (count != 3)
     {
+        std::cout << "nm words found:" << count << std::endl;
         valid_value = false;
         return valid_value;
     }
    
     // Each word must a positive integer.
-    std::regex rgx_whitespace("[\\s+]");
+    std::regex rgx_whitespace("[^\\s+]");
     auto first_word = std::sregex_iterator(node_value.begin(), node_value.end(), rgx_whitespace);
     auto last_word = std::sregex_iterator();
-
-    std::regex rgx_int("^\\d+([^.,])?$");
     for (std::sregex_iterator word = first_word; word != last_word; ++word)
     {
-        std::smatch match = *word;
-        std::string match_str = match.str();
-        if (std::regex_match(match_str,) )
-        {
-
-        }
+         std::smatch match = *word;
+         std::string match_str = match.str();
+         std::cout << "Verifying string is an integer:" << match_str.c_str() << std::endl;
+         if ( ! STRING_UTILITIES::match_string_to_positive_integer(match_str) )
+         {
+             valid_value = false;
+         }
     }
     return valid_value;
 }
@@ -273,7 +274,7 @@ std::string SimulationDecompositionParameters::MessageInvalidProccesorTopologyLa
     warning_frmt0 % invalid_value.c_str();
     message += warning_frmt0.str();
 
-    // Add warning.
+    // Add warning. We store the warning message in  raw string literal.
     const char* warning = R"""(
 The input parameter must have form  of '<spaces>a<spaces>b<spaces>c<spaces>' where
     - <spaces> is whitespace
@@ -288,7 +289,7 @@ A Valid examples is
     s1_frmt % warning;
     message += s1_frmt.str();
 
-    // Add footer to message.
+    // Add footer to message
     s1_frmt % SimulationDecompositionParameters::ErrorMessageFooter_;
     message += s1_frmt.str();
     return message;
