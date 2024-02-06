@@ -104,6 +104,7 @@ std::string SimulationDecompositionParameters::DefaultWorkLoadDecompositionType(
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at("spatial-data-domain-decomposition"); 
 }
 
+// To be moved to details
 bool SimulationDecompositionParameters::IsValidWorkLoadDecompositionTypeValues(const std::string node_value)
 {
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.contains(node_value);
@@ -113,41 +114,6 @@ std::string SimulationDecompositionParameters::WorkLoadDecompositionTypeValues( 
 {
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at(node_value); 
 }
-
-bool SimulationDecompositionParameters::IsWorkLoadDecompositionTypeMandatory()
-{
-    return true;
-}
-
-std::string SimulationDecompositionParameters::MessageInvalidWorkloadDecompositionTypeValues(const std::string invalid_value)
-{
-    std::string message;
-
-    boost::format s1_frmt("%1%\n");
-    boost::format s2_frmt("    %1%\n");
-
-    // Add header to message.
-    s1_frmt % SimulationDecompositionParameters::ErrorMessageHeader_;
-    message += s1_frmt.str();
-
-    // Add warning to message.
-    boost::format warning_frmt("Warning! Invalid input parameter '%1%' for workload decomposition type.\nValid values are the following:\n");
-    warning_frmt % invalid_value.c_str();
-    message += warning_frmt.str();
-    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues_)
-    {
-        s2_frmt % value.c_str();
-        message += s2_frmt.str();
-    }
-    s1_frmt % "";
-    message += s1_frmt.str();
-
-    // Add footer to message.
-    s1_frmt % SimulationDecompositionParameters::ErrorMessageFooter_;
-    message += s1_frmt.str();
-    return message;
-}
-
 
 // -----------------------------------------------------
 // This section is for the processor lattice type 
@@ -330,6 +296,18 @@ SimulationDecompositionParameters * SimulationDecompositionParameters::clone() c
     return new SimulationDecompositionParameters(*this);
 }
 
+//============================= STATIC    ====================================
+
+std::vector<std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues()
+{
+    std::vector<std::string> valid_values;
+    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues_)
+    {
+        valid_values.push_back(value);
+    }
+    return valid_values;
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -382,6 +360,7 @@ std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLo
     {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
     {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
 };
+
 
 std::map<std::string,std::string> SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_{
     {"rectangular", "rectangular"}

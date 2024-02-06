@@ -60,17 +60,12 @@ class SimulationDecompositionParameters
         //! Returns the default value for the workload decomposition type.
         static std::string DefaultWorkLoadDecompositionType();
 
+        // To be moved to details
         //! \brief Returns a boolean that indicates if the node value is valid.
         static bool IsValidWorkLoadDecompositionTypeValues(const std::string node_value);
 
         //! \brief Returns a internal workload decomposition value for the given node_value.
         static std::string WorkLoadDecompositionTypeValues(const std::string node_value);
-
-        //! Returns a boolean indicating if the key for workload decompostion is mandatory.
-        static bool IsWorkLoadDecompositionTypeMandatory();
-
-        //! Returns the error message for invalid worload decomposition type value.
-        static std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string invalid_value);
 
         // -----------------------------------------------------
         // This section is for the processor lattice type 
@@ -128,6 +123,7 @@ class SimulationDecompositionParameters
         // ====================  ACCESSORS     =======================================
         SimulationDecompositionParameters * clone () const;
 
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -135,6 +131,9 @@ class SimulationDecompositionParameters
         SimulationDecompositionParameters& operator= ( const SimulationDecompositionParameters &other ); // assignment operator
 
         SimulationDecompositionParameters& operator= ( SimulationDecompositionParameters && other ); // assignment-move operator
+
+        // ====================  STATIC        =======================================
+        static std::vector<std::string> validWorkLoadDecompositionValues();
 
 
     protected:
@@ -197,4 +196,4 @@ class SimulationDecompositionParameters
 
 }; // namespace ANANSI
 
-#endif // ANANSI_SimulationDecompositionParameters_INC
+#endif // ANANSI_SimulationDecompositionParameters_I

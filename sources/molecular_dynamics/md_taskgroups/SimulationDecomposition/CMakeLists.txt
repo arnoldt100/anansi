@@ -87,7 +87,8 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SDPConstructorHelpers.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type_paramater/WorkloadDecompositionTypeHelpers.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type/workload_decomposition_type_details.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ProcessorTopologyLatticeTypeHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ProccesorTopologyLatticeSpatialDimensionsHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
@@ -107,7 +108,8 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SDPConstructorHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ProcessorTopologyLatticeTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ProccesorTopologyLatticeSpatialDimensionsHelpers.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type_paramater/WorkloadDecompositionTypeHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/workload_decomposition_type_details.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorMissingSimulationDecompositionParameters.cpp)
 
@@ -126,7 +128,7 @@ add_library( ${target} STATIC
 #-----------------------------------------------------
 target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type_paramater
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ProcessorTopologyLatticeTypeHelpers.h
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PRIVATE ${my_comm_include})
