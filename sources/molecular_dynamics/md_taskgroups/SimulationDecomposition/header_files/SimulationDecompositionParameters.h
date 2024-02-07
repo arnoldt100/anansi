@@ -115,7 +115,7 @@ class SimulationDecompositionParameters
         //!        compute units per spatial domain is mandatory.
         static bool IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory();
 
-
+        static bool IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
         
         // ====================  ACCESSORS     =======================================
         SimulationDecompositionParameters * clone () const;

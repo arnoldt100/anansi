@@ -201,7 +201,11 @@ bool SimulationDecompositionParameters::IsProcesorTopologyNumberComputeUnitsPerS
     return true;
 }
 
-
+bool SimulationDecompositionParameters::IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value)
+{
+    bool valid_value = true;
+    return valid_value;
+}
 
 
 std::string SimulationDecompositionParameters::MessageMissingMandatoryNodeTag(const std::string node_tag)
