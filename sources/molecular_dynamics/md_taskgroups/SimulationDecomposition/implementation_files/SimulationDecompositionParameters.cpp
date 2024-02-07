@@ -104,7 +104,6 @@ std::string SimulationDecompositionParameters::DefaultWorkLoadDecompositionType(
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at("spatial-data-domain-decomposition"); 
 }
 
-// To be moved to details
 bool SimulationDecompositionParameters::IsValidWorkLoadDecompositionTypeValues(const std::string node_value)
 {
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.contains(node_value);
@@ -122,7 +121,7 @@ std::string SimulationDecompositionParameters::WorkLoadDecompositionTypeValues( 
 // -----------------------------------------------------
 std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType()
 {
-    return std::string("rectangular");
+    return SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_.at("rectangular");
 }
 
 bool SimulationDecompositionParameters::IsValidProcessorTopologyLatticeTypeValues(const std::string node_value)
@@ -133,11 +132,6 @@ bool SimulationDecompositionParameters::IsValidProcessorTopologyLatticeTypeValue
 std::string SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(const std::string node_value)
 {
     return SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_.at(node_value);
-}
-
-bool SimulationDecompositionParameters::IsProcessorTopologyLatticeTypeMandatory()
-{
-    return true;
 }
 
 std::string SimulationDecompositionParameters::MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)

@@ -14,6 +14,7 @@
 #include "GenericErrorClass.hpp"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
 #include "ErrorMissingSimulationDecompositionParameters.h"
+#include "processor_lattice_type_details.h"
 
 namespace ANANSI
 {
@@ -27,7 +28,7 @@ std::string parse_processor_topology_lattice_type(const std::string a_string,
     try
     {
         if ( (a_string == flag_default_null_value) && 
-             SimulationDecompositionParameters::IsProcessorTopologyLatticeTypeMandatory()  )
+             SDPConstructorHelpers::IsProcessorTopologyLatticeTypeMandatory()  )
         {
             std::string error_message = SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("processor topology lattice type");
             throw ErrorMissingSimulationDecompositionParameters(error_message);

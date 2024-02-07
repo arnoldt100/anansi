@@ -60,7 +60,6 @@ class SimulationDecompositionParameters
         //! Returns the default value for the workload decomposition type.
         static std::string DefaultWorkLoadDecompositionType();
 
-        // To be moved to details
         //! \brief Returns a boolean that indicates if the node value is valid.
         static bool IsValidWorkLoadDecompositionTypeValues(const std::string node_value);
 
@@ -77,13 +76,10 @@ class SimulationDecompositionParameters
         static std::string DefaultProcessorTopologyLatticeType();
 
         //! \brief Returns a boolean that indicates if the node value is valid.
-        static bool IsValidProcessorTopologyLatticeTypeValues(const std::string node_value);
+        static  bool IsValidProcessorTopologyLatticeTypeValues(const std::string node_value);
 
         //! \brief Returns a internal processor lattice type value for the given node_value.
         static std::string ProcessorTopologyLatticeTypeValues(const std::string node_value);
-
-        //! Returns a boolean indicating if the key for processor lattice type is mandatory.
-        static bool IsProcessorTopologyLatticeTypeMandatory();
 
         //! Returns the error message for invalid processor topology lattice type values.
         static std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value);
