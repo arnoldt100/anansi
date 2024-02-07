@@ -30,7 +30,7 @@ std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string inva
     boost::format s2_frmt("    %1%\n");
 
     // Add header to message.
-    s1_frmt % SDPConstructorHelpers::ErrorMessageHeader;
+    s1_frmt % ErrorMessageHeader_;
     message += s1_frmt.str();
 
     // Add warning to message.
@@ -46,7 +46,7 @@ std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string inva
     message += s1_frmt.str();
 
     // Add footer to message.
-    s1_frmt % SDPConstructorHelpers::ErrorMessageFooter;
+    s1_frmt % ErrorMessageFooter_;
     message += s1_frmt.str();
     return message;
 }

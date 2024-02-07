@@ -36,7 +36,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
 {
     this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecompositionType();
     this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType();
-    this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatiolDimensions();
+    this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatialDimensions();
     this->numberProcessorComputeUnitsPerDomain_ = SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain();
     return;
 }
@@ -140,7 +140,7 @@ std::string SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValue
 //
 // -----------------------------------------------------
 
-std::array<int,3> SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatiolDimensions()
+std::array<int,3> SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatialDimensions()
 {
     std::array<int,3> my_default_value{1,1,1};
     return my_default_value;

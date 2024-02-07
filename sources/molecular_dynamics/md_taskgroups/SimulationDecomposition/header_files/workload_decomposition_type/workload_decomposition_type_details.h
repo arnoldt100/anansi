@@ -17,6 +17,18 @@
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
 
+namespace{
+
+//! The header for error messages.
+constexpr char* ErrorMessageHeader_ = R"""(
+# ----------------------
+# Error Message
+# ----------------------)""";
+
+//! The footer for error messages.
+constexpr char* ErrorMessageFooter_ = R"""(# ----------------------)""";
+
+}
 namespace ANANSI
 {
 namespace SDPConstructorHelpers
@@ -24,15 +36,6 @@ namespace SDPConstructorHelpers
 
 //! Returns a boolean indicating if the key for workload decompostion is mandatory.
 bool IsWorkLoadDecompositionTypeMandatory();
-
-//! The header for error messages.
-constexpr char* ErrorMessageHeader = R"""(
-# ----------------------
-# Error Message
-# ----------------------)""";
-
-//! The footer for error messages.
-constexpr char* ErrorMessageFooter = R"""(# ----------------------)""";
 
 //! Returs an message for an invalid value for the workload decompostion type. 
 std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string invalid_value);
