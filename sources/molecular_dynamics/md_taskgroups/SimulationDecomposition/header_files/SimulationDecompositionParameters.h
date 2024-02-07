@@ -104,9 +104,6 @@ class SimulationDecompositionParameters
         //! Returns a boolean indicating if the key for processor lattice type is mandatory.
         static bool IsProccesorTopologyLatticeSpatialDimensionsMandatory();
 
-        //! Returns a boolean indicating if the key for processor lattice type is mandatory.
-        static std::string MessageInvalidProccesorTopologyLatticeSpatialDimensions(const std::string invalid_value);
-
         // -- More to do -- 
         // -- More to do -- 
         // -- More to do -- 

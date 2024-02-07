@@ -14,6 +14,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
+#include "processor_lattice_spatial_dimensions_details.h"
 
 namespace ANANSI
 {
@@ -40,7 +41,7 @@ std::array<int,3> parse_proccesor_topology_lattice_spatial_dimensions(const std:
        }
        else
        {
-            std::string error_message = SimulationDecompositionParameters::MessageInvalidProccesorTopologyLatticeSpatialDimensions(a_string);
+            std::string error_message = MessageInvalidProccesorTopologyLatticeSpatialDimensions(a_string);
             throw ErrorInvalidSimulationDecompositionParameters(error_message);
        }
     }
