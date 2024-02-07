@@ -89,7 +89,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SDPConstructorHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type/workload_decomposition_type_details.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ProcessorTopologyLatticeTypeHelpers.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type/ProcessorTopologyLatticeTypeHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ProccesorTopologyLatticeSpatialDimensionsHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
@@ -106,10 +106,10 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SDPConstructorHelpers.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ProcessorTopologyLatticeTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ProccesorTopologyLatticeSpatialDimensionsHelpers.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/ProcessorTopologyLatticeTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/workload_decomposition_type_details.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorMissingSimulationDecompositionParameters.cpp)
 
