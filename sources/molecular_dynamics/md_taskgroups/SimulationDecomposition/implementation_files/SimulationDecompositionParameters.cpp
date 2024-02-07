@@ -134,36 +134,6 @@ std::string SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValue
     return SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_.at(node_value);
 }
 
-std::string SimulationDecompositionParameters::MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)
-{
-    std::string message;
-
-    boost::format s1_frmt("%1%\n");
-    boost::format s2_frmt("    %1%\n");
-
-    // Add header message.
-    s1_frmt % ANANSI::SimulationDecompositionParameters::ErrorMessageHeader_;
-    message += s1_frmt.str();
-
-    // Add warning to message.
-    boost::format warning_frmt("Warning! Invalid input parameter '%1%' for lattice topology type.\nValid values are the following:\n");
-    warning_frmt % invalid_value.c_str();
-    message += warning_frmt.str();
-    for (const auto [key,value] : SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_ )
-    {
-        s2_frmt % value.c_str();
-        message += s2_frmt.str();
-    }
-    s1_frmt % "";
-    message += s1_frmt.str();
-
-    // Add footer to message.
-    s1_frmt % ANANSI::SimulationDecompositionParameters::ErrorMessageFooter_;
-    message += s1_frmt.str();
-    return message;
-}
-
-
 // -----------------------------------------------------
 // This section is for the processor topology spatial decomposition
 // parameters.
@@ -299,6 +269,17 @@ std::vector<std::string> SimulationDecompositionParameters::validWorkLoadDecompo
     {
         valid_values.push_back(value);
     }
+    return valid_values;
+}
+
+std::vector<std::string> SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues()
+{
+    std::vector<std::string> valid_values;
+    for (const auto [key,value] : SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_)
+    {
+        valid_values.push_back(value);
+    }
+
     return valid_values;
 }
 

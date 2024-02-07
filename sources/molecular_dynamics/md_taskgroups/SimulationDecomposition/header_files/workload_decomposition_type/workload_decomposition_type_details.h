@@ -31,7 +31,7 @@ constexpr char* ErrorMessageHeader = R"""(
 # Error Message
 # ----------------------)""";
 
-//! The ifooter for error messages.
+//! The footer for error messages.
 constexpr char* ErrorMessageFooter = R"""(# ----------------------)""";
 
 //! Returs an message for an invalid value for the workload decompostion type. 

@@ -81,6 +81,7 @@ class SimulationDecompositionParameters
         //! \brief Returns a internal processor lattice type value for the given node_value.
         static std::string ProcessorTopologyLatticeTypeValues(const std::string node_value);
 
+        // To be moved to details.
         //! Returns the error message for invalid processor topology lattice type values.
         static std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value);
         
@@ -130,6 +131,8 @@ class SimulationDecompositionParameters
 
         // ====================  STATIC        =======================================
         static std::vector<std::string> validWorkLoadDecompositionValues();
+
+        static std::vector<std::string> validProcessorTopologyLatticeTypeValues();
 
 
     protected:

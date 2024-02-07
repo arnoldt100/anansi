@@ -39,7 +39,7 @@ std::string parse_processor_topology_lattice_type(const std::string a_string,
         }
         else
         {
-            std::string error_message = SimulationDecompositionParameters::MessageInvalidProcessorTopologyLatticeTypeValues(a_string);
+            std::string error_message = MessageInvalidProcessorTopologyLatticeTypeValues(a_string);
             throw ErrorInvalidSimulationDecompositionParameters(error_message);
         }
     }
