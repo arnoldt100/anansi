@@ -14,6 +14,7 @@
 #include "GenericErrorClass.hpp"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
 #include "ErrorMissingSimulationDecompositionParameters.h"
+#include "processor_topology_number_compute_units_per_spatial_domain_details.h"
 
 namespace ANANSI
 {
@@ -37,10 +38,13 @@ int parse_processor_topology_number_processor_compute_units_per_spatial_domain(
         else if ( SimulationDecompositionParameters::IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(a_string) )
         {
 
+            number_cu_per_spatial_domain = 
+                SimulationDecompositionParameters::ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(a_string);
         }
         else
         {
-
+            std::string error_message = SDPConstructorHelpers::MessageInvalidProcessorTopologyNumberComputeUnitsPerSpatialDomain(a_string);
+            throw ErrorInvalidSimulationDecompositionParameters(error_message);
         }
     }
     catch (const ErrorMissingSimulationDecompositionParameters & my_error) 

@@ -204,9 +204,31 @@ bool SimulationDecompositionParameters::IsProcesorTopologyNumberComputeUnitsPerS
 bool SimulationDecompositionParameters::IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value)
 {
     bool valid_value = true;
+
+    // There must be only 3 words or return false.
+    auto count = STRING_UTILITIES::count_words_in_string(node_value);
+    if (count != 1)
+    {
+        valid_value = false;
+        return valid_value;
+    }
+   
+    // Each word must a positive integer.
+    const bool all_words_positive_integers = STRING_UTILITIES::words_in_string_are_positive_integers(node_value);
+    if (! all_words_positive_integers )
+    {
+        valid_value = false;
+        return valid_value;
+    }
+
     return valid_value;
 }
 
+int SimulationDecompositionParameters::ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value)
+{
+    int my_default_value = 1;
+    return my_default_value;
+}
 
 std::string SimulationDecompositionParameters::MessageMissingMandatoryNodeTag(const std::string node_tag)
 {

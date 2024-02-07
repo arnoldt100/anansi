@@ -98,6 +98,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_type/processor_lattice_type_details.h
 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_topology_number_compute_units_per_spatial_domain/ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.h
 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
@@ -125,6 +126,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_type/processor_lattice_type_details.cpp
 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_topology_number_compute_units_per_spatial_domain/ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.cpp
 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorMissingSimulationDecompositionParameters.cpp)

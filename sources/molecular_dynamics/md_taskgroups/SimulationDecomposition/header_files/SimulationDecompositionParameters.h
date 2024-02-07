@@ -117,6 +117,8 @@ class SimulationDecompositionParameters
 
         static bool IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
         
+        static int ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
+
         // ====================  ACCESSORS     =======================================
         SimulationDecompositionParameters * clone () const;
 
