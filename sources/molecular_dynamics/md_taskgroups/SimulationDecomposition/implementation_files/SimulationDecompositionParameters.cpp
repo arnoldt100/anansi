@@ -16,6 +16,7 @@
 #include "WorkloadDecompositionTypeHelpers.h"
 #include "ProcessorTopologyLatticeTypeHelpers.h"
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
+#include "ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h";
 #include "count_words_in_string.h"
 #include "match_string_to_positive_integer.h"
 #include "words_in_string_are_positive_integers.h"
@@ -32,12 +33,14 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     workLoadDecomposition_{""},
     processorTopologyLatticeType_{""},
     processorTopologySpatialDecomposition_{1,1,1},
-    numberProcessorComputeUnitsPerDomain_("")
+    numberProcessorComputeUnitsPerDomain_{1}
 {
     this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecompositionType();
     this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType();
-    this->processorTopologySpatialDecomposition_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatialDimensions();
-    this->numberProcessorComputeUnitsPerDomain_ = SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain();
+    this->processorTopologySpatialDecomposition_ = 
+        SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatialDimensions();
+    this->numberProcessorComputeUnitsPerDomain_ = 
+        SimulationDecompositionParameters::DefaultProcessorTopologyNumberComputeUnitsPerSpatialDomain();
     return;
 }
 
@@ -56,6 +59,8 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
     this->processorTopologySpatialDecomposition_ =
         ANANSI::SDPConstructorHelpers::parse_proccesor_topology_lattice_spatial_dimensions(processor_topology_spatial_decomposition,flag_default_null_value);
 
+    this->numberProcessorComputeUnitsPerDomain_ = 
+        ANANSI::SDPConstructorHelpers::parse_processor_topology_number_processor_compute_units_per_spatial_domain(number_processor_compute_units_per_domain,flag_default_null_value);
     return;
 }
 
@@ -183,14 +188,18 @@ bool SimulationDecompositionParameters::IsProccesorTopologyLatticeSpatialDimensi
 
 // -----------------------------------------------------
 // This section is for the processor topology compute units per domain
-// parameters.
+// parameters. - ProcessorTopologyNumberComputeUnitsPerDomain
 //
 // -----------------------------------------------------
-std::string SimulationDecompositionParameters::DefaultNumberProcessorComputeUnitsPerDomain()
+int SimulationDecompositionParameters::DefaultProcessorTopologyNumberComputeUnitsPerSpatialDomain()
 {
-    return std::string("1");
+    return 1;
 }
 
+bool SimulationDecompositionParameters::IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory()
+{
+    return true;
+}
 
 
 

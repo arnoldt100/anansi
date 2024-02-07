@@ -1,10 +1,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include "SimulationDecompositionParameters.h"
-#include "GenericErrorClass.hpp"
-#include "ErrorInvalidSimulationDecompositionParameters.h"
-#include "ErrorMissingSimulationDecompositionParameters.h"
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,6 +10,10 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
+#include "SimulationDecompositionParameters.h"
+#include "GenericErrorClass.hpp"
+#include "ErrorInvalidSimulationDecompositionParameters.h"
+#include "ErrorMissingSimulationDecompositionParameters.h"
 #include "processor_lattice_spatial_dimensions_details.h"
 
 namespace ANANSI

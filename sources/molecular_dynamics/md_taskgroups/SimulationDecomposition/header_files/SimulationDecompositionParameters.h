@@ -109,8 +109,11 @@ class SimulationDecompositionParameters
         // -- More to do -- 
 
         //! Returns the default number of compute units per spatial domain.
-        static std::string DefaultNumberProcessorComputeUnitsPerDomain();
+        int DefaultProcessorTopologyNumberComputeUnitsPerSpatialDomain();
 
+        //! \brief Returns a boolean indicating if the key for processor number
+        //!        compute units per spatial domain is mandatory.
+        static bool IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory();
 
 
         
@@ -184,7 +187,7 @@ class SimulationDecompositionParameters
         std::array<int,3> processorTopologySpatialDecomposition_;
 
         //! \brief Stores the number of compute units per spatial decomposition.
-        std::string numberProcessorComputeUnitsPerDomain_;
+        int numberProcessorComputeUnitsPerDomain_;
 
 
 }; // -----  end of class SimulationDecompositionParameters  -----
