@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include <array>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//

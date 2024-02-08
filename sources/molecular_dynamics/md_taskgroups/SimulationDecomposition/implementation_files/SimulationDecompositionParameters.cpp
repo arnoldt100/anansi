@@ -18,8 +18,8 @@
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
 #include "ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h";
 #include "count_words_in_string.h"
-#include "match_string_to_positive_integer.h"
-#include "words_in_string_are_positive_integers.h"
+#include "verify_N_integers_in_string.hpp"
+#include "convert_string_to_int_array.hpp"
 
 namespace ANANSI {
 
@@ -155,30 +155,14 @@ bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDi
 {
     // We need to form an array of 3 positive integers. If the string can be parsed to form an 
     // array of 3 positive integers, then we return true, otherwise return false.
-    bool valid_value = true;
-
-    // There must be only 3 words or return false.
-    auto count = STRING_UTILITIES::count_words_in_string(node_value);
-    if (count != 3)
-    {
-        valid_value = false;
-        return valid_value;
-    }
-   
-    // Each word must a positive integer.
-    const bool all_words_positive_integers = STRING_UTILITIES::words_in_string_are_positive_integers(node_value);
-    if (! all_words_positive_integers )
-    {
-        valid_value = false;
-        return valid_value;
-    }
+    bool valid_value = STRING_UTILITIES::verify_N_positive_integers_in_string<3>(node_value); 
     return valid_value;
 }
 
 std::array<int,3> SimulationDecompositionParameters::ProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value)
 {
-    std::array<int,3> my_default_value{1,1,1};
-    return my_default_value;
+    std::array<int,3> my_value = STRING_UTILITIES::convert_string_to_int_array<3>(node_value);
+    return my_value;
 }
 
 bool SimulationDecompositionParameters::IsProccesorTopologyLatticeSpatialDimensionsMandatory()
@@ -203,31 +187,14 @@ bool SimulationDecompositionParameters::IsProcesorTopologyNumberComputeUnitsPerS
 
 bool SimulationDecompositionParameters::IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value)
 {
-    bool valid_value = true;
-
-    // There must be only 3 words or return false.
-    auto count = STRING_UTILITIES::count_words_in_string(node_value);
-    if (count != 1)
-    {
-        valid_value = false;
-        return valid_value;
-    }
-   
-    // Each word must a positive integer.
-    const bool all_words_positive_integers = STRING_UTILITIES::words_in_string_are_positive_integers(node_value);
-    if (! all_words_positive_integers )
-    {
-        valid_value = false;
-        return valid_value;
-    }
-
+    bool valid_value = STRING_UTILITIES::verify_N_positive_integers_in_string<1>(node_value); 
     return valid_value;
 }
 
 int SimulationDecompositionParameters::ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value)
 {
-    int my_default_value = 1;
-    return my_default_value;
+    std::array<int,1> my_value = STRING_UTILITIES::convert_string_to_int_array<1>(node_value);
+    return my_value[0];
 }
 
 std::string SimulationDecompositionParameters::MessageMissingMandatoryNodeTag(const std::string node_tag)
