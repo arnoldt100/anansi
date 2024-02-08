@@ -1,6 +1,6 @@
 #ifndef ANANSI_PathKeyPropertyTree_INC
 #define ANANSI_PathKeyPropertyTree_INC
-//! \file PathKey.h
+//! \file PathKeyPropertyTree.hpp
 
 
 //--------------------------------------------------------//

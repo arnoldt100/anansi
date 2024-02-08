@@ -1,7 +1,7 @@
+//! \file GenericTaskUtilities.hpp
 #ifndef ANANSI_GenericTaskUtilities_INC
 #define ANANSI_GenericTaskUtilities_INC
 
-//! @file GenericTaskUtilities.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//

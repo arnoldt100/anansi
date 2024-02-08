@@ -1,6 +1,6 @@
 #ifndef ANANSI_PathKey_INC
 #define ANANSI_PathKey_INC
-//! \file PathKey.h
+//! \file PathKey.hpp
 //!
 //! \brief Brief description
 //!

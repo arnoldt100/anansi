@@ -21,11 +21,11 @@ namespace ANANSI
 
 //! \brief Checks for the XML path separator character in string a_string.
 //!
-//! \detail If the path separator char, stored in the template parameter trait
+//! \details If the path separator char, stored in the template parameter trait
 //! class PathSeparator_t, is found in string a_string, then true is returned. Otherwise
 //! false is returned.
 //!
-//! \param a_string[in] The string to be searched.
+//! \param[in] a_string The string to be searched.
 //! \tparam PathSeparator_t A trait class that stores the character to search for.
 template<typename PathSeparator_t>
 bool check_string_for_separator_char (const std::string & a_string)

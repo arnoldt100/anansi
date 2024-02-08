@@ -105,7 +105,7 @@ class ControlInputFile
 
         //! Returns the node value in ptree_ for the corresponding key.
         //!
-        //! \param[in] key The key of the node.
+        //! \param[in] global_key The key of the node.
         //! \return A std::string is returned, and it is the value of the
         //! node for the boost property tree "ptree_".
         std::string getValue(const std::string & global_key) const
@@ -131,7 +131,7 @@ class ControlInputFile
 
         //! Sets the file name of file to be  read or written to.
         //!
-        //! \param command_file_name[in] The file name.
+        //! \param[in] file_name The file name.
         void setFileName(const CommandFileName & file_name)
         {
             this->filename_ = file_name;

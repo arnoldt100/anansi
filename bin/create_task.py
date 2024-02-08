@@ -43,7 +43,7 @@ def _main():
 #
 # @param [in] ownership_policy_choices A string list of ownership policy choices
 # @param [in] ownership_policy_help A string that contains the ownership policy help messages.
-# @param [in]  classname_help A string that contains the class name help messages.
+# @param [in] class_name_help A string that contains the class name help messages.
 #
 # @returns A namespace that contains attributes that are the command line arguments.
 def _parse_arguments(ownership_policy_choices,ownership_policy_help,class_name_help):

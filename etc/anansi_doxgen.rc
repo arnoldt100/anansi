@@ -90,7 +90,7 @@ CREATE_SUBDIRS         = NO
 # Minimum value: 0, maximum value: 8, default value: 8.
 # This tag requires that the tag CREATE_SUBDIRS is set to YES.
 
-CREATE_SUBDIRS_LEVEL   = 8
+# CREATE_SUBDIRS_LEVEL   = 8
 
 # If the ALLOW_UNICODE_NAMES tag is set to YES, doxygen will allow non-ASCII
 # characters to appear in the names of generated files. If set to NO, non-ASCII
@@ -924,8 +924,6 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/MPICommunicatorTask/InitMPIEnvTask/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/MPICommunicatorTask/InitWorldCommunicatorTask/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/MPICommunicatorTask/InitWorldCommunicatorTask/header_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/header_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/invoker/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/invoker/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/logger/header_files \
@@ -943,13 +941,13 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/simulation_state/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/tasks/implementation_files \
-                         $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/command_files/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/command_files/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/file_parsers_core/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/file_parsers_core/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/control_file/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/control_file/implementation_files \
+                         $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/implementation_files
 
 
@@ -1417,15 +1415,6 @@ HTML_COLORSTYLE_SAT    = 100
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
 HTML_COLORSTYLE_GAMMA  = 80
-
-# If the HTML_TIMESTAMP tag is set to YES then the footer of each generated HTML
-# page will contain the date and time when the page was generated. Setting this
-# to YES can help to show when doxygen was last run and thus if the
-# documentation is up to date.
-# The default value is: NO.
-# This tag requires that the tag GENERATE_HTML is set to YES.
-
-HTML_TIMESTAMP         = NO
 
 # If the HTML_DYNAMIC_MENUS tag is set to YES then the generated HTML
 # documentation will contain a main index with vertical navigation menus that
@@ -2086,14 +2075,6 @@ LATEX_HIDE_INDICES     = NO
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
 LATEX_BIB_STYLE        = plain
-
-# If the LATEX_TIMESTAMP tag is set to YES then the footer of each generated
-# page will contain the date and time when the page was generated. Setting this
-# to NO can help when comparing the output of multiple runs.
-# The default value is: NO.
-# This tag requires that the tag GENERATE_LATEX is set to YES.
-
-LATEX_TIMESTAMP        = NO
 
 # The LATEX_EMOJI_DIRECTORY tag is used to specify the (relative or absolute)
 # path from which the emoji images will be read. If a relative path is entered,

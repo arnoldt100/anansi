@@ -1,7 +1,7 @@
 #ifndef ANANSI_verify_controlfile_keys_are_valid_INC
 #define ANANSI_verify_controlfile_keys_are_valid_INC
 
-//! \file verify_controlfile_keys_are_valid.h
+//! \file verify_controlfile_keys_are_valid.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//

@@ -1,7 +1,7 @@
 #ifndef ANANSI_add_values_to_property_tree_INC
 #define ANANSI_add_values_to_property_tree_INC
 
-//! \file add_values_to_property_tree.h
+//! \file add_values_to_property_tree.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//

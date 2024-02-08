@@ -27,7 +27,7 @@ class UnitTest:
     # @param test_name The name of the test.
     # @param active The state of running this test. If active is true, then the test will be run. Otherwise the test will not be run.
     # @param binary The path to the unit test binary.
-    # @param binary_argumerent The command line arguments of the unit test binary.
+    # @param binary_arguments The command line arguments of the unit test binary.
     # @param execution_policy The policy for executing the binary.
     def __init__(self,test_name,active=False,binary=None,binary_arguments=None, execution_policy=NoParallelExecution):
         self._test_name = test_name

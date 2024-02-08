@@ -1,4 +1,4 @@
-//! \file MPI_Broadcast
+//! \file MPIBroadcast.h
 
 #ifndef  ANANSI_MPIBroadcast_INC
 #define  ANANSI_MPIBroadcast_INC
