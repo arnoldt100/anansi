@@ -30,17 +30,24 @@ namespace SDPConstructorHelpers
             {std::string{"replicated-data-domain-decomposition"}, std::string{"internal_replicated-data-domain-decomposition"} },
             {std::string{"spatial-data-domain-decomposition"}, std::string{"internal_spatial-data-domain-decomposition"}}
         };
+
+        //! \brief Returns true if node_value has a valid value for the workload decomposition type.
+        bool is_valid_workload_decomposition_type_values(const std::string node_value)
+        {
+            return valid_work_load_decomposition_values.contains(node_value);
+        }
+
+        std::string workload_decomposition_type_values(const std::string node_value)
+        {
+            return valid_work_load_decomposition_values.at(node_value); 
+        };
+
     }; // End of anonynous namespace
 
     std::string default_workload_decomposition_type()
     {
         return valid_work_load_decomposition_values.at("spatial-data-domain-decomposition"); 
     };
-
-    bool is_valid_workload_decomposition_type_values(const std::string node_value)
-    {
-        return valid_work_load_decomposition_values.contains(node_value);
-    }
 
     std::string workload_decomposition_type (const std::string a_string,
                                              const std::string flag_default_null_value)
@@ -56,7 +63,7 @@ namespace SDPConstructorHelpers
             }
             else if (is_valid_workload_decomposition_type_values(a_string))
             {
-                my_workload_decomposition_type = SimulationDecompositionParameters::WorkLoadDecompositionTypeValues(a_string);
+                my_workload_decomposition_type = workload_decomposition_type_values(a_string);
             }
             else
             {

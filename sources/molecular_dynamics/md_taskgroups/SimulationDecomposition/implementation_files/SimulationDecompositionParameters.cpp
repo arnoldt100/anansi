@@ -99,17 +99,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 //============================= STATIC    ===================================
 
 // -----------------------------------------------------
-// This section is for the workload decomposition type 
-// parameters.
-//
-// -----------------------------------------------------
-
-std::string SimulationDecompositionParameters::WorkLoadDecompositionTypeValues( const std::string node_value)
-{
-    return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at(node_value); 
-}
-
-// -----------------------------------------------------
 // This section is for the processor lattice type 
 // parameters - ProcessorTopologyLatticeType
 //

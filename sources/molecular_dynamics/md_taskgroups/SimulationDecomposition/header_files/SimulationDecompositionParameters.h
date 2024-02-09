@@ -71,15 +71,6 @@ class SimulationDecompositionParameters
         // ====================  STATIC        =======================================
 
         // -----------------------------------------------------
-        // This section is for the workload decomposition type 
-        // parameters - WorkLoadDecompositionType
-        //
-        // -----------------------------------------------------
-        
-        //! \brief Returns a internal workload decomposition value for the given node_value.
-        static std::string WorkLoadDecompositionTypeValues(const std::string node_value);
-
-        // -----------------------------------------------------
         // This section is for the processor lattice type 
         // parameters - ProcessorTopologyLatticeType
         //
