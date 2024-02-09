@@ -103,15 +103,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 // parameters - ProcessorTopologyLatticeType
 //
 // -----------------------------------------------------
-std::string SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType()
-{
-    return SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_.at("rectangular");
-}
-
-bool SimulationDecompositionParameters::IsValidProcessorTopologyLatticeTypeValues(const std::string node_value)
-{
-    return SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_.contains(node_value);
-}
 
 std::string SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(const std::string node_value)
 {

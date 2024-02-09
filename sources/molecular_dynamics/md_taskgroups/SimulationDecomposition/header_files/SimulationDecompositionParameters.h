@@ -76,12 +76,6 @@ class SimulationDecompositionParameters
         //
         // -----------------------------------------------------
         
-        //! Returns the default value for the lattice type topology of the spatial decomposition.
-        static std::string DefaultProcessorTopologyLatticeType();
-
-        //! \brief Returns a boolean that indicates if the node value is valid.
-        static  bool IsValidProcessorTopologyLatticeTypeValues(const std::string node_value);
-
         //! \brief Returns a internal processor lattice type value for the given node_value.
         static std::string ProcessorTopologyLatticeTypeValues(const std::string node_value);
 

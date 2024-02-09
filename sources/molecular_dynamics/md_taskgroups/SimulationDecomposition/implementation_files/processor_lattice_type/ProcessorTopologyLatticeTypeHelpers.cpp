@@ -27,8 +27,14 @@ namespace SDPConstructorHelpers
             {std::string{"rectangular"}, std::string{"rectangular"}}
         };
 
+        bool is_valid_processor_topology_lattice_type_values(const std::string node_value)
+        {
+            return valid_processor_topology_lattice_type_values.contains(node_value);
+        }
+
     }; // End of anonynous namespace
 
+    //! Returns the default value for the lattice type topology of the spatial decomposition.
     std::string default_processor_topology_lattice_type()
     {
         return valid_processor_topology_lattice_type_values.at("rectangular");
@@ -46,7 +52,7 @@ namespace SDPConstructorHelpers
                 std::string error_message = message_missing_mandatory_node_tag("processor topology lattice type");
                 throw ErrorMissingSimulationDecompositionParameters(error_message);
             }
-            else if (SimulationDecompositionParameters::IsValidProcessorTopologyLatticeTypeValues(a_string))
+            else if (is_valid_processor_topology_lattice_type_values(a_string))
             {
                 my_processor_topology_lattice_type = SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(a_string);
             }
