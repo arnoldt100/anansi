@@ -76,9 +76,6 @@ class SimulationDecompositionParameters
         //
         // -----------------------------------------------------
         
-        //! \brief Returns a boolean that indicates if the node value is valid.
-        static bool IsValidWorkLoadDecompositionTypeValues(const std::string node_value);
-
         //! \brief Returns a internal workload decomposition value for the given node_value.
         static std::string WorkLoadDecompositionTypeValues(const std::string node_value);
 

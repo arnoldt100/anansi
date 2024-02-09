@@ -54,7 +54,7 @@ namespace SDPConstructorHelpers
                 std::string error_message = message_missing_mandatory_node_tag("workload decomposition type");
                 throw ErrorMissingSimulationDecompositionParameters(error_message);
             }
-            else if (SimulationDecompositionParameters::IsValidWorkLoadDecompositionTypeValues(a_string))
+            else if (is_valid_workload_decomposition_type_values(a_string))
             {
                 my_workload_decomposition_type = SimulationDecompositionParameters::WorkLoadDecompositionTypeValues(a_string);
             }

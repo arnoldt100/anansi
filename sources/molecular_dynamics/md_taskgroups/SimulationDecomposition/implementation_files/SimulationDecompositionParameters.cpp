@@ -104,11 +104,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 //
 // -----------------------------------------------------
 
-bool SimulationDecompositionParameters::IsValidWorkLoadDecompositionTypeValues(const std::string node_value)
-{
-    return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.contains(node_value);
-}
-
 std::string SimulationDecompositionParameters::WorkLoadDecompositionTypeValues( const std::string node_value)
 {
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at(node_value); 
