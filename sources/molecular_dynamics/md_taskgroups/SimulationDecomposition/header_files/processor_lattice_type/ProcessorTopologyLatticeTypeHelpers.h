@@ -25,6 +25,7 @@ namespace ANANSI
 {
 namespace SDPConstructorHelpers
 {
+std::string default_processor_topology_lattice_type();
 
 //! Returns the processor lattice type.
 //!

@@ -21,41 +21,53 @@ namespace ANANSI
 {
 namespace SDPConstructorHelpers 
 {
+    namespace
+    {
+        std::map<std::string,std::string> valid_processor_topology_lattice_type_values{
+            {std::string{"rectangular"}, std::string{"rectangular"}}
+        };
 
-std::string parse_processor_topology_lattice_type(const std::string a_string,
-                                                  const std::string flag_default_null_value)
-{
-    std::string my_processor_topology_lattice_type = "";
-    try
+    }; // End of anonynous namespace
+
+    std::string default_processor_topology_lattice_type()
     {
-        if ( (a_string == flag_default_null_value) && 
-             SDPConstructorHelpers::IsProcessorTopologyLatticeTypeMandatory()  )
-        {
-            std::string error_message = message_missing_mandatory_node_tag("processor topology lattice type");
-            throw ErrorMissingSimulationDecompositionParameters(error_message);
-        }
-        else if (SimulationDecompositionParameters::IsValidProcessorTopologyLatticeTypeValues(a_string))
-        {
-            my_processor_topology_lattice_type = SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(a_string);
-        }
-        else
-        {
-            std::string error_message = MessageInvalidProcessorTopologyLatticeTypeValues(a_string);
-            throw ErrorInvalidSimulationDecompositionParameters(error_message);
-        }
+        return valid_processor_topology_lattice_type_values.at("rectangular");
     }
-    catch (const ErrorMissingSimulationDecompositionParameters & my_error) 
+
+    std::string parse_processor_topology_lattice_type(const std::string a_string,
+                                                      const std::string flag_default_null_value)
     {
-            const std::string error_message{my_error.what()};
-            throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
+        std::string my_processor_topology_lattice_type = "";
+        try
+        {
+            if ( (a_string == flag_default_null_value) && 
+                 SDPConstructorHelpers::IsProcessorTopologyLatticeTypeMandatory()  )
+            {
+                std::string error_message = message_missing_mandatory_node_tag("processor topology lattice type");
+                throw ErrorMissingSimulationDecompositionParameters(error_message);
+            }
+            else if (SimulationDecompositionParameters::IsValidProcessorTopologyLatticeTypeValues(a_string))
+            {
+                my_processor_topology_lattice_type = SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(a_string);
+            }
+            else
+            {
+                std::string error_message = MessageInvalidProcessorTopologyLatticeTypeValues(a_string);
+                throw ErrorInvalidSimulationDecompositionParameters(error_message);
+            }
+        }
+        catch (const ErrorMissingSimulationDecompositionParameters & my_error) 
+        {
+                const std::string error_message{my_error.what()};
+                throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
+        }
+        catch (const ErrorInvalidSimulationDecompositionParameters& my_error) 
+        {
+                const std::string error_message{my_error.what()};
+                throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
+        }
+        return my_processor_topology_lattice_type; 
     }
-    catch (const ErrorInvalidSimulationDecompositionParameters& my_error) 
-    {
-            const std::string error_message{my_error.what()};
-            throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
-    }
-    return my_processor_topology_lattice_type; 
-}
 
 }; // end of namespace SDPConstructorHelpers 
 }; // end of namespace ANANSI
