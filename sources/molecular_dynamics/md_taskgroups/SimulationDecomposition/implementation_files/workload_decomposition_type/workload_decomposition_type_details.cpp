@@ -1,6 +1,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <map>
+#include <string_view>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -11,6 +13,20 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "workload_decomposition_type_details.h"
+
+namespace{
+
+//! The header for error messages.
+static constexpr char* ErrorMessageHeader = R"""(
+# ----------------------
+# Error Message
+# ----------------------)""";
+
+//! The footer for error messages.
+static constexpr char* ErrorMessageFooter = R"""(# ----------------------)""";
+
+
+} // End of anonynous namespace.
 
 namespace ANANSI
 {
@@ -30,7 +46,7 @@ std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string inva
     boost::format s2_frmt("    %1%\n");
 
     // Add header to message.
-    s1_frmt % ErrorMessageHeader_;
+    s1_frmt % ErrorMessageHeader;
     message += s1_frmt.str();
 
     // Add warning to message.
@@ -46,11 +62,11 @@ std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string inva
     message += s1_frmt.str();
 
     // Add footer to message.
-    s1_frmt % ErrorMessageFooter_;
+    s1_frmt % ErrorMessageFooter;
     message += s1_frmt.str();
     return message;
 }
 
-};
-}; // namespace ANANSI
+}; // End of namespace SDPConstructorHelpers
+}; // End of namespace ANANSI
 

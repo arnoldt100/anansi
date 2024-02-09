@@ -41,6 +41,8 @@ namespace SDPConstructorHelpers
 std::string workload_decomposition_type(const std::string a_string,
                                         const std::string flag_default_null_value);
 
+std::string default_workload_decomposition_type();
+
 }; // end of namespace SDPConstructorHelpers
 }; // end of namespace ANANSI
 

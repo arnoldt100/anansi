@@ -170,15 +170,7 @@ class SimulationDecompositionParameters
 
         //============================= STATIC    ====================================
 
-        //! \todo Move this outside the class to  helper function.
-        static constexpr char* ErrorMessageHeader_ = R"""(
-# ----------------------
-# Error Message
-# ----------------------)""";
-
-        //! \todo Move this outside the class to  helper function.
-        static constexpr char* ErrorMessageFooter_ = R"""(# ----------------------)""";
-
+        //! \todo Move oustide of class.
         //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
         //!  are the internal flags/values used within the program.
         static std::map<std::string,std::string> validWorkLoadDecompositionValues_;

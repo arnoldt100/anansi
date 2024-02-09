@@ -35,7 +35,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     processorTopologySpatialDecomposition_{1,1,1},
     numberProcessorComputeUnitsPerDomain_{1}
 {
-    this->workLoadDecomposition_ = SimulationDecompositionParameters::DefaultWorkLoadDecompositionType();
+    this->workLoadDecomposition_ = ANANSI::SDPConstructorHelpers::default_workload_decomposition_type();
     this->processorTopologyLatticeType_ = SimulationDecompositionParameters::DefaultProcessorTopologyLatticeType();
     this->processorTopologySpatialDecomposition_ = 
         SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatialDimensions();
@@ -275,6 +275,7 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
 
 //============================= ACCESSORS ====================================
 
+//! \todo Move oustide of class.
 std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues_{
     {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
     {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
