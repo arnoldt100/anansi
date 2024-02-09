@@ -37,6 +37,11 @@ namespace SDPConstructorHelpers
         return valid_work_load_decomposition_values.at("spatial-data-domain-decomposition"); 
     };
 
+    bool is_valid_workload_decomposition_type_values(const std::string node_value)
+    {
+        return valid_work_load_decomposition_values.contains(node_value);
+    }
+
     std::string workload_decomposition_type (const std::string a_string,
                                              const std::string flag_default_null_value)
     {

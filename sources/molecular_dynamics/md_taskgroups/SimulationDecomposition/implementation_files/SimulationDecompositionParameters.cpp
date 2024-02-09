@@ -104,11 +104,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 //
 // -----------------------------------------------------
 
-std::string SimulationDecompositionParameters::DefaultWorkLoadDecompositionType()
-{
-    return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.at("spatial-data-domain-decomposition"); 
-}
-
 bool SimulationDecompositionParameters::IsValidWorkLoadDecompositionTypeValues(const std::string node_value)
 {
     return SimulationDecompositionParameters::validWorkLoadDecompositionValues_.contains(node_value);

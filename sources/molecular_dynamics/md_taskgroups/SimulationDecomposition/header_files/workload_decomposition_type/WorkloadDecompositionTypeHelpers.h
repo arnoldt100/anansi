@@ -43,6 +43,8 @@ std::string workload_decomposition_type(const std::string a_string,
 
 std::string default_workload_decomposition_type();
 
+bool is_valid_workload_decomposition_type_values(const std::string node_value);
+
 }; // end of namespace SDPConstructorHelpers
 }; // end of namespace ANANSI
 

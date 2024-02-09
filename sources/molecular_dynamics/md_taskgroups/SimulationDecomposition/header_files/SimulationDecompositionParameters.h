@@ -76,9 +76,6 @@ class SimulationDecompositionParameters
         //
         // -----------------------------------------------------
         
-        //! Returns the default value for the workload decomposition type.
-        static std::string DefaultWorkLoadDecompositionType();
-
         //! \brief Returns a boolean that indicates if the node value is valid.
         static bool IsValidWorkLoadDecompositionTypeValues(const std::string node_value);
 
