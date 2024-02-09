@@ -88,8 +88,6 @@ class SimulationDecompositionParameters
         // To be moved to details.
         //! Returns the error message for invalid processor topology lattice type values.
         static std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value);
-        
-
 
         // -----------------------------------------------------
         // This section is for the processor lattice type 

@@ -13,6 +13,18 @@
 #include "processor_lattice_type_details.h"
 #include "SimulationDecompositionParameters.h"
 
+namespace
+{
+//! The header for error messages.
+constexpr char* ErrorMessageHeader = R"""(
+# ----------------------
+# Error Message
+# ----------------------)""";
+
+//! The footer for error messages.
+constexpr char* ErrorMessageFooter = R"""(# ----------------------)""";
+
+}; // End of anaonymous namespace.
 
 namespace ANANSI
 {
@@ -32,7 +44,7 @@ std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string i
     boost::format s2_frmt("    %1%\n");
 
     // Add header message.
-    s1_frmt % ErrorMessageHeader_;
+    s1_frmt % ErrorMessageHeader;
     message += s1_frmt.str();
 
     // Add warning to message.
@@ -48,7 +60,7 @@ std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string i
     message += s1_frmt.str();
 
     // Add footer to message.
-    s1_frmt % ErrorMessageFooter_;
+    s1_frmt % ErrorMessageFooter;
     message += s1_frmt.str();
     return message;
 }

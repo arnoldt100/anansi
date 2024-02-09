@@ -17,17 +17,6 @@
 //--------------------------------------------------------//
 
 //! The header for error messages.
-namespace
-{
-constexpr char* ErrorMessageHeader_ = R"""(
-# ----------------------
-# Error Message
-# ----------------------)""";
-
-//! The footer for error messages.
-constexpr char* ErrorMessageFooter_ = R"""(# ----------------------)""";
-
-}
 
 namespace ANANSI
 {
