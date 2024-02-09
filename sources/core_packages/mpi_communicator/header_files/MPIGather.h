@@ -69,6 +69,7 @@ class MPI_GATHER<int>
         //! @param [in] task_id_to_gather_data The id of the task to gather the data on.
         //! @param [in] aCommunicator The MPI communicator handle
         //! @param [in] send_buffer_ptr A buffer of int.
+        //! @param [in] send_buffer_length The length of buffer "send_buffer_ptr".
         //! @returns A vector containing the gathered int values.
         static std::vector<int> Gather(
                 const int task_id_to_gather_data,

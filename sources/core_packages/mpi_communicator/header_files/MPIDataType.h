@@ -1,12 +1,6 @@
-/*
- * MPIDataType.h
- *
- *  Created on: 12/15/18
- *      Authors: Arnold Tharrington
- */
-
-#ifndef ANANSI_MPIDATATYPE_
-#define ANANSI_MPIDATATYPE_
+//! \file MPI_Datatype.h
+#ifndef ANANSI_MPIDATATYPE_INC
+#define ANANSI_MPIDATATYPE_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -73,4 +67,4 @@ class MPI_DATA_TYPE<bool>
 
 } /* namespace ANANSI */
 
-#endif /* ANANSI_MPIDATATYPE_ */
+#endif /* ANANSI_MPIDATATYPE_ INC*/
