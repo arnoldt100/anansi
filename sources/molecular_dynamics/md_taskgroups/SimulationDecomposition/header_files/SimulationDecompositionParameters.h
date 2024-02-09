@@ -27,30 +27,48 @@
 namespace ANANSI
 {
 
-//! Stores the information for decomposing the simulation workload.
+//! \brief Stores the simulation pararmeters for decomposing the simulation workload.
+//!
+//! \details This class stores the following information:
+//! - The type of simulation decomposition 
+//!   The program currently only supports spatial domain decomposition. 
+//! - The type of lattice topology for the simulation decomposition
+//!   The program currently only supports rectangular lattice topology.
+//! - The dimensions of the lattice topology 
+//! - The number of compute units per spatial domain
 class SimulationDecompositionParameters
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-        SimulationDecompositionParameters ();   // constructor
+        //! The default constructor.
+        //! 
+        //! \details This constructor doesn't initialize its members to usable values.
+        SimulationDecompositionParameters ();
 
-        SimulationDecompositionParameters(const std::string flag_default_null_value,
-                                          const std::string work_load_decomposition,
+        //! \brief Constructs class SimulationDecompositionParameters with std::string parameters.
+        //! \details This constructor indirectly throws exceptions.
+        //! \param [in] flag_default_null_value A string to indicate if a simulation parameter is assigned a default value.
+        //! \param [in] work_load_decomposition_type Contains the parameters for type of workload decomposition.
+        //! \param [in] processor_topology_lattice_type Contains the parameters for the type of processor latticae topology.
+        //! \param [in] processor_topology_spatial_decomposition Contains the parameters for the dimensions of the processor latticae topology
+        //! \param [in] number_processor_compute_units_per_domain Conatins the number of compute units per spatial domain.
+        explicit SimulationDecompositionParameters(const std::string flag_default_null_value,
+                                          const std::string work_load_decomposition_type,
                                           const std::string processor_topology_lattice_type,
                                           const std::string processor_topology_spatial_decomposition,
                                           const std::string number_processor_compute_units_per_domain);
 
+        //! \brief The copy constructor.
         SimulationDecompositionParameters (const SimulationDecompositionParameters & other);   // copy constructor
 
+        //! \brief The move constructor.
         SimulationDecompositionParameters (SimulationDecompositionParameters && other);   // copy-move constructor
 
+        //! \brief The destructor.
         ~SimulationDecompositionParameters ();  // destructor
 
         // ====================  STATIC        =======================================
-
-        // Error message for missing mandotory node tag.
-        static std::string MessageMissingMandatoryNodeTag(const std::string node_tag);
 
         // -----------------------------------------------------
         // This section is for the workload decomposition type 
@@ -152,11 +170,13 @@ class SimulationDecompositionParameters
 
         //============================= STATIC    ====================================
 
+        //! \todo Move this outside the class to  helper function.
         static constexpr char* ErrorMessageHeader_ = R"""(
 # ----------------------
 # Error Message
 # ----------------------)""";
 
+        //! \todo Move this outside the class to  helper function.
         static constexpr char* ErrorMessageFooter_ = R"""(# ----------------------)""";
 
         //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
@@ -170,13 +190,13 @@ class SimulationDecompositionParameters
         // ====================  DATA MEMBERS  =======================================
         //! \brief Stores the type of workload decomposition.
         //!
-        //! \detailed Only 1 valid accepted value - "domain-decomposition".
+        //! \details Only 1 valid accepted value - "domain-decomposition".
         //! The default value is "domain-decomposition".
         std::string workLoadDecomposition_;
 
         //! \brief Stores the lattice type for the spatial workload decomposition.
         //!
-        //! \detailed Only 1 valid accepted value - "rectangular".
+        //! \details Only 1 valid accepted value - "rectangular".
         std::string processorTopologyLatticeType_;
 
         //! \brief Stores the  spatial workload decomposition dimension.

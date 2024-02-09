@@ -45,13 +45,13 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
 }
 
 SimulationDecompositionParameters::SimulationDecompositionParameters(const std::string flag_default_null_value,
-                                          const std::string work_load_decomposition,
+                                          const std::string work_load_decomposition_type,
                                           const std::string processor_topology_lattice,
                                           const std::string processor_topology_spatial_decomposition,
                                           const std::string number_processor_compute_units_per_domain)
 {
     this->workLoadDecomposition_ =
-        ANANSI::SDPConstructorHelpers::workload_decomposition_type(work_load_decomposition,flag_default_null_value);
+        ANANSI::SDPConstructorHelpers::workload_decomposition_type(work_load_decomposition_type,flag_default_null_value);
 
     this->processorTopologyLatticeType_ =
         ANANSI::SDPConstructorHelpers::parse_processor_topology_lattice_type(processor_topology_lattice,flag_default_null_value);
@@ -196,29 +196,6 @@ int SimulationDecompositionParameters::ProcessorTopologyNumberComputeUnitsPerSpa
     std::array<int,1> my_value = STRING_UTILITIES::convert_string_to_int_array<1>(node_value);
     return my_value[0];
 }
-
-std::string SimulationDecompositionParameters::MessageMissingMandatoryNodeTag(const std::string node_tag)
-{
-    std::string message;
-
-    boost::format s1_frmt("%1%\n");
-
-    // Add header to message.
-    s1_frmt % SimulationDecompositionParameters::ErrorMessageHeader_;
-    message = s1_frmt.str();
-
-    // Add warning to message.
-    boost::format warning_frmt("Warning! The tag for the '%1%' is missing from the input file\nbut the tag is mandatory to run the program.\n");
-    warning_frmt % node_tag.c_str();
-    message += warning_frmt.str();
-
-    // Add footer to message.
-    s1_frmt % SimulationDecompositionParameters::ErrorMessageFooter_;
-    message += s1_frmt.str();
-    return message;
-}
-
-
 
 //============================= ACCESSORS ====================================
 

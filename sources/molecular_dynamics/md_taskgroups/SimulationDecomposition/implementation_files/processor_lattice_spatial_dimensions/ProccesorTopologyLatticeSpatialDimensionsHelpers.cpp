@@ -15,6 +15,7 @@
 #include "ErrorInvalidSimulationDecompositionParameters.h"
 #include "ErrorMissingSimulationDecompositionParameters.h"
 #include "processor_lattice_spatial_dimensions_details.h"
+#include "message_missing_mandatory_node_tag.h"
 
 namespace ANANSI
 {
@@ -31,7 +32,7 @@ std::array<int,3> parse_proccesor_topology_lattice_spatial_dimensions(const std:
              SimulationDecompositionParameters::IsProccesorTopologyLatticeSpatialDimensionsMandatory() )
        {
             std::string error_message = 
-                SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("processor topology lattice spatial dimensions");
+                message_missing_mandatory_node_tag("processor topology lattice spatial dimensions");
             throw ErrorMissingSimulationDecompositionParameters(error_message);
        }
        else if (SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDimensionsValues(a_string))

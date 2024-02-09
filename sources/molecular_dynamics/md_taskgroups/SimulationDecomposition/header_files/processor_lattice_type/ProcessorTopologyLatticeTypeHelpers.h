@@ -3,9 +3,9 @@
 
 //! \file SDPConstructorHelpers.h
 //!
-//! \detailed This file contains helper functions for initializing
-//!           class SimulationDecompositionParameters data members in
-//!           its constructor.
+//! \details This file contains helper functions for initializing
+//!          class SimulationDecompositionParameters data members in
+//!          its constructor.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//

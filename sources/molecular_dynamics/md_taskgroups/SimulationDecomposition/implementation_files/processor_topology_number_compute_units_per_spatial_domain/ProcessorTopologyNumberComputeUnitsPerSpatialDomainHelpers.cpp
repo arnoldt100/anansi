@@ -15,6 +15,7 @@
 #include "ErrorInvalidSimulationDecompositionParameters.h"
 #include "ErrorMissingSimulationDecompositionParameters.h"
 #include "processor_topology_number_compute_units_per_spatial_domain_details.h"
+#include "message_missing_mandatory_node_tag.h"
 
 namespace ANANSI
 {
@@ -32,7 +33,7 @@ int parse_processor_topology_number_processor_compute_units_per_spatial_domain(
               SimulationDecompositionParameters::IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory() )
         {
             std::string error_message = 
-                SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("processor topology number compute units per spatial domain");
+                message_missing_mandatory_node_tag("processor topology number compute units per spatial domain");
             throw ErrorMissingSimulationDecompositionParameters(error_message);
         }
         else if ( SimulationDecompositionParameters::IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(a_string) )

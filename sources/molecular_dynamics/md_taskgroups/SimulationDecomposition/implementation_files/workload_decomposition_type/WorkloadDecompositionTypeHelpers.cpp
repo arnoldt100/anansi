@@ -16,6 +16,7 @@
 #include "ErrorInvalidSimulationDecompositionParameters.h"
 #include "ErrorMissingSimulationDecompositionParameters.h"
 #include "workload_decomposition_type_details.h"
+#include "message_missing_mandatory_node_tag.h"
 
 namespace ANANSI
 {
@@ -31,7 +32,7 @@ std::string workload_decomposition_type (const std::string a_string,
         if ( (a_string == flag_default_null_value) && 
              IsWorkLoadDecompositionTypeMandatory() )
         {
-            std::string error_message = SimulationDecompositionParameters::MessageMissingMandatoryNodeTag("workload decomposition type");
+            std::string error_message = message_missing_mandatory_node_tag("workload decomposition type");
             throw ErrorMissingSimulationDecompositionParameters(error_message);
         }
         else if (SimulationDecompositionParameters::IsValidWorkLoadDecompositionTypeValues(a_string))

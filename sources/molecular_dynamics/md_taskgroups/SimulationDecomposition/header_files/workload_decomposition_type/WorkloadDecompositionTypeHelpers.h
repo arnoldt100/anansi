@@ -3,7 +3,7 @@
 
 //! \file WorkloadDecompositionTypeHelpers.h
 //!
-//! \detailed This file contains helper functions for initializing
+//! \details  This file contains helper functions for initializing
 //!           class SimulationDecompositionParameters data members in
 //!           its constructor.
 
@@ -27,7 +27,7 @@ namespace SDPConstructorHelpers
 
 //! \brief Returns the work load decompostion type.
 //!
-//! \detailed This parameter must be explicitly specified. If the parameter 'a_string'
+//! \details This parameter must be explicitly specified. If the parameter 'a_string'
 //!           equals "flag_default_null_value" an exception will be thrown. Generally, a_string
 //!           equals "flag_default_null_value" if the corresponding input file doesn't
 //!           have the entry for the simulation workload decomposition type.
