@@ -104,11 +104,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 //
 // -----------------------------------------------------
 
-std::string SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(const std::string node_value)
-{
-    return SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_.at(node_value);
-}
-
 // -----------------------------------------------------
 // This section is for the processor topology spatial decomposition
 // parameters.

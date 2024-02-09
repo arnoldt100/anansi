@@ -32,6 +32,11 @@ namespace SDPConstructorHelpers
             return valid_processor_topology_lattice_type_values.contains(node_value);
         }
 
+        std::string processor_topology_lattice_type_values(const std::string node_value)
+        {
+            return valid_processor_topology_lattice_type_values.at(node_value);
+        }
+
     }; // End of anonynous namespace
 
     //! Returns the default value for the lattice type topology of the spatial decomposition.
@@ -54,7 +59,7 @@ namespace SDPConstructorHelpers
             }
             else if (is_valid_processor_topology_lattice_type_values(a_string))
             {
-                my_processor_topology_lattice_type = SimulationDecompositionParameters::ProcessorTopologyLatticeTypeValues(a_string);
+                my_processor_topology_lattice_type = processor_topology_lattice_type_values(a_string);
             }
             else
             {
