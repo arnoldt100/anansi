@@ -31,11 +31,6 @@ namespace ANANSI
 namespace SDPConstructorHelpers
 {
 
-bool IsProcessorTopologyLatticeTypeMandatory() 
-{
-    return true;
-}
-
 std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)
 {
     std::string message;

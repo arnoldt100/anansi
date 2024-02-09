@@ -33,11 +33,6 @@ namespace ANANSI
 namespace SDPConstructorHelpers
 {
 
-bool IsWorkLoadDecompositionTypeMandatory()
-{
-    return true;
-}
-
 std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string invalid_value)
 {
     std::string message;

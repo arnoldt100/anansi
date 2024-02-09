@@ -37,8 +37,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
 {
     this->workLoadDecomposition_ = ANANSI::SDPConstructorHelpers::default_workload_decomposition_type();
     this->processorTopologyLatticeType_ = ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_type();
-    this->processorTopologySpatialDecomposition_ = 
-        SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatialDimensions();
+    this->processorTopologySpatialDecomposition_ = ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_spatial_dimensions();
     this->numberProcessorComputeUnitsPerDomain_ = 
         SimulationDecompositionParameters::DefaultProcessorTopologyNumberComputeUnitsPerSpatialDomain();
     return;
@@ -99,22 +98,10 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 //============================= STATIC    ===================================
 
 // -----------------------------------------------------
-// This section is for the processor lattice type 
-// parameters - ProcessorTopologyLatticeType
-//
-// -----------------------------------------------------
-
-// -----------------------------------------------------
 // This section is for the processor topology spatial decomposition
 // parameters.
 //
 // -----------------------------------------------------
-
-std::array<int,3> SimulationDecompositionParameters::DefaultProcessorTopologyLatticeSpatialDimensions()
-{
-    std::array<int,3> my_default_value{1,1,1};
-    return my_default_value;
-}
 
 bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value)
 {
@@ -128,11 +115,6 @@ std::array<int,3> SimulationDecompositionParameters::ProccesorTopologyLatticeSpa
 {
     std::array<int,3> my_value = STRING_UTILITIES::convert_string_to_int_array<3>(node_value);
     return my_value;
-}
-
-bool SimulationDecompositionParameters::IsProccesorTopologyLatticeSpatialDimensionsMandatory()
-{
-    return true;
 }
 
 // -----------------------------------------------------

@@ -37,6 +37,12 @@ namespace SDPConstructorHelpers
             return valid_processor_topology_lattice_type_values.at(node_value);
         }
 
+        bool is_processor_topology_lattice_type_mandatory() 
+        {
+            return true;
+        }
+
+
     }; // End of anonynous namespace
 
     //! Returns the default value for the lattice type topology of the spatial decomposition.
@@ -52,7 +58,7 @@ namespace SDPConstructorHelpers
         try
         {
             if ( (a_string == flag_default_null_value) && 
-                 SDPConstructorHelpers::IsProcessorTopologyLatticeTypeMandatory()  )
+                 is_processor_topology_lattice_type_mandatory()  )
             {
                 std::string error_message = message_missing_mandatory_node_tag("processor topology lattice type");
                 throw ErrorMissingSimulationDecompositionParameters(error_message);

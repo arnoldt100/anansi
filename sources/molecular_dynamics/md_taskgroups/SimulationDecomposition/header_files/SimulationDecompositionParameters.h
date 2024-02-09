@@ -72,30 +72,14 @@ class SimulationDecompositionParameters
 
         // -----------------------------------------------------
         // This section is for the processor lattice type 
-        // parameters - ProcessorTopologyLatticeType
-        //
-        // -----------------------------------------------------
-        
-        // To be moved to details.
-        //! Returns the error message for invalid processor topology lattice type values.
-        static std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value);
-
-        // -----------------------------------------------------
-        // This section is for the processor lattice type 
         // parameters - ProccesorTopologyLatticeSpatialDimensions
         //
         // -----------------------------------------------------
-        //! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
-        static std::array<int,3> DefaultProcessorTopologyLatticeSpatialDimensions();
-
         //! \brief Returns a boolean that indicates if the node value is valid.
         static bool IsValidProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value);
 
         //! \brief Returns a internal processor lattice type value for the given node_value.
         static  std::array<int,3> ProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value);
-
-        //! Returns a boolean indicating if the key for processor lattice type is mandatory.
-        static bool IsProccesorTopologyLatticeSpatialDimensionsMandatory();
 
         // -- More to do -- 
         // -- More to do -- 

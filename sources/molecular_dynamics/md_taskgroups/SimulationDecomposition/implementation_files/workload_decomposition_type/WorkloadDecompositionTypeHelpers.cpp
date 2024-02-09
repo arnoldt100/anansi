@@ -42,6 +42,11 @@ namespace SDPConstructorHelpers
             return valid_work_load_decomposition_values.at(node_value); 
         };
 
+        bool IsWorkLoadDecompositionTypeMandatory()
+        {
+            return true;
+        }
+
     }; // End of anonynous namespace
 
     std::string default_workload_decomposition_type()
