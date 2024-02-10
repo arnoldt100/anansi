@@ -103,20 +103,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 //
 // -----------------------------------------------------
 
-bool SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value)
-{
-    // We need to form an array of 3 positive integers. If the string can be parsed to form an 
-    // array of 3 positive integers, then we return true, otherwise return false.
-    bool valid_value = STRING_UTILITIES::verify_N_positive_integers_in_string<3>(node_value); 
-    return valid_value;
-}
-
-std::array<int,3> SimulationDecompositionParameters::ProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value)
-{
-    std::array<int,3> my_value = STRING_UTILITIES::convert_string_to_int_array<3>(node_value);
-    return my_value;
-}
-
 // -----------------------------------------------------
 // This section is for the processor topology compute units per domain
 // parameters. - ProcessorTopologyNumberComputeUnitsPerDomain

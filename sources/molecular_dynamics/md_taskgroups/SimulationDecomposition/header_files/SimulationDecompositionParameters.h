@@ -75,11 +75,6 @@ class SimulationDecompositionParameters
         // parameters - ProccesorTopologyLatticeSpatialDimensions
         //
         // -----------------------------------------------------
-        //! \brief Returns a boolean that indicates if the node value is valid.
-        static bool IsValidProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value);
-
-        //! \brief Returns a internal processor lattice type value for the given node_value.
-        static  std::array<int,3> ProccesorTopologyLatticeSpatialDimensionsValues(const std::string node_value);
 
         // -- More to do -- 
         // -- More to do -- 

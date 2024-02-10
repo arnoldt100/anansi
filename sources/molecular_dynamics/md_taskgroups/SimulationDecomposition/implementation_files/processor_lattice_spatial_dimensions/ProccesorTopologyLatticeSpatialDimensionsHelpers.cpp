@@ -16,6 +16,9 @@
 #include "ErrorMissingSimulationDecompositionParameters.h"
 #include "processor_lattice_spatial_dimensions_details.h"
 #include "message_missing_mandatory_node_tag.h"
+#include "count_words_in_string.h"
+#include "verify_N_integers_in_string.hpp"
+#include "convert_string_to_int_array.hpp"
 
 namespace ANANSI
 {
@@ -29,6 +32,20 @@ namespace SDPConstructorHelpers
         {
             return true;
         }
+
+        bool is_valid_proccesor_topology_lattice_spatial_dimensions_values(const std::string node_value)
+        {
+            // We need to form an array of 3 positive integers. If the string can be parsed to form an 
+            // array of 3 positive integers, then we return true, otherwise return false.
+            bool valid_value = STRING_UTILITIES::verify_N_positive_integers_in_string<3>(node_value); 
+            return valid_value;
+        }
+
+        std::array<int,3> proccesor_topology_lattice_spatial_dimensions_values(const std::string node_value)
+        {
+            std::array<int,3> my_value = STRING_UTILITIES::convert_string_to_int_array<3>(node_value);
+            return my_value;
+        };
 
     }; // End of anonynous namespoce.
 
@@ -51,10 +68,10 @@ namespace SDPConstructorHelpers
                     message_missing_mandatory_node_tag("processor topology lattice spatial dimensions");
                 throw ErrorMissingSimulationDecompositionParameters(error_message);
            }
-           else if (SimulationDecompositionParameters::IsValidProccesorTopologyLatticeSpatialDimensionsValues(a_string))
+           else if (is_valid_proccesor_topology_lattice_spatial_dimensions_values(a_string))
            {
                 my_lattice_topology_spatial_dimensions = 
-                    SimulationDecompositionParameters::ProccesorTopologyLatticeSpatialDimensionsValues(a_string);;
+                    proccesor_topology_lattice_spatial_dimensions_values(a_string);;
            }
            else
            {
