@@ -44,7 +44,6 @@ void setup_controlfile_invoker (const std::string controlfile_name,
 
     setup_ControlFileMacroTask(control_file_invoker);
 
-
     return;
 }   // -----  end of function setup_controlfile_invoker
 
