@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
+#include "ProcessorTopologyLatticeTypeHelpers.h"
 #include "GenericErrorClass.hpp"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
 #include "ErrorMissingSimulationDecompositionParameters.h"
@@ -23,10 +24,6 @@ namespace SDPConstructorHelpers
 {
     namespace
     {
-        std::map<std::string,std::string> valid_processor_topology_lattice_type_values{
-            {std::string{"rectangular"}, std::string{"rectangular"}}
-        };
-
         bool is_valid_processor_topology_lattice_type_values(const std::string node_value)
         {
             return valid_processor_topology_lattice_type_values.contains(node_value);

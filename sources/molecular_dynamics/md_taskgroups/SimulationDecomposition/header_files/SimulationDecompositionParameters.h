@@ -76,7 +76,7 @@ class SimulationDecompositionParameters
         //
         // -----------------------------------------------------
 
-        static int ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
+        // static int ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
 
         // ====================  ACCESSORS     =======================================
         SimulationDecompositionParameters * clone () const;
@@ -91,10 +91,6 @@ class SimulationDecompositionParameters
         SimulationDecompositionParameters& operator= ( SimulationDecompositionParameters && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================
-        static std::vector<std::string> validWorkLoadDecompositionValues();
-
-        static std::vector<std::string> validProcessorTopologyLatticeTypeValues();
-
 
     protected:
         // ====================  METHODS       =======================================
@@ -109,15 +105,6 @@ class SimulationDecompositionParameters
         // ====================  OPERATORS     =======================================
 
         //============================= STATIC    ====================================
-
-        //! \todo Move oustide of class.
-        //! \brief A std::map where the keys are the valid simulation decomposition values, and the corresponding values
-        //!  are the internal flags/values used within the program.
-        static std::map<std::string,std::string> validWorkLoadDecompositionValues_;
-        
-        //! \brief A std::map where the keys are the valid processor lattice tyoe values, and the corresponding values
-        //!  are the internal flags/values used within the program.
-        static std::map<std::string,std::string> validProcessorTopologyLatticeTypeValues_;
 
         // ====================  DATA MEMBERS  =======================================
         //! \brief Stores the type of workload decomposition.

@@ -11,7 +11,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "processor_lattice_type_details.h"
-#include "SimulationDecompositionParameters.h"
 
 namespace
 {
@@ -31,6 +30,7 @@ namespace ANANSI
 namespace SDPConstructorHelpers
 {
 
+
 std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string invalid_value)
 {
     std::string message;
@@ -46,9 +46,9 @@ std::string MessageInvalidProcessorTopologyLatticeTypeValues(const std::string i
     boost::format warning_frmt("Warning! Invalid input parameter '%1%' for lattice topology type.\nValid values are the following:\n");
     warning_frmt % invalid_value.c_str();
     message += warning_frmt.str();
-    for (const auto value : SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues() )
+    for (const auto &p : valid_processor_topology_lattice_type_values)
     {
-        s2_frmt % value.c_str();
+        s2_frmt % p.first.c_str();
         message += s2_frmt.str();
     }
     s1_frmt % "";

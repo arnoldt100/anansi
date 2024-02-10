@@ -25,12 +25,6 @@ namespace SDPConstructorHelpers
 
     namespace 
     {
-        //! The values for the workload decomposition types.
-        static std::map<std::string,std::string> valid_work_load_decomposition_values{
-            {std::string{"replicated-data-domain-decomposition"}, std::string{"internal_replicated-data-domain-decomposition"} },
-            {std::string{"spatial-data-domain-decomposition"}, std::string{"internal_spatial-data-domain-decomposition"}}
-        };
-
         //! \brief Returns true if node_value has a valid value for the workload decomposition type.
         bool is_valid_workload_decomposition_type_values(const std::string node_value)
         {

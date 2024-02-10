@@ -16,7 +16,7 @@
 #include "WorkloadDecompositionTypeHelpers.h"
 #include "ProcessorTopologyLatticeTypeHelpers.h"
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
-#include "ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h";
+#include "ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h"
 #include "count_words_in_string.h"
 #include "verify_N_integers_in_string.hpp"
 #include "convert_string_to_int_array.hpp"
@@ -35,10 +35,14 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     processorTopologySpatialDecomposition_{1,1,1},
     numberProcessorComputeUnitsPerDomain_{1}
 {
-    this->workLoadDecomposition_ = ANANSI::SDPConstructorHelpers::default_workload_decomposition_type();
-    this->processorTopologyLatticeType_ = ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_type();
-    this->processorTopologySpatialDecomposition_ = ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_spatial_dimensions();
-    this->numberProcessorComputeUnitsPerDomain_ = ANANSI::SDPConstructorHelpers::default_processor_topology_number_compute_units_per_spatial_domain();
+    this->workLoadDecomposition_ = 
+        ANANSI::SDPConstructorHelpers::default_workload_decomposition_type();
+    this->processorTopologyLatticeType_ = 
+        ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_type();
+    this->processorTopologySpatialDecomposition_ =
+        ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_spatial_dimensions();
+    this->numberProcessorComputeUnitsPerDomain_ = 
+        ANANSI::SDPConstructorHelpers::default_processor_topology_number_compute_units_per_spatial_domain();
     return;
 }
 
@@ -102,12 +106,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 //
 // -----------------------------------------------------
 
-int SimulationDecompositionParameters::ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value)
-{
-    std::array<int,1> my_value = STRING_UTILITIES::convert_string_to_int_array<1>(node_value);
-    return my_value[0];
-}
-
 //============================= ACCESSORS ====================================
 
 SimulationDecompositionParameters * SimulationDecompositionParameters::clone() const
@@ -116,27 +114,6 @@ SimulationDecompositionParameters * SimulationDecompositionParameters::clone() c
 }
 
 //============================= STATIC    ====================================
-
-std::vector<std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues()
-{
-    std::vector<std::string> valid_values;
-    for (const auto [key,value] : SimulationDecompositionParameters::validWorkLoadDecompositionValues_)
-    {
-        valid_values.push_back(value);
-    }
-    return valid_values;
-}
-
-std::vector<std::string> SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues()
-{
-    std::vector<std::string> valid_values;
-    for (const auto [key,value] : SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_)
-    {
-        valid_values.push_back(value);
-    }
-
-    return valid_values;
-}
 
 //============================= MUTATORS =====================================
 
@@ -185,18 +162,6 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-
-//! \todo Move oustide of class.
-std::map<std::string,std::string> SimulationDecompositionParameters::validWorkLoadDecompositionValues_{
-    {"replicated-data-domain-decomposition", "replicated-data-domain-decomposition"},
-    {"spatial-data-domain-decomposition", "spatial-data-domain-decomposition"}
-};
-
-
-std::map<std::string,std::string> SimulationDecompositionParameters::validProcessorTopologyLatticeTypeValues_{
-    {"rectangular", "rectangular"}
-};
-
 
 //============================= STATIC    ====================================
 

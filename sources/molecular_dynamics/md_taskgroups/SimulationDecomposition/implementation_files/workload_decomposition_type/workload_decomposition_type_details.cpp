@@ -48,9 +48,9 @@ std::string MessageInvalidWorkloadDecompositionTypeValues(const std::string inva
     boost::format warning_frmt("Warning! Invalid input parameter '%1%' for workload decomposition type.\nValid values are the following:\n");
     warning_frmt % invalid_value.c_str();
     message += warning_frmt.str();
-    for (const auto value : SimulationDecompositionParameters::validWorkLoadDecompositionValues())
+    for (const auto p : valid_work_load_decomposition_values )
     {
-        s2_frmt % value.c_str();
+        s2_frmt % p.first.c_str();
         message += s2_frmt.str();
     }
     s1_frmt % "";

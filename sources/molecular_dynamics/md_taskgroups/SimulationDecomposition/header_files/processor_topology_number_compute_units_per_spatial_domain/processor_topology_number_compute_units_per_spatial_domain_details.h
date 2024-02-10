@@ -18,14 +18,6 @@
 namespace 
 {
 
-constexpr char* ErrorMessageHeader_ = R"""(
-# ----------------------
-# Error Message
-# ----------------------)""";
-
-//! The footer for error messages.
-constexpr char* ErrorMessageFooter_ = R"""(# ----------------------)""";
-
 };
 
 
@@ -37,6 +29,8 @@ namespace SDPConstructorHelpers
 
 //! Returns a boolean indicating if the key for processor lattice type is mandatory.
 std::string MessageInvalidProcessorTopologyNumberComputeUnitsPerSpatialDomain(const std::string invalid_value);
+
+int ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
 
 };
 }; // namespace ANANSI

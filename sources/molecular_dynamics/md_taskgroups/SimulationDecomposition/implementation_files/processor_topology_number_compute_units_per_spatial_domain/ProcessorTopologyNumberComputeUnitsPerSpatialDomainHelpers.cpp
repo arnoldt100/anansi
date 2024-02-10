@@ -64,7 +64,7 @@ namespace SDPConstructorHelpers
             {
 
                 number_cu_per_spatial_domain = 
-                    SimulationDecompositionParameters::ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(a_string);
+                    ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(a_string);
             }
             else
             {
