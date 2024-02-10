@@ -22,7 +22,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Communicator.h"
 
 namespace ANANSI
 {
@@ -76,18 +75,19 @@ class SimulationDecompositionParameters
         //
         // -----------------------------------------------------
 
-        // static int ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
-
         // ====================  ACCESSORS     =======================================
-        SimulationDecompositionParameters * clone () const;
 
+        //! \brief The cloning function.
+        SimulationDecompositionParameters * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
+        //! \brief The copy assignment operator.
         SimulationDecompositionParameters& operator= ( const SimulationDecompositionParameters &other ); // assignment operator
 
+        //! \brief The move assignment operator.
         SimulationDecompositionParameters& operator= ( SimulationDecompositionParameters && other ); // assignment-move operator
 
         // ====================  STATIC        =======================================

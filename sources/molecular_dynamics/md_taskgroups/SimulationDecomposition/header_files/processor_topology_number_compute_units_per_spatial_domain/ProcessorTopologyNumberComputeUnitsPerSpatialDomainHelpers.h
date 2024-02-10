@@ -22,7 +22,7 @@ namespace ANANSI
 namespace SDPConstructorHelpers
 {
 
-//! Returns the processor topology inumber of compute units per spatial domain
+//! Returns the processor topology number of compute units per spatial domain
 //!
 //! \details This parameter must be explicitly specified. If the parameter 'a_string'
 //!          equals "flag_default_null_value" an exception will be thrown. Generally, a_string

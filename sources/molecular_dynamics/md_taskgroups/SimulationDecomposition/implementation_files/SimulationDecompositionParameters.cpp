@@ -12,14 +12,10 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "SimulationDecompositionParameters.h"
-#include "GenericErrorClass.hpp"
 #include "WorkloadDecompositionTypeHelpers.h"
 #include "ProcessorTopologyLatticeTypeHelpers.h"
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
 #include "ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h"
-#include "count_words_in_string.h"
-#include "verify_N_integers_in_string.hpp"
-#include "convert_string_to_int_array.hpp"
 
 namespace ANANSI {
 
