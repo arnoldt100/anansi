@@ -102,22 +102,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 //
 // -----------------------------------------------------
 
-// -----------------------------------------------------
-// This section is for the processor topology compute units per domain
-// parameters. - ProcessorTopologyNumberComputeUnitsPerDomain
-//
-// -----------------------------------------------------
-bool SimulationDecompositionParameters::IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory()
-{
-    return true;
-}
-
-bool SimulationDecompositionParameters::IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value)
-{
-    bool valid_value = STRING_UTILITIES::verify_N_positive_integers_in_string<1>(node_value); 
-    return valid_value;
-}
-
 int SimulationDecompositionParameters::ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value)
 {
     std::array<int,1> my_value = STRING_UTILITIES::convert_string_to_int_array<1>(node_value);

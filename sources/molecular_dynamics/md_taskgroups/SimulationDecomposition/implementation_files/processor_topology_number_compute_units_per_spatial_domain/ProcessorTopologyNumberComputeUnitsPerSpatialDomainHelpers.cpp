@@ -16,6 +16,7 @@
 #include "ErrorMissingSimulationDecompositionParameters.h"
 #include "processor_topology_number_compute_units_per_spatial_domain_details.h"
 #include "message_missing_mandatory_node_tag.h"
+#include "verify_N_integers_in_string.hpp"
 
 namespace ANANSI
 {
@@ -25,13 +26,25 @@ namespace SDPConstructorHelpers
 
     namespace
     {
+        //! \brief Returns a boolean indicating if the key for processor number
+        //!        compute units per spatial domain is mandatory.
+        static bool is_procesor_topology_number_compute_units_per_spatial_domain_mandatory()
+        {
+            return true;
+        }
+
+        bool is_valid_processor_topology_number_compute_units_per_spatial_domain_values(const std::string node_value)
+        {
+            bool valid_value = STRING_UTILITIES::verify_N_positive_integers_in_string<1>(node_value); 
+            return valid_value;
+        }
 
     }; // End of anonymous namespace.
 
     int default_processor_topology_number_compute_units_per_spatial_domain()
     {
         return 1;
-    }
+    };
 
     int parse_processor_topology_number_processor_compute_units_per_spatial_domain(
         const std::string a_string,
@@ -41,13 +54,13 @@ namespace SDPConstructorHelpers
         try 
         {
             if ( (a_string == flag_default_null_value) &&
-                  SimulationDecompositionParameters::IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory() )
+                  is_procesor_topology_number_compute_units_per_spatial_domain_mandatory() )
             {
                 std::string error_message = 
                     message_missing_mandatory_node_tag("processor topology number compute units per spatial domain");
                 throw ErrorMissingSimulationDecompositionParameters(error_message);
             }
-            else if ( SimulationDecompositionParameters::IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(a_string) )
+            else if ( is_valid_processor_topology_number_compute_units_per_spatial_domain_values(a_string) )
             {
 
                 number_cu_per_spatial_domain = 

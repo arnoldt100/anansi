@@ -76,16 +76,6 @@ class SimulationDecompositionParameters
         //
         // -----------------------------------------------------
 
-        // -- More to do -- 
-        // -- More to do -- 
-        // -- More to do -- 
-
-        //! \brief Returns a boolean indicating if the key for processor number
-        //!        compute units per spatial domain is mandatory.
-        static bool IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory();
-
-        static bool IsValidProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
-        
         static int ProcessorTopologyNumberComputeUnitsPerSpatialDomainValues(const std::string node_value);
 
         // ====================  ACCESSORS     =======================================

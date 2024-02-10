@@ -42,7 +42,6 @@ int parse_processor_topology_number_processor_compute_units_per_spatial_domain(
 //! Returns the default number of compute units per spatial domain.
 int default_processor_topology_number_compute_units_per_spatial_domain();
 
-
 };
 }; // namespace ANANSI
 
