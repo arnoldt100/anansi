@@ -80,9 +80,6 @@ class SimulationDecompositionParameters
         // -- More to do -- 
         // -- More to do -- 
 
-        //! Returns the default number of compute units per spatial domain.
-        int DefaultProcessorTopologyNumberComputeUnitsPerSpatialDomain();
-
         //! \brief Returns a boolean indicating if the key for processor number
         //!        compute units per spatial domain is mandatory.
         static bool IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory();

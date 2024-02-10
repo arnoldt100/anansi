@@ -21,6 +21,7 @@ namespace ANANSI
 {
 namespace SDPConstructorHelpers
 {
+
 //! Returns the processor topology inumber of compute units per spatial domain
 //!
 //! \details This parameter must be explicitly specified. If the parameter 'a_string'
@@ -37,6 +38,10 @@ namespace SDPConstructorHelpers
 int parse_processor_topology_number_processor_compute_units_per_spatial_domain(
     const std::string a_string,
     const std::string flag_default_null_value );
+
+//! Returns the default number of compute units per spatial domain.
+int default_processor_topology_number_compute_units_per_spatial_domain();
+
 
 };
 }; // namespace ANANSI

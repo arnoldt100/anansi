@@ -38,8 +38,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     this->workLoadDecomposition_ = ANANSI::SDPConstructorHelpers::default_workload_decomposition_type();
     this->processorTopologyLatticeType_ = ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_type();
     this->processorTopologySpatialDecomposition_ = ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_spatial_dimensions();
-    this->numberProcessorComputeUnitsPerDomain_ = 
-        SimulationDecompositionParameters::DefaultProcessorTopologyNumberComputeUnitsPerSpatialDomain();
+    this->numberProcessorComputeUnitsPerDomain_ = ANANSI::SDPConstructorHelpers::default_processor_topology_number_compute_units_per_spatial_domain();
     return;
 }
 
@@ -108,11 +107,6 @@ SimulationDecompositionParameters::~SimulationDecompositionParameters()
 // parameters. - ProcessorTopologyNumberComputeUnitsPerDomain
 //
 // -----------------------------------------------------
-int SimulationDecompositionParameters::DefaultProcessorTopologyNumberComputeUnitsPerSpatialDomain()
-{
-    return 1;
-}
-
 bool SimulationDecompositionParameters::IsProcesorTopologyNumberComputeUnitsPerSpatialDomainMandatory()
 {
     return true;
