@@ -12,6 +12,18 @@
 //--------------------------------------------------------//
 #include "processor_lattice_spatial_dimensions_details.h"
 
+namespace
+{
+constexpr char* ErrorMessageHeader_ = R"""(
+# ----------------------
+# Error Message
+# ----------------------)""";
+
+//! The footer for error messages.
+constexpr char* ErrorMessageFooter_ = R"""(# ----------------------)""";
+
+};
+
 namespace ANANSI
 {
 namespace SDPConstructorHelpers {

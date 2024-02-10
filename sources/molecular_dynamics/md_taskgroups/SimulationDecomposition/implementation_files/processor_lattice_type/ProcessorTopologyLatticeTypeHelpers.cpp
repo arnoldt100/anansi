@@ -10,7 +10,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "SimulationDecompositionParameters.h"
 #include "ProcessorTopologyLatticeTypeHelpers.h"
 #include "GenericErrorClass.hpp"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
@@ -20,6 +19,9 @@
 
 namespace ANANSI
 {
+
+class SimulationDecompositionParameters;
+
 namespace SDPConstructorHelpers 
 {
     namespace
