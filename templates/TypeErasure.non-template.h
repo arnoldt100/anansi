@@ -22,13 +22,22 @@
 namespace __NAMESPACE__
 {
 
+//! \brief This class wraps other objects that implements the Concepts 
+//!        interface.
+//! 
+//! \details This class is a type erasure for it wraps an object
+//!          which then loses its type identity. The wrapped object
+//!          must implement the concepts interface or bad program behavior
+//!          will occur.
 class __classname__
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
+        //! \brief The default constructor,
         __classname__();   // constructor
 
+        //! \brief iUse this constructor to initialize the object. 
         template<typename T>
         __classname__(T && value) :
             valuePtr_( new __classname__Model<T>(std::forward<T>(value)) )
@@ -36,21 +45,28 @@ class __classname__
             return;
         }
 
+        //! \brief The copy constructor.
         __classname__(const __classname__ & other);   // copy constructor
 
+        //!  The  move constructor.
         __classname__(__classname__ && other);   // copy-move constructor
 
+        //! The destructor.
         ~__classname__();  // destructor
 
         // ====================  ACCESSORS     =======================================
+
+        //! \brief The class cloning method.
         __classname__* clone() const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
+        //! \brief The copy assignment operator.
         __classname__& operator=( const __classname__ &other ); // assignment operator
 
+        //! \brief The move assignment operator.
         __classname__& operator=( __classname__ && other ); // assignment-move operator
 
     protected:
@@ -60,7 +76,10 @@ class __classname__
 
     private:
 
-        // The concept
+        //! \brief The concept.
+        //!
+        //! \details The concept class responsibility is to provide an interface,
+        //!          and should have no member data attributes.
         class __classname__Concept
         {
             public: 
@@ -81,7 +100,11 @@ class __classname__
 
         };
 
-        // The model.
+        //!  \brief The model.
+        //!
+        //! \details The model bridges the wrapped object and 
+        //!          the concept interface. It stores the wrapped object
+        //!          that inmplements ( or models ) the concepts interface,        
         template <typename T>
         class __classname__Model : public __classname__Concept
         {
@@ -154,6 +177,8 @@ class __classname__
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+
+        // The actual object that is wrapped.
         std::unique_ptr<__classname__Concept> valuePtr_;
 
 }; // -----  end of class __classname__  -----
