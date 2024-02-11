@@ -76,6 +76,7 @@
     set (physical_data_structures_header_files 
          header_files/PhysicalDataStructure.h 
          header_files/coordinates.h
+         header_files/Atoms.h
          header_files/PointAtoms.h)
 
     #-----------------------------------------------------
@@ -88,6 +89,7 @@
     set (physical_data_structures_implementation_files 
          implementation_files/PhysicalDataStructure.cpp
          implementation_files/coordinates.cpp
+         implementation_files/Atoms.cpp
          implementation_files/PointAtoms.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
