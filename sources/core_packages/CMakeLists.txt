@@ -171,10 +171,18 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 #-----------------------------------------------------
 include( ${CMAKE_CURRENT_SOURCE_DIR}/invoker/cmake_macros_and_functions/invoker.cmake )
 enable_building_invoker_package( "${core_packages_install_lib_directory}"
-                                  "${core_packages_install_include_directory}"
-                                  "${core_packages_install_bin_directory}" 
-                                  "${core_packages_cmake_c_compiler}" 
-                                  "${core_packages_cmake_cxx_compiler}" 
-                                  "${core_packages_cxx_standard}"
-                                  "${core_packages_logfilepath}" )
+                                 "${core_packages_install_include_directory}"
+                                 "${core_packages_install_bin_directory}" 
+                                 "${core_packages_cmake_c_compiler}" 
+                                 "${core_packages_cmake_cxx_compiler}" 
+                                 "${core_packages_cxx_standard}"
+                                 "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/invoker)
+
+#-----------------------------------------------------
+# Call the macro that enables building the data structures
+# for storing the positions. velocities, etc. of the simulation.
+#
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/physical_data_structures/cmake_macros_and_functions/physical_data_structures.cmake )
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/physical_data_structure)
