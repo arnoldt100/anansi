@@ -75,7 +75,8 @@
     #-----------------------------------------------------
     set (physical_data_structures_header_files 
          header_files/PhysicalDataStructure.h 
-         header_files/coordinates.h)
+         header_files/coordinates.h
+         header_files/PointAtoms.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -86,7 +87,8 @@
     #-----------------------------------------------------
     set (physical_data_structures_implementation_files 
          implementation_files/PhysicalDataStructure.cpp
-         implementation_files/coordinates.cpp)
+         implementation_files/coordinates.cpp
+         implementation_files/PointAtoms.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
