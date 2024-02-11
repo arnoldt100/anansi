@@ -1,10 +1,6 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
-//! \file __header_filename__
-//!
-//! \brief Brief description
-//!
-//! \details Detailed description
+#ifndef ANANSI_coordinates_INC
+#define ANANSI_coordinates_INC
+//! \file coordinates.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -18,39 +14,40 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
-class __classname__
+//! \brief This class responsibility is to store the atomic coordinates.
+class coordinates
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
-        __classname__ ();   // constructor
+        coordinates ();   // constructor
 
         //! The copy constructor.
-        __classname__ (const __classname__ & other);   // copy constructor
+        coordinates (const coordinates & other);   // copy constructor
 
         //! The move constructor.
-        __classname__ (__classname__ && other);   // copy-move constructor
+        coordinates (coordinates && other);   // copy-move constructor
 
-        virtual ~__classname__ ();  // destructor
+        ~coordinates ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
-        __classname__ * clone () const;
+        coordinates * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! The copy assignment operator.
-        __classname__& operator= ( const __classname__ &other ); // assignment operator
+        coordinates& operator= ( const coordinates &other ); // assignment operator
 
         //! The move assignment operator.
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        coordinates& operator= ( coordinates && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -62,9 +59,9 @@ class __classname__
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  End of class __classname__  -----
+}; // -----  end of class coordinates  -----
 
 
-}; // End of namespace __NAMESPACE__
+}; // namespace ANANSI
 
-#endif // __filepreprocessordefine__
+#endif // ANANSI_coordinates_INC
