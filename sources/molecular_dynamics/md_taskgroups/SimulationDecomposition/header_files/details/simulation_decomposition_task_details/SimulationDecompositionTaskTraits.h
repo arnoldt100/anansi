@@ -36,7 +36,7 @@ class SimulationDecompositionTaskTraits
         // ====================  LIFECYCLE     =======================================
 
         //! The typelist for the abstract tasks.
-        using abstract_products = MPL::mpl_typelist<ReadAtoms>;
+        using abstract_products = MPL::mpl_typelist<>;
         
         //! The typelist for the concrete tasks. 
         using concrete_products = MPL::mpl_typelist<>;

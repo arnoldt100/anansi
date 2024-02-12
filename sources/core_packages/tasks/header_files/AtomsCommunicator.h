@@ -37,8 +37,6 @@ class AtomsCommunicator : public AnansiTask
 
         // ====================  ACCESSORS     =======================================
 
-        AtomsCommunicator * clone () const;
-
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

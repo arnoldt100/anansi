@@ -55,12 +55,6 @@ AtomsDecomposer::~AtomsDecomposer()
 
 //============================= ACCESSORS ====================================
 
-AtomsDecomposer * AtomsDecomposer::clone() const
-{
-    return new AtomsDecomposer(*this);
-}
-
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

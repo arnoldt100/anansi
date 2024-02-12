@@ -55,12 +55,6 @@ AtomsCommunicator::~AtomsCommunicator()
 
 //============================= ACCESSORS ====================================
 
-AtomsCommunicator * AtomsCommunicator::clone() const
-{
-    return new AtomsCommunicator(*this);
-}
-
-
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
