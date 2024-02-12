@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <array>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,6 +14,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "MPLAliases.hpp"
+#include "GenericMDTask.hpp"
 
 namespace ANANSI
 {
@@ -30,6 +33,20 @@ namespace ANANSI
 class SimulationDecompositionTaskTraits
 {
     public:
+        // ====================  LIFECYCLE     =======================================
+
+        //! The typelist for the abstract tasks.
+        using abstract_products = MPL::mpl_typelist<>;
+        
+        //! The typelist for the concrete tasks. 
+        using concrete_products = MPL::mpl_typelist<>;
+
+        //! The typelist for the concrete tasks.results type. 
+        using receiver_results_t = MPL::mpl_typelist<>;
+
+        static constexpr auto LABELS = std::array{1,1,1};
+
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.

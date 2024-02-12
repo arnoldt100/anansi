@@ -52,6 +52,8 @@
     #-----------------------------------------------------
     get_target_property(my_debugging_utilities_include  debugging_utilities  debugging_utilities_include  )  
     get_target_property(my_comm_include  communicator communicator_include)
+    get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
+
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -149,20 +151,22 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target}
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_type
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_spatial_dimensions
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_topology_number_compute_units_per_spatial_domain
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                           PRIVATE ${my_comm_include})
+                           PUBLIC  "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_type"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_spatial_dimensions"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_topology_number_compute_units_per_spatial_domain"
+                           PRIVATE "${my_common_md_taskgroup_headers_include}"
+                           PRIVATE "${my_comm_include}" )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries(${target}
-                      PUBLIC  communicator)
+                      PUBLIC communicator
+                      PUBLIC common_md_taskgroup_headers )
 
 
 #-----------------------------------------------------
