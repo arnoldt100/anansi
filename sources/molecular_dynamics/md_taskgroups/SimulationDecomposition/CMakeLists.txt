@@ -88,24 +88,22 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionTaskTraits.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SDPConstructorHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/message_missing_mandatory_node_tag.h
-
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/simulation_decomposition_task_details/SimulationDecompositionTaskTraits.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.h
-
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type/workload_decomposition_type_details.h
-
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_type/ProcessorTopologyLatticeTypeHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_type/processor_lattice_type_details.h
-
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_topology_number_compute_units_per_spatial_domain/ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.h
-
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingSimulationDecompositionParameters.h
+
+
+         )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -121,13 +119,10 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionTaskTraits.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SDPConstructorHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/message_missing_mandatory_node_tag.cpp
-
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/simulation_decomposition_task_details/SimulationDecompositionTaskTraits.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.cpp
-
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/workload_decomposition_type_details.cpp
-
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_type/ProcessorTopologyLatticeTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_type/processor_lattice_type_details.cpp
 
@@ -157,6 +152,7 @@ target_include_directories(${target}
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_spatial_dimensions"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_topology_number_compute_units_per_spatial_domain"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/simulation_decomposition_task_details"
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
                            PRIVATE "${my_comm_include}" )
 
