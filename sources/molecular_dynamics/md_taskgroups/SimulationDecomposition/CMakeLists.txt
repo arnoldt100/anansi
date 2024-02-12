@@ -88,10 +88,11 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SDPConstructorHelpers.h
-
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/SDPConstructorHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/message_missing_mandatory_node_tag.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/simulation_decomposition_task_details/SimulationDecompositionTaskTraits.h
+
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/ simulation_decomposition_task_details/SimulationDecompositionTaskTraits.h
+
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.h
@@ -117,9 +118,10 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionParameters.cpp
-
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/SDPConstructorHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/message_missing_mandatory_node_tag.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/simulation_decomposition_task_details/SimulationDecompositionTaskTraits.cpp
+
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/SimulationDecompositionTaskTraits.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.cpp
