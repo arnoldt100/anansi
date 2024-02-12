@@ -24,11 +24,11 @@ namespace ANANSI
 //! do the simulation decomposition tasks.
 //!
 //! The following tasks need to be performed:
-//! | Task                                                        | Receiver                      | Result                    |
-//! | ----------------------------------------------------------- | ------------------------------|-------------------------- |
-//! | Read the atoms from the input file.                         | ReadPointAtoms                | Atoms                     |
-//! | Partition atoms with the appropiate decomposition algorithm | AtomDecomposerReceiver        | Atoms                     |
-//! | Communicate the atoms to the appropiate spatial domains     | AtomCommunicatorReceiver      | Atoms                     |
+//! | Task                                                        | Receiver                       | Result                    |
+//! | ----------------------------------------------------------- | -------------------------------|-------------------------- |
+//! | Read the atoms from the input file.                         | ReadPointAtoms                 | Atoms                     |
+//! | Partition atoms with the appropiate decomposition algorithm | PointAtomsDecomposerReceiver   | Atoms                     |
+//! | Communicate the atoms to the appropiate spatial domains     | PointAtomsCommunicatorReceiver | Atoms                     |
 
 class SimulationDecompositionTaskTraits
 {
@@ -36,7 +36,7 @@ class SimulationDecompositionTaskTraits
         // ====================  LIFECYCLE     =======================================
 
         //! The typelist for the abstract tasks.
-        using abstract_products = MPL::mpl_typelist<>;
+        using abstract_products = MPL::mpl_typelist<ReadAtoms>;
         
         //! The typelist for the concrete tasks. 
         using concrete_products = MPL::mpl_typelist<>;
