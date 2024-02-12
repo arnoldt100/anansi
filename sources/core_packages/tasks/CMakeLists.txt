@@ -91,7 +91,9 @@
          header_files/CommunicatorTask.h
          header_files/ControlFileTask.h
          header_files/ControlFileCommunicator.h
-         header_files/ReadAtoms.h)
+         header_files/ReadAtoms.h
+         header_files/AtomsDecomposer.h
+         header_files/AtomsCommunicator.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -113,7 +115,9 @@
          implementation_files/CommunicatorTask.cpp
          implementation_files/ControlFileTask.cpp
          implementation_files/ControlFileCommunicator.cpp
-         implementation_files/ReadAtoms.cpp)
+         implementation_files/ReadAtoms.cpp
+         implementation_files/AtomsDecomposer.cpp
+         implementation_files/AtomsCommunicator.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
