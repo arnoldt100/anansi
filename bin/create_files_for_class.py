@@ -51,8 +51,9 @@ def _parse_arguments():
 
     # Create text for funtion name option help.
     classtype_help = ( f"""The class type can be: \n """
-                       f"""\tStandard - Normal C++ class.\n """
-                       f"""\tTypeErasure-Non-Template - TypeErasure Base Class.\n """)
+                       f"""\tStandard - Normal C++ class\n """
+                       f"""\tAbstractTask - Used for creating abstract task class\n """
+                       f"""\tTypeErasure-Non-Template - TypeErasure base class\n """)
 
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
@@ -82,7 +83,7 @@ def _parse_arguments():
     mandatory_args_group.add_argument("--class-type",
                            required=True,
                            type=str,
-                           choices=["TypeErasure-Non-Template","Standard"],
+                           choices=["TypeErasure-Non-Template","Standard","AbstractTask"],
                            help=classtype_help)
 
     my_args = my_parser.parse_args()
@@ -156,6 +157,11 @@ def _select_template_files(class_type):
         h_template_file = os.path.join(anansi_top_level,"templates","TypeErasure.non-template.h")
         i_template_file = os.path.join(anansi_top_level,"templates","TypeErasure.non-template.cpp")
         header_file_suffix = ".h"
+    elif class_type == "AbstractTask":
+        h_template_file = os.path.join(anansi_top_level,"templates","BaseTask-template.h")
+        i_template_file = os.path.join(anansi_top_level,"templates","BaseTask-template.cpp")
+        header_file_suffix = ".h"
+
     return (h_template_file,i_template_file,header_file_suffix,i_file_suffix)
 
 if __name__ == "__main__":

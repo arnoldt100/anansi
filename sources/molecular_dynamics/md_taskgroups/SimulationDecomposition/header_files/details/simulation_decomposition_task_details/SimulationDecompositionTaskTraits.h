@@ -26,7 +26,7 @@ namespace ANANSI
 //! The following tasks need to be performed:
 //! | Task                                                        | Receiver                      | Result                    |
 //! | ----------------------------------------------------------- | ------------------------------|-------------------------- |
-//! | Read the atoms from the input file.                         | ReadAtomicCoordinatesReceiver | Atoms                     |
+//! | Read the atoms from the input file.                         | ReadPointAtoms                | Atoms                     |
 //! | Partition atoms with the appropiate decomposition algorithm | AtomDecomposerReceiver        | Atoms                     |
 //! | Communicate the atoms to the appropiate spatial domains     | AtomCommunicatorReceiver      | Atoms                     |
 

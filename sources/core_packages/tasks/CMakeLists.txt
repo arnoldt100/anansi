@@ -90,7 +90,8 @@
          header_files/InterProcessCommEnv.h
          header_files/CommunicatorTask.h
          header_files/ControlFileTask.h
-         header_files/ControlFileCommunicator.h)
+         header_files/ControlFileCommunicator.h
+         header_files/ReadAtoms.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -111,7 +112,8 @@
          implementation_files/InterProcessCommEnv.cpp
          implementation_files/CommunicatorTask.cpp
          implementation_files/ControlFileTask.cpp
-         implementation_files/ControlFileCommunicator.cpp)
+         implementation_files/ControlFileCommunicator.cpp
+         implementation_files/ReadAtoms.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
