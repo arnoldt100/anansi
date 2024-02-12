@@ -110,11 +110,11 @@ def _register_ownership_policy_help_message():
     help_message = (f"""Ownership Policy              Copyable  Shareable   Transferable\n""" 
                     f"""----------------------------------------------------------------\n"""
                     f"""NullOwnershipPolicy         : No        No          No          \n"""
-                    f"""CopyOwnershipPolicy         : No        Yes         No          \n"""
+                    f"""CopyOwnershipPolicy         : Yes       No          No          \n"""
                     f"""ShareOwnershipPolicy        : No        Yes         No          \n"""
                     f"""TransferOwnershipPolicy     : No        No          Yes         \n"""
                     f"""ShareCopyOwnershipPolicy    : Yes       Yes         No          \n"""
-                    f"""TransferCopyOwnershipPolicy : Yes       Yes         No          \n""")
+                    f"""TransferCopyOwnershipPolicy : Yes       No          Yes         \n""")
     return help_message
 
 def _register_class_name_message():
