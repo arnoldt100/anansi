@@ -86,6 +86,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionTaskTraits.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SDPConstructorHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/message_missing_mandatory_node_tag.h
 
@@ -115,11 +116,12 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionParameters.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionTaskTraits.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SDPConstructorHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/message_missing_mandatory_node_tag.cpp
 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.cpp
-	     ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.cpp
 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/WorkloadDecompositionTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/workload_decomposition_type/workload_decomposition_type_details.cpp

@@ -43,8 +43,6 @@ class ReadControlFileTraits
 
         // ====================  TYPEDEFS      =======================================
 
-
-
         using MCParentTask = ControlFileMacroReceiver::MyParentTask;
 
         using abstract_products = MPL::mpl_typelist<
