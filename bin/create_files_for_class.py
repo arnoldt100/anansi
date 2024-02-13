@@ -30,6 +30,39 @@ def _main():
     _create_header_file(namespace,class_name,class_type)
     _create_implementation_file(namespace,class_name,class_type)
 
+## Creates a subparser for creating skeletal Receiver classes.
+#
+# @returns A namespace contains attributes that are the command line arguments.
+def _receiver_subparser(class_typesubparser):
+    receiver_subparser = class_typesubparser.add_parser("receiver",
+                                                        help="Creates skeletal files for a receiver class.")
+    receiver_subparser.add_argument("--receiver-name",
+                                    required=True,
+                                    type=str,
+                                    help="The name of the receiver.")
+
+    receiver_subparser.add_argument("--task-label",
+                                    required=True,
+                                    type=str,
+                                    help="The task's label.")
+
+    receiver_subparser.add_argument("--ownership-policy",
+                                    required=True,
+                                    type=str,
+                                    help="The ownership policy of the receiver's result.",
+                                    choices=["CopyOwnershipPolicy",
+                                             "NullOwnershipPolicy",
+                                             "ShareCopyOwnershipPolicy",
+                                             "ShareOwnershipPolicy",
+                                             "TransferCopyOwnershipPolicy",
+                                             "TransferOwnershipPolicy"] )
+
+    receiver_subparser.add_argument("--ownership-implementation",
+                                    required=True,
+                                    type=str,
+                                    help="The class implenenting the ownership policy.")
+    return
+
 ## Parses the command line arguments and returns A namespace.
 #
 # @returns A namespace contains attributes that are the command line arguments.
@@ -53,7 +86,6 @@ def _parse_arguments():
     classtype_help = ( f"""The class type can be: \n """
                        f"""\tStandard - Normal C++ class\n """
                        f"""\tAbstractTask - Used for creating abstract task class\n """
-                       f"""\tReceiver - Used for creating the concrete task\n """
                        f"""\tTypeErasure-Non-Template - TypeErasure base class\n """)
 
     # Create an argument parser.
@@ -84,8 +116,14 @@ def _parse_arguments():
     mandatory_args_group.add_argument("--class-type",
                            required=True,
                            type=str,
-                           choices=["TypeErasure-Non-Template","Standard","AbstractTask"],
+                           choices=["TypeErasure-Non-Template","Standard","AbstractTask","NA"],
                            help=classtype_help)
+
+    # Add subparser for different class type.
+    class_type_subparser = my_parser.add_subparsers(help="Commands to create different type of classesself.",
+                                                    title="Subcommand arguments for creating types of classes.",
+                                                    dest="subparser_class_type")
+    _receiver_subparser(class_type_subparser)
 
     my_args = my_parser.parse_args()
 
@@ -162,6 +200,11 @@ def _select_template_files(class_type):
         h_template_file = os.path.join(anansi_top_level,"templates","BaseTask-template.h")
         i_template_file = os.path.join(anansi_top_level,"templates","BaseTask-template.cpp")
         header_file_suffix = ".h"
+    elif class_type == "NA":
+        h_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.h")
+        i_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.cpp")
+        header_file_suffix = ".h"
+
 
     return (h_template_file,i_template_file,header_file_suffix,i_file_suffix)
 

@@ -4,7 +4,7 @@
 //!
 //! \brief Brief description
 //!
-//! Detailed description
+//! \details Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -184,6 +184,6 @@ class __classname__
 }; // -----  end of class __classname__  -----
 
 
-}; // namespace __NAMESPACE__
+}; // ----- End of namespace __NAMESPACE__ -----
 
 #endif // __filepreprocessordefine__
