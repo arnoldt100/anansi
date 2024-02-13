@@ -15,78 +15,45 @@
 # System imports
 import string
 import argparse
+import function_dispatcher
 
 # Local imports
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
+import class_types.receiver
+import class_types.standard
+import class_types.abstract_task
+import class_types.type_erasure_non_template
 
 def _main():
-    args = _parse_arguments()
 
-    namespace = args.namespace
-    class_name = args.class_name
-    class_type = args.class_type
+    # Create a list of the class type packages.
+    class_type_packages = [class_types.receiver,
+                           class_types.standard,
+                           class_types.abstract_task,
+                           class_types.type_erasure_non_template]
 
-    _create_header_file(namespace,class_name,class_type)
-    _create_implementation_file(namespace,class_name,class_type)
+   
+    file_creator = _register_packages(class_type_packages)
 
-## Creates a subparser for creating skeletal Receiver classes.
-#
-# @returns A namespace contains attributes that are the command line arguments.
-def _receiver_subparser(class_typesubparser):
-    receiver_subparser = class_typesubparser.add_parser("receiver",
-                                                        help="Creates skeletal files for a receiver class.")
-    receiver_subparser.add_argument("--receiver-name",
-                                    required=True,
-                                    type=str,
-                                    help="The name of the receiver.")
+    args = _parse_arguments(class_type_packages)
 
-    receiver_subparser.add_argument("--task-label",
-                                    required=True,
-                                    type=str,
-                                    help="The task's label.")
+    print (args)
 
-    receiver_subparser.add_argument("--ownership-policy",
-                                    required=True,
-                                    type=str,
-                                    help="The ownership policy of the receiver's result.",
-                                    choices=["CopyOwnershipPolicy",
-                                             "NullOwnershipPolicy",
-                                             "ShareCopyOwnershipPolicy",
-                                             "ShareOwnershipPolicy",
-                                             "TransferCopyOwnershipPolicy",
-                                             "TransferOwnershipPolicy"] )
-
-    receiver_subparser.add_argument("--ownership-implementation",
-                                    required=True,
-                                    type=str,
-                                    help="The class implenenting the ownership policy.")
-    return
+    
+    # _create_header_file(namespace,class_name,class_type)
+    # _create_implementation_file(namespace,class_name,class_type)
 
 ## Parses the command line arguments and returns A namespace.
 #
 # @returns A namespace contains attributes that are the command line arguments.
-def _parse_arguments():
+def _parse_arguments(class_type_packages):
 
     import logging
 
     # Create a string of the description of the 
     # program.
     program_description = "This program creates the skeletal header and implementation files for a class."
-
-    # Create text for namspace option help.
-    namespace_help = ( f"""The namespace should conform to the language standards.\n """
-                       f"""For example, most languages require namespaces to have only alphanumeric characters.\n""")
-
-    # Create text for funtion name option help.
-    classname_help = ( f"""The class name should conform to the language standards.\n """
-                       f"""For example, most languages require class names to have only alphanumeric characters.\n""")
-
-    # Create text for funtion name option help.
-    classtype_help = ( f"""The class type can be: \n """
-                       f"""\tStandard - Normal C++ class\n """
-                       f"""\tAbstractTask - Used for creating abstract task class\n """
-                       f"""\tTypeErasure-Non-Template - TypeErasure base class\n """)
 
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
@@ -100,34 +67,35 @@ def _parse_arguments():
                            default=logging.WARNING,
                            help=create_logger_description() )
 
-    # Adding mandatory argument group.
-    mandatory_args_group = my_parser.add_argument_group(title="Mandatory Arguments")
-
-    mandatory_args_group.add_argument("--namespace",
-                           required=True,
-                           type=str,
-                           help=namespace_help)
-
-    mandatory_args_group.add_argument("--class-name",
-                           required=True,
-                           type=str,
-                           help=classname_help)
-
-    mandatory_args_group.add_argument("--class-type",
-                           required=True,
-                           type=str,
-                           choices=["TypeErasure-Non-Template","Standard","AbstractTask","NA"],
-                           help=classtype_help)
-
     # Add subparser for different class type.
-    class_type_subparser = my_parser.add_subparsers(help="Commands to create different type of classesself.",
+    class_type_subparser = my_parser.add_subparsers(help="Commands to create different type of classes.",
                                                     title="Subcommand arguments for creating types of classes.",
                                                     dest="subparser_class_type")
-    _receiver_subparser(class_type_subparser)
 
+    # Add command line arguments for all class type packages.
+    for a_package in class_type_packages:
+        a_package.add_commandline_arguments(class_type_subparser)
+
+    # Finally parse the command line arguments.
     my_args = my_parser.parse_args()
 
     return my_args 
+
+def _register_packages(package_list):
+    """ Registers the functions that create the source files.
+
+    Returns:
+        The FunctionDispatcher with the registered functions.
+    """
+
+    a_function_dispatcher = function_dispatcher.create_function_dispatcher()
+
+    for a_package in package_list:
+        function_dispatcher.register_function(a_function_dispatcher,
+                                              a_package.package_key,
+                                              a_package.create_files)
+
+    return (a_function_dispatcher)
 
 def _create_header_file(namespace,class_name,class_type):
     import os
