@@ -53,6 +53,7 @@ def _parse_arguments():
     classtype_help = ( f"""The class type can be: \n """
                        f"""\tStandard - Normal C++ class\n """
                        f"""\tAbstractTask - Used for creating abstract task class\n """
+                       f"""\tReceiver - Used for creating the concrete task\n """
                        f"""\tTypeErasure-Non-Template - TypeErasure base class\n """)
 
     # Create an argument parser.

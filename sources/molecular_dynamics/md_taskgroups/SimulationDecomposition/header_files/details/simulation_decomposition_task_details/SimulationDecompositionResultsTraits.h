@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Atoms.h"
 
 namespace ANANSI
 {
@@ -24,6 +25,11 @@ namespace ANANSI
 class SimulationDecompositionResultsTraits
 {
     public:
+        // ====================  ALIASES       =======================================
+        
+        //! A type erasure for the physical atoms of the system.
+        using result_t = Atoms<>;
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
@@ -35,7 +41,8 @@ class SimulationDecompositionResultsTraits
         //! The move constructor.
         SimulationDecompositionResultsTraits (SimulationDecompositionResultsTraits && other);   // copy-move constructor
 
-        virtual ~SimulationDecompositionResultsTraits ();  // destructor
+        //! The destructor.
+        ~SimulationDecompositionResultsTraits ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
