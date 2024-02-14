@@ -34,6 +34,9 @@ def add_commandline_arguments(subparser):
     return
 
 
+## \brief Creates the header and implementation files.
+#
+# \param args An object of the "argparse.Namespace".
 class FileGenerator:
     def __init__(self,args):
         self._args = args
