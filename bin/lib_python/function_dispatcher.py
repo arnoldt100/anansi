@@ -2,6 +2,8 @@
 
 """
 
+import copy
+
 def create_function_dispatcher():
     """Returns a FunctionDispatcher object."""
     return FunctionDispatcher()

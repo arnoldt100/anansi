@@ -31,5 +31,10 @@ def add_commandline_arguments(subparser):
 
     return
 
-def create_files(args):
-    return;
+class FileGenerator:
+    def __init__(self,args):
+        self._args = args
+
+    def __call__(self):
+        print("Creating files for abstract-tasks")
+        return

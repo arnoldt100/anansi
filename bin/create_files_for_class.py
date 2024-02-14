@@ -26,23 +26,20 @@ import class_types.abstract_task
 import class_types.type_erasure_non_template
 
 def _main():
-
     # Create a list of the class type packages.
     class_type_packages = [class_types.receiver,
                            class_types.standard,
                            class_types.abstract_task,
                            class_types.type_erasure_non_template]
 
-   
-    file_creator = _register_packages(class_type_packages)
-
+    # Parse the command line arguments.
     args = _parse_arguments(class_type_packages)
-
     print (args)
+   
+    file_creator = _register_packages(class_type_packages,args)
 
+    function_dispatcher.execute(file_creator,args.subparser_class_type)
     
-    # _create_header_file(namespace,class_name,class_type)
-    # _create_implementation_file(namespace,class_name,class_type)
 
 ## Parses the command line arguments and returns A namespace.
 #
@@ -81,7 +78,7 @@ def _parse_arguments(class_type_packages):
 
     return my_args 
 
-def _register_packages(package_list):
+def _register_packages(package_list,args):
     """ Registers the functions that create the source files.
 
     Returns:
@@ -91,9 +88,10 @@ def _register_packages(package_list):
     a_function_dispatcher = function_dispatcher.create_function_dispatcher()
 
     for a_package in package_list:
+        my_callable_object = a_package.FileGenerator(args)
         function_dispatcher.register_function(a_function_dispatcher,
                                               a_package.package_key,
-                                              a_package.create_files)
+                                              my_callable_object)
 
     return (a_function_dispatcher)
 
