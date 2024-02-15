@@ -93,6 +93,15 @@ class FileGenerator:
         output_file = receiverclassname + "ResultsTraits" + impl_file_suffix
         common_utilities.parse_file(regex_dict,i_results_traits_file,output_file)
 
+        h_ownership_impl_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.h")
+        output_file = receiverclassname + "ResultsTraitsOwnershipImpl" + header_file_suffix
+        common_utilities.parse_file(regex_dict,h_ownership_impl_file,output_file)
+
+        i_ownership_impl_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.cpp")
+        output_file = receiverclassname + "ResultsTraitsOwnershipImpl" + impl_file_suffix
+        common_utilities.parse_file(regex_dict,i_ownership_impl_file,output_file)
+
+
         return
 
 
