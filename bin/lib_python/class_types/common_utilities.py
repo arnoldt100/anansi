@@ -28,4 +28,19 @@ def parse_file(regex_dict,template_file,output_file):
                     tmp_record = regex_pattern.sub(replacement,tmp_record)    
                 output_fileobj.write(tmp_record)
 
+## \brief Returns aa task label.
+#
+# \param[in] A string
+def form_task_label(label):
+    task_label = ""
+    num_chars = len(label)
 
+    counter = 0
+    for element in label:
+        counter += 1
+        char = f"\'{element}\'"
+        task_label += char
+
+        if counter < num_chars:
+            task_label  += ","
+    return task_label

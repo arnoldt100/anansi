@@ -8,7 +8,7 @@ from . import help_comments
 from . import common_utilities
 
 ## This defines a unique key for this package.
-package_key="receiver"
+package_key="receiver_macro"
 
 ## \brief Adds the command line arguments to a ArgumentParser
 #

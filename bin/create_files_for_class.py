@@ -21,7 +21,7 @@ import function_dispatcher
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 import class_types.receiver
-import class_types.macro_receiver
+import class_types.receiver_macro
 import class_types.standard
 import class_types.abstract_task
 import class_types.type_erasure_non_template
@@ -31,7 +31,7 @@ def _main():
     class_type_packages = [class_types.receiver,
                            class_types.standard,
                            class_types.abstract_task,
-                           class_types.type_erasure_non_template
+                           class_types.type_erasure_non_template,
                            class_types.receiver_macro]
 
     # Parse the command line arguments.

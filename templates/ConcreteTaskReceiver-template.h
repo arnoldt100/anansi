@@ -20,6 +20,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
+#include "__classname__Traits.hpp"
+#include "__classname__ResultTraits.hpp"
 #include "__classname__OwnershipImpl.hpp"
 #include "__ownershippolicy__.hpp"
 
