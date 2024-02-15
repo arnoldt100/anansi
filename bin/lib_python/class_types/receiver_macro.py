@@ -65,7 +65,7 @@ class FileGenerator:
         i_file_suffix = ".cpp"
         header_file_name = receiverclassname + header_file_suffix
         preprocessor_name = namespace + "_" + receiverclassname + "_INC"
-        task_label = self._args.task_label
+        task_label = common_utilities.form_task_label(self._args.task_label)
         ownership_policy = self._args.ownership_policy 
 
         regex_dict = [ (re.compile("__NAMESPACE__"),namespace ),

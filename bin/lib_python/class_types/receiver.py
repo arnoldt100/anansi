@@ -62,7 +62,7 @@ class FileGenerator:
         namespace = self._args.namespace
         receiverclassname = self._args.receiver_name
         header_file_suffix = ".h"
-        i_file_suffix = ".cpp"
+        impl_file_suffix = ".cpp"
         header_file_name = receiverclassname + header_file_suffix
         preprocessor_name = namespace + "_" + receiverclassname + "_INC"
         task_label = common_utilities.form_task_label(self._args.task_label)
@@ -82,8 +82,16 @@ class FileGenerator:
         common_utilities.parse_file(regex_dict,h_template_file,output_file)
 
         i_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.cpp")
-        output_file = receiverclassname + i_file_suffix
+        output_file = receiverclassname + impl_file_suffix
         common_utilities.parse_file(regex_dict,i_template_file,output_file)
+
+        h_results_traits_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverResultsTraits-template.h")
+        output_file = receiverclassname + "ResultsTraits" + header_file_suffix
+        common_utilities.parse_file(regex_dict,h_results_traits_file,output_file)
+
+        i_results_traits_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverResultsTraits-template.cpp")
+        output_file = receiverclassname + "ResultsTraits" + impl_file_suffix
+        common_utilities.parse_file(regex_dict,i_results_traits_file,output_file)
 
         return
 
