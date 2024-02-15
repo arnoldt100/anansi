@@ -37,32 +37,36 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
             {'d','u','m','m','y', '_','l','a','b','e','l'};
 
-        using my_result_type_ = int;
-        using my_copy_type_ = int;
-        using my_share_type_ = int;
-        using my_transfer_type_ = int;
+        //! \! todo Implement a traits class for the results. 
+        using my_result_type = ___classname__ResultsTraits::result_t;
+        using my_copy_type = __classname__ResultsTraits::copy_result_t;
+        using my_share_type_ = __classname__ResultsTraits::share_result_t;
+        using my_transfer_type_ = __classname__ResultsTraits::transfer_result_t;
+
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        //! The ownership policy traits  for the result.
-        using MyOwnershipImpl_ = DummyConcreteTaskOwnershipImpl<MyOwnershipImplTraits_>;
+        //! \todo Implement a policy class for the ownership implementation
+        using MyOwnershipImpl_ = __classnane__OwnershipImpl<MyOwnershipImplTraits_>;
 
         //! The ownership policy for the result.
         using MyOwnershipPolicy_ = ANANSI::__OwnershipPolicy__<MyOwnershipImpl_>;
         
-        // Place here the class data members required for doing the task.
+        // \todo Place here the class data members required for doing the task.
 
     public:
 
         // ====================  TYPEDEFS     =======================================
-        using MyParentTask = MacroCommand<>;
 
-        // Place here the concrete commponent receivers required for receiver to 
-        // do its work.
-        using MyComponentReceiverTypelist = 
-            MPL::mpl_typelist<>;
+        //! \todo Declare the parent task.
+        using MyParentTask = __ParentTask__;
+
+        //! \todo Fill in typelist with Generic tasks to
+        //!       accopmplish the maceo command. Leave typleist empty
+        //!       if this is not a macro command.
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = 

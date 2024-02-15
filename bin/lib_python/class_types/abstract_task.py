@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 ## \package abstract_tasks
 
-
 from . import help_comments
 from . import common_utilities
 
