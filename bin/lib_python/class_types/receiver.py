@@ -62,8 +62,10 @@ class FileGenerator:
         namespace = self._args.namespace
         receiverclassname = self._args.receiver_name
         header_file_suffix = ".h"
+        hpp_file_suffix = ".hpp"
         impl_file_suffix = ".cpp"
         header_file_name = receiverclassname + header_file_suffix
+        hpp_header_file_name = receiverclassname + hpp_file_suffix
         preprocessor_name = namespace + "_" + receiverclassname + "_INC"
         task_label = common_utilities.form_task_label(self._args.task_label)
         ownership_policy = self._args.ownership_policy 
@@ -72,6 +74,7 @@ class FileGenerator:
                        (re.compile("__classname__"),receiverclassname),
                        (re.compile("__filename__"),receiverclassname),
                        (re.compile("__header_filename__"),header_file_name),
+                       (re.compile("__hpp_header_filename__"),hpp_header_file_name),
                        (re.compile("__filepreprocessordefine__"), preprocessor_name),
                        (re.compile("__tasklabel__"), task_label),
                        (re.compile("__ownershippolicy__"),ownership_policy) ]
@@ -93,8 +96,8 @@ class FileGenerator:
         output_file = receiverclassname + "ResultsTraits" + impl_file_suffix
         common_utilities.parse_file(regex_dict,i_results_traits_file,output_file)
 
-        h_ownership_impl_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.h")
-        output_file = receiverclassname + "ResultsTraitsOwnershipImpl" + header_file_suffix
+        h_ownership_impl_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.hpp")
+        output_file = receiverclassname + "ResultsTraitsOwnershipImpl" + hpp_file_suffix
         common_utilities.parse_file(regex_dict,h_ownership_impl_file,output_file)
 
         i_ownership_impl_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.cpp")
