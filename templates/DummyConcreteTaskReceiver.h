@@ -1,7 +1,7 @@
-#ifndef  ANANSI_DummyConcreteTaskReceiver_INC
-#define  ANANSI_DummyConcreteTaskReceiver_INC
+#ifndef  ANANSI___classname___INC
+#define  ANANSI___classname___INC
 
-//! @file DummyConcreteTaskReceiver.h
+//! @file __classname__.h
 //!
 //! Brief description
 //!
@@ -34,7 +34,7 @@
 namespace ANANSI
 {
 
-class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>
+class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 {
     private:
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
@@ -76,18 +76,18 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE(DummyConcreteTaskReceiver::tmpstr);
+        RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE(__classname__::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
-        DummyConcreteTaskReceiver ();   // constructor
+        __classname__ ();   // constructor
 
-        DummyConcreteTaskReceiver (const DummyConcreteTaskReceiver & other) = delete;   // copy constructor
+        __classname__ (const __classname__ & other) = delete;   // copy constructor
 
-        DummyConcreteTaskReceiver (DummyConcreteTaskReceiver && other);   // copy-move constructor
+        __classname__ (__classname__ && other);   // copy-move constructor
 
-        ~DummyConcreteTaskReceiver ();  // destructor
+        ~__classname__ ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -96,9 +96,9 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
 
         // ====================  OPERATORS     =======================================
 
-        DummyConcreteTaskReceiver& operator= ( const DummyConcreteTaskReceiver &other ) = delete; // assignment operator
+        __classname__& operator= ( const __classname__ &other ) = delete; // assignment operator
 
-        DummyConcreteTaskReceiver& operator= ( DummyConcreteTaskReceiver && other ); // assignment-move operator
+        __classname__& operator= ( __classname__ && other ); // assignment-move operator
 
     private:
 
@@ -123,9 +123,9 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<DummyConcreteTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
-            return  DummyConcreteTaskReceiver::TASKLABEL;
+            return  __classname__::TASKLABEL;
         }
 
         receiver_copy_t_ receiverGetCopyOfResults_() const;
@@ -155,34 +155,34 @@ class DummyConcreteTaskReceiver :  public RECEIVER::ReceiverInterface<DummyConcr
         std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> compenentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
-}; // -----  end of class DummyConcreteTaskReceiver  -----
+}; // -----  end of class __classname__  -----
 
 template<typename... Types>
-void DummyConcreteTaskReceiver::enableReceiver_(Types &... args)
+void __classname__::enableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTaskReceiver::disableReceiver_(Types &... args)
+void __classname__::disableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTaskReceiver::receiverDoAction_(Types & ... args) const
+void __classname__::receiverDoAction_(Types & ... args) const
 {
-    std::cout >> "Stud for DummyConcreteTaskReceiver::receiverDoAction_" << std::endl;
+    std::cout >> "Stud for __classname__::receiverDoAction_" << std::endl;
     return;
 }
 
 template<typename... Types>
-void DummyConcreteTaskReceiver::receiverUndoAction_(Types & ... args) const
+void __classname__::receiverUndoAction_(Types & ... args) const
 {
-    std::cout >> "Stud for DummyConcreteTaskReceiver::receiverUndoAction_" << std::endl;
+    std::cout >> "Stud for __classname__::receiverUndoAction_" << std::endl;
     return;
 }
 
 }; // namespace ANANSI
 
-#endif   // ----- #ifndef ANANSI_DummyConcreteTaskReceiver_INC  ----- 
+#endif   // ----- #ifndef ANANSI___classname___INC  ----- 

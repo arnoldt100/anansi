@@ -25,8 +25,8 @@
 #include "TaskLabel.hpp"
 #include "OwnershipTypes.hpp"
 #include "AnansiTaskParameters.h"
-#include "DummyConcreteTaskOwnershipImpl.hpp"
-#include "__OwnershipPolicy__.hpp"
+#include "__classname__OwnershipImpl.hpp"
+#include "__ownershippolicy__.hpp"
 
 namespace __NAMESPACE__
 {
@@ -35,11 +35,11 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 {
     private:
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
-            {'d','u','m','m','y', '_','l','a','b','e','l'};
+            {__tasklabel__};
 
         //! \! todo Implement a traits class for the results. 
-        using my_result_type = ___classname__ResultsTraits::result_t;
-        using my_copy_type = __classname__ResultsTraits::copy_result_t;
+        using my_result_type_ = __classname__ResultsTraits::result_t;
+        using my_copy_type_ = __classname__ResultsTraits::copy_result_t;
         using my_share_type_ = __classname__ResultsTraits::share_result_t;
         using my_transfer_type_ = __classname__ResultsTraits::transfer_result_t;
 
@@ -49,10 +49,10 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
                                                                       my_transfer_type_>;
 
         //! \todo Implement a policy class for the ownership implementation
-        using MyOwnershipImpl_ = __classnane__OwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = __classname__OwnershipImpl<MyOwnershipImplTraits_>;
 
         //! The ownership policy for the result.
-        using MyOwnershipPolicy_ = ANANSI::__OwnershipPolicy__<MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::__ownershippolicy__<MyOwnershipImpl_>;
         
         // \todo Place here the class data members required for doing the task.
 
@@ -60,7 +60,7 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         // ====================  TYPEDEFS     =======================================
 
-        //! \todo Declare the parent task.
+        //! \todo Declare an alias the parent task.
         using MyParentTask = __ParentTask__;
 
         //! \todo Fill in typelist with Generic tasks to

@@ -60,25 +60,28 @@ class FileGenerator:
         import os
 
         namespace = self._args.namespace
-        receiverclassname = self._args.class_name
+        receiverclassname = self._args.receiver_name
         header_file_suffix = ".h"
         i_file_suffix = ".cpp"
         header_file_name = receiverclassname + header_file_suffix
         preprocessor_name = namespace + "_" + receiverclassname + "_INC"
+        task_label = self._args.task_label
+        ownership_policy = self._args.ownership_policy 
 
         regex_dict = [ (re.compile("__NAMESPACE__"),namespace ),
                        (re.compile("__classname__"),receiverclassname),
                        (re.compile("__filename__"),receiverclassname),
                        (re.compile("__header_filename__"),header_file_name),
                        (re.compile("__filepreprocessordefine__"), preprocessor_name),
-                     ]
+                       (re.compile("__tasklabel__"), task_label),
+                       (re.compile("__ownershippolicy__"),ownership_policy) ]
 
         anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-        h_template_file = os.path.join(anansi_top_level,"templates","DummyConcreteTaskReceiver.h")
+        h_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.h")
         output_file = receiverclassname + header_file_suffix
         common_utilities.parse_file(regex_dict,h_template_file,output_file)
 
-        i_template_file = os.path.join(anansi_top_level,"templates","DummyConcreteTaskReceiver.cpp")
+        i_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.cpp")
         output_file = receiverclassname + i_file_suffix
         common_utilities.parse_file(regex_dict,i_template_file,output_file)
 
