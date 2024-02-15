@@ -21,6 +21,7 @@ import function_dispatcher
 from loggerutils.logger import create_logger_description
 from loggerutils.logger import create_logger
 import class_types.receiver
+import class_types.macro_receiver
 import class_types.standard
 import class_types.abstract_task
 import class_types.type_erasure_non_template
@@ -30,7 +31,8 @@ def _main():
     class_type_packages = [class_types.receiver,
                            class_types.standard,
                            class_types.abstract_task,
-                           class_types.type_erasure_non_template]
+                           class_types.type_erasure_non_template
+                           class_types.receiver_macro]
 
     # Parse the command line arguments.
     args = _parse_arguments(class_type_packages)
@@ -94,85 +96,6 @@ def _register_packages(package_list,args):
                                               my_callable_object)
 
     return (a_function_dispatcher)
-
-def _create_header_file(namespace,class_name,class_type):
-    import os
-    import re
-    (template_file,dummy_file,header_file_suffix,i_file_suffix) = _select_template_files(class_type)
-    print("Creating header file " + class_name + header_file_suffix)
-    anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    output_file = class_name + header_file_suffix
-    header_file_name = class_name + header_file_suffix
-    preprocessor_name = namespace + "_" + class_name + "_INC"
-    regex_array = [ (re.compile("__NAMESPACE__"),namespace),
-                    (re.compile("__classname__"),class_name),
-                    (re.compile("__filename__"),class_name),
-                    (re.compile("__header_filename__"),header_file_name),
-                    (re.compile("__filepreprocessordefine__"), preprocessor_name),
-                   ]
-
-    _parse_file(regex_array,template_file,output_file)
-
-    return
-
-def _create_implementation_file(namespace,class_name,class_type):
-    import os
-    import re
-    (dummy_file,template_file,header_file_suffix,i_file_suffix) = _select_template_files(class_type)
-    print("Creating implementation file " + class_name + i_file_suffix)
-    anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    output_file = class_name + i_file_suffix
-    header_file_name = class_name + header_file_suffix
-    regex_array = [ (re.compile("__NAMESPACE__"),namespace ),
-                    (re.compile("__classname__"),class_name),
-                    (re.compile("__filename__"),class_name),
-                    (re.compile("__header_filename__"),header_file_name)
-                   ]
-    _parse_file(regex_array,template_file,output_file)
-    return
-
-def _parse_file(regex_array,template_file, output_file):
-    # Read lines in from template fileself.
-    import os
-
-    if os.path.exists(output_file):
-        print("Aborting: File " + output_file + " exists!" )
-        return
-
-    template_file_lines = []
-    with open(output_file,"w") as output_fileobj :
-        with open(template_file,"r") as template_fileobj :
-            template_file_lines = template_fileobj.readlines()
-            for tmp_record in template_file_lines: 
-
-                for (regex_pattern,replacement) in regex_array:
-                    tmp_record = regex_pattern.sub(replacement,tmp_record)    
-                output_fileobj.write(tmp_record)
-
-
-def _select_template_files(class_type):
-    import os
-    anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-    i_file_suffix = ".cpp"
-    if class_type == "Standard":
-        h_template_file = os.path.join(anansi_top_level,"templates","Class.h")
-        i_template_file = os.path.join(anansi_top_level,"templates","Class.cpp")
-        header_file_suffix = ".h"
-    elif class_type == "TypeErasure-Non-Template":
-        h_template_file = os.path.join(anansi_top_level,"templates","TypeErasure.non-template.h")
-        i_template_file = os.path.join(anansi_top_level,"templates","TypeErasure.non-template.cpp")
-        header_file_suffix = ".h"
-    elif class_type == "AbstractTask":
-        h_template_file = os.path.join(anansi_top_level,"templates","BaseTask-template.h")
-        i_template_file = os.path.join(anansi_top_level,"templates","BaseTask-template.cpp")
-        header_file_suffix = ".h"
-    elif class_type == "NA":
-        h_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.h")
-        i_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.cpp")
-        header_file_suffix = ".h"
-
-
-    return (h_template_file,i_template_file,header_file_suffix,i_file_suffix)
 
 if __name__ == "__main__":
     _main()
