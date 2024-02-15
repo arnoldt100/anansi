@@ -19,12 +19,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "GenericMDTask.hpp"
-#include "MacroCommand.hpp"
-#include "ReceiverInterface.hpp"
-#include "TaskLabel.hpp"
-#include "OwnershipTypes.hpp"
-#include "AnansiTaskParameters.h"
+#include "CommonMDTaskGroupHeaders.h"
+#include "GenericMDTaskUtilities.hpp"
 #include "__classname__OwnershipImpl.hpp"
 #include "__ownershippolicy__.hpp"
 
@@ -60,13 +56,17 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         // ====================  TYPEDEFS     =======================================
 
-        //! \todo Declare an alias the parent task.
-        using MyParentTask = __ParentTask__;
+        //! \todo Declare an alias the parent task. Fill 
+        using MyParentTask = MacroCommand< 
+                                           // type1, type2, ... ,typeN 
+                                         >;
 
         //! \todo Fill in typelist with Generic tasks to
         //!       accopmplish the maceo command. Leave typleist empty
         //!       if this is not a macro command.
-        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<
+                                                               // GenericMDTask<type1>,GenericMDTask<type2>, ...,GenericMDTask<typeN>
+                                                              >;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = 
@@ -153,7 +153,7 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
-        std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> compenentTasks_;
+        std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> componentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class __classname__  -----

@@ -19,12 +19,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "GenericMDTask.hpp"
-#include "MacroCommand.hpp"
-#include "ReceiverInterface.hpp"
-#include "TaskLabel.hpp"
-#include "OwnershipTypes.hpp"
-#include "AnansiTaskParameters.h"
+#include "CommonMDTaskGroupHeaders.h"
 #include "__classname__OwnershipImpl.hpp"
 #include "__ownershippolicy__.hpp"
 
@@ -153,7 +148,6 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
-        std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> compenentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class __classname__  -----

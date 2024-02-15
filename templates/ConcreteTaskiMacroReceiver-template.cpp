@@ -22,16 +22,19 @@ namespace ANANSI {
 
 __classname__::__classname__() :
     RECEIVER::ReceiverInterface<__classname__>{},
-    ownershipPolicy_{},
     results_{},
+    componentTasks_{},
+    ownershipPolicy_{}
+   
 {
     return;
 }
 
 __classname__::__classname__( __classname__ && other) :
     RECEIVER::ReceiverInterface<__classname__>{std::move(other)},
-    ownershipPolicy_{std::move(other.ownershipPolicy_)},
-    results_{std::move(other.results_)}
+    results_(std::move(other.results_)),
+    componentTasks_{std::move(other.componentTasks_)},
+    ownershipPolicy_{std::move(other.ownershipPolicy_)}
 {
     if (this != &other)
     {
@@ -56,8 +59,9 @@ __classname__& __classname__::operator= ( __classname__ && other )
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<__classname__>::operator=(std::move(other));
-        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->results_ = std::move(other.results_);
+        this->componentTasks_ = std::move(other.componentTasks_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
 } // assignment-move operator
@@ -79,7 +83,7 @@ __classname__::receiver_copy_t_ __classname__::receiverGetCopyOfResults_() const
 //============================= MUTATORS =====================================
 
 template<>
-void __classname__::receiverModifyMyself_(int & alpha)
+void __classname__::receiverModifyMyself_()
 {
     return;
 }

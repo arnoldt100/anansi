@@ -21,5 +21,6 @@
 #include "TaskLabel.hpp"
 #include "OwnershipTypes.hpp"
 #include "AnansiTaskParameters.h"
+#include "GenericMDTaskUtilities.hpp"
 
 #endif // ANANSI_CommonMDTaskGroupHeaders_INC

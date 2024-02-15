@@ -26,6 +26,7 @@ class AnansiTask;
 ControlFileMacroReceiver::ControlFileMacroReceiver() :
     ReceiverInterface<ControlFileMacroReceiver>(),
     results_(ReadControlFileResultsTraits::ControlInputFile_t()),
+    componentTasks_{},
     ownershipPolicy_()
 {
     return;
@@ -34,6 +35,7 @@ ControlFileMacroReceiver::ControlFileMacroReceiver() :
 ControlFileMacroReceiver::ControlFileMacroReceiver( ControlFileMacroReceiver && other) :
     ReceiverInterface<ControlFileMacroReceiver>(std::move(other)),
     results_(std::move(other.results_)),
+    componentTasks_{std::move(other.componentTasks_)},
     ownershipPolicy_(std::move(other.ownershipPolicy_))
 {
     if (this != &other)
