@@ -10,9 +10,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "__header_filename__"
+#include "ReadPointAtoms.h"
 
-namespace __NAMESPACE__ {
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -20,16 +20,16 @@ namespace __NAMESPACE__ {
 
 //============================= LIFECYCLE ====================================
 
-__classname__::__classname__() :
-    RECEIVER::ReceiverInterface<__classname__>{},
-    results_{},
+ReadPointAtoms::ReadPointAtoms() :
+    RECEIVER::ReceiverInterface<ReadPointAtoms>{},
+    results_{ReadPointAtomsResultsTraits::Atoms_t()},
     ownershipPolicy_{}
 {
     return;
 }
 
-__classname__::__classname__( __classname__ && other) :
-    RECEIVER::ReceiverInterface<__classname__>{std::move(other)},
+ReadPointAtoms::ReadPointAtoms( ReadPointAtoms && other) :
+    RECEIVER::ReceiverInterface<ReadPointAtoms>{std::move(other)},
     results_{std::move(other.results_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
 {
@@ -40,7 +40,7 @@ __classname__::__classname__( __classname__ && other) :
     return;
 }
 
-__classname__::~__classname__()
+ReadPointAtoms::~ReadPointAtoms()
 {
     return;
 }
@@ -51,11 +51,11 @@ __classname__::~__classname__()
 
 //============================= OPERATORS ====================================
 
-__classname__& __classname__::operator= ( __classname__ && other )
+ReadPointAtoms& ReadPointAtoms::operator= ( ReadPointAtoms && other )
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<__classname__>::operator=(std::move(other));
+        RECEIVER::ReceiverInterface<ReadPointAtoms>::operator=(std::move(other));
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->results_ = std::move(other.results_);
     }
@@ -70,29 +70,29 @@ __classname__& __classname__::operator= ( __classname__ && other )
 
 //============================= ACCESSORS ====================================
 
-__classname__::receiver_copy_t_ __classname__::receiverGetCopyOfResults_() const
+ReadPointAtoms::receiver_copy_t_ ReadPointAtoms::receiverGetCopyOfResults_() const
 {
-    __classname__::receiver_copy_t_ my_copied_result  = this->ownershipPolicy_.copyReceiverResult(this->results_);
+    ReadPointAtoms::receiver_copy_t_ my_copied_result  = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_copied_result;
 }
 
 //============================= MUTATORS =====================================
 
 template<>
-void __classname__::receiverModifyMyself_(int & alpha)
+void ReadPointAtoms::receiverModifyMyself_(int & alpha)
 {
     return;
 }
 
-__classname__::receiver_share_t_ __classname__::receiverShareOwnershipOfResults_()
+ReadPointAtoms::receiver_share_t_ ReadPointAtoms::receiverShareOwnershipOfResults_()
 {
-    __classname__::receiver_share_t_ my_shared_result = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
+    ReadPointAtoms::receiver_share_t_ my_shared_result = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
     return my_shared_result;   
 }
 
-__classname__::receiver_transfer_t_ __classname__::receiverTransferOwnershipOfResults_()
+ReadPointAtoms::receiver_transfer_t_ ReadPointAtoms::receiverTransferOwnershipOfResults_()
 {
-    __classname__::receiver_transfer_t_ my_transfered_result = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
+    ReadPointAtoms::receiver_transfer_t_ my_transfered_result = ownershipPolicy_.transferOwnershipOfReceiverResult(this->results_);
     return my_transfered_result;   
 }
 
@@ -111,4 +111,4 @@ __classname__::receiver_transfer_t_ __classname__::receiverTransferOwnershipOfRe
 //============================= OPERATORS ====================================
 
 
-}; // ----- End of namespace __NAMESPACE__ -----
+}; // ----- End of namespace ANANSI -----

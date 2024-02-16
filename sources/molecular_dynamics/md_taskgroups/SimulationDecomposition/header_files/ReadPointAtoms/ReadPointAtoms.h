@@ -1,6 +1,6 @@
-#ifndef __filepreprocessordefine__
-#define __filepreprocessordefine__
-//! \file __header_filename__
+#ifndef ANANSI_ReadPointAtoms_INC
+#define ANANSI_ReadPointAtoms_INC
+//! \file ReadPointAtoms.h
 //!
 //! \brief Brief description
 //!
@@ -19,24 +19,25 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "ReadAtoms.h"
 #include "CommonMDTaskGroupHeaders.h"
-#include "__classname__OwnershipImpl.hpp"
-#include "__ownershippolicy__.hpp"
+#include "ReadPointAtomsResultsTraits.h"
+#include "ReadPointAtomsResultsOwnershipImpl.hpp"
+#include "CopyOwnershipPolicy.hpp"
 
-namespace __NAMESPACE__
+namespace ANANSI
 {
 
-class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
+class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
 {
     private:
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
-            {__tasklabel__};
+            {'r','e','a','d','_','p','o','i','n','t','_','a','t','o','m','s'};
 
-        //! \! todo Implement a traits class for the results. 
-        using my_result_type_ = __classname__ResultsTraits::result_t;
-        using my_copy_type_ = __classname__ResultsTraits::copy_result_t;
-        using my_share_type_ = __classname__ResultsTraits::share_result_t;
-        using my_transfer_type_ = __classname__ResultsTraits::transfer_result_t;
+        using my_result_type_ = ReadPointAtomsResultsTraits::result_t;
+        using my_copy_type_ = ReadPointAtomsResultsTraits::copy_result_t;
+        using my_share_type_ = ReadPointAtomsResultsTraits::share_result_t;
+        using my_transfer_type_ = ReadPointAtomsResultsTraits::transfer_result_t;
 
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
@@ -44,10 +45,10 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
                                                                       my_transfer_type_>;
 
         //! \todo Implement a policy class for the ownership implementation
-        using MyOwnershipImpl_ = __classname__OwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = ReadPointAtomsResultsOwnershipImpl<MyOwnershipImplTraits_>;
 
         //! The ownership policy for the result.
-        using MyOwnershipPolicy_ = ANANSI::__ownershippolicy__<MyOwnershipImpl_>;
+        using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
         
         // \todo Place here the class data members required for doing the task.
 
@@ -55,17 +56,13 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         // ====================  TYPEDEFS     =======================================
 
-        //! \todo Declare an alias the parent task. Fill 
-        using MyParentTask = MacroCommand< 
-                                           // type1, type2, ... ,typeN 
-                                         >;
+        //! \todo Declare an alias the parent task.
+        using MyParentTask = ReadAtoms;
 
         //! \todo Fill in typelist with Generic tasks to
         //!       accopmplish the maceo command. Leave typleist empty
         //!       if this is not a macro command.
-        using MyComponentReceiverTypelist = MPL::mpl_typelist<
-                                                               // GenericMDTask<type1>,GenericMDTask<type2>, ...,GenericMDTask<typeN>
-                                                              >;
+        using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
 
         template<RECEIVER::OwnershipTypes Q>
         using MyOwnershipTypes = 
@@ -76,18 +73,18 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE(__classname__::tmpstr);
+        RECEIVER::ReceiverInterface<ReadPointAtoms>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverInterface<ReadPointAtoms>::TASK_LABEL_TYPE(ReadPointAtoms::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ ();   // constructor
+        ReadPointAtoms ();   // constructor
 
-        __classname__ (const __classname__ & other) = delete;   // copy constructor
+        ReadPointAtoms (const ReadPointAtoms & other) = delete;   // copy constructor
 
-        __classname__ (__classname__ && other);   // copy-move constructor
+        ReadPointAtoms (ReadPointAtoms && other);   // copy-move constructor
 
-        ~__classname__ ();  // destructor
+        ~ReadPointAtoms ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
@@ -96,9 +93,9 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         // ====================  OPERATORS     =======================================
 
-        __classname__& operator= ( const __classname__ &other ) = delete; // assignment operator
+        ReadPointAtoms& operator= ( const ReadPointAtoms &other ) = delete; // assignment operator
 
-        __classname__& operator= ( __classname__ && other ); // assignment-move operator
+        ReadPointAtoms& operator= ( ReadPointAtoms && other ); // assignment-move operator
 
     private:
 
@@ -123,9 +120,9 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverInterface<ReadPointAtoms>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
-            return  __classname__::TASKLABEL;
+            return  ReadPointAtoms::TASKLABEL;
         }
 
         receiver_copy_t_ receiverGetCopyOfResults_() const;
@@ -152,37 +149,36 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
-        std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> componentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
-}; // -----  end of class __classname__  -----
+}; // -----  end of class ReadPointAtoms  -----
 
 template<typename... Types>
-void __classname__::enableReceiver_(Types &... args)
+void ReadPointAtoms::enableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void __classname__::disableReceiver_(Types &... args)
+void ReadPointAtoms::disableReceiver_(Types &... args)
 {
     return;
 }
 
 template<typename... Types>
-void __classname__::receiverDoAction_(Types & ... args) const
+void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 {
-    std::cout << "Stud for __classname__::receiverDoAction_" << std::endl;
+    std::cout << "Stud for ReadPointAtoms::receiverDoAction_" << std::endl;
     return;
 }
 
 template<typename... Types>
-void __classname__::receiverUndoAction_(Types & ... args) const
+void ReadPointAtoms::receiverUndoAction_(Types & ... args) const
 {
-    std::cout << "Stud for __classname__::receiverUndoAction_" << std::endl;
+    std::cout << "Stud for ReadPointAtoms::receiverUndoAction_" << std::endl;
     return;
 }
 
-}; // ----- End of namespace __NAMESPACE__ -----
+}; // ----- End of namespace ANANSI -----
 
-#endif // __filepreprocessordefine__
+#endif // ANANSI_ReadPointAtoms_INC
