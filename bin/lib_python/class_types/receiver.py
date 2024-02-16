@@ -133,14 +133,14 @@ class FileGenerator:
 
     def _createReceiverFile(self):
 
-        (header_file_name,impl_file_name) = self.receiver_file_names()
+        (reciever_header_file_name,receiver_impl_file_name) = self.receiver_file_names()
         (traits_header_file_name,traits_impl_file_name) = self.results_trait_files()
         (ownershipimpl_header_file_name,ownershipimpl_impl_file_name) = self.results_ownership_impl_files()
         ownership_policy_header_file_name = self.results_ownership_policy_header_file_name()
 
         regex_dict = [ (re.compile("__NAMESPACE__"),self.namespace ),
                        (re.compile("__classname__"),self.receiver_class_name),
-                       (re.compile("__header_filename__"),header_file_name),
+                       (re.compile("__header_filename__"),reciever_header_file_name),
                        (re.compile("__resultstraitsheaderfilename__"),traits_header_file_name),
                        (re.compile("__resultsownershipimplheaderfilename__"),ownershipimpl_header_file_name),
                        (re.compile("__ownershippolicyheaderfilename__"),ownership_policy_header_file_name),
@@ -153,11 +153,11 @@ class FileGenerator:
 
         anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
         h_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.h")
-        output_file = header_file_name
+        output_file = reciever_header_file_name
         common_utilities.parse_file(regex_dict,h_template_file,output_file)
 
         i_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.cpp")
-        output_file = impl_file_name
+        output_file = receiver_impl_file_name
         common_utilities.parse_file(regex_dict,i_template_file,output_file)
 
         return

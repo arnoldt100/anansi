@@ -96,8 +96,6 @@ __classname__::receiver_transfer_t_ __classname__::receiverTransferOwnershipOfRe
     return my_transfered_result;   
 }
 
-
-
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////
@@ -113,4 +111,4 @@ __classname__::receiver_transfer_t_ __classname__::receiverTransferOwnershipOfRe
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+}; // ----- End of namespace __NAMESPACE__ -----
