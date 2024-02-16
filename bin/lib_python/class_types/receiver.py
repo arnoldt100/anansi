@@ -89,6 +89,14 @@ class FileGenerator:
         return self.namespace + "_" + self.receiver_class_name + "_" + "INC"
 
     @property
+    def traits_preprocessordefine (self):
+        return self.namespace + "_" + self.trait_class_name + "_" + "INC"
+
+    @property
+    def ownershipimpl_preprocessordefine(self):
+        return self.namespace + "_" + self.ownership_impl_class_name + "_" + "INC"
+
+    @property
     def tasklabel(self):
         task_label = common_utilities.form_task_label(self._args.task_label)
         return task_label
@@ -166,6 +174,8 @@ class FileGenerator:
         (traits_header_file_name, traits_impl_file_name) = self.results_trait_files()
 
         regex_dict = [ (re.compile("__NAMESPACE__"),self.namespace ),
+                       (re.compile("__header_filename__"),traits_header_file_name),
+                       (re.compile("__filepreprocessordefine__"), self.traits_preprocessordefine),
                        (re.compile("__classname__"),self.trait_class_name),
                        (re.compile("__header_filename__"),traits_header_file_name)
                      ]
@@ -181,5 +191,23 @@ class FileGenerator:
         return
 
     def _createResultsOwnershipImplFile(self):
+        (ownershipimpl_header_file_name, ownershipimpl_impl_file_name) = self.results_ownership_impl_files()
+
+        regex_dict = [ (re.compile("__NAMESPACE__"),self.namespace),
+                       (re.compile("__header_filename__"),ownershipimpl_header_file_name),
+                       (re.compile("__filepreprocessordefine__"), self.ownershipimpl_preprocessordefine),
+                       (re.compile("__classname__"),self.ownership_impl_class_name),
+                       (re.compile("__header_filename__"),ownershipimpl_header_file_name)
+                     ]
+
+        anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
+        h_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.hpp")
+        output_file = ownershipimpl_header_file_name
+        common_utilities.parse_file(regex_dict,h_template_file,output_file)
+
+        i_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.cpp")
+        output_file = ownershipimpl_impl_file_name
+        common_utilities.parse_file(regex_dict,i_template_file,output_file)
+
         return
 

@@ -1,10 +1,11 @@
 #ifndef __filepreprocessordefine__
 #define __filepreprocessordefine__
-//! \file __classname__OwnershipImpl.hpp
+//! \file __header_filename__
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <utility>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,28 +14,27 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ReceiverResultTraits.hpp"
 #include "ErrorOwnershipPolicy.hpp"
 #include "BaseOwnershipImplementation.h"
 
-namespace ANANSI
+namespace __NAMESPACE__
 {
 
 template<typename MyTaskImplTraits>
-class __classname__OwnershipImpl : public RECEIVER::BaseOwnershipImplementation<__classname__OwnershipImpl<MyTaskImplTraits>,
-                                                                                MyTaskImplTraits, 
-                                                                                ErrorOwnershipPolicy>
+class __classname__ : public RECEIVER::BaseOwnershipImplementation<__classname__<MyTaskImplTraits>,
+                                                                   MyTaskImplTraits, 
+                                                                   ErrorOwnershipPolicy>
 {
     public:
 
         // ====================  LIFECYCLE     =======================================
 
-        __classname__OwnershipImpl() // constructor
+        __classname__() // constructor
         {
             return;
         }
 
-        __classname__OwnershipImpl (const __classname__OwnershipImpl & other)   // copy constructor
+        __classname__ (const __classname__ & other)   // copy constructor
         {
             if (this != &other)
             {
@@ -43,7 +43,7 @@ class __classname__OwnershipImpl : public RECEIVER::BaseOwnershipImplementation<
             return;
         }
 
-        __classname__OwnershipImpl (__classname__OwnershipImpl && other)   // copy-move constructor
+        __classname__ (__classname__ && other)   // copy-move constructor
         {
             if (this != &other)
             {
@@ -51,22 +51,22 @@ class __classname__OwnershipImpl : public RECEIVER::BaseOwnershipImplementation<
             return;
         }
 
-        ~__classname__OwnershipImpl()  // destructor
+        ~__classname__()  // destructor
         {
             return;
         }
 
         // ====================  ACCESSORS     =======================================
-        __classname__OwnershipImpl* clone() const
+        __classname__* clone() const
         {
-            return new __classname__OwnershipImpl(*this);
+            return new __classname__(*this);
         }
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        __classname__OwnershipImpl& operator= ( const __classname__OwnershipImpl &other ) // assignment operator
+        __classname__& operator= ( const __classname__ &other ) // assignment operator
         {   
             if (this != &other)
             {
@@ -74,7 +74,7 @@ class __classname__OwnershipImpl : public RECEIVER::BaseOwnershipImplementation<
             return *this;
         }
 
-        __classname__OwnershipImpl& operator= ( __classname__OwnershipImpl && other ) // assignment-move operator
+        __classname__& operator= ( __classname__ && other ) // assignment-move operator
         {   
             if (this != &other)
             {
@@ -86,6 +86,7 @@ class __classname__OwnershipImpl : public RECEIVER::BaseOwnershipImplementation<
 
         // ====================  ACCESSORS     =======================================
 
+        //! \todo Implement the copying of the results.
         template<typename T>
         typename MyTaskImplTraits::Copytype getCopyOfResults_(const T & result) const
         {
@@ -94,12 +95,14 @@ class __classname__OwnershipImpl : public RECEIVER::BaseOwnershipImplementation<
 
         // ====================  MUTATORS      =======================================
 
+        //! \todo Implement the transferring of the results.
         template<typename T>
         typename MyTaskImplTraits::Transfertype transferResults_(T & result) const
         {
             return std::move(result);
         }
 
+        //! \todo Implement the sharing of the results.
         template<typename T>
         typename MyTaskImplTraits::Sharetype shareResults_(T & result) const
         {
@@ -114,7 +117,7 @@ class __classname__OwnershipImpl : public RECEIVER::BaseOwnershipImplementation<
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class __classname__OwnershipImpl  -----
-}; // namespace __NAMSESPACE__
+}; // ----- End of class __classname__  -----
+}; // ----- End namespace __NAMESPACE__ -----
 
 #endif // __filepreprocessordefine__
