@@ -1,6 +1,10 @@
 #ifndef __filepreprocessordefine__
 #define __filepreprocessordefine__
-//! \file __classname__ResultsTraits.h
+//! \file __header_filename__
+//!
+//! \brief Brief description
+//!
+//! \details  Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,33 +21,33 @@
 namespace __NAMESPACE__
 {
 
-class __classname__ResultsTraits
+class __classname__
 {
     public:
         // ====================  ALIASES       =======================================
-        //! C\todo  Fill in the result type.
+        //! \todo  Fill in the result type.
         using result_t = ... ;
 
         // ====================  LIFECYCLE     =======================================
 
-        __classname__ResultsTraits ();   // constructor
+        __classname__ ();   // constructor
 
-        __classname__ResultsTraits (const __classname__ResultsTraits & other);   // copy constructor
+        __classname__ (const __classname__ & other);   // copy constructor
 
-        __classname__ResultsTraits (__classname__ResultsTraits && other);   // copy-move constructor
+        __classname__ (__classname__ && other);   // copy-move constructor
 
-        ~__classname__ResultsTraits ();  // destructor
+        ~__classname__ ();  // destructor
 
         // ====================  ACCESSORS     =======================================
-        __classname__ResultsTraits * clone () const;
+        __classname__ * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
-        __classname__ResultsTraits& operator= ( const __classname__ResultsTraits &other ); // assignment operator
+        __classname__& operator= ( const __classname__ &other ); // assignment operator
 
-        __classname__ResultsTraits& operator= ( __classname__ResultsTraits && other ); // assignment-move operator
+        __classname__& operator= ( __classname__ && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -55,7 +59,7 @@ class __classname__ResultsTraits
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  End of class __classname__ResultsTraits  -----
-}; // End of namespace ANANSI
+}; // ----  End of class __classname__  -----
+}; // ----- End of namespace __NAMESPACE__ -----
 
-#endif // ANANSI___classname__ResultsTraits_INC
+#endif // __filepreprocessordefine__
