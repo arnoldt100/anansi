@@ -204,17 +204,6 @@ void ControlFileXMLMPICommReceiver::receiverDoAction_(Types & ... args) const
     // "this->communicator_" at this point.
     this->communicator_->synchronizationPoint();
 
-    if (  i_am_master )
-    {
-        const std::string filename_master("master_ptree");
-        write_file_CommandFile(this->results_,filename_master);
-    }
-    else
-    {
-        const std::string filename_nonmaster("nonmaster_ptree");
-        write_file_CommandFile(this->results_,filename_nonmaster);
-    }
-
     return;
 }
 
