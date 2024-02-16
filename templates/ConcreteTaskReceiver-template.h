@@ -20,9 +20,9 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
-#include "__classname__ResultTraits.h"
-#include "__classname__OwnershipImpl.hpp"
-#include "__ownershippolicy__.hpp"
+#include "__resultstraitsheaderfilename__"
+#include "__resultsownershipimplheaderfilename__"
+#include "__ownershippolicyheaderfilename__"
 
 namespace __NAMESPACE__
 {
@@ -34,10 +34,10 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
             {__tasklabel__};
 
         //! \! todo Implement a traits class for the results. 
-        using my_result_type_ = __classname__ResultsTraits::result_t;
-        using my_copy_type_ = __classname__ResultsTraits::copy_result_t;
-        using my_share_type_ = __classname__ResultsTraits::share_result_t;
-        using my_transfer_type_ = __classname__ResultsTraits::transfer_result_t;
+        using my_result_type_ = __classnameresultstraits__::result_t;
+        using my_copy_type_ = __classnameresultstraits__::copy_result_t;
+        using my_share_type_ = __classnameresultstraits__::share_result_t;
+        using my_transfer_type_ = __classnameresultstraits__::transfer_result_t;
 
         using MyOwnershipImplTraits_ = RECEIVER::ReceiverResultTraits<my_result_type_,
                                                                       my_copy_type_,
@@ -45,7 +45,7 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
                                                                       my_transfer_type_>;
 
         //! \todo Implement a policy class for the ownership implementation
-        using MyOwnershipImpl_ = __classname__OwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = __classnameownershipimpl__<MyOwnershipImplTraits_>;
 
         //! The ownership policy for the result.
         using MyOwnershipPolicy_ = ANANSI::__ownershippolicy__<MyOwnershipImpl_>;

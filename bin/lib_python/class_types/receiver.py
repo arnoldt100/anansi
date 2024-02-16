@@ -3,6 +3,8 @@
 #
 # \brief This package's responsibility is to create the skeletal files
 #        for a receiver.
+import re
+import os
 
 from . import help_comments
 from . import common_utilities
@@ -54,57 +56,115 @@ def add_commandline_arguments(subparser):
 class FileGenerator:
     def __init__(self,args):
         self._args = args
+        self._tasklabel = self._args.task_label
+        self._namepace =  self._args.namespace
+        self._receiverClassName = self._args.receiver_name
+        self._ownershipPolicy = self._args.ownership_policy
+        self._h_file_suffix = ".h"
+        self._hpp_file_suffix = ".hpp"
+        self._impl_file_suffix = ".cpp"
+
+    @property
+    def receiver_class_name(self):
+        return self._receiverClassName
+
+    @property
+    def trait_class_name(self):
+        return self.receiver_class_name + "ResultsTraits"
+
+    @property
+    def ownership_impl_class_name(self):
+        return self.receiver_class_name + "ResultsOwnershipImpl"
+
+    @property
+    def namespace (self):
+        return self._namepace
+
+    @property
+    def ownership_policy (self):
+        return self._ownershipPolicy
+
+    @property
+    def receiver_preprocessordefine (self):
+        return self.namespace + "_" + self.receiver_class_name + "_" + "INC"
+
+    @property
+    def tasklabel(self):
+        task_label = common_utilities.form_task_label(self._args.task_label)
+        return task_label
+
+    ## \brief This returns tuple of receiver's file names.
+    #
+    #  \details The tuples elements are respectively the header and implementation file
+    #           names.
+    def receiver_file_names(self):
+        return (self.receiver_class_name + self._h_file_suffix,
+                self.receiver_class_name + self._impl_file_suffix)
+
+    ## \brief This returns tuple of receiver's results trait file names.
+    #
+    #  \details The tuples elements are respectively the header and implementation file
+    #           names.
+    def results_trait_files(self):
+        return (self.trait_class_name + self._h_file_suffix,
+                self.trait_class_name + self._impl_file_suffix)
+
+    ## \brief This returns header file name ownership policy.
+    def results_ownership_policy_header_file_name(self):
+            return self.ownership_policy + self._hpp_file_suffix
+
+    ## \brief This returns tuple of receiver's ownership implementation file names.
+    #
+    #  \details The tuples elements are respectively the header and implementation file
+    #           names.
+    def results_ownership_impl_files(self):
+        return (self.ownership_impl_class_name + self._hpp_file_suffix,
+                self.ownership_impl_class_name + self._impl_file_suffix)
 
     def __call__(self):
-        import re
-        import os
 
-        namespace = self._args.namespace
-        receiverclassname = self._args.receiver_name
-        header_file_suffix = ".h"
-        hpp_file_suffix = ".hpp"
-        impl_file_suffix = ".cpp"
-        header_file_name = receiverclassname + header_file_suffix
-        hpp_header_file_name = receiverclassname + hpp_file_suffix
-        preprocessor_name = namespace + "_" + receiverclassname + "_INC"
-        task_label = common_utilities.form_task_label(self._args.task_label)
-        ownership_policy = self._args.ownership_policy 
+        self._createReceiverFile()
 
-        regex_dict = [ (re.compile("__NAMESPACE__"),namespace ),
-                       (re.compile("__classname__"),receiverclassname),
-                       (re.compile("__filename__"),receiverclassname),
-                       (re.compile("__header_filename__"),header_file_name),
-                       (re.compile("__hpp_header_filename__"),hpp_header_file_name),
-                       (re.compile("__filepreprocessordefine__"), preprocessor_name),
-                       (re.compile("__tasklabel__"), task_label),
-                       (re.compile("__ownershippolicy__"),ownership_policy) ]
+        self._createReceiverResultsTraitsFile()
 
-        anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
-        h_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.h")
-        output_file = receiverclassname + header_file_suffix
-        common_utilities.parse_file(regex_dict,h_template_file,output_file)
-
-        i_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.cpp")
-        output_file = receiverclassname + impl_file_suffix
-        common_utilities.parse_file(regex_dict,i_template_file,output_file)
-
-        h_results_traits_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverResultsTraits-template.h")
-        output_file = receiverclassname + "ResultsTraits" + header_file_suffix
-        common_utilities.parse_file(regex_dict,h_results_traits_file,output_file)
-
-        i_results_traits_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverResultsTraits-template.cpp")
-        output_file = receiverclassname + "ResultsTraits" + impl_file_suffix
-        common_utilities.parse_file(regex_dict,i_results_traits_file,output_file)
-
-        h_ownership_impl_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.hpp")
-        output_file = receiverclassname + "ResultsTraitsOwnershipImpl" + hpp_file_suffix
-        common_utilities.parse_file(regex_dict,h_ownership_impl_file,output_file)
-
-        i_ownership_impl_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiverOwnershipImpl-template.cpp")
-        output_file = receiverclassname + "ResultsTraitsOwnershipImpl" + impl_file_suffix
-        common_utilities.parse_file(regex_dict,i_ownership_impl_file,output_file)
-
+        self._createResultsOwnershipImplFile()
 
         return
 
+    def _createReceiverFile(self):
+
+        (header_file_name,impl_file_name) = self.receiver_file_names()
+        (traits_header_file_name,traits_impl_file_name) = self.results_trait_files()
+        (ownershipimpl_header_file_name,ownershipimpl_impl_file_name) = self.results_ownership_impl_files()
+        ownership_policy_header_file_name = self.results_ownership_policy_header_file_name()
+
+        regex_dict = [ (re.compile("__NAMESPACE__"),self.namespace ),
+                       (re.compile("__classname__"),self.receiver_class_name),
+                       (re.compile("__header_filename__"),header_file_name),
+                       (re.compile("__resultstraitsheaderfilename__"),traits_header_file_name),
+                       (re.compile("__resultsownershipimplheaderfilename__"),ownershipimpl_header_file_name),
+                       (re.compile("__ownershippolicyheaderfilename__"),ownership_policy_header_file_name),
+                       (re.compile("__filepreprocessordefine__"), self.receiver_preprocessordefine),
+                       (re.compile("__tasklabel__"), self.tasklabel),
+                       (re.compile("__classnameresultstraits__"),self.trait_class_name),
+                       (re.compile("__classnameownershipimpl__"),self.ownership_impl_class_name),
+                       (re.compile("__ownershippolicy__"),self.ownership_policy) 
+                     ]
+
+        anansi_top_level = os.getenv("ANANSI_TOP_LEVEL")
+        h_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.h")
+        output_file = header_file_name
+        common_utilities.parse_file(regex_dict,h_template_file,output_file)
+
+        i_template_file = os.path.join(anansi_top_level,"templates","ConcreteTaskReceiver-template.cpp")
+        output_file = impl_file_name
+        common_utilities.parse_file(regex_dict,i_template_file,output_file)
+
+        return
+
+    def _createReceiverResultsTraitsFile(self):
+        return
+
+    def _createResultsOwnershipImplFile(self):
+        return
 

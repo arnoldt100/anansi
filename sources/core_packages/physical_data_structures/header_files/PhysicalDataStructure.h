@@ -19,19 +19,23 @@ namespace ANANSI
 {
 
 //! \brief This class wraps other objects that implements the Concepts 
-//!        interface.
+//!        interface for physical data structures.
 //! 
 //! \details This class is a type erasure for it wraps an object
 //!          which then loses its type identity. The wrapped object
 //!          must implement the concepts interface or bad program behavior
-//!          will occur. The
+//!          will occur. The types of data structures are lists like
+//!          a list of atoms. The atoms could be point atoms, ellipsoidal
+//!          atoms, etc. Quantities such as position, velocities, charge, etc.
+//!          are properties of atoms and for this class not defined as physical
+//!          dats structures.
 class PhysicalDataStructure
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! \brief The default constructor,
-        PhysicalDataStructure();   // constructor
+        PhysicalDataStructure();
 
         template<typename T>
         PhysicalDataStructure(T && value) :

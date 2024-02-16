@@ -101,10 +101,15 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain/ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
 
-
-         )
+         # ----------------------------------------------------
+         # Source files for ReadPointAtoms task
+         # 
+         # ----------------------------------------------------
+         # list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtoms.h)
+         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsTraits.h)
+         # list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -131,6 +136,13 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/Exceptions/ErrorInvalidSimulationDecompositionParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.cpp)
 
+         # ----------------------------------------------------
+         # Source files for ReadPointAtoms task
+         # 
+         # ----------------------------------------------------
+         # list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtoms.cpp)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsTraits.cpp)
+         # list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.cpp)
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # end of defining the sources and header files associated         @
@@ -146,8 +158,9 @@ add_library( ${target} STATIC
 #-----------------------------------------------------
 target_include_directories(${target}
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
-                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details"
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions"
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms" 
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/workload_decomposition_type"
