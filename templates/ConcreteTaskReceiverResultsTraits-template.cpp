@@ -11,7 +11,7 @@
 //--------------------------------------------------------//
 #include "__header_filename__"
 
-namespace ANANSI {
+namespace __NAMESPACE__ {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -19,12 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-__classname__ResultsTraits::__classname__ResultsTraits()
+__classname__::__classname__()
 {
     return;
 }
 
-__classname__ResultsTraits::__classname__ResultsTraits( __classname__ResultsTraits const & other)
+__classname__::__classname__( __classname__ const & other)
 {
     if (this != &other)
     {
@@ -33,47 +33,47 @@ __classname__ResultsTraits::__classname__ResultsTraits( __classname__ResultsTrai
     return;
 }
 
-__classname__ResultsTraits::__classname__ResultsTraits( __classname__ResultsTraits && other)
+__classname__::__classname__( __classname__ && other)
 {
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method __classname__ResultsTraits::__classname__ResultsTraits  -----
+}   
 
 
-__classname__ResultsTraits::~__classname__ResultsTraits()
+__classname__::~__classname__()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-__classname__ResultsTraits * __classname__ResultsTraits::clone() const
+__classname__ * __classname__::clone() const
 {
-    return new __classname__ResultsTraits(*this);
+    return new __classname__(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-__classname__ResultsTraits& __classname__ResultsTraits::operator= ( const __classname__ResultsTraits &other )
+__classname__& __classname__::operator= ( const __classname__ &other )
 {
     if (this != &other)
     {
     }
     return *this;
-} // assignment operator
+} 
 
-__classname__ResultsTraits& __classname__ResultsTraits::operator= ( __classname__ResultsTraits && other )
+__classname__& __classname__::operator= ( __classname__ && other )
 {
     if (this != &other)
     {
 
     }
     return *this;
-} // assignment-move operator
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -100,4 +100,4 @@ __classname__ResultsTraits& __classname__ResultsTraits::operator= ( __classname_
 //============================= OPERATORS ====================================
 
 
-} // namespace ANANSI
+}; // ----- End of namespace __NAMESPACE__ -----
