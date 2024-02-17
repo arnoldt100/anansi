@@ -111,6 +111,14 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.hpp)
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtoms.h)
 
+         # ----------------------------------------------------
+         # Source files for PointAtomsDecomposer task
+         # 
+         # ----------------------------------------------------
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer/PointAtomsDecomposerResultsTraits.h)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer/PointAtomsDecomposerResultsOwnershipImpl.hpp)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer/PointAtomsDecomposer.h)
+
     #-----------------------------------------------------
     # Here we define the variable                        -
     # command_line_arguments_implementation_files.       -
@@ -143,6 +151,15 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsTraits.cpp)
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.cpp)
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtoms.cpp)
+
+         # ----------------------------------------------------
+         # Source files for PointAtomsDecomposer task
+         # 
+         # ----------------------------------------------------
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposerResultsTraits.cpp)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposerResultsOwnershipImpl.cpp)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposer.cpp)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # end of defining the sources and header files associated         @
@@ -160,6 +177,7 @@ target_include_directories(${target}
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions"
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms" 
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer" 
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions"
