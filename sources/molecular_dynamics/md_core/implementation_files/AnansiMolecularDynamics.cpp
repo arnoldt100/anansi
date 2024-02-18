@@ -319,7 +319,7 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
 
 void AnansiMolecularDynamics::disableSimulationDecomposition()
 {
-    disable_simulationdecomposition_invoker();
+    disable_simulationdecomposition_invoker(this->mdSimulationDecomposerInvk_);
     return;
 }
 

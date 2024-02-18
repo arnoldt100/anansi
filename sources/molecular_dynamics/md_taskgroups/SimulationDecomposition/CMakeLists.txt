@@ -207,14 +207,14 @@ target_include_directories(${target}
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms" 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer" 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator" 
+                           PUBLIC "${my_physical_data_structures_include}"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/workload_decomposition_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain"
-                           PUBLIC "${my_invoker_include}"
-                           PUBLIC "${my_physical_data_structures_include}"
+                           PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
                            PRIVATE "${my_comm_include}" )
 
