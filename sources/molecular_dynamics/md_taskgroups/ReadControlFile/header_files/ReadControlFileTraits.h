@@ -2,7 +2,7 @@
 #ifndef  ANANSI_ReadControlFileTraits_INC
 #define  ANANSI_ReadControlFileTraits_INC
 
-//! @file ReadControlFileTraits.h
+//! \file ReadControlFileTraits.h
 //!
 //! Brief description
 //!

@@ -127,6 +127,12 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator/PointAtomsCommunicatorResultsOwnershipImpl.hpp)
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator/PointAtomsCommunicator.h)
 
+         # ----------------------------------------------------
+         # Source files for SimulationDecompositionTaskTraits 
+         # 
+         # ----------------------------------------------------
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionTaskTraits.h)
+
     #-----------------------------------------------------
     # Here we define the variable                        -
     # command_line_arguments_implementation_files.       -
@@ -176,6 +182,11 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsCommunicator/PointAtomsCommunicatorResultsOwnershipImpl.cpp)
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsCommunicator/PointAtomsCommunicator.cpp)
 
+         # ----------------------------------------------------
+         # Source files for SimulationDecompositionTaskTraits 
+         # 
+         # ----------------------------------------------------
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionTaskTraits.cpp)
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # end of defining the sources and header files associated         @
