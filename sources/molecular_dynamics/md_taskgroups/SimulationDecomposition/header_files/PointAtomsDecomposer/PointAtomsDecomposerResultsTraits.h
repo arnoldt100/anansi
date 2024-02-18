@@ -27,7 +27,6 @@ class PointAtomsDecomposerResultsTraits
 {
     public:
         // ====================  ALIASES       =======================================
-        //! \todo  Fill in the result type.
         using result_t = Atoms;
         using Atoms_t = PointAtoms;
         using copy_result_t = result_t;

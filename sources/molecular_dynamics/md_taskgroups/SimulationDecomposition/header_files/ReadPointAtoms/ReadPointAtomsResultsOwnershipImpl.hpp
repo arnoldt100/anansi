@@ -22,8 +22,8 @@ namespace ANANSI
 
 template<typename MyTaskImplTraits>
 class ReadPointAtomsResultsOwnershipImpl : public RECEIVER::BaseOwnershipImplementation<ReadPointAtomsResultsOwnershipImpl<MyTaskImplTraits>,
-                            MyTaskImplTraits, 
-                            ErrorOwnershipPolicy>
+                                                                                        MyTaskImplTraits, 
+                                                                                        ErrorOwnershipPolicy>
 {
     public:
 
