@@ -304,7 +304,7 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
         SimulationDecompositionParameters workload_parameters =
             MasterControlInputFileParameters::GetSimulationDecompositionParameters(this->mdControlFileInvk_);
 
-        setup_simulationdecomposition_invoker(workload_parameters);
+        setup_simulationdecomposition_invoker(workload_parameters,this->mdSimulationDecomposerInvk_);
         
     }
     catch (const ErrorInvalidSimulationDecompositionParameters & my_error) 

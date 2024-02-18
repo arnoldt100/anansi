@@ -54,6 +54,7 @@
     get_target_property(my_comm_include  communicator communicator_include)
     get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
     get_target_property(my_physical_data_structures_include  physical_data_structures physical_data_structures_include)
+    get_target_property(my_invoker_include invoker invoker_include )
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -212,6 +213,7 @@ target_include_directories(${target}
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/workload_decomposition_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain"
+                           PUBLIC "${my_invoker_include}"
                            PUBLIC "${my_physical_data_structures_include}"
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
                            PRIVATE "${my_comm_include}" )
@@ -222,7 +224,8 @@ target_include_directories(${target}
 #-----------------------------------------------------
 target_link_libraries(${target}
                       PUBLIC communicator
-                      PUBLIC common_md_taskgroup_headers )
+                      PUBLIC common_md_taskgroup_headers
+                      PUBLIC invoker)
 
 
 #-----------------------------------------------------
