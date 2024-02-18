@@ -56,30 +56,20 @@ def add_commandline_arguments(subparser):
 class FileGenerator:
     def __init__(self,args):
 
-        get_attribute = lambda a, b : vars(a)[b] if hasattr(a,b) else ""
-
+        get_attribute = lambda a, b : vars(a)[b] if hasattr(a,b) else "--not-defined--"
         self._args = args
-
-        self._tasklabel = get_attribute(args,"task_label")
-
+        self._tasklabel = get_attribute(self._args,"task_label")
         self._receiver_class_name = get_attribute(args,"receiver_name")
-
         self._namepace = get_attribute(args,"namespace")
-
         self._ownershipPolicy = get_attribute(self._args,"ownership_policy")
-
         self._h_file_suffix = ".h"
         self._hpp_file_suffix = ".hpp"
         self._impl_file_suffix = ".cpp"
+        return
 
     @property
     def receiver_class_name(self):
         return self._receiver_class_name
-
-    # @receiver_class_name.setter
-    # def receiver_class_name(self,arg):
-    #     self._receiverClassName = arg
-    #     return 
 
     @property
     def trait_class_name(self):
@@ -93,17 +83,9 @@ class FileGenerator:
     def namespace (self):
         return self._namepace
 
-    # @namespace.setter
-    # def namespace(self,arg):
-    #     self._namepace = arg
-
     @property
     def ownership_policy (self):
         return self._ownershipPolicy
-
-    # @ownership_policy.setter
-    # def ownership_policy(self,arg):
-    #     self._ownershipPolicy = arg
 
     @property
     def receiver_preprocessordefine (self):
@@ -120,11 +102,6 @@ class FileGenerator:
     @property
     def tasklabel(self):
         return self._tasklabel
-
-    # @tasklabel.setter
-    # def tasklabel(self,arg):
-    #     self._tasklabel = arg
-    #     return 
 
     ## \brief This returns tuple of receiver's file names.
     #
@@ -155,7 +132,6 @@ class FileGenerator:
                 self.ownership_impl_class_name + self._impl_file_suffix)
 
     def __call__(self):
-
         self._createReceiverFile()
 
         self._createReceiverResultsTraitsFile()
