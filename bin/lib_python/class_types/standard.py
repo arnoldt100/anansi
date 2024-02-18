@@ -4,7 +4,7 @@
 # \brief This package's responsibility is to create the skeletal files
 #        for a standard class.
 
-from .  import help_comments
+from . import help_comments
 from . import common_utilities
 
 ## This defines a unique key for this package.

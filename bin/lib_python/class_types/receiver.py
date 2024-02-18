@@ -55,18 +55,31 @@ def add_commandline_arguments(subparser):
 # \param args An object of the "argparse.Namespace".
 class FileGenerator:
     def __init__(self,args):
+
+        get_attribute = lambda a, b : vars(a)[b] if hasattr(a,b) else ""
+
         self._args = args
-        self._tasklabel = self._args.task_label
-        self._namepace =  self._args.namespace
-        self._receiverClassName = self._args.receiver_name
-        self._ownershipPolicy = self._args.ownership_policy
+
+        self._tasklabel = get_attribute(args,"task_label")
+
+        self._receiver_class_name = get_attribute(args,"receiver_name")
+
+        self._namepace = get_attribute(args,"namespace")
+
+        self._ownershipPolicy = get_attribute(self._args,"ownership_policy")
+
         self._h_file_suffix = ".h"
         self._hpp_file_suffix = ".hpp"
         self._impl_file_suffix = ".cpp"
 
     @property
     def receiver_class_name(self):
-        return self._receiverClassName
+        return self._receiver_class_name
+
+    # @receiver_class_name.setter
+    # def receiver_class_name(self,arg):
+    #     self._receiverClassName = arg
+    #     return 
 
     @property
     def trait_class_name(self):
@@ -80,9 +93,17 @@ class FileGenerator:
     def namespace (self):
         return self._namepace
 
+    # @namespace.setter
+    # def namespace(self,arg):
+    #     self._namepace = arg
+
     @property
     def ownership_policy (self):
         return self._ownershipPolicy
+
+    # @ownership_policy.setter
+    # def ownership_policy(self,arg):
+    #     self._ownershipPolicy = arg
 
     @property
     def receiver_preprocessordefine (self):
@@ -98,8 +119,12 @@ class FileGenerator:
 
     @property
     def tasklabel(self):
-        task_label = common_utilities.form_task_label(self._args.task_label)
-        return task_label
+        return self._tasklabel
+
+    # @tasklabel.setter
+    # def tasklabel(self,arg):
+    #     self._tasklabel = arg
+    #     return 
 
     ## \brief This returns tuple of receiver's file names.
     #
