@@ -60,7 +60,7 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
         using MyParentTask = __ParentTask__;
 
         //! \todo Fill in typelist with Generic tasks to
-        //!       accopmplish the maceo command. Leave typleist empty
+        //!       accomplish the macoo command. Leave typleist empty
         //!       if this is not a macro command.
         using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
 
@@ -168,14 +168,14 @@ void __classname__::disableReceiver_(Types &... args)
 template<typename... Types>
 void __classname__::receiverDoAction_(Types & ... args) const
 {
-    std::cout >> "Stud for __classname__::receiverDoAction_" << std::endl;
+    std::cout << "Stud for __classname__::receiverDoAction_" << std::endl;
     return;
 }
 
 template<typename... Types>
 void __classname__::receiverUndoAction_(Types & ... args) const
 {
-    std::cout >> "Stud for __classname__::receiverUndoAction_" << std::endl;
+    std::cout << "Stud for __classname__::receiverUndoAction_" << std::endl;
     return;
 }
 
