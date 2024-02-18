@@ -23,6 +23,7 @@
 #include "DefineVisitableMacro.h"
 #include "BaseVisitable.hpp"
 #include "MPIEnvironment.h"
+#include "SimulationDecompositionTaskTraits.h"
 #include "InitMPIEnvTaskTraits.h"
 #include "WriteTextToConsoleTaskReceiver.h"
 #include "InitWorldCommunicatorTaskReceiver.h"
@@ -276,6 +277,9 @@ class AnansiMolecularDynamics final : public Simulation
             WriteTextToConsoleTaskTraits::concrete_products>
             > mdCoreLoggingInvk_;
 
+        std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
+                                                   SimulationDecompositionTaskTraits::concrete_products> >
+                                                       mdSimulationDecomposerInvk_;
 
 
         // These are the state objects for the MD simulation.
