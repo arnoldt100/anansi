@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <array>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -22,6 +23,10 @@
 #include "ReadAtoms.h"
 #include "MacroCommand.hpp"
 
+// Include for concrete tasks. 
+#include "PointAtomsCommunicator.h"
+#include "PointAtomsDecomposer.h"
+#include "ReadPointAtoms.h"
 
 namespace ANANSI
 {
@@ -29,6 +34,30 @@ namespace ANANSI
 class SimulationDecompositionTaskTraits
 {
     public:
+        using abstract_products = MPL::mpl_typelist<
+                                                       ReadPointAtoms::MyParentTask,
+                                                       PointAtomsDecomposer::MyParentTask,
+                                                       PointAtomsCommunicator::MyParentTask
+                                                   >;
+
+        using concrete_products = MPL::mpl_typelist<
+                                                       GenericMDTask<ReadPointAtoms>,
+                                                       GenericMDTask<PointAtomsDecomposer>,
+                                                       GenericMDTask<PointAtomsCommunicator>
+                                                   >;
+
+        using receiver_results_t = MPL::mpl_typelist<
+                                                    	ReadPointAtoms::receiver_result_t,
+                                                        PointAtomsDecomposer::receiver_result_t,
+                                                        PointAtomsCommunicator::receiver_result_t
+                                                     >;
+
+        static constexpr auto LABELS = std::array{
+                                                    ReadPointAtoms::TASKLABEL,
+                                                    PointAtomsDecomposer::TASKLABEL,
+                                                    PointAtomsCommunicator::TASKLABEL
+                                                 };
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
