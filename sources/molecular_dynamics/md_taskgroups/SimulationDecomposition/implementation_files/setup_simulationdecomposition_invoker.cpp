@@ -20,12 +20,11 @@ namespace ANANSI
 void setup_simulationdecomposition_invoker (const SimulationDecompositionParameters & work_load_parameters,
                                             std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
                                                                                        SimulationDecompositionTaskTraits::concrete_products>
-                                               > & simulatiion_decomposer_invoker )
+                                               > & simulation_decomposer_invoker )
 {
     setup_pointatoms_communicator_receiver();
     setup_pointatoms_decomposer_receiver();
     setup_read_pointatoms_receiver();
-
     return;
 }   // -----  end of function setup_simulationdecomposition_invoker  -----
 
