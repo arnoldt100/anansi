@@ -110,11 +110,11 @@ class AnansiMolecularDynamics final : public Simulation
         void
         initializeInitialConditions_ () final override;
 
-        //! \brief After this call the simulation is performed.
+        //! \brief This call performs the simulation.
         void
         performSimulation_() final override;
 
-        //! \brief After this call the simulation is terminated.
+        //! \brief This call terminates the simulation.
         void
         terminateSimulationEnvironment_() final override;
 
@@ -270,7 +270,6 @@ class AnansiMolecularDynamics final : public Simulation
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<InitWorldCommunicatorTaskTraits::abstract_products,
             InitWorldCommunicatorTaskTraits::concrete_products>
-
             > mdWorldCommunicatorInvk_;
 
         std::shared_ptr<ANANSI::GenericTaskInvoker<WriteTextToConsoleTaskTraits::abstract_products,
