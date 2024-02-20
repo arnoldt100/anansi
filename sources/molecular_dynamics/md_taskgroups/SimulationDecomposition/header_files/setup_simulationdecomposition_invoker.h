@@ -22,7 +22,13 @@
 namespace ANANSI
 {
 
-//! \details The function sets the generic task invoker that has the responsibility of deccomposing the atoms.
+//! \brief The function sets up the generic task invoker that has the responsibility doing workload decomposition of the atoms.
+//!
+//! \details The responsibility of this invoker is to  distrubuted among the processing units the atoms of the system. We call this deccomposing the
+//!          the atoms. There are 2 kinds of atoms decomposition supported, spatial and replicated data decomposition. The parameter 
+//!          contains information that determines which type of workload decomposition and the topology of the decomposition. If this
+//!          workload decomposition fails, then the function will throw an error. The error should be handles by terminating the program for 
+//!          it is is an unrecoverable state.
 //!
 //! \param [in] work_load_parameters This object contains the parameters for the simulation workload decomposition.
 //! \param [in,out] simulatiion_decomposer_invoker  The task invoker that does the simulation workload decomposition.

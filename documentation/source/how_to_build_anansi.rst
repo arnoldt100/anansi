@@ -2,7 +2,7 @@
 How to Build Anansi
 ===================
 
-We first provide an overview of building Anansi. 
+We first provVide an overview of building Anansi. 
 
 Building Anansi can be broadly separated into 3 stages. The first stage is to
 satisfy the library prerequisites.  The second stage is to set the build

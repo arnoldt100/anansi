@@ -6,14 +6,18 @@
     <tab type="pages" visible="no" title="" intro=""/>
     <tab type="modules" visible="yes" title="" intro=""/>
     
-    <!-- User cereated documentation.          -->
+    <!-- User created documentation.          -->
+
     <tab type="usergroup" title="Building Anansi" >
         <tab type="user" visible="yes" url="@ref BuildingAnansi" title="Building Anansi"/>
     </tab>
 
+    <!-- End of user created documentation.          -->
+
     <tab type="usergroup" title="Developer's Documentation" >
         <tab type="usergroup" title="How To Guides" >
-            <tab type="user" visible="yes" url="@ref howto" title="How To Guides"/>
+            <tab type="user" visible="yes" url="@ref howtocreatereceiver" title="How to Create a Receiver"/>
+            <tab type="user" visible="yes" url="@ref howtocreateinvoker" title="How to Create a Invoker"/>
         </tab>
     </tab>
 
