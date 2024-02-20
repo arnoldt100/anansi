@@ -90,6 +90,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
+
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/SDPConstructorHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/message_missing_mandatory_node_tag.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/SimulationDecompositionTaskTraits.h
@@ -103,6 +104,13 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
+
+         # ----------------------------------------------------
+         # Source files for the SimulationDecomposition
+         # invoker traits.
+         # 
+         # ----------------------------------------------------
+         list(APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionResultsTraits.h )
 
          # ----------------------------------------------------
          # Source files for ReadPointAtoms task
@@ -133,7 +141,7 @@ add_library( ${target} STATIC
          # 
          # ----------------------------------------------------
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionTaskTraits.h)
-
+        
     #-----------------------------------------------------
     # Here we define the variable                        -
     # command_line_arguments_implementation_files.       -
@@ -145,6 +153,8 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionParameters.cpp
+
+
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/SDPConstructorHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/message_missing_mandatory_node_tag.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/SimulationDecompositionTaskTraits.cpp
@@ -158,6 +168,13 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/Exceptions/ErrorInvalidSimulationDecompositionParameters.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.cpp)
+
+         # ----------------------------------------------------
+         # Source files for the SimulationDecomposition
+         # invoker traits.
+         # 
+         # ----------------------------------------------------
+         list(APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionResultsTraits.cpp)
 
          # ----------------------------------------------------
          # Source files for ReadPointAtoms task
