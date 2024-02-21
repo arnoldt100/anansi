@@ -16,6 +16,7 @@
 #include "ProcessorTopologyLatticeTypeHelpers.h"
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
 #include "ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h"
+#include "InitialConfigurationFileNamesHelpers.h"
 
 namespace ANANSI {
 
@@ -30,7 +31,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     processorTopologyLatticeType_{""},
     processorTopologySpatialDecomposition_{1,1,1},
     numberProcessorComputeUnitsPerDomain_{1},
-    initialConfigurations_{}
+    initialConfigurationFilenames_{}
 {
     this->workLoadDecomposition_ = 
         ANANSI::SDPConstructorHelpers::default_workload_decomposition_type();
@@ -61,7 +62,11 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
 
     this->numberProcessorComputeUnitsPerDomain_ = 
         ANANSI::SDPConstructorHelpers::parse_processor_topology_number_processor_compute_units_per_spatial_domain(number_processor_compute_units_per_domain,flag_default_null_value);
+
+    this->initialConfigurationFilenames_ =
+        ANANSI::SDPConstructorHelpers::parse_initial_configuration_file_names(initial_configuration_filenames,flag_default_null_value);
     return;
+
 }
 
 SimulationDecompositionParameters::SimulationDecompositionParameters(SimulationDecompositionParameters const & other) :

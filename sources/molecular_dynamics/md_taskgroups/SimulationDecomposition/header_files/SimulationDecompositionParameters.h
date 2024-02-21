@@ -135,7 +135,7 @@ class SimulationDecompositionParameters
         int numberProcessorComputeUnitsPerDomain_;
 
         //! \brief Stores the filenames of the initial atoms configuration.
-        std::vector<std::string> initialConfigurations_;
+        std::vector<std::string> initialConfigurationFilenames_;
 
 }; // -----  end of class SimulationDecompositionParameters  -----
 

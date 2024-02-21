@@ -109,7 +109,8 @@ add_library( ${target} STATIC
          # SimulationDecompositionParameters
          # 
          # ----------------------------------------------------
-         list (  APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations/initial_configuration_type_details.h )
+         list (APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations/initial_configuration_type_details.h )
+         list (APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations/InitialConfigurationFileNamesHelpers.h)
         
          # ----------------------------------------------------
          # Source files for ReadPointAtoms task
@@ -178,6 +179,7 @@ add_library( ${target} STATIC
          # 
          # ----------------------------------------------------
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/initial_configurations/initial_configuration_type_details.cpp )
+         list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/initial_configurations/InitialConfigurationFileNamesHelpers.cpp )
 
          # ----------------------------------------------------
          # Source files for SimulationDecompositionTaskTraits 
