@@ -56,9 +56,8 @@ std::string MessageInvalidInitialConfigurationTypeValues(const std::string inval
     message += s1_frmt.str();
 
     const char *warning = R"""( 
-Each filename must be separated by a semicolon, and 
-no filename can contain any whitespace characters or 
-semicolons.
+A filename can contain no whitespace characters or 
+semicolons. 
 )""";
 
     s1_frmt % warning;
