@@ -35,6 +35,7 @@ namespace ANANSI
 //!   The program currently only supports rectangular lattice topology.
 //! - The dimensions of the lattice topology 
 //! - The number of compute units per spatial domain
+//! - The file names that contains the initial configuration of Atoms.
 class SimulationDecompositionParameters
 {
     public:
@@ -52,11 +53,13 @@ class SimulationDecompositionParameters
         //! \param [in] processor_topology_lattice_type Contains the parameters for the type of processor latticae topology.
         //! \param [in] processor_topology_spatial_decomposition Contains the parameters for the dimensions of the processor latticae topology
         //! \param [in] number_processor_compute_units_per_domain Conatins the number of compute units per spatial domain.
+        //! \param [in] initial_configuration_filenames  Conatins the file names that contain the initial configuration of the atoms.
         explicit SimulationDecompositionParameters(const std::string flag_default_null_value,
                                           const std::string work_load_decomposition_type,
                                           const std::string processor_topology_lattice_type,
                                           const std::string processor_topology_spatial_decomposition,
-                                          const std::string number_processor_compute_units_per_domain);
+                                          const std::string number_processor_compute_units_per_domain,
+                                          const std::string initial_configuration_filenames);
 
         //! \brief The copy constructor.
         SimulationDecompositionParameters (const SimulationDecompositionParameters & other);   // copy constructor
