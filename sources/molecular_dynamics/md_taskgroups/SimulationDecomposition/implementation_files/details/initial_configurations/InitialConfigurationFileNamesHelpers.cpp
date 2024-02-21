@@ -15,11 +15,16 @@
 #include "ErrorMissingSimulationDecompositionParameters.h"
 #include "initial_configuration_type_details.h"
 #include "message_missing_mandatory_node_tag.h"
+#include "split_string_by_delimiter.h"
+#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/classification.hpp>
 
 namespace ANANSI
 {
     namespace 
     {   
+        constexpr std::string_view banned_chars = ";,";
+
         //! \brief Returns a boolean indicating if the key for initial configuration file
         //!        name is mandatory.
         static bool is_initial_configuration_file_names_mandatory()
@@ -30,7 +35,18 @@ namespace ANANSI
         //! Verifies that the node value is valid.
         bool is_valid_initial_configuration_file_names_values(const std::string node_value)
         {
-            return false;
+            bool valid_file_names = true;
+            using split_vector_type = std::vector<std::string>;
+
+            auto my_strings = STRING_UTILITIES::split_string_by_delimiter(node_value,";");
+            for ( auto tmp_str : my_strings)
+            {
+                split_vector_type SplitVec;
+                boost::split( SplitVec, tmp_str, boost::is_any_of(banned_chars), boost::token_compress_on );
+                valid_file_names  = ( SplitVec.size() == 1 ) ? true  : false;
+                
+            }
+            return valid_file_names;
         };
 
         std::vector<std::string> initial_configuration_filename_values(const std::string node_value)
@@ -38,6 +54,7 @@ namespace ANANSI
             std::vector<std::string> value{""};
             return value;
         };
+
 
     }; // End of anonymous namespace
 
