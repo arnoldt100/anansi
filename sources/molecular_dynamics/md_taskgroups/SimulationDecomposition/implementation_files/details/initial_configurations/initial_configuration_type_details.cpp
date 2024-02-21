@@ -47,7 +47,7 @@ std::string MessageInvalidInitialConfigurationTypeValues(const std::string inval
     boost::format warning_frmt("Warning! Invalid input parameter '%1%' for initial configuration.\nValid values are the following:\n");
     warning_frmt % invalid_value.c_str();
     message += warning_frmt.str();
-    for (const auto &p : valid_initial_configuration_filname_values)
+    for (const auto &p : valid_initial_configuration_filename_values)
     {
         s2_frmt % p.first.c_str();
         message += s2_frmt.str();

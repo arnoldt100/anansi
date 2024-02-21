@@ -102,9 +102,11 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
 
     // Get the value for the processor topology number of compute units per spatial domain.
     const std::string pt_number_cu_per_domain = 
-        get_value_CommandFile(my_copy_results,std::string(MasterControlInternalNodeKeys::Simulation_Number_Compute_Units_Per_Spatial_Domain));
+        get_value_CommandFile(my_copy_results,std::string{MasterControlInternalNodeKeys::Simulation_Number_Compute_Units_Per_Spatial_Domain});
 
     // Get the list of files to read that have the initial atoms configuration
+    const std::string initial_configuration_filnames =
+    		get_value_CommandFile(my_copy_results, std::string{MasterControlInternalNodeKeys::Simulation_Initial_Configuration});
 
     SimulationDecompositionParameters sim_decomposition_parameters(flag_default_null_value,
                                                                    wd_type,

@@ -23,10 +23,9 @@ namespace ANANSI
 namespace SDPConstructorHelpers
 {
 
-static const std::map<std::string,std::string> valid_initial_configuration_filname_values
+static const std::map<std::string,std::string> valid_initial_configuration_filename_values
 {
-    {std::string{"Single configuration file"}, std::string{"a_water_box.initialconfiguration.coordinates"}},
-    {std::string{"Multiple configuration files"}, std::string{"filename1; filename2; filname3"}},
+    {std::string{"Single configuration file"}, std::string{"a_water_box.initialconfiguration.coordinates"}}
 };
 
 std::string MessageInvalidInitialConfigurationTypeValues(const std::string invalid_value);
