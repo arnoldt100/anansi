@@ -104,6 +104,8 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
     const std::string pt_number_cu_per_domain = 
         get_value_CommandFile(my_copy_results,std::string(MasterControlInternalNodeKeys::Simulation_Number_Compute_Units_Per_Spatial_Domain));
 
+    // Get the list of files to read that have the initial atoms configuration
+
     SimulationDecompositionParameters sim_decomposition_parameters(flag_default_null_value,
                                                                    wd_type,
                                                                    pt_mpi_lattice_type,

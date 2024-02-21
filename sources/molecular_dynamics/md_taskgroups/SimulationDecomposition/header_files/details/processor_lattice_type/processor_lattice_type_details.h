@@ -24,7 +24,8 @@ namespace ANANSI
 namespace SDPConstructorHelpers
 {
 
-static const std::map<std::string,std::string> valid_processor_topology_lattice_type_values {
+static const std::map<std::string,std::string> valid_processor_topology_lattice_type_values
+{
                      {std::string{"rectangular"}, std::string{"rectangular"}}
 };
 

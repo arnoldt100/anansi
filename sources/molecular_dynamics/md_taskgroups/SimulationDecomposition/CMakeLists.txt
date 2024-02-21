@@ -105,6 +105,13 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
 
          # ----------------------------------------------------
+         # Source files for processing the initial configurations to 
+         # SimulationDecompositionParameters
+         # 
+         # ----------------------------------------------------
+         list (  APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations/initial_configuration_type_details.h )
+        
+         # ----------------------------------------------------
          # Source files for ReadPointAtoms task
          # 
          # ----------------------------------------------------
@@ -166,6 +173,13 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.cpp)
 
          # ----------------------------------------------------
+         # Source files for processing the initial configurations to 
+         # SimulationDecompositionParameters
+         # 
+         # ----------------------------------------------------
+         list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/initial_configurations/initial_configuration_type_details.cpp )
+
+         # ----------------------------------------------------
          # Source files for SimulationDecompositionTaskTraits 
          # 
          # ----------------------------------------------------
@@ -224,6 +238,7 @@ target_include_directories(${target}
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/workload_decomposition_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations"
                            PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
                            PRIVATE "${my_comm_include}" )

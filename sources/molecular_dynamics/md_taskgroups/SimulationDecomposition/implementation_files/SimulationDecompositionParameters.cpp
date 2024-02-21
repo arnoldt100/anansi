@@ -29,7 +29,8 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     workLoadDecomposition_{""},
     processorTopologyLatticeType_{""},
     processorTopologySpatialDecomposition_{1,1,1},
-    numberProcessorComputeUnitsPerDomain_{1}
+    numberProcessorComputeUnitsPerDomain_{1},
+    initialConfigurations_{}
 {
     this->workLoadDecomposition_ = 
         ANANSI::SDPConstructorHelpers::default_workload_decomposition_type();
