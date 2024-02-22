@@ -42,8 +42,15 @@ namespace ANANSI
         std::vector<std::string> parse_initial_configuration_file_names(std::string initial_configuration_filenames,
                                                                         const std::string flag_default_null_value);
 
-        //! Returns the default initial configuration file names.
+        //! \details Returns the default initial configuration file names.
         std::vector<std::string> default_initial_configuration_file_names();
+
+        //! \details The character that separates the file names in the string of input files.
+        constexpr std::string_view initial_configuration_file_names_separator_char = ";";
+
+        //! \details The characters that are banned from being used in the file names of the
+        //! initial configuration file names.
+        constexpr std::string_view banned_chars = ";,";
 
     }; // ----- End of namespace SDPConstructorHelpers.
 }; // End of namespace ANANSI

@@ -22,8 +22,7 @@
 namespace ANANSI
 {
     namespace 
-    {   
-        constexpr std::string_view banned_chars = ";,";
+    {
 
         //! \brief Returns a boolean indicating if the key for initial configuration file
         //!        name is mandatory.
@@ -36,15 +35,15 @@ namespace ANANSI
         bool is_valid_initial_configuration_file_names_values(const std::string node_value)
         {
             bool valid_file_names = true;
-            using split_vector_type = std::vector<std::string>;
+            const std::string my_separator_char{SDPConstructorHelpers::initial_configuration_file_names_separator_char};
+            const std::string my_banned_chars{SDPConstructorHelpers::banned_chars};
 
-            auto my_strings = STRING_UTILITIES::split_string_by_delimiter(node_value,";");
+            auto my_strings = STRING_UTILITIES::split_string_by_delimiter(node_value,my_separator_char);
             for ( auto tmp_str : my_strings)
             {
-                split_vector_type SplitVec;
-                boost::split( SplitVec, tmp_str, boost::is_any_of(banned_chars), boost::token_compress_on );
-                valid_file_names  = ( SplitVec.size() == 1 ) ? true  : false;
-                
+                std::vector<std::string> SplitVec;
+                boost::split( SplitVec, tmp_str, boost::is_any_of(my_banned_chars), boost::token_compress_on );
+                valid_file_names  = ( SplitVec.size() == 1 ) ? true : false;
             }
             return valid_file_names;
         };

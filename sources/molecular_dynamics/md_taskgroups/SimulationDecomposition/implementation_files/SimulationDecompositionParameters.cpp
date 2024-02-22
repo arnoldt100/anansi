@@ -41,6 +41,9 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
         ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_spatial_dimensions();
     this->numberProcessorComputeUnitsPerDomain_ = 
         ANANSI::SDPConstructorHelpers::default_processor_topology_number_compute_units_per_spatial_domain();
+    this->initialConfigurationFilenames_ =
+        ANANSI::SDPConstructorHelpers::default_initial_configuration_file_names();
+
     return;
 }
 

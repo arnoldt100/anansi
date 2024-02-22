@@ -49,8 +49,9 @@ std::string MessageInvalidInitialConfigurationTypeValues(const std::string inval
     message += warning_frmt.str();
     for (const auto &p : valid_initial_configuration_filename_values)
     {
-        s2_frmt % p.first.c_str();
+        s2_frmt % p.second.c_str();
         message += s2_frmt.str();
+        message += "\n";
     }
     s1_frmt % "";
     message += s1_frmt.str();
