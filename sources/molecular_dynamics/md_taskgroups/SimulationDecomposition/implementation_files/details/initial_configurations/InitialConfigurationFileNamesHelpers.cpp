@@ -5,6 +5,8 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/classification.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -16,34 +18,53 @@
 #include "initial_configuration_type_details.h"
 #include "message_missing_mandatory_node_tag.h"
 #include "split_string_by_delimiter.h"
-#include <boost/algorithm/string.hpp>
-#include <boost/algorithm/string/classification.hpp>
+#include "check_string_for_banned_chars.h"
 
 namespace ANANSI
 {
     namespace 
     {
 
-        //! \brief Returns a boolean indicating if the key for initial configuration file
+        //! \brief Returns a boolean indicating if the key for the initial configuration file
         //!        name is mandatory.
         static bool is_initial_configuration_file_names_mandatory()
         {
             return true;
         };
 
+        //! \brief Splits a string with respect to separator characters defined by
+        //!        SDPConstructorHelpers::initial_configuration_file_names_separator_char.
+        //!
+        //! \details Adjacent separator characters are combined and then the split is performed.
+        //!          If there is no split, then the original input string is returned as a single
+        //!          vector element.
+        //!
+        //! \return A vector string of input file names.
+        std::vector<std::string> split_string_by_separator_chars(const std::string a_str)
+        {
+            const std::string my_separator_chars{SDPConstructorHelpers::initial_configuration_file_names_separator_char};
+            auto my_strings = STRING_UTILITIES::split_string_by_delimiter(a_str,my_separator_chars);
+            return my_strings;
+        };
+
+
         //! Verifies that the node value is valid.
         bool is_valid_initial_configuration_file_names_values(const std::string node_value)
         {
             bool valid_file_names = true;
-            const std::string my_separator_char{SDPConstructorHelpers::initial_configuration_file_names_separator_char};
             const std::string my_banned_chars{SDPConstructorHelpers::banned_chars};
-
-            auto my_strings = STRING_UTILITIES::split_string_by_delimiter(node_value,my_separator_char);
+            auto my_strings = split_string_by_separator_chars(node_value);
             for ( auto tmp_str : my_strings)
             {
                 std::vector<std::string> SplitVec;
                 boost::split( SplitVec, tmp_str, boost::is_any_of(my_banned_chars), boost::token_compress_on );
-                valid_file_names  = ( SplitVec.size() == 1 ) ? true : false;
+                valid_file_names = ( SplitVec.size() == 1 ) ? true : false;
+                const bool found_banned_chars = STRING_UTILITIES::check_string_for_banned_chars(tmp_str,my_banned_chars);
+                if (found_banned_chars)
+                {
+                    valid_file_names = false;
+                    break;
+                }
             }
             return valid_file_names;
         };
@@ -53,7 +74,6 @@ namespace ANANSI
             std::vector<std::string> value{""};
             return value;
         };
-
 
     }; // End of anonymous namespace
 

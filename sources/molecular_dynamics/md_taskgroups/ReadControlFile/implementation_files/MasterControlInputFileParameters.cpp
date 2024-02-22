@@ -113,7 +113,7 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
                                                                    pt_mpi_lattice_type,
                                                                    pt_mpi_spatial_decompostion,
                                                                    pt_number_cu_per_domain,
-																   initial_configuration_filenames);
+                                                                   initial_configuration_filenames);
 
     return sim_decomposition_parameters;
 }
