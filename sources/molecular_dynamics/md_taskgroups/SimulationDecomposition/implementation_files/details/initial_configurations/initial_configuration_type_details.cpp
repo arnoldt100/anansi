@@ -51,7 +51,6 @@ std::string MessageInvalidInitialConfigurationTypeValues(const std::string inval
     {
         s2_frmt % p.second.c_str();
         message += s2_frmt.str();
-        message += "\n";
     }
     s1_frmt % "";
     message += s1_frmt.str();
