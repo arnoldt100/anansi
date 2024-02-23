@@ -24,7 +24,7 @@ constexpr char* ErrorMessageHeader = R"""(
 //! The footer for error messages.
 constexpr char* ErrorMessageFooter = R"""(# ----------------------)""";
 
-}; // End of anaonymous namespace.
+}; // End of anonymous namespace.
 
 
 
