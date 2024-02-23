@@ -95,7 +95,7 @@ namespace ANANSI
                 else
                 {
                      std::string error_message =
-                             MessageInvalidInitialConfigurationTypeValues(a_string,SDPConstructorHelpers::banned_chars);
+                             MessageInvalidInitialConfigurationTypeValues(a_string,SDPConstructorHelpers::initial_configuration_filename_banned_chars);
                      throw ErrorInvalidSimulationDecompositionParameters(error_message);
                 }
             }
