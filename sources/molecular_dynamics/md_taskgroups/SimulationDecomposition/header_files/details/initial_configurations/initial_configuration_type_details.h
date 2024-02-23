@@ -28,7 +28,8 @@ static const std::map<std::string,std::string> valid_initial_configuration_filen
     {std::string{"Single configuration file"}, std::string{"a_water_box.initialconfiguration.coordinates"}}
 };
 
-std::string MessageInvalidInitialConfigurationTypeValues(const std::string invalid_value);
+std::string MessageInvalidInitialConfigurationTypeValues(const std::string invalid_value,
+                                                         const std::string_view banned_chars);
 
 }; // ----- End of namespace SDPConstructorHelpers ----- 
 }; // ----- End of namespace ANANSI -----

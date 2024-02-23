@@ -19,7 +19,7 @@
 
 <!-- Specification for the initial configuration of the system. -->
 <initial-configuration>
-    <filename> a_water_box;initialconfiguration.coordinates</filename>
+    <filename> water2.initalconfiguration.coordinates </filename>
 </initial-configuration>
 
 <!-- Specification for the coordinate system -->

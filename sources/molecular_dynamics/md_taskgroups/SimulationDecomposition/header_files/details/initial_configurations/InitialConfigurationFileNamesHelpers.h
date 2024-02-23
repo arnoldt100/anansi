@@ -50,7 +50,7 @@ namespace ANANSI
 
         //! \details The characters that are banned from being used in the file names of the
         //! initial configuration file names.
-        constexpr std::string_view banned_chars = ";,";
+        constexpr std::string_view initial_configuration_filename_banned_chars = ";,";
 
     }; // ----- End of namespace SDPConstructorHelpers.
 }; // End of namespace ANANSI

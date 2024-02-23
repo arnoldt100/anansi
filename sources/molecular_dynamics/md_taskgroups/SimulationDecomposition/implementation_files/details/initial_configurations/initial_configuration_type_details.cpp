@@ -33,7 +33,8 @@ namespace ANANSI
 namespace SDPConstructorHelpers
 {
 
-std::string MessageInvalidInitialConfigurationTypeValues(const std::string invalid_value)
+std::string MessageInvalidInitialConfigurationTypeValues(const std::string invalid_value,
+                                                         const std::string_view banned_chars)
 {
     std::string message;
     boost::format s1_frmt("%1%\n");
@@ -55,12 +56,24 @@ std::string MessageInvalidInitialConfigurationTypeValues(const std::string inval
     s1_frmt % "";
     message += s1_frmt.str();
 
-    const char *warning = R"""( 
-A filename can contain no whitespace characters or 
-semicolons. 
+    const char *warning1 = R"""( 
+A filename can contain none of the following characters:
+)""";
+    s1_frmt % warning1;
+    message += s1_frmt.str();
+
+    s2_frmt % std::string{banned_chars}.c_str();
+    message += s2_frmt.str();
+
+    s1_frmt % "";
+    message += s1_frmt.str();
+
+    const char *warning2 = R"""( 
+If semicolons are used in file names separator chars, then incorrect files will
+be read.
 )""";
 
-    s1_frmt % warning;
+    s1_frmt % warning2;
     message += s1_frmt.str();
 
     // Add footer to message.

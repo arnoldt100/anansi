@@ -5,8 +5,6 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/algorithm/string.hpp>
-#include <boost/algorithm/string/classification.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -52,13 +50,10 @@ namespace ANANSI
         bool is_valid_initial_configuration_file_names_values(const std::string node_value)
         {
             bool valid_file_names = true;
-            const std::string my_banned_chars{SDPConstructorHelpers::banned_chars};
+            const std::string my_banned_chars{SDPConstructorHelpers::initial_configuration_filename_banned_chars};
             auto my_strings = split_string_by_separator_chars(node_value);
             for ( auto tmp_str : my_strings)
             {
-                std::vector<std::string> SplitVec;
-                boost::split( SplitVec, tmp_str, boost::is_any_of(my_banned_chars), boost::token_compress_on );
-                valid_file_names = ( SplitVec.size() == 1 ) ? true : false;
                 const bool found_banned_chars = STRING_UTILITIES::check_string_for_banned_chars(tmp_str,my_banned_chars);
                 if (found_banned_chars)
                 {
@@ -99,7 +94,8 @@ namespace ANANSI
                 }
                 else
                 {
-                     std::string error_message = MessageInvalidInitialConfigurationTypeValues(a_string);
+                     std::string error_message =
+                             MessageInvalidInitialConfigurationTypeValues(a_string,SDPConstructorHelpers::banned_chars);
                      throw ErrorInvalidSimulationDecompositionParameters(error_message);
                 }
             }
