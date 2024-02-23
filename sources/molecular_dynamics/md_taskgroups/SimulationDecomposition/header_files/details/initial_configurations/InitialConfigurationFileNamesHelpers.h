@@ -33,7 +33,7 @@ namespace ANANSI
         //!          equals "flag_default_null_value" if the corresponding input file doesn't
         //!          have the entry for the simulation initial configuration file names.
         //!
-        //! \param[in] a_string The string to be parsed for the lattice topology spatial dimensions.
+        //! \param[in] a_string The string to be parsed for the file name of the initial configuration file.
         //! \param[in] flag_default_null_value The flag to potentially use the default value.
         //!
         //! \throws MOUSEION::GenericErrorClass<SimulationDecompositionParameters> This

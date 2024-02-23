@@ -104,6 +104,8 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type/processor_lattice_type_details.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain/ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/coordinate_system/CoordinateSystemFileNameHelpers.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/coordinate_system/coordinate_system_file_name_details.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
 
@@ -167,6 +169,8 @@ add_library( ${target} STATIC
 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/coordinate_system/CoordinateSystemFileNameHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/coordinate_system/coordinate_system_file_name_details.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/workload_decomposition_type/WorkloadDecompositionTypeHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/workload_decomposition_type/workload_decomposition_type_details.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_type/ProcessorTopologyLatticeTypeHelpers.cpp
@@ -241,6 +245,7 @@ target_include_directories(${target}
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/workload_decomposition_type"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/coordinate_system"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations"
