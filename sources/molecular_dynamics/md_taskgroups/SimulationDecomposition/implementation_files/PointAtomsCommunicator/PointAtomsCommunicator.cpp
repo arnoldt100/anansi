@@ -23,6 +23,7 @@ namespace ANANSI {
 PointAtomsCommunicator::PointAtomsCommunicator() :
     RECEIVER::ReceiverInterface<PointAtomsCommunicator>{},
     results_{PointAtomsCommunicatorResultsTraits::Atoms_t()},
+    communicator_{},
     ownershipPolicy_{}
 {
     return;
@@ -31,6 +32,7 @@ PointAtomsCommunicator::PointAtomsCommunicator() :
 PointAtomsCommunicator::PointAtomsCommunicator( PointAtomsCommunicator && other) :
     RECEIVER::ReceiverInterface<PointAtomsCommunicator>{std::move(other)},
     results_{std::move(other.results_)},
+    communicator_{std::move(other.communicator_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
 {
     if (this != &other)
@@ -79,8 +81,9 @@ PointAtomsCommunicator::receiver_copy_t_ PointAtomsCommunicator::receiverGetCopy
 //============================= MUTATORS =====================================
 
 template<>
-void PointAtomsCommunicator::receiverModifyMyself_(int & alpha)
+void PointAtomsCommunicator::receiverModifyMyself_(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
 {
+    this->communicator_ = std::move(arg);
     return;
 }
 

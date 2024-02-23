@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 #include <map>
 #include <iostream>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -24,6 +25,7 @@
 #include "PointAtomsCommunicatorResultsTraits.h"
 #include "PointAtomsCommunicatorResultsOwnershipImpl.hpp"
 #include "CopyOwnershipPolicy.hpp"
+#include "Communicator.h"
 
 namespace ANANSI
 {
@@ -149,6 +151,7 @@ class PointAtomsCommunicator :  public RECEIVER::ReceiverInterface<PointAtomsCom
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
+        std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class PointAtomsCommunicator  -----

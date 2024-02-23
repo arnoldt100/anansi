@@ -94,6 +94,7 @@ void ControlFileXMLMPICommReceiver::receiverModifyMyself_(std::unique_ptr<COMMUN
     this->communicator_ = std::move(arg);
     return;
 }
+
 ControlFileXMLMPICommReceiver::receiver_share_t_ ControlFileXMLMPICommReceiver::receiverShareOwnershipOfResults_()
 {
     ControlFileXMLMPICommReceiver::receiver_share_t_ my_shared_result = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
