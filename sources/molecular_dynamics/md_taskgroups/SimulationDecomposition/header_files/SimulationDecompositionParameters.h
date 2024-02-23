@@ -59,7 +59,8 @@ class SimulationDecompositionParameters
                                           const std::string processor_topology_lattice_type,
                                           const std::string processor_topology_spatial_decomposition,
                                           const std::string number_processor_compute_units_per_domain,
-                                          const std::string initial_configuration_filenames);
+                                          const std::string initial_configuration_filenames,
+                                          const std::string coordinate_system);
 
         //! \brief The copy constructor.
         SimulationDecompositionParameters (const SimulationDecompositionParameters & other);   // copy constructor
@@ -136,6 +137,9 @@ class SimulationDecompositionParameters
 
         //! \brief Stores the filenames of the initial atoms configuration.
         std::vector<std::string> initialConfigurationFilenames_;
+
+        //! \brief Stores the filename for the coordinate system.
+        std::vector<std::string> coordinateSystemFilename_;
 
 }; // -----  end of class SimulationDecompositionParameters  -----
 

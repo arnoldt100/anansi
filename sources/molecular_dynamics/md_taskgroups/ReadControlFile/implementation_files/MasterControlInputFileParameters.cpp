@@ -108,12 +108,16 @@ SimulationDecompositionParameters MasterControlInputFileParameters::GetSimulatio
     const std::string initial_configuration_filenames =
     		get_value_CommandFile(my_copy_results, std::string{MasterControlInternalNodeKeys::Simulation_Initial_Configuration});
 
+    const std::string coordinate_system = 
+    		get_value_CommandFile(my_copy_results, std::string{MasterControlInternalNodeKeys::Simulation_Coordinate_System});
+
     SimulationDecompositionParameters sim_decomposition_parameters(flag_default_null_value,
                                                                    wd_type,
                                                                    pt_mpi_lattice_type,
                                                                    pt_mpi_spatial_decompostion,
                                                                    pt_number_cu_per_domain,
-                                                                   initial_configuration_filenames);
+                                                                   initial_configuration_filenames,
+                                                                   coordinate_system);
 
     return sim_decomposition_parameters;
 }
