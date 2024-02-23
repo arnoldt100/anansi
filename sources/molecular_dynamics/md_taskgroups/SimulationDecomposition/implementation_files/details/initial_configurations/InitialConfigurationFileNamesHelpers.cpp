@@ -66,7 +66,7 @@ namespace ANANSI
 
         std::vector<std::string> initial_configuration_filename_values(const std::string node_value)
         {
-            std::vector<std::string> value{""};
+            std::vector<std::string> value = split_string_by_separator_chars(node_value);
             return value;
         };
 
