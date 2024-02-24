@@ -17,6 +17,7 @@
 #include "ProccesorTopologyLatticeSpatialDimensionsHelpers.h"
 #include "ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h"
 #include "InitialConfigurationFileNamesHelpers.h"
+#include "CoordinateSystemFileNameHelpers.h"
 
 namespace ANANSI {
 
@@ -44,9 +45,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
         ANANSI::SDPConstructorHelpers::default_processor_topology_number_compute_units_per_spatial_domain();
     this->initialConfigurationFilenames_ =
         ANANSI::SDPConstructorHelpers::default_initial_configuration_file_names();
-
-    //! \todo Set default filename for coordinate sysytem.
-
+    this->coordinateSystemFilename_ = ANANSI::SDPConstructorHelpers::default_coordinate_system_file_names();
     return;
 }
 
@@ -72,6 +71,10 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
 
     this->initialConfigurationFilenames_ =
         ANANSI::SDPConstructorHelpers::parse_initial_configuration_file_names(initial_configuration_filenames,flag_default_null_value);
+
+    this->coordinateSystemFilename_ =
+        ANANSI::SDPConstructorHelpers::parse_coordinate_system_file_names(coordinate_system,flag_default_null_value);
+
     return;
 
     //! \todo Process coirdiante_system for the filename.

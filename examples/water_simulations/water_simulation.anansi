@@ -23,7 +23,7 @@
 </initial-configuration>
 
 <!-- Specification for the coordinate system -->
-<coordinate-system> a_water_box;coordinatesystem </coordinate-system>
+<coordinate-system> a_water_box.coordinatesystem </coordinate-system>
 
 <!-- Specification of atomic/molecular topology -->
 <molecular-topology>

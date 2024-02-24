@@ -139,7 +139,7 @@ class SimulationDecompositionParameters
         std::vector<std::string> initialConfigurationFilenames_;
 
         //! \brief Stores the filename for the coordinate system.
-        std::vector<std::string> coordinateSystemFilename_;
+        std::string coordinateSystemFilename_;
 
 }; // -----  end of class SimulationDecompositionParameters  -----
 

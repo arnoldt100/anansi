@@ -68,6 +68,13 @@ A filename can contain none of the following characters:
     s1_frmt % "";
     message += s1_frmt.str();
 
+    const char *warning2 = R"""(and the program also expects a single word for the file name.)""";
+    s1_frmt % warning2;
+    message += s1_frmt.str();
+
+    s1_frmt % "";
+    message += s1_frmt.str();
+
     // Add footer to message.
     s1_frmt % ErrorMessageFooter;
     message += s1_frmt.str();
