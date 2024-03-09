@@ -32,7 +32,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
     processorTopologyLatticeType_{""},
     processorTopologySpatialDecomposition_{1,1,1},
     numberProcessorComputeUnitsPerDomain_{1},
-    initialConfigurationFilenames_{},
+    initialConfigurationFilename_{},
     coordinateSystemFilename_{}
 {
     this->workLoadDecomposition_ = 
@@ -43,7 +43,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters() :
         ANANSI::SDPConstructorHelpers::default_processor_topology_lattice_spatial_dimensions();
     this->numberProcessorComputeUnitsPerDomain_ = 
         ANANSI::SDPConstructorHelpers::default_processor_topology_number_compute_units_per_spatial_domain();
-    this->initialConfigurationFilenames_ =
+    this->initialConfigurationFilename_ =
         ANANSI::SDPConstructorHelpers::default_initial_configuration_file_names();
     this->coordinateSystemFilename_ = ANANSI::SDPConstructorHelpers::default_coordinate_system_file_names();
     return;
@@ -54,7 +54,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
                                           const std::string processor_topology_lattice,
                                           const std::string processor_topology_spatial_decomposition,
                                           const std::string number_processor_compute_units_per_domain,
-                                          const std::string initial_configuration_filenames,
+                                          const std::string initial_configuration_filename,
                                           const std::string coordinate_system)
 {
     this->workLoadDecomposition_ =
@@ -69,8 +69,8 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
     this->numberProcessorComputeUnitsPerDomain_ = 
         ANANSI::SDPConstructorHelpers::parse_processor_topology_number_processor_compute_units_per_spatial_domain(number_processor_compute_units_per_domain,flag_default_null_value);
 
-    this->initialConfigurationFilenames_ =
-        ANANSI::SDPConstructorHelpers::parse_initial_configuration_file_names(initial_configuration_filenames,flag_default_null_value);
+    this->initialConfigurationFilename_ =
+        ANANSI::SDPConstructorHelpers::parse_initial_configuration_file_names(initial_configuration_filename,flag_default_null_value);
 
     this->coordinateSystemFilename_ =
         ANANSI::SDPConstructorHelpers::parse_coordinate_system_file_names(coordinate_system,flag_default_null_value);
@@ -85,6 +85,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(SimulationD
     processorTopologyLatticeType_{other.processorTopologyLatticeType_},
     processorTopologySpatialDecomposition_{other.processorTopologySpatialDecomposition_},
     numberProcessorComputeUnitsPerDomain_{other.numberProcessorComputeUnitsPerDomain_},
+    initialConfigurationFilename_(other.initialConfigurationFilename_),
     coordinateSystemFilename_{other.coordinateSystemFilename_}
 {
     if (this != &other)
@@ -98,6 +99,7 @@ SimulationDecompositionParameters::SimulationDecompositionParameters( Simulation
     processorTopologyLatticeType_{std::move(other.processorTopologyLatticeType_)},
     processorTopologySpatialDecomposition_{std::move(other.processorTopologySpatialDecomposition_)},
     numberProcessorComputeUnitsPerDomain_{std::move(other.numberProcessorComputeUnitsPerDomain_)},
+    initialConfigurationFilename_(std::move(other.initialConfigurationFilename_)),
     coordinateSystemFilename_{std::move(other.coordinateSystemFilename_)}
 {
     if (this != &other)
@@ -143,6 +145,7 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator=(
         this->processorTopologyLatticeType_ = other.processorTopologyLatticeType_;
         this->processorTopologySpatialDecomposition_ = other.processorTopologySpatialDecomposition_;
         this->numberProcessorComputeUnitsPerDomain_ = other.numberProcessorComputeUnitsPerDomain_;
+        this->initialConfigurationFilename_ = other.initialConfigurationFilename_;
         this->coordinateSystemFilename_ = other.coordinateSystemFilename_;
     }
     return *this;
@@ -156,6 +159,7 @@ SimulationDecompositionParameters& SimulationDecompositionParameters::operator= 
         this->processorTopologyLatticeType_ = std::move(other.processorTopologyLatticeType_);
         this->processorTopologySpatialDecomposition_ = std::move(other.processorTopologySpatialDecomposition_);
         this->numberProcessorComputeUnitsPerDomain_ = std::move(other.numberProcessorComputeUnitsPerDomain_);
+        this->initialConfigurationFilename_ = std::move(other.initialConfigurationFilename_);
         this->coordinateSystemFilename_ = std::move(other.coordinateSystemFilename_);
     }
     return *this;

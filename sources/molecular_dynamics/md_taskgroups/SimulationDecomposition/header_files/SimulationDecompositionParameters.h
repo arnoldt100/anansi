@@ -2,9 +2,7 @@
 #define ANANSI_SimulationDecompositionParameters_INC
 //! \file SimulationDecompositionParameters.h
 //!
-//! \brief Brief description
-//!
-//! Detailed description
+//! \brief Contains the class definition SimulationDecompositionParameters.
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -52,8 +50,9 @@ class SimulationDecompositionParameters
         //! \param [in] work_load_decomposition_type Contains the parameters for type of workload decomposition.
         //! \param [in] processor_topology_lattice_type Contains the parameters for the type of processor latticae topology.
         //! \param [in] processor_topology_spatial_decomposition Contains the parameters for the dimensions of the processor latticae topology
-        //! \param [in] number_processor_compute_units_per_domain Conatins the number of compute units per spatial domain.
-        //! \param [in] initial_configuration_filenames  Conatins the file names that contain the initial configuration of the atoms.
+        //! \param [in] number_processor_compute_units_per_domain Contains the number of compute units per spatial domain.
+        //! \param [in] initial_configuration_filename  Contains the file name that stores the initial configuration of the atoms.
+        //! \param [in] coordinate_sytem Contains the file name that specifies the coordinate system of the system.
         explicit SimulationDecompositionParameters(const std::string flag_default_null_value,
                                           const std::string work_load_decomposition_type,
                                           const std::string processor_topology_lattice_type,
@@ -136,7 +135,7 @@ class SimulationDecompositionParameters
         int numberProcessorComputeUnitsPerDomain_;
 
         //! \brief Stores the filenames of the initial atoms configuration.
-        std::vector<std::string> initialConfigurationFilenames_;
+        std::vector<std::string> initialConfigurationFilename_;
 
         //! \brief Stores the filename for the coordinate system.
         std::string coordinateSystemFilename_;
