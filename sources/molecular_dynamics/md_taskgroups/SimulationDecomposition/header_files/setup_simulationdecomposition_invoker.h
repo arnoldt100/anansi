@@ -33,12 +33,12 @@ namespace ANANSI
 //!
 //! \param [in] work_load_parameters This object contains the parameters for the simulation workload decomposition.
 //! \param [in] world_communicator This is the world communicator.
-//! \param [in,out] simulatiion_decomposer_invoker  The task invoker that does the simulation workload decomposition.
+//! \param [in,out] simulation_decomposer_invoker  The task invoker that does the simulation workload decomposition.
 void setup_simulationdecomposition_invoker (const SimulationDecompositionParameters & work_load_parameters,
                                             std::unique_ptr<COMMUNICATOR::Communicator> world_communicator,
                                             std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
                                                                                        SimulationDecompositionTaskTraits::concrete_products>
-                                               > & simulatiion_decomposer_invoker );
+                                               > & simulation_decomposer_invoker );
 
 }; // namespace ANANSI
 

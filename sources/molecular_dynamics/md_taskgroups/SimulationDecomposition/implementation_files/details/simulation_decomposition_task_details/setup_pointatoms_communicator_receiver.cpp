@@ -28,8 +28,6 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // ---------------------------------------------------
     using my_abstract_tasks = SimulationDecompositionTaskTraits::abstract_products; // The abstract task typelist.
     using my_concrete_tasks = SimulationDecompositionTaskTraits::concrete_products; // The concrete tasks typelist.
-    using base_receiver_t = ANANSI::PointAtomsCommunicator::MyParentTask; // The base class for the task we are setting up. 
-    using concrete_receiver_t = ANANSI::PointAtomsCommunicator; // The concrete tasks we are setting up.
 
     // ---------------------------------------------------
     // Declare the concrete task factory for the these set of concrete task
@@ -41,10 +39,12 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
                                                                    >();
 
     // ---------------------------------------------------
-    // Get the task label for the task
+    // Get the task label for the concrete task that we want to create:
     // GenericMDTask<PointAtomsCommunicator>
     //
     // ---------------------------------------------------
+    using base_receiver_t = ANANSI::PointAtomsCommunicator::MyParentTask; // The base class for the task we are setting up. 
+    using concrete_receiver_t = ANANSI::PointAtomsCommunicator; // The concrete tasks we are setting up.
     auto constexpr task_label = concrete_receiver_t::TASKLABEL;
 
     // ---------------------------------------------------
@@ -53,7 +53,7 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // ---------------------------------------------------
     auto point_atoms_reciver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
-
+    
     return;
 }   // -----  end of function setup_pointatoms_communicator_receiver  -----
 

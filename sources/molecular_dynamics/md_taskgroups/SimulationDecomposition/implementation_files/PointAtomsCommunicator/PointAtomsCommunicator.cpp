@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -11,6 +12,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "PointAtomsCommunicator.h"
+#include "Communicator.h"
+#include "SimulationDecompositionParameters.h"
 
 namespace ANANSI {
 
