@@ -2,9 +2,7 @@
 #define ANANSI_PointAtomsCommunicatorResultsTraits_INC
 //! \file PointAtomsCommunicatorResultsTraits.h
 //!
-//! \brief Brief description
-//!
-//! \details  Detailed description
+//! \brief Contains traits class for PointAtomsCommunicator result..
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -23,12 +21,13 @@
 namespace ANANSI
 {
 
+//! \brief The traits class for the PointAtomsCommunicator result.
 class PointAtomsCommunicatorResultsTraits
 {
     public:
         // ====================  ALIASES       =======================================
-        using result_t = Atoms;
         using Atoms_t = PointAtoms;
+        using result_t = Atoms;
         using copy_result_t = result_t;
         using share_result_t = result_t;
         using transfer_result_t = result_t;

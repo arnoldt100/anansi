@@ -41,7 +41,7 @@ namespace SDPConstructorHelpers{
 std::array<int,3> parse_proccesor_topology_lattice_spatial_dimensions ( const std::string a_string,
                                                                         const std::string flag_default_null_value );
 
-//! Returns the default value for the dimensions of the latttoce topology of the spatial decomposition.
+//! Returns the default value for the dimensions of the latttice topology of the spatial decomposition.
 std::array<int,3> default_processor_topology_lattice_spatial_dimensions();
 
 }; // end of names SDPConstructorHelpers
