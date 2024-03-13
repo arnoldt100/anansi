@@ -20,7 +20,7 @@
 namespace ANANSI
 {
 
-//! \brief Broadcasts thes VectorStringCache object "data_to_broadcast" from the processor with rank "bcast_rank"
+//! \brief Broadcasts the VectorStringCache object "data_to_broadcast" from the processor with rank "bcast_rank"
 //!        to the remaining ranks in MPI communicator group "mpi_comm".
 //!
 //! \param[in] data_to_broadcast This object caches (or stores) a vector of strings and is broadcasted.

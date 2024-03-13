@@ -12,6 +12,7 @@
 #include "setup_pointatoms_communicator_receiver.h"
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
+#include "create_rectangular_communicator.h"
 
 namespace ANANSI
 {
@@ -53,7 +54,9 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // ---------------------------------------------------
     auto point_atoms_reciver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
-    
+   
+    COMMUNICATOR::create_rectangular_communicator();
+
     return;
 }   // -----  end of function setup_pointatoms_communicator_receiver  -----
 
