@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -26,9 +27,9 @@ void setup_simulationdecomposition_invoker (const SimulationDecompositionParamet
                                                > & simulation_decomposer_invoker )
 {
     setup_pointatoms_communicator_receiver(work_load_parameters,std::move(world_communicator),simulation_decomposer_invoker);
-    setup_pointatoms_decomposer_receiver();
-    setup_read_pointatoms_receiver();
-    setup_macro_read_pointatoms_receiver();
+    setup_pointatoms_decomposer_receiver(simulation_decomposer_invoker);
+    setup_read_pointatoms_receiver(simulation_decomposer_invoker);
+    setup_macro_read_pointatoms_receiver(simulation_decomposer_invoker);
 
     return;
 }   // -----  end of function setup_simulationdecomposition_invoker  -----

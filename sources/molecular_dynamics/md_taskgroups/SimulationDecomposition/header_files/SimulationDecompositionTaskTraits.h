@@ -27,6 +27,7 @@
 #include "PointAtomsCommunicator.h"
 #include "PointAtomsDecomposer.h"
 #include "ReadPointAtoms.h"
+#include "MacroReadPointAtoms.h"
 
 namespace ANANSI
 {
@@ -37,25 +38,29 @@ class SimulationDecompositionTaskTraits
         using abstract_products = MPL::mpl_typelist<
                                                        ReadPointAtoms::MyParentTask,
                                                        PointAtomsDecomposer::MyParentTask,
-                                                       PointAtomsCommunicator::MyParentTask
+                                                       PointAtomsCommunicator::MyParentTask,
+                                                       MacroReadPointAtoms::MyParentTask
                                                    >;
 
         using concrete_products = MPL::mpl_typelist<
                                                        GenericMDTask<ReadPointAtoms>,
                                                        GenericMDTask<PointAtomsDecomposer>,
-                                                       GenericMDTask<PointAtomsCommunicator>
+                                                       GenericMDTask<PointAtomsCommunicator>,
+                                                       GenericMDTask<MacroReadPointAtoms>
                                                    >;
 
         using receiver_results_t = MPL::mpl_typelist<
                                                     	ReadPointAtoms::receiver_result_t,
                                                         PointAtomsDecomposer::receiver_result_t,
-                                                        PointAtomsCommunicator::receiver_result_t
+                                                        PointAtomsCommunicator::receiver_result_t,
+                                                        MacroReadPointAtoms::receiver_result_t
                                                      >;
 
         static constexpr auto LABELS = std::array{
                                                     ReadPointAtoms::TASKLABEL,
                                                     PointAtomsDecomposer::TASKLABEL,
-                                                    PointAtomsCommunicator::TASKLABEL
+                                                    PointAtomsCommunicator::TASKLABEL,
+                                                    MacroReadPointAtoms::TASKLABEL
                                                  };
 
         // ====================  LIFECYCLE     =======================================

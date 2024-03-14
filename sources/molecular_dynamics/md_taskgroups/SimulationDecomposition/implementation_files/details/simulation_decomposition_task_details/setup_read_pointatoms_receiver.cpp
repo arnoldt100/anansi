@@ -14,7 +14,9 @@
 namespace ANANSI
 {
 
-void setup_read_pointatoms_receiver ()
+void setup_read_pointatoms_receiver (std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
+                                                                                SimulationDecompositionTaskTraits::concrete_products>
+                                               > & simulation_decomposer_invoker )
 {
     return ;
 }   // -----  end of function setup_read_pointatoms_receiver  -----
