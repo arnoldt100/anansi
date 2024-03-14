@@ -58,7 +58,7 @@ class FileGenerator:
 
         get_attribute = lambda a, b : vars(a)[b] if hasattr(a,b) else "--not-defined--"
         self._args = args
-        self._tasklabel = get_attribute(self._args,"task_label")
+        self._tasklabel = common_utilities.form_task_label(get_attribute(self._args,"task_label"))
         self._receiver_class_name = get_attribute(args,"receiver_name")
         self._namepace = get_attribute(args,"namespace")
         self._ownershipPolicy = get_attribute(self._args,"ownership_policy")

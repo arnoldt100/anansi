@@ -142,6 +142,12 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator/PointAtomsCommunicator.h)
 
          # ----------------------------------------------------
+         # Source files for MacroReadPointAtoms task
+         # 
+         # ----------------------------------------------------
+         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtoms.h)
+
+         # ----------------------------------------------------
          # Source files for SimulationDecompositionTaskTraits 
          # 
          # ----------------------------------------------------
@@ -149,6 +155,7 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_pointatoms_decomposer_receiver.h)
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_read_pointatoms_receiver.h)
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_pointatoms_communicator_receiver.h)
+         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.h)
         
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -195,6 +202,7 @@ add_library( ${target} STATIC
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_read_pointatoms_receiver.cpp)
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_pointatoms_communicator_receiver.cpp)
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_pointatoms_decomposer_receiver.cpp)
+         list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.cpp)
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionTaskTraits.cpp )
         
          # ----------------------------------------------------
@@ -221,6 +229,12 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsCommunicator/PointAtomsCommunicatorResultsOwnershipImpl.cpp)
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsCommunicator/PointAtomsCommunicator.cpp)
 
+         # ----------------------------------------------------
+         # Source files for MacroReadPointAtoms task
+         # 
+         # ----------------------------------------------------
+         list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtoms.cpp)
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # end of defining the sources and header files associated         @
@@ -240,6 +254,7 @@ target_include_directories(${target}
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms" 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer" 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator" 
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms" 
                            PUBLIC "${my_physical_data_structures_include}"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details"
