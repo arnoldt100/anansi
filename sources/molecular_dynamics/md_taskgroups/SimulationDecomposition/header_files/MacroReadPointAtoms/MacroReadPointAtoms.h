@@ -22,6 +22,7 @@
 #include "CommonMDTaskGroupHeaders.h"
 #include "ReadPointAtoms.h"
 #include "PointAtomsCommunicator.h"
+#include "PointAtomsDecomposer.h"
 #include "MacroReadPointAtomsResultsTraits.h"
 #include "MacroReadPointAtomsResultsOwnershipImpl.hpp"
 #include "CopyOwnershipPolicy.hpp"
@@ -59,13 +60,15 @@ class MacroReadPointAtoms :  public RECEIVER::ReceiverInterface<MacroReadPointAt
         // ====================  TYPEDEFS     =======================================
 
         using MyParentTask = MacroCommand< 
-                                           ReadPointAtoms,PointAtomsCommunicator
+                                           ReadPointAtoms,PointAtomsDecomposer,PointAtomsCommunicator
                                          >;
 
         // Place here the concrete component receivers required for receiver to
         // do its work.
         using MyComponentReceiverTypelist = MPL::mpl_typelist<
-                                                               GenericMDTask<ReadPointAtoms>,GenericMDTask<PointAtomsCommunicator>
+                                                               GenericMDTask<ReadPointAtoms>,
+                                                               GenericMDTask<PointAtomsCommunicator>,
+                                                               GenericMDTask<PointAtomsCommunicator>
                                                               >;
 
         template<RECEIVER::OwnershipTypes Q>
