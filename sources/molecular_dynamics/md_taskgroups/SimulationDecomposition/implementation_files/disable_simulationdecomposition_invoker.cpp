@@ -30,7 +30,8 @@ void disable_simulationdecomposition_invoker (std::shared_ptr<ANANSI::GenericTas
     const std::vector<ANANSI::TaskLabel> command_labels = {
          PointAtomsCommunicator::TASKLABEL,
          ReadPointAtoms::TASKLABEL,
-         PointAtomsDecomposer::TASKLABEL};
+         PointAtomsDecomposer::TASKLABEL,
+         MacroReadPointAtoms::TASKLABEL};
     simulatiion_decomposer_invoker->disableTask(command_labels);
 
     return;

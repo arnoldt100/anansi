@@ -29,7 +29,6 @@
 #include "setup_mpi_world_communicator_invoker.h"
 #include "setup_simulationdecomposition_invoker.h"
 #include "disable_simulationdecomposition_invoker.h"
-#include "BaseException.h"
 #include "SimulationDecompositionParameters.h"
 #include "ErrorInvalidSimulationDecompositionParameters.h"
 
@@ -258,7 +257,7 @@ AnansiMolecularDynamics::enableControlFileTasks ()
                               this->mdControlFileInvk_);
 
     // ---------------------------------------------------
-    // Run macro task command for the Control file. This macro task cammand 
+    // Run macro task command for the Control file. This macro task command
     // action results in every process storing the information of the control
     // file. See class RECEIVER::ControlFileMacroReceiver for more details.
     //
@@ -312,6 +311,17 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
         		                              std::move(mpi_world_communicator),
 											  this->mdSimulationDecomposerInvk_);
         
+
+    // ---------------------------------------------------
+    // Run macro task command for the MacroReadPointAtoms. This macro task command
+    // action results in the distribution of the initial configuration atoms across the
+    // compute units.
+    // See class MacroReadPointAtoms for more details.
+    //
+    // ---------------------------------------------------
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::MacroReadPointAtoms::TASKLABEL};
+    this->mdSimulationDecomposerInvk_->doTask(command_labels);
+
     }
     catch (const ErrorInvalidSimulationDecompositionParameters & my_error) 
     {
