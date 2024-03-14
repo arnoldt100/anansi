@@ -19,7 +19,7 @@ namespace ANANSI
 {
 
 void setup_simulationdecomposition_invoker (const SimulationDecompositionParameters & work_load_parameters,
-		                                    std::unique_ptr<COMMUNICATOR::Communicator> world_communicator,
+		                                        std::unique_ptr<COMMUNICATOR::Communicator> world_communicator,
                                             std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
                                                                                        SimulationDecompositionTaskTraits::concrete_products>
                                                > & simulation_decomposer_invoker )
