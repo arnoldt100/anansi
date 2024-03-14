@@ -145,7 +145,9 @@ add_library( ${target} STATIC
          # Source files for MacroReadPointAtoms task
          # 
          # ----------------------------------------------------
-         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtoms.h)
+         #  list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtoms.h)
+         #  list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtomsResultsOwnershipImpl.hpp)
+         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtomsResultsTraits.h)
 
          # ----------------------------------------------------
          # Source files for SimulationDecompositionTaskTraits 
@@ -233,7 +235,9 @@ add_library( ${target} STATIC
          # Source files for MacroReadPointAtoms task
          # 
          # ----------------------------------------------------
-         list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtoms.cpp)
+         # list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtoms.cpp)
+         # list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtomsResultsOwnershipImpl.cpp)
+          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtomsResultsTraits.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
