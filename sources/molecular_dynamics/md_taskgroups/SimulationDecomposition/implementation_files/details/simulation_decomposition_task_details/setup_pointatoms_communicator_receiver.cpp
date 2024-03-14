@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -35,7 +36,7 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // products.
     //
     // ---------------------------------------------------
-    auto conrete_task_factory = std::make_unique<GenericTaskFactory<my_abstract_tasks,
+    auto concrete_task_factory = std::make_unique<GenericTaskFactory<my_abstract_tasks,
                                                                     my_concrete_tasks>
                                                                    >();
 
@@ -52,11 +53,28 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // Create the receiver of concrete task 
     // GenericMDTask<PointAtomsCommunicator>
     // ---------------------------------------------------
-    auto point_atoms_reciver = 
+    auto point_atoms_communicator_reciver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
    
-    COMMUNICATOR::create_rectangular_communicator();
+    // ---------------------------------------------------
+    // Modify the receiver 
+    //
+    // ---------------------------------------------------
+    // To do is modify the receiver.
+    // COMMUNICATOR::create_rectangular_communicator();
 
+    // ---------------------------------------------------
+    // Create task object and bind the receiver to the task object.
+    // 
+    // ---------------------------------------------------
+    std::shared_ptr<ANANSI::AnansiTask> my_task = 
+        concrete_task_factory->create_shared_ptr<base_receiver_t>(point_atoms_communicator_reciver);
+
+    // ---------------------------------------------------
+    // Add the task object/command to the invoker.
+    //
+    // ---------------------------------------------------
+    simulation_decomposer_invoker->addTask(task_label,my_task);
     return;
 }   // -----  end of function setup_pointatoms_communicator_receiver  -----
 

@@ -44,7 +44,7 @@ void setup_ControlFileXMLTask (const std::string controlfile_name,
     // products.
     //
     // ---------------------------------------------------
-    auto conrete_task_factory = std::make_unique<GenericTaskFactory<my_abstract_tasks,
+    auto concrete_task_factory = std::make_unique<GenericTaskFactory<my_abstract_tasks,
                                                                     my_concrete_tasks>
                                                 >();
 
@@ -71,7 +71,7 @@ void setup_ControlFileXMLTask (const std::string controlfile_name,
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> my_task = 
-        conrete_task_factory->create_shared_ptr<base_receiver_t>(control_file_xml_receiver);
+        concrete_task_factory->create_shared_ptr<base_receiver_t>(control_file_xml_receiver);
 
     // ---------------------------------------------------
     // Add the task object/command to the invoker.
