@@ -30,7 +30,7 @@
 #include "setup_simulationdecomposition_invoker.h"
 #include "disable_simulationdecomposition_invoker.h"
 #include "SimulationDecompositionParameters.h"
-#include "ErrorInvalidSimulationDecompositionParameters.h"
+// #include "ErrorInvalidSimulationDecompositionParameters.h"
 
 namespace ANANSI
 {
@@ -293,8 +293,6 @@ AnansiMolecularDynamics::enableCoreLoggingTasks()
 
 void AnansiMolecularDynamics::enableSimulationDecomposition()
 {
-    try 
-    {
         // The workload decomposition parameters are stored in the master control file. The master control file
         // is the result of the task associated with the ControlFileMacroReceiver. This task
         // is stored in the invoker mdControlFileInvk_. We use the utility function
@@ -322,14 +320,6 @@ void AnansiMolecularDynamics::enableSimulationDecomposition()
     const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::MacroReadPointAtoms::TASKLABEL};
     this->mdSimulationDecomposerInvk_->doTask(command_labels);
 
-    }
-    catch (const ErrorInvalidSimulationDecompositionParameters & my_error) 
-    {
-    	std::string message{my_error.what()};
-        std::cout << message.c_str()  << std::endl;
-
-        // Throw error for invalid simulation decomposition.
-    }
     return;
 }
 
