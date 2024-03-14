@@ -20,7 +20,10 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommonMDTaskGroupHeaders.h"
-#include "MacroReadPointAtomsOwnershipImpl.hpp"
+#include "ReadPointAtoms.h"
+#include "PointAtomsCommunicator.h"
+#include "MacroReadPointAtomsResultsTraits.h"
+#include "MacroReadPointAtomsResultsOwnershipImpl.hpp"
 #include "CopyOwnershipPolicy.hpp"
 
 namespace ANANSI
@@ -44,7 +47,7 @@ class MacroReadPointAtoms :  public RECEIVER::ReceiverInterface<MacroReadPointAt
                                                                       my_transfer_type_>;
 
         //! \todo Implement a policy class for the ownership implementation
-        using MyOwnershipImpl_ = MacroReadPointAtomsOwnershipImpl<MyOwnershipImplTraits_>;
+        using MyOwnershipImpl_ = MacroReadPointAtomsResultsOwnershipImpl<MyOwnershipImplTraits_>;
 
         //! The ownership policy for the result.
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
@@ -55,16 +58,14 @@ class MacroReadPointAtoms :  public RECEIVER::ReceiverInterface<MacroReadPointAt
 
         // ====================  TYPEDEFS     =======================================
 
-        //! \todo Declare an alias the parent task. Fill 
         using MyParentTask = MacroCommand< 
-                                           // type1, type2, ... ,typeN 
+                                           ReadPointAtoms,PointAtomsCommunicator
                                          >;
 
-        //! \todo Fill in typelist with Generic tasks to
-        //!       accopmplish the maceo command. Leave typleist empty
-        //!       if this is not a macro command.
+        // Place here the concrete component receivers required for receiver to
+        // do its work.
         using MyComponentReceiverTypelist = MPL::mpl_typelist<
-                                                               // GenericMDTask<type1>,GenericMDTask<type2>, ...,GenericMDTask<typeN>
+                                                               GenericMDTask<ReadPointAtoms>,GenericMDTask<PointAtomsCommunicator>
                                                               >;
 
         template<RECEIVER::OwnershipTypes Q>

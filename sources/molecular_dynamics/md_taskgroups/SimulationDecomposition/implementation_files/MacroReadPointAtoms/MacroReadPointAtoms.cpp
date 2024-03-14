@@ -22,7 +22,7 @@ namespace ANANSI {
 
 MacroReadPointAtoms::MacroReadPointAtoms() :
     RECEIVER::ReceiverInterface<MacroReadPointAtoms>{},
-    results_{},
+    results_{MacroReadPointAtomsResultsTraits::Atoms_t()},
     componentTasks_{},
     ownershipPolicy_{}
    
@@ -83,7 +83,7 @@ MacroReadPointAtoms::receiver_copy_t_ MacroReadPointAtoms::receiverGetCopyOfResu
 //============================= MUTATORS =====================================
 
 template<>
-void MacroReadPointAtoms::receiverModifyMyself_()
+void MacroReadPointAtoms::receiverModifyMyself_(int & arg)
 {
     return;
 }

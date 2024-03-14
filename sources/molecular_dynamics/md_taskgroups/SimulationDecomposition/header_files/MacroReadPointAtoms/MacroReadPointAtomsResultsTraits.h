@@ -28,7 +28,7 @@ class MacroReadPointAtomsResultsTraits
     public:
         // ====================  ALIASES       =======================================
         //! \todo  Fill in the result type.
-        using result_t = Atoms ;
+        using result_t = Atoms;
         using Atoms_t = PointAtoms;
         using copy_result_t = result_t;
         using share_result_t = result_t;
