@@ -30,7 +30,6 @@
 #include "setup_simulationdecomposition_invoker.h"
 #include "disable_simulationdecomposition_invoker.h"
 #include "SimulationDecompositionParameters.h"
-// #include "ErrorInvalidSimulationDecompositionParameters.h"
 
 namespace ANANSI
 {
@@ -399,7 +398,7 @@ AnansiMolecularDynamics::initializeInitialConditions_()
     // state MDInitInitialConditions.
     this->mdState_ = this->mdInitInitialConditions_;
 
-     this->mdState_->execute(this);
+    this->mdState_->execute(this);
 
     // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDNullSimulationState.

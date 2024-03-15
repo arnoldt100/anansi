@@ -26,6 +26,10 @@ void setup_simulationdecomposition_invoker (const SimulationDecompositionParamet
                                                                                        SimulationDecompositionTaskTraits::concrete_products>
                                                > & simulation_decomposer_invoker )
 {
+    simulation_decomposer_invoker  = 
+      GenericTaskInvokerFactory<SimulationDecompositionTaskTraits::abstract_products,
+                                SimulationDecompositionTaskTraits::concrete_products>::initializeInvoker();
+
     setup_pointatoms_communicator_receiver(work_load_parameters,std::move(world_communicator),simulation_decomposer_invoker);
     setup_pointatoms_decomposer_receiver(simulation_decomposer_invoker);
     setup_read_pointatoms_receiver(simulation_decomposer_invoker);

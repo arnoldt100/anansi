@@ -76,8 +76,6 @@ SimulationDecompositionParameters::SimulationDecompositionParameters(const std::
         ANANSI::SDPConstructorHelpers::parse_coordinate_system_file_names(coordinate_system,flag_default_null_value);
 
     return;
-
-    //! \todo Process coirdiante_system for the filename.
 }
 
 SimulationDecompositionParameters::SimulationDecompositionParameters(SimulationDecompositionParameters const & other) :
