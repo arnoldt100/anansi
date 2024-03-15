@@ -83,8 +83,10 @@ MacroReadPointAtoms::receiver_copy_t_ MacroReadPointAtoms::receiverGetCopyOfResu
 //============================= MUTATORS =====================================
 
 template<>
-void MacroReadPointAtoms::receiverModifyMyself_(int & arg)
+void MacroReadPointAtoms::receiverModifyMyself_<std::shared_ptr<ANANSI::AnansiTask>>(std::shared_ptr<ANANSI::AnansiTask> & a_task)
 {
+    const auto task_label= a_task->taskLabel();
+    this->componentTasks_[task_label] = a_task;
     return;
 }
 

@@ -50,7 +50,7 @@ void setup_macro_read_pointatoms_receiver (std::shared_ptr<ANANSI::GenericTaskIn
     // Create the receiver of concrete task 
     // GenericMDTask<MacroReadPointAtoms>
     // ---------------------------------------------------
-    auto macro_read_poit_atoms_receiver = 
+    auto macro_read_point_atoms_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
 
     // ---------------------------------------------------
@@ -58,14 +58,28 @@ void setup_macro_read_pointatoms_receiver (std::shared_ptr<ANANSI::GenericTaskIn
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> my_task = 
-        concrete_task_factory->create_shared_ptr<base_receiver_t>(macro_read_poit_atoms_receiver);
+        concrete_task_factory->create_shared_ptr<base_receiver_t>(macro_read_point_atoms_receiver);
 
     // ---------------------------------------------------
-    // Modify the receiver 
+    // Modify the receiver by adding the
+    // component tasks. 
     //
     // ---------------------------------------------------
-    // To do is modify the receiver.
-    
+     constexpr auto my_task_label0 = ReadPointAtoms::TASKLABEL;
+     auto my_read_point_atoms_task =
+         simulation_decomposer_invoker->getHandleToTask<my_task_label0>();
+    macro_read_point_atoms_receiver->modifyReceiver(my_read_point_atoms_task); 
+
+     constexpr auto my_task_label1 = PointAtomsDecomposer::TASKLABEL;
+     auto my_point_atoms_decompser_task =
+         simulation_decomposer_invoker->getHandleToTask<my_task_label1>();
+    macro_read_point_atoms_receiver->modifyReceiver(my_point_atoms_decompser_task); 
+
+     constexpr auto my_task_label2 = PointAtomsCommunicator::TASKLABEL;
+     auto my_point_atoms_communicator_task =
+         simulation_decomposer_invoker->getHandleToTask<my_task_label2>();
+    macro_read_point_atoms_receiver->modifyReceiver(my_point_atoms_communicator_task); 
+
     // ---------------------------------------------------
     // Add the task object/command to the invoker.
     //
