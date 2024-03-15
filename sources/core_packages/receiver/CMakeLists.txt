@@ -51,6 +51,7 @@
     # receiver depend on.
     # 
     # ----------------------------------------------------
+    get_target_property(my_debugging_utilities_include debugging_utilities debugging_utilities_include)
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
 
@@ -137,13 +138,15 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions
                            PRIVATE ${my_typelist_aliases_include}
-                           PRIVATE ${my_tasks_include})
+                           PRIVATE ${my_tasks_include}
+                           PRIVATE ${my_debugging_utilities_include})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
 target_link_libraries( ${target}
+                       PUBLIC debugging_utilities
                        PUBLIC tasks
                        PUBLIC typelist_aliases )
 #-----------------------------------------------------

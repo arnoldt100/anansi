@@ -18,6 +18,7 @@
 //--------------------------------------------------------//
 #include "TaskLabel.hpp"
 #include "ConcreteReceiverConstraints.hpp"
+#include "GenericErrorClass.hpp"
 
 namespace RECEIVER
 {
@@ -77,70 +78,79 @@ class ReceiverInterface
         //! ConcretReceiver::foo_.
         struct Accessor_ : public Derived 
         {
-            template<typename... Types>
-            static void do_action(const Derived & derived, Types... args)
-            {
-                void (Derived::*fn)(Types... args) const = &Accessor_::receiverDoAction_;
-                (derived.*fn)(args...);
-                return;
-            };
+            public: 
+                template<typename... Types>
+                static bool if_enabled(const Derived & derived, Types... args)
+                {
+                    // void (Derived::*fn)(Types... args) const = &Accessor_::if_enabled_;
+                    // return (derived.*fn)(args...);
+                    return true;
+                }
 
-            template<typename... Types>
-            static void undo_action(const Derived & derived, Types... args)
-            {
-                void (Derived::*fn)(Types... args) const = &Accessor_::receiverUndoAction_;
-                (derived.*fn)(args...);
-                return;
-            }
+                template<typename... Types>
+                static void do_action(const Derived & derived, Types... args)
+                {
+                    void (Derived::*fn)(Types... args) const = &Accessor_::receiverDoAction_;
+                    (derived.*fn)(args...);
+                    return;
+                };
 
-            //! Returns the task label of the receiver.
-            constexpr static TASK_LABEL_TYPE get_task_label (const Derived & derived)
-            {
-                constexpr TASK_LABEL_TYPE (Derived::*fn)() const = &Accessor_::receiverGetTaskLabel_;
-                return (derived.*fn)();
-            }
+                template<typename... Types>
+                static void undo_action(const Derived & derived, Types... args)
+                {
+                    void (Derived::*fn)(Types... args) const = &Accessor_::receiverUndoAction_;
+                    (derived.*fn)(args...);
+                    return;
+                }
 
-            //! Provides access to the receiver member receiverGetCopyOfResults_.
-            static auto get_copy_of_results(const Derived & derived)
-            {
-                auto (Derived::*fn)() const = &Accessor_::receiverGetCopyOfResults_;
-                return (derived.*fn)();
-            }
+                //! Returns the task label of the receiver.
+                constexpr static TASK_LABEL_TYPE get_task_label (const Derived & derived)
+                {
+                    constexpr TASK_LABEL_TYPE (Derived::*fn)() const = &Accessor_::receiverGetTaskLabel_;
+                    return (derived.*fn)();
+                }
 
-            static auto get_share_of_results(const Derived & derived)
-            {
-                auto (Derived::*fn)() const = &Accessor_::receiverShareOwnershipOfResults_;
-                return (derived.*fn)();
-            }
+                //! Provides access to the receiver member receiverGetCopyOfResults_.
+                static auto get_copy_of_results(const Derived & derived)
+                {
+                    auto (Derived::*fn)() const = &Accessor_::receiverGetCopyOfResults_;
+                    return (derived.*fn)();
+                }
 
-            static auto transfer_ownership_of_results(const Derived & derived)
-            {
-                auto (Derived::*fn)() const = &Accessor_::receiverTransferOwnershipOfResults_;
-                return (derived.*fn)();
-            }
+                static auto get_share_of_results(const Derived & derived)
+                {
+                    auto (Derived::*fn)() const = &Accessor_::receiverShareOwnershipOfResults_;
+                    return (derived.*fn)();
+                }
 
-            template<typename... Types>
-            static void disable_receiver(Derived & derived, Types... args)
-            {
-                void (Derived::*fn)(Types... args) = &Accessor_::disableReceiver_;
-                (derived.*fn)(args...);
-                return;
-            }
+                static auto transfer_ownership_of_results(const Derived & derived)
+                {
+                    auto (Derived::*fn)() const = &Accessor_::receiverTransferOwnershipOfResults_;
+                    return (derived.*fn)();
+                }
 
-            template<typename T>
-            static void receiver_modify_myself(Derived & derived, T & arg)
-            {
-                void (Derived::*fn)(T&) = &Accessor_::receiverModifyMyself_;
-                return (derived.*fn)(arg);
-            }
+                template<typename... Types>
+                static void disable_receiver(Derived & derived, Types... args)
+                {
+                    void (Derived::*fn)(Types... args) = &Accessor_::disableReceiver_;
+                    (derived.*fn)(args...);
+                    return;
+                }
 
-            template<typename... Types>
-            static void enable_receiver(Derived & derived, Types... args)
-            {
-                void (Derived::*fn)(Types... args) = &Accessor_::enableReceiver_;
-                (derived.*fn)(args...);
-                return; 
-            }
+                template<typename T>
+                static void receiver_modify_myself(Derived & derived, T & arg)
+                {
+                    void (Derived::*fn)(T&) = &Accessor_::receiverModifyMyself_;
+                    return (derived.*fn)(arg);
+                }
+
+                template<typename... Types>
+                static void enable_receiver(Derived & derived, Types... args)
+                {
+                    void (Derived::*fn)(Types... args) = &Accessor_::enableReceiver_;
+                    (derived.*fn)(args...);
+                    return; 
+                }
         };
 
     public:
@@ -178,7 +188,8 @@ class ReceiverInterface
         
         //! Interface for the call executing the receivers' action.
         void doAction() const
-        { 
+        {   
+            bool i_am_enabled = Accessor_::if_enabled(this->asDerived_());
             return Accessor_::do_action(this->asDerived_());
         }
        
