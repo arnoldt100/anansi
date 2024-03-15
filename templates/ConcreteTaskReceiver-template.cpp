@@ -22,6 +22,7 @@ namespace __NAMESPACE__ {
 
 __classname__::__classname__() :
     RECEIVER::ReceiverInterface<__classname__>{},
+    enabledStatus_{false},
     results_{},
     ownershipPolicy_{}
 {
@@ -30,6 +31,7 @@ __classname__::__classname__() :
 
 __classname__::__classname__( __classname__ && other) :
     RECEIVER::ReceiverInterface<__classname__>{std::move(other)},
+    enabledStatus_{other.enabledStatus_},
     results_{std::move(other.results_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
 {
@@ -57,6 +59,7 @@ __classname__& __classname__::operator= ( __classname__ && other )
     {
         RECEIVER::ReceiverInterface<__classname__>::operator=(std::move(other));
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
     }
     return *this;

@@ -159,12 +159,14 @@ class PointAtomsCommunicator :  public RECEIVER::ReceiverInterface<PointAtomsCom
 template<typename... Types>
 void PointAtomsCommunicator::enableReceiver_(Types &... args)
 {
+    std::cout << "Stud for PointAtomsCommunicator::enableReceiver_" << std::endl;
     return;
 }
 
 template<typename... Types>
 void PointAtomsCommunicator::disableReceiver_(Types &... args)
 {
+    std::cout << "Stud for PointAtomsCommunicator::disableReceiver_" << std::endl;
     return;
 }
 

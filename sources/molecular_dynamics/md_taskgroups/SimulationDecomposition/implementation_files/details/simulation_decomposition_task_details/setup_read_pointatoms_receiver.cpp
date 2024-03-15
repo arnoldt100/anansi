@@ -72,6 +72,13 @@ void setup_read_pointatoms_receiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
     // ---------------------------------------------------
     simulation_decomposer_invoker->addTask(task_label,my_task);
 
+    // ---------------------------------------------------
+    // Now enable the task
+    //
+    // ---------------------------------------------------
+    std::vector my_labels = {task_label};
+    simulation_decomposer_invoker->enableTask(my_labels);
+
     return ;
 }   // -----  end of function setup_read_pointatoms_receiver  -----
 

@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -53,7 +54,7 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // Create the receiver of concrete task 
     // GenericMDTask<PointAtomsCommunicator>
     // ---------------------------------------------------
-    auto point_atoms_communicator_reciver = 
+    auto point_atoms_communicator_receiver = 
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
    
     // ---------------------------------------------------
@@ -68,13 +69,21 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> my_task = 
-        concrete_task_factory->create_shared_ptr<base_receiver_t>(point_atoms_communicator_reciver);
+        concrete_task_factory->create_shared_ptr<base_receiver_t>(point_atoms_communicator_receiver);
 
     // ---------------------------------------------------
     // Add the task object/command to the invoker.
     //
     // ---------------------------------------------------
     simulation_decomposer_invoker->addTask(task_label,my_task);
+    
+    // ---------------------------------------------------
+    // Now enable the task
+    //
+    // ---------------------------------------------------
+    std::vector my_labels = {task_label};
+    simulation_decomposer_invoker->enableTask(my_labels);
+
     return;
 }   // -----  end of function setup_pointatoms_communicator_receiver  -----
 

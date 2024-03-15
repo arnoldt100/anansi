@@ -9,6 +9,7 @@
 #include <boost/test/unit_test_parameters.hpp>
 #include <map>
 #include <iostream>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//

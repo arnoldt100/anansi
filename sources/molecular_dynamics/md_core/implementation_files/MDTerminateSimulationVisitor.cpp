@@ -59,6 +59,12 @@ MDTerminateSimulationVisitor::~MDTerminateSimulationVisitor()
 void MDTerminateSimulationVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     // ---------------------------------------------------
+    // The simulation decomposition invoketr is dsiabled.
+    //
+    // ---------------------------------------------------
+    a_sim.disableSimulationDecomposition();
+
+    // ---------------------------------------------------
     // The control file invoker is disabled
     // 
     // ---------------------------------------------------

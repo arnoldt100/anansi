@@ -156,12 +156,14 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
 template<typename... Types>
 void ReadPointAtoms::enableReceiver_(Types &... args)
 {
+    std::cout << "Stud for ReadPointAtoms::enableReceiver_" << std::endl;
     return;
 }
 
 template<typename... Types>
 void ReadPointAtoms::disableReceiver_(Types &... args)
 {
+    std::cout << "Stud for ReadPointAtoms::disableReceiver_" << std::endl;
     return;
 }
 

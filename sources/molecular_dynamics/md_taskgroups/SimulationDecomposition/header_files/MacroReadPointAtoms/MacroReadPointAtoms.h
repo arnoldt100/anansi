@@ -11,6 +11,7 @@
 //--------------------------------------------------------//
 #include <map>
 #include <iostream>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -164,12 +165,14 @@ class MacroReadPointAtoms :  public RECEIVER::ReceiverInterface<MacroReadPointAt
 template<typename... Types>
 void MacroReadPointAtoms::enableReceiver_(Types &... args)
 {
+	std::cout << "Stud for MacroReadPointAtoms::enableReceiver_" << std::endl;
     return;
 }
 
 template<typename... Types>
 void MacroReadPointAtoms::disableReceiver_(Types &... args)
 {
+	std::cout << "Stud for MacroReadPointAtoms::disableReceiver_" << std::endl;
     return;
 }
 
@@ -177,6 +180,38 @@ template<typename... Types>
 void MacroReadPointAtoms::receiverDoAction_(Types & ... args) const
 {
     std::cout << "Stud for MacroReadPointAtoms::receiverDoAction_" << std::endl;
+    // (1) The first step is to read the initial configuration via the
+    //     ReadPointAtoms task. Only the master process reads the initial
+    //     configuration.
+    // (2) Get the results ReadPointAtoms and copy to PointAtomsDecomposer in
+    //     which the atoms are spatially decomposed.
+    // (3) Get the results from PointAtomsDecomposer and communicate, via
+    //     PointAtomsCommunicator, the atoms to the correct spatial domains.
+    // (4) Copy the results from PointAtomsCommunicator back the
+    //     MacroReadPointAtoms.
+    try {
+        // (1) Get the task label for ReadPointAtoms.
+        auto task_1_label = ReadPointAtoms::TASKLABEL;
+        std::vector<std::string> flags;
+        this->componentTasks_.at(task_1_label)->doAction(flags);
+
+        // (2) Get the results of the ReadPointAtoms and copy to PointAtomsDecomposer and
+        //     execute PointAtomsDecomposer.
+        auto task_2_label = PointAtomsDecomposer::TASKLABEL;
+        this->componentTasks_.at(task_2_label)->doAction(flags);
+
+        // (3) Get the results from PointAtomsDecomposer and copy to PointAtomsCommunicator
+        //     and execute PointAtomsCommunicator.
+        auto task_3_label = PointAtomsCommunicator::TASKLABEL;
+        this->componentTasks_.at(task_3_label)->doAction(flags);
+
+        // (4) Get the results from PointAtomsCommunicator and copy results to this MacroReadPointAtoms.
+
+    }
+    catch (const std::exception&) {
+        
+    }
+
     return;
 }
 

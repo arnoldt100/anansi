@@ -148,6 +148,7 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
@@ -156,12 +157,14 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 template<typename... Types>
 void __classname__::enableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = true;
     return;
 }
 
 template<typename... Types>
 void __classname__::disableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = false;
     return;
 }
 

@@ -152,6 +152,7 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         // ====================  DATA MEMBERS  =======================================
         mutable receiver_result_t results_;
+        bool enabledStatus_;
         std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> componentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
@@ -160,12 +161,14 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 template<typename... Types>
 void __classname__::enableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = true;
     return;
 }
 
 template<typename... Types>
 void __classname__::disableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = false;
     return;
 }
 

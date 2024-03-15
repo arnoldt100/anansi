@@ -157,12 +157,14 @@ class PointAtomsDecomposer :  public RECEIVER::ReceiverInterface<PointAtomsDecom
 template<typename... Types>
 void PointAtomsDecomposer::enableReceiver_(Types &... args)
 {
+    std::cout << "Stud for PointAtomsDecomposer::enableReceiver_" << std::endl;
     return;
 }
 
 template<typename... Types>
 void PointAtomsDecomposer::disableReceiver_(Types &... args)
 {
+    std::cout << "Stud for PointAtomsDecomposer::disableReceiver_" << std::endl;
     return;
 }
 

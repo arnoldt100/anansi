@@ -23,6 +23,7 @@ namespace ANANSI {
 __classname__::__classname__() :
     RECEIVER::ReceiverInterface<__classname__>{},
     results_{},
+    enabledStatus_{false},
     componentTasks_{},
     ownershipPolicy_{}
    
@@ -33,6 +34,7 @@ __classname__::__classname__() :
 __classname__::__classname__( __classname__ && other) :
     RECEIVER::ReceiverInterface<__classname__>{std::move(other)},
     results_(std::move(other.results_)),
+    enabledStatus_(std::move(other.enabledStatus_)),
     componentTasks_{std::move(other.componentTasks_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
 {
@@ -60,6 +62,7 @@ __classname__& __classname__::operator= ( __classname__ && other )
     {
         RECEIVER::ReceiverInterface<__classname__>::operator=(std::move(other));
         this->results_ = std::move(other.results_);
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->componentTasks_ = std::move(other.componentTasks_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
