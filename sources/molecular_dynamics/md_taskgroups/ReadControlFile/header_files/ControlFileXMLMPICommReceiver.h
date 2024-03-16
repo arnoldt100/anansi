@@ -139,6 +139,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         ControlFileXMLMPICommReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_ () const;
 
         // ====================  MUTATORS      =======================================
 
@@ -164,6 +165,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
 
         // ====================  DATA MEMBERS  =======================================
 
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
         MyOwnershipPolicy_ ownershipPolicy_;
@@ -216,6 +218,7 @@ void ControlFileXMLMPICommReceiver::receiverUndoAction_(Types & ... args) const
 template<typename... Types>
 void ControlFileXMLMPICommReceiver::enableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = true;
     return;
 }
 
@@ -226,6 +229,7 @@ void ControlFileXMLMPICommReceiver::disableReceiver_(Types &... args)
     {
         this->communicator_->freeCommunicator();
     }
+    this->enabledStatus_ = false;
     return;
 }
 

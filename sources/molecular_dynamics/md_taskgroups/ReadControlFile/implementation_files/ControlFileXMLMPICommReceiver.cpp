@@ -22,6 +22,7 @@ namespace ANANSI {
 
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
     ReceiverInterface<ControlFileXMLMPICommReceiver>(),
+    enabledStatus_{false},
     results_(ReadControlFileResultsTraits::ControlInputFile_t()),
     communicator_(),
     ownershipPolicy_()
@@ -31,6 +32,7 @@ ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
 
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver( ControlFileXMLMPICommReceiver && other) :
     ReceiverInterface<ControlFileXMLMPICommReceiver>(std::move(other)),
+    enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     communicator_(std::move(other.communicator_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_))
@@ -58,6 +60,7 @@ ControlFileXMLMPICommReceiver& ControlFileXMLMPICommReceiver::operator= ( Contro
     if (this != &other)
     {
         ReceiverInterface<ControlFileXMLMPICommReceiver>::operator=(std::move(other));
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->communicator_ = std::move(other.communicator_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
@@ -77,6 +80,11 @@ ControlFileXMLMPICommReceiver::receiver_copy_t_ ControlFileXMLMPICommReceiver::r
 {
     ControlFileXMLMPICommReceiver::receiver_copy_t_ my_copied_result = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_copied_result;
+}
+
+bool ControlFileXMLMPICommReceiver::ifEnabled_ () const
+{
+    return this->enabledStatus_;
 }
 
 //============================= MUTATORS =====================================
