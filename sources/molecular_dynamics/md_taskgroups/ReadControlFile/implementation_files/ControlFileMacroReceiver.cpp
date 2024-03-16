@@ -25,6 +25,7 @@ class AnansiTask;
 
 ControlFileMacroReceiver::ControlFileMacroReceiver() :
     ReceiverInterface<ControlFileMacroReceiver>(),
+    enabledStatus_{false},
     results_(ReadControlFileResultsTraits::ControlInputFile_t()),
     componentTasks_{},
     ownershipPolicy_()
@@ -34,6 +35,7 @@ ControlFileMacroReceiver::ControlFileMacroReceiver() :
 
 ControlFileMacroReceiver::ControlFileMacroReceiver( ControlFileMacroReceiver && other) :
     ReceiverInterface<ControlFileMacroReceiver>(std::move(other)),
+    enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     componentTasks_{std::move(other.componentTasks_)},
     ownershipPolicy_(std::move(other.ownershipPolicy_))
@@ -61,7 +63,10 @@ ControlFileMacroReceiver& ControlFileMacroReceiver::operator= ( ControlFileMacro
     if (this != &other)
     {
         ReceiverInterface<ControlFileMacroReceiver>::operator=(std::move(other));
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
+        this->componentTasks_ = std::move(other.componentTasks_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
 } // assignment-move operator
@@ -78,6 +83,11 @@ ControlFileMacroReceiver::receiver_copy_t_ ControlFileMacroReceiver::receiverGet
 {
     ControlFileMacroReceiver::receiver_copy_t_ my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
+}
+
+bool ControlFileMacroReceiver::ifEnabled_ () const
+{
+    return this->enabledStatus_;
 }
 
 //============================= MUTATORS =====================================

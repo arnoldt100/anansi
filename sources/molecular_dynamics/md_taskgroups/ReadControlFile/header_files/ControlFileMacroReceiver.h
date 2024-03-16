@@ -130,6 +130,7 @@ class ControlFileMacroReceiver : public RECEIVER::ReceiverInterface<ControlFileM
 
         ControlFileMacroReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_ () const;
 
         // ====================  MUTATORS      =======================================
 
@@ -152,6 +153,7 @@ class ControlFileMacroReceiver : public RECEIVER::ReceiverInterface<ControlFileM
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> componentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
@@ -161,12 +163,14 @@ class ControlFileMacroReceiver : public RECEIVER::ReceiverInterface<ControlFileM
 template<typename... Types>
 void ControlFileMacroReceiver::enableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = true;
     return;
 }
 
 template<typename... Types>
 void ControlFileMacroReceiver::disableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = false;
     return;
 }
 
