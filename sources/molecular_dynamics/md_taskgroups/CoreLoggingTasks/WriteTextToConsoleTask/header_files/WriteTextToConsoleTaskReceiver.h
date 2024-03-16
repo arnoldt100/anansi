@@ -187,6 +187,7 @@ void WriteTextToConsoleTaskReceiver::disableReceiver_(Types... args)
 {
     // Disable the communicator.
     this->communicator_->freeCommunicator();
+    this->enabledStatus_ = false;
     return;
 }
 

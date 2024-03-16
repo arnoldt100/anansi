@@ -135,6 +135,8 @@ class MacroReadPointAtoms :  public RECEIVER::ReceiverInterface<MacroReadPointAt
 
         receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_ () const;
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>
@@ -156,6 +158,7 @@ class MacroReadPointAtoms :  public RECEIVER::ReceiverInterface<MacroReadPointAt
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         std::map<ANANSI::TaskLabel, std::shared_ptr<ANANSI::AnansiTask>> componentTasks_;
         MyOwnershipPolicy_ ownershipPolicy_;
@@ -166,6 +169,7 @@ template<typename... Types>
 void MacroReadPointAtoms::enableReceiver_(Types &... args)
 {
 	std::cout << "Stud for MacroReadPointAtoms::enableReceiver_" << std::endl;
+    this->enabledStatus_ = true;
     return;
 }
 
@@ -173,6 +177,7 @@ template<typename... Types>
 void MacroReadPointAtoms::disableReceiver_(Types &... args)
 {
 	std::cout << "Stud for MacroReadPointAtoms::disableReceiver_" << std::endl;
+    this->enabledStatus_ = false;
     return;
 }
 

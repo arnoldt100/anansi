@@ -128,6 +128,8 @@ class PointAtomsDecomposer :  public RECEIVER::ReceiverInterface<PointAtomsDecom
 
         receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_() const;
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>
@@ -149,6 +151,7 @@ class PointAtomsDecomposer :  public RECEIVER::ReceiverInterface<PointAtomsDecom
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
@@ -158,6 +161,7 @@ template<typename... Types>
 void PointAtomsDecomposer::enableReceiver_(Types &... args)
 {
     std::cout << "Stud for PointAtomsDecomposer::enableReceiver_" << std::endl;
+    this->enabledStatus_ = true;
     return;
 }
 
@@ -165,6 +169,7 @@ template<typename... Types>
 void PointAtomsDecomposer::disableReceiver_(Types &... args)
 {
     std::cout << "Stud for PointAtomsDecomposer::disableReceiver_" << std::endl;
+    this->enabledStatus_ = false;
     return;
 }
 

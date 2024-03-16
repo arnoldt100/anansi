@@ -22,6 +22,7 @@ namespace ANANSI {
 
 MacroReadPointAtoms::MacroReadPointAtoms() :
     RECEIVER::ReceiverInterface<MacroReadPointAtoms>{},
+    enabledStatus_{false},
     results_{MacroReadPointAtomsResultsTraits::Atoms_t()},
     componentTasks_{},
     ownershipPolicy_{}
@@ -32,6 +33,7 @@ MacroReadPointAtoms::MacroReadPointAtoms() :
 
 MacroReadPointAtoms::MacroReadPointAtoms( MacroReadPointAtoms && other) :
     RECEIVER::ReceiverInterface<MacroReadPointAtoms>{std::move(other)},
+    enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     componentTasks_{std::move(other.componentTasks_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
@@ -59,6 +61,7 @@ MacroReadPointAtoms& MacroReadPointAtoms::operator= ( MacroReadPointAtoms && oth
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<MacroReadPointAtoms>::operator=(std::move(other));
+        this->enabledStatus_ = {std::move(other.enabledStatus_)};
         this->results_ = std::move(other.results_);
         this->componentTasks_ = std::move(other.componentTasks_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
@@ -78,6 +81,11 @@ MacroReadPointAtoms::receiver_copy_t_ MacroReadPointAtoms::receiverGetCopyOfResu
 {
     MacroReadPointAtoms::receiver_copy_t_ my_copied_result  = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_copied_result;
+}
+
+bool MacroReadPointAtoms::ifEnabled_ () const
+{
+    return this->enabledStatus_;
 }
 
 //============================= MUTATORS =====================================

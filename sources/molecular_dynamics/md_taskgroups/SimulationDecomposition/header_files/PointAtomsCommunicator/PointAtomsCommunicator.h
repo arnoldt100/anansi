@@ -129,6 +129,8 @@ class PointAtomsCommunicator :  public RECEIVER::ReceiverInterface<PointAtomsCom
 
         receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_() const;
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>
@@ -150,6 +152,7 @@ class PointAtomsCommunicator :  public RECEIVER::ReceiverInterface<PointAtomsCom
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
         MyOwnershipPolicy_ ownershipPolicy_;
@@ -160,6 +163,7 @@ template<typename... Types>
 void PointAtomsCommunicator::enableReceiver_(Types &... args)
 {
     std::cout << "Stud for PointAtomsCommunicator::enableReceiver_" << std::endl;
+    this->enabledStatus_ = true;
     return;
 }
 
@@ -167,6 +171,7 @@ template<typename... Types>
 void PointAtomsCommunicator::disableReceiver_(Types &... args)
 {
     std::cout << "Stud for PointAtomsCommunicator::disableReceiver_" << std::endl;
+    this->enabledStatus_ = false;
     return;
 }
 

@@ -25,6 +25,7 @@ namespace ANANSI {
 
 PointAtomsCommunicator::PointAtomsCommunicator() :
     RECEIVER::ReceiverInterface<PointAtomsCommunicator>{},
+    enabledStatus_{false},
     results_{PointAtomsCommunicatorResultsTraits::Atoms_t()},
     communicator_{},
     ownershipPolicy_{}
@@ -34,6 +35,7 @@ PointAtomsCommunicator::PointAtomsCommunicator() :
 
 PointAtomsCommunicator::PointAtomsCommunicator( PointAtomsCommunicator && other) :
     RECEIVER::ReceiverInterface<PointAtomsCommunicator>{std::move(other)},
+    enabledStatus_{std::move(other.enabledStatus_)},
     results_{std::move(other.results_)},
     communicator_{std::move(other.communicator_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
@@ -62,6 +64,7 @@ PointAtomsCommunicator& PointAtomsCommunicator::operator= ( PointAtomsCommunicat
     {
         RECEIVER::ReceiverInterface<PointAtomsCommunicator>::operator=(std::move(other));
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
+        this->enabledStatus_ = std::move(other.enabledStatus_),
         this->results_ = std::move(other.results_);
     }
     return *this;
@@ -81,6 +84,10 @@ PointAtomsCommunicator::receiver_copy_t_ PointAtomsCommunicator::receiverGetCopy
     return my_copied_result;
 }
 
+bool PointAtomsCommunicator::ifEnabled_() const
+{
+    return this->enabledStatus_;
+}
 //============================= MUTATORS =====================================
 
 template<>

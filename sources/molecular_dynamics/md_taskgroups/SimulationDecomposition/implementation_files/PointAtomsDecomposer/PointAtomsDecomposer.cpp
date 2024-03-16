@@ -22,6 +22,7 @@ namespace ANANSI {
 
 PointAtomsDecomposer::PointAtomsDecomposer() :
     RECEIVER::ReceiverInterface<PointAtomsDecomposer>{},
+    enabledStatus_{false},
     results_{PointAtomsDecomposerResultsTraits::Atoms_t()},
     ownershipPolicy_{}
 {
@@ -30,6 +31,7 @@ PointAtomsDecomposer::PointAtomsDecomposer() :
 
 PointAtomsDecomposer::PointAtomsDecomposer( PointAtomsDecomposer && other) :
     RECEIVER::ReceiverInterface<PointAtomsDecomposer>{std::move(other)},
+    enabledStatus_{std::move(other.enabledStatus_)},
     results_{std::move(other.results_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
 {
@@ -57,6 +59,7 @@ PointAtomsDecomposer& PointAtomsDecomposer::operator= ( PointAtomsDecomposer && 
     {
         RECEIVER::ReceiverInterface<PointAtomsDecomposer>::operator=(std::move(other));
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
+        this->enabledStatus_ = std::move(other.enabledStatus_),
         this->results_ = std::move(other.results_);
     }
     return *this;
@@ -74,6 +77,11 @@ PointAtomsDecomposer::receiver_copy_t_ PointAtomsDecomposer::receiverGetCopyOfRe
 {
     PointAtomsDecomposer::receiver_copy_t_ my_copied_result  = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_copied_result;
+}
+
+bool PointAtomsDecomposer::ifEnabled_() const
+{
+    return this->enabledStatus_;
 }
 
 //============================= MUTATORS =====================================
