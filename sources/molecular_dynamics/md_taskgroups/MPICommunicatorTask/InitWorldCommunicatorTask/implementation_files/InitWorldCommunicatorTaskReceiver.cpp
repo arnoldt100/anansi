@@ -23,16 +23,18 @@ namespace ANANSI {
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver() :
     RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(),
-    ownershipPolicy_(),
-    results_(nullptr)
+    enabledStatus_{false},
+    results_(nullptr),
+    ownershipPolicy_()
 {
     return;
 }
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldCommunicatorTaskReceiver && other) :
     RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(std::move(other)),
-    ownershipPolicy_(std::move(other.ownershipPolicy_)),
-    results_(std::move(other.results_))
+    enabledStatus_{std::move(other.enabledStatus_)},
+    results_(std::move(other.results_)),
+    ownershipPolicy_(std::move(other.ownershipPolicy_))
 {
     if (this != &other)
     {
@@ -58,6 +60,7 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(std::move(other));
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->results_ = std::move(other.results_);
     }
@@ -76,6 +79,11 @@ InitWorldCommunicatorTaskReceiver::receiver_copy_t_ InitWorldCommunicatorTaskRec
 {
     InitWorldCommunicatorTaskReceiver::receiver_copy_t_  my_copied_result = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_copied_result;
+}
+
+bool InitWorldCommunicatorTaskReceiver::ifEnabled_ () const
+{
+    return this->enabledStatus_;
 }
 
 //============================= MUTATORS =====================================

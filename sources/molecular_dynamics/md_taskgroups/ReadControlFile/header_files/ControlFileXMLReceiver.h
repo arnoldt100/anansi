@@ -141,6 +141,8 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 
         ControlFileXMLReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_ () const;
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>
@@ -164,6 +166,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
         
@@ -171,12 +174,14 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
 template<typename... Types>
 void ControlFileXMLReceiver::enableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = true;
     return;
 }
 
 template<typename... Types>
 void ControlFileXMLReceiver::disableReceiver_(Types &... args)
 {
+    this->enabledStatus_ = false;
     return;
 }
 

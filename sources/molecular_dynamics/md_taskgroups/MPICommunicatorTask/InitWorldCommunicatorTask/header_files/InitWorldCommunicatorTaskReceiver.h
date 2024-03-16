@@ -138,6 +138,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         receiver_copy_t_  receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_ () const;
 
         // ====================  MUTATORS      =======================================
 
@@ -164,6 +165,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
@@ -186,6 +188,7 @@ void InitWorldCommunicatorTaskReceiver::receiverUndoAction_(Types &... args) con
 template<typename... Types>
 void InitWorldCommunicatorTaskReceiver::enableReceiver_(Types &...  args)
 {
+    this->enabledStatus_ = true;
     return;
 }
 
@@ -194,6 +197,7 @@ void InitWorldCommunicatorTaskReceiver::disableReceiver_(Types &...  args)
 {
     this->results_->freeCommunicator();
     this->results_.reset();
+    this->enabledStatus_ = false;
     return;
 }
 

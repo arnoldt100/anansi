@@ -24,6 +24,7 @@ ControlFileXMLReceiver::ControlFileXMLReceiver() :
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
     commandFileName_(),
     masterProcess_(),
+    enabledStatus_{false},
     results_(ReadControlFileResultsTraits::ControlInputFile_t()),
     ownershipPolicy_()
 {
@@ -34,6 +35,7 @@ ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver && other)
     RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(std::move(other)),
     commandFileName_(std::move(other.commandFileName_)),
     masterProcess_(std::move(other.masterProcess_)),
+    enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_))
 {
@@ -62,6 +64,7 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
         ReceiverInterface<ControlFileXMLReceiver>::operator=(std::move(other));
         this->commandFileName_ = std::move(other.commandFileName_);
         this->masterProcess_ = std::move(other.masterProcess_);
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
@@ -80,6 +83,11 @@ ControlFileXMLReceiver::receiver_copy_t_ ControlFileXMLReceiver::receiverGetCopy
 {
     ControlFileXMLReceiver::receiver_copy_t_ my_ptr = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
+}
+
+bool ControlFileXMLReceiver::ifEnabled_ () const
+{
+    return this->enabledStatus_;
 }
 
 //============================= MUTATORS =====================================
