@@ -58,9 +58,9 @@ ReadPointAtoms& ReadPointAtoms::operator= ( ReadPointAtoms && other )
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<ReadPointAtoms>::operator=(std::move(other));
-        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
 } // assignment-move operator

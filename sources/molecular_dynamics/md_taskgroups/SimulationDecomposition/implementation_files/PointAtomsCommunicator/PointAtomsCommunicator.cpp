@@ -63,9 +63,10 @@ PointAtomsCommunicator& PointAtomsCommunicator::operator= ( PointAtomsCommunicat
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<PointAtomsCommunicator>::operator=(std::move(other));
-        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
-        this->enabledStatus_ = std::move(other.enabledStatus_),
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
+        this->communicator_ = std::move(other.communicator_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
 } // assignment-move operator

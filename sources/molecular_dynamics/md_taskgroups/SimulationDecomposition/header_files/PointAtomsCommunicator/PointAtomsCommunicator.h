@@ -171,6 +171,7 @@ template<typename... Types>
 void PointAtomsCommunicator::disableReceiver_(Types &... args)
 {
     std::cout << "Stud for PointAtomsCommunicator::disableReceiver_" << std::endl;
+    this->communicator_->freeCommunicator();
     this->enabledStatus_ = false;
     return;
 }

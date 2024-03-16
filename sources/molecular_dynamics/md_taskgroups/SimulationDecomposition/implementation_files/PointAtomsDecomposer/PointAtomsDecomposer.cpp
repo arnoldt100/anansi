@@ -58,9 +58,9 @@ PointAtomsDecomposer& PointAtomsDecomposer::operator= ( PointAtomsDecomposer && 
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<PointAtomsDecomposer>::operator=(std::move(other));
-        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
-        this->enabledStatus_ = std::move(other.enabledStatus_),
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
+        this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
     }
     return *this;
 } // assignment-move operator
