@@ -128,6 +128,8 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
 
         WriteTextToConsoleTaskReceiver::receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_() const;
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>
@@ -150,6 +152,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         mutable std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
 	    mutable std::unique_ptr<ConsoleMessageContainer> messageContainer_;
@@ -175,6 +178,7 @@ void WriteTextToConsoleTaskReceiver::receiverUndoAction_(Types & ... args) const
 template<typename... Types>
 void WriteTextToConsoleTaskReceiver::enableReceiver_(Types & ... args)
 {
+    this->enabledStatus_ = true;
     return;
 }
 

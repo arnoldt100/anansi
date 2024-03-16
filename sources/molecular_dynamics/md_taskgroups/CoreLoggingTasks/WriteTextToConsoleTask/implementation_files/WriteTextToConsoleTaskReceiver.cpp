@@ -22,6 +22,7 @@ namespace ANANSI {
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
+    enabledStatus_{false},
     results_(0),
     communicator_(nullptr),
     messageContainer_(),
@@ -32,6 +33,7 @@ WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
     RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
+    enabledStatus_{other.enabledStatus_},
     results_(0),
     communicator_(std::move(other.communicator_)),
     messageContainer_(std::move(other.messageContainer_)),
@@ -60,6 +62,7 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
     if (this != &other)
     {
         RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(std::move(other));
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->communicator_ = std::move(other.communicator_);
@@ -81,6 +84,11 @@ WriteTextToConsoleTaskReceiver::receiver_copy_t_ WriteTextToConsoleTaskReceiver:
     WriteTextToConsoleTaskReceiver::receiver_copy_t_ my_ptr =
         this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_ptr;
+}
+
+bool WriteTextToConsoleTaskReceiver::ifEnabled_() const
+{
+    return this->enabledStatus_;
 }
 
 //============================= MUTATORS =====================================

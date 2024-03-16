@@ -82,9 +82,8 @@ class ReceiverInterface
                 template<typename... Types>
                 static bool if_enabled(const Derived & derived, Types... args)
                 {
-                    // void (Derived::*fn)(Types... args) const = &Accessor_::if_enabled_;
-                    // return (derived.*fn)(args...);
-                    return true;
+                    bool (Derived::*fn)(Types... args) const = &Accessor_::ifEnabled_;
+                    return (derived.*fn)(args...);
                 }
 
                 template<typename... Types>
