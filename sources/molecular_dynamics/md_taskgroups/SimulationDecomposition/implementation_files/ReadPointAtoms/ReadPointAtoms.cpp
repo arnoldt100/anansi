@@ -22,6 +22,7 @@ namespace ANANSI {
 
 ReadPointAtoms::ReadPointAtoms() :
     RECEIVER::ReceiverInterface<ReadPointAtoms>{},
+    enabledStatus_{false},
     results_{ReadPointAtomsResultsTraits::Atoms_t()},
     ownershipPolicy_{}
 {
@@ -30,6 +31,7 @@ ReadPointAtoms::ReadPointAtoms() :
 
 ReadPointAtoms::ReadPointAtoms( ReadPointAtoms && other) :
     RECEIVER::ReceiverInterface<ReadPointAtoms>{std::move(other)},
+    enabledStatus_{std::move(other.enabledStatus_)},
     results_{std::move(other.results_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
 {
@@ -57,6 +59,7 @@ ReadPointAtoms& ReadPointAtoms::operator= ( ReadPointAtoms && other )
     {
         RECEIVER::ReceiverInterface<ReadPointAtoms>::operator=(std::move(other));
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
     }
     return *this;
@@ -74,6 +77,11 @@ ReadPointAtoms::receiver_copy_t_ ReadPointAtoms::receiverGetCopyOfResults_() con
 {
     ReadPointAtoms::receiver_copy_t_ my_copied_result  = this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_copied_result;
+}
+
+bool ReadPointAtoms::ifEnabled_ () const
+{
+    return this->enabledStatus_;
 }
 
 //============================= MUTATORS =====================================

@@ -121,6 +121,8 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 
         receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_ () const;
+
         // ====================  MUTATORS      =======================================
         template<typename... Types>
         void enableReceiver_(Types &... args);
@@ -141,6 +143,7 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
         mutable std::shared_ptr<ANANSI::MPIEnvironment> mpiEnvironment_;
@@ -150,6 +153,7 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
 template<typename... Types>
 void InitMPIEnvTaskReceiver::enableReceiver_(Types &...  args)
 {
+    this->enabledStatus_ = true;
     return;
 }
 
@@ -157,6 +161,7 @@ template<typename... Types>
 void InitMPIEnvTaskReceiver::disableReceiver_(Types &...  args)
 {
     this->mpiEnvironment_->disableEnvironment();
+    this->enabledStatus_ = false;
     return;
 }
 

@@ -127,6 +127,8 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
 
         receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_ () const;
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>
@@ -148,6 +150,7 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
@@ -157,6 +160,7 @@ template<typename... Types>
 void ReadPointAtoms::enableReceiver_(Types &... args)
 {
     std::cout << "Stud for ReadPointAtoms::enableReceiver_" << std::endl;
+    this->enabledStatus_ = true;
     return;
 }
 
@@ -164,6 +168,7 @@ template<typename... Types>
 void ReadPointAtoms::disableReceiver_(Types &... args)
 {
     std::cout << "Stud for ReadPointAtoms::disableReceiver_" << std::endl;
+    this->enabledStatus_ = false;
     return;
 }
 

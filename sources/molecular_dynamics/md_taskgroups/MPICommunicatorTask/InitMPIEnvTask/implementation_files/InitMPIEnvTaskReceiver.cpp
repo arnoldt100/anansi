@@ -22,6 +22,7 @@ namespace ANANSI {
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
     RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>(),
+    enabledStatus_{false},
     results_(0),
     ownershipPolicy_(),
     mpiEnvironment_(nullptr)
@@ -31,6 +32,7 @@ InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver && other) :
     RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>(std::move(other)),
+    enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_)),
     mpiEnvironment_(std::move(other.mpiEnvironment_))
@@ -58,6 +60,7 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
     if (this != &other)
     {
         ReceiverInterface<InitMPIEnvTaskReceiver>::operator=(std::move(other));
+        this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->mpiEnvironment_ = std::move(other.mpiEnvironment_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
@@ -78,6 +81,11 @@ InitMPIEnvTaskReceiver::receiver_copy_t_ InitMPIEnvTaskReceiver::receiverGetCopy
     InitMPIEnvTaskReceiver::receiver_copy_t_  my_copied_result =
         this->ownershipPolicy_.copyReceiverResult(this->results_);
     return my_copied_result;
+}
+
+bool InitMPIEnvTaskReceiver::ifEnabled_ () const
+{
+    return this->enabledStatus_;
 }
 
 
