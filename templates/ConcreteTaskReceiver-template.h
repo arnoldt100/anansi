@@ -127,6 +127,9 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
 
         receiver_copy_t_ receiverGetCopyOfResults_() const;
 
+        bool ifEnabled_ () const;
+
+
         // ====================  MUTATORS      =======================================
 
         template<typename... Types>

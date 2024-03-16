@@ -83,6 +83,12 @@ __classname__::receiver_copy_t_ __classname__::receiverGetCopyOfResults_() const
     return my_copied_result;
 }
 
+
+bool __classname__::ifEnabled_ () const
+{
+    return this->enabledStatus_;
+}
+
 //============================= MUTATORS =====================================
 
 template<>
