@@ -136,24 +136,19 @@ AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // Setup all tasks/recievers for the communication environment invoker.
+    // Setup all tasks/recievers for the communication 
+    // environment invoker.
     //
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     setup_mpi_communication_environment_invoker(this->mdCommEnvInvk_,
                                                 this->commandLineArguments_);
 
     // ---------------------------------------------------
-    // Enable all tasks.
+    // Do task that will set up communication runtime environment.
     //
     // ---------------------------------------------------
     const std::vector<ANANSI::TaskLabel> command_labels = 
         {ANANSI::InitMPIEnvTaskReceiver::TASKLABEL};
-    this->mdCommEnvInvk_->enableTask(command_labels);
-
-    // ---------------------------------------------------
-    // Do task that will set up communication runtime environment.
-    //
-    // ---------------------------------------------------
     this->mdCommEnvInvk_->doTask(command_labels);
 
     return;
@@ -183,17 +178,11 @@ AnansiMolecularDynamics::enableWorldCommunicator()
     setup_mpi_world_communicator_invoker(mdWorldCommunicatorInvk_);
 
     // ---------------------------------------------------
-    // Enable all tasks.
+    // Do task that will create a world communicator.
     //
     // ---------------------------------------------------
-    const std::vector<ANANSI::TaskLabel> command_labels =
+    const std::vector command_labels =
         {ANANSI::InitWorldCommunicatorTaskReceiver::TASKLABEL};
-    this->mdWorldCommunicatorInvk_->enableTask(command_labels);
-    
-    // ---------------------------------------------------
-    // Do task that will set up world communicator.
-    //
-    // ---------------------------------------------------
     this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
     return;

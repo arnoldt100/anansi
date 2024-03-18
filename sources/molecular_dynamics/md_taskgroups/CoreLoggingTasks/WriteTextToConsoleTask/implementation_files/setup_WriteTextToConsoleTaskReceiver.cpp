@@ -74,7 +74,16 @@ void setup_WriteTextToConsoleTaskReceiver (std::shared_ptr<ANANSI::GenericTaskIn
     //
     // ---------------------------------------------------
     core_logging_invoker->addTask(task_label,my_task);
-    
+
+    // ---------------------------------------------------
+    // Now enable the task.
+    //
+    // ---------------------------------------------------
+    const std::vector<
+    std::remove_const<decltype(task_label)>::type
+    > command_labels = {task_label};
+    core_logging_invoker->enableTask(command_labels);
+
     // ---------------------------------------------------
     // Log to console that the Console Logger is enabled.
     //
@@ -85,9 +94,6 @@ void setup_WriteTextToConsoleTaskReceiver (std::shared_ptr<ANANSI::GenericTaskIn
  
     core_logging_invoker->modifyTask<task_label>(message_packet);
  
-    const std::vector<
-    std::remove_const<decltype(task_label)>::type
-    > command_labels = {task_label};
     core_logging_invoker->doTask(command_labels);
  
     return ;
