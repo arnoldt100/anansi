@@ -43,7 +43,7 @@
     get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_receiver_include receiver receiver_include)
     get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
-
+    get_target_property(my_debugging_utilities_include  debugging_utilities  debugging_utilities_include) 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -73,7 +73,8 @@
         header_files/GenericTaskInvokerUtilities.hpp
         header_files/GenericTaskUtilities.hpp
         header_files/ReceiverTypeUtilities.hpp
-        header_files/GenericTaskInvokerFactory.hpp )
+        header_files/GenericTaskInvokerFactory.hpp
+        header_files/ErrorGenericTaskInvoker.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -87,7 +88,8 @@
          implementation_files/GenericTaskUtilities.cpp
          implementation_files/ReceiverTypeUtilities.cpp
          implementation_files/GenericTaskInvokerUtilities.cpp
-         implementation_files/GenericTaskInvokerFactory.cpp )
+         implementation_files/GenericTaskInvokerFactory.cpp 
+         implementation_files/ErrorGenericTaskInvoker.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -119,9 +121,11 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PUBLIC ${my_debugging_utilities_include}
                            PRIVATE ${my_tasks_include}
                            PRIVATE ${my_receiver_include}
-                           PRIVATE ${my_typelist_aliases_include})
+                           PRIVATE ${my_typelist_aliases_include}
+                           )
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
@@ -130,6 +134,7 @@ target_include_directories(${target}
 target_link_libraries( ${target}
                        PUBLIC tasks
                        PUBLIC receiver
+                       PUBLIC debugging_utilities
                        PUBLIC typelist_aliases )
 
 

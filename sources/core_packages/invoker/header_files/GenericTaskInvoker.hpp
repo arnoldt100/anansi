@@ -19,6 +19,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GenericErrorClass.hpp"
+#include "ErrorGenericTaskInvoker.h"
 #include "AnansiTask.h"
 #include "GenericTaskUtilities.hpp"
 #include "MPLAliases.hpp"
