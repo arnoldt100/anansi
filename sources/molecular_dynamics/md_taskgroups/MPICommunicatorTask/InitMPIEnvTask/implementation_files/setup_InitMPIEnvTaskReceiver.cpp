@@ -65,17 +65,17 @@ void setup_InitMPIEnvTaskReceiver(std::shared_ptr<ANANSI::GenericTaskInvoker<Ini
         conrete_task_factory->create_shared_ptr<base_receiver_t>(my_receiver);
 
     // ---------------------------------------------------
+    // Add the task object/command to the invoker.
+    //
+    // ---------------------------------------------------
+    mpi_comm_invoker->addTask(task_label,my_task);
+
+    // ---------------------------------------------------
     // Now enable the task
     //
     // ---------------------------------------------------
     const std::vector command_labels = {task_label};
     mpi_comm_invoker->enableTask(command_labels);
-
-    // ---------------------------------------------------
-    // Add the task object/command to the invoker.
-    //
-    // ---------------------------------------------------
-    mpi_comm_invoker->addTask(task_label,my_task);
 
     return ;
 }   // -----  end of function setup_InitMPIEnvTaskReceiver

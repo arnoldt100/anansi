@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <cassert>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -273,6 +274,21 @@ class GenericTaskInvoker
         using abstract_products_ = AbstractProductsTypeList;
 
         using concrete_products_ = ConcreteTasksTypeList;
+
+        // ====================  ACCESSORS       =======================================
+        
+        //! \brief Verifies that the tasks exists.
+        //! \details If the tasks doesn't exist that an assertion is raised.
+        std::shared_ptr<ANANSI::AnansiTask> verfyTaskExists_(const LABEL_t & command_label) const
+        {
+            if ( not this->commandSlots_.contains(command_label) )
+            {
+                std::string message;
+                message += "The invoker doesn't contain the following key: ";
+                message += std::string(command_label);
+            }
+        }
+
 
         // ====================  MUTATORS      =======================================
 
