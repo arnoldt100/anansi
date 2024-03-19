@@ -288,6 +288,7 @@ class GenericTaskInvoker
                 std::string message;
                 message += "The invoker doesn't contain the following key: ";
                 message += std::string(command_label);
+                throw MOUSEION::GenericErrorClass<ErrorGenericTaskInvoker>(message);
             }
         }
 
