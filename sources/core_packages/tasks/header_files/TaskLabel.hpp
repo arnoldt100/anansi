@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <iostream>
 #include <cstring>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -51,6 +52,10 @@ class TaskLabel
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
+        std::string operator()() const
+        {
+            return std::string{this->value_};
+        }
 
         // ====================  RELATIONSHIP OPERATORS ==============================
         constexpr bool operator<(TaskLabel const &rhs) const

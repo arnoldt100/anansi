@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MDInitSimEnvVisitor.h"
+#include "GenericErrorClass.hpp"
 
 namespace ANANSI {
 
@@ -60,26 +61,34 @@ void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     std::cout << "MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
 
-    // ---------------------------------------------------
-    // The communication environment must be first enabled for many other tasks
-    // are dependent on the communication environment.  
-    // ---------------------------------------------------
-    a_sim.enableCommunicationEnvironment();
-    
-    // ---------------------------------------------------
-    // The next step is to enable the world communicator.
-    // ---------------------------------------------------
-    a_sim.enableWorldCommunicator();
+    try
+    {
+        // ---------------------------------------------------
+        // The communication environment must be first enabled for many other tasks
+        // are dependent on the communication environment.  
+        // ---------------------------------------------------
+        a_sim.enableCommunicationEnvironment();
+        
+        // ---------------------------------------------------
+        // The next step is to enable the world communicator.
+        // ---------------------------------------------------
+        a_sim.enableWorldCommunicator();
 
-    // ---------------------------------------------------
-    // The next step is to enabke the core logger.
-    // ---------------------------------------------------
-    a_sim.enableCoreLoggingTasks();
+        // ---------------------------------------------------
+        // The next step is to enabke the core logger.
+        // ---------------------------------------------------
+        a_sim.enableCoreLoggingTasks();
 
-    // ---------------------------------------------------
-    // The next step is to enable the control file tasks.
-    // ---------------------------------------------------
-    a_sim.enableControlFileTasks();
+        // ---------------------------------------------------
+        // The next step is to enable the control file tasks.
+        // ---------------------------------------------------
+        a_sim.enableControlFileTasks();
+    }
+    catch (const MOUSEION::GenericErrorClass<ErrorGenericTaskInvoker> & my_error )
+    {
+    	  std::string message{my_error.what()};
+        throw MOUSEION::GenericErrorClass<AnansiMolecularDynamics>(message);
+    };
 
     return;
 }

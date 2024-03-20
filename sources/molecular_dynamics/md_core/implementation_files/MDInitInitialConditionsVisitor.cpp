@@ -72,7 +72,7 @@ void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
     }
     catch (const MOUSEION::GenericErrorClass<SimulationDecompositionParameters> & my_error) 
     {
-    	std::string message{my_error.what()};
+    	  std::string message{my_error.what()};
         throw MOUSEION::GenericErrorClass<AnansiMolecularDynamics>(message);
     }
 

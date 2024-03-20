@@ -11,6 +11,7 @@
 #include <vector>
 #include <utility>
 #include <cassert>
+#include <cstring>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -100,6 +101,7 @@ class GenericTaskInvoker
             const std::vector<std::string> flags = {"default"};
             for (auto & key : command_keys)
             {
+                this->verfyTaskExists_(key);
                 (this->commandSlots_.at(key))->doAction(flags);
             }
             return;
@@ -111,6 +113,7 @@ class GenericTaskInvoker
             const std::vector<std::string> flags = {"default"};
             for (auto key : command_keys)
             {
+                this->verfyTaskExists_(key);
                 (this->commandSlots_.at(key))->undoAction(flags);
             }
             return;
@@ -122,6 +125,7 @@ class GenericTaskInvoker
             const std::vector<std::string> flags = {"default"};
             for (auto key : command_keys)
             {
+                this->verfyTaskExists_(key);
                 (this->commandSlots_.at(key))->enableTask(flags);
             }
             return;
@@ -132,6 +136,7 @@ class GenericTaskInvoker
             const std::vector<std::string> flags = {"default"};
             for (auto key : command_keys)
             {
+                this->verfyTaskExists_(key);
                 (this->commandSlots_.at(key))->disableTask(flags);
             }
             return;
@@ -149,6 +154,8 @@ class GenericTaskInvoker
         {
 
             verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+
+            this->verfyTaskExists_(COMMAND_LABEL);
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
@@ -170,6 +177,7 @@ class GenericTaskInvoker
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
+            this->verfyTaskExists_(COMMAND_LABEL);
             auto results = getCopyOfTaskReceiverResults<ConcreteTasksTypeList,
                                                         LABEL_t,     
                                                         COMMAND_LABEL>(task);
@@ -184,6 +192,8 @@ class GenericTaskInvoker
         shareTaskResults()
         {
             verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+
+            this->verfyTaskExists_(COMMAND_LABEL);
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
@@ -203,6 +213,8 @@ class GenericTaskInvoker
         {
             verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
 
+            this->verfyTaskExists_(COMMAND_LABEL);
+
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
             auto results = transferTaskReceiverResults<ConcreteTasksTypeList,
@@ -216,6 +228,8 @@ class GenericTaskInvoker
         auto getHandleToTask()
         {
             verifyConcreteProductInTypeList<ConcreteTasksTypeList,COMMAND_LABEL>();
+
+            this->verfyTaskExists_(COMMAND_LABEL);
 
             std::shared_ptr<ANANSI::AnansiTask> & task = this->commandSlots_.at(COMMAND_LABEL);
 
@@ -280,14 +294,15 @@ class GenericTaskInvoker
         // ====================  ACCESSORS       =======================================
         
         //! \brief Verifies that the tasks exists.
-        //! \details If the tasks doesn't exist that an assertion is raised.
-        std::shared_ptr<ANANSI::AnansiTask> verfyTaskExists_(const LABEL_t & command_label) const
+        //! \details If the tasks doesn't exist that an error is raised.
+        void verfyTaskExists_(const LABEL_t & command_label) const
         {
             if ( not this->commandSlots_.contains(command_label) )
             {
                 std::string message;
                 message += "The invoker doesn't contain the following key: ";
-                message += std::string(command_label);
+                const std::string key = command_label();
+                message += key;
                 throw MOUSEION::GenericErrorClass<ErrorGenericTaskInvoker>(message);
             }
         }
