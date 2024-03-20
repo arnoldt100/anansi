@@ -83,6 +83,10 @@ class SimulationDecompositionParameters
         //! \brief The cloning function.
         SimulationDecompositionParameters * clone () const;
 
+        std::string getProccesorTopologyLattaiceType() const;
+
+        std::array<std::size_t,3> getProccesorTopology() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

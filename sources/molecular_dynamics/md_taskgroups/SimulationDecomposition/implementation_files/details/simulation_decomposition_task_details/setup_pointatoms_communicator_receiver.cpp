@@ -15,6 +15,7 @@
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
 #include "create_rectangular_communicator.h"
+#include "sdp_create_communicator_embryo.hpp"
 
 namespace ANANSI
 {
@@ -61,8 +62,7 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // Modify the receiver 
     //
     // ---------------------------------------------------
-    // To do is modify the receiver.
-    // COMMUNICATOR::create_rectangular_communicator();
+    auto communicator_embryo = COMMUNICATOR::create_communicator_embryo(work_load_parameters);
 
     // ---------------------------------------------------
     // Create task object and bind the receiver to the task object.

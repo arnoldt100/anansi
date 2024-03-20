@@ -129,6 +129,22 @@ SimulationDecompositionParameters * SimulationDecompositionParameters::clone() c
     return new SimulationDecompositionParameters(*this);
 }
 
+std::string SimulationDecompositionParameters::getProccesorTopologyLattaiceType() const
+{
+    return this->processorTopologyLatticeType_;
+}
+
+std::array<std::size_t,3> SimulationDecompositionParameters::getProccesorTopology() const
+{
+    std::array<std::size_t,3> value{{1,1,1}};
+    std::size_t indx = 0;
+    for (const auto nm : this->processorTopologySpatialDecomposition_)
+    {
+        value[indx] = static_cast<std::size_t>(nm);
+        ++indx;
+    }
+    return value;
+}
 //============================= STATIC    ====================================
 
 //============================= MUTATORS =====================================
