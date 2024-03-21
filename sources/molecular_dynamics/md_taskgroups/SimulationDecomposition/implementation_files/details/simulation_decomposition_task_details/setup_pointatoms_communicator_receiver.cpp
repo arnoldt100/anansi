@@ -14,7 +14,6 @@
 #include "setup_pointatoms_communicator_receiver.h"
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
-#include "create_rectangular_communicator.h"
 #include "sdp_create_communicator_embryo.hpp"
 #include "MPICommunicatorFactory.h"
 
