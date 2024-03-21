@@ -70,6 +70,9 @@ private:
      std::unique_ptr<COMMUNICATOR::Communicator>
      cloneCommunicator_(std::shared_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
 
+     std::unique_ptr<COMMUNICATOR::Communicator>
+     createCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
+
     //===== MUTATORS =======
 
     //===== OPERATORS ======

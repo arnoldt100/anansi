@@ -116,6 +116,13 @@ MPICommunicatorFactory::cloneCommunicator_(std::shared_ptr<COMMUNICATOR::Communi
     return aMPICommunicator;
 }
 
+std::unique_ptr<COMMUNICATOR::Communicator> 
+MPICommunicatorFactory::createCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & otherCommunicator) const
+{
+    auto tmp_mpicommunicator = std::move(otherCommunicator->duplicateCommunicator());
+    std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator(tmp_mpicommunicator);
+    return aMPICommunicator;
+}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

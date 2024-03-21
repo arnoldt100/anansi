@@ -51,7 +51,7 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_debugging_utilities_include  debugging_utilities  debugging_utilities_include  )  
-    get_target_property(my_comm_include  communicator communicator_include)
+    get_target_property(my_comm_include communicator communicator_include)
     get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_physical_data_structures_include  physical_data_structures physical_data_structures_include)
@@ -276,7 +276,8 @@ target_include_directories(${target}
                            PRIVATE "${my_generic_abstract_factory_include}"
                            PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
-                           PRIVATE "${my_comm_include}" )
+                           PRIVATE "${my_comm_include}"
+                           PRIVATE "${my_mpi_communicator_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -285,7 +286,6 @@ target_include_directories(${target}
 target_link_libraries(${target}
                       PUBLIC communicator
                       PUBLIC physical_data_structures
-                      PUBLIC mpi_communicator
                       PUBLIC generic_abstract_factory
                       PUBLIC genericmdtask
                       PUBLIC common_md_taskgroup_headers
