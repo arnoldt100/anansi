@@ -50,7 +50,8 @@ std::string MPICommunicator::HOSTNAME_NOT_DEFINED("Hostname not defined");
 MPICommunicator::MPICommunicator() : 
     Communicator(),
     _mpiCommunicator(MPI_COMM_NULL),
-    _hostname(MPICommunicator::HOSTNAME_NOT_DEFINED)
+    _hostname(MPICommunicator::HOSTNAME_NOT_DEFINED),
+    communicatorName_{}
 {
     return;
 }
@@ -64,10 +65,11 @@ MPICommunicator::MPICommunicator(MPICommunicator && other)
 }
 
 MPICommunicator::MPICommunicator(const MPI_Comm & mpi_world_communicator, 
-                const std::string & host_name) :
+                                 const std::string & host_name) :
     Communicator(),
     _mpiCommunicator(mpi_world_communicator),
-    _hostname(host_name)
+    _hostname(host_name),
+    communicatorName_{}
 {
     return;
 }
@@ -79,6 +81,10 @@ MPICommunicator::~MPICommunicator()
 }
 
 //============================= ACCESSORS ====================================
+const MPI_Comm MPICommunicator::getDuplicateCommHandle() const
+{
+    
+}
 
 //============================= STATIC =======================================
 
@@ -107,6 +113,7 @@ MPICommunicator::initializeWorldCommunicator_()
     // Set the hostname of this MPI communicator.
     this->_hostname = boost::asio::ip::host_name();
 
+    // Set the name of the communicator.
     return;
 }
 
@@ -134,9 +141,9 @@ MPICommunicator& MPICommunicator::operator=(MPICommunicator && other)
     if (this != &other )
     {
         Communicator::operator=(std::move(other));
-        this->_mpiCommunicator = other._mpiCommunicator;
-        this->_hostname = other._hostname;
-
+        this->_mpiCommunicator = std::move(other._mpiCommunicator);
+        this->_hostname = std::move(other._hostname);
+        this->communicatorName_ = std::move(other.communicatorName_);
         other._mpiCommunicator = MPI_COMM_NULL;
         other._hostname = std::string(MPICommunicator::HOSTNAME_NOT_DEFINED);
     }
@@ -238,33 +245,34 @@ MPICommunicator::getSizeofCommunicator_() const
 
 // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
 void
-MPICommunicator::createSubcommunicator_(const std::string & tag) 
+MPICommunicator::createCartesianCommunicator_(const std::string & communicator_name,
+                                              const std::vector<std::size_t> & cartesian_communicator_dimensions)
 {
-    std::map<std::string, std::size_t> aglobaltagmap = 
-        COMMUNICATOR::Communicator::formGlobalMap(tag,*this);
+    // std::map<std::string, std::size_t> aglobaltagmap = 
+    //     COMMUNICATOR::Communicator::formGlobalMap(tag,*this);
 
-    // Get the hash for this global tag.
-    std::size_t my_hash = aglobaltagmap[tag];
-    
-    try 
-    {
-        int mpi_return_code;
-        MPI_Comm tmp_mpi_comm=MPI_COMM_NULL;
-        mpi_return_code = MPI_Comm_split(this->_mpiCommunicator,
-                                         static_cast<int>(my_hash),
-                                         static_cast<int>(DEFAULT_MPI_MASTER_RANK_ID),
-                                         &tmp_mpi_comm);
+    // // Get the hash for this global tag.
+    // std::size_t my_hash = aglobaltagmap[tag];
+    // 
+    // try 
+    // {
+    //     int mpi_return_code;
+    //     MPI_Comm tmp_mpi_comm=MPI_COMM_NULL;
+    //     mpi_return_code = MPI_Comm_split(this->_mpiCommunicator,
+    //                                      static_cast<int>(my_hash),
+    //                                      static_cast<int>(DEFAULT_MPI_MASTER_RANK_ID),
+    //                                      &tmp_mpi_comm);
 
-        if (mpi_return_code != MPI_SUCCESS)
-        {
-            throw ANANSI::MPICommSplitException();
-        }
-    }
-    catch ( ANANSI::MPICommSplitException const  & my_mpi_exception )
-    {
-        std::cout << my_mpi_exception.what() << std::endl;
-        std::abort();
-    }
+    //     if (mpi_return_code != MPI_SUCCESS)
+    //     {
+    //         throw ANANSI::MPICommSplitException();
+    //     }
+    // }
+    // catch ( ANANSI::MPICommSplitException const  & my_mpi_exception )
+    // {
+    //     std::cout << my_mpi_exception.what() << std::endl;
+    //     std::abort();
+    // }
     return;
 }
 

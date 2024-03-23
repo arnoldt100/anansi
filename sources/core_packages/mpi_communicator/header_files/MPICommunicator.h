@@ -53,6 +53,7 @@ public:
     ~MPICommunicator();
 
     //===== ACCESSORS ======
+    const MPI_Comm getDuplicateCommHandle() const;
 
     //===== STATIC METHODS ======
 
@@ -138,7 +139,8 @@ private:
    
     // :TODO:05/21/2022 02:17:12 PM:: This needs to return a communicator.
     void 
-    createSubcommunicator_(const std::string & tag) final override;
+    createCartesianCommunicator_(const std::string & communicator_name,
+                                 const std::vector<std::size_t> & cartesian_communicator_dimensions) final override;
 
     void
     resetName_(const std::string & name) final override;
@@ -157,6 +159,7 @@ private:
     //===== DATA MEMBERS ===
     MPI_Comm _mpiCommunicator;
     std::string _hostname;
+    std::string communicatorName_;
     static std::string HOSTNAME_NOT_DEFINED;
 };
 

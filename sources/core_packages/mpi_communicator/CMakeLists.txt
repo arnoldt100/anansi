@@ -116,7 +116,8 @@
          header_files/EnabledMPIEnvironment.h 
          header_files/NullMPIEnvironment.h
          header_files/MPICommunicator.h
-         header_files/MPIInitException.h )
+         header_files/MPIInitException.h
+         header_files/details/create_cartesian_mpi_communicator.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -160,7 +161,8 @@
          implementation_files/EnabledMPIEnvironment.cpp 
          implementation_files/NullMPIEnvironment.cpp
          implementation_files/MPICommunicator.cpp
-         implementation_files/MPIInitException.cpp )
+         implementation_files/MPIInitException.cpp
+         implementation_files/details/create_cartesian_mpi_communicator.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -199,7 +201,8 @@ target_include_directories(${target}
                            PRIVATE ${my_comm_include} 
                            PRIVATE ${my_mm_include}
                            PRIVATE ${my_cc_include}
-                           PRIVATE ${my_debbugging_utilities_include})
+                           PRIVATE ${my_debbugging_utilities_include}
+                           PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details )
 
                        
 #-----------------------------------------------------

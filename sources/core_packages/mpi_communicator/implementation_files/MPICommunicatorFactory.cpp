@@ -1,5 +1,16 @@
+//--------------------------------------------------------//
+//-------------------- System includes -------------------//
+//--------------------------------------------------------//
 
+//--------------------------------------------------------//
+//-------------------- External Library Files ------------//
+//--------------------------------------------------------//
+
+//--------------------------------------------------------//
+//--------------------- Package includes -----------------//
+//--------------------------------------------------------//
 #include "MPICommunicatorFactory.h"
+#include "create_cartesian_mpi_communicator.h"
 
 namespace ANANSI {
 
@@ -120,9 +131,17 @@ std::unique_ptr<COMMUNICATOR::Communicator>
 MPICommunicatorFactory::createCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & otherCommunicator,
                                             COMMUNICATOR::CommunicatorEmbryo const & comm_embryo) const
 {
-    auto tmp_mpicommunicator = std::move(otherCommunicator->duplicateCommunicator());
-    std::unique_ptr<COMMUNICATOR::Communicator> aMPICommunicator(tmp_mpicommunicator);
-    return aMPICommunicator;
+    using Communicator_Types = COMMUNICATOR::CommunicatorEmbryo::communicator_types;
+    std::unique_ptr<COMMUNICATOR::Communicator> a_communicator;
+    std::string communicator_name = comm_embryo.communicatorName();
+    switch ( comm_embryo.typeOfCommunicator() ) 
+    {
+        case Communicator_Types::rectangular :
+            a_communicator = std::move(create_cartesian_mpi_communicator(otherCommunicator)); 
+            break;
+    }
+
+    return a_communicator;
 }
 //============================= MUTATORS =====================================
 

@@ -65,7 +65,7 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     auto communicator_embryo = COMMUNICATOR::create_communicator_embryo(work_load_parameters);
     std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>();
     std::unique_ptr<COMMUNICATOR::Communicator> my_comm = 
-        std::move(a_communicator_factory->createCommunicator(world_communicator,communicator_embryo ));
+        std::move(a_communicator_factory->createCommunicator(world_communicator,communicator_embryo));
     
     // ---------------------------------------------------
     // Create task object and bind the receiver to the task object.
