@@ -33,6 +33,7 @@
 #include "ErrorMPIBroadcast.h"
 #include "Array1d.hpp"
 #include "VectorStringCache.h"
+#include "free_mpi_communicator.h"
 
 namespace ANANSI
 {
@@ -83,7 +84,23 @@ MPICommunicator::~MPICommunicator()
 //============================= ACCESSORS ====================================
 const MPI_Comm MPICommunicator::getDuplicateCommHandle() const
 {
-    
+    // Create a copy of the MPI world communicator.
+    MPI_Comm duplicate_mpi_comm_handle;
+    try
+    {
+        int mpi_return_code = MPI_Comm_dup( this->_mpiCommunicator,
+                                            &duplicate_mpi_comm_handle);
+        if (mpi_return_code != MPI_SUCCESS)
+        {
+            throw ANANSI::MPICommDuplicateException();       
+        }
+    }
+    catch (ANANSI::MPICommDuplicateException const & my_mpi_exception)
+    {
+        std::cout << my_mpi_exception.what() << std::endl;
+        std::abort();
+    }
+    return duplicate_mpi_comm_handle; 
 }
 
 //============================= STATIC =======================================

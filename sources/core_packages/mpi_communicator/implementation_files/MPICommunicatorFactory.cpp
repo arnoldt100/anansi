@@ -137,7 +137,8 @@ MPICommunicatorFactory::createCommunicator_(std::unique_ptr<COMMUNICATOR::Commun
     switch ( comm_embryo.typeOfCommunicator() ) 
     {
         case Communicator_Types::rectangular :
-            a_communicator = std::move(create_cartesian_mpi_communicator(otherCommunicator)); 
+            const auto comm_dimensions = comm_embryo.communicatorDimensions();
+            a_communicator = std::move(create_cartesian_mpi_communicator(otherCommunicator,comm_dimensions)); 
             break;
     }
 

@@ -117,7 +117,8 @@
          header_files/NullMPIEnvironment.h
          header_files/MPICommunicator.h
          header_files/MPIInitException.h
-         header_files/details/create_cartesian_mpi_communicator.h)
+         header_files/details/create_cartesian_mpi_communicator.h
+         header_files/details/free_mpi_communicator.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -162,7 +163,8 @@
          implementation_files/NullMPIEnvironment.cpp
          implementation_files/MPICommunicator.cpp
          implementation_files/MPIInitException.cpp
-         implementation_files/details/create_cartesian_mpi_communicator.cpp)
+         implementation_files/details/create_cartesian_mpi_communicator.cpp
+         implementation_files/details/free_mpi_communicator.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

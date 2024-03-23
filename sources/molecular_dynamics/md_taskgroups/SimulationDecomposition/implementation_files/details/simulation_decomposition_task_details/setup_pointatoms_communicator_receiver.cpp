@@ -59,7 +59,7 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
    
     // ---------------------------------------------------
-    // Modify the receiver 
+    // Modify the receiver by adding.
     //
     // ---------------------------------------------------
     auto communicator_embryo = COMMUNICATOR::create_communicator_embryo(work_load_parameters);
