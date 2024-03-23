@@ -138,7 +138,7 @@ void
 MPICommunicator::freeCommunicator_()
 {
     // We now destroy/free all communicators.
-    this->freeMPICommunicator_(this->_mpiCommunicator);
+    free_mpi_communicator(this->_mpiCommunicator);
     this->_hostname = std::string(MPICommunicator::HOSTNAME_NOT_DEFINED);
     return;
 }
@@ -664,32 +664,5 @@ MPICommunicator::_calculateStartAndEndOffsets(
     }
     return;
 }
-
-void
-MPICommunicator::freeMPICommunicator_(MPI_Comm & a_communicator)
-{
-    try 
-    {
-        if ( a_communicator != MPI_COMM_NULL )
-        {
-            int mpi_return_code = MPI_Comm_free(&(a_communicator));
-            
-            if ( mpi_return_code != MPI_SUCCESS ) 
-            {
-                throw ANANSI::MPIFreeException();
-            }
-
-            a_communicator = MPI_COMM_NULL;
-
-        }
-    }
-    catch (  ANANSI::MPIFreeException const & my_mpi_exception ) 
-    {
-        std::cout << "Freeing the communicator failed in MPICommunicator::_freeMPICommunicator." << std::endl;
-        std::abort();
-    }
-    return;
-}
-
 
 } /* namespace ANANSI */

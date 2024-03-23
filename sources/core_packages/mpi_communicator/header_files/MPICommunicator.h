@@ -146,8 +146,6 @@ private:
     resetName_(const std::string & name) final override;
 
     //===== STATIC METHODS ======
-    static void
-    freeMPICommunicator_(MPI_Comm & a_communicator);
 
     static void
     _calculateStartAndEndOffsets(
