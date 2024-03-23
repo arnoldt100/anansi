@@ -42,9 +42,23 @@ std::unique_ptr<MPICommunicator> create_cartesian_mpi_communicator ( std::unique
     // We declare the array specifying the number of
     // processes in each dimensions, dims.
     MEMORY_MANAGEMENT::Array1d<int> int_array_factory;
-    std::unique_ptr<int[]> my_comm_dime = int_array_factory.create1DUniquePointerFromIterator<std::array<std::size_t,N>,
+    const std::unique_ptr<int[]> my_comm_dims = int_array_factory.create1DUniquePointerFromIterator<std::array<std::size_t,N>,
                                                                                               int
                                                                                              >(comm_dimensions);
+
+    // We set the rectangular grid to be periodic.
+    const std::array<int,N> periods{static_cast<int>(true)};
+
+    // We reoder the ranking of the cartesian communicator.
+    bool reorder{true};
+
+    MPI_Comm new_comm;
+    int mpi_error = MPI_Cart_create(comm,
+                    ndims, 
+                    my_comm_dims.get(),
+                    periods.data(),
+                    reorder, 
+                    &new_comm);
 
     std::string hostname = boost::asio::ip::host_name();
 
