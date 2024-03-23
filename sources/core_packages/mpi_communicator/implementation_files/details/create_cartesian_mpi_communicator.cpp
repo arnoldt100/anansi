@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "create_cartesian_mpi_communicator.h"
+#include "create_cartesian_mpi_communicator.hpp"
 
 namespace ANANSI
 {

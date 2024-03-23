@@ -117,7 +117,7 @@
          header_files/NullMPIEnvironment.h
          header_files/MPICommunicator.h
          header_files/MPIInitException.h
-         header_files/details/create_cartesian_mpi_communicator.h
+         header_files/details/create_cartesian_mpi_communicator.hpp
          header_files/details/free_mpi_communicator.h)
 
     #-----------------------------------------------------
