@@ -10,15 +10,12 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "verify_correct_size_for_world_communicator.h"
-
 namespace ANANSI
 {
-
-void verify_correct_size_for_world_communicator ( <+argument_list+> )
+namespace SimulationDecompositionTasksHelpers 
 {
-    return <+return_value+>;
-}   // -----  end of function verify_correct_size_for_world_communicator  -----
 
 
+}; // ----- End of namespace SimulationDecompositionTasksHelpers
 }; // namespace ANANSI
 

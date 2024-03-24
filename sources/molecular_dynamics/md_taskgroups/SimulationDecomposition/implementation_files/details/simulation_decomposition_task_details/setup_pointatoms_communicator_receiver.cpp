@@ -16,6 +16,7 @@
 #include "GenericReceiverFactory.hpp"
 #include "sdp_create_communicator_embryo.hpp"
 #include "MPICommunicatorFactory.h"
+#include "verify_correct_size_for_world_communicator.h"
 
 namespace ANANSI
 {
@@ -62,7 +63,15 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // Modify the receiver by adding.
     //
     // ---------------------------------------------------
+
     auto communicator_embryo = COMMUNICATOR::create_communicator_embryo(work_load_parameters);
+
+
+    const auto communicator_dims = communicator_embryo.communicatorDimensions();
+    SimulationDecompositionTasksHelpers::verify_correct_size_for_world_communicator(communicator_dims.begin(),
+                                               communicator_dims.end(),
+                                               world_communicator);
+
     std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>();
     std::unique_ptr<COMMUNICATOR::Communicator> my_comm = 
         std::move(a_communicator_factory->createCommunicator(world_communicator,communicator_embryo));

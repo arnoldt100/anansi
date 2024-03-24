@@ -14,6 +14,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Communicator.h"
 
 
 namespace ANANSI
@@ -27,7 +28,27 @@ namespace SimulationDecompositionTasksHelpers
 //! \details If the world communicator size doesn't equal the requested
 //!          lattice topology size, then an error is thrown, otherwise 
 //!          nothing is done.
-void verify_correct_size_for_world_communicator ( );
+//!
+//! 
+template<typename iterator_t,
+         typename comm_t> 
+void verify_correct_size_for_world_communicator (iterator_t const & begin,
+                                                 iterator_t const & end,
+                                                 comm_t const & world_communicator)
+{
+    std::size_t product = 1;
+    const auto comm_size = world_communicator->getSizeofCommunicator();
+    for ( auto it = begin; it != end; ++it)
+    {
+      product *= *it;   
+    }
+    if ( product != comm_size )
+    {
+        // Throw error .....
+    }
+
+    return;
+}
 
 }; // ----- End of namespace SimulationDecompositionTasksHelpers
 }; // ----- End of namespace ANANSI
