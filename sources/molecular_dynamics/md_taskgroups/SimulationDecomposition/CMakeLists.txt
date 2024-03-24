@@ -150,7 +150,7 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtomsResultsTraits.h)
 
          # ----------------------------------------------------
-         # Source files for SimulationDecompositionTaskTraits 
+         # Source files for SimulationDecomposition setup methods.
          # 
          # ----------------------------------------------------
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionTaskTraits.h)
@@ -158,8 +158,8 @@ add_library( ${target} STATIC
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_read_pointatoms_receiver.h)
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_pointatoms_communicator_receiver.h)
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.h)
-         list ( APPEND simulationdecomposition_header_files 
-                ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.hpp)
+         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/SimulationDecompositionTasksHelpers.h)
+         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.hpp)
         
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -200,17 +200,16 @@ add_library( ${target} STATIC
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/initial_configurations/InitialConfigurationFileNamesHelpers.cpp )
 
          # ----------------------------------------------------
-         # Source files for SimulationDecompositionTaskTraits 
+         # Source files for SimulationDecomposition setup methods
          # 
          # ----------------------------------------------------
+         list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionTaskTraits.cpp )
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_read_pointatoms_receiver.cpp)
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_pointatoms_communicator_receiver.cpp)
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_pointatoms_decomposer_receiver.cpp)
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.cpp)
-         list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionTaskTraits.cpp )
-
-         list (APPEND simulationdecomposition_implementation_files 
-               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.cpp )
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/SimulationDecompositionTasksHelpers.cpp)
+         list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.cpp )
         
          # ----------------------------------------------------
          # Source files for ReadPointAtoms task
@@ -241,8 +240,8 @@ add_library( ${target} STATIC
          # 
          # ----------------------------------------------------
          list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtoms.cpp)
-         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtomsResultsOwnershipImpl.cpp)
-         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtomsResultsTraits.cpp)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtomsResultsOwnershipImpl.cpp)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtomsResultsTraits.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
