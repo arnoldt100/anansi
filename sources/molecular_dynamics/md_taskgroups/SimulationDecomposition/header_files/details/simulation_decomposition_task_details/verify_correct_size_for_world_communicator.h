@@ -16,6 +16,7 @@
 //--------------------------------------------------------//
 #include "Communicator.h"
 #include "error_message_lattice_topology_comm_size_mismatch.h"
+#include "ErrorInvalidSimulationDecompositionParameters.h"
 
 namespace ANANSI
 {
@@ -30,21 +31,20 @@ namespace SimulationDecompositionTasksHelpers
 //!          nothing is done.
 //!
 //! 
-template<typename iterator_t,
-         typename comm_t> 
-void verify_correct_size_for_world_communicator (iterator_t const & begin,
-                                                 iterator_t const & end,
-                                                 comm_t const & world_communicator)
+template<typename Container_t>
+void verify_correct_size_for_world_communicator (const Container_t & my_container,
+                                                 std::size_t const & communicator_size)
 {
     std::size_t product = 1;
-    const auto comm_size = world_communicator->getSizeofCommunicator();
-    for ( auto it = begin; it != end; ++it)
+    for ( auto it = my_container.begin(); it != my_container.end(); ++it)
     {
         product *= *it;
     }
-    if ( product != comm_size )
+    if ( product != communicator_size )
     {
-        // Throw error .....
+        std::string error_message = 
+            error_message_lattice_topology_comm_size_mismatch(my_container,communicator_size);
+        throw ErrorInvalidSimulationDecompositionParameters(error_message);
     }
 
     return;

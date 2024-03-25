@@ -65,10 +65,10 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     //
     // ---------------------------------------------------
     auto communicator_embryo = COMMUNICATOR::create_communicator_embryo(work_load_parameters);
-    const auto communicator_dims = communicator_embryo.communicatorDimensions();
-    SimulationDecompositionTasksHelpers::verify_correct_size_for_world_communicator(communicator_dims.begin(),
-                                                                                    communicator_dims.end(),
+    auto communicator_dims = communicator_embryo.communicatorDimensions();
+    SimulationDecompositionTasksHelpers::verify_correct_size_for_world_communicator(communicator_dims,
                                                                                     world_communicator->getSizeofCommunicator());
+
     // ---------------------------------------------------
     // Modify the receiver by adding the communicator.
     //
