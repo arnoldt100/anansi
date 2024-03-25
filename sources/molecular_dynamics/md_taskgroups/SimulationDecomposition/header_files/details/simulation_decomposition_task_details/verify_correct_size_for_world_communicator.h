@@ -15,7 +15,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Communicator.h"
-
+#include "error_message_lattice_topology_comm_size_mismatch.h"
 
 namespace ANANSI
 {
@@ -40,7 +40,7 @@ void verify_correct_size_for_world_communicator (iterator_t const & begin,
     const auto comm_size = world_communicator->getSizeofCommunicator();
     for ( auto it = begin; it != end; ++it)
     {
-      product *= *it;   
+        product *= *it;
     }
     if ( product != comm_size )
     {

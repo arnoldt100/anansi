@@ -40,7 +40,7 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     //
     // ---------------------------------------------------
     auto concrete_task_factory = std::make_unique<GenericTaskFactory<my_abstract_tasks,
-                                                                    my_concrete_tasks>
+                                                                     my_concrete_tasks>
                                                                    >();
 
     // ---------------------------------------------------
@@ -60,18 +60,19 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
    
     // ---------------------------------------------------
-    // Modify the receiver by adding.
+    // Verify that the world communicator and the requested
+    // communicator topology match in size.
     //
     // ---------------------------------------------------
-
     auto communicator_embryo = COMMUNICATOR::create_communicator_embryo(work_load_parameters);
-
-
     const auto communicator_dims = communicator_embryo.communicatorDimensions();
     SimulationDecompositionTasksHelpers::verify_correct_size_for_world_communicator(communicator_dims.begin(),
-                                               communicator_dims.end(),
-                                               world_communicator);
-
+                                                                                    communicator_dims.end(),
+                                                                                    world_communicator->getSizeofCommunicator());
+    // ---------------------------------------------------
+    // Modify the receiver by adding the communicator.
+    //
+    // ---------------------------------------------------
     std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>();
     std::unique_ptr<COMMUNICATOR::Communicator> my_comm = 
         std::move(a_communicator_factory->createCommunicator(world_communicator,communicator_embryo));

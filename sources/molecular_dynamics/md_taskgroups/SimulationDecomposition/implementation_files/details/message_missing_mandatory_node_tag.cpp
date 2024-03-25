@@ -18,14 +18,14 @@ namespace ANANSI
     {
 
     static constexpr char* ErrorMessageHeader = R"""(
-    # ----------------------
-    # Error Message
-    # ----------------------)""";
+# ----------------------
+# Error Message
+# ----------------------)""";
 
-    //!  Move this outside the class to  helper function.
+
     static constexpr char* ErrorMessageFooter = R"""(# ----------------------)""";
 
-    }; // End of anonynous namespace.
+    }; // End of anonymous namespace.
 
     namespace SDPConstructorHelpers
     {
