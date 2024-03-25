@@ -17,6 +17,7 @@
 #include "sdp_create_communicator_embryo.hpp"
 #include "MPICommunicatorFactory.h"
 #include "verify_correct_size_for_world_communicator.h"
+#include "GenericErrorClass.hpp"
 
 namespace ANANSI
 {
@@ -66,8 +67,16 @@ void setup_pointatoms_communicator_receiver (const SimulationDecompositionParame
     // ---------------------------------------------------
     auto communicator_embryo = COMMUNICATOR::create_communicator_embryo(work_load_parameters);
     auto communicator_dims = communicator_embryo.communicatorDimensions();
-    SimulationDecompositionTasksHelpers::verify_correct_size_for_world_communicator(communicator_dims,
-                                                                                    world_communicator->getSizeofCommunicator());
+    try 
+    {
+        SimulationDecompositionTasksHelpers::verify_correct_size_for_world_communicator(communicator_dims,
+                                                                                        world_communicator->getSizeofCommunicator());
+    }
+    catch (const ErrorInvalidSimulationDecompositionParameters & my_error)
+    {
+        const std::string error_message = my_error.what();
+        throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(error_message); 
+    }
 
     // ---------------------------------------------------
     // Modify the receiver by adding the communicator.

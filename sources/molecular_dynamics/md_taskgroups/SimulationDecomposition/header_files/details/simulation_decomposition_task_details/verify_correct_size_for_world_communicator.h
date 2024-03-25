@@ -29,8 +29,6 @@ namespace SimulationDecompositionTasksHelpers
 //! \details If the world communicator size doesn't equal the requested
 //!          lattice topology size, then an error is thrown, otherwise 
 //!          nothing is done.
-//!
-//! 
 template<typename Container_t>
 void verify_correct_size_for_world_communicator (const Container_t & my_container,
                                                  std::size_t const & communicator_size)
@@ -46,7 +44,6 @@ void verify_correct_size_for_world_communicator (const Container_t & my_containe
             error_message_lattice_topology_comm_size_mismatch(my_container,communicator_size);
         throw ErrorInvalidSimulationDecompositionParameters(error_message);
     }
-
     return;
 }
 
