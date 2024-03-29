@@ -62,7 +62,7 @@ std::unique_ptr<MPICommunicator> create_cartesian_mpi_communicator ( std::unique
 
     std::string hostname = boost::asio::ip::host_name();
 
-    std::unique_ptr<MPICommunicator> my_communicator;
+    std::unique_ptr<MPICommunicator> my_communicator = std::make_unique<MPICommunicator>(new_comm,hostname);
 
     // Free all resources.
     MPI_Comm_free(&comm);
