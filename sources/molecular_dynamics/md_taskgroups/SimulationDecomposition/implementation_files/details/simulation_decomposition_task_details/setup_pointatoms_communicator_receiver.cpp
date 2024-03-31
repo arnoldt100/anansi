@@ -11,13 +11,12 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GenericErrorClass.hpp"
 #include "GenericReceiverFactory.hpp"
 #include "GenericTaskFactory.hpp"
-#include "create_communicator_embryo.hpp"
-#include "setup_pointatoms_communicator_receiver.h"
-// #include "sdp_create_communicator_embryo.hpp"
-#include "GenericErrorClass.hpp"
 #include "MPICommunicatorFactory.h"
+#include "sdp_create_communicator_embryo.hpp"
+#include "setup_pointatoms_communicator_receiver.h"
 #include "verify_correct_size_for_world_communicator.h"
 
 namespace ANANSI {
@@ -33,6 +32,7 @@ void setup_pointatoms_communicator_receiver(
   // We define some type aliases to reduce the amount of typing.
   //
   // ---------------------------------------------------
+
   using my_abstract_tasks =
       SimulationDecompositionTaskTraits::abstract_products; // The abstract task
                                                             // typelist.
