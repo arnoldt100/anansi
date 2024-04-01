@@ -17,15 +17,14 @@
 #include "GenericTaskInvoker.hpp"
 #include "SimulationDecompositionTaskTraits.h"
 
-
-namespace ANANSI
-{
+namespace ANANSI {
 
 //! \brief Setups the receiver PointAtomsDecomposerReceiver
-void setup_pointatoms_decomposer_receiver (std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
-                                                                                      SimulationDecompositionTaskTraits::concrete_products>
-                                               > & simulation_decomposer_invoker);
-
+void setup_pointatoms_decomposer_receiver(
+    std::shared_ptr<ANANSI::GenericTaskInvoker<
+        SimulationDecompositionTaskTraits::abstract_products,
+        SimulationDecompositionTaskTraits::concrete_products>>
+        &simulation_decomposer_invoker);
 
 }; // namespace ANANSI
 
