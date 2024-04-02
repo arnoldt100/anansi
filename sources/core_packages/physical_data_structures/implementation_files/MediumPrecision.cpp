@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "PhysicalDataStructure.h"
+#include "MediumPrecision.h"
 
 namespace ANANSI {
 
@@ -20,13 +20,60 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
+MediumPrecision::MediumPrecision()
+{
+    return;
+}
+
+MediumPrecision::MediumPrecision( MediumPrecision const & other)
+{
+    if (this != &other)
+    {
+    }
+    return;
+}
+
+MediumPrecision::MediumPrecision( MediumPrecision && other)
+{
+    if (this != &other)
+    {
+    }
+    return;
+}   // -----  end of method MediumPrecision::MediumPrecision  -----
+
+
+MediumPrecision::~MediumPrecision()
+{
+    return;
+}
+
 //============================= ACCESSORS ====================================
+
+MediumPrecision * MediumPrecision::clone() const
+{
+    return new MediumPrecision(*this);
+}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
+MediumPrecision& MediumPrecision::operator= ( const MediumPrecision &other )
+{
+    if (this != &other)
+    {
+    }
+    return *this;
+} // assignment operator
 
+MediumPrecision& MediumPrecision::operator= ( MediumPrecision && other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -43,7 +90,7 @@ namespace ANANSI {
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-
+    
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
@@ -53,4 +100,4 @@ namespace ANANSI {
 //============================= OPERATORS ====================================
 
 
-}; // namespace ANANSI
+} // namespace ANANSI

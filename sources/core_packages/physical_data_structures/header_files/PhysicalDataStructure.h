@@ -28,14 +28,22 @@ namespace ANANSI
 //!          a list of atoms. The atoms could be point atoms, ellipsoidal
 //!          atoms, etc. Quantities such as position, velocities, charge, etc.
 //!          are properties of atoms and for this class not defined as physical
-//!          dats structures.
+//!          data structures.
+//! \tparam DataStoragePolicy Specifies the data storage policy.
+//! \tparam DataPrecisionPolicy Specifies the data precision policy.
+    template <typename DataStoragePolicy,
+              typename DataPrecisionPolicy>
 class PhysicalDataStructure
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! \brief The default constructor,
-        PhysicalDataStructure();
+        PhysicalDataStructure() :
+            valuePtr_(nullptr)
+        {
+            return;
+        }
 
         template<typename T>
         PhysicalDataStructure(T && value) :
@@ -45,28 +53,60 @@ class PhysicalDataStructure
         }
 
         //! \brief The copy constructor.
-        PhysicalDataStructure(const PhysicalDataStructure & other);   // copy constructor
+        PhysicalDataStructure(const PhysicalDataStructure & other)   // copy constructor
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = other.valuePtr_->clone();
+            }
+            return;
+        }
 
         //! \brief The move constructor.
-        PhysicalDataStructure(PhysicalDataStructure && other);   // copy-move constructor
+        PhysicalDataStructure(PhysicalDataStructure && other)   // copy-move constructor
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = std::move(other.valuePtr_); 
+            }
+            return;
+        }   // -----  end of method PhysicalDataStructure::PhysicalDataStructure  -----
 
         //! The destructor.
-        ~PhysicalDataStructure();  // destructor
+        ~PhysicalDataStructure()  // destructor
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
-
-        //! \brief The class cloning method.
-        PhysicalDataStructure* clone() const;
+        PhysicalDataStructure* clone () const
+        {
+            return new PhysicalDataStructure(*this);
+        }
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! \brief The copy assignment operator.
-        PhysicalDataStructure& operator=( const PhysicalDataStructure &other ); // assignment operator
+        PhysicalDataStructure& operator=( const PhysicalDataStructure &other ) // assignment operator
+        {
+            if (this != &other)
+            {
+                this->valuePtr_  = other.valuePtr_->clone();
+            }
+            return *this;
+        } // assignment operator
 
         //! \brief The move assignment operator.
-        PhysicalDataStructure& operator=( PhysicalDataStructure && other ); // assignment-move operator
+        PhysicalDataStructure& operator=( PhysicalDataStructure && other ) // assignment-move operator
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = std::move(other.valuePtr_);
+            }
+            return *this;
+        } // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -181,6 +221,13 @@ class PhysicalDataStructure
         std::unique_ptr<PhysicalDataStructureConcept> valuePtr_;
 
 }; // -----  end of class PhysicalDataStructure  -----
+
+template<typename DataStoragePolicy,
+         typename DataPrecisionPolicy>
+PhysicalDataStructure<DataStoragePolicy,DataPrecisionPolicy>::PhysicalDataStructureConcept::~PhysicalDataStructureConcept()
+{
+    return;
+}
 
 
 }; // namespace ANANSI

@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "PhysicalDataStructure.h"
+#include "GPUCentricStoragePolicy.h"
 
 namespace ANANSI {
 
@@ -20,13 +20,60 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
+GPUCentricStoragePolicy::GPUCentricStoragePolicy()
+{
+    return;
+}
+
+GPUCentricStoragePolicy::GPUCentricStoragePolicy( GPUCentricStoragePolicy const & other)
+{
+    if (this != &other)
+    {
+    }
+    return;
+}
+
+GPUCentricStoragePolicy::GPUCentricStoragePolicy( GPUCentricStoragePolicy && other)
+{
+    if (this != &other)
+    {
+    }
+    return;
+}		// -----  end of method GPUCentricStoragePolicy::GPUCentricStoragePolicy  -----
+
+
+GPUCentricStoragePolicy::~GPUCentricStoragePolicy()
+{
+    return;
+}
+
 //============================= ACCESSORS ====================================
+
+GPUCentricStoragePolicy * GPUCentricStoragePolicy::clone() const
+{
+    return new GPUCentricStoragePolicy(*this);
+}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
+GPUCentricStoragePolicy& GPUCentricStoragePolicy::operator= ( const GPUCentricStoragePolicy &other )
+{
+    if (this != &other)
+    {
+    }
+    return *this;
+} // assignment operator
 
+GPUCentricStoragePolicy& GPUCentricStoragePolicy::operator= ( GPUCentricStoragePolicy && other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -43,7 +90,7 @@ namespace ANANSI {
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-
+    
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
@@ -53,4 +100,4 @@ namespace ANANSI {
 //============================= OPERATORS ====================================
 
 
-}; // namespace ANANSI
+} // namespace ANANSI

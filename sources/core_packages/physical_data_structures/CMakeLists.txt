@@ -77,7 +77,10 @@
          header_files/PhysicalDataStructure.h 
          header_files/coordinates.h
          header_files/Atoms.h
-         header_files/PointAtoms.h)
+         header_files/PointAtoms.h
+	     header_files/MediumPrecision.h
+	     header_files/CPUCentricStoragePolicy.h
+	     header_files/GPUCentricStoragePolicy.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -90,7 +93,10 @@
          implementation_files/PhysicalDataStructure.cpp
          implementation_files/coordinates.cpp
          implementation_files/Atoms.cpp
-         implementation_files/PointAtoms.cpp)
+         implementation_files/PointAtoms.cpp
+	     implementation_files/MediumPrecision.cpp
+	     implementation_files/CPUCentricStoragePolicy.cpp 
+	     implementation_files/GPUCentricStoragePolicy.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
