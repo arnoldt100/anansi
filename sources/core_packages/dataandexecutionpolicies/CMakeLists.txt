@@ -1,16 +1,14 @@
-# This CMakeLists.txt file creates the library libphysical_data_structures.a
+# This CMakeLists.txt file creates the library libdataandexecutionpolicies.a
 # and its unit tests. To add source files, simply append the appropiate variable
-# physical_data_structures_header_files or physical_data_structures_implementation_files.
+# dataandexecutionpolicies_header_files or dataandexecutionpolicies_implementation_files.
 #
-# The target for the library is physical_data_structures.
+# The target for the library is dataandexecutionpolicies.
 #
-# The following properties are set for the target physical_data_structures.
+# The following properties are set for the target dataandexecutionpolicies.
 #
 #   Property                            Value                                               Description
 #----------------------------------------------------------------------------------------------------------------------------
 #
-#   physical_data_structures_include    ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-#   PUBLIC_HEADER                       ${physical_data_structures_header_files}            The list of headers files associated with this librarry.
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -23,7 +21,7 @@
     # Define the project.                                -
     #                                                    -
     #-----------------------------------------------------
-    set(my_project_name "physical_data_structures")
+    set(my_project_name "dataandexecutionpolicies")
     project(${my_project_name})
 
     #-----------------------------------------------------
@@ -37,20 +35,22 @@
     # configure physical_data_structures for building.
     # 
     # ----------------------------------------------------
-    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/physical_data_structures_build_prerequisites.cmake")
-    verify_physical_data_structures_build_prerequisites_are_met()
+    include(${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/dataandexecutionpolicies_build_prerequisites.cmake)
+    verify_dataandexecutionpolicies_build_prerequisites_are_met()
+ 
+    #-----------------------------------------------------
+    # Define the property name for the include directory.
+    # 
+    # We use the function "target_include_property_name" to define the property
+    # name.
+    #-----------------------------------------------------
+    target_include_property_name("${target}")
 
     #-----------------------------------------------------
     # Define the property name for the include directory.
     # 
     #-----------------------------------------------------
-    set(my_target_include_property_name "physical_data_structures_include" )
-
-    # ----------------------------------------------------
-    # Get the properties of various other targets that 
-    # physical_data_structures depend on.
-    # 
-    # ----------------------------------------------------
+    set(my_target_include_property_name "${target}_include" )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -59,49 +59,48 @@
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-#                                                                 @
-# Here we define the sources and header files associated          @
-# with the various targets.                                       @
-#                                                                 @
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-    #-----------------------------------------------------
-    # Here we define the variable                        -
-    # physical_data_structures_header_files.             -
-    # A list of header files is stored in                -
-    # this variable.                                     -
-    #                                                    -
-    #-----------------------------------------------------
-    set (physical_data_structures_header_files 
-         header_files/PhysicalDataStructure.h 
-         header_files/coordinates.h
-         header_files/Atoms.h
-         header_files/PointAtoms.h )
-
-    #-----------------------------------------------------
-    # Here we define the variable                        -
-    # physical_data_structures_implementation_files.     -
-    # A list of implementation files is stored in this   -
-    # variable.                                          -
-    #                                                    -
-    #-----------------------------------------------------
-    set (physical_data_structures_implementation_files 
-         implementation_files/PhysicalDataStructure.cpp
-         implementation_files/coordinates.cpp
-         implementation_files/Atoms.cpp
-         implementation_files/PointAtoms.cpp )
-
+ #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ #                                                                 @
+ # Here we define the sources and header files associated          @
+ # with the various targets.                                       @
+ #                                                                 @
+ #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 
+     
+     #-----------------------------------------------------
+     # Here we define the variable                        -
+     # command_line_arguments_header_files.               -
+     # A list of header files is stored in                -
+     # this variable.                                     -
+     #                                                    -
+     #-----------------------------------------------------
+     set (dataandexecutionpolicies_header_files
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CPUCentricStoragePolicy.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/GPUCentricStoragePolicy.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MediumPrecision.h )
+ 
+     #-----------------------------------------------------
+     # Here we define the variable                        -
+     # command_line_arguments_implementation_files.       -
+     # A list of implementation files is stored in this   -
+     # variable.                                          -
+     #                                                    -
+     #-----------------------------------------------------
+     set (dataandexecutionpolicies_implementation_files
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CPUCentricStoragePolicy.cpp 
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/GPUCentricStoragePolicy.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MediumPrecision.cpp)
+ 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of defining the sources and header files associated         @
-# with the physical_data_structures target.                       @
+# with the command_line_arguments targets.                        @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #-----------------------------------------------------
 # Add the library associated with target             -
-# physical_data_structures.                          -
+# command_line_arguments.                            -
 #                                                    -
 #-----------------------------------------------------
 add_library( ${target} STATIC 
@@ -113,8 +112,7 @@ add_library( ${target} STATIC
 #                                                    -
 #-----------------------------------------------------
 target_sources(${target}
-               PRIVATE ${physical_data_structures_header_files} 
-               PRIVATE ${physical_data_structures_implementation_files} )
+    PRIVATE ${dataandexecutionpolicies_header_files} ${dataandexecutionpolicies_implementation_files} )
 
 #-----------------------------------------------------
 # Add the directory header_files to search for       -
@@ -122,13 +120,7 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files)
-
-#-----------------------------------------------------
-# The libraries to use when linking to target.       -
-#                                                    -
-#-----------------------------------------------------
-target_link_libraries( ${target} )
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
@@ -142,12 +134,12 @@ enable_compile_warnings(${target})
 #-----------------------------------------------------
 set_target_properties(${target} PROPERTIES
                       "${my_target_include_property_name}" ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD "${physical_data_structures_cxx_standard}"
-                      PUBLIC_HEADER "${physical_data_structures_header_files}" )
+                      CXX_STANDARD "${dataandexecutionpolicies_cxx_standard}"
+                      PUBLIC_HEADER "${dataandexecutionpolicies_header_files}" )
 
 install( TARGETS ${target}
-         ARCHIVE DESTINATION ${physical_data_structures_install_lib_library_directory} 
-         PUBLIC_HEADER DESTINATION ${physical_data_structures_install_include_directory} )
+         ARCHIVE DESTINATION ${dataandexecutionpolicies_install_lib_directory}
+         PUBLIC_HEADER DESTINATION ${dataandexecutionpolicies_install_include_directory} )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
