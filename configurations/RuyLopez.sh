@@ -5,6 +5,13 @@ export ANANSI_ON=1
 export MOUSEION_OFF=0
 export MOUSEION_ON=1
 
+export ANANSI_DATA_STORAGE_CPU=0
+export ANANSI_DATA_STORAGE_GPU=1
+
+export ANANSI_LOW_PRECISION=1
+export ANANSI_MEDIUM_PRECISION=2
+export ANANSI_HIGH_PRECISION=3
+
 #-----------------------------------------------------
 # Define the top level directory of anansi           -
 #                                                    -
@@ -76,6 +83,12 @@ export ANANSI_BOOST_TOP_LEVEL=${BOOST_TOP_LEVEL}
 #-----------------------------------------------------
 export ANANSI_DEBUG_VALID_VALUES=${ANANSI_ON}
 export MOUSEION_DEBUG_VALID_VALUES=${MOUSEION_ON}
+
+# ---------------------------------------------------
+# Define the data policy.
+#
+# --------------------------------------------------- 
+export ANANSI_DATA_POLICY=${ANANSI_DATA_STORAGE_CPU}
 
 #-----------------------------------------------------
 # This anansi core configuration must be sourced.    -

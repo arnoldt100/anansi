@@ -77,7 +77,9 @@
      set (dataandexecutionpolicies_header_files
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CPUCentricStoragePolicy.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/GPUCentricStoragePolicy.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MediumPrecision.h )
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/DataStoragePolicy.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MediumPrecision.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PrecisionPolicy.h)
  
      #-----------------------------------------------------
      # Here we define the variable                        -
@@ -89,7 +91,9 @@
      set (dataandexecutionpolicies_implementation_files
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CPUCentricStoragePolicy.cpp 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/GPUCentricStoragePolicy.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MediumPrecision.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/DataStoragePolicy.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MediumPrecision.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PrecisionPolicy.cpp)
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -127,6 +131,12 @@ target_include_directories(${target}
 #                                                    -
 #-----------------------------------------------------
 enable_compile_warnings(${target})
+
+#-----------------------------------------------------
+# Enable anansi precision.                           -
+#                                                    -
+#-----------------------------------------------------
+enable_anansi_precision(${target})
 
 #-----------------------------------------------------
 # Here we set the properties on target               -

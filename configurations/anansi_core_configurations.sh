@@ -88,4 +88,11 @@ else
     # 
     # ----------------------------------------------------
     export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python":"${PYTHONPATH}"
+
+    #-----------------------------------------------------
+    # Define the anansi precision
+    #
+    #-----------------------------------------------------
+    export ANANSI_COMPUTE_PRECISION=${ANANSI_MEDIUM_PRECISION}
 fi
+
