@@ -42,6 +42,23 @@ enable_building_mouseion("${core_packages_minimum_cmake_version}"
                          "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
 
+
+#-----------------------------------------------------
+# Call the macro that enables building of target     -
+# dataandexecutionpolicies.                          -
+#                                                    -
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/dataandexecutionpolicies/cmake_macros_and_functions/dataandexecutionpolicies.cmake )
+enable_building_dataandexecutionpolicies ("${core_packages_install_lib_directory}"
+                                          "${core_packages_install_include_directory}"
+                                          "${core_packages_install_bin_directory}"
+                                          "${core_packages_cmake_c_compiler}" 
+                                          "${core_packages_cmake_cxx_compiler}" 
+                                          "${core_packages_cxx_standard}"  
+                                          "${core_packages_install_prefix}"
+                                          "${core_packages_logfilepath}")
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/dataandexecutionpolicies)
+
 # ----------------------------------------------------
 # Here we define variables which indicate where to install the tasks
 # libraries, header files, and associated binaries.
