@@ -137,6 +137,12 @@ target_include_directories(${target}
 enable_compile_warnings(${target})
 
 #-----------------------------------------------------
+# Enable anansi for gpu or cpu centered calculations -
+#                                                    -
+#-----------------------------------------------------
+enable_anansi_data_storage(${target})
+
+#-----------------------------------------------------
 # Enable anansi precision.                           -
 #                                                    -
 #-----------------------------------------------------
