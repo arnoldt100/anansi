@@ -79,6 +79,8 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/GPUCentricStoragePolicy.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/DataStoragePolicy.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MediumPrecision.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/LowPrecision.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/HighPrecision.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PrecisionPolicy.h)
  
      #-----------------------------------------------------
@@ -93,6 +95,8 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/GPUCentricStoragePolicy.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/DataStoragePolicy.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MediumPrecision.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/LowPrecision.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/HighPrecision.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PrecisionPolicy.cpp)
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

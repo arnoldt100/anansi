@@ -1,6 +1,6 @@
-#ifndef ANANSI_PrecisionPolicy_INC
-#define ANANSI_PrecisionPolicy_INC
-//! \file PrecisionPolicy.h
+#ifndef ANANSI_LowPrecision_INC
+#define ANANSI_LowPrecision_INC
+//! \file LowPrecision.h
 //!
 //! \brief Brief description
 //!
@@ -17,53 +17,40 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "LowPrecision.h"
-#include "MediumPrecision.h"
-#include "HighPrecision.h"
 
 namespace ANANSI
 {
 
-class PrecisionPolicy
+class LowPrecision
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
-#if ANANSI_COMPUTE_PRECISION == ANANSI_LOW_PRECISION
-    using Type = LowPrecision;
-#elif ANANSI_COMPUTE_PRECISION == ANANSI_MEDIUM_PRECISION 
-    using Type = MediumPrecision;
-#elif ANANSI_COMPUTE_PRECISION == ANANSI_HIGH_PRECISION 
-    using Type = HighPrecision;
-#else 
-    using Type = MediumPrecision;
-#endif 
-
         //! The default constructor.
-        PrecisionPolicy ();   // constructor
+        LowPrecision ();   // constructor
 
         //! The copy constructor.
-        PrecisionPolicy (const PrecisionPolicy & other);   // copy constructor
+        LowPrecision (const LowPrecision & other);   // copy constructor
 
         //! The move constructor.
-        PrecisionPolicy (PrecisionPolicy && other);   // copy-move constructor
+        LowPrecision (LowPrecision && other);   // copy-move constructor
 
-        ~PrecisionPolicy ();  // destructor
+        ~LowPrecision ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
-        PrecisionPolicy * clone () const;
+        LowPrecision * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! The copy assignment operator.
-        PrecisionPolicy& operator= ( const PrecisionPolicy &other ); // assignment operator
+        LowPrecision& operator= ( const LowPrecision &other ); // assignment operator
 
         //! The move assignment operator.
-        PrecisionPolicy& operator= ( PrecisionPolicy && other ); // assignment-move operator
+        LowPrecision& operator= ( LowPrecision && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -75,9 +62,9 @@ class PrecisionPolicy
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  End of class PrecisionPolicy  -----
+}; // -----  End of class LowPrecision  -----
 
 
 }; // End of namespace ANANSI
 
-#endif // ANANSI_PrecisionPolicy_INC
+#endif // ANANSI_LowPrecision_INC

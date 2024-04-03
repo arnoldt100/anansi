@@ -1,17 +1,5 @@
 #! /usr/bin/env bash
 
-export ANANSI_OFF=0
-export ANANSI_ON=1
-export MOUSEION_OFF=0
-export MOUSEION_ON=1
-
-export ANANSI_DATA_STORAGE_CPU=0
-export ANANSI_DATA_STORAGE_GPU=1
-
-export ANANSI_LOW_PRECISION=1
-export ANANSI_MEDIUM_PRECISION=2
-export ANANSI_HIGH_PRECISION=3
-
 #-----------------------------------------------------
 # Define the top level directory of anansi           -
 #                                                    -
@@ -20,6 +8,13 @@ if [ -z ${ANANSI_TOP_LEVEL+x} ]
 then
     export ANANSI_TOP_LEVEL=${HOME}/anansi
 fi
+
+#-----------------------------------------------------
+# Source the core variables that use to set compile 
+# definitions.
+#                                                    -
+#-----------------------------------------------------
+source ${ANANSI_TOP_LEVEL}/configurations/anansi_core_variables.sh
 
 #-----------------------------------------------------
 # Define the c++ compiler.                           -
@@ -85,10 +80,16 @@ export ANANSI_DEBUG_VALID_VALUES=${ANANSI_ON}
 export MOUSEION_DEBUG_VALID_VALUES=${MOUSEION_ON}
 
 # ---------------------------------------------------
-# Define the data policy.
+# Define the anansi data centric policy
 #
 # --------------------------------------------------- 
-export ANANSI_DATA_POLICY=${ANANSI_DATA_STORAGE_CPU}
+export ANANSI_DATA_CENTRIC_POLICY=${ANANSI_DATA_STORAGE_CPU}
+
+# ---------------------------------------------------
+# Define the anansi precision policy
+#
+# --------------------------------------------------- 
+export ANANSI_PRECISION_POLICY=${ANANSI_MEDIUM_COMPUTE_PRECISION}
 
 #-----------------------------------------------------
 # This anansi core configuration must be sourced.    -

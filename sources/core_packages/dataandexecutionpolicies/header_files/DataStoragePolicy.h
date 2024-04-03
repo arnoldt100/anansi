@@ -17,6 +17,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "GPUCentricStoragePolicy.h"
+#include "CPUCentricStoragePolicy.h"
 
 namespace ANANSI
 {
@@ -24,17 +26,12 @@ namespace ANANSI
 class DataStoragePolicy
 {
     public:
-        // ====================  LIFECYCLE     =======================================
-
-#if ANANSI_COMPUTE_PRECISION == ANANSI_LOW_PRECISION
-    using Type = int ;
-#elif ANANSI_COMPUTE_PRECISION == ANANSI_MEDIUM_PRECISION 
-    using Type = double;
-#elif ANANSI_COMPUTE_PRECISION == ANANSI_HIGH_PRECISION 
-    using Type = char*;
-#else 
-    using Type = char*;
+#if ANANSI_DATA_POLICY == ANANSI_DATA_STORAGE_CPU
+        using TYPE = CPUCentricStoragePolicy;
+#elif ANANSI_DATA_POLICY == ANANSI_DATA_STORAGE_GPU
+        using TYPE = GPUCentricStoragePolicy;
 #endif 
+        // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
         DataStoragePolicy ();   // constructor

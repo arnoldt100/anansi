@@ -93,6 +93,12 @@ else
     # Define the anansi precision
     #
     #-----------------------------------------------------
-    export ANANSI_COMPUTE_PRECISION=${ANANSI_MEDIUM_PRECISION}
+    export ANANSI_COMPUTE_PRECISION=${ANANSI_PRECISION_POLICY}
+
+    # ---------------------------------------------------
+    # Define the data policy.
+    #
+    # --------------------------------------------------- 
+    export ANANSI_DATA_POLICY=${ANANSI_DATA_CENTRIC_POLICY}
 fi
 

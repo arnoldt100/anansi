@@ -105,4 +105,28 @@ function(verify_key_anansi_environmental_are_set)
         variable defines enables/disables debugging valid values for critical variable." )
     endif()
 
+   # ---------------------------------------------------
+   # Verify environment variable
+   # ANANSI_COMPUTE_PRECISION is defined.
+   #
+   # --------------------------------------------------- 
+   if( DEFINED ENV{ANANSI_COMPUTE_PRECISION})
+       message("ANANSI_COMPUTE_PRECISION=$ENV{ANANSI_COMPUTE_PRECISION}")
+    else()
+        message( FATAL_ERROR "The environmental ANANSI_COMPUTE_PRECISION is not defined. This \
+        variable defines valid values for setting the precision of the simulation." )
+    endif()
+
+   # ---------------------------------------------------
+   # Verify environment variable
+   # ANANSI_DATA_POLICY is defined.
+   #
+   # --------------------------------------------------- 
+   if( DEFINED ENV{ANANSI_DATA_POLICY})
+       message("ANANSI_DATA_POLICY=$ENV{ANANSI_DATA_POLICY}")
+    else()
+        message( FATAL_ERROR "The environmental ANANSI_DATA_POLICY is not defined. This \
+        variable defines valid values for setting where the simulation is cpu or gpu centered." )
+    endif()
+
 endfunction()
