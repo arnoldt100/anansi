@@ -22,5 +22,8 @@
 
 macro(enable_anansi_precision MY_TARGET)
      target_compile_options(${MY_TARGET}
-         PRIVATE $<$<BOOL:$ENV${ANANSI_COMPUTE_PRECISION}>:-DANANSI_COMPUTE_PRECISION=$ENV{ANANSI_COMPUTE_PRECISION}> )
-endmacro()
+         PRIVATE $<$<BOOL:$ENV${ANANSI_COMPUTE_PRECISION}>: -DANANSI_COMPUTE_PRECISION=$ENV{ANANSI_COMPUTE_PRECISION} 
+                                                            -DANANSI_LOW_PRECISION=$ENV{ANANSI_LOW_PRECISION} 
+                                                            -DANANSI_MEDIUM_PRECISION=$ENV{ANANSI_MEDIUM_PRECISION} 
+                                                            -DANANSI_HIGH_PRECISION=$ENV{ANANSI_HIGH_PRECISION} > )
+ endmacro()

@@ -26,6 +26,16 @@ class DataStoragePolicy
     public:
         // ====================  LIFECYCLE     =======================================
 
+#if ANANSI_COMPUTE_PRECISION == ANANSI_LOW_PRECISION
+    using Type = int ;
+#elif ANANSI_COMPUTE_PRECISION == ANANSI_MEDIUM_PRECISION 
+    using Type = double;
+#elif ANANSI_COMPUTE_PRECISION == ANANSI_HIGH_PRECISION 
+    using Type = char*;
+#else 
+    using Type = char*;
+#endif 
+
         //! The default constructor.
         DataStoragePolicy ();   // constructor
 
