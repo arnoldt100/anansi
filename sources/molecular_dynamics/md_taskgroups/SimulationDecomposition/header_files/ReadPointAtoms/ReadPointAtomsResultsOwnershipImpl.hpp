@@ -109,7 +109,6 @@ class ReadPointAtomsResultsOwnershipImpl : public RECEIVER::BaseOwnershipImpleme
            return result.clone();
         }
 
-
         // ====================  DATA MEMBERS  =======================================
 
     private:

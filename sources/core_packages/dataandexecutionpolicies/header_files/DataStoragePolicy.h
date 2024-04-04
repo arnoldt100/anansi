@@ -27,7 +27,7 @@ class DataStoragePolicy
 {
     public:
 #if ANANSI_DATA_POLICY == ANANSI_DATA_STORAGE_CPU
-        using TYPE = CPUCentricStoragePolicy;
+        using Type = CPUCentricStoragePolicy;
 #elif ANANSI_DATA_POLICY == ANANSI_DATA_STORAGE_GPU
         using TYPE = GPUCentricStoragePolicy;
 #endif 

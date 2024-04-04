@@ -55,6 +55,7 @@
     get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
     get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
     get_target_property(my_physical_data_structures_include  physical_data_structures physical_data_structures_include)
+    get_target_property(my_dataandexecutionpolicies_include dataandexecutionpolicies dataandexecutionpolicies_include)
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
     get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
@@ -268,6 +269,7 @@ target_include_directories(${target}
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator" 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms" 
                            PUBLIC "${my_physical_data_structures_include}"
+                           PUBLIC "${my_dataandexecutionpolicies_include}"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions"
@@ -280,7 +282,8 @@ target_include_directories(${target}
                            PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
                            PRIVATE "${my_comm_include}"
-                           PRIVATE "${my_mpi_communicator_include}")
+                           PRIVATE "${my_mpi_communicator_include}"
+                           )
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -289,6 +292,7 @@ target_include_directories(${target}
 target_link_libraries(${target}
                       PUBLIC communicator
                       PUBLIC physical_data_structures
+                      PUBLIC dataandexecutionpolicies
                       PUBLIC generic_abstract_factory
                       PUBLIC genericmdtask
                       PUBLIC common_md_taskgroup_headers

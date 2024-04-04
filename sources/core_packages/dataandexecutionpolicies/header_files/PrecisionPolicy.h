@@ -29,11 +29,11 @@ class PrecisionPolicy
     public:
         // ====================  LIFECYCLE     =======================================
 
-#if ANANSI_COMPUTE_PRECISION == ANANSI_LOW_PRECISION
+#if ANANSI_COMPUTE_PRECISION == ANANSI_LOW_COMPUTE_PRECISION
         using Type = LowPrecision;
-#elif ANANSI_COMPUTE_PRECISION == ANANSI_MEDIUM_PRECISION 
+#elif ANANSI_COMPUTE_PRECISION == ANANSI_MEDIUM_COMPUTE_PRECISION
         using Type = MediumPrecision;
-#elif ANANSI_COMPUTE_PRECISION == ANANSI_HIGH_PRECISION 
+#elif ANANSI_COMPUTE_PRECISION == ANANSI_HIGH_COMPUTE_PRECISION
         using Type = HighPrecision;
 #else 
     using Type = MediumPrecision;

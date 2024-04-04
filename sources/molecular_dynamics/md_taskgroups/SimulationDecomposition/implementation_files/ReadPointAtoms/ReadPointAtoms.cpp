@@ -92,6 +92,13 @@ void ReadPointAtoms::receiverModifyMyself_(int & alpha)
     return;
 }
 
+template<>
+void ReadPointAtoms::receiverModifyMyself_( PhysicalDataStructure<DataStoragePolicy::Type,PrecisionPolicy::Type> & my_atoms)
+{
+    this->results_ = my_atoms;
+    return;
+}
+
 ReadPointAtoms::receiver_share_t_ ReadPointAtoms::receiverShareOwnershipOfResults_()
 {
     ReadPointAtoms::receiver_share_t_ my_shared_result = ownershipPolicy_.shareOwnershipOfReceiverResult(this->results_);
