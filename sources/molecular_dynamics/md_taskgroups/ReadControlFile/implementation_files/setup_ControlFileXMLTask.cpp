@@ -63,7 +63,7 @@ void setup_ControlFileXMLTask (const std::string controlfile_name,
     CommandFileName my_command_file_name(controlfile_name);
     control_file_xml_receiver->modifyReceiver(my_command_file_name);
 
-    MasterProcess my_master_process(master_process);
+    COMMUNICATOR::MasterProcess my_master_process(master_process);
     control_file_xml_receiver->modifyReceiver(my_master_process);
 
     // ---------------------------------------------------

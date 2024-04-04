@@ -16,6 +16,7 @@
 #include "setup_pointatoms_decomposer_receiver.h"
 #include "setup_pointatoms_communicator_receiver.h"
 #include "setup_macro_read_pointatoms_receiver.h"
+#include "MasterProcess.h"
 
 namespace ANANSI
 {
@@ -31,7 +32,7 @@ void setup_simulationdecomposition_invoker (const SimulationDecompositionParamet
                                 SimulationDecompositionTaskTraits::concrete_products>::initializeInvoker();
 
     const bool master_process = world_communicator->iAmMasterProcess();
-    MasterProcess my_master_process(master_process);
+    COMMUNICATOR::MasterProcess my_master_process(master_process);
 
     setup_pointatoms_communicator_receiver(work_load_parameters,std::move(world_communicator),simulation_decomposer_invoker);
     setup_pointatoms_decomposer_receiver(simulation_decomposer_invoker);

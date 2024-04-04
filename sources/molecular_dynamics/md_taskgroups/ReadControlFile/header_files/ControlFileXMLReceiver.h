@@ -74,7 +74,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
         CommandFileName commandFileName_;
-        MasterProcess masterProcess_;
+        COMMUNICATOR::MasterProcess masterProcess_;
 
     public:
         using MyComponentReceiverTypelist = MPL::mpl_typelist<>;

@@ -108,7 +108,7 @@ void ControlFileXMLReceiver::receiverModifyMyself_(CommandFileName & arg)
 }
 
 template<>
-void ControlFileXMLReceiver::receiverModifyMyself_(MasterProcess & arg)
+void ControlFileXMLReceiver::receiverModifyMyself_(COMMUNICATOR::MasterProcess & arg)
 {
     this->masterProcess_ = arg;
     return;
