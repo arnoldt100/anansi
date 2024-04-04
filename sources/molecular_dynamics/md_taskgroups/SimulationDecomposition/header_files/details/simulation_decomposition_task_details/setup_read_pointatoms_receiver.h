@@ -18,12 +18,13 @@
 #include <GenericTaskInvoker.hpp>
 #include "SimulationDecompositionTaskTraits.h"
 #include "SimulationDecompositionParameters.h"
-
+#include "Communicator.h"
 namespace ANANSI
 {
 
 //! \brief Setups the reciever ReadPointAtoms.
 void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & simulation_decomposition_parameters,
+                                     std::shared_ptr<COMMUNICATOR::Communicator> & rect_communicator,  
                                      std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
                                                                                 SimulationDecompositionTaskTraits::concrete_products>
                                                > & simulation_decomposer_invoker );

@@ -72,9 +72,9 @@ void setup_simulationdecomposition_invoker (const SimulationDecompositionParamet
 
     setup_pointatoms_communicator_receiver(my_rect_comm,simulation_decomposer_invoker);
 
-    setup_pointatoms_decomposer_receiver(simulation_decomposer_invoker);
+    setup_read_pointatoms_receiver(work_load_parameters,my_rect_comm,simulation_decomposer_invoker);
 
-    setup_read_pointatoms_receiver(work_load_parameters,simulation_decomposer_invoker);
+    setup_pointatoms_decomposer_receiver(simulation_decomposer_invoker);
 
     setup_macro_read_pointatoms_receiver(simulation_decomposer_invoker);
 
