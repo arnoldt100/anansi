@@ -17,7 +17,8 @@
 namespace ANANSI
 {
 
-void setup_read_pointatoms_receiver (std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
+void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & simulation_decomposition_parameters,
+                                     std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
                                                                                 SimulationDecompositionTaskTraits::concrete_products>
                                                > & simulation_decomposer_invoker )
 {
@@ -64,7 +65,7 @@ void setup_read_pointatoms_receiver (std::shared_ptr<ANANSI::GenericTaskInvoker<
     // Modify the receiver 
     //
     // ---------------------------------------------------
-    // To do is modify the receiver.
+    // Add the list of files to read the initial configuration.
 
     // ---------------------------------------------------
     // Add the task object/command to the invoker.

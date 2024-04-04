@@ -30,9 +30,12 @@ void setup_simulationdecomposition_invoker (const SimulationDecompositionParamet
       GenericTaskInvokerFactory<SimulationDecompositionTaskTraits::abstract_products,
                                 SimulationDecompositionTaskTraits::concrete_products>::initializeInvoker();
 
+    const bool master_process = world_communicator->iAmMasterProcess();
+    MasterProcess my_master_process(master_process);
+
     setup_pointatoms_communicator_receiver(work_load_parameters,std::move(world_communicator),simulation_decomposer_invoker);
     setup_pointatoms_decomposer_receiver(simulation_decomposer_invoker);
-    setup_read_pointatoms_receiver(simulation_decomposer_invoker);
+    setup_read_pointatoms_receiver(work_load_parameters,simulation_decomposer_invoker);
     setup_macro_read_pointatoms_receiver(simulation_decomposer_invoker);
 
     return;
