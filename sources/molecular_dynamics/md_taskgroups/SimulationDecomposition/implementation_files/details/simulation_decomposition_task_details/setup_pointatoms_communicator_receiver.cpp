@@ -14,16 +14,12 @@
 #include "GenericErrorClass.hpp"
 #include "GenericReceiverFactory.hpp"
 #include "GenericTaskFactory.hpp"
-#include "MPICommunicatorFactory.h"
-#include "sdp_create_communicator_embryo.hpp"
 #include "setup_pointatoms_communicator_receiver.h"
-#include "verify_correct_size_for_world_communicator.h"
 
 namespace ANANSI {
 
 void setup_pointatoms_communicator_receiver(
-    const SimulationDecompositionParameters &work_load_parameters,
-    std::unique_ptr<COMMUNICATOR::Communicator> world_communicator,
+    std::shared_ptr<COMMUNICATOR::Communicator> rect_world_communicator,
     std::shared_ptr<ANANSI::GenericTaskInvoker<
         SimulationDecompositionTaskTraits::abstract_products,
         SimulationDecompositionTaskTraits::concrete_products>>
@@ -68,34 +64,7 @@ void setup_pointatoms_communicator_receiver(
       RECEIVER::GenericReceiverFactory<my_abstract_tasks, my_concrete_tasks>::
           createSharedReceiver<concrete_receiver_t>();
 
-  // ---------------------------------------------------
-  // Verify that the world communicator and the requested
-  // communicator topology match in size.
-  //
-  // ---------------------------------------------------
-  auto communicator_embryo =
-      COMMUNICATOR::create_communicator_embryo(work_load_parameters);
-  auto communicator_dims = communicator_embryo.communicatorDimensions();
-  try {
-    SimulationDecompositionTasksHelpers::
-        verify_correct_size_for_world_communicator(
-            communicator_dims, world_communicator->getSizeofCommunicator());
-  } catch (const ErrorInvalidSimulationDecompositionParameters &my_error) {
-    const std::string error_message = my_error.what();
-    throw MOUSEION::GenericErrorClass<SimulationDecompositionParameters>(
-        error_message);
-  }
-
-  // ---------------------------------------------------
-  // Modify the receiver by adding the communicator.
-  //
-  // ---------------------------------------------------
-  std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory =
-      std::make_unique<MPICommunicatorFactory>();
-  std::unique_ptr<COMMUNICATOR::Communicator> my_comm =
-      a_communicator_factory->createCommunicator(world_communicator,
-                                                 communicator_embryo);
-  point_atoms_communicator_receiver->modifyReceiver(my_comm);
+  point_atoms_communicator_receiver->modifyReceiver(rect_world_communicator);
 
   // ---------------------------------------------------
   // Create task object and bind the receiver to the task object.

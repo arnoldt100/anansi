@@ -92,9 +92,9 @@ bool PointAtomsCommunicator::ifEnabled_() const
 //============================= MUTATORS =====================================
 
 template<>
-void PointAtomsCommunicator::receiverModifyMyself_(std::unique_ptr<COMMUNICATOR::Communicator> & arg)
+void PointAtomsCommunicator::receiverModifyMyself_(std::shared_ptr<COMMUNICATOR::Communicator> & arg)
 {
-    this->communicator_ = std::move(arg);
+    this->communicator_ = arg;
     return;
 }
 

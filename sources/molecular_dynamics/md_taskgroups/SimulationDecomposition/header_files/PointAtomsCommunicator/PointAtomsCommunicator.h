@@ -154,7 +154,7 @@ class PointAtomsCommunicator :  public RECEIVER::ReceiverInterface<PointAtomsCom
         // ====================  DATA MEMBERS  =======================================
         bool enabledStatus_;
         mutable receiver_result_t results_;
-        std::unique_ptr<COMMUNICATOR::Communicator> communicator_;
+        std::shared_ptr<COMMUNICATOR::Communicator> communicator_;
         MyOwnershipPolicy_ ownershipPolicy_;
 
 }; // -----  end of class PointAtomsCommunicator  -----
