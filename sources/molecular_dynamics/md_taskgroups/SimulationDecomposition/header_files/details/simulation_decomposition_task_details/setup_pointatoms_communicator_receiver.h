@@ -19,6 +19,7 @@
 #include "Communicator.h"
 #include "GenericTaskInvoker.hpp"
 #include "SimulationDecompositionTaskTraits.h"
+#include "SimulationDecompositionParameters.h"
 
 namespace ANANSI
 {
@@ -27,7 +28,8 @@ namespace ANANSI
 //!
 //! \param The world c
 //ommunicator.
-void setup_pointatoms_communicator_receiver (std::shared_ptr<COMMUNICATOR::Communicator> rect_world_communicator,
+void setup_pointatoms_communicator_receiver (SimulationDecompositionParameters const & simulation_decomposition_parameters,
+                                             std::shared_ptr<COMMUNICATOR::Communicator> rect_world_communicator,
                                              std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
                                                                                         SimulationDecompositionTaskTraits::concrete_products>
                                                > & simulation_decomposer_invoker);

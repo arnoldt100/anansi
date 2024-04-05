@@ -87,6 +87,8 @@ class SimulationDecompositionParameters
 
         std::array<std::size_t,3> getProccesorTopology() const;
 
+        std::vector<std::string> listOfInitialConfigurationFiles() const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================

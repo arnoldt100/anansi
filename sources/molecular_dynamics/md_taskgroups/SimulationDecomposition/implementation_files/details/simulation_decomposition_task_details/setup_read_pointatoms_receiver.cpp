@@ -13,6 +13,7 @@
 #include "setup_read_pointatoms_receiver.h"
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
+#include "InitialConfigurationFilenames.h"
 
 namespace ANANSI
 {
@@ -56,17 +57,21 @@ void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & s
         RECEIVER::GenericReceiverFactory<my_abstract_tasks,my_concrete_tasks>::createSharedReceiver<concrete_receiver_t>();
 
     // ---------------------------------------------------
+    // Modify the receiver 
+    //
+    // ---------------------------------------------------
+    // Add the list of files to read the initial configuration.
+    const auto list_of_files = 
+        simulation_decomposition_parameters.listOfInitialConfigurationFiles();
+    InitialConfigurationFilenames my_files{list_of_files};
+    read_point_atoms_reciver->modifyReceiver(my_files);
+
+    // ---------------------------------------------------
     // Create task object and bind the receiver to the task object.
     // 
     // ---------------------------------------------------
     std::shared_ptr<ANANSI::AnansiTask> my_task = 
         concrete_task_factory->create_shared_ptr<base_receiver_t>(read_point_atoms_reciver);
-
-    // ---------------------------------------------------
-    // Modify the receiver 
-    //
-    // ---------------------------------------------------
-    // Add the list of files to read the initial configuration.
 
     // ---------------------------------------------------
     // Add the task object/command to the invoker.

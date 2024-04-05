@@ -162,7 +162,8 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/SimulationDecompositionTasksHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.hpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.h)
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.h 
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/InitialConfigurationFilenames.h)
         
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -214,7 +215,8 @@ add_library( ${target} STATIC
                ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/SimulationDecompositionTasksHelpers.cpp 
                ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.cpp 
-               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.cpp)
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/InitialConfigurationFilenames.cpp)
         
          # ----------------------------------------------------
          # Source files for ReadPointAtoms task

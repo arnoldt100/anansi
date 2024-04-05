@@ -19,6 +19,7 @@
 namespace ANANSI {
 
 void setup_pointatoms_communicator_receiver(
+    const SimulationDecompositionParameters & simulation_decomposition_parameters,
     std::shared_ptr<COMMUNICATOR::Communicator> rect_world_communicator,
     std::shared_ptr<ANANSI::GenericTaskInvoker<
         SimulationDecompositionTaskTraits::abstract_products,

@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReadPointAtoms.h"
+#include "InitialConfigurationFilenames.h"
 
 namespace ANANSI {
 
@@ -24,7 +25,9 @@ ReadPointAtoms::ReadPointAtoms() :
     RECEIVER::ReceiverInterface<ReadPointAtoms>{},
     enabledStatus_{false},
     results_{ReadPointAtomsResultsTraits::Atoms_t()},
-    ownershipPolicy_{}
+    ownershipPolicy_{},
+    initialConfigurationFileNames_{},
+    masterProcess_{}
 {
     return;
 }
@@ -33,7 +36,9 @@ ReadPointAtoms::ReadPointAtoms( ReadPointAtoms && other) :
     RECEIVER::ReceiverInterface<ReadPointAtoms>{std::move(other)},
     enabledStatus_{std::move(other.enabledStatus_)},
     results_{std::move(other.results_)},
-    ownershipPolicy_{std::move(other.ownershipPolicy_)}
+    ownershipPolicy_{std::move(other.ownershipPolicy_)},
+    initialConfigurationFileNames_{std::move(other.initialConfigurationFileNames_)},
+    masterProcess_{std::move(other.masterProcess_)}
 {
     if (this != &other)
     {
@@ -61,6 +66,9 @@ ReadPointAtoms& ReadPointAtoms::operator= ( ReadPointAtoms && other )
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
+        this->initialConfigurationFileNames_ = std::move(other.initialConfigurationFileNames_);
+        this->masterProcess_ = std::move(other.masterProcess_);
+
     }
     return *this;
 } // assignment-move operator
@@ -97,6 +105,18 @@ void ReadPointAtoms::receiverModifyMyself_( PhysicalDataStructure<DataStoragePol
 {
     this->results_ = my_atoms;
     return;
+}
+
+template<>
+void ReadPointAtoms::receiverModifyMyself_(InitialConfigurationFilenames & file_names)
+{
+    this->initialConfigurationFileNames_ = file_names();
+}
+
+template<>
+void ReadPointAtoms::receiverModifyMyself_(COMMUNICATOR::MasterProcess & master_process)
+{
+    this->masterProcess_ = master_process;
 }
 
 ReadPointAtoms::receiver_share_t_ ReadPointAtoms::receiverShareOwnershipOfResults_()

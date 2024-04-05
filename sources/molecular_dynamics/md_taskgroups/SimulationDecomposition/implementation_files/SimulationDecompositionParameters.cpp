@@ -145,6 +145,11 @@ std::array<std::size_t,3> SimulationDecompositionParameters::getProccesorTopolog
     }
     return value;
 }
+std::vector<std::string> SimulationDecompositionParameters::listOfInitialConfigurationFiles() const
+{
+	return this->initialConfigurationFilename_;
+}
+
 //============================= STATIC    ====================================
 
 //============================= MUTATORS =====================================

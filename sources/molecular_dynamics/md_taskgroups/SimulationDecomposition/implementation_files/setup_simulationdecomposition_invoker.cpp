@@ -27,11 +27,11 @@ namespace ANANSI
 namespace 
 {
     std::shared_ptr<COMMUNICATOR::Communicator> create_rectangular_communicator(
-               const SimulationDecompositionParameters & work_load_parameters,
+               const SimulationDecompositionParameters & simulation_decomposition_parameters,
                std::unique_ptr<COMMUNICATOR::Communicator> world_communicator )
     {
         auto communicator_embryo =
-            COMMUNICATOR::create_communicator_embryo(work_load_parameters);
+            COMMUNICATOR::create_communicator_embryo(simulation_decomposition_parameters);
         auto communicator_dims = communicator_embryo.communicatorDimensions();
         try {
           SimulationDecompositionTasksHelpers::
@@ -53,7 +53,7 @@ namespace
     }
 };  // ----- End of anonymous namespace
 
-void setup_simulationdecomposition_invoker (const SimulationDecompositionParameters & work_load_parameters,
+void setup_simulationdecomposition_invoker (const SimulationDecompositionParameters & simulation_decomposition_parameters,
 		                                    std::unique_ptr<COMMUNICATOR::Communicator> world_communicator,
                                             std::shared_ptr<ANANSI::GenericTaskInvoker<SimulationDecompositionTaskTraits::abstract_products,
                                                                                        SimulationDecompositionTaskTraits::concrete_products>
@@ -64,15 +64,15 @@ void setup_simulationdecomposition_invoker (const SimulationDecompositionParamet
                                 SimulationDecompositionTaskTraits::concrete_products>::initializeInvoker();
 
     std::shared_ptr<COMMUNICATOR::Communicator> my_rect_comm = 
-        create_rectangular_communicator(work_load_parameters,
+        create_rectangular_communicator(simulation_decomposition_parameters,
                                         std::move(world_communicator));
 
     const bool master_process = my_rect_comm->iAmMasterProcess();
     COMMUNICATOR::MasterProcess my_master_process(master_process);
 
-    setup_pointatoms_communicator_receiver(my_rect_comm,simulation_decomposer_invoker);
+    setup_pointatoms_communicator_receiver(simulation_decomposition_parameters,my_rect_comm,simulation_decomposer_invoker);
 
-    setup_read_pointatoms_receiver(work_load_parameters,my_rect_comm,simulation_decomposer_invoker);
+    setup_read_pointatoms_receiver(simulation_decomposition_parameters,my_rect_comm,simulation_decomposer_invoker);
 
     setup_pointatoms_decomposer_receiver(simulation_decomposer_invoker);
 

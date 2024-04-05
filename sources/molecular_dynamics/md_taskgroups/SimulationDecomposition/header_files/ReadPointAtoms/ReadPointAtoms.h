@@ -24,6 +24,7 @@
 #include "ReadPointAtomsResultsTraits.h"
 #include "ReadPointAtomsResultsOwnershipImpl.hpp"
 #include "CopyOwnershipPolicy.hpp"
+#include "MasterProcess.h"
 
 namespace ANANSI
 {
@@ -153,6 +154,8 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
+        std::vector<std::string> initialConfigurationFileNames_;
+        COMMUNICATOR::MasterProcess masterProcess_; 
 
 }; // -----  end of class ReadPointAtoms  -----
 
