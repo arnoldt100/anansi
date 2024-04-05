@@ -25,6 +25,7 @@
 #include "ReadPointAtomsResultsOwnershipImpl.hpp"
 #include "CopyOwnershipPolicy.hpp"
 #include "MasterProcess.h"
+#include "is_communicator_type.hpp"
 
 namespace ANANSI
 {
