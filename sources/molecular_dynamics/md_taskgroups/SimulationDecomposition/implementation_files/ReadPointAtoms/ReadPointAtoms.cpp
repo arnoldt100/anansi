@@ -27,7 +27,8 @@ ReadPointAtoms::ReadPointAtoms() :
     results_{ReadPointAtomsResultsTraits::Atoms_t()},
     ownershipPolicy_{},
     initialConfigurationFileNames_{},
-    masterProcess_{}
+    masterProcessTag_{},
+    communicatorRankTag_{}
 {
     return;
 }
@@ -38,7 +39,8 @@ ReadPointAtoms::ReadPointAtoms( ReadPointAtoms && other) :
     results_{std::move(other.results_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)},
     initialConfigurationFileNames_{std::move(other.initialConfigurationFileNames_)},
-    masterProcess_{std::move(other.masterProcess_)}
+    masterProcessTag_{std::move(other.masterProcessTag_)},
+    communicatorRankTag_{std::move(other.communicatorRankTag_)}
 {
     if (this != &other)
     {
@@ -67,8 +69,8 @@ ReadPointAtoms& ReadPointAtoms::operator= ( ReadPointAtoms && other )
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->initialConfigurationFileNames_ = std::move(other.initialConfigurationFileNames_);
-        this->masterProcess_ = std::move(other.masterProcess_);
-
+        this->masterProcessTag_ = std::move(other.masterProcessTag_);
+        this->communicatorRankTag_ = std::move(other.communicatorRankTag_);
     }
     return *this;
 } // assignment-move operator
@@ -114,9 +116,15 @@ void ReadPointAtoms::receiverModifyMyself_(InitialConfigurationFilenames & file_
 }
 
 template<>
-void ReadPointAtoms::receiverModifyMyself_(COMMUNICATOR::MasterProcess & master_process)
+void ReadPointAtoms::receiverModifyMyself_(COMMUNICATOR::MasterProcess & master_process_tag)
 {
-    this->masterProcess_ = master_process;
+    this->masterProcessTag_ = master_process_tag;
+}
+
+template<>
+void ReadPointAtoms::receiverModifyMyself_(COMMUNICATOR::CommunicatorRank & comm_rank_tag)
+{
+    this->communicatorRankTag_ = comm_rank_tag;
 }
 
 ReadPointAtoms::receiver_share_t_ ReadPointAtoms::receiverShareOwnershipOfResults_()

@@ -25,6 +25,7 @@
 #include "ReadPointAtomsResultsOwnershipImpl.hpp"
 #include "CopyOwnershipPolicy.hpp"
 #include "MasterProcess.h"
+#include "CommunicatorRank.h"
 #include "is_communicator_type.hpp"
 
 namespace ANANSI
@@ -156,7 +157,8 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
         std::vector<std::string> initialConfigurationFileNames_;
-        COMMUNICATOR::MasterProcess masterProcess_; 
+        COMMUNICATOR::MasterProcess masterProcessTag_;
+        COMMUNICATOR::CommunicatorRank communicatorRankTag_;
 
 }; // -----  end of class ReadPointAtoms  -----
 

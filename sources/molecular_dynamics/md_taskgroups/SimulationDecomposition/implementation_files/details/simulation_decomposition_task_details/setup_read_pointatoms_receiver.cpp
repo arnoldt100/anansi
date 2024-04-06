@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <memory>
+#include <algorithm>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -14,6 +15,8 @@
 #include "GenericTaskFactory.hpp"
 #include "GenericReceiverFactory.hpp"
 #include "InitialConfigurationFilenames.h"
+#include "create_master_process_tag.hpp"
+#include "create_communicator_rank_tag.hpp"
 
 namespace ANANSI
 {
@@ -60,11 +63,24 @@ void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & s
     // Modify the receiver 
     //
     // ---------------------------------------------------
-    // Add the list of files to read the initial configuration.
-    const auto list_of_files = 
+    
+    // Add the list of files to read the initial configuration. 
+    // We alphabetically sort the files to ensure the files
+    // are in the same order on each communicator rank.
+    auto list_of_files = 
         simulation_decomposition_parameters.listOfInitialConfigurationFiles();
-    InitialConfigurationFilenames my_files{list_of_files};
+    std::sort(list_of_files.begin(),list_of_files.end());
+    const auto & list_of_files_const = list_of_files; 
+    InitialConfigurationFilenames my_files{list_of_files_const};
     read_point_atoms_reciver->modifyReceiver(my_files);
+
+    // Add the master process tag to the receiver.
+    COMMUNICATOR::MasterProcess my_master_process_tag{COMMUNICATOR::create_master_process_tag(rect_communicator)};
+    read_point_atoms_reciver->modifyReceiver(my_master_process_tag);
+
+    // Add the communicator rank tag to the receiver.
+    COMMUNICATOR::CommunicatorRank my_comm_rank_tag{COMMUNICATOR::create_communicator_rank_tag(rect_communicator)};
+    read_point_atoms_reciver->modifyReceiver(my_comm_rank_tag);
 
     // ---------------------------------------------------
     // Create task object and bind the receiver to the task object.
