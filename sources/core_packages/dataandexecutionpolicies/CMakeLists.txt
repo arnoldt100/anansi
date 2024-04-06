@@ -81,7 +81,9 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MediumPrecision.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/LowPrecision.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/HighPrecision.h
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PrecisionPolicy.h)
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PrecisionPolicy.h
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/DataPartitioner.hpp
+         )
  
      #-----------------------------------------------------
      # Here we define the variable                        -
@@ -97,7 +99,8 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MediumPrecision.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/LowPrecision.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/HighPrecision.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PrecisionPolicy.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PrecisionPolicy.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/DataPartitioner.cpp)
  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

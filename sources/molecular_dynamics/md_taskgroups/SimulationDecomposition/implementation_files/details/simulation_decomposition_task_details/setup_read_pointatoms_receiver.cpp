@@ -3,6 +3,8 @@
 //--------------------------------------------------------//
 #include <memory>
 #include <algorithm>
+#include <string>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -17,7 +19,7 @@
 #include "InitialConfigurationFilenames.h"
 #include "create_master_process_tag.hpp"
 #include "create_communicator_rank_tag.hpp"
-
+#include "DataPartitioner.hpp"
 namespace ANANSI
 {
 
@@ -63,16 +65,6 @@ void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & s
     // Modify the receiver 
     //
     // ---------------------------------------------------
-    
-    // Add the list of files to read the initial configuration. 
-    // We alphabetically sort the files to ensure the files
-    // are in the same order on each communicator rank.
-    auto list_of_files = 
-        simulation_decomposition_parameters.listOfInitialConfigurationFiles();
-    std::sort(list_of_files.begin(),list_of_files.end());
-    const auto & list_of_files_const = list_of_files; 
-    InitialConfigurationFilenames my_files{list_of_files_const};
-    read_point_atoms_reciver->modifyReceiver(my_files);
 
     // Add the master process tag to the receiver.
     COMMUNICATOR::MasterProcess my_master_process_tag{COMMUNICATOR::create_master_process_tag(rect_communicator)};
@@ -89,6 +81,23 @@ void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & s
     std::shared_ptr<ANANSI::AnansiTask> my_task = 
         concrete_task_factory->create_shared_ptr<base_receiver_t>(read_point_atoms_reciver);
 
+    // Add the list of files to read the initial configuration. 
+    // We alphabetically sort the files to ensure the files
+    // are in the same order on each communicator rank.
+    std::vector<std::string> list_of_files = 
+        simulation_decomposition_parameters.listOfInitialConfigurationFiles();
+    std::sort(list_of_files.begin(),list_of_files.end());
+    COMMUNICATOR::CommunicatorRank::rank_t tag{my_comm_rank_tag.operator()()};
+    // auto partitioned_file_list  = RoundRobinDataPartitioner<std::vector<std::string>,COMMUNICATOR::CommunicatorRank::rank_t> (list_of_files.begin(),
+    //                                                         list_of_files.end(),
+    //                                                         tag);
+
+    auto partitioned_file_list  = RoundRobinDataPartitioner(list_of_files.begin(),
+                                                            list_of_files.end(),
+                                                            tag);
+
+    // InitialConfigurationFilenames my_files{partitioned_file_list};
+    // read_point_atoms_reciver->modifyReceiver(my_files);
     // ---------------------------------------------------
     // Add the task object/command to the invoker.
     //
