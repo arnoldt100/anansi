@@ -19,6 +19,7 @@
 #include "InitialConfigurationFilenames.h"
 #include "create_master_process_tag.hpp"
 #include "create_communicator_rank_tag.hpp"
+#include "create_communicator_size_tag.hpp"
 #include "DataPartitioner.hpp"
 namespace ANANSI
 {
@@ -92,8 +93,7 @@ void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & s
     //                                                         list_of_files.end(),
     //                                                         tag);
 
-    auto partitioned_file_list  = RoundRobinDataPartitioner(list_of_files.begin(),
-                                                            list_of_files.end(),
+    auto partitioned_file_list  = RoundRobinDataPartitioner(list_of_files,
                                                             tag);
 
     // InitialConfigurationFilenames my_files{partitioned_file_list};
