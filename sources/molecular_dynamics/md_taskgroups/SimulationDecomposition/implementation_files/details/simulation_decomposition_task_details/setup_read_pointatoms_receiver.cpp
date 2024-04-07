@@ -75,12 +75,6 @@ void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & s
     COMMUNICATOR::CommunicatorRank my_comm_rank_tag{COMMUNICATOR::create_communicator_rank_tag(rect_communicator)};
     read_point_atoms_reciver->modifyReceiver(my_comm_rank_tag);
 
-    // ---------------------------------------------------
-    // Create task object and bind the receiver to the task object.
-    // 
-    // ---------------------------------------------------
-    std::shared_ptr<ANANSI::AnansiTask> my_task = 
-        concrete_task_factory->create_shared_ptr<base_receiver_t>(read_point_atoms_reciver);
 
     // Add the list of files to read the initial configuration. 
     // We alphabetically sort the files to ensure the files
@@ -88,16 +82,24 @@ void setup_read_pointatoms_receiver (SimulationDecompositionParameters const & s
     std::vector<std::string> list_of_files = 
         simulation_decomposition_parameters.listOfInitialConfigurationFiles();
     std::sort(list_of_files.begin(),list_of_files.end());
+
+    COMMUNICATOR::CommunicatorSize comm_size_tag{COMMUNICATOR::create_communicator_size_tag(rect_communicator)};
+    COMMUNICATOR::CommunicatorSize::value_t comm_size{comm_size_tag.operator()()};
     COMMUNICATOR::CommunicatorRank::rank_t tag{my_comm_rank_tag.operator()()};
-    // auto partitioned_file_list  = RoundRobinDataPartitioner<std::vector<std::string>,COMMUNICATOR::CommunicatorRank::rank_t> (list_of_files.begin(),
-    //                                                         list_of_files.end(),
-    //                                                         tag);
-
     auto partitioned_file_list  = RoundRobinDataPartitioner(list_of_files,
-                                                            tag);
+                                                            tag,
+                                                            comm_size);
 
-    // InitialConfigurationFilenames my_files{partitioned_file_list};
-    // read_point_atoms_reciver->modifyReceiver(my_files);
+    InitialConfigurationFilenames my_files{partitioned_file_list};
+    read_point_atoms_reciver->modifyReceiver(my_files);
+
+    // ---------------------------------------------------
+    // Create task object and bind the receiver to the task object.
+    // 
+    // ---------------------------------------------------
+    std::shared_ptr<ANANSI::AnansiTask> my_task = 
+        concrete_task_factory->create_shared_ptr<base_receiver_t>(read_point_atoms_reciver);
+
     // ---------------------------------------------------
     // Add the task object/command to the invoker.
     //
