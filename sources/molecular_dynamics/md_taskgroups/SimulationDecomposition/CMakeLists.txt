@@ -298,7 +298,7 @@ target_link_libraries(${target}
                       PUBLIC generic_abstract_factory
                       PUBLIC genericmdtask
                       PUBLIC common_md_taskgroup_headers
-                      PUBLIC file_parsers_core_include
+                      PUBLIC file_parsers_core
                       PUBLIC invoker)
 
 
