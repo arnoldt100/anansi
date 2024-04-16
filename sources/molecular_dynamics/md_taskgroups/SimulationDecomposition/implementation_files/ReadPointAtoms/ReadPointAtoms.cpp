@@ -11,7 +11,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ReadPointAtoms.h"
-#include "InitialConfigurationFilenames.h"
 
 namespace ANANSI {
 
@@ -112,7 +111,7 @@ void ReadPointAtoms::receiverModifyMyself_( PhysicalDataStructure<DataStoragePol
 template<>
 void ReadPointAtoms::receiverModifyMyself_(InitialConfigurationFilenames & file_names)
 {
-    this->initialConfigurationFileNames_ = file_names();
+    this->initialConfigurationFileNames_ = file_names;
 }
 
 template<>

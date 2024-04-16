@@ -27,6 +27,7 @@
 #include "MasterProcess.h"
 #include "CommunicatorRank.h"
 #include "is_communicator_type.hpp"
+#include "InitialConfigurationFilenames.h"
 
 namespace ANANSI
 {
@@ -156,7 +157,7 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
-        std::vector<std::string> initialConfigurationFileNames_;
+        InitialConfigurationFilenames initialConfigurationFileNames_;
         COMMUNICATOR::MasterProcess masterProcessTag_;
         COMMUNICATOR::CommunicatorRank communicatorRankTag_;
 
