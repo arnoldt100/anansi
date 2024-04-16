@@ -1,6 +1,6 @@
-#ifndef ANANSI_ParticlesConfigurationFiles_INC
-#define ANANSI_ParticlesConfigurationFiles_INC
-//! \file ParticlesConfigurationFiles.h
+#ifndef ANANSI_NullPickleType_INC
+#define ANANSI_NullPickleType_INC
+//! \file NullPickleType.h
 //!
 //! \brief Brief description
 //!
@@ -13,60 +13,44 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "CommandFileName.h"
 
 namespace ANANSI
 {
 
-class ParticlesConfigurationFiles
+class NullPickleType
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
-        ParticlesConfigurationFiles ();   // constructor
+        NullPickleType ();   // constructor
 
         //! The copy constructor.
-        ParticlesConfigurationFiles (const ParticlesConfigurationFiles & other);   // copy constructor
+        NullPickleType (const NullPickleType & other);   // copy constructor
 
         //! The move constructor.
-        ParticlesConfigurationFiles (ParticlesConfigurationFiles && other);   // copy-move constructor
+        NullPickleType (NullPickleType && other);   // copy-move constructor
 
-        virtual ~ParticlesConfigurationFiles ();  // destructor
+        virtual ~NullPickleType ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
-        ParticlesConfigurationFiles * clone () const;
+        NullPickleType * clone () const;
 
         // ====================  MUTATORS      =======================================
-        void setFileName(const CommandFileName & filename);
-
-        void readFile();
 
         // ====================  OPERATORS     =======================================
 
         //! The copy assignment operator.
-        ParticlesConfigurationFiles& operator= ( const ParticlesConfigurationFiles &other ); // assignment operator
+        NullPickleType& operator= ( const NullPickleType &other ); // assignment operator
 
         //! The move assignment operator.
-        ParticlesConfigurationFiles& operator= ( ParticlesConfigurationFiles && other ); // assignment-move operator
-        
-        // ====================  STATIC        =======================================
-        static void set_file_name(ParticlesConfigurationFiles & object, const CommandFileName & filename)
-        {
-            object.setFileName(filename);
-        }
-
-        static void read_file(ParticlesConfigurationFiles & object)
-        {
-            object.readFile();
-        }
+        NullPickleType& operator= ( NullPickleType && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -77,11 +61,10 @@ class ParticlesConfigurationFiles
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        CommandFileName filename_;
 
-}; // -----  End of class ParticlesConfigurationFiles  -----
+}; // -----  End of class NullPickleType  -----
 
 
 }; // End of namespace ANANSI
 
-#endif // ANANSI_ParticlesConfigurationFiles_INC
+#endif // ANANSI_NullPickleType_INC

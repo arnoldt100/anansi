@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ParticlesConfigurationFiles.h"
+#include "NullPickleType.h"
 
 namespace ANANSI {
 
@@ -20,12 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ParticlesConfigurationFiles::ParticlesConfigurationFiles()
+NullPickleType::NullPickleType()
 {
     return;
 }
 
-ParticlesConfigurationFiles::ParticlesConfigurationFiles( ParticlesConfigurationFiles const & other)
+NullPickleType::NullPickleType( NullPickleType const & other)
 {
     if (this != &other)
     {
@@ -34,42 +34,32 @@ ParticlesConfigurationFiles::ParticlesConfigurationFiles( ParticlesConfiguration
     return;
 }
 
-ParticlesConfigurationFiles::ParticlesConfigurationFiles( ParticlesConfigurationFiles && other)
+NullPickleType::NullPickleType( NullPickleType && other)
 {
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method ParticlesConfigurationFiles::ParticlesConfigurationFiles  -----
+}		// -----  end of method NullPickleType::NullPickleType  -----
 
 
-ParticlesConfigurationFiles::~ParticlesConfigurationFiles()
+NullPickleType::~NullPickleType()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-ParticlesConfigurationFiles * ParticlesConfigurationFiles::clone() const
+NullPickleType * NullPickleType::clone() const
 {
-    return new ParticlesConfigurationFiles(*this);
+    return new NullPickleType(*this);
 }
 
 //============================= MUTATORS =====================================
-void ParticlesConfigurationFiles::setFileName(const CommandFileName & filename)
-{
-    this->filename_ = filename;
-    return;
-}
-
-void ParticlesConfigurationFiles::readFile()
-{
-    return;
-}
 
 //============================= OPERATORS ====================================
 
-ParticlesConfigurationFiles& ParticlesConfigurationFiles::operator= ( const ParticlesConfigurationFiles &other )
+NullPickleType& NullPickleType::operator= ( const NullPickleType &other )
 {
     if (this != &other)
     {
@@ -77,7 +67,7 @@ ParticlesConfigurationFiles& ParticlesConfigurationFiles::operator= ( const Part
     return *this;
 } // assignment operator
 
-ParticlesConfigurationFiles& ParticlesConfigurationFiles::operator= ( ParticlesConfigurationFiles && other )
+NullPickleType& NullPickleType::operator= ( NullPickleType && other )
 {
     if (this != &other)
     {

@@ -18,7 +18,7 @@
 namespace ANANSI
 {
 
-//! \brief The policy class for pickking and unpickling the Control File.
+//! \brief The policy class for pickling and unpickling the Control File.
 //!
 //! Responsibility: Transforming the ControlFile internal representation, "InternalRepresentation_t",
 //! to "PickleType_t" and vice versa. 

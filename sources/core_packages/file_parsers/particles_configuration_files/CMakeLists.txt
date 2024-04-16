@@ -37,6 +37,8 @@
     include(cmake_macros_and_functions/particles_configuration_files_build_prerequisites.cmake)
     verify_particles_configuration_files_build_prerequisites_are_met()
 
+    get_target_property(my_file_parsers_core_include file_parsers_core file_parsers_core_include)
+     
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -104,10 +106,12 @@ target_sources(${target}
 #-----------------------------------------------------
 target_include_directories(${target} 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
-                           PRIVATE "${Boost_INCLUDE_DIR}" )
+                           PRIVATE "${Boost_INCLUDE_DIR}"
+                           PRIVATE "${my_file_parsers_core_include}")
 
 target_link_libraries(${target}
-                      PUBLIC "${Boost_LIBRARIES}")
+                      PUBLIC "${Boost_LIBRARIES}"
+                      PUBLIC file_parsers_core)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
