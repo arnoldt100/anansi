@@ -55,6 +55,21 @@ ParticlesConfigurationFiles * ParticlesConfigurationFiles::clone() const
     return new ParticlesConfigurationFiles(*this);
 }
 
+//! Returns the node value in ptree_ for the corresponding key.
+//!
+//! \param[in] global_key The key of the node.
+//! \return A std::string is returned, and it is the value of the
+//! node for the boost property tree "ptree_".
+std::string ParticlesConfigurationFiles::getValue(const std::string & global_key) const
+{
+   return "Dummy_particle_value";
+}
+
+void ParticlesConfigurationFiles::writeFile(const std::string & filename) const
+{
+    return;
+}
+
 //============================= MUTATORS =====================================
 void ParticlesConfigurationFiles::setFileName(const CommandFileName & filename)
 {

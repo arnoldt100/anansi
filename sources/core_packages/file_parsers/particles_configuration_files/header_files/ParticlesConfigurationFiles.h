@@ -19,13 +19,16 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommandFileName.h"
-
+#include "NullPickleType.h"
 namespace ANANSI
 {
 
 class ParticlesConfigurationFiles
 {
     public:
+
+        using PICKLEDTYPE = NullPickleType;
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
@@ -37,12 +40,16 @@ class ParticlesConfigurationFiles
         //! The move constructor.
         ParticlesConfigurationFiles (ParticlesConfigurationFiles && other);   // copy-move constructor
 
-        virtual ~ParticlesConfigurationFiles ();  // destructor
+        ~ParticlesConfigurationFiles ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
         ParticlesConfigurationFiles * clone () const;
+
+        std::string getValue(const std::string & global_key) const;
+
+        void writeFile(const std::string &  filename) const;
 
         // ====================  MUTATORS      =======================================
         void setFileName(const CommandFileName & filename);
@@ -66,6 +73,31 @@ class ParticlesConfigurationFiles
         static void read_file(ParticlesConfigurationFiles & object)
         {
             object.readFile();
+        }
+
+        static std::string get_value(const ParticlesConfigurationFiles & object, const std::string & global_key)
+        {
+            return object.getValue(global_key);
+        }
+
+        static std::string get_default_null_value(const ParticlesConfigurationFiles & object)
+        {
+            return "";
+        }
+
+        static void write_file(const ParticlesConfigurationFiles & object, const std::string & filename)
+        {
+            object.writeFile(filename);
+        }
+
+        static PICKLEDTYPE pickle_file(const ParticlesConfigurationFiles & object)
+        {
+            return PICKLEDTYPE{};
+        }
+
+        static void unpickle_file(ParticlesConfigurationFiles & object,const PICKLEDTYPE & pickled_file)
+        {
+            return;
         }
 
     protected:
