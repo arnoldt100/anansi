@@ -59,6 +59,7 @@
     get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
     get_target_property(my_invoker_include invoker invoker_include )
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
+    get_target_property(my_file_parsers_core_include file_parsers_core file_parsers_core_include )
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -162,8 +163,7 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/SimulationDecompositionTasksHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.hpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.h 
-         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/InitialConfigurationFilenames.h)
+         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.h )
         
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -215,8 +215,7 @@ add_library( ${target} STATIC
                ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/SimulationDecompositionTasksHelpers.cpp 
                ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.cpp 
-               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.cpp
-               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/InitialConfigurationFilenames.cpp)
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.cpp )
         
          # ----------------------------------------------------
          # Source files for ReadPointAtoms task
@@ -280,6 +279,7 @@ target_include_directories(${target}
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain"
                            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations"
+                           PRIVATE "${my_file_parsers_core_include}"
                            PRIVATE "${my_generic_abstract_factory_include}"
                            PRIVATE "${my_invoker_include}"
                            PRIVATE "${my_common_md_taskgroup_headers_include}"
@@ -298,6 +298,7 @@ target_link_libraries(${target}
                       PUBLIC generic_abstract_factory
                       PUBLIC genericmdtask
                       PUBLIC common_md_taskgroup_headers
+                      PUBLIC file_parsers_core_include
                       PUBLIC invoker)
 
 
