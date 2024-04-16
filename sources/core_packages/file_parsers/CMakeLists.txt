@@ -85,7 +85,7 @@
     # header files, and associated binariers.
     #
     # --------------------------------------------------- 
-    include(${CMAKE_CURRENT_SOURCE_DIR}/particles_configuration_files/cmake_macros_and_functions/control_file.cmake)
+    include(${CMAKE_CURRENT_SOURCE_DIR}/particles_configuration_files/cmake_macros_and_functions/particles_configuration_files.cmake)
     enable_building_particles_configuration_files_package( "${file_parsers_install_lib_directory}"
                                           "${file_parsers_install_include_directory}"
                                           "${file_parsers_install_bin_directory}" 
