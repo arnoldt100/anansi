@@ -19,7 +19,11 @@
 
 <!-- Specification for the initial configuration of the system. -->
 <initial-configuration>
-    <filename> water2.initalconfiguration.coordinates </filename>
+    <filename> water2.initalconfiguration0.coordinates;
+               water2.initalconfiguration1.coordinates;
+               water2.initalconfiguration2.coordinates;
+               water3.initalconfiguration3.coordinates;
+  </filename>
 </initial-configuration>
 
 <!-- Specification for the coordinate system -->
