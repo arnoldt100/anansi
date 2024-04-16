@@ -75,7 +75,6 @@ class MasterControlInputFileNodeKeys
 
         std::string defaultNullValue() const;
 
-        //! Returns the node key for the workload decomposition type.
         std::string node_key( const std::string & global_key) const;
 
         // ====================  MUTATORS      =======================================

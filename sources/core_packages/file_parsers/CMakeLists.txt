@@ -79,5 +79,20 @@
                                           "${file_parsers_logfilepath}" ) 
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/control_file)
 
+    # ---------------------------------------------------
+    # Here we define variables which indicate where
+    # to install the particle_configurations_files libraries,
+    # header files, and associated binariers.
+    #
+    # --------------------------------------------------- 
+    include(${CMAKE_CURRENT_SOURCE_DIR}/particles_configuration_files/cmake_macros_and_functions/control_file.cmake)
+    enable_building_particles_configuration_files_package( "${file_parsers_install_lib_directory}"
+                                          "${file_parsers_install_include_directory}"
+                                          "${file_parsers_install_bin_directory}" 
+                                          "${file_parsers_cmake_c_compiler}"
+                                          "${file_parsers_cmake_cxx_compiler}"
+                                          "${file_parsers_cxx_standard}"
+                                          "${file_parsers_logfilepath}" ) 
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/particles_configuration_files)
 
 
