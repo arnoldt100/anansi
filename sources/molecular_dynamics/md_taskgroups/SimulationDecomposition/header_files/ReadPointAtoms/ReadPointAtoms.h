@@ -28,6 +28,9 @@
 #include "CommunicatorRank.h"
 #include "is_communicator_type.hpp"
 #include "InitialConfigurationFilenames.h"
+#include "CommandFiles.h"
+#include "NullPickleType.h"
+#include "ParticlesConfigurationFiles.h"
 
 namespace ANANSI
 {
@@ -157,6 +160,7 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
+        CommandFiles<NullPickleType> myConfigurationFile_;
         InitialConfigurationFilenames initialConfigurationFileNames_;
         COMMUNICATOR::MasterProcess masterProcessTag_;
         COMMUNICATOR::CommunicatorRank communicatorRankTag_;
