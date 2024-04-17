@@ -33,7 +33,7 @@ namespace ANANSI {
 //!
 //! The command files have the general abstraction of
 //! commands in file that have the form (command key, command parameters).
-//! Command files when pickeled return PICKLETYPE_t.
+//! Command files when pickled return PICKLETYPE_t.
 template <typename PICKLETYPE_t = std::map<std::string, std::string>>
 class CommandFiles {
 public:
@@ -243,8 +243,7 @@ private:
     return command_file.valuePtr_->pickle();
   }
 
-  friend void unpickle_CommandFile(CommandFiles &command_file,
-                                   const PICKLETYPE_t &pickled_file) {
+  friend void unpickle_CommandFile(CommandFiles &command_file, const PICKLETYPE_t &pickled_file) {
     return command_file.valuePtr_->unPickle(pickled_file);
   }
 

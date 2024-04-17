@@ -29,6 +29,7 @@
 #include "is_communicator_type.hpp"
 #include "InitialConfigurationFilenames.h"
 #include "CommandFiles.h"
+#include "CommandFileName.h"
 #include "NullPickleType.h"
 #include "ParticlesConfigurationFiles.h"
 
@@ -160,7 +161,6 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         bool enabledStatus_;
         mutable receiver_result_t results_;
         MyOwnershipPolicy_ ownershipPolicy_;
-        CommandFiles<NullPickleType> myConfigurationFile_;
         InitialConfigurationFilenames initialConfigurationFileNames_;
         COMMUNICATOR::MasterProcess masterProcessTag_;
         COMMUNICATOR::CommunicatorRank communicatorRankTag_;
@@ -190,6 +190,9 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
     for ( auto filename : container_of_file)
     {
         std::cout << "Stud for ReadPointAtoms::receiverDoAction_; Reading file " <<  filename << std::endl;
+        CommandFileName file_name{filename};
+        CommandFiles<NullPickleType> myConfigurationFile{ParticlesConfigurationFiles()};
+        set_CommandFile_filename(myConfigurationFile, file_name);
     }
     return;
 }

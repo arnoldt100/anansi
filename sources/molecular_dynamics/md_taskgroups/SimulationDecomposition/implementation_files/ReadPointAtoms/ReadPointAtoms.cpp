@@ -25,7 +25,6 @@ ReadPointAtoms::ReadPointAtoms() :
     enabledStatus_{false},
     results_{ReadPointAtomsResultsTraits::Atoms_t()},
     ownershipPolicy_{},
-    myConfigurationFile_(ParticlesConfigurationFiles()),
     initialConfigurationFileNames_{},
     masterProcessTag_{},
     communicatorRankTag_{}
@@ -38,7 +37,6 @@ ReadPointAtoms::ReadPointAtoms( ReadPointAtoms && other) :
     enabledStatus_{std::move(other.enabledStatus_)},
     results_{std::move(other.results_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)},
-    myConfigurationFile_{std::move(other.myConfigurationFile_)},
     initialConfigurationFileNames_{std::move(other.initialConfigurationFileNames_)},
     masterProcessTag_{std::move(other.masterProcessTag_)},
     communicatorRankTag_{std::move(other.communicatorRankTag_)}
@@ -69,7 +67,6 @@ ReadPointAtoms& ReadPointAtoms::operator= ( ReadPointAtoms && other )
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
-        this->myConfigurationFile_ = std::move(other.myConfigurationFile_);
         this->initialConfigurationFileNames_ = std::move(other.initialConfigurationFileNames_);
         this->masterProcessTag_ = std::move(other.masterProcessTag_);
         this->communicatorRankTag_ = std::move(other.communicatorRankTag_);

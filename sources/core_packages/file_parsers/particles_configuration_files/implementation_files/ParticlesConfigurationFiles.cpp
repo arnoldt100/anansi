@@ -2,6 +2,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -79,6 +80,7 @@ void ParticlesConfigurationFiles::setFileName(const CommandFileName & filename)
 
 void ParticlesConfigurationFiles::readFile()
 {
+	std::cout << "Reading Particle Configuration file " << this->filename_() << std::endl;
     return;
 }
 
