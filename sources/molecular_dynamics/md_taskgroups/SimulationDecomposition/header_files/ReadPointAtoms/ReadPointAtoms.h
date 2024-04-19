@@ -186,8 +186,8 @@ void ReadPointAtoms::disableReceiver_(Types &... args)
 template<typename... Types>
 void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 {
-    const auto container_of_file = this->initialConfigurationFileNames_();
-    for ( auto filename : container_of_file)
+    const auto container_of_filenames = this->initialConfigurationFileNames_();
+    for ( auto filename : container_of_filenames)
     {
         std::cout << "Stud for ReadPointAtoms::receiverDoAction_; Reading file " <<  filename << std::endl;
         CommandFileName file_name{filename};
