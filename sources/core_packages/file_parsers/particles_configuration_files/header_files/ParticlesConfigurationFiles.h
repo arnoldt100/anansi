@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -23,6 +24,7 @@
 namespace ANANSI
 {
 
+template<typename ReaderPolicy>
 class ParticlesConfigurationFiles
 {
     public:
@@ -32,39 +34,98 @@ class ParticlesConfigurationFiles
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
-        ParticlesConfigurationFiles ();   // constructor
+        ParticlesConfigurationFiles ( ) :
+            filename_{}
+        {
+            return;
+        }
 
         //! The copy constructor.
-        ParticlesConfigurationFiles (const ParticlesConfigurationFiles & other);   // copy constructor
+        ParticlesConfigurationFiles (const ParticlesConfigurationFiles & other) :
+            filename_{other.filename_}
+        {
+            if (this != &other)
+            {
+                
+            }
+            return;
+        }
 
         //! The move constructor.
-        ParticlesConfigurationFiles (ParticlesConfigurationFiles && other);   // copy-move constructor
+        ParticlesConfigurationFiles (ParticlesConfigurationFiles && other) :
+            filename_{std::move(other.filename_)}
+        {
+            if (this != &other)
+            {
+            }
+            return;
+        } // -----  end of method ParticlesConfigurationFiles::ParticlesConfigurationFiles  -----
 
-        ~ParticlesConfigurationFiles ();  // destructor
+
+        ~ParticlesConfigurationFiles ()  // destructor
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
-        ParticlesConfigurationFiles * clone () const;
+        ParticlesConfigurationFiles * clone () const
+        {
+            return new ParticlesConfigurationFiles(*this);
+        }
 
-        std::string getValue(const std::string & global_key) const;
+        //! Returns the node value in ptree_ for the corresponding key.
+        //!
+        //! \param[in] global_key The key of the node.
+        //! \return A std::string is returned, and it is the value of the
+        //! node for the boost property tree "ptree_".
+        std::string getValue(const std::string & global_key) const
+        {
+           return "Dummy_particle_value";
+        }
 
-        void writeFile(const std::string &  filename) const;
+        void writeFile(const std::string & filename) const
+        {
+            return;
+        }
 
         // ====================  MUTATORS      =======================================
-        void setFileName(const CommandFileName & filename);
+        void setFileName(const CommandFileName & filename)
+        {
+            this->filename_ = filename;
+            return;
+        }
 
-        void readFile();
+        void readFile()
+        {
+        	std::cout << "Reading Particle Configuration file " << this->filename_() << std::endl;
+            return;
+        }
 
         // ====================  OPERATORS     =======================================
 
         //! The copy assignment operator.
-        ParticlesConfigurationFiles& operator= ( const ParticlesConfigurationFiles &other ); // assignment operator
+        ParticlesConfigurationFiles& operator= ( const ParticlesConfigurationFiles &other )
+        {
+            if (this != &other)
+            {
+            }
+            return *this;
+        } // assignment operator
 
         //! The move assignment operator.
-        ParticlesConfigurationFiles& operator= ( ParticlesConfigurationFiles && other ); // assignment-move operator
+        ParticlesConfigurationFiles& operator= ( ParticlesConfigurationFiles && other )
+        {
+            if (this != &other)
+            {
+
+            }
+            return *this;
+        } // assignment-move operator
         
         // ====================  STATIC        =======================================
+        //
         static void set_file_name(ParticlesConfigurationFiles & object, const CommandFileName & filename)
         {
             object.setFileName(filename);

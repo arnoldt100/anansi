@@ -178,7 +178,6 @@ void ReadPointAtoms::enableReceiver_(Types &... args)
 template<typename... Types>
 void ReadPointAtoms::disableReceiver_(Types &... args)
 {
-    std::cout << "Stud for ReadPointAtoms::disableReceiver_" << std::endl;
     this->enabledStatus_ = false;
     return;
 }
@@ -187,12 +186,12 @@ template<typename... Types>
 void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 {
     const auto container_of_file = this->initialConfigurationFileNames_();
-    for ( auto filename : container_of_file)
+    for (auto filename : container_of_file)
     {
-        std::cout << "Stud for ReadPointAtoms::receiverDoAction_; Reading file " <<  filename << std::endl;
         CommandFileName file_name{filename};
-        CommandFiles<NullPickleType> myConfigurationFile{ParticlesConfigurationFiles()};
+        CommandFiles<NullPickleType> myConfigurationFile{ReadPointAtomsResultsTraits::ParticlesConfigurationFiles_t()};
         set_CommandFile_filename(myConfigurationFile, file_name);
+        read_CommandFile(myConfigurationFile);
     }
     return;
 }
@@ -200,7 +199,6 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 template<typename... Types>
 void ReadPointAtoms::receiverUndoAction_(Types & ... args) const
 {
-    std::cout << "Stud for ReadPointAtoms::receiverUndoAction_" << std::endl;
     return;
 }
 

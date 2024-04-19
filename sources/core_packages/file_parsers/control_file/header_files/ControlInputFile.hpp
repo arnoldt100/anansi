@@ -30,7 +30,7 @@ namespace ANANSI
 //!
 //! The class ControlInputFile is a host class that is an abstraction
 //! for the set of control input files in Anansi. The keys values 
-//! are implemeneted via the MasterKeyPolicy.
+//! are implemented via the MasterKeyPolicy.
 //!
 //! \tparam  MasterKeyPolicy The policy class for the keys values of the input file.
 //! \tparam ReaderPolicy The policy class for reading the file.
