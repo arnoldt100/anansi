@@ -68,6 +68,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileReader.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileWriter.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePickler.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NullFilePickler.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/KeyPathSeparatorPeriod.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PathKey.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PathKeyPropertyTree.hpp
@@ -75,6 +76,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/create_path_key.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/create_path_key_propertytree.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePicklerPropertyTreeMap.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NullFilePicklerPropertyTreeMap.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorKeyPathSeparator.h)
 
     #-----------------------------------------------------
@@ -92,6 +94,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileReader.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileWriter.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePickler.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NullFilePickler.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PathKey.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PathKeyPropertyTree.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/KeyPathSeparatorPeriod.cpp
@@ -99,6 +102,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/create_path_key.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/create_path_key_propertytree.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePicklerPropertyTreeMap.cpp 
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NullFilePicklerPropertyTreeMap.cpp 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorKeyPathSeparator.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
