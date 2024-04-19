@@ -22,6 +22,8 @@
 #include "PrecisionPolicy.h"
 #include "Atoms.h"
 #include "PointAtoms.h"
+#include "ParticlesConfigurationFiles.h"
+#include "XMLFileReader.h"
 
 namespace ANANSI
 {
@@ -33,6 +35,7 @@ class ReadPointAtomsResultsTraits
 
         using result_t = PhysicalDataStructure<DataStoragePolicy::Type,PrecisionPolicy::Type>;
         using Atoms_t = PointAtoms;
+        using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<XMLFileReader>;
         using copy_result_t = result_t;
         using share_result_t = result_t;
         using transfer_result_t = result_t;

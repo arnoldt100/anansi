@@ -30,7 +30,7 @@ namespace ANANSI
 //!
 //! The class ControlInputFile is a host class that is an abstraction
 //! for the set of control input files in Anansi. The keys values 
-//! are implemeneted via the MasterKeyPolicy.
+//! are implemented via the MasterKeyPolicy.
 //!
 //! \tparam  MasterKeyPolicy The policy class for the keys values of the input file.
 //! \tparam ReaderPolicy The policy class for reading the file.
@@ -49,18 +49,19 @@ class ControlInputFile
         // ====================  LIFECYCLE     =======================================
 
         ControlInputFile () :   // constructor
-            masterKeys_(),
-            filename_(),
-            ptree_()
+            masterKeys_{},
+            filename_{},
+            ptree_{}
         {
             return;
         }
 
 
+        //! The copy constructor.
         ControlInputFile (const ControlInputFile & other) :   // copy constructor
-            masterKeys_(other.masterKeys_),
-            filename_(other.filename_),
-            ptree_(other.ptree_)
+            masterKeys_{other.masterKeys_},
+            filename_{other.filename_},
+            ptree_{other.ptree_}
         {
             if (this != &other)
             {
@@ -69,10 +70,11 @@ class ControlInputFile
             return;
         }
 
+        //! The move constructor.
         ControlInputFile (ControlInputFile && other) :  // copy-move constructor
-            masterKeys_(std::move(other.masterKeys_)),
-            filename_(std::move(other.filename_)),
-            ptree_(std::move(other.ptree_))
+            masterKeys_{std::move(other.masterKeys_)},
+            filename_{std::move(other.filename_)},
+            ptree_{std::move(other.ptree_)}
         {
             if (this != &other)
             {
