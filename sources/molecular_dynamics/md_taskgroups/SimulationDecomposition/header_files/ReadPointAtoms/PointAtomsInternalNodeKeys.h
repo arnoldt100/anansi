@@ -1,62 +1,56 @@
-#ifndef ANANSI_NullFilePicklerPropertyTreeMap_INC
-#define ANANSI_NullFilePicklerPropertyTreeMap_INC
-//! \file NullFilePickler.hpp
+#ifndef ANANSI_PointAtomsInternalNodeKeys_INC
+#define ANANSI_PointAtomsInternalNodeKeys_INC
+//! \file PointAtomsInternalNodeKeys.h
+//!
+//! \brief Brief description
+//!
+//! \details Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NullFilePickler.hpp"
+
 namespace ANANSI
 {
 
-template<>
-class NullFilePickler<boost::property_tree::ptree, std::map<std::string,std::string>>
+class PointAtomsInternalNodeKeys
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
-        NullFilePickler();   // constructor
+        PointAtomsInternalNodeKeys ();   // constructor
 
-            //! The copy constructor.
-        NullFilePickler(const NullFilePickler& other);   // copy constructor
+        //! The copy constructor.
+        PointAtomsInternalNodeKeys (const PointAtomsInternalNodeKeys & other);   // copy constructor
 
         //! The move constructor.
-        NullFilePickler (NullFilePickler && other);   // copy-move constructor
+        PointAtomsInternalNodeKeys (PointAtomsInternalNodeKeys && other);   // copy-move constructor
 
-        ~NullFilePickler ();  // destructor
+        ~PointAtomsInternalNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
-        NullFilePickler * clone () const;
-
-        template<typename MasterKeyPolicy_t>
-        std::map<std::string,std::string> pickle(const boost::property_tree::ptree & tree) const;
-
-        template<typename MasterKeyPolicy_t>
-        boost::property_tree::ptree 
-        unpickle(const std::map<std::string,std::string>& a_map) const;
+        PointAtomsInternalNodeKeys * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! The copy assignment operator.
-        NullFilePickler& operator= ( const NullFilePickler &other ); // assignment operator
+        PointAtomsInternalNodeKeys& operator= ( const PointAtomsInternalNodeKeys &other ); // assignment operator
 
         //! The move assignment operator.
-        NullFilePickler& operator= ( NullFilePickler && other ); // assignment-move operator
+        PointAtomsInternalNodeKeys& operator= ( PointAtomsInternalNodeKeys && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -68,9 +62,9 @@ class NullFilePickler<boost::property_tree::ptree, std::map<std::string,std::str
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  End of class NullFilePickler  -----
+}; // -----  End of class PointAtomsInternalNodeKeys  -----
 
 
 }; // End of namespace ANANSI
 
-#endif // ANANSI_NullFilePicklerPropertyTreeMap_INC
+#endif // ANANSI_PointAtomsInternalNodeKeys_INC

@@ -37,6 +37,12 @@
     include(cmake_macros_and_functions/file_parsers_core_build_prerequisites.cmake)
     verify_file_parsers_core_build_prerequisites_are_met()
 
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_debugging_utilities_include  debugging_utilities  debugging_utilities_include  )  
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -77,7 +83,8 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/create_path_key_propertytree.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePicklerPropertyTreeMap.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NullFilePicklerPropertyTreeMap.hpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorKeyPathSeparator.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorKeyPathSeparator.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorFilePickler.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -103,7 +110,8 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/create_path_key_propertytree.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePicklerPropertyTreeMap.cpp 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NullFilePicklerPropertyTreeMap.cpp 
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorKeyPathSeparator.cpp )
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorKeyPathSeparator.cpp 
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorFilePickler.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -137,9 +145,11 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions"
+                           PUBLIC "${my_debugging_utilities_include}"
                            PRIVATE "${Boost_INCLUDE_DIR}" )
 
 target_link_libraries(${target}
+                      PUBLIC "${debugging_utilities}"
                       PUBLIC "${Boost_LIBRARIES}")
 
 #-----------------------------------------------------

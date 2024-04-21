@@ -1,62 +1,57 @@
-#ifndef ANANSI_NullFilePicklerPropertyTreeMap_INC
-#define ANANSI_NullFilePicklerPropertyTreeMap_INC
-//! \file NullFilePickler.hpp
+#ifndef ANANSI_ErrorFilePickler_INC
+#define ANANSI_ErrorFilePickler_INC
+//! \file ErrorFilePickler.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <map>
+#include <string>
+#include <exception>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
-#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "NullFilePickler.hpp"
+#include "BaseException.h"
+
 namespace ANANSI
 {
 
-template<>
-class NullFilePickler<boost::property_tree::ptree, std::map<std::string,std::string>>
+class ErrorFilePickler : public MOUSEION::BaseException
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
-        NullFilePickler();   // constructor
+        ErrorFilePickler ();   // constructor
+        
+        explicit ErrorFilePickler (const std::string message);
 
-            //! The copy constructor.
-        NullFilePickler(const NullFilePickler& other);   // copy constructor
+        //! The copy constructor.
+        ErrorFilePickler (const ErrorFilePickler & other);   // copy constructor
 
         //! The move constructor.
-        NullFilePickler (NullFilePickler && other);   // copy-move constructor
+        ErrorFilePickler (ErrorFilePickler && other);   // copy-move constructor
 
-        ~NullFilePickler ();  // destructor
+        ~ErrorFilePickler ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
-        NullFilePickler * clone () const;
-
-        template<typename MasterKeyPolicy_t>
-        std::map<std::string,std::string> pickle(const boost::property_tree::ptree & tree) const;
-
-        template<typename MasterKeyPolicy_t>
-        boost::property_tree::ptree 
-        unpickle(const std::map<std::string,std::string>& a_map) const;
+        ErrorFilePickler * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! The copy assignment operator.
-        NullFilePickler& operator= ( const NullFilePickler &other ); // assignment operator
+        ErrorFilePickler& operator= ( const ErrorFilePickler &other ); // assignment operator
 
         //! The move assignment operator.
-        NullFilePickler& operator= ( NullFilePickler && other ); // assignment-move operator
+        ErrorFilePickler& operator= ( ErrorFilePickler && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -67,10 +62,11 @@ class NullFilePickler<boost::property_tree::ptree, std::map<std::string,std::str
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
+        std::string errorMessage_;
 
-}; // -----  End of class NullFilePickler  -----
+}; // -----  End of class ErrorFilePickler  -----
 
 
 }; // End of namespace ANANSI
 
-#endif // ANANSI_NullFilePicklerPropertyTreeMap_INC
+#endif // ANANSI_ErrorFilePickler_INC

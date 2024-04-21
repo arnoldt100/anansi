@@ -37,7 +37,7 @@ class MasterControlInternalNodeKeys
 
         MasterControlInternalNodeKeys (MasterControlInternalNodeKeys && other);   // copy-move constructor
 
-        virtual ~MasterControlInternalNodeKeys ();  // destructor
+        ~MasterControlInternalNodeKeys ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 

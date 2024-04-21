@@ -127,7 +127,8 @@ add_library( ${target} STATIC
          # ----------------------------------------------------
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsTraits.h)
          list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.hpp)
-         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtoms.h)
+         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtoms.h
+                      ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/PointAtomsConfigurationFileNodeKeys.h )
 
          # ----------------------------------------------------
          # Source files for PointAtomsDecomposer task
@@ -224,8 +225,9 @@ add_library( ${target} STATIC
          # 
          # ----------------------------------------------------
          list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsTraits.cpp)
-         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.cpp)
-         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtoms.cpp)
+                      ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.cpp)
+                      ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtoms.cpp
+                      ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsConfigurationFileNodeKeys.cpp)
 
          # ----------------------------------------------------
          # Source files for PointAtomsDecomposer task

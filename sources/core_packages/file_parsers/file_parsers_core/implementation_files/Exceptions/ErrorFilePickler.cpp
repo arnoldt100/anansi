@@ -2,8 +2,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <string>
-#include <iostream>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,8 +11,6 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "ErrorFilePickler.h"
-#include "GenericErrorClass.hpp"
-#include "NullFilePicklerPropertyTreeMap.hpp"
 
 namespace ANANSI {
 
@@ -23,68 +19,50 @@ namespace ANANSI {
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= LIFECYCLE ====================================
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::NullFilePickler()   // constructor
+
+ErrorFilePickler::ErrorFilePickler() : 
+    errorMessage_{}
 {
     return;
 }
 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::NullFilePickler(NullFilePickler const & other)
+ErrorFilePickler::ErrorFilePickler( ErrorFilePickler const & other) :
+    errorMessage_{other.errorMessage_}
+{
+    if (this != &other)
+    {
+        
+    }
+    return;
+}
+
+ErrorFilePickler::ErrorFilePickler( ErrorFilePickler && other) :
+    errorMessage_{std::move(other.errorMessage_)}
 {
     if (this != &other)
     {
     }
     return;
-}
-
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::NullFilePickler( NullFilePickler && other)
-{
-    if (this != &other)
-    {
-    }
-    return;
-}		// -----  end of method NullFilePicklerPropertyTreeMap::NullFilePicklerPropertyTreeMap  -----
+}		// -----  end of method ErrorFilePickler::ErrorFilePickler  -----
 
 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::~NullFilePickler()
+ErrorFilePickler::~ErrorFilePickler()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>> * NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::clone() const
+ErrorFilePickler * ErrorFilePickler::clone() const
 {
-    return new NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>(*this);
-}
-
-template<typename MasterKeyPolicy_t>
-std::map<std::string,std::string> 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::pickle(const boost::property_tree::ptree & tree) const
-{
-    std::string err_message;  
-    err_message = "A NullFilePickler is being invoked to do a pickle.\n";
-    err_message += "This is contradictory and could lead to an undefined result.\n";
-    throw ErrorFilePickler(err_message);
-    return std::map<std::string,std::string>{}; 
-}
-
-template<typename MasterKeyPolicy_t>
-boost::property_tree::ptree 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::unpickle(const std::map<std::string,std::string>& a_map) const
-{
-    std::string err_message;  
-    err_message = "A NullFilePickler is being invoked to do an upickle.\n";
-    err_message += "This is contradictory and could lead to an undefined result.\n";
-    throw ErrorFilePickler(err_message);
-    return boost::property_tree::ptree{};
+    return new ErrorFilePickler(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>& 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::operator=( const NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>> &other )
+ErrorFilePickler& ErrorFilePickler::operator= ( const ErrorFilePickler &other )
 {
     if (this != &other)
     {
@@ -92,8 +70,7 @@ NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::
     return *this;
 } // assignment operator
 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>& 
-NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>::operator=( NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>> && other )
+ErrorFilePickler& ErrorFilePickler::operator= ( ErrorFilePickler && other )
 {
     if (this != &other)
     {
