@@ -1,4 +1,4 @@
-//--------------------------------------------------------//
+//-----------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <algorithm>
@@ -31,7 +31,7 @@ std::string MasterControlInputFileNodeKeys::DefaultNullValue = std::string("defa
 //! 
 //! The external keys correspond to the external node tags
 //! in the master control input file. The external keys are used by the 
-//! program users to set the paramaters of the program's execution.
+//! program users to set the parameters of the program's execution.
 MasterControlInputFileNodeKeys::MasterControlInputFileNodeKeys() :
     internalToExternalKeyMapping_(),
     externalNodeKeys_(),

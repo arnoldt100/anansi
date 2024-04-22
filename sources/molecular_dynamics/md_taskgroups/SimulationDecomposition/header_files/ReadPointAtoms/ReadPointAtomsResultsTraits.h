@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <boost/property_tree/ptree.hpp>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -24,6 +25,9 @@
 #include "PointAtoms.h"
 #include "ParticlesConfigurationFiles.h"
 #include "XMLFileReader.h"
+#include "XMLFileWriter.h"
+#include "PointAtomsConfigurationFileNodeKeys.h"
+#include "NullFilePicklerPropertyTreeMap.hpp"
 
 namespace ANANSI
 {
@@ -35,7 +39,12 @@ class ReadPointAtomsResultsTraits
 
         using result_t = PhysicalDataStructure<DataStoragePolicy::Type,PrecisionPolicy::Type>;
         using Atoms_t = PointAtoms;
-        using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<XMLFileReader>;
+        using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<PointAtomsConfigurationFileNodeKeys,
+                                                                          XMLFileReader,
+                                                                          XMLFileWriter,
+                                                                          NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>
+                                                                         >;
+
         using copy_result_t = result_t;
         using share_result_t = result_t;
         using transfer_result_t = result_t;

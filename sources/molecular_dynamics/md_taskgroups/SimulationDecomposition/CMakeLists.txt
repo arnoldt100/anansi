@@ -97,7 +97,6 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
-
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/SDPConstructorHelpers.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/message_missing_mandatory_node_tag.h
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.h
@@ -125,10 +124,11 @@ add_library( ${target} STATIC
          # Source files for ReadPointAtoms task
          # 
          # ----------------------------------------------------
-         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsTraits.h)
-         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.hpp)
-         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtoms.h
-                      ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/PointAtomsConfigurationFileNodeKeys.h )
+         list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsTraits.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.hpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtoms.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/PointAtomsConfigurationFileNodeKeys.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/PointAtomsInternalNodeKeys.h)
 
          # ----------------------------------------------------
          # Source files for PointAtomsDecomposer task
@@ -179,12 +179,8 @@ add_library( ${target} STATIC
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionParameters.cpp
-
-
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/SDPConstructorHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/message_missing_mandatory_node_tag.cpp
-
-
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/coordinate_system/CoordinateSystemFileNameHelpers.cpp
@@ -224,18 +220,19 @@ add_library( ${target} STATIC
          # Source files for ReadPointAtoms task
          # 
          # ----------------------------------------------------
-         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsTraits.cpp)
-                      ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.cpp)
-                      ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtoms.cpp
-                      ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsConfigurationFileNodeKeys.cpp)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsTraits.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtoms.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/PointAtomsConfigurationFileNodeKeys.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/PointAtomsInternalNodeKeys.cpp )
 
          # ----------------------------------------------------
          # Source files for PointAtomsDecomposer task
          # 
          # ----------------------------------------------------
-         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposerResultsTraits.cpp)
-         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposerResultsOwnershipImpl.cpp)
-         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposer.cpp)
+         list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposerResultsTraits.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposerResultsOwnershipImpl.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposer.cpp)
 
          # ----------------------------------------------------
          # Source files for PointAtomsCommunicator task

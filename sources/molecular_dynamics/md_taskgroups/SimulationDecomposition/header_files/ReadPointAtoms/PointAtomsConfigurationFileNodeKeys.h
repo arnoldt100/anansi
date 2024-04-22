@@ -1,10 +1,6 @@
 #ifndef ANANSI_PointAtomsConfigurationFileNodeKeys_INC
 #define ANANSI_PointAtomsConfigurationFileNodeKeys_INC
 //! \file PointAtomsConfigurationFileNodeKeys.h
-//!
-//! \brief Brief description
-//!
-//! \details Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -17,6 +13,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "PointAtoms.h"
 
 namespace ANANSI
 {
@@ -24,6 +21,8 @@ namespace ANANSI
 class PointAtomsConfigurationFileNodeKeys
 {
     public:
+        using InternalRepresentationTrait = PointAtoms;
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.

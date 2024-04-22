@@ -225,7 +225,7 @@ class ParticlesConfigurationFiles
         CommandFileName filename_;
         
         //! The internal representation of the file.
-        typename MasterKeyPolicy::InternalRepresentationTrait ptree_;
+        typename MasterKeyPolicy::InternalRepresentationTrait particles_;
 
 }; // -----  End of class ParticlesConfigurationFiles  -----
 
