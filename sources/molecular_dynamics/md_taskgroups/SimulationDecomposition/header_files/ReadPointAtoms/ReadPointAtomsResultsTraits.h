@@ -27,7 +27,7 @@
 #include "XMLFileReader.h"
 #include "XMLFileWriter.h"
 #include "PointAtomsConfigurationFileNodeKeys.h"
-#include "NullFilePicklerPropertyTreeMap.hpp"
+#include "FilePicklerPropertyTreePointAtoms.hpp"
 
 namespace ANANSI
 {
@@ -42,7 +42,7 @@ class ReadPointAtomsResultsTraits
         using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<PointAtomsConfigurationFileNodeKeys,
                                                                           XMLFileReader,
                                                                           XMLFileWriter,
-                                                                          NullFilePickler<boost::property_tree::ptree,std::map<std::string,std::string>>
+                                                                          FilePickler<boost::property_tree::ptree,Atoms>
                                                                          >;
 
         using copy_result_t = result_t;

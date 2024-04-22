@@ -90,6 +90,21 @@ enable_building_receiver_package(
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/receiver)
 
 #-----------------------------------------------------
+# Call the macro that enables building the data structures
+# for storing the positions. velocities, etc. of the simulation.
+#
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/physical_data_structures/cmake_macros_and_functions/physical_data_structures.cmake )
+enable_building_physical_data_structures_package( "${core_packages_install_lib_directory}"
+                                                  "${core_packages_install_include_directory}"
+                                                  "${core_packages_install_bin_directory}" 
+                                                  "${core_packages_cmake_c_compiler}" 
+                                                  "${core_packages_cmake_cxx_compiler}" 
+                                                  "${core_packages_cxx_standard}"
+                                                  "${core_packages_logfilepath}" )
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/physical_data_structures)
+
+#-----------------------------------------------------
 # Here we define variables which indicate where      -
 # to install the simulation_parameters libraries,    -
 # header files, and associated binaries.             -
@@ -195,17 +210,3 @@ enable_building_invoker_package( "${core_packages_install_lib_directory}"
                                  "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/invoker)
 
-#-----------------------------------------------------
-# Call the macro that enables building the data structures
-# for storing the positions. velocities, etc. of the simulation.
-#
-#-----------------------------------------------------
-include( ${CMAKE_CURRENT_SOURCE_DIR}/physical_data_structures/cmake_macros_and_functions/physical_data_structures.cmake )
-enable_building_physical_data_structures_package( "${core_packages_install_lib_directory}"
-                                                  "${core_packages_install_include_directory}"
-                                                  "${core_packages_install_bin_directory}" 
-                                                  "${core_packages_cmake_c_compiler}" 
-                                                  "${core_packages_cmake_cxx_compiler}" 
-                                                  "${core_packages_cxx_standard}"
-                                                  "${core_packages_logfilepath}" )
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/physical_data_structures)

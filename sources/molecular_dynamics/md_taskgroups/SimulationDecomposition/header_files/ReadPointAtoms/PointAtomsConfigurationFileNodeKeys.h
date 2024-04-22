@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include "boost/property_tree/ptree.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -22,6 +23,7 @@ class PointAtomsConfigurationFileNodeKeys
 {
     public:
         using InternalRepresentationTrait = PointAtoms;
+        using DiskRepresentationTrait = boost::property_tree::ptree;
 
         // ====================  LIFECYCLE     =======================================
 
