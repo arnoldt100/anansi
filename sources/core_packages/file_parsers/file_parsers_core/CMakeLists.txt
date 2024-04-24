@@ -86,7 +86,10 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePicklerPropertyTreePointAtoms.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NullFilePicklerPropertyTreeMap.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorKeyPathSeparator.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorFilePickler.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorFilePickler.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingInputFile.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/verify_file_exists.h)
+
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -114,7 +117,9 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/FilePicklerPropertyTreePointAtoms.cpp 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NullFilePicklerPropertyTreeMap.cpp 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorKeyPathSeparator.cpp 
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorFilePickler.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorFilePickler.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorMissingInputFile.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/verify_file_exists.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -148,13 +153,13 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions"
-                           PUBLIC "${my_debugging_utilities_include}"
-                           PUBLIC "${my_physical_data_structures_include}"
+                           PRIVATE "${my_debugging_utilities_include}"
+                           PRIVATE "${my_physical_data_structures_include}"
                            PRIVATE "${Boost_INCLUDE_DIR}" )
 
 target_link_libraries(${target}
-                      PUBLIC "${debugging_utilities}"
-                      PUBLIC "${physical_data_structures}"
+                      PUBLIC debugging_utilities
+                      PUBLIC physical_data_structures
                       PUBLIC "${Boost_LIBRARIES}")
 
 #-----------------------------------------------------
@@ -178,6 +183,6 @@ install( TARGETS "${target}"
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -
-#                                                    -:wa
+#                                                    -
 #-----------------------------------------------------
 add_subdirectory(unit_tests)

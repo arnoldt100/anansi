@@ -194,12 +194,12 @@ std::string MasterControlInputFileNodeKeys::node_key( const std::string & global
     return this->internalToExternalKeyMapping_.at(global_key);
 }
 
-//============================= MUTATORS =====================================
-
 std::array<char,2> MasterControlInputFileNodeKeys::separatorChar() const
 {
     return KeyPathSeparatorPeriod::separator_char;
 }
+
+//============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 

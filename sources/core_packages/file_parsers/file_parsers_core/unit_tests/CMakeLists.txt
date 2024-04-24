@@ -24,6 +24,7 @@
     #   file_parsers_core target header files            -
     #                                                    -
     #-----------------------------------------------------
+    get_target_property(my_debugging_utilities_include  debugging_utilities  debugging_utilities_include  )  
     get_target_property(my_file_parsers_core_include file_parsers_core file_parsers_core_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -97,7 +98,7 @@
     #-----------------------------------------------------
     target_sources(${target}
         PRIVATE ${file_parsers_core_unit_tests_header_files}
-                ${file_parsers_core_unit_tests_implementation_files} )
+        PRIVATE ${file_parsers_core_unit_tests_implementation_files} )
 
     #-----------------------------------------------------
     # Set the directories to look for  header_files.     -
@@ -105,17 +106,17 @@
     #-----------------------------------------------------
     target_include_directories(${target} 
                                PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                               PRIVATE "${my_debugging_utilities_include}"
                                PRIVATE ${my_file_parsers_core_include} 
                                PRIVATE ${Boost_INCLUDE_DIR} )
 
     #-----------------------------------------------------
     # Define the external libraries to link against.     -
-    # (1) Boost libraries                                -
-    # (2) libfile_parsers_core.a                         -
     #                                                    -
     #-----------------------------------------------------
     target_link_libraries(${target}
                           PUBLIC file_parsers_core 
+                          PUBLIC debugging_utilities
                           PUBLIC ${Boost_LIBRARIES})
 
     #-----------------------------------------------------

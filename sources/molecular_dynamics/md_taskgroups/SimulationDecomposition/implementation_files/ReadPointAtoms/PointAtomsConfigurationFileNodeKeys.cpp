@@ -11,6 +11,9 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "PointAtomsConfigurationFileNodeKeys.h"
+#include "check_string_for_separator_char.h"
+#include "ErrorKeyPathSeparator.h"
+#include "create_path_key_propertytree.hpp"
 
 namespace ANANSI {
 
@@ -20,21 +23,29 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys()
+PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() : 
+    internalToExternalKeyMapping_{},
+    externalNodeKeys_{},
+    commentNodeKeys_{}
 {
     return;
 }
 
-PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys( PointAtomsConfigurationFileNodeKeys const & other)
+PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys( PointAtomsConfigurationFileNodeKeys const & other) :
+    internalToExternalKeyMapping_(other.internalToExternalKeyMapping_),
+    externalNodeKeys_(other.externalNodeKeys_),
+    commentNodeKeys_(other.commentNodeKeys_)
 {
     if (this != &other)
     {
-        
     }
     return;
 }
 
-PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys( PointAtomsConfigurationFileNodeKeys && other)
+PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys( PointAtomsConfigurationFileNodeKeys && other) :
+    internalToExternalKeyMapping_(std::move(other.internalToExternalKeyMapping_)),
+    externalNodeKeys_(std::move(other.externalNodeKeys_)),
+    commentNodeKeys_(std::move(other.commentNodeKeys_))
 {
     if (this != &other)
     {
@@ -55,6 +66,48 @@ PointAtomsConfigurationFileNodeKeys * PointAtomsConfigurationFileNodeKeys::clone
     return new PointAtomsConfigurationFileNodeKeys(*this);
 }
 
+std::pair<PointAtomsConfigurationFileNodeKeys::VCI_t_,
+          PointAtomsConfigurationFileNodeKeys::VCI_t_> PointAtomsConfigurationFileNodeKeys::allKeysIterator() const
+{
+    return std::pair<std::vector<std::string>::const_iterator,std::vector<std::string>::const_iterator>(this->externalNodeKeys_.begin(),this->externalNodeKeys_.end());
+}
+
+bool PointAtomsConfigurationFileNodeKeys::isKeyPresent(const std::string key) const
+{
+    bool key_found = true;
+    auto it = std::find (this->externalNodeKeys_.begin(), this->externalNodeKeys_.end(), key);
+    if ( it == this->externalNodeKeys_.end() )
+    {
+        key_found = false;
+    }
+    return key_found;
+}
+
+bool PointAtomsConfigurationFileNodeKeys::isCommentKey(const std::string key) const
+{
+    bool key_is_comment = true;
+    auto it = std::find (this->commentNodeKeys_.begin(), this->commentNodeKeys_.end(), key);
+    if ( it == this->commentNodeKeys_.end() )
+    {
+        key_is_comment = false;
+    }
+    return key_is_comment;
+}
+
+std::string PointAtomsConfigurationFileNodeKeys::defaultNullValue() const
+{
+    return PointAtomsConfigurationFileNodeKeys::DefaultNullValue_;
+}
+
+std::string PointAtomsConfigurationFileNodeKeys::node_key( const std::string & global_key) const
+{
+    return this->DefaultNullValue_;
+}
+
+std::array<char,2> PointAtomsConfigurationFileNodeKeys::separatorChar() const
+{
+    return KeyPathSeparatorPeriod::separator_char;
+}
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
@@ -63,6 +116,9 @@ PointAtomsConfigurationFileNodeKeys& PointAtomsConfigurationFileNodeKeys::operat
 {
     if (this != &other)
     {
+        this->internalToExternalKeyMapping_ = other.internalToExternalKeyMapping_;
+        this->externalNodeKeys_ = other.externalNodeKeys_;
+        this->commentNodeKeys_ = other.commentNodeKeys_;
     }
     return *this;
 } // assignment operator
@@ -71,10 +127,34 @@ PointAtomsConfigurationFileNodeKeys& PointAtomsConfigurationFileNodeKeys::operat
 {
     if (this != &other)
     {
-
+        this->internalToExternalKeyMapping_ = std::move(other.internalToExternalKeyMapping_);
+        this->externalNodeKeys_ = std::move(other.externalNodeKeys_);
+        this->commentNodeKeys_ = std::move(other.commentNodeKeys_);
     }
     return *this;
 } // assignment-move operator
+
+//============================= STATIC    ===================================
+
+std::pair<PointAtomsConfigurationFileNodeKeys::VCI_t_,PointAtomsConfigurationFileNodeKeys::VCI_t_> 
+PointAtomsConfigurationFileNodeKeys::all_keys_iterator( PointAtomsConfigurationFileNodeKeys const & object)
+{
+    return object.allKeysIterator();
+}
+bool PointAtomsConfigurationFileNodeKeys::does_key_exist(const PointAtomsConfigurationFileNodeKeys & object, const std::string key)
+{
+    return object.isKeyPresent(key);
+}
+
+bool PointAtomsConfigurationFileNodeKeys::is_comment_key(const PointAtomsConfigurationFileNodeKeys & object, const std::string key)
+{
+    return object.isCommentKey(key);
+}
+
+std::array<char,2> PointAtomsConfigurationFileNodeKeys::separator_char(const PointAtomsConfigurationFileNodeKeys & object)
+{
+    return object.separatorChar();
+}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -91,12 +171,33 @@ PointAtomsConfigurationFileNodeKeys& PointAtomsConfigurationFileNodeKeys::operat
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-    
+
+std::string PointAtomsConfigurationFileNodeKeys::DefaultNullValue_ = std::string("default-null-value");
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
+void PointAtomsConfigurationFileNodeKeys::addCommentTag_(const std::string & keys)
+{
+    this->commentNodeKeys_.push_back(keys.c_str());
+}
+
+void PointAtomsConfigurationFileNodeKeys::addNodeKey_(const std::string & internal_key, const std::vector<std::string> & external_keys)
+{
+    // Check each key and make sure no invidual external key contains the path separator character.
+    // If an external key contains the path separator, then throw
+    // an error and abort the program.
+    for (const auto & tmpstr : external_keys)
+    {
+        if ( check_string_for_separator_char<PathSeparatorTrait>(tmpstr) )
+        {
+            throw ErrorKeyPathSeparator(PathSeparatorTrait::separator_char,tmpstr);
+        }
+    }
+}
+
 
 //============================= OPERATORS ====================================
 

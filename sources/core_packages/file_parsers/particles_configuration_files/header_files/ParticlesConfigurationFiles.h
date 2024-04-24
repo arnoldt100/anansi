@@ -10,6 +10,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -21,7 +22,6 @@
 //--------------------------------------------------------//
 #include "CommandFileName.h"
 #include "Atoms.h"
-#include "PointAtoms.h"
 
 namespace ANANSI
 {
@@ -52,7 +52,7 @@ class ParticlesConfigurationFiles
         ParticlesConfigurationFiles ( ) :
             masterKeys_{},
             filename_{},
-            particles_{}
+            ptree_{}
         {
             return;
         }
@@ -61,7 +61,7 @@ class ParticlesConfigurationFiles
         ParticlesConfigurationFiles (const ParticlesConfigurationFiles & other) :
             masterKeys_{other.masterKeys_},
             filename_{other.filename_},
-            particles_{other.particles_}
+            ptree_{other.ptree_}
         {
             if (this != &other)
             {
@@ -74,7 +74,7 @@ class ParticlesConfigurationFiles
         ParticlesConfigurationFiles (ParticlesConfigurationFiles && other) :
             masterKeys_{std::move(other.masterKeys_)},
             filename_{std::move(other.filename_)},
-            particles_{std::move(other.particles_)}
+            ptree_{std::move(other.ptree_)}
         {
             if (this != &other)
             {
@@ -99,19 +99,19 @@ class ParticlesConfigurationFiles
         PICKLEDTYPE pickleFile() const
         {
             const PicklerPolicy pickler;
-            PICKLEDTYPE a_map =  pickler.template pickle<MasterKeyPolicy>(particles_);
+            PICKLEDTYPE a_map =  pickler.template pickle<MasterKeyPolicy>(ptree_);
             return a_map;
         }
 
-        //! Returns the node value in particles_ for the corresponding key.
+        //! Returns the node value in ptree_ for the corresponding key.
         //!
         //! \param[in] global_key The key of the node.
         //! \return A std::string is returned, and it is the value of the
-        //! node for the boost property tree "particles_".
+        //! node for the boost property tree "ptree_".
         std::string getValue(const std::string & global_key) const
         {
             const auto key = this->masterKeys_.node_key(global_key);
-            std::string ret_value = this->particles_. template get<std::string>(key);
+            std::string ret_value = this->ptree_. template get<std::string>(key);
             return ret_value;
         }
 
@@ -124,7 +124,7 @@ class ParticlesConfigurationFiles
         void writeFile(const std::string & filename) const
         {
             const WriterPolicy file_writer;
-            file_writer.write(this->particles_,filename);
+            file_writer.write(this->ptree_,filename);
             return;
         }
 
@@ -140,7 +140,7 @@ class ParticlesConfigurationFiles
         	std::cout << "Reading Particle Configuration file " << this->filename_() << std::endl;
             const ReaderPolicy file_reader;
             std::string file_name = this->filename_();
-            this->particles_ = file_reader.read(file_name);
+            this->ptree_ = file_reader.read(file_name);
             return;
         }
 
@@ -180,7 +180,7 @@ class ParticlesConfigurationFiles
         void unpickeFile(const PICKLEDTYPE & pickled_obj )
         {
             const PicklerPolicy pickler;
-            this->particles_ = pickler. template unPickle<MasterKeyPolicy>(pickled_obj);
+            this->ptree_ = pickler. template unPickle<MasterKeyPolicy>(pickled_obj);
             return;
         }
 
@@ -227,7 +227,7 @@ class ParticlesConfigurationFiles
         CommandFileName filename_;
         
         //! The internal representation of the file.
-        typename MasterKeyPolicy::InternalRepresentationTrait particles_;
+        typename MasterKeyPolicy::InternalRepresentationTrait ptree_;
 
 }; // -----  End of class ParticlesConfigurationFiles  -----
 

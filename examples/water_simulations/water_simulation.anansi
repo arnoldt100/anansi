@@ -13,17 +13,13 @@
 <!-- Compute elements and MPI spatial decomposition. -->
 <processor-topology> 
     <lattice-type> rectangular </lattice-type>
-    <mpi-spatial-decomposition> 1  1  2 </mpi-spatial-decomposition> 
+    <mpi-spatial-decomposition> 1  1  1 </mpi-spatial-decomposition> 
     <compute-units-per-spatial-domain> 1 </compute-units-per-spatial-domain>
 </processor-topology> 
 
 <!-- Specification for the initial configuration of the system. -->
 <initial-configuration>
-    <filename> water2.initalconfiguration0.coordinates;
-               water2.initalconfiguration1.coordinates;
-               water2.initalconfiguration2.coordinates;
-               water3.initalconfiguration3.coordinates;
-  </filename>
+    <filename> w2.initalconfiguration.coordinates </filename>
 </initial-configuration>
 
 <!-- Specification for the coordinate system -->

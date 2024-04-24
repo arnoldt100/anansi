@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <algorithm>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -42,7 +43,18 @@ namespace ANANSI
         {
             const std::string my_separator_chars{SDPConstructorHelpers::initial_configuration_file_names_separator_char};
             auto my_strings = STRING_UTILITIES::split_string_by_delimiter(a_str,my_separator_chars);
-            return my_strings;
+
+            // Remove all blank filenames.
+            std::string blank_string("");
+            std::vector<std::string> my_filenames;
+            for (auto tmp_str: my_strings)
+            {
+                if (tmp_str != blank_string)
+                {
+                    my_filenames.push_back(tmp_str);
+                }
+            }
+            return my_filenames;
         };
 
 
@@ -61,13 +73,13 @@ namespace ANANSI
                     break;
                 }
             }
+
             return valid_file_names;
         };
 
         std::vector<std::string> initial_configuration_filename_values(const std::string node_value)
         {
             std::vector<std::string> value = split_string_by_separator_chars(node_value);
-
             return value;
         };
 

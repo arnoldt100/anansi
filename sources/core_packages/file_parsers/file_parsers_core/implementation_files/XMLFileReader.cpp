@@ -12,6 +12,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "verify_file_exists.h"
 #include "XMLFileReader.h"
 
 namespace ANANSI {
@@ -59,11 +60,14 @@ XMLFileReader * XMLFileReader::clone() const
 
 boost::property_tree::ptree XMLFileReader::read(const std::string filename) const
 {  
+
+    // Verify the file at 'filename' exists.
+    verify_file_exists(filename);
+
     boost::property_tree::ptree tree;
     boost::property_tree::read_xml(filename,
                                    tree,
                                    boost::property_tree::xml_parser::no_comments);
-
     return tree;
 }
 
