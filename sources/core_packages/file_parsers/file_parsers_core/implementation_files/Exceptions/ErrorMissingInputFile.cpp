@@ -21,19 +21,22 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ErrorMissingInputFile::ErrorMissingInputFile() :
+    MOUSEION::BaseException{},
     errorMessage_{}
 {
     return;
 }
 
 ErrorMissingInputFile::ErrorMissingInputFile(const std::string message) :
+    MOUSEION::BaseException{},
     errorMessage_{message}
 {
     return;
 }
 
 ErrorMissingInputFile::ErrorMissingInputFile( ErrorMissingInputFile const & other) :
-   errorMessage_{other.errorMessage_}
+    MOUSEION::BaseException{other},
+    errorMessage_{other.errorMessage_}
 {
     if (this != &other)
     {
@@ -42,7 +45,8 @@ ErrorMissingInputFile::ErrorMissingInputFile( ErrorMissingInputFile const & othe
 }
 
 ErrorMissingInputFile::ErrorMissingInputFile( ErrorMissingInputFile && other) :
-   errorMessage_{std::move(other.errorMessage_)}
+    MOUSEION::BaseException{std::move(other)},
+    errorMessage_{std::move(other.errorMessage_)}
 {
     if (this != &other)
     {
@@ -76,6 +80,7 @@ ErrorMissingInputFile& ErrorMissingInputFile::operator= ( const ErrorMissingInpu
 {
     if (this != &other)
     {
+        MOUSEION::BaseException::operator=(other);
         this->errorMessage_ = other.errorMessage_;
     }
     return *this;
@@ -85,6 +90,7 @@ ErrorMissingInputFile& ErrorMissingInputFile::operator= ( ErrorMissingInputFile 
 {
     if (this != &other)
     {
+        MOUSEION::BaseException::operator=(std::move(other));
         this->errorMessage_ = std::move(other.errorMessage_);
     }
     return *this;

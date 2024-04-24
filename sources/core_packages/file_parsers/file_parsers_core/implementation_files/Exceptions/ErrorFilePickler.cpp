@@ -21,12 +21,14 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ErrorFilePickler::ErrorFilePickler() : 
+    MOUSEION::BaseException{},
     errorMessage_{}
 {
     return;
 }
 
 ErrorFilePickler::ErrorFilePickler( ErrorFilePickler const & other) :
+    MOUSEION::BaseException{other},
     errorMessage_{other.errorMessage_}
 {
     if (this != &other)
@@ -37,6 +39,7 @@ ErrorFilePickler::ErrorFilePickler( ErrorFilePickler const & other) :
 }
 
 ErrorFilePickler::ErrorFilePickler( ErrorFilePickler && other) :
+    MOUSEION::BaseException{std::move(other)},
     errorMessage_{std::move(other.errorMessage_)}
 {
     if (this != &other)
@@ -66,6 +69,8 @@ ErrorFilePickler& ErrorFilePickler::operator= ( const ErrorFilePickler &other )
 {
     if (this != &other)
     {
+        MOUSEION::BaseException::operator=(other);
+        this->errorMessage_ = other.errorMessage_;
     }
     return *this;
 } // assignment operator
@@ -74,7 +79,8 @@ ErrorFilePickler& ErrorFilePickler::operator= ( ErrorFilePickler && other )
 {
     if (this != &other)
     {
-
+        MOUSEION::BaseException::operator=(std::move(other));
+        this->errorMessage_ = std::move(other.errorMessage_);
     }
     return *this;
 } // assignment-move operator
