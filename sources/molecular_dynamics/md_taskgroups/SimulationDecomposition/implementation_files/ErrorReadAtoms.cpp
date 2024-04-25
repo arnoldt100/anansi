@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ErrorMissingInputFile.h"
+#include "ErrorReadAtoms.h"
 
 namespace ANANSI {
 
@@ -20,78 +20,58 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ErrorMissingInputFile::ErrorMissingInputFile() :
-    MOUSEION::BaseException{},
-    errorMessage_{}
+ErrorReadAtoms::ErrorReadAtoms()
 {
     return;
 }
 
-ErrorMissingInputFile::ErrorMissingInputFile(const std::string message) :
-    MOUSEION::BaseException{},
-    errorMessage_{message}
+ErrorReadAtoms::ErrorReadAtoms( ErrorReadAtoms const & other)
 {
-    return;
-}
-
-ErrorMissingInputFile::ErrorMissingInputFile( ErrorMissingInputFile const & other) :
-    MOUSEION::BaseException{other},
-    errorMessage_{other.errorMessage_}
-{ 
     if (this != &other)
     {
+        
     }
     return;
 }
 
-ErrorMissingInputFile::ErrorMissingInputFile( ErrorMissingInputFile && other) :
-    MOUSEION::BaseException{std::move(other)},
-    errorMessage_{std::move(other.errorMessage_)}
+ErrorReadAtoms::ErrorReadAtoms( ErrorReadAtoms && other)
 {
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method ErrorMissingInputFile::ErrorMissingInputFile  -----
+}		// -----  end of method ErrorReadAtoms::ErrorReadAtoms  -----
 
 
-ErrorMissingInputFile::~ErrorMissingInputFile()
+ErrorReadAtoms::~ErrorReadAtoms()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-ErrorMissingInputFile * ErrorMissingInputFile::clone() const
+ErrorReadAtoms * ErrorReadAtoms::clone() const
 {
-    return new ErrorMissingInputFile(*this);
-}
-
-const char* ErrorMissingInputFile::what() const noexcept
-{
-    return this->errorMessage_.c_str();
+    return new ErrorReadAtoms(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-ErrorMissingInputFile& ErrorMissingInputFile::operator= ( const ErrorMissingInputFile &other )
+ErrorReadAtoms& ErrorReadAtoms::operator= ( const ErrorReadAtoms &other )
 {
     if (this != &other)
     {
-        MOUSEION::BaseException::operator=(other);
-        this->errorMessage_ = other.errorMessage_;
     }
     return *this;
 } // assignment operator
 
-ErrorMissingInputFile& ErrorMissingInputFile::operator= ( ErrorMissingInputFile && other )
+ErrorReadAtoms& ErrorReadAtoms::operator= ( ErrorReadAtoms && other )
 {
     if (this != &other)
     {
-        MOUSEION::BaseException::operator=(std::move(other));
-        this->errorMessage_ = std::move(other.errorMessage_);
+
     }
     return *this;
 } // assignment-move operator

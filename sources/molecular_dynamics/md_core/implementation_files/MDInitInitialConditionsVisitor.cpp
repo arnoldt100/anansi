@@ -13,6 +13,7 @@
 //--------------------------------------------------------//
 #include "MDInitInitialConditionsVisitor.h"
 #include "SimulationDecompositionParameters.h"
+#include "ErrorReadAtoms.h"
 #include "GenericErrorClass.hpp"
 
 namespace ANANSI {
@@ -74,6 +75,11 @@ void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
     {
     	std::string message{my_error.what()};
         throw MOUSEION::GenericErrorClass<AnansiMolecularDynamics>(message);
+    }
+    catch (const MOUSEION::GenericErrorClass<ErrorReadAtoms> & my_error)
+    {
+    	std::string message{my_error.what()};
+    	throw MOUSEION::GenericErrorClass<AnansiMolecularDynamics>(message);
     }
 
     return;

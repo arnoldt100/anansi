@@ -27,6 +27,8 @@
 #include "MacroReadPointAtomsResultsTraits.h"
 #include "MacroReadPointAtomsResultsOwnershipImpl.hpp"
 #include "CopyOwnershipPolicy.hpp"
+#include "ErrorMissingInputFile.h"
+#include "ErrorReadAtoms.h"
 
 namespace ANANSI
 {
@@ -213,8 +215,9 @@ void MacroReadPointAtoms::receiverDoAction_(Types & ... args) const
         // (4) Get the results from PointAtomsCommunicator and copy results to this MacroReadPointAtoms.
 
     }
-    catch (const std::exception&) {
-        
+    catch (const ErrorMissingInputFile & my_error) {
+        std::string message{my_error.what()};
+        throw  MOUSEION::GenericErrorClass<ErrorReadAtoms>(message);
     }
 
     return;

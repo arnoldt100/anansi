@@ -94,6 +94,7 @@ add_library( ${target} STATIC
     #                                                    -
     #-----------------------------------------------------
     set (simulationdecomposition_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorReadAtoms.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
          ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
@@ -176,6 +177,7 @@ add_library( ${target} STATIC
     #                                                    -
     #-----------------------------------------------------
     set (simulationdecomposition_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorReadAtoms.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_simulationdecomposition_invoker.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionParameters.cpp
