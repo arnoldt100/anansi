@@ -24,7 +24,7 @@ namespace ANANSI
 //! in the master control input file. These internal program keys are not exposed 
 //! to the program users but are intended to used by the program developers 
 //! to have a consistent key throughout the program. This permits the developer 
-//! the developer to reduce the dependence of the extenal keys in the master control
+//! the developer to reduce the dependence of the external keys in the master control
 //! input file within the program.
 class MasterControlInternalNodeKeys
 {
