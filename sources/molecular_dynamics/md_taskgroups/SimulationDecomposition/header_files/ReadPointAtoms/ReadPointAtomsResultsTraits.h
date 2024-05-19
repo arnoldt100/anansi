@@ -19,8 +19,8 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "PhysicalDataStructure.h"
-#include "DataStoragePolicy.h"
-#include "PrecisionPolicy.h"
+#include "SimulationDecompositionPrecisionPolicy.h"
+#include "SimulationDecompositionExecutionPolicy.h"
 #include "Atoms.h"
 #include "PointAtoms.h"
 #include "ParticlesConfigurationFiles.h"
@@ -38,7 +38,8 @@ class ReadPointAtomsResultsTraits
         // ====================  ALIASES       =======================================
 
         using result_t = PhysicalDataStructure<DataStoragePolicy::Type,PrecisionPolicy::Type>;
-        using Atoms_t = PointAtoms<DataStoragePolicy::Type,DataStoragePolicy::Type>;
+        using Atoms_t = PointAtoms<SimulationDecompositionExecutionPolicy::Type,
+                                   SimulationDecompositionPrecisionPolicy::Type>;
         using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<PointAtomsConfigurationFileNodeKeys,
                                                                           XMLFileReader,
                                                                           XMLFileWriter,

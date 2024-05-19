@@ -30,13 +30,8 @@ namespace ANANSI
 
 class SimulationDecompositionTaskTraits
 {
-    private: 
-
-        using result_t = Atoms;
 
     public:
-
-        using Atoms_t = PointAtoms<DataStoragePolicy::Type,PrecisionPolicy::Type>;
 
         using abstract_products = MPL::mpl_typelist<
                                                        ReadPointAtoms::MyParentTask,

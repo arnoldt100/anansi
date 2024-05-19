@@ -15,7 +15,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "DataStoragePolicy.h"
+#include "SimulationDecompositionPrecisionPolicy.h"
+#include "SimulationDecompositionExecutionPolicy.h"
 #include "Atoms.h"
 #include "PointAtoms.h"
 
@@ -27,7 +28,8 @@ class PointAtomsCommunicatorResultsTraits
 {
     public:
         // ====================  ALIASES       =======================================
-        using Atoms_t = PointAtoms<DataStoragePolicy::Type,DataStoragePolicy::Type>;
+        using Atoms_t = PointAtoms<SimulationDecompositionExecutionPolicy::Type,
+                                   SimulationDecompositionPrecisionPolicy::Type>;
         using result_t = Atoms;
         using copy_result_t = result_t;
         using share_result_t = result_t;
