@@ -68,7 +68,7 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         using MyParentTask = ReadAtoms;
 
         //! \todo Fill in typelist with Generic tasks to
-        //!       accopmplish the maceo command. Leave typleist empty
+        //!       accomplish the maceo command. Leave typelist empty
         //!       if this is not a macro command.
         using MyComponentReceiverTypelist = MPL::mpl_typelist<>;
 

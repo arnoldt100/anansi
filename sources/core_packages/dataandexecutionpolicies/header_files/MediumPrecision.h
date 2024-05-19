@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <cstddef>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -24,6 +25,11 @@ namespace ANANSI
 class MediumPrecision
 {
     public:
+
+        //! This is the counter type for the number particles in a 
+        //! PhysicalDataStructures.
+        using ParticleCounter_t = std::size_t;
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
@@ -35,7 +41,7 @@ class MediumPrecision
         //! The move constructor.
         MediumPrecision (MediumPrecision && other);   // copy-move constructor
 
-        virtual ~MediumPrecision ();  // destructor
+        ~MediumPrecision ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 

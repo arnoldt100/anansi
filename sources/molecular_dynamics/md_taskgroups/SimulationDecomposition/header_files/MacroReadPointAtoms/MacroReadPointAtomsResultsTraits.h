@@ -19,6 +19,7 @@
 //--------------------------------------------------------//
 #include "Atoms.h"
 #include "PointAtoms.h"
+#include "DataStoragePolicy.h"
 
 namespace ANANSI
 {
@@ -29,7 +30,7 @@ class MacroReadPointAtomsResultsTraits
         // ====================  ALIASES       =======================================
         //! \todo  Fill in the result type.
         using result_t = Atoms;
-        using Atoms_t = PointAtoms;
+        using Atoms_t = PointAtoms<DataStoragePolicy::Type,DataStoragePolicy::Type>;
         using copy_result_t = result_t;
         using share_result_t = result_t;
         using transfer_result_t = result_t;

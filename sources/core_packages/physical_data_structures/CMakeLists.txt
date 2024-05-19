@@ -51,6 +51,7 @@
     # physical_data_structures depend on.
     # 
     # ----------------------------------------------------
+    get_target_property(my_dataandexecutionpolicies_include dataandexecutionpolicies dataandexecutionpolicies_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -122,13 +123,15 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files)
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
+                           PUBLIC "${my_dataandexecutionpolicies_include}" )
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
 #                                                    -
 #-----------------------------------------------------
-target_link_libraries( ${target} )
+target_link_libraries( ${target} 
+                      PUBLIC dataandexecutionpolicies )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -

@@ -31,8 +31,8 @@ namespace ANANSI
 //!          data structures.
 //! \tparam DataStoragePolicy Specifies the data storage policy.
 //! \tparam DataPrecisionPolicy Specifies the data precision policy.
-    template <typename DataStoragePolicy,
-              typename DataPrecisionPolicy>
+template <typename DataStoragePolicy,
+          typename DataPrecisionPolicy>
 class PhysicalDataStructure
 {
     public:
@@ -135,6 +135,9 @@ class PhysicalDataStructure
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<PhysicalDataStructureConcept> clone() const=0;
 
+                //! The number of paricles.
+                virtual typename DataPrecisionPolicy::ParticleCounter_t numberOfParticles() const=0;
+
                 // ====================  MUTATORS      =======================================
 
         };
@@ -143,7 +146,7 @@ class PhysicalDataStructure
         //!
         //! \details The model bridges the wrapped object and 
         //!          the concept interface. It stores the wrapped object
-        //!          that inmplements ( or models ) the concepts interface,        
+        //!          that implements ( or models ) the concepts interface,
         template <typename T>
         class PhysicalDataStructureModel : public PhysicalDataStructureConcept
         {
@@ -205,6 +208,11 @@ class PhysicalDataStructure
                 std::unique_ptr<PhysicalDataStructureConcept> clone() const override
                 {
                     return std::make_unique<PhysicalDataStructureModel>(*this);
+                }
+
+                typename DataPrecisionPolicy::ParticleCounter_t numberOfParticles() const override
+                {
+                    return static_cast<typename DataPrecisionPolicy::ParticleCounter_t>(1000);
                 }
 
                 // ====================  MUTATORS      =======================================

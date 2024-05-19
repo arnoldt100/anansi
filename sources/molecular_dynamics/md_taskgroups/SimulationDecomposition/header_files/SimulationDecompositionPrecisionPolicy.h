@@ -1,6 +1,6 @@
-#ifndef ANANSI_LowPrecision_INC
-#define ANANSI_LowPrecision_INC
-//! \file LowPrecision.h
+#ifndef ANANSI_SimulationDecompositionPrecisionPolicy_INC
+#define ANANSI_SimulationDecompositionPrecisionPolicy_INC
+//! \file SimulationDecompositionPrecisionPolicy.h
 //!
 //! \brief Brief description
 //!
@@ -9,7 +9,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <cstddef>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -18,44 +17,43 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "PrecisionPolicy.h"
 
 namespace ANANSI
 {
 
-class LowPrecision
+class SimulationDecompositionPrecisionPolicy
 {
     public:
-        //! This is the counter type for the number particles in a 
-        //! PhysicalDataStructures.
-        using ParticleCounter_t = std::size_t;
-
+        using Type = PrecisionPolicy::Type;
+        
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
-        LowPrecision ();   // constructor
+        SimulationDecompositionPrecisionPolicy ();   // constructor
 
         //! The copy constructor.
-        LowPrecision (const LowPrecision & other);   // copy constructor
+        SimulationDecompositionPrecisionPolicy (const SimulationDecompositionPrecisionPolicy & other);   // copy constructor
 
         //! The move constructor.
-        LowPrecision (LowPrecision && other);   // copy-move constructor
+        SimulationDecompositionPrecisionPolicy (SimulationDecompositionPrecisionPolicy && other);   // copy-move constructor
 
-        ~LowPrecision ();  // destructor
+         ~SimulationDecompositionPrecisionPolicy ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
-        LowPrecision * clone () const;
+        SimulationDecompositionPrecisionPolicy * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! The copy assignment operator.
-        LowPrecision& operator= ( const LowPrecision &other ); // assignment operator
+        SimulationDecompositionPrecisionPolicy& operator= ( const SimulationDecompositionPrecisionPolicy &other ); // assignment operator
 
         //! The move assignment operator.
-        LowPrecision& operator= ( LowPrecision && other ); // assignment-move operator
+        SimulationDecompositionPrecisionPolicy& operator= ( SimulationDecompositionPrecisionPolicy && other ); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -67,9 +65,9 @@ class LowPrecision
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  End of class LowPrecision  -----
+}; // -----  End of class SimulationDecompositionPrecisionPolicy  -----
 
 
 }; // End of namespace ANANSI
 
-#endif // ANANSI_LowPrecision_INC
+#endif // ANANSI_SimulationDecompositionPrecisionPolicy_INC

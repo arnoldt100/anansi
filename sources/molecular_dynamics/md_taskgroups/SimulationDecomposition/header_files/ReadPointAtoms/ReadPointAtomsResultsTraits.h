@@ -38,7 +38,7 @@ class ReadPointAtomsResultsTraits
         // ====================  ALIASES       =======================================
 
         using result_t = PhysicalDataStructure<DataStoragePolicy::Type,PrecisionPolicy::Type>;
-        using Atoms_t = PointAtoms;
+        using Atoms_t = PointAtoms<DataStoragePolicy::Type,DataStoragePolicy::Type>;
         using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<PointAtomsConfigurationFileNodeKeys,
                                                                           XMLFileReader,
                                                                           XMLFileWriter,

@@ -17,13 +17,9 @@
 #include "MPLAliases.hpp"
 #include "GenericMDTask.hpp"
 
-// Includes for abstract tasks.
-#include "AtomsCommunicator.h"
-#include "AtomsDecomposer.h"
-#include "ReadAtoms.h"
-#include "MacroCommand.hpp"
-
 // Include for concrete tasks. 
+#include "DataStoragePolicy.h"
+#include "PrecisionPolicy.h"
 #include "PointAtomsCommunicator.h"
 #include "PointAtomsDecomposer.h"
 #include "ReadPointAtoms.h"
@@ -34,7 +30,14 @@ namespace ANANSI
 
 class SimulationDecompositionTaskTraits
 {
+    private: 
+
+        using result_t = Atoms;
+
     public:
+
+        using Atoms_t = PointAtoms<DataStoragePolicy::Type,PrecisionPolicy::Type>;
+
         using abstract_products = MPL::mpl_typelist<
                                                        ReadPointAtoms::MyParentTask,
                                                        PointAtomsDecomposer::MyParentTask,

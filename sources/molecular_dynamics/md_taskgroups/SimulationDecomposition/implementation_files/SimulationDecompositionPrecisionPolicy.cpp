@@ -1,3 +1,4 @@
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -9,10 +10,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "PointAtoms.h"
+#include "SimulationDecompositionPrecisionPolicy.h"
 
-namespace ANANSI 
-{
+namespace ANANSI {
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -20,9 +20,65 @@ namespace ANANSI
 
 //============================= LIFECYCLE ====================================
 
+SimulationDecompositionPrecisionPolicy::SimulationDecompositionPrecisionPolicy()
+{
+	// TODO Auto-generated constructor stub
+    return;
+}
+
+SimulationDecompositionPrecisionPolicy::SimulationDecompositionPrecisionPolicy( SimulationDecompositionPrecisionPolicy const & other)
+{
+	// TODO Auto-generated constructor stub
+    if (this != &other)
+    {
+        
+    }
+    return;
+}
+
+SimulationDecompositionPrecisionPolicy::SimulationDecompositionPrecisionPolicy( SimulationDecompositionPrecisionPolicy && other)
+{
+	// TODO Auto-generated constructor stub
+    if (this != &other)
+    {
+    }
+    return;
+}		// -----  end of method SimulationDecompositionPrecisionPolicy::SimulationDecompositionPrecisionPolicy  -----
+
+
+SimulationDecompositionPrecisionPolicy::~SimulationDecompositionPrecisionPolicy()
+{
+	// TODO Auto-generated destructor stub
+    return;
+}
+
+//============================= ACCESSORS ====================================
+
+SimulationDecompositionPrecisionPolicy * SimulationDecompositionPrecisionPolicy::clone() const
+{
+    return new SimulationDecompositionPrecisionPolicy(*this);
+}
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
+
+SimulationDecompositionPrecisionPolicy& SimulationDecompositionPrecisionPolicy::operator= ( const SimulationDecompositionPrecisionPolicy &other )
+{
+    if (this != &other)
+    {
+    }
+    return *this;
+} // assignment operator
+
+SimulationDecompositionPrecisionPolicy& SimulationDecompositionPrecisionPolicy::operator= ( SimulationDecompositionPrecisionPolicy && other )
+{
+    if (this != &other)
+    {
+
+    }
+    return *this;
+} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -49,4 +105,4 @@ namespace ANANSI
 //============================= OPERATORS ====================================
 
 
-}; // End of namespace ANANSI
+} // namespace ANANSI
