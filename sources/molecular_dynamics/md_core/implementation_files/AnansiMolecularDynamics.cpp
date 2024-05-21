@@ -29,7 +29,6 @@
 #include "setup_mpi_world_communicator_invoker.h"
 #include "setup_simulationdecomposition_invoker.h"
 #include "disable_simulationdecomposition_invoker.h"
-#include "SimulationDecompositionParameters.h"
 
 namespace ANANSI
 {

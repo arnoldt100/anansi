@@ -192,6 +192,10 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         CommandFiles<Atoms> myConfigurationFile{ReadPointAtomsResultsTraits::ParticlesConfigurationFiles_t()};
         set_CommandFile_filename(myConfigurationFile, file_name);
         read_CommandFile(myConfigurationFile);
+
+        // Read the nunber of particles in the file.
+        std::string key_number_atoms = 
+        const std::string number_particles = get_value_CommandFile(myConfigurationFile,"" );
     }
     return;
 }

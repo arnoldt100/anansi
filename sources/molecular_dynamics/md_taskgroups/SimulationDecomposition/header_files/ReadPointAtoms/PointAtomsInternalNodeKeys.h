@@ -37,7 +37,7 @@ class PointAtomsInternalNodeKeys
         //!  \brief This is the name of the region the atoms are in. 
         //!
         //!  \details Each atom is initially assigned to one region, and the atoms do not
-        //!  necessarilyu have to stay in the same region throughut the program. The region name 
+        //!  necessarily have to stay in the same region throughout the program. The region name
         //!  shall have no impact of the physical properties of the simulation.
         static constexpr std::string_view Region_Name  = "region_name";
 

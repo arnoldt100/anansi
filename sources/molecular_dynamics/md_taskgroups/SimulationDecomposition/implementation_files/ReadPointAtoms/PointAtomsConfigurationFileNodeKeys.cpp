@@ -101,7 +101,8 @@ std::string PointAtomsConfigurationFileNodeKeys::defaultNullValue() const
 
 std::string PointAtomsConfigurationFileNodeKeys::node_key( const std::string & global_key) const
 {
-    return this->DefaultNullValue_;
+    return this->internalToExternalKeyMapping_.at(global_key);
+
 }
 
 std::array<char,2> PointAtomsConfigurationFileNodeKeys::separatorChar() const
