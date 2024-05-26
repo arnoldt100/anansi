@@ -40,7 +40,6 @@ class PointAtomsInternalNodeKeys
         //!  necessarily have to stay in the same region throughout the program. The region name
         //!  shall have no impact of the physical properties of the simulation.
         static constexpr std::string_view Region_Name  = "region_name";
-
         static constexpr std::string_view Coordinate_System  = "coordinate_system";
         static constexpr std::string_view Number_Atoms_In_File = "number_atoms_in_file";
         static constexpr std::string_view X_Coordinate_Atom_i = "x_coordinate_atom::i::";

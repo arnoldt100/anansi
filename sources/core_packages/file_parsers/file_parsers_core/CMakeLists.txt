@@ -88,7 +88,8 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorKeyPathSeparator.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorFilePickler.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions/ErrorMissingInputFile.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/verify_file_exists.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/verify_file_exists.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ConvertGlobalNodeKey.hpp)
 
 
     #-----------------------------------------------------
@@ -119,7 +120,8 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorKeyPathSeparator.cpp 
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorFilePickler.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/Exceptions/ErrorMissingInputFile.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/verify_file_exists.cpp)
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/verify_file_exists.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ConvertGlobalNodeKey.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @

@@ -1,10 +1,6 @@
 #ifndef ANANSI_ReadPointAtoms_INC
 #define ANANSI_ReadPointAtoms_INC
 //! \file ReadPointAtoms.h
-//!
-//! \brief Brief description
-//!
-//! \details  Detailed description
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -32,6 +28,8 @@
 #include "CommandFileName.h"
 #include "NullPickleType.h"
 #include "ParticlesConfigurationFiles.h"
+#include "PointAtomsInternalNodeKeys.h"
+#include  "ConvertGlobalNodeKey.hpp"
 
 namespace ANANSI
 {
@@ -194,8 +192,9 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         read_CommandFile(myConfigurationFile);
 
         // Read the nunber of particles in the file.
-        std::string key_number_atoms = 
-        const std::string number_particles = get_value_CommandFile(myConfigurationFile,"" );
+        const  ConvertGlobalNodeKey<PointAtomsInternalNodeKeys> x1;
+        const std::string global_key_number_atoms = x1(PointAtomsInternalNodeKeys::Number_Atoms_In_File);
+        const std::string number_particles = get_value_CommandFile(myConfigurationFile,global_key_number_atoms);
     }
     return;
 }
