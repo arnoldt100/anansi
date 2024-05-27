@@ -10,6 +10,8 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <string_view>
+#include <string>
+#include <map>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -39,9 +41,9 @@ class PointAtomsInternalNodeKeys
         //!  \details Each atom is initially assigned to one region, and the atoms do not
         //!  necessarily have to stay in the same region throughout the program. The region name
         //!  shall have no impact of the physical properties of the simulation.
-        static constexpr std::string_view Region_Name  = "region_name";
-        static constexpr std::string_view Coordinate_System  = "coordinate_system";
-        static constexpr std::string_view Number_Atoms_In_File = "number_atoms_in_file";
+        static constexpr std::string_view Region_Name  = "Region_Name";
+        static constexpr std::string_view Coordinate_System  = "Coordinate_System";
+        static constexpr std::string_view Number_Atoms_In_File = "Total_Number_of_Atoms";
         static constexpr std::string_view X_Coordinate_Atom_i = "x_coordinate_atom::i::";
         static constexpr std::string_view Y_Coordinate_Atom_i = "y_coordinate_atom::i::";
         static constexpr std::string_view Z_Coordinate_Atom_i = "z_coordinate_atom::i::";
@@ -72,6 +74,8 @@ class PointAtomsInternalNodeKeys
         //! The clone method.
         PointAtomsInternalNodeKeys * clone () const;
 
+        std::string getInternalNodeKey(const std::string_view global_key) const;
+
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
@@ -89,8 +93,12 @@ class PointAtomsInternalNodeKeys
 
     private:
         // ====================  METHODS       =======================================
+        
+        // ====================  MUTATORS      =======================================
+        void setAllKeys_();
 
         // ====================  DATA MEMBERS  =======================================
+        std::map<std::string,std::string> myKeys_;
 
 }; // -----  End of class PointAtomsInternalNodeKeys  -----
 

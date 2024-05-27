@@ -1,8 +1,8 @@
 <data>
-  <Region Name>All atoms</Region Name>
-  <Coordinate System>3D Cartesian Coordinates</Coordinate System>
-  <Coordinates, Velocities, ...>
-    <Total Number of Atoms>102</Total Number of Atoms>
+  <Region_Name>All atoms</Region_Name>
+  <Coordinate_System>3D Cartesian Coordinates</Coordinate_System>
+  <Coordinates_Velocities_etc>
+    <Total_Number_of_Atoms>102</Total_Number_of_Atoms>
     <!--Atom      Symbol    Global-Atom-Index        Global-Group-Index              Group-Type                      X-coordinate                    Y-coordinate                    Z-coordinate                    -->
     <1>
       <Atom>tip3p-O1</Atom>
@@ -1330,5 +1330,5 @@
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-velocity>0.0000000000000000e+00</Z-velocity>
     </102>
-  </Coordinates, Velocities, ...>
+  </Coordinates_Velocities_etc>
 </data>

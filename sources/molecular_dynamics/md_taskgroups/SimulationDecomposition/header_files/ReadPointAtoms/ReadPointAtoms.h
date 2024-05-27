@@ -192,8 +192,8 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         read_CommandFile(myConfigurationFile);
 
         // Read the nunber of particles in the file.
-        const  ConvertGlobalNodeKey<PointAtomsInternalNodeKeys> x1;
-        const std::string global_key_number_atoms = x1(PointAtomsInternalNodeKeys::Number_Atoms_In_File);
+        const  PointAtomsInternalNodeKeys x1;
+        const std::string global_key_number_atoms = x1.getInternalNodeKey("Number_Atoms_In_File");
         const std::string number_particles = get_value_CommandFile(myConfigurationFile,global_key_number_atoms);
     }
     return;
