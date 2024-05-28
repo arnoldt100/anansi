@@ -911,7 +911,7 @@ WARN_LOGFILE           =
 INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/BuildingAnansi \
-                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/DevelopersGuide \
+                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/DevelopersDocumentation \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/header_files \

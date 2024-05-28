@@ -12,14 +12,20 @@
         <tab type="user" visible="yes" url="@ref BuildingAnansi" title="Building Anansi"/>
     </tab>
 
-    <!-- End of user created documentation.          -->
 
     <tab type="usergroup" title="Developer's Documentation" >
         <tab type="usergroup" title="How To Guides" >
             <tab type="user" visible="yes" url="@ref howtocreatereceiver" title="How to Create a Receiver"/>
             <tab type="user" visible="yes" url="@ref howtocreateinvoker" title="How to Create a Invoker"/>
         </tab>
+        <tab type="usergroup" title="Parsing Input Files">
+        </tab>
+        <tab type="usergroup" title="Inheritance Patterns" url="@ref InheritancePatterns">
+                <tab type="user" visible="yes" url="@ref TypeErasureInheritance" title="Type Erasure Inheritance"/>
+        </tab>
     </tab>
+
+    <!-- End of user created documentation.          -->
 
     <tab type="namespaces" visible="yes" title="">
       <tab type="namespacelist" visible="yes" title="" intro=""/>
