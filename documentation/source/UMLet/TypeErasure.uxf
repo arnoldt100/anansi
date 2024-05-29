@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text/>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>20</y>
+      <w>200</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Circle
+--
+- double radius_
+
+( Several more attributes )
+
+--
++ double radius() const
+
+( Several more methods ) </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>220</y>
+      <w>210</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Square
+--
+- double sideLength_
+
+( Several more attributes )
+
+--
++ double sideLength() const
+
+( Several more methods )</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>30</y>
+      <w>440</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>/ShapeConcept/
+--
++ virtual draw() const=0
++ virtual translate( displacment: double[3] )=0
++ virtual rotate( rot_angles: double[3])=0
++ virtual std::unique_ptr&lt;ShapeConcept&gt; clone() const = 0
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>230</y>
+      <w>460</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>template&lt;typename Shape_t&gt; 
+ShapeModel
+--
+- Shape_t shape_ 
+--
+
++ explicit ShapeModel(Shape_t aShape)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>120</y>
+      <w>30</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>990</x>
+      <y>290</y>
+      <w>230</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Note..
+bg=white
+
+This is a templated 
+constructorn and
+takes a concrete 
+shape which is assigned
+to member attribute shape_.
+One has flexibility in 
+the design of this constructor. </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>310</y>
+      <w>340</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>460</y>
+      <w>470</w>
+      <h>370</h>
+    </coordinates>
+    <panel_attributes>Shape
+--
+- std:;unique_ptr&lt;ShapeConcept&gt; valuePtr_
+
+--
++ </panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
