@@ -17,7 +17,7 @@
 ( Several more attributes )
 
 --
-+ double radius() const
++ void draw() const
 
 ( Several more methods ) </panel_attributes>
     <additional_attributes/>
@@ -37,7 +37,7 @@
 ( Several more attributes )
 
 --
-+ double sideLength() const
++ void draw () const
 
 ( Several more methods )</panel_attributes>
     <additional_attributes/>
@@ -54,7 +54,6 @@
 --
 + virtual draw() const=0
 + virtual translate( displacment: double[3] )=0
-+ virtual rotate( rot_angles: double[3])=0
 + virtual std::unique_ptr&lt;ShapeConcept&gt; clone() const = 0
 
 </panel_attributes>
@@ -65,8 +64,8 @@
     <coordinates>
       <x>390</x>
       <y>230</y>
-      <w>460</w>
-      <h>100</h>
+      <w>520</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>template&lt;typename Shape_t&gt; 
 ShapeModel
@@ -75,6 +74,12 @@ ShapeModel
 --
 
 + explicit ShapeModel(Shape_t aShape)
++ draw() const override : void {accessor}
++ translate () override : void {modifier}
++ clone () const override : std::unique_ptr&lt;ShapeConcept&gt; {accessor}
+
+
+
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -92,48 +97,127 @@ ShapeModel
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>990</x>
-      <y>290</y>
-      <w>230</w>
-      <h>150</h>
+      <x>950</x>
+      <y>180</y>
+      <w>490</w>
+      <h>170</h>
     </coordinates>
-    <panel_attributes>Note..
-bg=white
+    <panel_attributes>bg=white
 
-This is a templated 
-constructorn and
-takes a concrete 
-shape which is assigned
+This is a templated constructor and
+takes a concrete shape (Circle, Square,...) which is assigned
 to member attribute shape_.
-One has flexibility in 
-the design of this constructor. </panel_attributes>
+
+explicit ShapeModel(Shape_t aShape) : 
+     shape_{aShape} { }</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>670</x>
-      <y>310</y>
-      <w>340</w>
-      <h>30</h>
+      <y>240</y>
+      <w>300</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;320.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;210.0;80.0;280.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>380</x>
-      <y>460</y>
-      <w>470</w>
-      <h>370</h>
+      <x>310</x>
+      <y>640</y>
+      <w>650</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>Shape
 --
 - std:;unique_ptr&lt;ShapeConcept&gt; valuePtr_
 
 --
-+ </panel_attributes>
++ template&lt;typename T&gt; CommandFiles(T &amp;&amp; value)
++ friend draw_shape (Shape &amp; aShape) : void </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>960</x>
+      <y>370</y>
+      <w>480</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>bg=white
+
+The free function "Shape_t::draw_shape" for the Shape_t class is
+invoked,
+
+Shape_t::draw() const override
+{
+    shape_.draw_shape(shape_);
+}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>330</y>
+      <w>300</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0;280.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1010</x>
+      <y>800</y>
+      <w>320</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>bg=white
+friend void draw_shape (Shape &amp; aShape)
+{
+     aShape.valuePtr_-&gt;draw()
+}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>720</y>
+      <w>390</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;280.0;20.0;370.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1010</x>
+      <y>670</y>
+      <w>550</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>bg=white
+template&lt;typename T&gt; CommandFiles(T &amp;&amp; value) : 
+     valuePtr_(new ShapeModel&lt;ShapeConcept&gt;(std::forward&lt;T&gt; value){ }</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>700</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;20.0;310.0;10.0</additional_attributes>
   </element>
 </diagram>
