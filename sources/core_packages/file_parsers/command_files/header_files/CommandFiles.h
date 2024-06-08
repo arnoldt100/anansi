@@ -162,7 +162,7 @@ private:
     std::unique_ptr<CommandFilesConcept> clone() const override {
       return std::make_unique<CommandFilesModel>(*this);
     }
-w
+
     PICKLETYPE_t pickle() const override {
       return object_.pickle_file(object_);
     }
