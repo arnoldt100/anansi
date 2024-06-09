@@ -15,8 +15,8 @@ consists of the concrete classes Circle and Square.
 
 The high level provides the semantic requirements for all shape types. For example, one can require
 all shapes to provide a draw functionality. The class ShapeConcept is the base class that defines
-the Shapes semantic requirements. Note that in ShapeConcept the abstract virtual method draw sets
-the draw semantic.  The OwningShapeModel is a templated class whose template parameters are of
+the Shapes semantic requirements. Note that in ShapeConcept the abstract virtual method named draw sets
+the shapes draw semantic. The class OwningShapeModel is a templated class whose template parameters are of
 concrete shape types 
 
     template <typename T> 
