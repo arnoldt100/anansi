@@ -10,45 +10,46 @@ The TypeErasure UML diagram is depicted below.
 ![UMLTypeErasureInheritance](TypeErasure.jpg)
 
 We can group  the TypeErasure design pattern into 3 levels. The high level consists of the classes
-ShapeConcept and OwningShapeModel. The middle level consists of the class Shape, and the low level
-consists of the concrete classes Circle and Square.
+`ShapeConcept` and `OwningShapeModel`. The middle level consists of the class `Shape`, and the low level
+consists of the concrete classes `Circle` and `Square`.
 
 The high level provides the semantic requirements for all shape types. For example, one can require
-all shapes to provide a draw functionality. The class ShapeConcept is the base class that defines
-the Shapes semantic requirements. Note that in ShapeConcept the abstract virtual method named draw sets
-the shapes draw semantic. The class OwningShapeModel is a templated class whose template parameters are of
-concrete shape types 
+all shapes to provide a draw functionality. The class `ShapeConcept` is the base class that defines
+the shapes semantic requirements. Note that in `ShapeConcept` the abstract virtual method named
+`draw` sets the shapes draw semantic. The class `OwningShapeModel` is a templated class whose
+template parameters are of concrete shape types 
 
     template <typename T> 
     class OwningShapeModel<T>;
 
-and OwningShapeModel constructor takes a concrete
-shape, Circle, Square, ..., that is used to initialize the data member
-OwningShapeModel::concreteShape_. 
+and `OwningShapeModel` constructor takes a concrete shape, `Circle`, Square, ..., that is used to
+initialize the data member `OwningShapeModel::concreteShape_`. 
 
     template <typename T>
     explcit OwningShapeModel<T>::OwningShapeModel( T & aConcreteShape) :
     concreteShape_{aConcreteShape};
 
-OwningShapeModel must also implement the all virtual functions of
-ShapeConcept. The method OwningShapeModel::draw()
+`OwningShapeModel` must also override all virtual functions of `ShapeConcept`. `ShapeConcept`
+has virtual functions  `ShapeConcept::draw` and `ShapeConcept::clone` and a possible implementation 
+of the `OwningShapeModel::draw`is listed below.
 
     OwningShapeModel::draw() const override
     {
         shape_.draw_shape(shape_);
     }
 
-
-The middle level class Shape wraps and transforms the high level hierarchy to value semantics and
-a TypeErasure. Note that only Shape's constructor is templated on a concrete shape
+The middle level class `Shape` wraps and transforms the high level hierarchy to value semantics and
+a TypeErasure. Note that only `Shape's` constructor is templated on a concrete shape
 
     template<typename T>
     Shape::Shape(T && aConcreteShape) :
     valuePtr_(new ShapeModel<ShapeConcept>(std::forward<T>(aConcreteShape)));
 
-where the concrete shape is wrapped in Shape::valuePtr_ 
+where the concrete shape is wrapped in `Shape::valuePtr_` 
 
     std::unique_ptr<ShapeConcept> Shape::valuePtr_;
 
+The `Shape` class has a hidden friend function [2]  `draw()`. 
 ---
-[1] Iglberger, K. (2022). C++ Software Design. (First Edition).  O'Reilly Media. ISBN: 9781098113162.
+[1] Iglberger, K. (2022). <EM>C++ Software Design. </EM> (First Edition).  O'Reilly Media. ISBN: 9781098113162. <BR/>
+[2]  Williams, A. (2019, June 27). The Power of Hidden Friends in C++. Just Software Solutions. <EM>https://www.justsoftwaresolutions.co.uk/cplusplus/hidden-friends.html</EM> <BR/>
