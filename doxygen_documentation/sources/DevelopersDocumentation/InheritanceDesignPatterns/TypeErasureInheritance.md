@@ -22,15 +22,15 @@ template parameters are of concrete shape types
     template <typename T> 
     class OwningShapeModel<T>;
 
-and `OwningShapeModel` constructor takes a concrete shape, `Circle`, Square, ..., that is used to
+and `OwningShapeModel` constructor takes a concrete shape, e.g. `Circle`, `Square`, e.t.c., that is used to
 initialize the data member `OwningShapeModel::concreteShape_`. 
 
     template <typename T>
     explcit OwningShapeModel<T>::OwningShapeModel( T & aConcreteShape) :
     concreteShape_{aConcreteShape};
 
-`OwningShapeModel` must also override all virtual functions of `ShapeConcept`. `ShapeConcept`
-has virtual functions  `ShapeConcept::draw` and `ShapeConcept::clone` and a possible implementation 
+In addition `OwningShapeModel` must override all virtual functions of `ShapeConcept`. `ShapeConcept`
+has virtual functions  `ShapeConcept::draw` and `ShapeConcept::clone`. A possible implementation 
 of the `OwningShapeModel::draw`is listed below.
 
     OwningShapeModel::draw() const override
@@ -49,7 +49,37 @@ where the concrete shape is wrapped in `Shape::valuePtr_`
 
     std::unique_ptr<ShapeConcept> Shape::valuePtr_;
 
-The `Shape` class has a hidden friend function [2]  `draw()`. 
+The `Shape` class has a hidden friend function [2]  `draw()`.
+
+    friend void draw_shape(Shape const  & aShape)
+    {
+        aShape.valuePtr_->draw();
+    }
+
+The below listing is an example of the use:
+
+    // ------
+    // <Main.cpp>
+    // ------
+
+    #include "Circle.h"
+    #include "Shape.h"
+
+    int main(int argc,char**argv
+    {
+        // Create a concrete circle shape
+        Circle aCircle(7.0);
+
+        // Create a TypeErasure for the concrete circle aCircle
+        Shape shape1(aCircle);
+
+        // Draw the shape using the hidden friend of class Shape.
+        draw_shape(shape1);
+
+        return EXIT_SUCESS;
+    }
+
 ---
+
 [1] Iglberger, K. (2022). <EM>C++ Software Design. </EM> (First Edition).  O'Reilly Media. ISBN: 9781098113162. <BR/>
 [2]  Williams, A. (2019, June 27). The Power of Hidden Friends in C++. Just Software Solutions. <EM>https://www.justsoftwaresolutions.co.uk/cplusplus/hidden-friends.html</EM> <BR/>
