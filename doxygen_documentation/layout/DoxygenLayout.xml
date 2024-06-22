@@ -21,6 +21,7 @@
             <tab type="user" visible="yes" url="@ref howtocreateinvoker" title="How to Create a Invoker"/>
         </tab>
         <tab type="usergroup" title="Parsing Input Files">
+            <tab type="user" visible="yes" url="@ref CommandFilesConcept" title="The Command File Concept"/>
         </tab>
         <tab type="usergroup" title="Inheritance Patterns" url="@ref InheritancePatterns">
                 <tab type="user" visible="yes" url="@ref TypeErasureInheritance" title="Type Erasure Inheritance"/>
