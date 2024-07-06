@@ -1,13 +1,13 @@
 # Notational Convention {#NotationalConvention}
 
 In paragraph names of program elements such as classes, variables, functions,
-program statements, etc. are depicted as in the followng paragraph:
+program statements, etc. are depicted as in the following paragraph:
 
 &nbsp;&nbsp;&nbsp;&nbsp;The class  `CommandFiles` and its method `CommandFiles::readFile()` will <BR/>
 &nbsp;&nbsp;&nbsp;&nbsp;print debugging information if the environmental variable `ANANSI_DEBUG_LEVEL` is <BR/>
 &nbsp;&nbsp;&nbsp;&nbsp;set to an integer value greater than 10.<BR/>
 
-Program listings as depicted as follows : 
+Program listings as depicted as follows :
 
     int main(int argc, char** argv)
     {
