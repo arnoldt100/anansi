@@ -75,7 +75,7 @@ member attribute `valuePtr_` as a pointer to the `CommandFilesConcept`
 
     std::unique_ptr<CommandFilesConcept> valuePtr_;
 
-Lastly `CommandFiles` provides hidden friends `CommandFiles::get_value_CommandFile`,
+Lastly `CommandFiles` defines within itself the hidden friends `CommandFiles::get_value_CommandFile`,
 `CommandFiles::read_CommandFile`, etc.
 
 
