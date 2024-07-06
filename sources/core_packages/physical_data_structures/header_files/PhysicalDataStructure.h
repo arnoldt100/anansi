@@ -135,7 +135,7 @@ class PhysicalDataStructure
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<PhysicalDataStructureConcept> clone() const=0;
 
-                //! The number of paricles.
+                //! The number of particles.
                 virtual typename DataPrecisionPolicy::ParticleCounter_t numberOfParticles() const=0;
 
                 // ====================  MUTATORS      =======================================

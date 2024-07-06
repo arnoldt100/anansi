@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "PointAtomsConfigurationFileNodeKeys.h"
+#include "PointAtomsInternalNodeKeys.h"
 #include "check_string_for_separator_char.h"
 #include "ErrorKeyPathSeparator.h"
 #include "create_path_key_propertytree.hpp"
@@ -28,6 +29,16 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
     externalNodeKeys_{},
     commentNodeKeys_{}
 {
+    // The boost::property_tree::ptree uses an xml
+    // comment. 
+    const std::vector<std::string> xml_comment_key{std::string("<xmlcomment>")};
+    this->addCommentTag_(xml_comment_key[0]);
+
+    // Adding node key for region name
+    const std::string internalRegionNameKey{PointAtomsInternalNodeKeys::Region_Name};
+    std::vector<std::string> externalRegionNameKey{std::string("data"),
+                                                   std::string("Region_Name")};
+    this->addNodeKey_(internalRegionNameKey,externalRegionNameKey);
     return;
 }
 
@@ -187,7 +198,7 @@ void PointAtomsConfigurationFileNodeKeys::addCommentTag_(const std::string & key
 
 void PointAtomsConfigurationFileNodeKeys::addNodeKey_(const std::string & internal_key, const std::vector<std::string> & external_keys)
 {
-    // Check each key and make sure no invidual external key contains the path separator character.
+    // Check each key and make sure no individual external key contains the path separator character.
     // If an external key contains the path separator, then throw
     // an error and abort the program.
     for (const auto & tmpstr : external_keys)
@@ -197,6 +208,11 @@ void PointAtomsConfigurationFileNodeKeys::addNodeKey_(const std::string & intern
             throw ErrorKeyPathSeparator(PathSeparatorTrait::separator_char,tmpstr);
         }
     }
+
+    // Form the final path key from key and add key to externalNodeKeys_.
+    const auto path_key = create_path_key<PathKey<InternalRepresentationTrait>,PathSeparatorTrait>(external_keys);
+    this->internalToExternalKeyMapping_[internal_key] = path_key;
+    this->externalNodeKeys_.push_back(path_key);
 }
 
 

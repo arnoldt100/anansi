@@ -183,6 +183,7 @@ void ReadPointAtoms::disableReceiver_(Types &... args)
 template<typename... Types>
 void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 {
+    const  PointAtomsInternalNodeKeys x1;
     const auto filenames = this->initialConfigurationFileNames_();
     for ( auto filename : filenames)
     {
@@ -191,10 +192,11 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         set_CommandFile_filename(myConfigurationFile, file_name);
         read_CommandFile(myConfigurationFile);
 
-        // Read the nunber of particles in the file.
-        const  PointAtomsInternalNodeKeys x1;
-        const std::string global_key_number_atoms = x1.getInternalNodeKey("Number_Atoms_In_File");
-        const std::string number_particles = get_value_CommandFile(myConfigurationFile,global_key_number_atoms);
+        
+        // Read the region name 
+        const std::string global_key_region_name = x1.getInternalNodeKey("Region_Name");
+        const std::string region_name = get_value_CommandFile(myConfigurationFile,global_key_region_name);
+
     }
     return;
 }
