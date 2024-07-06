@@ -252,7 +252,7 @@ private:
     return command_file.valuePtr_->unPickle(pickled_file);
   }
 
-  friend std::string get_value_CommandFile(CommandFiles &command_file,
+  friend std::string get_value_CommandFile(const CommandFiles &command_file,
                                            const std::string &key) {
     std::string value = command_file.valuePtr_->getValue(key);
     return value;
