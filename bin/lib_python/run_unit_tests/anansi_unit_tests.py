@@ -92,7 +92,7 @@ def _get_all_tests():
         test_arguments = unit_test.find('test_arguments').text
         test_arguments = test_arguments.strip()
         if test_arguments == "No Arguments":
-            test_arguments = None
+            test_arguments = ""
             
         test_execution_policy = ExecutionPolicyFactory.create(unit_test)
 
