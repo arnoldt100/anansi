@@ -20,33 +20,20 @@
 namespace ANANSI
 {
 
-//! \brief This class wraps other objects that implements the
-//! InternalNodeKeysConcept.
-//!        interface.
+//! \brief This class wraps other objects that implement the InternalNodeKeysConcept semantics.
 //!
 //! \details This class is a type erasure for it wraps concrete objects
 //!          which then loses its type identity. The concrete objects
 //!          must implement the semantics of the InternalNodeKeysConcept or
 //!          bad program behavior will occur.
 //!
-//!          Each Anansi input file has a corresponding external node key
-//!          class whose primary responsibility is to return the appropriate key
-//!          when for a desired value. In addition, Anansi has
-//!          internal node key objects translate a global
-//!          key to an internal node key which is used to get the external node key for
-//!          the corresponding value found in the input file. This design of a global key,
-//!          internal node key and external node_key objects break the
-//!          dependency between the keys in the external input file. For
-//!          example, consider 2 input files where input file PointAtoms.xml has the <NumberOfPointAtoms>
-//!          and input file EllisoidalAtoms.xml has the the tag <NumberOfEllipsoidaAtoms>.
-//!          the external node key object to for the corresponding input file.
-
+//!          The class `InternalNodeKeysConcept` is a [type erasure](#TypeErasureInheritance) for it wraps
+//!          concrete objects which then loses their type identity. The wrapped concrete objects must implement the
+//!          semantics of the `InternalNodeKeysConcept` or bad program behavior will occur.
 //!
-//!          The semantics required of the concrete objects are
-//!             - that the free function invocation
-//!             `get_internal_node_key(concrete_object,"<global_key>")`
-//                returns the internal node key of type std::string.
-//
+//!          The wrapped concrete objects must implement the following free functions:
+//!
+//!             - std::string get_internal_node_key(ConcreteInternalNodeKey_Type const & concretSe_object,std::string external_key)
 class InternalNodeKeys
 {
     public:
@@ -55,7 +42,7 @@ class InternalNodeKeys
         //! \brief The default constructor,
         InternalNodeKeys();   // constructor
 
-        //! \brief iUse this constructor to initialize the object. 
+        //! \brief Use this constructor to initialize the object.
         template<typename T>
         InternalNodeKeys(T && value) :
             valuePtr_( new InternalNodeKeysModel<T>(std::forward<T>(value)) )
@@ -66,7 +53,7 @@ class InternalNodeKeys
         //! \brief The copy constructor.
         InternalNodeKeys(const InternalNodeKeys & other);   // copy constructor
 
-        //!  The  move constructor.
+        //!  The move constructor.
         InternalNodeKeys(InternalNodeKeys && other);   // copy-move constructor
 
         //! The destructor.
