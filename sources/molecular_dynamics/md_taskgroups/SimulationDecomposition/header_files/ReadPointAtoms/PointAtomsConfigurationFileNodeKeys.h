@@ -50,7 +50,7 @@ class PointAtomsConfigurationFileNodeKeys
         //! The clone method.
         PointAtomsConfigurationFileNodeKeys * clone () const;
         
-        //! \brief Returns iterators to the begin and end of the master list of 
+        //! \brief Returns iterators to the begin and end of the master list of
         //! control file node keys. 
         //!
         //! The first  and second member elements are respectively 

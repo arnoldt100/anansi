@@ -71,6 +71,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/InitialConfigurationFilenames.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NullPickleType.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/InternalNodeKeys.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NodeKeys.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileReader.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLFileWriter.h
@@ -103,6 +104,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NullPickleType.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/InitialConfigurationFilenames.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/InternalNodeKeys.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NodeKeys.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileReader.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLFileWriter.cpp
