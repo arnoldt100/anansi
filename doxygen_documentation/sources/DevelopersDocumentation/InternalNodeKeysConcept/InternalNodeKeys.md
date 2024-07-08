@@ -8,7 +8,7 @@ semantics of the `InternalNodeKeysConcept` or bad program behavior will occur.
 
 The wrapped concrete objects must implement the following free functions:
 
-    std::string get_internal_node_key(ConcreteInternalNodeKey_Type const & concrete_object,std::string external_key)
+    std::string get_internal_node_key(ConcreteInternalNodeKey_Type const & concrete_object,const std::string & external_key)
 
 ## Internal Node Keys Design Considerations
 
