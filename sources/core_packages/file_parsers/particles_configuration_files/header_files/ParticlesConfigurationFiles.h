@@ -1,6 +1,6 @@
 #ifndef ANANSI_ParticlesConfigurationFiles_INC
 #define ANANSI_ParticlesConfigurationFiles_INC
-//! \file ParticlesConfigurationFiles.h
+//! \file ParticlesConfigurationFiles.hpp
 //!
 //! \brief Brief description
 //!

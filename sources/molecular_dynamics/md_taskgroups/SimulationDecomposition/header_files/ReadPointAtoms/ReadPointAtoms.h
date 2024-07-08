@@ -27,7 +27,7 @@
 #include "CommandFiles.h"
 #include "CommandFileName.h"
 #include "NullPickleType.h"
-#include "ParticlesConfigurationFiles.h"
+#include "ParticlesConfigurationFiles.hpp"
 #include "PointAtomsInternalNodeKeys.h"
 #include  "ConvertGlobalNodeKey.hpp"
 
@@ -200,7 +200,9 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         // Read the type of coordinate system.
         const std::string global_key_coordinate_system_type = x1.getInternalNodeKey("Coordinate_System");
         const std::string coordinate_system_type = get_value_CommandFile(myConfigurationFile,global_key_coordinate_system_type);
-
+ 
+        // Reat the total number of point atoms in the
+        const std::string global_key_number_atoms_in_file = x1.getInternalNodeKey("Number_of_Atoms_In_File");
     }
     return;
 }

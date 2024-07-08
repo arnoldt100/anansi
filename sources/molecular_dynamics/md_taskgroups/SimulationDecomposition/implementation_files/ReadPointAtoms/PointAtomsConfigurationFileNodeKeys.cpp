@@ -46,6 +46,8 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
                                                              std::string("Coordinate_System")};
     this->addNodeKey_(internalCoordinateSystemTypeKey,externalCoordinateSystemTypeKey);
 
+    // Adding node key for the number of point atoms.
+    const std::string internalNumberOfPointAtomsKey{PointAtomsInternalNodeKeys::Number_Atoms_In_File};
     return;
 }
 

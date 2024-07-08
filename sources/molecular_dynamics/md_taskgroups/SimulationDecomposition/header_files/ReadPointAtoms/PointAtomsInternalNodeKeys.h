@@ -44,9 +44,8 @@ class PointAtomsInternalNodeKeys
         //! in a region may be subject to constraints that may affect the physical properties
         //! of the system.
         static constexpr std::string_view Region_Name  = "Region_Name";
-
         static constexpr std::string_view Coordinate_System  = "Coordinate_System";
-        static constexpr std::string_view Number_Atoms_In_File = "Total_Number_of_Atoms";
+        static constexpr std::string_view Number_Atoms_In_File = "Number_of_Atoms_In_File";
         static constexpr std::string_view X_Coordinate_Atom_i = "x_coordinate_atom::i::";
         static constexpr std::string_view Y_Coordinate_Atom_i = "y_coordinate_atom::i::";
         static constexpr std::string_view Z_Coordinate_Atom_i = "z_coordinate_atom::i::";

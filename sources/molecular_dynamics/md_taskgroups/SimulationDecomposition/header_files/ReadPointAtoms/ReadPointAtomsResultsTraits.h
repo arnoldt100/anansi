@@ -23,7 +23,7 @@
 #include "SimulationDecompositionExecutionPolicy.h"
 #include "Atoms.h"
 #include "PointAtoms.h"
-#include "ParticlesConfigurationFiles.h"
+#include "ParticlesConfigurationFiles.hpp"
 #include "XMLFileReader.h"
 #include "XMLFileWriter.h"
 #include "PointAtomsConfigurationFileNodeKeys.h"

@@ -63,7 +63,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (particles_configuration_files_header_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ParticlesConfigurationFiles.h)
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ParticlesConfigurationFiles.hpp)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
