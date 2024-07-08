@@ -21,9 +21,6 @@ namespace ANANSI
 {
 
 
-//! \brief Forms the path key for the internal representation of the (key,value) pair of boost property tree.
-//!
-//! The class template specialization is for the internal representation being a boost::propert_tree::ptree.
 template<>
 class PathKey<boost::property_tree::ptree>
 {

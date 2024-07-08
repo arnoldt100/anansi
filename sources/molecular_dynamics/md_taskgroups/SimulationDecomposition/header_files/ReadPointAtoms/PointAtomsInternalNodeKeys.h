@@ -24,7 +24,7 @@
 namespace ANANSI
 {
 
-//! This class contains the internal keys with respect to the Point Attoms configuration file.
+//! This class contains the internal keys with respect to the Point Atoms configuration file.
 //! 
 //! The internal program keys correspond to the external node tags
 //! in the point atoms input file. These internal program keys are not exposed 
@@ -38,10 +38,13 @@ class PointAtomsInternalNodeKeys
         // ====================  STATIC        =======================================
         //!  \brief This is the name of the region the atoms are in. 
         //!
-        //!  \details Each atom is initially assigned to one region, and the atoms do not
-        //!  necessarily have to stay in the same region throughout the program. The region name
-        //!  shall have no impact of the physical properties of the simulation.
+        //! \details Each atom is initially assigned to one region, and the atoms do not
+        //! necessarily have to stay in the same region throughout the program. The region name
+        //! shall have no impact of the physical properties of the simulation. However, atoms
+        //! in a region may be subject to constraints that may affect the physical properties
+        //! of the system.
         static constexpr std::string_view Region_Name  = "Region_Name";
+
         static constexpr std::string_view Coordinate_System  = "Coordinate_System";
         static constexpr std::string_view Number_Atoms_In_File = "Total_Number_of_Atoms";
         static constexpr std::string_view X_Coordinate_Atom_i = "x_coordinate_atom::i::";

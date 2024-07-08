@@ -39,6 +39,13 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
     std::vector<std::string> externalRegionNameKey{std::string("data"),
                                                    std::string("Region_Name")};
     this->addNodeKey_(internalRegionNameKey,externalRegionNameKey);
+
+    // Adding node key for the type of coordinate system.
+    const std::string internalCoordinateSystemTypeKey{PointAtomsInternalNodeKeys::Coordinate_System};
+    std::vector<std::string> externalCoordinateSystemTypeKey{std::string("data"),
+                                                             std::string("Coordinate_System")};
+    this->addNodeKey_(internalCoordinateSystemTypeKey,externalCoordinateSystemTypeKey);
+
     return;
 }
 

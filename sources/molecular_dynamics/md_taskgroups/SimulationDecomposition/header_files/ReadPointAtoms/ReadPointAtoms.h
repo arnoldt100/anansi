@@ -197,6 +197,10 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         const std::string global_key_region_name = x1.getInternalNodeKey("Region_Name");
         const std::string region_name = get_value_CommandFile(myConfigurationFile,global_key_region_name);
 
+        // Read the type of coordinate system.
+        const std::string global_key_coordinate_system_type = x1.getInternalNodeKey("Coordinate_System");
+        const std::string coordinate_system_type = get_value_CommandFile(myConfigurationFile,global_key_coordinate_system_type);
+
     }
     return;
 }
