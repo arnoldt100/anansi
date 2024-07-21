@@ -2,7 +2,7 @@
   <Region_Name>All atoms</Region_Name>
   <Coordinate_System>3D Cartesian Coordinates</Coordinate_System>
   <Coordinates_Velocities_etc>
-    <Total_Number_of_Atoms>102</Total_Number_of_Atoms>
+    <Number_of_Atoms>102</Number_of_Atoms>
     <!--Atom      Symbol    Global-Atom-Index        Global-Group-Index              Group-Type                      X-coordinate                    Y-coordinate                    Z-coordinate                    -->
     <1>
       <Atom>tip3p-O1</Atom>

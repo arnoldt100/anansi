@@ -36,27 +36,33 @@ class PointAtomsInternalNodeKeys
 {
     public:
         // ====================  STATIC        =======================================
-        //!  \brief This is the name of the region the atoms are in. 
+        //!  \brief This is the internal key name for the  region name the atoms are in.
         //!
         //! \details Each atom is initially assigned to one region, and the atoms do not
         //! necessarily have to stay in the same region throughout the program. The region name
-        //! shall have no impact of the physical properties of the simulation. However, atoms
+        //! in itself shall have no impact of the physical properties of the simulation. However, atoms
         //! in a region may be subject to constraints that may affect the physical properties
         //! of the system.
-        static constexpr std::string_view Region_Name  = "Region_Name";
-        static constexpr std::string_view Coordinate_System  = "Coordinate_System";
+        static constexpr std::string_view Region_Name = "Region_Name";
+
+        //!  \brief This is the internal key name for the type of coordinate system.
+        static constexpr std::string_view Coordinate_System = "Coordinate_System";
+
+        //!  \brief This is the internal key name for the number of atoms in a coordinate file.
         static constexpr std::string_view Number_Atoms_In_File = "Number_of_Atoms_In_File";
-        static constexpr std::string_view X_Coordinate_Atom_i = "x_coordinate_atom::i::";
-        static constexpr std::string_view Y_Coordinate_Atom_i = "y_coordinate_atom::i::";
-        static constexpr std::string_view Z_Coordinate_Atom_i = "z_coordinate_atom::i::";
-        static constexpr std::string_view X_Velocity_Atom_i = "x_velocity_atom::i::";
-        static constexpr std::string_view Y_Velocity_Atom_i = "y_velocity_atom::i::";
-        static constexpr std::string_view Z_Velocity_Atom_i = "z_velocity_atom::i::";
-        static constexpr std::string_view Atom_Type_i = "Atom_Type_i::i::";
-        static constexpr std::string_view Atom_Symbol_i = "Atom_Symbol::i::";
-        static constexpr std::string_view Atom_Global_Atom_Index_i = "Atom_Global_Atoms_Index::i::";
-        static constexpr std::string_view Atom_Global_Group_Index_i = "Atom_Global_Group_Index::i::";
-        static constexpr std::string_view Atom_Group_Type_i = "Atom_Group_Type:i::";
+
+        static constexpr std::string_view i_Atom_Type = "i_Atom_Type";
+
+        // static constexpr std::string_view X_Coordinate_Atom_i = "x_coordinate_atom::i::";
+        // static constexpr std::string_view Y_Coordinate_Atom_i = "y_coordinate_atom::i::";
+        // static constexpr std::string_view Z_Coordinate_Atom_i = "z_coordinate_atom::i::";
+        // static constexpr std::string_view X_Velocity_Atom_i = "x_velocity_atom::i::";
+        // static constexpr std::string_view Y_Velocity_Atom_i = "y_velocity_atom::i::";
+        // static constexpr std::string_view Z_Velocity_Atom_i = "z_velocity_atom::i::";
+        // static constexpr std::string_view Atom_Symbol_i = "Atom_Symbol::i::";
+        // static constexpr std::string_view Atom_Global_Atom_Index_i = "Atom_Global_Atoms_Index::i::";
+        // static constexpr std::string_view Atom_Global_Group_Index_i = "Atom_Global_Group_Index::i::";
+        // static constexpr std::string_view Atom_Group_Type_i = "Atom_Group_Type:i::";
 
         // ====================  LIFECYCLE     =======================================
 

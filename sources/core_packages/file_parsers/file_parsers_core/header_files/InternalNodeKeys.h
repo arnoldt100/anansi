@@ -154,7 +154,7 @@ class InternalNodeKeys
                     if (this != &other)
                     {
                         InternalNodeKeysConcept::operator=(other);
-                        this->object_ = other.value;
+                        this->object_ = other.object_;
                     }
                     return *this;
                 }
@@ -164,7 +164,7 @@ class InternalNodeKeys
                     if (this != &other)
                     {
                         InternalNodeKeysConcept::operator=(std::move(other));
-                        this->object_ = std::move(other.value);
+                        this->object_ = std::move(other.object_);
                     }
                     return *this;
                 }
@@ -174,9 +174,10 @@ class InternalNodeKeys
                 {
                     return std::make_unique<InternalNodeKeysModel>(*this);
                 }
+
                 std::string getInternalNodeKey(const std::string & global_key) const override
                 {
-                    return this->object_.get_internal_node_key(this->object_,global_key);
+                    return get_internal_node_key(this->object_,global_key);
                 }
 
 

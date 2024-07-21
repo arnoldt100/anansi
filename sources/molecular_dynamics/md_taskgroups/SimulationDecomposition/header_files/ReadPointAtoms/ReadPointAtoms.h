@@ -29,7 +29,8 @@
 #include "NullPickleType.h"
 #include "ParticlesConfigurationFiles.hpp"
 #include "PointAtomsInternalNodeKeys.h"
-#include  "ConvertGlobalNodeKey.hpp"
+#include "ConvertGlobalNodeKey.hpp"
+#include "InternalNodeKeys.h"
 
 namespace ANANSI
 {
@@ -184,6 +185,8 @@ template<typename... Types>
 void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 {
     const  PointAtomsInternalNodeKeys x1;
+    const InternalNodeKeys x2{x1};
+
     const auto filenames = this->initialConfigurationFileNames_();
     for ( auto filename : filenames)
     {
@@ -194,15 +197,17 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 
         
         // Read the region name 
-        const std::string global_key_region_name = x1.getInternalNodeKey("Region_Name");
+        const std::string global_key_region_name = get_internal_node_key(x2,"Region_Name");
         const std::string region_name = get_value_CommandFile(myConfigurationFile,global_key_region_name);
 
         // Read the type of coordinate system.
-        const std::string global_key_coordinate_system_type = x1.getInternalNodeKey("Coordinate_System");
+        const std::string global_key_coordinate_system_type = get_internal_node_key(x2,"Coordinate_System");
         const std::string coordinate_system_type = get_value_CommandFile(myConfigurationFile,global_key_coordinate_system_type);
  
         // Read the total number of point atoms in the
-        const std::string global_key_number_atoms_in_file = x1.getInternalNodeKey("Number_of_Atoms_In_File");
+        const std::string global_key_number_atoms_in_file = get_internal_node_key(x2,"Number_of_Atoms_In_File");
+        const std::string number_atoms_in_file_str = get_value_CommandFile(myConfigurationFile,global_key_number_atoms_in_file);
+        const std::size_t number_atoms_in_file = std::stoul(number_atoms_in_file_str);
     }
     return;
 }

@@ -48,6 +48,11 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
 
     // Adding node key for the number of point atoms.
     const std::string internalNumberOfPointAtomsKey{PointAtomsInternalNodeKeys::Number_Atoms_In_File};
+    std::vector<std::string> externalNumberAtomsInFile{std::string("data"),
+                                                       std::string("Coordinates_Velocities_etc"),
+                                                       std::string("Number_of_Atoms")};
+    this->addNodeKey_(internalNumberOfPointAtomsKey,externalNumberAtomsInFile);
+
     return;
 }
 

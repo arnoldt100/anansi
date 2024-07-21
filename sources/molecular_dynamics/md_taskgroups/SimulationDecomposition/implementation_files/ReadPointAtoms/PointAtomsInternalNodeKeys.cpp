@@ -110,9 +110,9 @@ std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_vie
 //============================= MUTATORS =====================================
 void PointAtomsInternalNodeKeys::setAllKeys_()
 {
-    this->myKeys_["Region_Name"] = "Region_Name";
-    this->myKeys_["Coordinate_System"] = "Coordinate_System";
-    this->myKeys_["Number_Atoms_In_File"] = "Total_Number_of_Atoms";
+    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Region_Name)] = std::string(PointAtomsInternalNodeKeys::Region_Name);
+    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Coordinate_System)] = std::string(PointAtomsInternalNodeKeys::Coordinate_System);
+    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Number_Atoms_In_File)] = std::string(PointAtomsInternalNodeKeys::Number_Atoms_In_File);
 }
 
 //============================= OPERATORS ====================================
