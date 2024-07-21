@@ -81,7 +81,7 @@ PointAtomsInternalNodeKeys& PointAtomsInternalNodeKeys::operator= ( PointAtomsIn
     return *this;
 } // assignment-move operator
 
-std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_view global_key) const
+std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_view & global_key) const
 {
     std::string tkey(global_key.data(),global_key.size());
     return this->myKeys_.at(tkey);
