@@ -185,7 +185,7 @@ class InternalNodeKeys
                 T object_;
         };
 
-        friend std::string get_internal_node_key( const InternalNodeKeys & internal_node_key,std::string global_key)
+        friend std::string get_internal_node_key( const InternalNodeKeys & internal_node_key,std::string const & global_key)
         {
             return internal_node_key.valuePtr_->getInternalNodeKey(global_key);
         }

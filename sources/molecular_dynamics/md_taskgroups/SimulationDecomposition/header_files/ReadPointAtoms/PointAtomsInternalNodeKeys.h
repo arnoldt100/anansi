@@ -76,7 +76,7 @@ class PointAtomsInternalNodeKeys
         //! The clone method.
         PointAtomsInternalNodeKeys * clone () const;
 
-        std::string getInternalNodeKey(const std::string_view global_key) const;
+        std::string getInternalNodeKey(const std::string_view & global_key) const;
 
         // ====================  MUTATORS      =======================================
 
@@ -101,6 +101,12 @@ class PointAtomsInternalNodeKeys
 
         // ====================  DATA MEMBERS  =======================================
         std::map<std::string,std::string> myKeys_;
+
+        // ====================  HIDDEN FRIENDS=======================================
+        friend std::string get_internal_node_key(PointAtomsInternalNodeKeys const & internal_node_keys, std::string_view const & global_key) 
+        {
+            return internal_node_keys.getInternalNodeKey(global_key);
+        }
 
 }; // -----  End of class PointAtomsInternalNodeKeys  -----
 
