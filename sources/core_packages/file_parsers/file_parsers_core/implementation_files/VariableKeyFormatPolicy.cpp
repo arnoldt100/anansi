@@ -10,7 +10,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "PointAtomsInternalNodeKeys.h"
 #include "VariableKeyFormatPolicy.h"
 
 namespace ANANSI {
@@ -21,15 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys() :
-    myKeys_{}
+VariableKeyFormatPolicy::VariableKeyFormatPolicy()
 {
-    this->setAllKeys_();
     return;
 }
 
-PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys( PointAtomsInternalNodeKeys const & other) :
-    myKeys_{other.myKeys_}
+VariableKeyFormatPolicy::VariableKeyFormatPolicy( VariableKeyFormatPolicy const & other)
 {
     if (this != &other)
     {
@@ -38,68 +34,75 @@ PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys( PointAtomsInternalNodeKe
     return;
 }
 
-PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys( PointAtomsInternalNodeKeys && other) :
-    myKeys_{std::move(other.myKeys_)}
+VariableKeyFormatPolicy::VariableKeyFormatPolicy( VariableKeyFormatPolicy && other)
 {
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys  -----
+}		// -----  end of method VariableKeyFormatPolicy::VariableKeyFormatPolicy  -----
 
 
-PointAtomsInternalNodeKeys::~PointAtomsInternalNodeKeys()
+VariableKeyFormatPolicy::~VariableKeyFormatPolicy()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-PointAtomsInternalNodeKeys * PointAtomsInternalNodeKeys::clone() const
+VariableKeyFormatPolicy * VariableKeyFormatPolicy::clone() const
 {
-    return new PointAtomsInternalNodeKeys(*this);
+    return new VariableKeyFormatPolicy(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-PointAtomsInternalNodeKeys& PointAtomsInternalNodeKeys::operator= ( const PointAtomsInternalNodeKeys &other )
+VariableKeyFormatPolicy& VariableKeyFormatPolicy::operator= ( const VariableKeyFormatPolicy &other )
 {
     if (this != &other)
     {
-        this->myKeys_ = other.myKeys_;
     }
     return *this;
 } // assignment operator
 
-PointAtomsInternalNodeKeys& PointAtomsInternalNodeKeys::operator= ( PointAtomsInternalNodeKeys && other )
+VariableKeyFormatPolicy& VariableKeyFormatPolicy::operator= ( VariableKeyFormatPolicy && other )
 {
     if (this != &other)
     {
-        this->myKeys_ = std::move(other.myKeys_);
+
     }
     return *this;
 } // assignment-move operator
 
-std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_view & global_key,
-                                                           const std::vector<std::string> & key_frmt_args) const
+std::string VariableKeyFormatPolicy::operator()(const std::string & old_key, const std::vector<std::string> & key_frmt_args) const
 {
-    std::string key_value;
-    if (key_frmt_args.empty())
-    {
-        std::string tkey(global_key.data(),global_key.size());
-        key_value =  this->myKeys_.at(tkey);
-    }
-    else
-    {
-        std::string tkey(global_key.data(),global_key.size());
-        VariableKeyFormatPolicy my_key_frmt_policy{};
-        key_value = my_key_frmt_policy(tkey,key_frmt_args);
-    }
-    return key_value;
+    std::string new_key{old_key};
+    return new_key;
 }
 
+std::string VariableKeyFormatPolicy::operator()(const std::string & old_key) const
+{
+    std::string new_key{old_key};
+    return new_key;
+}
+
+//============================= STATIC    ====================================
+std::string VariableKeyFormatPolicy::create_variable_internal_key(const std::string & internal_key,const std::vector<std::string> & key_frmt_args)
+{
+    return std::string{};
+}
+
+std::tuple<std::string,std::vector<std::string>> split_variable_internal_key(const std::string & internal_key)
+{
+    return std::tuple<std::string,std::vector<std::string>>{};
+}
+
+std::string create_external_xml_key(const std::string & variable_external_xml_key,const std::vector<std::string> & key_frmt_args)
+{
+    return std::string{};
+}
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -121,12 +124,6 @@ std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_vie
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void PointAtomsInternalNodeKeys::setAllKeys_()
-{
-    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Region_Name)] = std::string(PointAtomsInternalNodeKeys::Region_Name);
-    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Coordinate_System)] = std::string(PointAtomsInternalNodeKeys::Coordinate_System);
-    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Number_Atoms_In_File)] = std::string(PointAtomsInternalNodeKeys::Number_Atoms_In_File);
-}
 
 //============================= OPERATORS ====================================
 

@@ -12,6 +12,7 @@
 #include <string_view>
 #include <string>
 #include <map>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -82,7 +83,8 @@ class PointAtomsInternalNodeKeys
         //! The clone method.
         PointAtomsInternalNodeKeys * clone () const;
 
-        std::string getInternalNodeKey(const std::string_view & global_key) const;
+        std::string getInternalNodeKey(const std::string_view & global_key,
+                                       const std::vector<std::string> & key_frmt_args) const;
 
         // ====================  MUTATORS      =======================================
 
@@ -109,9 +111,10 @@ class PointAtomsInternalNodeKeys
         std::map<std::string,std::string> myKeys_;
 
         // ====================  HIDDEN FRIENDS=======================================
-        friend std::string get_internal_node_key(PointAtomsInternalNodeKeys const & internal_node_keys, std::string_view const & global_key) 
+        friend std::string get_internal_node_key(PointAtomsInternalNodeKeys const & internal_node_keys, std::string_view const & global_key,
+                const std::vector<std::string> & key_frmt_args)
         {
-            return internal_node_keys.getInternalNodeKey(global_key);
+            return internal_node_keys.getInternalNodeKey(global_key,key_frmt_args);
         }
 
 }; // -----  End of class PointAtomsInternalNodeKeys  -----

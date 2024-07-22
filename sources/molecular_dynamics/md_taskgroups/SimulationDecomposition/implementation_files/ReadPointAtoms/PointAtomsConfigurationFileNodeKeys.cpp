@@ -15,6 +15,7 @@
 #include "check_string_for_separator_char.h"
 #include "ErrorKeyPathSeparator.h"
 #include "create_path_key_propertytree.hpp"
+#include "VariableKeyFormatPolicy.h"
 
 namespace ANANSI {
 
@@ -53,6 +54,11 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
                                                        std::string("Number_of_Atoms")};
     this->addNodeKey_(internalNumberOfPointAtomsKey,externalNumberAtomsInFile);
 
+    // Adding node key for the atom type of the i'th atom.
+    std::vector<std::string> atomType{std::string("data"),
+                                      std::string("Coordinates_Velocities_etc"),
+                                      std::string("<1>"),
+                                      std::string("Atom") };
     return;
 }
 
@@ -126,8 +132,9 @@ std::string PointAtomsConfigurationFileNodeKeys::defaultNullValue() const
 
 std::string PointAtomsConfigurationFileNodeKeys::node_key( const std::string & global_key) const
 {
-    return this->internalToExternalKeyMapping_.at(global_key);
+    VariableKeyFormatPolicy my_key_format_policy{};
 
+    return this->internalToExternalKeyMapping_.at(global_key);
 }
 
 std::array<char,2> PointAtomsConfigurationFileNodeKeys::separatorChar() const

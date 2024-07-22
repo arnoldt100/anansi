@@ -184,7 +184,7 @@ void ReadPointAtoms::disableReceiver_(Types &... args)
 template<typename... Types>
 void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 {
-    const  PointAtomsInternalNodeKeys x1;
+    const PointAtomsInternalNodeKeys x1;
     const InternalNodeKeys x2{x1};
 
     const auto filenames = this->initialConfigurationFileNames_();
@@ -208,6 +208,14 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         const std::string global_key_number_atoms_in_file = get_internal_node_key(x2,"Number_of_Atoms_In_File");
         const std::string number_atoms_in_file_str = get_value_CommandFile(myConfigurationFile,global_key_number_atoms_in_file);
         const std::size_t number_atoms_in_file = std::stoul(number_atoms_in_file_str);
+
+
+        for (std::size_t ip=1; ip <= number_atoms_in_file; ++ip)
+        {
+            std::vector<std::string> key_frmt_args{std::to_string(ip)};
+            const std::string global_key_atom_type = get_internal_node_key(x2,"i_Atom_Type",key_frmt_args);
+            // std::string atom_type = get_value_CommandFile(myConfigurationFile,global_key_atom_type);
+        }
     }
     return;
 }

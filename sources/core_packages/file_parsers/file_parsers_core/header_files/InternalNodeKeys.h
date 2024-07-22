@@ -9,6 +9,7 @@
 //--------------------------------------------------------//
 #include <memory>
 #include <string>
+#include <vector>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -101,7 +102,9 @@ class InternalNodeKeys
 
                 // ====================  ACCESSORS     =======================================
                 virtual std::unique_ptr<InternalNodeKeysConcept> clone() const=0;
-                virtual std::string getInternalNodeKey(const std::string & global_key) const=0;
+                // virtual std::string getInternalNodeKey(const std::string & global_key) const=0;
+                virtual std::string getInternalNodeKey(const std::string & global_key,
+                                                       const std::vector<std::string> & key_frmt_args) const=0;
 
                 // ====================  MUTATORS      =======================================
 
@@ -175,20 +178,30 @@ class InternalNodeKeys
                     return std::make_unique<InternalNodeKeysModel>(*this);
                 }
 
-                std::string getInternalNodeKey(const std::string & global_key) const override
-                {
-                    return get_internal_node_key(this->object_,global_key);
-                }
+                // std::string getInternalNodeKey(const std::string & global_key) const override
+                // {
+                //     return get_internal_node_key(this->object_,global_key);
+                // }
 
+                std::string getInternalNodeKey(const std::string & global_key, const std::vector<std::string> & key_frmt_args) const override
+                {
+                    return get_internal_node_key(this->object_,global_key,key_frmt_args);
+                }
 
                 // ====================  MUTATORS      =======================================
 
                 T object_;
         };
 
-        friend std::string get_internal_node_key( const InternalNodeKeys & internal_node_key,std::string const & global_key)
+        // friend std::string get_internal_node_key( const InternalNodeKeys & internal_node_key,std::string const & global_key)
+        // {
+        //     return internal_node_key.valuePtr_->getInternalNodeKey(global_key);
+        // }
+
+        friend std::string get_internal_node_key( const InternalNodeKeys & internal_node_key,std::string const & global_key,
+            const std::vector<std::string> & key_frmt_args = std::vector<std::string>{} )
         {
-            return internal_node_key.valuePtr_->getInternalNodeKey(global_key);
+            return internal_node_key.valuePtr_->getInternalNodeKey(global_key,key_frmt_args);
         }
 
         // ====================  METHODS       =======================================

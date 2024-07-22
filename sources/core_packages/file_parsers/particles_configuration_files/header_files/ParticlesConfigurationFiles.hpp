@@ -110,8 +110,8 @@ class ParticlesConfigurationFiles
         //! node for the boost property tree "ptree_".
         std::string getValue(const std::string & global_key) const
         {
-            const auto internal_key = this->masterKeys_.node_key(global_key);
-            std::string ret_value = this->ptree_. template get<std::string>(internal_key);
+            const auto xml_file_key = this->masterKeys_.node_key(global_key);
+            std::string ret_value = this->ptree_. template get<std::string>(xml_file_key);
             return ret_value;
         }
 

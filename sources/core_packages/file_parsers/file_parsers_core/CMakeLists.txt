@@ -68,6 +68,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_core_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/VariableKeyFormatPolicy.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/CommandFileName.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/InitialConfigurationFilenames.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NullPickleType.h
@@ -101,6 +102,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_core_implementation_files
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/VariableKeyFormatPolicy.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NullPickleType.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/InitialConfigurationFilenames.cpp
