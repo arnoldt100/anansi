@@ -130,11 +130,15 @@ std::string PointAtomsConfigurationFileNodeKeys::defaultNullValue() const
     return PointAtomsConfigurationFileNodeKeys::DefaultNullValue_;
 }
 
-std::string PointAtomsConfigurationFileNodeKeys::node_key( const std::string & global_key) const
+std::string PointAtomsConfigurationFileNodeKeys::node_key( const std::string & internal_xml_key) const
 {
-    VariableXMLKeyFormatPolicy my_key_format_policy{};
+    std::string key;
+    std::vector<std::string> frmt_args;
+    std::tie(key,frmt_args) = VariableXMLKeyFormatPolicy::split_variable_internal_xml_key(internal_xml_key);
 
-    return this->internalToExternalKeyMapping_.at(global_key);
+    std::string xml_key_frmt = this->internalToExternalKeyMapping_.at(key);
+    std::string xml_key = VariableXMLKeyFormatPolicy::create_external_xml_key(xml_key_frmt,frmt_args);
+    return xml_key;
 }
 
 std::array<char,2> PointAtomsConfigurationFileNodeKeys::separatorChar() const

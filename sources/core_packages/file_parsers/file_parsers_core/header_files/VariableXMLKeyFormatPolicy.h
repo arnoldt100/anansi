@@ -59,9 +59,9 @@ class VariableXMLKeyFormatPolicy
         std::string operator()(const std::string & old_key) const;
 
         // ====================  STATIC        =======================================
-        static std::string create_variable_internal_key(const std::string & internal_key,const std::vector<std::string> & key_frmt_args);
+        static std::string create_variable_internal_xml_key(const std::string & internal_key,const std::vector<std::string> & key_frmt_args);
 
-        static std::tuple<std::string,std::vector<std::string>> split_variable_internal_key(const std::string & internal_key);
+        static std::tuple<std::string,std::vector<std::string>> split_variable_internal_xml_key(const std::string & internal_key);
 
         static std::string create_external_xml_key(const std::string & variable_external_xml_key,const std::vector<std::string> & key_frmt_args);
 

@@ -95,7 +95,7 @@ std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_vie
     {
         std::string tkey(global_key.data(),global_key.size());
         VariableXMLKeyFormatPolicy my_key_frmt_policy{};
-        key_value = my_key_frmt_policy(tkey,key_frmt_args);
+        key_value = VariableXMLKeyFormatPolicy::create_variable_internal_xml_key(tkey,key_frmt_args);
     }
     return key_value;
 }

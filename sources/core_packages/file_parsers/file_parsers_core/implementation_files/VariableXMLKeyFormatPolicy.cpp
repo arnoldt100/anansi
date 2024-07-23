@@ -89,17 +89,23 @@ std::string VariableXMLKeyFormatPolicy::operator()(const std::string & old_key) 
 }
 
 //============================= STATIC    ====================================
-std::string VariableXMLKeyFormatPolicy::create_variable_internal_key(const std::string & internal_key,const std::vector<std::string> & key_frmt_args)
+std::string VariableXMLKeyFormatPolicy::create_variable_internal_xml_key(const std::string & internal_key,const std::vector<std::string> & key_frmt_args)
 {
-    return std::string{};
+    std::string ret_value(internal_key);
+    for(auto var : key_frmt_args)
+    {
+        ret_value += "%";
+        ret_value += var;
+    } 
+    return ret_value;
 }
 
-std::tuple<std::string,std::vector<std::string>> split_variable_internal_key(const std::string & internal_key)
+std::tuple<std::string,std::vector<std::string>> VariableXMLKeyFormatPolicy::split_variable_internal_xml_key(const std::string & internal_key)
 {
     return std::tuple<std::string,std::vector<std::string>>{};
 }
 
-std::string create_external_xml_key(const std::string & variable_external_xml_key,const std::vector<std::string> & key_frmt_args)
+std::string VariableXMLKeyFormatPolicy::create_external_xml_key(const std::string & variable_external_xml_key,const std::vector<std::string> & key_frmt_args)
 {
     return std::string{};
 }
