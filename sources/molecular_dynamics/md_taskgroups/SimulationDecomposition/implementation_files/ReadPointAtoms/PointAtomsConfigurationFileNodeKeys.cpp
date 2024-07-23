@@ -15,7 +15,7 @@
 #include "check_string_for_separator_char.h"
 #include "ErrorKeyPathSeparator.h"
 #include "create_path_key_propertytree.hpp"
-#include "VariableKeyFormatPolicy.h"
+#include "VariableXMLKeyFormatPolicy.h"
 
 namespace ANANSI {
 
@@ -132,7 +132,7 @@ std::string PointAtomsConfigurationFileNodeKeys::defaultNullValue() const
 
 std::string PointAtomsConfigurationFileNodeKeys::node_key( const std::string & global_key) const
 {
-    VariableKeyFormatPolicy my_key_format_policy{};
+    VariableXMLKeyFormatPolicy my_key_format_policy{};
 
     return this->internalToExternalKeyMapping_.at(global_key);
 }

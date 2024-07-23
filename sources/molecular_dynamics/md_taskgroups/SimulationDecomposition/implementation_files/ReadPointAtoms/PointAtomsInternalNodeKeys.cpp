@@ -11,7 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "PointAtomsInternalNodeKeys.h"
-#include "VariableKeyFormatPolicy.h"
+#include "VariableXMLKeyFormatPolicy.h"
 
 namespace ANANSI {
 
@@ -94,7 +94,7 @@ std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_vie
     else
     {
         std::string tkey(global_key.data(),global_key.size());
-        VariableKeyFormatPolicy my_key_frmt_policy{};
+        VariableXMLKeyFormatPolicy my_key_frmt_policy{};
         key_value = my_key_frmt_policy(tkey,key_frmt_args);
     }
     return key_value;

@@ -10,7 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "VariableKeyFormatPolicy.h"
+#include "VariableXMLKeyFormatPolicy.h"
 
 namespace ANANSI {
 
@@ -20,12 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-VariableKeyFormatPolicy::VariableKeyFormatPolicy()
+VariableXMLKeyFormatPolicy::VariableXMLKeyFormatPolicy()
 {
     return;
 }
 
-VariableKeyFormatPolicy::VariableKeyFormatPolicy( VariableKeyFormatPolicy const & other)
+VariableXMLKeyFormatPolicy::VariableXMLKeyFormatPolicy( VariableXMLKeyFormatPolicy const & other)
 {
     if (this != &other)
     {
@@ -34,32 +34,32 @@ VariableKeyFormatPolicy::VariableKeyFormatPolicy( VariableKeyFormatPolicy const 
     return;
 }
 
-VariableKeyFormatPolicy::VariableKeyFormatPolicy( VariableKeyFormatPolicy && other)
+VariableXMLKeyFormatPolicy::VariableXMLKeyFormatPolicy( VariableXMLKeyFormatPolicy && other)
 {
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method VariableKeyFormatPolicy::VariableKeyFormatPolicy  -----
+}		// -----  end of method VariableXMLKeyFormatPolicy::VariableXMLKeyFormatPolicy  -----
 
 
-VariableKeyFormatPolicy::~VariableKeyFormatPolicy()
+VariableXMLKeyFormatPolicy::~VariableXMLKeyFormatPolicy()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-VariableKeyFormatPolicy * VariableKeyFormatPolicy::clone() const
+VariableXMLKeyFormatPolicy * VariableXMLKeyFormatPolicy::clone() const
 {
-    return new VariableKeyFormatPolicy(*this);
+    return new VariableXMLKeyFormatPolicy(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-VariableKeyFormatPolicy& VariableKeyFormatPolicy::operator= ( const VariableKeyFormatPolicy &other )
+VariableXMLKeyFormatPolicy& VariableXMLKeyFormatPolicy::operator= ( const VariableXMLKeyFormatPolicy &other )
 {
     if (this != &other)
     {
@@ -67,7 +67,7 @@ VariableKeyFormatPolicy& VariableKeyFormatPolicy::operator= ( const VariableKeyF
     return *this;
 } // assignment operator
 
-VariableKeyFormatPolicy& VariableKeyFormatPolicy::operator= ( VariableKeyFormatPolicy && other )
+VariableXMLKeyFormatPolicy& VariableXMLKeyFormatPolicy::operator= ( VariableXMLKeyFormatPolicy && other )
 {
     if (this != &other)
     {
@@ -76,20 +76,20 @@ VariableKeyFormatPolicy& VariableKeyFormatPolicy::operator= ( VariableKeyFormatP
     return *this;
 } // assignment-move operator
 
-std::string VariableKeyFormatPolicy::operator()(const std::string & old_key, const std::vector<std::string> & key_frmt_args) const
+std::string VariableXMLKeyFormatPolicy::operator()(const std::string & old_key, const std::vector<std::string> & key_frmt_args) const
 {
     std::string new_key{old_key};
     return new_key;
 }
 
-std::string VariableKeyFormatPolicy::operator()(const std::string & old_key) const
+std::string VariableXMLKeyFormatPolicy::operator()(const std::string & old_key) const
 {
     std::string new_key{old_key};
     return new_key;
 }
 
 //============================= STATIC    ====================================
-std::string VariableKeyFormatPolicy::create_variable_internal_key(const std::string & internal_key,const std::vector<std::string> & key_frmt_args)
+std::string VariableXMLKeyFormatPolicy::create_variable_internal_key(const std::string & internal_key,const std::vector<std::string> & key_frmt_args)
 {
     return std::string{};
 }

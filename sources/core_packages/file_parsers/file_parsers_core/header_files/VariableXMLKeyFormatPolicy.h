@@ -1,6 +1,6 @@
-#ifndef ANANSI_VariableKeyFormatPolicy_INC
-#define ANANSI_VariableKeyFormatPolicy_INC
-//! \file VariableKeyFormatPolicy.h
+#ifndef ANANSI_VariableXMLKeyFormatPolicy_INC
+#define ANANSI_VariableXMLKeyFormatPolicy_INC
+//! \file VariableXMLKeyFormatPolicy.h
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -21,36 +21,36 @@
 namespace ANANSI
 {
 
-class VariableKeyFormatPolicy
+class VariableXMLKeyFormatPolicy
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
-        VariableKeyFormatPolicy ();   // constructor
+        VariableXMLKeyFormatPolicy ();   // constructor
 
         //! The copy constructor.
-        VariableKeyFormatPolicy (const VariableKeyFormatPolicy & other);   // copy constructor
+        VariableXMLKeyFormatPolicy (const VariableXMLKeyFormatPolicy & other);   // copy constructor
 
         //! The move constructor.
-        VariableKeyFormatPolicy (VariableKeyFormatPolicy && other);   // copy-move constructor
+        VariableXMLKeyFormatPolicy (VariableXMLKeyFormatPolicy && other);   // copy-move constructor
 
-        ~VariableKeyFormatPolicy ();  // destructor
+        ~VariableXMLKeyFormatPolicy ();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! The clone method.
-        VariableKeyFormatPolicy * clone () const;
+        VariableXMLKeyFormatPolicy * clone () const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! The copy assignment operator.
-        VariableKeyFormatPolicy& operator= ( const VariableKeyFormatPolicy &other ); // assignment operator
+        VariableXMLKeyFormatPolicy& operator= ( const VariableXMLKeyFormatPolicy &other ); // assignment operator
 
         //! The move assignment operator.
-        VariableKeyFormatPolicy& operator= ( VariableKeyFormatPolicy && other ); // assignment-move operator
+        VariableXMLKeyFormatPolicy& operator= ( VariableXMLKeyFormatPolicy && other ); // assignment-move operator
 
         //! Forms the internal key format string.
         std::string operator()(const std::string & old_key, const std::vector<std::string> & key_frmt_args) const;
@@ -75,9 +75,9 @@ class VariableKeyFormatPolicy
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  End of class VariableKeyFormatPolicy  -----
+}; // -----  End of class VariableXMLKeyFormatPolicy  -----
 
 
 }; // End of namespace ANANSI
 
-#endif // ANANSI_VariableKeyFormatPolicy_INC
+#endif // ANANSI_VariableXMLKeyFormatPolicy_INC
