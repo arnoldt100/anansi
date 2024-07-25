@@ -214,7 +214,7 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         {
             std::vector<std::string> key_frmt_args{std::to_string(ip)};
             const std::string global_key_atom_type = get_internal_node_key(x2,"i_Atom_Type",key_frmt_args);
-            // std::string atom_type = get_value_CommandFile(myConfigurationFile,global_key_atom_type);
+            std::string atom_type = get_value_CommandFile(myConfigurationFile,global_key_atom_type);
         }
     }
     return;

@@ -55,10 +55,13 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
     this->addNodeKey_(internalNumberOfPointAtomsKey,externalNumberAtomsInFile);
 
     // Adding node key for the atom type of the i'th atom.
+    const std::string internalAtomTypeKey{PointAtomsInternalNodeKeys::i_Atom_Type};
     std::vector<std::string> atomType{std::string("data"),
                                       std::string("Coordinates_Velocities_etc"),
-                                      std::string("{}"),
+                                      std::string("<1>"),
                                       std::string("Atom") };
+    this->addNodeKey_(internalAtomTypeKey,atomType);
+
     return;
 }
 
