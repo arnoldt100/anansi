@@ -57,7 +57,7 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
     // Adding node key for the atom type of the i'th atom.
     std::vector<std::string> atomType{std::string("data"),
                                       std::string("Coordinates_Velocities_etc"),
-                                      std::string("<1>"),
+                                      std::string("{}"),
                                       std::string("Atom") };
     return;
 }
@@ -138,6 +138,7 @@ std::string PointAtomsConfigurationFileNodeKeys::node_key( const std::string & i
 
     std::string xml_key_frmt = this->internalToExternalKeyMapping_.at(key);
     std::string xml_key = VariableXMLKeyFormatPolicy::create_external_xml_key(xml_key_frmt,frmt_args);
+
     return xml_key;
 }
 

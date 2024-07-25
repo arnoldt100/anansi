@@ -10,8 +10,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "PointAtomsInternalNodeKeys.h"
-#include "VariableXMLKeyFormatPolicy.h"
+#include "XMLKeyPathFormatSymbol.h"
 
 namespace ANANSI {
 
@@ -21,15 +20,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys() :
-    myKeys_{}
+XMLKeyPathFormatSymbol::XMLKeyPathFormatSymbol()
 {
-    this->setAllKeys_();
     return;
 }
 
-PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys( PointAtomsInternalNodeKeys const & other) :
-    myKeys_{other.myKeys_}
+XMLKeyPathFormatSymbol::XMLKeyPathFormatSymbol( XMLKeyPathFormatSymbol const & other)
 {
     if (this != &other)
     {
@@ -38,70 +34,47 @@ PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys( PointAtomsInternalNodeKe
     return;
 }
 
-PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys( PointAtomsInternalNodeKeys && other) :
-    myKeys_{std::move(other.myKeys_)}
+XMLKeyPathFormatSymbol::XMLKeyPathFormatSymbol( XMLKeyPathFormatSymbol && other)
 {
     if (this != &other)
     {
     }
     return;
-}		// -----  end of method PointAtomsInternalNodeKeys::PointAtomsInternalNodeKeys  -----
+}		// -----  end of method XMLKeyPathFormatSymbol::XMLKeyPathFormatSymbol  -----
 
 
-PointAtomsInternalNodeKeys::~PointAtomsInternalNodeKeys()
+XMLKeyPathFormatSymbol::~XMLKeyPathFormatSymbol()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-PointAtomsInternalNodeKeys * PointAtomsInternalNodeKeys::clone() const
+XMLKeyPathFormatSymbol * XMLKeyPathFormatSymbol::clone() const
 {
-    return new PointAtomsInternalNodeKeys(*this);
+    return new XMLKeyPathFormatSymbol(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-PointAtomsInternalNodeKeys& PointAtomsInternalNodeKeys::operator= ( const PointAtomsInternalNodeKeys &other )
+XMLKeyPathFormatSymbol& XMLKeyPathFormatSymbol::operator= ( const XMLKeyPathFormatSymbol &other )
 {
     if (this != &other)
     {
-        this->myKeys_ = other.myKeys_;
     }
     return *this;
 } // assignment operator
 
-PointAtomsInternalNodeKeys& PointAtomsInternalNodeKeys::operator= ( PointAtomsInternalNodeKeys && other )
+XMLKeyPathFormatSymbol& XMLKeyPathFormatSymbol::operator= ( XMLKeyPathFormatSymbol && other )
 {
     if (this != &other)
     {
-        this->myKeys_ = std::move(other.myKeys_);
+
     }
     return *this;
 } // assignment-move operator
-
-std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_view & global_key,
-                                                           const std::vector<std::string> & key_frmt_args) const
-{
-    std::string key_value;
-    if (key_frmt_args.empty())
-    {
-        std::string tkey(global_key.data(),global_key.size());
-        key_value =  this->myKeys_.at(tkey);
-    }
-    else
-    {
-        std::string tkey(global_key.data(),global_key.size());
-
-        auto args1 = VariableXMLKeyFormatPolicy::split_variable_internal_xml_key(tkey);
-
-        VariableXMLKeyFormatPolicy my_key_frmt_policy{};
-        key_value = VariableXMLKeyFormatPolicy::create_variable_internal_xml_key(tkey,key_frmt_args);
-    }
-    return key_value;
-}
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
@@ -124,13 +97,6 @@ std::string PointAtomsInternalNodeKeys::getInternalNodeKey(const std::string_vie
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void PointAtomsInternalNodeKeys::setAllKeys_()
-{
-    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Region_Name)] = std::string(PointAtomsInternalNodeKeys::Region_Name);
-    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Coordinate_System)] = std::string(PointAtomsInternalNodeKeys::Coordinate_System);
-    this->myKeys_[std::string(PointAtomsInternalNodeKeys::Number_Atoms_In_File)] = std::string(PointAtomsInternalNodeKeys::Number_Atoms_In_File);
-    this->myKeys_[std::string(PointAtomsInternalNodeKeys::i_Atom_Type)] = std::string(PointAtomsInternalNodeKeys::i_Atom_Type);
-}
 
 //============================= OPERATORS ====================================
 

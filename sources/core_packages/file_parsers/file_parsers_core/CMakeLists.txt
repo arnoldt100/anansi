@@ -42,7 +42,8 @@
     #                                                    -
     #-----------------------------------------------------
     get_target_property(my_debugging_utilities_include  debugging_utilities  debugging_utilities_include  )  
-    get_target_property(my_physical_data_structures_include  physical_data_structures  physical_data_structures_include  )  
+    get_target_property(my_physical_data_structures_include  physical_data_structures  physical_data_structures_include  )
+    get_target_property(my_string_utilities_include string_utilities string_utilities_include )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -79,6 +80,7 @@
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/FilePickler.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/NullFilePickler.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/KeyPathSeparatorPeriod.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/XMLKeyPathFormatSymbol.h
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PathKey.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PathKeyPropertyTree.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/header_files/check_string_for_separator_char.h
@@ -102,7 +104,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (file_parsers_core_implementation_files
-        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/VariableXMLKeyFormatPolicy.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/VariableXMLKeyFormatPolicy.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/CommandFileName.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/NullPickleType.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/InitialConfigurationFilenames.cpp
@@ -115,6 +117,7 @@
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PathKey.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PathKeyPropertyTree.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/KeyPathSeparatorPeriod.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/XMLKeyPathFormatSymbol.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/check_string_for_separator_char.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/create_path_key.cpp
          ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/create_path_key_propertytree.cpp
@@ -161,11 +164,13 @@ target_include_directories(${target}
                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions"
                            PRIVATE "${my_debugging_utilities_include}"
                            PRIVATE "${my_physical_data_structures_include}"
+                           PRIVATE "${my_string_utilities_include}"
                            PRIVATE "${Boost_INCLUDE_DIR}" )
 
 target_link_libraries(${target}
                       PUBLIC debugging_utilities
                       PUBLIC physical_data_structures
+                      PUBLIC string_utilities
                       PUBLIC "${Boost_LIBRARIES}")
 
 #-----------------------------------------------------

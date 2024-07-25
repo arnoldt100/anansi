@@ -6,11 +6,15 @@
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
+#include <regex>
+#include "boost/format.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "VariableXMLKeyFormatPolicy.h"
+#include "XMLKeyPathFormatSymbol.h"
+#include "split_string_by_delimiter.h"
 
 namespace ANANSI {
 
@@ -100,15 +104,48 @@ std::string VariableXMLKeyFormatPolicy::create_variable_internal_xml_key(const s
     return ret_value;
 }
 
-std::tuple<std::string,std::vector<std::string>> VariableXMLKeyFormatPolicy::split_variable_internal_xml_key(const std::string & internal_key)
+std::tuple<std::string,std::vector<std::string>> VariableXMLKeyFormatPolicy::split_variable_internal_xml_key(const std::string & frmt_internal_xml_key)
 {
-    return std::tuple<std::string,std::vector<std::string>>{};
+    std::string delimiter(XMLKeyPathFormatSymbol::format_symbol);
+    std::vector<std::string> words = STRING_UTILITIES::split_string_by_delimiter(frmt_internal_xml_key,delimiter);
+    std::string internal_xml_key = *(words.begin());
+    auto fargs = [my_words=words](){
+        std::vector<std::string> args;
+        for (auto iter = my_words.begin(); iter != my_words.end(); ++iter)
+        {
+            if (iter != my_words.begin())
+            {
+                args.push_back(*iter);
+            }
+        }
+        return args;
+    };
+    std::vector<std::string> frmt_args = fargs(); 
+    return {internal_xml_key,frmt_args};
 }
 
-std::string VariableXMLKeyFormatPolicy::create_external_xml_key(const std::string & variable_external_xml_key,const std::vector<std::string> & key_frmt_args)
+std::string VariableXMLKeyFormatPolicy::create_external_xml_key(const std::string & external_xml_key,const std::vector<std::string> & key_frmt_args)
 {
-    return std::string{};
+    std::string ret_value(external_xml_key);
+    if (! key_frmt_args.empty())
+    {
+        auto counter = 0;
+        for (auto iter = key_frmt_args.begin(); iter != key_frmt_args.end(); ++iter)
+        {
+            // For the 0'th iteration
+            // we replacing the character sequence '<1>' with '%1%' with respect to the string
+            // external_xml_key. This replacement pattern is repeated for subsequent iterations.
+            std::string pattern = "<" + std::to_string(counter) + ">";
+            auto regex_pattern = std::regex(pattern);
+            std::string replacement_text = "%" + std::to_string(counter) + "%";
+            std::string tmp_str = std::regex_replace(ret_value,regex_pattern,replacement_text);
+            ++counter;
+        }
+    }
+    return ret_value;
 }
+
+
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
