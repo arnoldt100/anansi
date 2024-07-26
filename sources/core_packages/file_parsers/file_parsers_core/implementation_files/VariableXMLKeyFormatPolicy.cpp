@@ -133,12 +133,11 @@ std::string VariableXMLKeyFormatPolicy::create_external_xml_key(const std::strin
         for (auto iter = key_frmt_args.begin(); iter != key_frmt_args.end(); ++iter)
         {
             // For the 0'th iteration
-            // we replacing the character sequence '<1>' with '%1%' with respect to the string
+            // we replacing the character sequence '<1>' with the valuie of *iter  with respect to the string
             // external_xml_key. This replacement pattern is repeated for subsequent iterations.
             std::string pattern = "<" + std::to_string(counter) + ">";
             auto regex_pattern = std::regex(pattern);
-            std::string replacement_text = "%" + std::to_string(counter) + "%";
-            std::string tmp_str = std::regex_replace(ret_value,regex_pattern,replacement_text);
+            ret_value = std::regex_replace(ret_value,regex_pattern,*iter);
             ++counter;
         }
     }
