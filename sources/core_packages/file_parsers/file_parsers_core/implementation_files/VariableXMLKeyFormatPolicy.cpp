@@ -135,10 +135,10 @@ std::string VariableXMLKeyFormatPolicy::create_external_xml_key(const std::strin
             // For the 0'th iteration
             // we replacing the character sequence '<1>' with the valuie of *iter  with respect to the string
             // external_xml_key. This replacement pattern is repeated for subsequent iterations.
+            ++counter;
             std::string pattern = "<" + std::to_string(counter) + ">";
             auto regex_pattern = std::regex(pattern);
             ret_value = std::regex_replace(ret_value,regex_pattern,*iter);
-            ++counter;
         }
     }
     return ret_value;
