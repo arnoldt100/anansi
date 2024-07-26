@@ -197,15 +197,15 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 
         
         // Read the region name 
-        const std::string global_key_region_name = get_internal_node_key(x2,"Region_Name");
+        const std::string global_key_region_name = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::Region_Name));
         const std::string region_name = get_value_CommandFile(myConfigurationFile,global_key_region_name);
 
         // Read the type of coordinate system.
-        const std::string global_key_coordinate_system_type = get_internal_node_key(x2,"Coordinate_System");
+        const std::string global_key_coordinate_system_type = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::Coordinate_System));
         const std::string coordinate_system_type = get_value_CommandFile(myConfigurationFile,global_key_coordinate_system_type);
  
         // Read the total number of point atoms in the
-        const std::string global_key_number_atoms_in_file = get_internal_node_key(x2,"Number_of_Atoms_In_File");
+        const std::string global_key_number_atoms_in_file = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::Number_Atoms_In_File));
         const std::string number_atoms_in_file_str = get_value_CommandFile(myConfigurationFile,global_key_number_atoms_in_file);
         const std::size_t number_atoms_in_file = std::stoul(number_atoms_in_file_str);
 
@@ -213,8 +213,16 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         for (std::size_t ip=1; ip <= number_atoms_in_file; ++ip)
         {
             std::vector<std::string> key_frmt_args{std::to_string(ip)};
-            const std::string global_key_atom_type = get_internal_node_key(x2,"i_Atom_Type",key_frmt_args);
+
+            const std::string global_key_atom_type = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Type),key_frmt_args);
             std::string atom_type = get_value_CommandFile(myConfigurationFile,global_key_atom_type);
+
+            const std::string global_key_atom_symbol = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Symbol),key_frmt_args);
+            std::string atom_symbol = get_value_CommandFile(myConfigurationFile,global_key_atom_symbol);
+
+            const std::string global_key_atom_global_group_index = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Global_Atom_Index),key_frmt_args);
+            std::size_t global_atom_index = std::stoul(get_value_CommandFile(myConfigurationFile,global_key_atom_global_group_index));
+
         }
     }
     return;
