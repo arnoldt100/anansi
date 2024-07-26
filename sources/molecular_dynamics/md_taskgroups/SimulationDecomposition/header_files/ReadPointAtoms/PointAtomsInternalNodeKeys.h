@@ -103,7 +103,7 @@ class PointAtomsInternalNodeKeys
 
     private:
         // ====================  METHODS       =======================================
-        
+
         // ====================  MUTATORS      =======================================
         void setAllKeys_();
 
