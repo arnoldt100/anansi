@@ -54,16 +54,25 @@ class PointAtomsInternalNodeKeys
 
         static constexpr std::string_view i_Atom_Type = "i_Atom_Type";
 
-        // static constexpr std::string_view X_Coordinate_Atom_i = "x_coordinate_atom::i::";
-        // static constexpr std::string_view Y_Coordinate_Atom_i = "y_coordinate_atom::i::";
-        // static constexpr std::string_view Z_Coordinate_Atom_i = "z_coordinate_atom::i::";
-        // static constexpr std::string_view X_Velocity_Atom_i = "x_velocity_atom::i::";
-        // static constexpr std::string_view Y_Velocity_Atom_i = "y_velocity_atom::i::";
-        // static constexpr std::string_view Z_Velocity_Atom_i = "z_velocity_atom::i::";
-        // static constexpr std::string_view Atom_Symbol_i = "Atom_Symbol::i::";
-        // static constexpr std::string_view Atom_Global_Atom_Index_i = "Atom_Global_Atoms_Index::i::";
-        // static constexpr std::string_view Atom_Global_Group_Index_i = "Atom_Global_Group_Index::i::";
-        // static constexpr std::string_view Atom_Group_Type_i = "Atom_Group_Type:i::";
+        static constexpr std::string_view i_Atom_Symbol = "i_Atom_Symbol";
+
+        static constexpr std::string_view i_Atom_Global_Atom_Index = "i_Atom_Global_Atom_Index";
+
+        static constexpr std::string_view i_Atom_Global_Group_Index = "i_Atom_Global_Group_Index";
+
+        static constexpr std::string_view i_Atom_Group_Type = "i_Atom_Group_Type";
+
+        static constexpr std::string_view i_Atom_X_Coordinate = "i_Atom_X_Coordinate";
+
+        static constexpr std::string_view i_Atom_Y_Coordinate = "i_Atom_Y_Coordinate";
+
+        static constexpr std::string_view i_Atom_Z_Coordinate = "i_Atom_Z_Coordinate";
+ 
+        static constexpr std::string_view i_Atom_X_Velocity = "i_Atom_X_velocity_atom";
+
+        static constexpr std::string_view i_Atom_Y_Velocity = "i_Atom_Y_velocity_atom";
+
+        static constexpr std::string_view i_Atom_Z_Velocity = "i_Atom_Z_velocity_atom";
 
         // ====================  LIFECYCLE     =======================================
 

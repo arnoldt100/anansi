@@ -54,13 +54,54 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
                                                        std::string("Number_of_Atoms")};
     this->addNodeKey_(internalNumberOfPointAtomsKey,externalNumberAtomsInFile);
 
-    // Adding node key for the atom type of the i'th atom.
-    const std::string internalAtomTypeKey{PointAtomsInternalNodeKeys::i_Atom_Type};
-    std::vector<std::string> atomType{std::string("data"),
+    //
+    // This section add the xml keys for the individual atom data.
+    //
+    const std::vector<std::string> atom_node_prefix{std::string("data"),
                                       std::string("Coordinates_Velocities_etc"),
-                                      std::string("<1>"),
-                                      std::string("Atom") };
-    this->addNodeKey_(internalAtomTypeKey,atomType);
+                                      std::string("<1>") };
+
+    // We define a lambda to add the key for each of the the point atom
+    // properties.
+    auto add_key = [this,&atom_node_prefix](const std::string & internal_key,const std::string xml_key)
+    {
+        std::vector<std::string> tmp_node_prefix = atom_node_prefix;
+        tmp_node_prefix.push_back(xml_key);
+        this->addNodeKey_(internal_key,tmp_node_prefix);
+    };
+
+    // Adding node key for the atom type of the i'th atom.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Type),"Atom");
+
+    // Adding node key for the atom type of the i'th atom symbol.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Symbol),"Symbol");
+
+    // Adding node key for the i'th atom global atom index.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Global_Atom_Index),"Global-Atom-Index");
+
+    // Adding node key for the i'th atom global group index.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Global_Group_Index),"Global-Group-Index");
+
+    // Adding node key for the i'th atom global type.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Group_Type),"Group-Type");
+
+    // Adding node key for the i'th atom x coordinate.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_X_Coordinate),"X-Coordinate");
+
+    // Adding node key for the i'th atom y coordinate.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Coordinate),"Y-Coordinate");
+
+    // Adding node key for the i'th atom z coordinate.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Coordinate),"Z-Coordinate");
+
+    // Adding node key for the i'th atom x velocity.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_X_Velocity),"X-Velocity");
+
+    // Adding node key for the i'th atom y velocity.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Velocity),"Y-Velocity");
+
+    // Adding node key for the i'th atom z velocity.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Velocity),"Z-Velocity");
 
     return;
 }
