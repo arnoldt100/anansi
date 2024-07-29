@@ -195,7 +195,6 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         set_CommandFile_filename(myConfigurationFile, file_name);
         read_CommandFile(myConfigurationFile);
 
-        
         // Read the region name 
         const std::string global_key_region_name = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::Region_Name));
         const std::string region_name = get_value_CommandFile(myConfigurationFile,global_key_region_name);
@@ -234,8 +233,6 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 
             const std::string global_key_atom_z_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Coordinate),key_frmt_args);
             const auto z_coordinate = std::stod(get_value_CommandFile(myConfigurationFile,global_key_atom_z_coordinate));
-
-
         }
     }
     return;

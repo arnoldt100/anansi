@@ -29,6 +29,15 @@ class LowPrecision
         //! PhysicalDataStructures.
         using ParticleCounter_t = std::size_t;
 
+        //! The precision for the positions of the particles.
+        using ParticlePositions_t = float;
+
+        //! The precision for the velocities of the particles;
+        using ParticleVelocities_t = float;
+
+        //! The precision for the forces of the particles.
+        using ParticleForces_t = float;
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.

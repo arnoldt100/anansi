@@ -7,7 +7,6 @@
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
 #include <regex>
-#include "boost/format.hpp"
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -33,7 +32,6 @@ VariableXMLKeyFormatPolicy::VariableXMLKeyFormatPolicy( VariableXMLKeyFormatPoli
 {
     if (this != &other)
     {
-        
     }
     return;
 }

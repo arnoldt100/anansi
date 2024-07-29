@@ -30,6 +30,15 @@ class HighPrecision
         //! PhysicalDataStructures.
         using ParticleCounter_t = std::size_t;
 
+        //! The precision for the positions of the particles.
+        using ParticlePositions_t = long double;
+
+        //! The precision for the velocities of the particles;
+        using ParticleVelocities_t = long double;
+
+        //! The precision for the forces of the particles.
+        using ParticleForces_t = long double;
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
