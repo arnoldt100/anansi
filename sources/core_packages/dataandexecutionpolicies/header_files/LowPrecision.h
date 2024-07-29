@@ -10,6 +10,8 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <cstddef>
+#include <string>
+
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -66,6 +68,20 @@ class LowPrecision
         //! The move assignment operator.
         LowPrecision& operator= ( LowPrecision && other ); // assignment-move operator
 
+        static auto convertStringToPosition(const std::string & a_string)
+        {
+            return std::stof(a_string);
+        }
+
+        static auto convertStringToVelocity(const std::string & a_string)
+        {
+            return std::stof(a_string);
+        }
+
+        static auto convertStringToForce(const std::string & a_string)
+        {
+            return std::stof(a_string);
+        }
     protected:
         // ====================  METHODS       =======================================
 

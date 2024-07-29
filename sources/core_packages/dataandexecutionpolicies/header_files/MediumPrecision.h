@@ -10,6 +10,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <cstddef>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -68,6 +69,20 @@ class MediumPrecision
         //! The move assignment operator.
         MediumPrecision& operator= ( MediumPrecision && other ); // assignment-move operator
 
+        static auto convertStringToPosition(const std::string & a_string)
+        {
+            return std::stod(a_string);
+        }
+
+        static auto convertStringToVelocity(const std::string & a_string)
+        {
+            return std::stod(a_string);
+        }
+
+        static auto convertStringToForce(const std::string & a_string)
+        {
+            return std::stod(a_string);
+        }
     protected:
         // ====================  METHODS       =======================================
 

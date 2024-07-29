@@ -37,7 +37,11 @@ class PrecisionPolicy
         using Type = HighPrecision;
 #else 
     using Type = MediumPrecision;
-#endif 
+#endif
+
+        using PositionPrecision = Type::ParticlePositions_t;
+        using VelocityPrecision = Type::ParticleVelocities_t;
+        using ForcePrecision = Type::ParticleForces_t;
 
         //! The default constructor.
         PrecisionPolicy ();   // constructor
@@ -65,7 +69,24 @@ class PrecisionPolicy
         //! The move assignment operator.
         PrecisionPolicy& operator= ( PrecisionPolicy && other ); // assignment-move operator
 
-    protected:
+        //! Converts the string reprentation of the particles position to a floating point type.
+
+        static auto convertStringToPosition(const std::string & a_string)
+        {
+            return Type::convertStringToPosition(a_string);
+        }
+
+        static auto convertStringToVelocity(const std::string & a_string)
+        {
+            return Type::convertStringToVelocity(a_string);
+        }
+
+        static auto convertStringToForce(const std::string & a_string)
+        {
+            return Type::convertStringToForce(a_string);
+        }
+
+     protected:
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

@@ -10,6 +10,8 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <cstddef>
+#include <string>
+
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -67,6 +69,20 @@ class HighPrecision
         //! The move assignment operator.
         HighPrecision& operator= ( HighPrecision && other ); // assignment-move operator
 
+        static auto convertStringToPosition(const std::string & a_string)
+        {
+            return std::stold(a_string);
+        }
+
+        static auto convertStringToVelocity(const std::string & a_string)
+        {
+            return std::stold(a_string);
+        }
+
+        static auto convertStringToForce(const std::string & a_string)
+        {
+            return std::stold(a_string);
+        }
     protected:
         // ====================  METHODS       =======================================
 

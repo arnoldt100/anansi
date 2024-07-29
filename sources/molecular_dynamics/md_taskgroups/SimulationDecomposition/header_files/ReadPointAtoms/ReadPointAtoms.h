@@ -31,6 +31,7 @@
 #include "PointAtomsInternalNodeKeys.h"
 #include "ConvertGlobalNodeKey.hpp"
 #include "InternalNodeKeys.h"
+#include "ConvertStringToPhysicalData.hpp"
 
 namespace ANANSI
 {
@@ -207,6 +208,8 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         const std::string global_key_number_atoms_in_file = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::Number_Atoms_In_File));
         const std::string number_atoms_in_file_str = get_value_CommandFile(myConfigurationFile,global_key_number_atoms_in_file);
         const std::size_t number_atoms_in_file = std::stoul(number_atoms_in_file_str);
+
+        ConvertStringToPhysicalData<PrecisionPolicy> StringToPhysicalData{};
 
 
         for (std::size_t ip=1; ip <= number_atoms_in_file; ++ip)
