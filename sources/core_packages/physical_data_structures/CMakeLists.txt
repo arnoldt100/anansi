@@ -79,7 +79,7 @@
          header_files/ConvertStringToPhysicalData.hpp
          header_files/coordinates.h
          header_files/Atoms.h
-         header_files/PointAtoms.h )
+         header_files/PointAtoms.hpp )
 
     #-----------------------------------------------------
     # Here we define the variable                        -
