@@ -5,7 +5,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-#include <map>
 #include <iostream>
 
 //--------------------------------------------------------//
@@ -22,14 +21,10 @@
 #include "CopyOwnershipPolicy.hpp"
 #include "MasterProcess.h"
 #include "CommunicatorRank.h"
-#include "is_communicator_type.hpp"
 #include "InitialConfigurationFilenames.h"
 #include "CommandFiles.h"
 #include "CommandFileName.h"
-#include "NullPickleType.h"
-#include "ParticlesConfigurationFiles.hpp"
 #include "PointAtomsInternalNodeKeys.h"
-#include "ConvertGlobalNodeKey.hpp"
 #include "InternalNodeKeys.h"
 #include "ConvertStringToPhysicalData.hpp"
 
@@ -216,26 +211,41 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
         {
             const std::vector<std::string> key_frmt_args{std::to_string(ip)};
 
-            const std::string global_key_atom_type = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Type),key_frmt_args);
+            const auto global_key_atom_type = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Type),key_frmt_args);
             const auto atom_type = get_value_CommandFile(myConfigurationFile,global_key_atom_type);
 
-            const std::string global_key_atom_symbol = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Symbol),key_frmt_args);
+            const auto global_key_atom_symbol = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Symbol),key_frmt_args);
             const auto atom_symbol = get_value_CommandFile(myConfigurationFile,global_key_atom_symbol);
 
-            const std::string global_key_atom_global_atom_index = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Global_Atom_Index),key_frmt_args);
+            const auto global_key_atom_global_atom_index = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Global_Atom_Index),key_frmt_args);
             const auto global_atom_index = std::stoul(get_value_CommandFile(myConfigurationFile,global_key_atom_global_atom_index));
 
-            const std::string global_key_atom_global_group_index = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Global_Group_Index),key_frmt_args);
+            const auto global_key_atom_global_group_index = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Global_Group_Index),key_frmt_args);
             const auto global_group_index = std::stoul(get_value_CommandFile(myConfigurationFile,global_key_atom_global_group_index));
 
-            const std::string global_key_atom_x_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_X_Coordinate),key_frmt_args);
-            const auto x_coordinate = std::stod(get_value_CommandFile(myConfigurationFile,global_key_atom_x_coordinate));
+            const auto global_key_atom_x_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_X_Coordinate),key_frmt_args);
+            const auto x_coordinate_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_x_coordinate);
+            const auto x_coordinate = PrecisionPolicy::convertStringToPosition(x_coordinate_as_str);
 
-            const std::string global_key_atom_y_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Coordinate),key_frmt_args);
-            const auto y_coordinate = std::stod(get_value_CommandFile(myConfigurationFile,global_key_atom_y_coordinate));
+            const auto global_key_atom_y_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Coordinate),key_frmt_args);
+            const auto y_coordinate_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_y_coordinate);
+            const auto y_coordinate = PrecisionPolicy::convertStringToPosition(y_coordinate_as_str);
 
-            const std::string global_key_atom_z_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Coordinate),key_frmt_args);
-            const auto z_coordinate = std::stod(get_value_CommandFile(myConfigurationFile,global_key_atom_z_coordinate));
+            const auto global_key_atom_z_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Coordinate),key_frmt_args);
+            const auto z_coordinate_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_z_coordinate);
+            const auto z_coordinate = PrecisionPolicy::convertStringToPosition(z_coordinate_as_str);
+
+            const auto global_key_atom_x_velocity = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_X_Velocity),key_frmt_args);
+            const auto x_velocity_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_x_velocity);
+            const auto x_velocity = PrecisionPolicy::convertStringToVelocity(x_velocity_as_str);
+
+            const auto global_key_atom_y_velocity = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Velocity),key_frmt_args);
+            const auto y_velocity_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_y_velocity);
+            const auto y_velocity = PrecisionPolicy::convertStringToVelocity(y_velocity_as_str);
+
+            const auto global_key_atom_z_velocity = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Velocity),key_frmt_args);
+            const auto z_velocity_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_z_velocity);
+            const auto z_velocity = PrecisionPolicy::convertStringToVelocity(z_velocity_as_str);
         }
     }
     return;
