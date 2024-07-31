@@ -1,6 +1,6 @@
-//! \file PhysicalDataStructure.h
-#ifndef ANANSI_PhysicalDataStructure_INC
-#define ANANSI_PhysicalDataStructure_INC
+//! \file PhysicalDataStructureAtoms.h
+#ifndef ANANSI_PhysicalDataStructureAtoms_INC
+#define ANANSI_PhysicalDataStructureAtoms_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -24,36 +24,34 @@ namespace ANANSI
 //! \details This class is a type erasure for it wraps an object
 //!          which then loses its type identity. The wrapped object
 //!          must implement the concepts interface or bad program behavior
-//!          will occur. The types of data structures are lists like
-//!          a list of atoms. The atoms could be point atoms, ellipsoidal
-//!          atoms, etc. Quantities such as position, velocities, charge, etc.
-//!          are properties of atoms and for this class not defined as physical
-//!          data structures.
+//!          will occur. The types of data structures are lists for particles.
+//!          The particles could be point atoms, ellipsoidal
+//!          atoms, etc. 
 //! \tparam DataStoragePolicy Specifies the data storage policy.
 //! \tparam DataPrecisionPolicy Specifies the data precision policy.
 template <typename DataStoragePolicy,
           typename DataPrecisionPolicy>
-class PhysicalDataStructure
+class PhysicalDataStructureAtoms
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! \brief The default constructor,
-        PhysicalDataStructure() :
+        PhysicalDataStructureAtoms() :
             valuePtr_(nullptr)
         {
             return;
         }
 
         template<typename T>
-        PhysicalDataStructure(T && value) :
-            valuePtr_( new PhysicalDataStructureModel<T>(std::forward<T>(value)) )
+        PhysicalDataStructureAtoms(T && value) :
+            valuePtr_( new PhysicalDataStructureAtomsModel<T>(std::forward<T>(value)) )
         {
             return;
         }
 
         //! \brief The copy constructor.
-        PhysicalDataStructure(const PhysicalDataStructure & other)   // copy constructor
+        PhysicalDataStructureAtoms(const PhysicalDataStructureAtoms & other)   // copy constructor
         {
             if (this != &other)
             {
@@ -63,25 +61,25 @@ class PhysicalDataStructure
         }
 
         //! \brief The move constructor.
-        PhysicalDataStructure(PhysicalDataStructure && other)   // copy-move constructor
+        PhysicalDataStructureAtoms(PhysicalDataStructureAtoms && other)   // copy-move constructor
         {
             if (this != &other)
             {
                 this->valuePtr_ = std::move(other.valuePtr_); 
             }
             return;
-        }   // -----  end of method PhysicalDataStructure::PhysicalDataStructure  -----
+        }   // -----  end of method PhysicalDataStructureAtoms::PhysicalDataStructureAtoms  -----
 
         //! The destructor.
-        ~PhysicalDataStructure()  // destructor
+        ~PhysicalDataStructureAtoms()  // destructor
         {
             return;
         }
 
         // ====================  ACCESSORS     =======================================
-        PhysicalDataStructure* clone () const
+        PhysicalDataStructureAtoms* clone () const
         {
-            return new PhysicalDataStructure(*this);
+            return new PhysicalDataStructureAtoms(*this);
         }
 
         // ====================  MUTATORS      =======================================
@@ -89,7 +87,7 @@ class PhysicalDataStructure
         // ====================  OPERATORS     =======================================
 
         //! \brief The copy assignment operator.
-        PhysicalDataStructure& operator=( const PhysicalDataStructure &other ) // assignment operator
+        PhysicalDataStructureAtoms& operator=( const PhysicalDataStructureAtoms &other ) // assignment operator
         {
             if (this != &other)
             {
@@ -99,7 +97,7 @@ class PhysicalDataStructure
         } // assignment operator
 
         //! \brief The move assignment operator.
-        PhysicalDataStructure& operator=( PhysicalDataStructure && other ) // assignment-move operator
+        PhysicalDataStructureAtoms& operator=( PhysicalDataStructureAtoms && other ) // assignment-move operator
         {
             if (this != &other)
             {
@@ -119,21 +117,21 @@ class PhysicalDataStructure
         //!
         //! \details The concept class responsibility is to provide an interface,
         //!          and should have no member data attributes.
-        class PhysicalDataStructureConcept
+        class PhysicalDataStructureAtomsConcept
         {
             public: 
                 // ====================  LIFECYCLE     =======================================
-                PhysicalDataStructureConcept() = default;
-                PhysicalDataStructureConcept(const PhysicalDataStructureConcept & other) = default;
-                PhysicalDataStructureConcept(PhysicalDataStructureConcept && other) = default;
-                virtual ~PhysicalDataStructureConcept()=0;
+                PhysicalDataStructureAtomsConcept() = default;
+                PhysicalDataStructureAtomsConcept(const PhysicalDataStructureAtomsConcept & other) = default;
+                PhysicalDataStructureAtomsConcept(PhysicalDataStructureAtomsConcept && other) = default;
+                virtual ~PhysicalDataStructureAtomsConcept()=0;
 
                 // ====================  OPERATORS     =======================================
-                PhysicalDataStructureConcept& operator=(const PhysicalDataStructureConcept & other)=default;
-                PhysicalDataStructureConcept& operator=(PhysicalDataStructureConcept && other)=default;
+                PhysicalDataStructureAtomsConcept& operator=(const PhysicalDataStructureAtomsConcept & other)=default;
+                PhysicalDataStructureAtomsConcept& operator=(PhysicalDataStructureAtomsConcept && other)=default;
 
                 // ====================  ACCESSORS     =======================================
-                virtual std::unique_ptr<PhysicalDataStructureConcept> clone() const=0;
+                virtual std::unique_ptr<PhysicalDataStructureAtomsConcept> clone() const=0;
 
                 //! The number of particles.
                 virtual typename DataPrecisionPolicy::ParticleCounter_t numberOfParticles() const=0;
@@ -148,19 +146,19 @@ class PhysicalDataStructure
         //!          the concept interface. It stores the wrapped object
         //!          that implements ( or models ) the concepts interface,
         template <typename T>
-        class PhysicalDataStructureModel : public PhysicalDataStructureConcept
+        class PhysicalDataStructureAtomsModel : public PhysicalDataStructureAtomsConcept
         {
             public:
                 // ====================  LIFECYCLE     =======================================
-                PhysicalDataStructureModel() :
-                    PhysicalDataStructureConcept(),
+                PhysicalDataStructureAtomsModel() :
+                    PhysicalDataStructureAtomsConcept(),
                     object_()
                 {
                     return;
                 };
 
-                PhysicalDataStructureModel(const PhysicalDataStructureModel & other) :
-                    PhysicalDataStructureConcept(other),
+                PhysicalDataStructureAtomsModel(const PhysicalDataStructureAtomsModel & other) :
+                    PhysicalDataStructureAtomsConcept(other),
                     object_(other.object_)
                 {
                     if (this != &other)
@@ -168,8 +166,8 @@ class PhysicalDataStructure
                     }
                 };
 
-                PhysicalDataStructureModel(PhysicalDataStructureModel && other) :
-                    PhysicalDataStructureConcept(std::move(other)),
+                PhysicalDataStructureAtomsModel(PhysicalDataStructureAtomsModel && other) :
+                    PhysicalDataStructureAtomsConcept(std::move(other)),
                     object_(std::move(other.object_))
                 {
                     if (this != &other)
@@ -177,37 +175,37 @@ class PhysicalDataStructure
                     }
                 };
 
-                explicit PhysicalDataStructureModel(const T & in_value) : 
+                explicit PhysicalDataStructureAtomsModel(const T & in_value) : 
                     object_(in_value)
                 {
                     return;
                 };
 
                 // ====================  OPERATORS     =======================================
-                PhysicalDataStructureModel& operator=(const PhysicalDataStructureModel & other) 
+                PhysicalDataStructureAtomsModel& operator=(const PhysicalDataStructureAtomsModel & other) 
                 {
                     if (this != &other)
                     {
-                        PhysicalDataStructureConcept::operator=(other);
+                        PhysicalDataStructureAtomsConcept::operator=(other);
                         this->object_ = other.value;
                     }
                     return *this;
                 }
 
-                PhysicalDataStructureModel& operator=( PhysicalDataStructureModel && other) 
+                PhysicalDataStructureAtomsModel& operator=( PhysicalDataStructureAtomsModel && other) 
                 {
                     if (this != &other)
                     {
-                        PhysicalDataStructureConcept::operator=(std::move(other));
+                        PhysicalDataStructureAtomsConcept::operator=(std::move(other));
                         this->object_ = std::move(other.value);
                     }
                     return *this;
                 }
 
                 // ====================  ACCESSORS     =======================================
-                std::unique_ptr<PhysicalDataStructureConcept> clone() const override
+                std::unique_ptr<PhysicalDataStructureAtomsConcept> clone() const override
                 {
-                    return std::make_unique<PhysicalDataStructureModel>(*this);
+                    return std::make_unique<PhysicalDataStructureAtomsModel>(*this);
                 }
 
                 typename DataPrecisionPolicy::ParticleCounter_t numberOfParticles() const override
@@ -226,13 +224,13 @@ class PhysicalDataStructure
         // ====================  DATA MEMBERS  =======================================
 
         // The actual object that is wrapped.
-        std::unique_ptr<PhysicalDataStructureConcept> valuePtr_;
+        std::unique_ptr<PhysicalDataStructureAtomsConcept> valuePtr_;
 
-}; // -----  end of class PhysicalDataStructure  -----
+}; // -----  end of class PhysicalDataStructureAtoms  -----
 
 template<typename DataStoragePolicy,
          typename DataPrecisionPolicy>
-PhysicalDataStructure<DataStoragePolicy,DataPrecisionPolicy>::PhysicalDataStructureConcept::~PhysicalDataStructureConcept()
+PhysicalDataStructureAtoms<DataStoragePolicy,DataPrecisionPolicy>::PhysicalDataStructureAtomsConcept::~PhysicalDataStructureAtomsConcept()
 {
     return;
 }
@@ -240,4 +238,4 @@ PhysicalDataStructure<DataStoragePolicy,DataPrecisionPolicy>::PhysicalDataStruct
 
 }; // namespace ANANSI
 
-#endif // ANANSI_PhysicalDataStructure_INC
+#endif // ANANSI_PhysicalDataStructureAtoms_INC

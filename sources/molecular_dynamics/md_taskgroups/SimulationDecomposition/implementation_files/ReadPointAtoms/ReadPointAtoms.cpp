@@ -102,7 +102,7 @@ void ReadPointAtoms::receiverModifyMyself_(int & alpha)
 }
 
 template<>
-void ReadPointAtoms::receiverModifyMyself_( PhysicalDataStructure<DataStoragePolicy::Type,PrecisionPolicy::Type> & my_atoms)
+void ReadPointAtoms::receiverModifyMyself_( PhysicalDataStructureAtoms<DataStoragePolicy::Type,PrecisionPolicy::Type> & my_atoms)
 {
     this->results_ = my_atoms;
     return;
