@@ -18,7 +18,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "Atoms.h"
-#include "PointAtoms.h"
+#include "PointAtoms.hpp"
 #include "SimulationDecompositionPrecisionPolicy.h"
 #include "SimulationDecompositionExecutionPolicy.h"
 

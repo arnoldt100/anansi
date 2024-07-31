@@ -27,8 +27,7 @@ namespace ANANSI
 class LowPrecision
 {
     public:
-        //! This is the counter type for the number particles in a 
-        //! PhysicalDataStructures.
+        //! This is the counter type for the number particles.
         using ParticleCounter_t = std::size_t;
 
         //! The precision for the positions of the particles.

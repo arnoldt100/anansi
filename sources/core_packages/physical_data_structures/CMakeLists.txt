@@ -75,7 +75,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (physical_data_structures_header_files 
-         header_files/PhysicalDataStructure.h 
+	 header_files/PhysicalDataStructureAtoms.h 
          header_files/ConvertStringToPhysicalData.hpp
          header_files/coordinates.h
          header_files/Atoms.h
@@ -89,7 +89,7 @@
     #                                                    -
     #-----------------------------------------------------
     set (physical_data_structures_implementation_files 
-         implementation_files/PhysicalDataStructure.cpp
+	 implementation_files/PhysicalDataStructureAtoms.cpp
          implementation_files/ConvertStringToPhysicalData.cpp
          implementation_files/coordinates.cpp
          implementation_files/Atoms.cpp

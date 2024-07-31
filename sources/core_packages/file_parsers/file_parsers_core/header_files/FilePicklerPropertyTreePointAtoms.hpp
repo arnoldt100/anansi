@@ -17,7 +17,7 @@
 //--------------------------------------------------------//
 #include "FilePickler.hpp"
 #include "Atoms.h"
-#include "PointAtoms.h"
+#include "PointAtoms.hpp"
 
 namespace ANANSI
 {

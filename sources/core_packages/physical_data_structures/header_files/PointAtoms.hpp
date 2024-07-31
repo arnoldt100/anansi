@@ -1,6 +1,6 @@
 #ifndef ANANSI_PointAtoms_INC
 #define ANANSI_PointAtoms_INC
-//! \file PointAtoms.h
+//! \file PointAtoms.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -97,7 +97,7 @@ class PointAtoms
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-
+        
 }; // -----  End of class PointAtoms  -----
 
 
