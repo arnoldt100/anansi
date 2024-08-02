@@ -1,4 +1,4 @@
-//! \file PhysicalDataStructureAtoms.h
+//! \file PhysicalDataStructureAtoms.hpp
 #ifndef ANANSI_PhysicalDataStructureAtoms_INC
 #define ANANSI_PhysicalDataStructureAtoms_INC
 

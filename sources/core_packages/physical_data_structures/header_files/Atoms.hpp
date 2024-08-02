@@ -1,6 +1,6 @@
 #ifndef ANANSI_Atoms_INC
 #define ANANSI_Atoms_INC
-//! \file Atoms.h
+//! \file Atoms.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -25,13 +25,19 @@ namespace ANANSI
 //!          which then loses its type identity. The wrapped object
 //!          must implement the concepts interface or bad program behavior
 //!          will occur.
+template<typename DataStoragePolicy,
+         typename PrecisionPolicy>
 class Atoms
 {
     public:
         // ====================  LIFECYCLE     =======================================
 
         //! \brief The default constructor,
-        Atoms();   // constructor
+        Atoms() :     // constructor
+            valuePtr_(nullptr)
+        {
+            return;
+        }
 
         //! \brief iUse this constructor to initialize the object. 
         template<typename T>
@@ -42,28 +48,62 @@ class Atoms
         }
 
         //! \brief The copy constructor.
-        Atoms(const Atoms & other);   // copy constructor
+        Atoms(const Atoms & other)   // copy constructor
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = other.valuePtr_->clone();
+            }
+            return;
+        }
 
         //!  The  move constructor.
-        Atoms(Atoms && other);   // copy-move constructor
+        Atoms(Atoms && other)   // copy-move constructor
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = std::move(other.valuePtr_); 
+            }
+            return;
+        }   // -----  end of method Atoms::Atoms  -----
 
         //! The destructor.
-        ~Atoms();  // destructor
+        ~Atoms()  // destructor
+        {
+            return;
+        }
 
         // ====================  ACCESSORS     =======================================
 
         //! \brief The class cloning method.
-        Atoms* clone() const;
+        Atoms* clone() const
+        {
+            return new Atoms(*this);
+        }
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! \brief The copy assignment operator.
-        Atoms& operator=( const Atoms &other ); // assignment operator
+        Atoms& operator=( const Atoms &other ) // assignment operator
+        {
+            if (this != &other)
+            {
+                this->valuePtr_  = other.valuePtr_->clone();
+            }
+            return *this;
+        } // assignment operator
 
         //! \brief The move assignment operator.
-        Atoms& operator=( Atoms && other ); // assignment-move operator
+        Atoms& operator=( Atoms && other) // assignment-move operator
+        {
+            if (this != &other)
+            {
+                this->valuePtr_ = std::move(other.valuePtr_);
+            }
+            return *this;
+        } // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================

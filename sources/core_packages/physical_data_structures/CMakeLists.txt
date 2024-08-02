@@ -75,11 +75,11 @@
     #                                                    -
     #-----------------------------------------------------
     set (physical_data_structures_header_files 
-	     header_files/PhysicalDataStructureAtoms.h 
+	     header_files/PhysicalDataStructureAtoms.hpp 
 	     header_files/PhysicalDataStructurePointAtoms.hpp
          header_files/ConvertStringToPhysicalData.hpp
          header_files/coordinates.h
-         header_files/Atoms.h
+         header_files/Atoms.hpp
          header_files/PointAtoms.hpp )
 
     #-----------------------------------------------------

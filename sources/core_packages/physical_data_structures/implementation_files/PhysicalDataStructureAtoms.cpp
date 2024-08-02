@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "PhysicalDataStructureAtoms.h"
+#include "PhysicalDataStructureAtoms.hpp"
 
 namespace ANANSI {
 

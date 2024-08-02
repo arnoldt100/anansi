@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Atoms.h"
+#include "Atoms.hpp"
 
 namespace ANANSI {
 
@@ -19,70 +19,12 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-Atoms::Atoms() :
-    valuePtr_(nullptr)
-{
-    return;
-}
-
-Atoms::Atoms( Atoms const & other)
-{
-    if (this != &other)
-    {
-        this->valuePtr_ = other.valuePtr_->clone();
-    }
-    return;
-}
-
-Atoms::Atoms( Atoms && other)
-{
-    if (this != &other)
-    {
-        this->valuePtr_ = std::move(other.valuePtr_); 
-    }
-    return;
-}		// -----  end of method Atoms::Atoms  -----
-
-
-Atoms::~Atoms()
-{
-    return;
-}
-
-Atoms::AtomsConcept::~AtomsConcept()
-{
-    return;
-}
-
-
 //============================= ACCESSORS ====================================
 
-Atoms * Atoms::clone() const
-{
-    return new Atoms(*this);
-}
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-
-Atoms& Atoms::operator= ( const Atoms & other )
-{
-    if (this != &other)
-    {
-        this->valuePtr_  = other.valuePtr_->clone();
-    }
-    return *this;
-} // assignment operator
-
-Atoms& Atoms::operator= ( Atoms && other )
-{
-    if (this != &other)
-    {
-        this->valuePtr_ = std::move(other.valuePtr_);
-    }
-    return *this;
-} // assignment-move operator
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////

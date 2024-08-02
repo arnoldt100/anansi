@@ -18,7 +18,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "PhysicalDataStructureAtoms.h"
+#include "PhysicalDataStructureAtoms.hpp"
 #include "SimulationDecompositionPrecisionPolicy.h"
 #include "SimulationDecompositionExecutionPolicy.h"
 #include "Atoms.h"
