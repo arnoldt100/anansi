@@ -100,7 +100,7 @@ class Atoms
         //!
         //! \details The model bridges the wrapped object and 
         //!          the concept interface. It stores the wrapped object
-        //!          that inmplements ( or models ) the concepts interface,        
+        //!          that implements ( or models ) the concepts interface,
         template <typename T>
         class AtomsModel : public AtomsConcept
         {
