@@ -19,7 +19,7 @@
 //--------------------------------------------------------//
 #include "SimulationDecompositionPrecisionPolicy.h"
 #include "SimulationDecompositionExecutionPolicy.h"
-#include "Atoms.h"
+#include "Atoms.hpp"
 #include "PointAtoms.hpp"
 
 namespace ANANSI
@@ -29,7 +29,8 @@ class PointAtomsDecomposerResultsTraits
 {
     public:
         // ====================  ALIASES       =======================================
-        using result_t = Atoms;
+        using result_t = Atoms<SimulationDecompositionExecutionPolicy::Type,
+                               SimulationDecompositionPrecisionPolicy::Type>;
         using Atoms_t = PointAtoms<SimulationDecompositionExecutionPolicy::Type,
                                    SimulationDecompositionPrecisionPolicy::Type>;
         using copy_result_t = result_t;

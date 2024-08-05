@@ -21,7 +21,7 @@
 #include "PhysicalDataStructureAtoms.hpp"
 #include "SimulationDecompositionPrecisionPolicy.h"
 #include "SimulationDecompositionExecutionPolicy.h"
-#include "Atoms.h"
+#include "Atoms.hpp"
 #include "PointAtoms.hpp"
 #include "ParticlesConfigurationFiles.hpp"
 #include "XMLFileReader.h"
@@ -37,13 +37,16 @@ class ReadPointAtomsResultsTraits
     public:
         // ====================  ALIASES       =======================================
 
-        using result_t = PhysicalDataStructureAtoms<DataStoragePolicy::Type,PrecisionPolicy::Type>;
-        using Atoms_t = PointAtoms<DataStoragePolicy::Type,
-        		                   PrecisionPolicy::Type>;
+        using result_t = PhysicalDataStructureAtoms<SimulationDecompositionExecutionPolicy::Type,
+                                   SimulationDecompositionPrecisionPolicy::Type>;
+        using Atoms_t = PointAtoms<SimulationDecompositionExecutionPolicy::Type,
+                                   SimulationDecompositionPrecisionPolicy::Type>;
         using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<PointAtomsConfigurationFileNodeKeys,
                                                                           XMLFileReader,
                                                                           XMLFileWriter,
-                                                                          FilePickler<boost::property_tree::ptree,Atoms>
+                                                                          FilePickler<boost::property_tree::ptree,
+                                                                                      Atoms<SimulationDecompositionExecutionPolicy::Type,
+                                                                                            SimulationDecompositionPrecisionPolicy::Type>>
                                                                          >;
 
         using copy_result_t = result_t;

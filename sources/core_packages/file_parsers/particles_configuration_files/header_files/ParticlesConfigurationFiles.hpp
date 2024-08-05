@@ -21,7 +21,9 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "CommandFileName.h"
-#include "Atoms.h"
+#include "DataStoragePolicy.h"
+#include "PrecisionPolicy.h"
+#include "Atoms.hpp"
 
 namespace ANANSI
 {
@@ -44,7 +46,7 @@ class ParticlesConfigurationFiles
 {
     public:
 
-        using PICKLEDTYPE = Atoms;
+        using PICKLEDTYPE = Atoms<DataStoragePolicy,PrecisionPolicy>;
 
         // ====================  LIFECYCLE     =======================================
 
