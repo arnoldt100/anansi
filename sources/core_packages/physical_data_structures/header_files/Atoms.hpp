@@ -31,13 +31,9 @@ class Atoms
         // ====================  LIFECYCLE     =======================================
 
         //! \brief The default constructor,
-        Atoms() :     // constructor
-            valuePtr_(nullptr)
-        {
-            return;
-        }
+        Atoms();     // constructor
 
-        //! \brief iUse this constructor to initialize the object. 
+        //! \brief Use this constructor to initialize the object. 
         template<typename T>
         Atoms(T && value) :
             valuePtr_( new AtomsModel<T>(std::forward<T>(value)) )
@@ -66,42 +62,22 @@ class Atoms
         }   // -----  end of method Atoms::Atoms  -----
 
         //! The destructor.
-        ~Atoms()  // destructor
-        {
-            return;
-        }
+        ~Atoms();  // destructor
 
         // ====================  ACCESSORS     =======================================
 
         //! \brief The class cloning method.
-        Atoms* clone() const
-        {
-            return new Atoms(*this);
-        }
+        Atoms* clone() const;
 
         // ====================  MUTATORS      =======================================
 
         // ====================  OPERATORS     =======================================
 
         //! \brief The copy assignment operator.
-        Atoms& operator=( const Atoms &other ) // assignment operator
-        {
-            if (this != &other)
-            {
-                this->valuePtr_  = other.valuePtr_->clone();
-            }
-            return *this;
-        } // assignment operator
+        Atoms& operator=( const Atoms &other ); // assignment operator
 
         //! \brief The move assignment operator.
-        Atoms& operator=( Atoms && other) // assignment-move operator
-        {
-            if (this != &other)
-            {
-                this->valuePtr_ = std::move(other.valuePtr_);
-            }
-            return *this;
-        } // assignment-move operator
+        Atoms& operator=( Atoms && other); // assignment-move operator
 
     protected:
         // ====================  METHODS       =======================================
@@ -131,7 +107,6 @@ class Atoms
                 virtual std::unique_ptr<AtomsConcept> clone() const=0;
 
                 // ====================  MUTATORS      =======================================
-
         };
 
         //!  \brief The model.
@@ -206,8 +181,7 @@ class Atoms
 
                 T object_;
         };
-        
-        
+
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================

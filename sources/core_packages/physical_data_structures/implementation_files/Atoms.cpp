@@ -18,18 +18,52 @@ namespace ANANSI {
 //////////////////////////////////////////////////////////////////////////////
 
 //============================= LIFECYCLE ====================================
-Atoms::AtomsConcept::~AtomsConcept()
+
+Atoms::Atoms() :     // constructor
+    valuePtr_(nullptr)
+{
+    return;
+}
+
+//! The destructor.
+Atoms::~Atoms()  // destructor
+{
+    return;
+}
+
+//! The destructor.
+Atoms::AtomsConcept::~AtomsConcept()  // destructor
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
+Atoms* Atoms::clone() const
+{
+    return new Atoms(*this);
+}
 
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
+Atoms& Atoms::operator=( const Atoms &other ) // assignment operator
+{
+    if (this != &other)
+    {
+        this->valuePtr_  = other.valuePtr_->clone();
+    }
+    return *this;
+} // assignment operator
 
+Atoms& Atoms::operator=( Atoms && other) // assignment-move operator
+{
+    if (this != &other)
+    {
+        this->valuePtr_ = std::move(other.valuePtr_);
+    }
+    return *this;
+} // assignment-move operator
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PROTECTED ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
