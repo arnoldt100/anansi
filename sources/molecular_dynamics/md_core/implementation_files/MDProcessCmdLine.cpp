@@ -30,11 +30,19 @@ MDProcessCmdLine::MDProcessCmdLine() :
 MDProcessCmdLine::MDProcessCmdLine( MDProcessCmdLine const & other) :
     ProcessCmdLine(other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 MDProcessCmdLine::MDProcessCmdLine( MDProcessCmdLine && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MDProcessCmdLine::MDProcessCmdLine  -----
 

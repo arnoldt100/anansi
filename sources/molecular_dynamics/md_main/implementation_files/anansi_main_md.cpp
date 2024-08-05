@@ -4,6 +4,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <memory>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -15,10 +16,14 @@
 #include "anansi_main_md.h"
 #include "AnansiMolecularDynamics.h"
 #include "AnansiMolecularDynamicsFactory.h"
+#include "GenericErrorClass.hpp"
 
 
-int main( int argc, char** argv )
+int
+main( int argc, char** argv )
 {
+    auto exit_status = EXIT_SUCCESS;
+
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     //                                                                 @
     // Create an AnansiMolecularDynamicsFactory and instantiate a      @
@@ -28,40 +33,51 @@ int main( int argc, char** argv )
     std::shared_ptr<ANANSI::SimulationFactory> my_md_factory(new ANANSI::AnansiMolecularDynamicsFactory(argc,argv));
     std::shared_ptr<ANANSI::Simulation> md_ptr = my_md_factory->create_shared_ptr();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Initialize the the simulation execution environment.            @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->initializeSimulationEnvironment();
+    try 
+    {
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Process the command line.                                       @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->processCommandLine();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Process the command line and set the simulation parameters.     @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->processCommandLine();
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Initialize the the simulation execution environment.            @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->initializeSimulationEnvironment();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Initialize the initial condtions of the simulation.             @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->initializeInitialConditions();
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Initialize the initial conditions of the simulation.            @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->initializeInitialConditions();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Perform the simulation.                                         @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->performSimulation();
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Perform the simulation.                                         @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->performSimulation();
 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    //                                                                 @
-    // Terminate the simulation.                                       @
-    //                                                                 @
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    md_ptr->terminateSimulationEnvironment();
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        //                                                                 @
+        // Terminate the simulation.                                       @
+        //                                                                 @
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        md_ptr->terminateSimulationEnvironment();
 
-    return EXIT_SUCCESS;
+    }
+    catch (const MOUSEION::GenericErrorClass<ANANSI::AnansiMolecularDynamics> & my_error) 
+    {
+    	// Catch error for one of the above steps.
+        std::cout << my_error.what() << std::endl;
+        md_ptr->terminateSimulationEnvironment();
+        exit_status = EXIT_FAILURE; 
+    }
+
+    return exit_status;
 }

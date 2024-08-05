@@ -17,7 +17,7 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/core_packages_bu
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 # ----------------------------------------------------
-#  Verify that all beuild prerequisites are satisfied 
+#  Verify that all build prerequisites are satisfied 
 # for target 'core_packages'.
 # 
 # ----------------------------------------------------
@@ -42,18 +42,67 @@ enable_building_mouseion("${core_packages_minimum_cmake_version}"
                          "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mouseion)
 
+
 #-----------------------------------------------------
-# Call the macro that enables building of command    -
-# line arguments target.                             -
+# Call the macro that enables building of target     -
+# dataandexecutionpolicies.                          -
 #                                                    -
 #-----------------------------------------------------
-include( ${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments/cmake_macros_and_functions/command_line_arguments.cmake)
-enable_building_command_line_arguments_library( "${core_packages_install_lib_directory}"
-                                                "${core_packages_install_include_directory}"
-                                                "${core_packages_install_bin_directory}" 
-                                                "${core_packages_cxx_standard}"
-                                                "${core_packages_logfilepath}")
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/command_line_arguments)
+include( ${CMAKE_CURRENT_SOURCE_DIR}/dataandexecutionpolicies/cmake_macros_and_functions/dataandexecutionpolicies.cmake )
+enable_building_dataandexecutionpolicies ("${core_packages_install_lib_directory}"
+                                          "${core_packages_install_include_directory}"
+                                          "${core_packages_install_bin_directory}"
+                                          "${core_packages_cmake_c_compiler}" 
+                                          "${core_packages_cmake_cxx_compiler}" 
+                                          "${core_packages_cxx_standard}"  
+                                          "${core_packages_logfilepath}")
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/dataandexecutionpolicies)
+
+# ----------------------------------------------------
+# Here we define variables which indicate where to install the tasks
+# libraries, header files, and associated binaries.
+# 
+# ----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/tasks/cmake_macros_and_functions/tasks.cmake)
+enable_building_tasks_library( "${core_packages_install_lib_directory}"
+                               "${core_packages_install_include_directory}"
+                               "${core_packages_install_bin_directory}"
+                               "${core_packages_cmake_c_compiler}"
+                               "${core_packages_cmake_cxx_compiler}"
+                               "${core_packages_cxx_standard}"
+                               "${core_packages_logfilepath}")
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tasks)
+
+# ----------------------------------------------------
+# Call the macro that enables build the receiver target and add the receiver
+# package.
+# 
+# ----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/receiver/cmake_macros_and_functions/receiver.cmake )
+enable_building_receiver_package( 
+    "${core_packages_install_lib_directory}"
+    "${core_packages_install_include_directory}"
+    "${core_packages_install_bin_directory}" 
+    "${core_packages_cmake_c_compiler}"
+    "${core_packages_cmake_cxx_compiler}"
+    "${core_packages_cxx_standard}"
+    "${core_packages_logfilepath}" )
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/receiver)
+
+#-----------------------------------------------------
+# Call the macro that enables building the data structures
+# for storing the positions. velocities, etc. of the simulation.
+#
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/physical_data_structures/cmake_macros_and_functions/physical_data_structures.cmake )
+enable_building_physical_data_structures_package( "${core_packages_install_lib_directory}"
+                                                  "${core_packages_install_include_directory}"
+                                                  "${core_packages_install_bin_directory}" 
+                                                  "${core_packages_cmake_c_compiler}" 
+                                                  "${core_packages_cmake_cxx_compiler}" 
+                                                  "${core_packages_cxx_standard}"
+                                                  "${core_packages_logfilepath}" )
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/physical_data_structures)
 
 #-----------------------------------------------------
 # Here we define variables which indicate where      -
@@ -79,6 +128,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/file_parsers/cmake_macros_and_functions/fil
 enable_building_file_parsers_package( "${core_packages_install_lib_directory}"
                                       "${core_packages_install_include_directory}"
                                       "${core_packages_install_bin_directory}" 
+                                      "${core_packages_cmake_c_compiler}"
+                                      "${core_packages_cmake_cxx_compiler}"
                                       "${core_packages_cxx_standard}"
                                       "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/file_parsers)
@@ -93,6 +144,8 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/simulation_state/cmake_macros_and_functions
 enable_building_simulation_state_package( "${core_packages_install_lib_directory}"
                                           "${core_packages_install_include_directory}"
                                           "${core_packages_install_bin_directory}" 
+                                          "${core_packages_cmake_c_compiler}"
+                                          "${core_packages_cmake_cxx_compiler}"
                                           "${core_packages_cxx_standard}"
                                           "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/simulation_state)
@@ -121,9 +174,12 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator/cmake_macros_and_functions
 enable_building_mpi_communicator_library( "${core_packages_install_lib_directory}"
                                           "${core_packages_install_include_directory}"
                                           "${core_packages_install_bin_directory}" 
+                                          "${core_packages_cmake_c_compiler}" 
+                                          "${core_packages_cmake_cxx_compiler}" 
                                           "${core_packages_cxx_standard}"
                                           "${core_packages_logfilepath}" )
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/mpi_communicator)
+add_dependencies(mpi_communicator receiver)
 
 # ----------------------------------------------------
 # Here we define variales which indicate where
@@ -135,19 +191,22 @@ include( ${CMAKE_CURRENT_SOURCE_DIR}/logger/cmake_macros_and_functions/logger.cm
 enable_building_logger_library( "${core_packages_install_lib_directory}"
                                 "${core_packages_install_include_directory}"
                                 "${core_packages_install_bin_directory}" 
-                                "${core_packages_cxx_standard}" )
+                                "${core_packages_cxx_standard}"
+                                "${core_packages_logfilepath}")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/logger)
 
-# ----------------------------------------------------
-# Here we define variables which indicate where to install the task_group
-# libraries, header files, and associated binaries.
-# 
-# ----------------------------------------------------
-include( ${CMAKE_CURRENT_SOURCE_DIR}/task_group/cmake_macros_and_functions/task_group.cmake)
-enable_building_task_group_library( "${core_packages_install_lib_directory}"
-                                    "${core_packages_install_include_directory}"
-                                    "${core_packages_install_bin_directory}" 
-                                    "${core_packages_cxx_standard}" )
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/task_group)
-
+#-----------------------------------------------------
+# Call the macro that enables build the invoker target and add the invoker
+# package.
+#
+#-----------------------------------------------------
+include( ${CMAKE_CURRENT_SOURCE_DIR}/invoker/cmake_macros_and_functions/invoker.cmake )
+enable_building_invoker_package( "${core_packages_install_lib_directory}"
+                                 "${core_packages_install_include_directory}"
+                                 "${core_packages_install_bin_directory}" 
+                                 "${core_packages_cmake_c_compiler}" 
+                                 "${core_packages_cmake_cxx_compiler}" 
+                                 "${core_packages_cxx_standard}"
+                                 "${core_packages_logfilepath}" )
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/invoker)
 

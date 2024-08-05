@@ -17,7 +17,7 @@
 
 namespace ANANSI {
 
-enum class MASTER_SLAVE_IDENTITIES
+enum class MASTER_SLAVE_IDENTITIES : std::size_t
 { 
     master_mpi_task, 
     slave_mpi_task

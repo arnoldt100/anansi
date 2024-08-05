@@ -21,10 +21,10 @@
 #             cxx_standard - The C++ standard to build the library and binaries
 # =====================================================================================
 macro ( enable_building_md_main_package install_lib_directory
-        install_include_directory
-        install_bin_directory 
-        cxx_standard
-        logfilepath)
+           install_include_directory
+           install_bin_directory 
+           cxx_standard
+           logfilepath)
 
     set(md_main_install_lib_directory "${install_lib_directory}")
     set(md_main_install_include_directory "${install_include_directory}")

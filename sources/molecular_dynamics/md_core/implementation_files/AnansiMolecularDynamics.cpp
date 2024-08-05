@@ -1,7 +1,6 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
-// #include <type_traits>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -15,14 +14,40 @@
 //--------------------------------------------------------//
 #include "AnansiMolecularDynamics.h"
 #include "SimulationParametersFactory.h"
-#include "BuilderControlFileParser.h"
-#include "StandardFileParserFactory.h"
 #include "MDSimulationStateFactory.h"
-#include "WorldTaskGroupConvenienceFunctions.h"
-#include "WorldTaskGroupIngredients.h"
+#include "GenericTaskInvokerFactory.hpp"
+#include "InterProcessCommEnv.h"
+#include "GenericReceiverFactory.hpp"
+#include "InitMPIEnvTaskReceiver.h"
+#include "ConsoleMessageContainer.h"
+#include "MasterControlInputFileParameters.h"
+#include "SimulationDecompositionParameters.h"
+#include "setup_core_logging_invoker.h"
+#include "setup_controlfile_invoker.h"
+#include "disable_controlfile_invoker.h"
+#include "setup_mpi_communication_environment_invoker.h"
+#include "setup_mpi_world_communicator_invoker.h"
+#include "setup_simulationdecomposition_invoker.h"
+#include "disable_simulationdecomposition_invoker.h"
 
-namespace ANANSI {
+namespace ANANSI
+{
 
+// ====================  Simulation Interface Implementations  ===============
+
+// These methods implement the interface for the parent class Simulation
+// private virtual methods.
+
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PRIVATE //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PRIVATE //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//============================= ACCESSORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PUBLIC ///////////////////////////////////////
@@ -30,23 +55,23 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-AnansiMolecularDynamics::AnansiMolecularDynamics() : 
+AnansiMolecularDynamics::AnansiMolecularDynamics() :
     Simulation(),
     commandLineArguments_(),
     simulationParameters_(),
-    MpiWorldCommunicator_(),
-    MpiEnvironment_(),
-    worldTaskGroup_(),
-    mdState_(),
-    mdNullSimulationState_(),
-    mdInitSimEnv_(),
-    mdProcessCmdLine_(),
-    mdInitInitialConditions_(),
-    mdPerformSimulation_(),
-    mdTerminateSimulation_(),
-    taskGroupFactory_(),
-    mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+    MpiWorldCommunicator_(nullptr),
+    mdCommEnvInvk_(nullptr),
+    mdControlFileInvk_(nullptr),
+    mdWorldCommunicatorInvk_(nullptr),
+    mdCoreLoggingInvk_(nullptr),
+    mdSimulationDecomposerInvk_(nullptr),
+    mdState_(nullptr),
+    mdNullSimulationState_(nullptr),
+    mdInitSimEnv_(nullptr),
+    mdProcessCmdLine_(nullptr),
+    mdInitInitialConditions_(nullptr),
+    mdPerformSimulation_(nullptr),
+    mdTerminateSimulation_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -67,19 +92,19 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     Simulation(),
     commandLineArguments_(COMMANDLINE::CommandLineArguments(argc,argv)),
     simulationParameters_(),
-    MpiWorldCommunicator_(),
-    MpiEnvironment_(),
-    worldTaskGroup_(),
-    mdState_(),
-    mdNullSimulationState_(),
-    mdInitSimEnv_(),
-    mdProcessCmdLine_(),
-    mdInitInitialConditions_(),
-    mdPerformSimulation_(),
-    mdTerminateSimulation_(),
-    taskGroupFactory_(),
-    mdStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined),
-    mdGlobalStatus_(COMMUNICATOR::RegistryAnansiMDStatus::Undefined)
+    MpiWorldCommunicator_(nullptr),
+    mdCommEnvInvk_(nullptr),
+    mdControlFileInvk_(nullptr),
+    mdWorldCommunicatorInvk_(nullptr),
+    mdCoreLoggingInvk_(nullptr),
+    mdSimulationDecomposerInvk_(nullptr),
+    mdState_(nullptr),
+    mdNullSimulationState_(nullptr),
+    mdInitSimEnv_(nullptr),
+    mdProcessCmdLine_(nullptr),
+    mdInitInitialConditions_(nullptr),
+    mdPerformSimulation_(nullptr),
+    mdTerminateSimulation_(nullptr)
 {
     // Initialize all state objects for this MD simulation.
     std::unique_ptr<ANANSI::MDSimulationStateFactory> md_state_factory = std::make_unique<MDSimulationStateFactory>();
@@ -90,14 +115,7 @@ AnansiMolecularDynamics::AnansiMolecularDynamics(int const & argc, char const *c
     this->mdPerformSimulation_ = std::move(md_state_factory->create<PerformSimulation>());
     this->mdTerminateSimulation_ = std::move(md_state_factory->create<TerminateSimulation>());
 
-    // Initialize all factories.
-    this->taskGroupFactory_ = std::make_shared<MDTaskGroupFactory<>>();
-
-    // Intialize the WorldTaskGroup.
-    this->worldTaskGroup_ = 
-        this->taskGroupFactory_->buildTaskGroupSharedPtr<WorldTaskGroup>();
-
-    // Change the state to Null.
+    // Change the state of the MD simulation to Null.
     this->mdState_ = this->mdNullSimulationState_;
     this->mdState_->who_am_i();
 
@@ -112,77 +130,89 @@ AnansiMolecularDynamics::~AnansiMolecularDynamics()
 //============================= ACCESSORS ====================================
 
 //============================= MUTATORS =====================================
-void AnansiMolecularDynamics::enableCommunicationEnvironment()
+void
+AnansiMolecularDynamics::enableCommunicationEnvironment()
 {
-    int my_argc=0;
-    char** my_argv_ptr=nullptr;
 
-    this->commandLineArguments_.reformCommandLineArguments(my_argc,my_argv_ptr);
-    this->MpiEnvironment_ = std::make_unique<ANANSI::MPIEnvironment>();
-    this->MpiEnvironment_->enableEnvironment(my_argc,my_argv_ptr);
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Setup all tasks/recievers for the communication 
+    // environment invoker.
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    setup_mpi_communication_environment_invoker(this->mdCommEnvInvk_,
+                                                this->commandLineArguments_);
 
-    if (my_argv_ptr != nullptr)
-    {
-        MEMORY_MANAGEMENT::Pointer2d<char>::destroyPointer2d(my_argc,my_argv_ptr);
-    }
+    // ---------------------------------------------------
+    // Do task that will set up communication runtime environment.
+    //
+    // ---------------------------------------------------
+    const std::vector<ANANSI::TaskLabel> command_labels = 
+        {ANANSI::InitMPIEnvTaskReceiver::TASKLABEL};
+    this->mdCommEnvInvk_->doTask(command_labels);
 
-    std::cout << "Enabled the MPI environment." << std::endl;
     return;
 }
 
 void
 AnansiMolecularDynamics::disableCommunicationEnvironment()
 {
-    this->MpiEnvironment_->disableEnvironment();
-    std::cout << "Disabled the MPI environment." << std::endl;
+    // ---------------------------------------------------
+    // Use the invoker to disable the communication environment.
+    //
+    // ---------------------------------------------------
+    const std::vector<ANANSI::TaskLabel> command_labels = {InitMPIEnvTaskReceiver::TASKLABEL};
+    this->mdCommEnvInvk_->disableTask(command_labels);
     return;
+
 }       /* -----  end of method AnansiMolecularDynamics::disableCommunicationEnvironment  ----- */
 
 
-void 
+void
 AnansiMolecularDynamics::enableWorldCommunicator()
 {
-    std::unique_ptr<COMMUNICATOR::CommunicatorFactory> my_mpi_factory(new MPICommunicatorFactory);
-    this->MpiWorldCommunicator_ = my_mpi_factory->createWorldCommunicator();
-    return;
-}
 
+    std::unique_ptr<COMMUNICATOR::CommunicatorFactory> a_communicator_factory = std::make_unique<MPICommunicatorFactory>();
+    this->MpiWorldCommunicator_ = a_communicator_factory->createWorldCommunicator();
 
-void 
-AnansiMolecularDynamics::disableWorldCommunicator()
-{
-    this->MpiWorldCommunicator_->freeCommunicator();
-    this->MpiWorldCommunicator_.reset();
-    return;
-}
+    setup_mpi_world_communicator_invoker(mdWorldCommunicatorInvk_);
 
-void AnansiMolecularDynamics::enableWorldTaskGroup()
-{
-    std::unique_ptr<WorldTaskGroupIngredients> world_taskgroup_ingredients(
-            new ANANSI::WorldTaskGroupIngredients(this->commandLineArguments_,this->MpiWorldCommunicator_));
-
-    WorldTaskGroupConvenienceFunctions my_conv_functions;
-
-    using ingredients_t = WorldTaskGroupIngredients;
-    using taskgroup_t = WorldTaskGroup;
-    using needed_ingredients_typelist = WorldTaskGroup::NeededIngredients;
-
-    my_conv_functions.transferAllIngredients<
-        taskgroup_t,
-        ingredients_t,
-        needed_ingredients_typelist>(this->worldTaskGroup_,
-                                     world_taskgroup_ingredients);
-
-    my_conv_functions.enableTaskGroup(this->worldTaskGroup_);
+    // ---------------------------------------------------
+    // Do task that will create a world communicator.
+    //
+    // ---------------------------------------------------
+    const std::vector command_labels =
+        {ANANSI::InitWorldCommunicatorTaskReceiver::TASKLABEL};
+    this->mdWorldCommunicatorInvk_->doTask(command_labels);
 
     return;
 }
 
 void
-AnansiMolecularDynamics::disableWorldTaskGroup()
+AnansiMolecularDynamics::disableWorldCommunicator()
 {
-    WorldTaskGroupConvenienceFunctions my_conv_functions;
-    my_conv_functions.disableTaskGroup(this->worldTaskGroup_);
+    if (this->mdWorldCommunicatorInvk_)
+    {
+        const std::vector<ANANSI::TaskLabel> command_labels = {InitWorldCommunicatorTaskReceiver::TASKLABEL};
+        this->mdWorldCommunicatorInvk_->disableTask(command_labels);
+    }
+
+    if (this->MpiWorldCommunicator_)
+    {
+        this->MpiWorldCommunicator_->freeCommunicator();
+    }
+    return;
+}
+
+void
+AnansiMolecularDynamics::disableCoreLoggingTasks()
+{
+    // ---------------------------------------------------
+    // Disable the Console logger.
+    //
+    // ---------------------------------------------------
+    const std::vector<ANANSI::TaskLabel> command_labels = 
+      {WriteTextToConsoleTaskReceiver::TASKLABEL};
+    this->mdCoreLoggingInvk_->disableTask(command_labels);
     return;
 }
 
@@ -191,58 +221,100 @@ AnansiMolecularDynamics::saveCommandLineOptionParameters()
 {
     this->simulationParameters_ = SimulationParametersFactory::create(this->commandLineArguments_);
     return;
-}      /* -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  ----- */
-
+}      // -----  end of method AnansiMolecularDynamics::saveCommandLineOptionParameters  -----
 
 void
-AnansiMolecularDynamics::readSimulationControlFile ()
+AnansiMolecularDynamics::enableControlFileTasks ()
 {
-    // Initialize the variable "my_status" to failed. The variable will track the status of reading
-    // in the simulation control file. At the end of this method, we will set the status of the md
-    // simulation to "my_status".
-    auto my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-
-    // The control file option is mandatory. If the option is not present, then we set the MD status
-    // as "COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed" and we exit this method.
-    // Otherwise we process/parse the control file.
-    const auto file_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
-    if (file_name == SimulationParameters::OPTION_NOT_FOUND )
+    const auto controlfile_name =  this->simulationParameters_.getCommandLineOptionValues("controlfile");
+    if (controlfile_name == SimulationParameters::OPTION_NOT_FOUND )
     {
-        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-        this->setStatus(my_status);
         return;
     }
 
-    // Create the control file parser and process the control file.
-    ANANSI::MPICommunicatorFactory a_communicator_factory;
-    std::unique_ptr<COMMUNICATOR::Communicator> a_communicator = a_communicator_factory.cloneCommunicator(this->MpiWorldCommunicator_);
-    StandardFileParserFactory file_parser_factory;
-    std::shared_ptr<BuilderFileParser> control_file_builder = std::make_shared<BuilderControlFileParser>();
-    std::shared_ptr<FileParser> control_file = file_parser_factory.create(control_file_builder,
-                                                                          file_name,
-                                                                          std::move(a_communicator));
+    auto mpi_world_communicator = 
+      this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<InitWorldCommunicatorTaskReceiver::TASKLABEL>();
 
-    // Read the control file.
-    try 
-    {
-        control_file->readFile();
-        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful;
-    }
-    catch ( const std::exception & my_error ) 
-    {
-        my_status = COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-    }
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Setup all tasks for the control file invoker.
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    setup_controlfile_invoker(controlfile_name,
+                              std::move(mpi_world_communicator),
+                              this->mdControlFileInvk_);
 
-    this->setStatus(my_status);
+    // ---------------------------------------------------
+    // Run macro task command for the Control file. This macro task command
+    // action results in every process storing the information of the control
+    // file. See class RECEIVER::ControlFileMacroReceiver for more details.
+    //
+    // ---------------------------------------------------
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::ControlFileMacroReceiver::TASKLABEL};
+    this->mdControlFileInvk_->doTask(command_labels);
 
     return;
-}   /* -----  end of method AnansiMolecularDynamics::readSimulationControlFile_  ----- */
+}   // -----  end of method AnansiMolecularDynamics::enableControlFileTasks -----
 
-void AnansiMolecularDynamics::readInitialConfiguration()
+void
+AnansiMolecularDynamics::disableControlFileTasks ()
 {
-    std::cout << "Reading initial configuration" << std::endl;
+    disable_controlfile_invoker(this->mdControlFileInvk_);
+    return;
 }
 
+void
+AnansiMolecularDynamics::enableCoreLoggingTasks()
+{
+    // To setup the mdCoreLoggingInvk_ we need the world communicator object.
+    auto world_communicator = 
+      this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<InitWorldCommunicatorTaskReceiver::TASKLABEL>();
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // Setup all tasks and receivers for the console logging invoker
+    //
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    setup_core_logging_invoker(this->mdCoreLoggingInvk_,std::move(world_communicator));
+
+    return;
+}
+
+void AnansiMolecularDynamics::enableSimulationDecomposition()
+{
+        // The workload decomposition parameters are stored in the master control file. The master control file
+        // is the result of the task associated with the ControlFileMacroReceiver. This task
+        // is stored in the invoker mdControlFileInvk_. We use the utility function
+        // "MasterControlInputFileParameters::GetSimulationDecompositionParameters"
+        // to get the workload parameters.
+        SimulationDecompositionParameters workload_decomposition_parameters =
+            MasterControlInputFileParameters::GetSimulationDecompositionParameters(this->mdControlFileInvk_);
+
+        // We also need a copy of the world communicator for enabling the simulation de
+        auto mpi_world_communicator =
+          this->mdWorldCommunicatorInvk_->getCopyOfTaskResults<InitWorldCommunicatorTaskReceiver::TASKLABEL>();
+
+        setup_simulationdecomposition_invoker(workload_decomposition_parameters,
+        		                              std::move(mpi_world_communicator),
+											  this->mdSimulationDecomposerInvk_);
+        
+
+    // ---------------------------------------------------
+    // Run macro task command for the MacroReadPointAtoms. This macro task command
+    // action results in the distribution of the initial configuration atoms across the
+    // compute units.
+    // See class MacroReadPointAtoms for more details.
+    //
+    // ---------------------------------------------------
+    const std::vector<ANANSI::TaskLabel> command_labels = {ANANSI::MacroReadPointAtoms::TASKLABEL};
+    this->mdSimulationDecomposerInvk_->doTask(command_labels);
+
+    return;
+}
+
+void AnansiMolecularDynamics::disableSimulationDecomposition()
+{
+    disable_simulationdecomposition_invoker(this->mdSimulationDecomposerInvk_);
+    return;
+}
 
 //============================= OPERATORS ====================================
 
@@ -261,93 +333,45 @@ void AnansiMolecularDynamics::readInitialConfiguration()
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-    
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-COMMUNICATOR::RegistryAnansiMDStatus AnansiMolecularDynamics::status_() const
-{
-    return this->mdStatus_;
-}
 
-bool AnansiMolecularDynamics::isHelpOnCommandLine_() const
+bool
+AnansiMolecularDynamics::isHelpOnCommandLine_() const
 {
     const bool help_found = this->simulationParameters_.isCommandLineOptionPresent("help");
     return help_found;
-}
-
-bool AnansiMolecularDynamics::isISEStatusOkay_() const
-{
-    bool ret_value=false;
-    if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
-    {
-        ret_value = true;
-    }
-    else if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
-}
-
-bool AnansiMolecularDynamics::isISEGlobalStatusOkay_() const
-{
-    bool ret_value=false;
-    if (this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentInProgess)
-    {
-        ret_value = true;
-    }
-    else if ( this->mdGlobalStatus_ == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
-}
-
-bool AnansiMolecularDynamics::isIICStatusOkay_() const
-{
-    bool ret_value=false;
-    if ( this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentSucessful )
-    {
-        ret_value = true;
-    }
-    else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionInProgress )
-    {
-        ret_value = true;
-    }
-    else if (this->status() == COMMUNICATOR::RegistryAnansiMDStatus::InitializingInitialConditionSuccessful)
-    {
-        ret_value = true;
-    }
-    return ret_value;
 }
 
 //============================= MUTATORS =====================================
 void
 AnansiMolecularDynamics::initializeSimulationEnvironment_()
 {
-    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDInitInitialConditions.
     this->mdState_ = this->mdInitSimEnv_;
 
     this->mdState_->execute(this);
 
-    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDNullSimulationState.
     this->mdState_ = this->mdNullSimulationState_;
 
     return;
 }
 
-void AnansiMolecularDynamics::processCommandLine_()
+void
+AnansiMolecularDynamics::processCommandLine_()
 {
-    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDProcessCmmdLine.
     this->mdState_ = this->mdProcessCmdLine_;
 
     this->mdState_->execute(this);
 
-    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDNullSimulationState.
     this->mdState_ = this->mdNullSimulationState_;
     return;
@@ -358,50 +382,39 @@ void AnansiMolecularDynamics::processCommandLine_()
 void
 AnansiMolecularDynamics::initializeInitialConditions_()
 {
+    // Change the state of "this", a AnansiMolecularDynamics object, to
+    // state MDInitInitialConditions.
+    this->mdState_ = this->mdInitInitialConditions_;
+
+    this->mdState_->execute(this);
+
+    // Change the state of "this", a AnansiMolecularDynamics object, to
+    // state MDNullSimulationState.
+    this->mdState_ = this->mdNullSimulationState_;
     return;
 }        // -----  end of method AnansiMolecularDynamics::initializeInitialConditions_  -----
 
-void AnansiMolecularDynamics::performSimulation_()
+void
+AnansiMolecularDynamics::performSimulation_()
 {
     return;
 }        // -----  end of method AnansiMolecularDynamics::performSimulation_  -----
 
-void AnansiMolecularDynamics::terminateSimulationEnvironment_()
+void
+AnansiMolecularDynamics::terminateSimulationEnvironment_()
 {
-    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDTerminateSimulation.
     this->mdState_ = this->mdTerminateSimulation_;
 
     this->mdState_->execute(this);
 
-    // Change the state of "this", a AnansiMolecularDynamics object, to 
+    // Change the state of "this", a AnansiMolecularDynamics object, to
     // state MDNullSimulationState.
     this->mdState_ = this->mdNullSimulationState_;
 
     return;
 }      // -----  end of method AnansiMolecularDynamics::terminateSimulationEnvironment_  -----
-
-void 
-AnansiMolecularDynamics::setStatus_(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
-{
-    this->mdStatus_ = aStatus;
-    return;
-}
-
-void 
-AnansiMolecularDynamics::setGlobalISEStatus_()
-{
-    // We do a custom all reduction of the ISE status to get the
-    // global ISE status. 
-    const auto my_status = this->mdStatus_;
-    COMMUNICATOR::ISEReductionFunctor my_reduction_functor;
-
-    this->mdGlobalStatus_ = 
-        COMMUNICATOR::getGlobalStatusCustomReduction<COMMUNICATOR::RegistryAnansiMDStatus>(my_status,
-                                                     *(this->MpiWorldCommunicator_));
-    return;
-}
-
 
 //============================= OPERATORS ====================================
 

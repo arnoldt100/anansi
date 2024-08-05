@@ -1,26 +1,57 @@
 <!-- This control file performs a nve simulation for -->
-<!-- a cluster of 2 Lennard Jones atoms.             -->
+<!-- a cluster of 2 Lennard-Jones atoms.             -->
 
-<!-- Specifcation for the units of the simulation. -->
-<units>real</units>
+<!-- Specification for the units of the simulation. -->
+<simulation_units> real </simulation_units>
 
-<!-- Specifcation for the initial configuration of the system. -->
+<!-- Coordinate system and  compute decomposition. -->
+<coordinate_and_compute_topology> 
+    <lattice_type> rectangular </lattice_type>
+    <units> nanometer </units>
+    <lattice_vectors> 
+        <e1> 10.0 0.0 0.0 </e1>
+        <e2> 0.0 10.0 0.0 </e2>
+        <e3> 0.0 0.0 10.0 </e3>
+    </lattice_vectors>
+    <lattice_origin> 0.0 0.0 0.0 </lattice_origin>
+    <periodicity> non-periodic  non-periodic  non-periodic </periodicity>
+    <compute_units_distribution> 1 1 2 </compute_units_distribution>
+</coordinate_and_compute_topology> 
+
+<!-- Specification for the initial configuration of the system. -->
 <initial_configuration>
     <filename> ar2.initialconfiguration </filename>
 </initial_configuration>
 
-<!-- Specificaion of atomic/molecular topology --!>
-<topology>
+<!-- Specification of atomic/molecular topology --!>
+<molecular_topology>
 	<filename> ar2.topology </filename>
-</topology>
+</molecular_topology>
 
 <!-- Force field specification --!>
-<Hamiltonian> 
+<hamiltonian> 
     <filename> ar2.hamiltonian </filename> 
-</Hamiltonian>
+</hamiltonian>
 
-<!-- Specifcation for the timestep. -->
-<timestep>
+<!-- Specification for the time step size. -->
+<time_step_size>
     <value> 1.0 </value>
-    <units> femtoseconds </units>
-</timestep>
+    <units> femtosecond </units>
+</time_step_size>
+
+<!-- Specification for the number of time steps. -->
+<number_of_time_steps>
+    <value> 100000 </value>
+</number_of_time_steps>
+
+<!-- Simulation output sepcifications -->
+<simulation_output>
+        <frequency> 1000 </frequency>
+        <directory_name> ar_2_data.#.step </directory_name>
+</simulation_output>
+
+<!-- Checkpoint/Restart sepcifications -->
+<checkpoint>
+        <frequency> 1000 </frequency>
+        <directory_name> ar_2_checkpoint.#.step </directory_name>
+</checkpoint>

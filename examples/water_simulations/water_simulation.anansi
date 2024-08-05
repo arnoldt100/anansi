@@ -1,0 +1,47 @@
+<!-- This control file performs a nve simulation for
+     a cluster of water molecules.             -->
+
+<!-- The title of the simulation -->
+<title>Water Cluster Simulation</title>
+
+<!-- Specification for the units of the simulation. -->
+<units>real</units>
+
+<!-- Workload Decomposition -->
+<workload-decomposition> spatial-data-domain-decomposition </workload-decomposition>
+
+<!-- Compute elements and MPI spatial decomposition. -->
+<processor-topology> 
+    <lattice-type> rectangular </lattice-type>
+    <mpi-spatial-decomposition> 1  1  1 </mpi-spatial-decomposition> 
+    <compute-units-per-spatial-domain> 1 </compute-units-per-spatial-domain>
+</processor-topology> 
+
+<!-- Specification for the initial configuration of the system. -->
+<initial-configuration>
+    <filename> water2.initialconfiguration.coordinates </filename>
+</initial-configuration>
+
+<!-- Specification for the coordinate system -->
+<coordinate-system> a_water_box.coordinatesystem </coordinate-system>
+
+<!-- Specification of atomic/molecular topology -->
+<molecular-topology>
+	<filename> water.topology </filename>
+</molecular-topology>
+
+<!-- Force field specification -->
+<hamiltonian> 
+    <filename> water-tip3p.hamiltonian </filename> 
+</hamiltonian>
+
+<!-- Specification for the time step. -->
+<time-step>2.0 femtosecond </time-step>
+
+<!-- Specification for the number of time step. -->
+<total-number-time-steps> 100000 </total-number-time-steps>
+
+<!-- Specification for the integration method -->
+<integration-methodology>
+    <ensemble> NVE </ensemble>
+</integration-methodology>

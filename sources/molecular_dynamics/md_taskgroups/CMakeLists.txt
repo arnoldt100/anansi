@@ -1,43 +1,9 @@
-# This CMakeLists.txt file creates the library libmd_taskgroups.a
-# and its unit tests. To add source files, simply append the appropiate variable
-# md_taskgroups_header_files or md_taskgroups_implementation_files.
-#
-# The target for the library is md_taskgroups.
-#
-# The following properties are set for the target md_taskgroups.
-#
-#   Property                            Value                                               Description
-#----------------------------------------------------------------------------------------------------------------------------
-#
-# md_taskgroups_include         ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
-# PUBLIC_HEADER                ${md_taskgroups_header_files}                        The list of headers files associated with this librarry.
-
-# The build will abort unless the following variables are defined to
-# install the library archive, header files and unit tests:
-#   md_taskgroups_install_lib_directory
-#   md_taskgroups_install_include_directory
-#   md_taskgroups_install_bin_directory
-#   md_taskgroups_logfilepath
-
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-    #-----------------------------------------------------
-    # Define the project.                                -
-    #                                                    -
-    #-----------------------------------------------------
-    set(my_project_name "md_taskgroups")
-    project(${my_project_name})
-
-    #-----------------------------------------------------
-    # Define the target name.                            -
-    #                                                    -
-    #-----------------------------------------------------
-    set(target ${my_project_name})
 
     # ----------------------------------------------------
     # Verify the prerequisites for configuring package
@@ -47,15 +13,130 @@
     include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/md_taskgroups_build_prerequisites.cmake")
     verify_md_taskgroups_build_prerequisites_are_met()
 
-    #-----------------------------------------------------
-    # Set various variables for include directories.     -
-    #                                                    -
-    #-----------------------------------------------------
-    get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include )
-    get_target_property(my_task_group_include task_group task_group_include )
-    get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
-    get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
-    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
+    # ----------------------------------------------------
+    #  This section configures target mdownershippolicies.
+    # 
+    # ----------------------------------------------------
+    
+    package_config_begin_delimiter("mdownershippolicies" "${md_taskgroups_logfilepath}")
+
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/MDOwnershipPolicies/cmake_macros_and_functions/mdownershippolicies.cmake )
+
+    enable_building_mdownershippolicies_package("${md_taskgroups_install_lib_directory}"
+                                                "${md_taskgroups_install_include_directory}"
+                                                "${md_taskgroups_install_bin_directory}"
+                                                "${md_taskgroups_cxx_standard}"
+                                                "${md_taskgroups_logfilepath}")
+
+    add_subdirectory(MDOwnershipPolicies)
+
+    package_config_end_delimiter("mdownershippolicies" "${md_taskgroups_logfilepath}")
+    
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+    # ----------------------------------------------------
+    #  This section configures target genericmdtask.
+    # 
+    # ----------------------------------------------------
+    package_config_begin_delimiter("genericmdtask" "${md_taskgroups_logfilepath}")
+
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/GenericMDTask/cmake_macros_and_functions/genericmdtask.cmake )
+
+    enable_building_genericmdtask_package("${md_taskgroups_install_lib_directory}"
+                                          "${md_taskgroups_install_include_directory}"
+                                          "${md_taskgroups_install_bin_directory}"
+                                          "${md_taskgroups_cxx_standard}"
+                                          "${md_taskgroups_logfilepath}")
+
+    add_subdirectory(GenericMDTask)
+
+    package_config_end_delimiter("genericmdtask" "${md_taskgroups_logfilepath}")
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+    # ----------------------------------------------------
+    #  This section configures target common_md_taskgroup_headers
+    # 
+    # ----------------------------------------------------
+    package_config_begin_delimiter("common_md_taskgroup_headers" "${md_taskgroups_logfilepath}")
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/CommonMDTaskGroupHeaders/cmake_macros_and_functions/common_md_taskgroup_headers.cmake)
+    
+    enable_building_common_md_taskgroup_headers_package("${md_taskgroups_install_lib_directory}"
+                                                        "${md_taskgroups_install_include_directory}"
+                                                        "${md_taskgroups_install_bin_directory}"
+                                                        "${md_taskgroups_cxx_standard}"
+                                                        "${md_taskgroups_logfilepath}")
+
+    add_subdirectory(CommonMDTaskGroupHeaders)
+
+    package_config_end_delimiter("common_md_taskgroup_headers" "${md_taskgroups_logfilepath}")
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+    # ----------------------------------------------------
+    #  This section configures targets in simulationdecomposition
+    # 
+    # ----------------------------------------------------
+
+    package_config_begin_delimiter("simulationdecomposition" "${md_taskgroups_logfilepath}")
+
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/SimulationDecomposition/cmake_macros_and_functions/simulationdecomposition.cmake )
+    enable_building_simulationdecomposition_package("${md_taskgroups_install_lib_directory}"
+                                                    "${md_taskgroups_install_include_directory}"
+                                                    "${md_taskgroups_install_bin_directory}"
+                                                    "${md_taskgroups_cxx_standard}"
+                                                    "${md_taskgroups_logfilepath}")
+    add_subdirectory(SimulationDecomposition)
+
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+    # ----------------------------------------------------
+    #  This section configures targets in MPICommunicatorTask.
+    # 
+    # ----------------------------------------------------
+    add_subdirectory(MPICommunicatorTask)
+
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+    # ----------------------------------------------------
+    #  This section configures target readcontrolfile.
+    # 
+    # ----------------------------------------------------
+    package_config_begin_delimiter("readcontrolfile" "${md_taskgroups_logfilepath}")
+
+    include( ${CMAKE_CURRENT_SOURCE_DIR}/ReadControlFile/cmake_macros_and_functions/readcontrolfile.cmake )
+    enable_building_readcontrolfile_package("${md_taskgroups_install_lib_directory}"
+                                            "${md_taskgroups_install_include_directory}"
+                                            "${md_taskgroups_install_bin_directory}"
+                                            "${md_taskgroups_cxx_standard}"
+                                            "${md_taskgroups_logfilepath}")
+    add_subdirectory(ReadControlFile)
+
+    package_config_end_delimiter("readcontrolfile" "${md_taskgroups_logfilepath}")
+    
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
+
+
+    # ----------------------------------------------------
+    #  This section configures targets in CoreLoggingTasks
+    # 
+    # ----------------------------------------------------
+
+    add_subdirectory(CoreLoggingTasks)
+
+    # ----------------------------------------------------
+    #  (End of section)
+    # ----------------------------------------------------
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -63,123 +144,3 @@
 #                                                                 @
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-#                                                                 @
-# Here we define the sources and header files associated          @
-# with the various targets.                                       @
-#                                                                 @
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-    
-    #-----------------------------------------------------
-    # Here we define the variable                        -
-    # command_line_arguments_header_files.               -
-    # A list of header files is stored in                -
-    # this variable.                                     -
-    #                                                    -
-    #-----------------------------------------------------
-    set (md_taskgroups_header_files
-         header_files/MDTaskGroupTraits.h
-         header_files/ForLoopTransferIngredients.hpp
-         header_files/MDTaskGroupFactory.hpp
-         header_files/DefaultTaskGroup.h
-         header_files/WorldTaskGroupIngredients.h
-         header_files/WorldTaskGroupConvenienceFunctions.h
-         header_files/WorldTaskGroup.h)
-
-    #-----------------------------------------------------
-    # Here we define the variable                        -
-    # command_line_arguments_implementation_files.       -
-    # A list of implementation files is stored in this   -
-    # variable.                                          -
-    #                                                    -
-    #-----------------------------------------------------
-    set (md_taskgroups_implementation_files
-         implementation_files/MDTaskGroupTraits.cpp
-         implementation_files/ForLoopTransferIngredients.cpp
-         implementation_files/MDTaskGroupFactory.cpp
-         implementation_files/DefaultTaskGroup.cpp
-         implementation_files/WorldTaskGroupIngredients.cpp
-         implementation_files/WorldTaskGroupConvenienceFunctions.cpp
-         implementation_files/WorldTaskGroup.cpp )
-
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-#                                                                 @
-# End of defining the sources and header files associated         @
-# with the command_line_arguments targets.                        @
-#                                                                 @
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-#-----------------------------------------------------
-# Add the library associated with target             -
-# command_line_arguments.                            -
-#                                                    -
-#-----------------------------------------------------
-add_library( ${target} STATIC 
-             "")
-
-#-----------------------------------------------------
-# Enable compile warnings.                           -
-#                                                    -
-#-----------------------------------------------------
-enable_compile_warnings(${target})
-
-#-----------------------------------------------------
-#                                                    -
-# We associate the source files with the target.     -
-#                                                    -
-#-----------------------------------------------------
-target_sources(${target}
-    PRIVATE ${md_taskgroups_header_files} ${md_taskgroups_implementation_files} )
-
-#-----------------------------------------------------
-# Add the directory header_files to search for       -
-# header files.                                      -
-#                                                    -
-#-----------------------------------------------------
-target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
-                           PRIVATE ${my_command_line_include_dir}
-                           PRIVATE ${my_generic_object_factory_include}
-                           PRIVATE ${my_task_group_include} 
-                           PRIVATE ${my_foreach_loop_include} 
-                           PRIVATE ${my_typelist_aliases_include} ) 
-
-#-----------------------------------------------------
-# Set the list of libraries to link against.         -
-#                                                    -
-#-----------------------------------------------------
-target_link_libraries(${target}
-                      PUBLIC generic_object_factory
-                      PUBLIC task_group 
-                      PUBLIC typelist_aliases
-                      PUBLIC command_line_arguments
-                      PUBLIC generic_foreach_loop )
-
-
-#-----------------------------------------------------
-# Enable compile warnings.                           -
-#                                                    -
-#-----------------------------------------------------
-enable_compile_warnings(${target})
-
-#-----------------------------------------------------
-# Here we set the properties on target               -
-#                                                    -
-#-----------------------------------------------------
-set_target_properties(${target} PROPERTIES
-                      md_taskgroups_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
-                      CXX_STANDARD ${md_taskgroups_cxx_standard}
-                      PUBLIC_HEADER "${md_taskgroups_header_files}" )
-
-install( TARGETS ${target}
-         ARCHIVE DESTINATION ${md_taskgroups_install_lib_directory} 
-         PUBLIC_HEADER DESTINATION ${md_taskgroups_install_include_directory} )
-
-#-----------------------------------------------------
-# Add the subdirectory for creating the unit tests.  -
-#                                                    -
-#-----------------------------------------------------
-#add_subdirectory(unit_tests)

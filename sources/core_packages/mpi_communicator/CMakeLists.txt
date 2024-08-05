@@ -43,10 +43,13 @@
     # Set various variables for include directories.     -
     #                                                    -
     #-----------------------------------------------------
+    get_target_property(my_receiver_include receiver receiver_include)
     get_target_property(my_comm_include communicator communicator_include)
     get_target_property(my_mm_include memory_management memory_management_include)
     get_target_property(my_su_include string_utilities string_utilities_include)
+    get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include)
     get_target_property(my_cc_include counterclass counterclass_include)
+    get_target_property(my_debbugging_utilities_include debugging_utilities debugging_utilities_include)
 
     # ----------------------------------------------------
     #  Verify all build prerequisites are satisfied.
@@ -84,6 +87,9 @@
          header_files/MPICommSplitException.h
          header_files/ErrorMPIBroadcast.h
          header_files/MPIBroadcast.h
+         header_files/BroadcastVectorStringCache.h
+         header_files/MPIBarrier.h
+         header_files/MPIBarrierException.h
          header_files/MPICommDuplicateException.h
          header_files/MPIAllReduceException.h
          header_files/MPIReduce.h
@@ -110,7 +116,9 @@
          header_files/EnabledMPIEnvironment.h 
          header_files/NullMPIEnvironment.h
          header_files/MPICommunicator.h
-         header_files/MPIInitException.h )
+         header_files/MPIInitException.h
+         header_files/details/create_cartesian_mpi_communicator.hpp
+         header_files/details/free_mpi_communicator.h)
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -125,6 +133,9 @@
          implementation_files/MPICommSplitException.cpp
          implementation_files/ErrorMPIBroadcast.cpp
          implementation_files/MPIBroadcast.cpp
+         implementation_files/BroadcastVectorStringCache.cpp
+         implementation_files/MPIBarrier.cpp
+         implementation_files/MPIBarrierException.cpp
          implementation_files/MPICommDuplicateException.cpp
          implementation_files/MPIAllReduceException.cpp
          implementation_files/MPIReduce.cpp
@@ -151,7 +162,9 @@
          implementation_files/EnabledMPIEnvironment.cpp 
          implementation_files/NullMPIEnvironment.cpp
          implementation_files/MPICommunicator.cpp
-         implementation_files/MPIInitException.cpp )
+         implementation_files/MPIInitException.cpp
+         implementation_files/details/create_cartesian_mpi_communicator.cpp
+         implementation_files/details/free_mpi_communicator.cpp)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -182,11 +195,16 @@ target_sources(${target}
 #                                                    -
 #-----------------------------------------------------
 target_include_directories(${target} 
-                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files 
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${MPI_C_INCLUDE_DIRS}
+                           PRIVATE ${my_command_line_arguments_include} 
+                           PRIVATE ${my_receiver_include}
                            PRIVATE ${my_su_include}
                            PRIVATE ${my_comm_include} 
                            PRIVATE ${my_mm_include}
-                           PRIVATE ${my_cc_include})
+                           PRIVATE ${my_cc_include}
+                           PRIVATE ${my_debbugging_utilities_include}
+                           PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details )
 
                        
 #-----------------------------------------------------
@@ -196,11 +214,15 @@ target_include_directories(${target}
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 target_link_libraries( ${target}
+                       PUBLIC MPI::MPI_C
+                       PUBLIC receiver
+                       PUBLIC command_line_arguments
                        PUBLIC Threads::Threads
                        PUBLIC string_utilities
                        PUBLIC communicator
                        PUBLIC memory_management 
-                       PUBLIC counterclass)
+                       PUBLIC counterclass
+                       PUBLIC debugging_utilities)
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
@@ -225,4 +247,4 @@ install( TARGETS ${target}
 # Add the subdirectory for creating the unit tests.  -
 #                                                    -
 #-----------------------------------------------------
-# add_subdirectory(unit_tests)
+add_subdirectory(unit_tests)

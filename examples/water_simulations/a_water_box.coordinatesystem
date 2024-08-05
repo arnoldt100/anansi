@@ -1,0 +1,21 @@
+<data>
+  <Coordinate System>3D Cartesian Coordinates<bounding region>
+      <x-lower>0.0</x-lower>
+      <x-upper>10.0</x-upper>
+      <y-lower>0.0</y-lower>
+      <y-upper>10.0</y-upper>
+      <z-lower>0.0</z-lower>
+      <z-upper>10.0</z-upper>
+    </bounding region>
+    <origin>
+      <x>0.0</x>
+      <y>0.0</y>
+      <z>0.0</z>
+    </origin>
+    <boundary conditions>
+      <x>pbc</x>
+      <y>pbc</y>
+      <z>pbc</z>
+    </boundary conditions>
+  </Coordinate System>
+</data>

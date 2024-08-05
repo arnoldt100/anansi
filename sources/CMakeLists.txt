@@ -1,4 +1,4 @@
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# e@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # CMake preamble section.                                         @
 #                                                                 @
@@ -17,7 +17,7 @@
     #   ANANSI_MD                                        -
     #                                                    -
     #-----------------------------------------------------
-    set(ANANSI_MD 1) 
+    set(ANANSI_MD 2) 
 
     #-----------------------------------------------------
     # Define the project.                                -
@@ -30,11 +30,17 @@
     #                                                    -
     #-----------------------------------------------------
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_build_prerequisites.cmake" )
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_mpi.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_boost.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_compile_warnings.cmake" )
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_anansi_debug_flags.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_log_message.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_test_variable.cmake" )
     include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_package_configure_delimiter_comments.cmake") 
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/anansi_property_name_generator.cmake") 
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/generic_target_build_prerequisites.cmake") 
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_anansi_data_storage.cmake") 
+    include( "${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/enable_anansi_precision.cmake") 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -58,7 +64,7 @@
     # Check that key environmental variables are set.    -
     #                                                    -
     #-----------------------------------------------------
-    verify_key_environmental_are_set()
+    verify_key_anansi_environmental_are_set()
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -71,7 +77,7 @@
 # that are critical for building and deploying.      -
 #-----------------------------------------------------
 set(anansi_top_level "$ENV{ANANSI_TOP_LEVEL}") 
-set(anansi_cxx_standard 17)
+set(anansi_cxx_standard 20)
 set(anansi_cmake_cxx_compiler "$ENV{ANANSI_CMAKE_CXX_COMPILER}")
 set(anansi_cmake_c_compiler "$ENV{ANANSI_CMAKE_C_COMPILER}")
 set(anansi_install_prefix "$ENV{ANANSI_INSTALL_PREFIX}")
@@ -79,11 +85,18 @@ set(anansi_install_bin_directory "$ENV{ANANSI_INSTALL_BIN_DIRECTORY}")
 set(anansi_install_include_directory "$ENV{ANANSI_INSTALL_INCLUDE_DIRECTORY}")
 set(anansi_install_lib_directory "$ENV{ANANSI_INSTALL_LIB_DIRECTORY}")
 set(anansi_minimum_cmake_version "$ENV{ANANSI_MINIMUM_CMAKE_VERSION}")
+set(anansi_debug_valid_values"$ENV{ANANSI_DEBUG_VALID_VALUES}")
 set(anansi_log_file "${anansi_top_level}/anansi_log.txt")
 
 set(my_message "Start of configuring project anansi\n")
 log_message_to_file("${anansi_log_file}" "${my_message}")
 
+#-----------------------------------------------------
+# This section checks that MPI is available.         -
+#                                                    -
+#-----------------------------------------------------
+enable_mpi()
+    
 #-----------------------------------------------------
 # This section permits use to find the header files  -
 # and link against the BOOST library.                -

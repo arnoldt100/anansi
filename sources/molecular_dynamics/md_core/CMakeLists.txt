@@ -47,15 +47,23 @@
     get_target_property(my_command_line_include_dir command_line_arguments command_line_arguments_include)
     get_target_property(simulation_parameters_include_dir simulation_parameters simulation_parameters_include)
     get_target_property(my_cc_include counterclass counterclass_include)
-    get_target_property(my_cf_include  file_parsers file_parsers_include)
+    get_target_property(my_cf_include  control_file control_file_include)
     get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
     get_target_property(my_s_include  simulation simulation_include)
     get_target_property(my_ss_include  simulation_state simulation_state_include)
     get_target_property(my_comm_include  communicator communicator_include)
     get_target_property(my_mpicomm_include  mpi_communicator mpi_communicator_include)
-    get_target_property(my_task_group_include task_group task_group_include)
+    get_target_property(my_tasks_include tasks tasks_include)
     get_target_property(my_foreach_loop_include generic_foreach_loop generic_foreach_loop_include)
-    get_target_property(my_md_taskgroup_include md_taskgroups md_taskgroups_include)
+    get_target_property(my_initmpienvtask_include initmpienvtask initmpienvtask_include )
+    get_target_property(my_initworldcommunicatortask_include initworldcommunicatortask initworldcommunicatortask_include)
+    get_target_property(my_writetexttoconsoletask_include writetexttoconsoletask writetexttoconsoletask_include )
+    get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include )
+    get_target_property(my_invoker_include invoker invoker_include )
+    get_target_property(my_receiver_include receiver receiver_include )
+    get_target_property(my_readcontrolfile_include readcontrolfile readcontrolfile_include )
+    get_target_property(my_simulationdecomposition_include simulationdecomposition simulationdecomposition_include)
+    get_target_property(my_debugging_utilities_include debugging_utilities debugging_utilities_include)
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
@@ -74,7 +82,7 @@
 
     #-----------------------------------------------------
     # Here we define the variable
-    # md_core_library_headers associated
+    # md_core_header_files associated
     # with the molecular dynamics library
     # 
     #-----------------------------------------------------
@@ -93,9 +101,12 @@
         header_files/MDTerminateSimulationVisitor.h
         header_files/MDTerminateSimulation.h
         header_files/MDSimulationStateFactory.h
-        header_files/ISEStatus.h
         header_files/AnansiMolecularDynamicsFactory.h 
         header_files/AnansiMDStateInt2Type.hpp)
+    
+    # ----------------------------------------------------
+    # These files are for communicattion environment invoker.
+    # 
 
     #-----------------------------------------------------
     # Here we define the variable                        -
@@ -118,7 +129,6 @@
         implementation_files/MDTerminateSimulationVisitor.cpp
         implementation_files/MDTerminateSimulation.cpp
         implementation_files/MDSimulationStateFactory.cpp
-        implementation_files/ISEStatus.cpp
         implementation_files/AnansiMolecularDynamicsFactory.cpp 
         implementation_files/AnansiMDStateInt2Type.cpp)
     
@@ -147,13 +157,21 @@ target_include_directories( "${md_core_target}"
                             PRIVATE "${my_command_line_include_dir}"
                             PRIVATE "${my_cc_include}"
                             PRIVATE "${my_cf_include}"
-                            PRIVATE ${my_s_include}
-                            PRIVATE ${my_ss_include}
-                            PRIVATE ${my_mpicomm_include}
-                            PRIVATE ${my_task_group_include} 
-                            PRIVATE ${my_generic_abstract_factory_include}
-                            PRIVATE ${my_foreach_loop_include} 
-                            PRIVATE ${my_md_taskgroup_include} )
+                            PRIVATE "${my_s_include}"
+                            PRIVATE "${my_initmpienvtask_include}"
+                            PRIVATE "${my_initworldcommunicatortask_include}"
+                            PRIVATE "${my_genericmdtask_include}"
+                            PRIVATE "${my_ss_include}"
+                            PRIVATE "${my_mpicomm_include}"
+                            PRIVATE "${my_tasks_include}" 
+                            PRIVATE "${my_invoker_include}"
+                            PRIVATE "${my_generic_abstract_factory_include}"
+                            PRIVATE "${my_foreach_loop_include}" 
+                            PRIVATE "${my_receiver_include}"
+                            PRIVATE "${my_readcontrolfile_include}"
+                            PRIVATE "${my_writetexttoconsoletask_include}"
+                            PRIVATE "${my_simulationdecomposition_include}"
+                            PRIVATE "${my_debugging_utilities_include}")
 
 #-----------------------------------------------------
 # Set the list of libraries to link against.         -
@@ -165,15 +183,23 @@ target_link_libraries("${md_core_target}"
                       PUBLIC simulation_parameters
                       PUBLIC command_line_arguments
                       PUBLIC counterclass
-                      PUBLIC file_parsers
+                      PUBLIC initmpienvtask
+                      PUBLIC initworldcommunicatortask
+                      PUBLIC genericmdtask
+                      PUBLIC control_file
                       PUBLIC simulation
                       PUBLIC simulation_state
                       PUBLIC mpi_communicator
-                      PUBLIC task_group
+                      PUBLIC tasks
+                      PUBLIC invoker
                       PUBLIC generic_abstract_factory
                       PUBLIC generic_foreach_loop
-                      PUBLIC md_taskgroups
-                      PUBLIC "${Boost_LIBRARIES}" )
+                      PUBLIC receiver
+                      PUBLIC readcontrolfile
+                      PUBLIC writetexttoconsoletask
+                      PUBLIC simulationdecomposition
+                      PUBLIC "${Boost_LIBRARIES}" 
+                      PRIVATE "${debugging_utilities}")
 
 #-----------------------------------------------------
 # We associate the source files with the md_core_target.
@@ -201,16 +227,13 @@ enable_compile_warnings("${md_core_target}")
 #
 #-----------------------------------------------------
 set_target_properties("${md_core_target}" PROPERTIES 
-    PUBLIC_HEADER "${md_core_library_headers}" 
+    md_core_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+    PUBLIC_HEADER "${md_core_header_files}" 
     CXX_STANDARD "${md_core_cxx_standard}" )
 
 install( TARGETS "${md_core_target}"
          ARCHIVE DESTINATION "${md_core_install_lib_directory}"
          PUBLIC_HEADER DESTINATION "${md_core_install_include_directory}" )
-
-set_target_properties("${md_core_target}" PROPERTIES
-                      md_core_include "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
-                      PUBLIC_HEADER "${md_core_header_files}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

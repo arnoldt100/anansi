@@ -23,8 +23,14 @@ function(verify_simulation_state_build_prerequisites_are_met)
     # for consistency.
     anansi_test_variable_is_defined("simulation_state_logfilepath" "${simulation_state_logfilepath}")
 
+    # Verfying that variable 'simulation_state_cmake_c_compiler' is defined.
+    anansi_test_variable_is_defined("simulation_state_cmake_c_compiler"  "${simulation_state_logfilepath}")
+
     # Verfying that variable 'simulation_state_cxx_standard' is defined.
     anansi_test_variable_is_defined("simulation_state_cxx_standard"  "${simulation_state_logfilepath}")
+
+    # Verfying that variable 'simulation_state_cmake_cxx_compiler' is defined.
+    anansi_test_variable_is_defined("simulation_state_cmake_cxx_compiler"  "${simulation_state_logfilepath}")
 
     # Verfying that variable 'simulation_state_install_bin_directory' is defined.
     anansi_test_variable_is_defined("simulation_state_install_bin_directory"  "${simulation_state_logfilepath}")

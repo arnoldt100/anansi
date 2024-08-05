@@ -1,6 +1,8 @@
 #ifndef __filepreprocessordefine__
 #define __filepreprocessordefine__
 
+//! \file __function__.h
+
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
@@ -17,15 +19,10 @@
 namespace __NAMESPACE__
 {
 
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  __function__
- *  Description:  
- * =====================================================================================
- */
+//! \brief Stud text for brief description
 void __function__ ( <+argument_list+> );
 
 
-}; /* namespace __NAMESPACE__ */
+}; // namespace __NAMESPACE__
 
-#endif /* __filepreprocessordefine__ */
+#endif // __filepreprocessordefine__

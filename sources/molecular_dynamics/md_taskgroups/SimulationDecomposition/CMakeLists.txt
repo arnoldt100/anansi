@@ -1,0 +1,360 @@
+# This CMakeLists.txt file creates the library libsimulationdecomposition.a
+# and its unit tests. To add source files, simply append the appropiate variable
+# simulationdecomposition_header_files or simulationdecomposition_implementation_files.
+#
+# The target for the library is simulationdecomposition.
+#
+# The following properties are set for the target simulationdecomposition.
+#
+#   Property                            Value                                               Description
+#----------------------------------------------------------------------------------------------------------------------------
+#
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# CMake preamble section.                                         @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    #-----------------------------------------------------
+    # Define the project.                                -
+    #                                                    -
+    #-----------------------------------------------------
+    set(my_project_name "simulationdecomposition")
+    project(${my_project_name})
+
+    #-----------------------------------------------------
+    # Define the target name.                            -
+    #                                                    -
+    #-----------------------------------------------------
+    set(target ${my_project_name})
+
+    #-----------------------------------------------------
+    # Define the property name for the include directory.
+    # 
+    # We use the function "target_include_property_name" to define the property
+    # name.
+    #-----------------------------------------------------
+    set(my_target_include_property_name "${target}_include" )
+
+    # ----------------------------------------------------
+    # Verify that all simulationdecomposition build prerequisities
+    # are satisfied.
+    # 
+    # ----------------------------------------------------
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/simulationdecomposition_build_prerequisites.cmake")
+    verify_simulationdecomposition_build_prerequisites_are_met()
+
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_debugging_utilities_include  debugging_utilities  debugging_utilities_include  )  
+    get_target_property(my_comm_include communicator communicator_include)
+    get_target_property(my_common_md_taskgroup_headers_include common_md_taskgroup_headers common_md_taskgroup_headers_include)
+    get_target_property(my_genericmdtask_include genericmdtask genericmdtask_include)
+    get_target_property(my_physical_data_structures_include  physical_data_structures physical_data_structures_include)
+    get_target_property(my_dataandexecutionpolicies_include dataandexecutionpolicies dataandexecutionpolicies_include)
+    get_target_property(my_mpi_communicator_include mpi_communicator mpi_communicator_include)
+    get_target_property(my_invoker_include invoker invoker_include )
+    get_target_property(my_generic_abstract_factory_include generic_abstract_factory generic_abstract_factory_include )
+    get_target_property(my_command_files_include command_files command_files_include )
+    get_target_property(my_particles_configuration_files_include particles_configuration_files particles_configuration_files_include )
+    get_target_property(my_file_parsers_core_include file_parsers_core file_parsers_core_include )
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of CMake preamble section.                                  @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+#-----------------------------------------------------
+# Add the library associated with target             -
+# simulationdecomposition.                            -
+#                                                    -
+#-----------------------------------------------------
+add_library( ${target} STATIC 
+             "")
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# Here we define the sources and header files associated          @
+# with the various targets.                                       @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    
+    #-----------------------------------------------------
+    # Here we define the variable                        -
+    # simulationdecomposition_header_files.              -
+    # A list of header files is stored in                -
+    # this variable.                                     -
+    #                                                    -
+    #-----------------------------------------------------
+    set (simulationdecomposition_header_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ErrorReadAtoms.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/setup_simulationdecomposition_invoker.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/disable_simulationdecomposition_invoker.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionParameters.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/SDPConstructorHelpers.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/message_missing_mandatory_node_tag.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/workload_decomposition_type/WorkloadDecompositionTypeHelpers.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/workload_decomposition_type/workload_decomposition_type_details.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type/ProcessorTopologyLatticeTypeHelpers.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type/processor_lattice_type_details.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain/ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/coordinate_system/CoordinateSystemFileNameHelpers.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/coordinate_system/coordinate_system_file_name_details.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorInvalidSimulationDecompositionParameters.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.h)
+
+        # ---------------------------------------------------
+        # Source files for setting the precision and executtion policies 
+        # of target simulationdecomposition.
+        #
+        # --------------------------------------------------- 
+        list (APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionPrecisionPolicy.h
+              ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionExecutionPolicy.h)
+
+        # ----------------------------------------------------
+        # Source files for processing the initial configurations to 
+        # SimulationDecompositionParameters
+        # 
+        # ----------------------------------------------------
+        list (APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations/initial_configuration_type_details.h )
+        list (APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations/InitialConfigurationFileNamesHelpers.h)
+        
+        # ----------------------------------------------------
+        # Source files for ReadPointAtoms task
+        # 
+        # ----------------------------------------------------
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsTraits.h
+              ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.hpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/ReadPointAtoms.h
+              ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/PointAtomsConfigurationFileNodeKeys.h
+              ${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms/PointAtomsInternalNodeKeys.h)
+
+        # ----------------------------------------------------
+        # Source files for PointAtomsDecomposer task
+        # 
+        # ----------------------------------------------------
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer/PointAtomsDecomposerResultsTraits.h)
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer/PointAtomsDecomposerResultsOwnershipImpl.hpp)
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer/PointAtomsDecomposer.h)
+
+        # ----------------------------------------------------
+        # Source files for PointAtomsCommunicator task
+        # 
+        # ----------------------------------------------------
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator/PointAtomsCommunicatorResultsTraits.h)
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator/PointAtomsCommunicatorResultsOwnershipImpl.hpp)
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator/PointAtomsCommunicator.h)
+
+        # ----------------------------------------------------
+        # Source files for MacroReadPointAtoms task
+        # 
+        # ----------------------------------------------------
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtoms.h)
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtomsResultsOwnershipImpl.hpp)
+        list( APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms/MacroReadPointAtomsResultsTraits.h)
+
+        # ----------------------------------------------------
+        # Source files for SimulationDecomposition setup methods.
+        # 
+        # ----------------------------------------------------
+        list( APPEND simulationdecomposition_header_files 
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionTaskTraits.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_pointatoms_decomposer_receiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_read_pointatoms_receiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_pointatoms_communicator_receiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/SimulationDecompositionTasksHelpers.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.h )
+       
+          
+    #-----------------------------------------------------
+    # Here we define the variable                        -
+    # simulationdecomposition_implementation_files.      -
+    # A list of implementation files is stored in this   -
+    # variable.                                          -
+    #                                                    -
+    #-----------------------------------------------------
+    set (simulationdecomposition_implementation_files
+        ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ErrorReadAtoms.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/setup_simulationdecomposition_invoker.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/disable_simulationdecomposition_invoker.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionParameters.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/SDPConstructorHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/message_missing_mandatory_node_tag.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_spatial_dimensions/ProccesorTopologyLatticeSpatialDimensionsHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_spatial_dimensions/processor_lattice_spatial_dimensions_details.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/coordinate_system/CoordinateSystemFileNameHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/coordinate_system/coordinate_system_file_name_details.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/workload_decomposition_type/WorkloadDecompositionTypeHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/workload_decomposition_type/workload_decomposition_type_details.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_type/ProcessorTopologyLatticeTypeHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_lattice_type/processor_lattice_type_details.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_topology_number_compute_units_per_spatial_domain/ProcessorTopologyNumberComputeUnitsPerSpatialDomainHelpers.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/processor_topology_number_compute_units_per_spatial_domain/processor_topology_number_compute_units_per_spatial_domain_details.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/Exceptions/ErrorInvalidSimulationDecompositionParameters.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/Exceptions/ErrorMissingSimulationDecompositionParameters.cpp)
+
+        # ---------------------------------------------------
+        # Source files for setting the precision and execution policies 
+        # of target simulationdecomposition.
+        #
+        # --------------------------------------------------- 
+        list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionPrecisionPolicy.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionExecutionPolicy.cpp)
+
+        # ----------------------------------------------------
+        # Source files for processing the initial configurations to 
+        # SimulationDecompositionParameters
+        # 
+        # ----------------------------------------------------
+        list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/initial_configurations/initial_configuration_type_details.cpp )
+        list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/initial_configurations/InitialConfigurationFileNamesHelpers.cpp )
+
+        # ----------------------------------------------------
+        # Source files for SimulationDecomposition setup methods
+        # 
+        # ----------------------------------------------------
+        list (APPEND simulationdecomposition_implementation_files 
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionTaskTraits.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_read_pointatoms_receiver.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_pointatoms_communicator_receiver.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_pointatoms_decomposer_receiver.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/setup_macro_read_pointatoms_receiver.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/SimulationDecompositionTasksHelpers.cpp 
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/sdp_create_communicator_embryo.cpp 
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/details/simulation_decomposition_task_details/error_message_lattice_topology_comm_size_mismatch.cpp )
+        
+        # ----------------------------------------------------
+        # Source files for ReadPointAtoms task
+        # 
+        # ----------------------------------------------------
+        list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsTraits.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtomsResultsOwnershipImpl.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/ReadPointAtoms.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/PointAtomsConfigurationFileNodeKeys.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/ReadPointAtoms/PointAtomsInternalNodeKeys.cpp )
+
+        # ----------------------------------------------------
+        # Source files for PointAtomsDecomposer task
+        # 
+        # ----------------------------------------------------
+        list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposerResultsTraits.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposerResultsOwnershipImpl.cpp
+              ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsDecomposer/PointAtomsDecomposer.cpp)
+
+        # ----------------------------------------------------
+        # Source files for PointAtomsCommunicator task
+        # 
+        # ----------------------------------------------------
+        list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsCommunicator/PointAtomsCommunicatorResultsTraits.cpp)
+        list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsCommunicator/PointAtomsCommunicatorResultsOwnershipImpl.cpp)
+        list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/PointAtomsCommunicator/PointAtomsCommunicator.cpp)
+
+        # ----------------------------------------------------
+        # Source files for MacroReadPointAtoms task
+        # 
+        # ----------------------------------------------------
+        list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtoms.cpp)
+        list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtomsResultsOwnershipImpl.cpp)
+        list( APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/MacroReadPointAtoms/MacroReadPointAtomsResultsTraits.cpp)
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of defining the sources and header files associated         @
+# with the simulationdecomposition targets.                       @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+#-----------------------------------------------------
+# Set the list of directories to search for          -
+# header files.                                      -
+#                                                    -
+#-----------------------------------------------------
+target_include_directories(${target}
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files"
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/Exceptions"
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/ReadPointAtoms" 
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsDecomposer" 
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/PointAtomsCommunicator" 
+                           PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/header_files/MacroReadPointAtoms" 
+                           PUBLIC "${my_physical_data_structures_include}"
+                           PUBLIC "${my_dataandexecutionpolicies_include}"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/simulation_decomposition_task_details"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_spatial_dimensions"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/workload_decomposition_type"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/coordinate_system"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_lattice_type"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/processor_topology_number_compute_units_per_spatial_domain"
+                           PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/header_files/details/initial_configurations"
+                           PRIVATE "${my_command_files_include}"
+                           PRIVATE "${my_particles_configuration_files_include}"
+                           PRIVATE "${my_file_parsers_core_include}"
+                           PRIVATE "${my_generic_abstract_factory_include}"
+                           PRIVATE "${my_invoker_include}"
+                           PRIVATE "${my_common_md_taskgroup_headers_include}"
+                           PRIVATE "${my_comm_include}"
+                           PRIVATE "${my_mpi_communicator_include}"
+                           )
+
+#-----------------------------------------------------
+# Set the list of libraries to link against.         -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries(${target}
+                      PUBLIC communicator
+                      PUBLIC physical_data_structures
+                      PUBLIC dataandexecutionpolicies
+                      PUBLIC generic_abstract_factory
+                      PUBLIC genericmdtask
+                      PUBLIC common_md_taskgroup_headers
+                      PUBLIC command_files
+                      PUBLIC particles_configuration_files 
+                      PUBLIC file_parsers_core
+                      PUBLIC invoker)
+
+
+#-----------------------------------------------------
+#                                                    -
+# we associate the source files with the target.     -
+#                                                    -
+#-----------------------------------------------------
+target_sources(${target}
+               PRIVATE ${simulationdecomposition_header_files} ${simulationdecomposition_implementation_files} )
+
+#-----------------------------------------------------
+# enable compile warnings.                           -
+#                                                    -
+#-----------------------------------------------------
+enable_compile_warnings(${target})
+
+#-----------------------------------------------------
+# here we set the properties on target               -
+#                                                    -
+#-----------------------------------------------------
+set_target_properties(${target} PROPERTIES
+                      "${my_target_include_property_name}" ${cmake_current_source_dir}/header_files
+                      CXX_STANDARD "${simulationdecomposition_cxx_standard}"
+                      PUBLIC_HEADER "${simulationdecomposition_header_files}" )
+
+install( TARGETS ${target}
+         ARCHIVE DESTINATION ${simulationdecomposition_install_lib_directory} 
+         PUBLIC_HEADER DESTINATION ${simulationdecomposition_install_include_directory} )
+
+#-----------------------------------------------------
+# add the subdirectory for creating the unit tests.  -
+#                                                    -
+#-----------------------------------------------------
+add_subdirectory(unit_tests)

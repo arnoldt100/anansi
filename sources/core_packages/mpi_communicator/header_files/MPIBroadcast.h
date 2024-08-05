@@ -1,3 +1,5 @@
+//! \file MPIBroadcast.h
+
 #ifndef  ANANSI_MPIBroadcast_INC
 #define  ANANSI_MPIBroadcast_INC
 
@@ -32,6 +34,17 @@ class MPI_Broadcast<int>
 
 }; // -----  end of class MPI_BROADCAST  -----
 
+template<>
+class MPI_Broadcast<std::size_t>
+{
+    public:
+
+    static std::size_t Broadcast(const std::size_t data_to_broadcast,
+                                 const MPI_Comm mpi_comm, 
+                                 const std::size_t bcast_rank);
+
+
+}; // -----  end of class MPI_BROADCAST  -----
 
 template<>
 class MPI_Broadcast<std::string>
@@ -42,6 +55,7 @@ class MPI_Broadcast<std::string>
                                  const MPI_Comm mpi_comm,
                                  const std::size_t bcast_rank);
 };
+
 
 }; // namespace ANANSI
 

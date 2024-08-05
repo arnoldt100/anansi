@@ -22,6 +22,7 @@
 
 macro(enable_compile_warnings MY_TARGET)
 
-    target_compile_options(${MY_TARGET}
-                           PRIVATE  $<$<CXX_COMPILER_ID:GNU>:-Wall>)
+     target_compile_options(${MY_TARGET}
+                            PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall -fconcepts -Wextra -Wconversion -Wuninitialized -Wunused-variable -Wshadow -Wfloat-equal>
+                            PRIVATE $<$<CXX_COMPILER_ID:Clang>:-Wall -Wextra -pedantic -Wconversion -Wuninitialized -Wno-error=unused-variable -Wshadow -Wfloat-equal>)
 endmacro()

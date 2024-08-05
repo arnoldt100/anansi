@@ -2,6 +2,7 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <iostream>
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -11,6 +12,9 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MDInitInitialConditionsVisitor.h"
+#include "SimulationDecompositionParameters.h"
+#include "ErrorReadAtoms.h"
+#include "GenericErrorClass.hpp"
 
 namespace ANANSI {
 
@@ -20,19 +24,33 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor()
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor() :
+    MPL::BaseVisitor(),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>()
 {
     return;
 }
 
-MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor const & other)
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor const & other) :
+    MPL::BaseVisitor(other),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
-MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor && other)
+MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor( MDInitInitialConditionsVisitor && other) :
+    MPL::BaseVisitor(std::move(other)),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(std::move(other))
 {
     return;
+    if (this != &other)
+    {
+
+    }
 }		// -----  end of method MDInitInitialConditionsVisitor::MDInitInitialConditionsVisitor  -----
 
 
@@ -45,8 +63,25 @@ MDInitInitialConditionsVisitor::~MDInitInitialConditionsVisitor()
 void MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
     std::cout << "MDInitInitialConditionsVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
-    a_sim.readSimulationControlFile();
-    a_sim.readInitialConfiguration(); 
+
+    // ---------------------------------------------------
+    // The first step is to enable the simulation decomposition.
+    // ---------------------------------------------------
+    try 
+    {
+        a_sim.enableSimulationDecomposition();
+    }
+    catch (const MOUSEION::GenericErrorClass<SimulationDecompositionParameters> & my_error) 
+    {
+    	std::string message{my_error.what()};
+        throw MOUSEION::GenericErrorClass<AnansiMolecularDynamics>(message);
+    }
+    catch (const MOUSEION::GenericErrorClass<ErrorReadAtoms> & my_error)
+    {
+    	std::string message{my_error.what()};
+    	throw MOUSEION::GenericErrorClass<AnansiMolecularDynamics>(message);
+    }
+
     return;
 }
 
@@ -58,7 +93,8 @@ MDInitInitialConditionsVisitor& MDInitInitialConditionsVisitor::operator= ( cons
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(other);
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -67,7 +103,8 @@ MDInitInitialConditionsVisitor& MDInitInitialConditionsVisitor::operator= ( MDIn
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(std::move(other));
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(std::move(other));
     }
     return *this;
 } // assignment-move operator

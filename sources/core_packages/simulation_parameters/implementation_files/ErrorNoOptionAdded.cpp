@@ -24,8 +24,12 @@ ErrorNoOptionAdded::ErrorNoOptionAdded()
     return;
 }
 
-ErrorNoOptionAdded::ErrorNoOptionAdded( ErrorNoOptionAdded && other)
+ErrorNoOptionAdded::ErrorNoOptionAdded( ErrorNoOptionAdded const & other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		/* -----  end of method ErrorNoOptionAdded::ErrorNoOptionAdded  ----- */
 

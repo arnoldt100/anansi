@@ -2,6 +2,8 @@
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
 #include <utility>
+#include <iostream>
+#include <typeinfo>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -29,12 +31,20 @@ InitInitialConditions::InitInitialConditions() :
 InitInitialConditions::InitInitialConditions( InitInitialConditions const & other) :
     SimulationState()
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 InitInitialConditions::InitInitialConditions( InitInitialConditions && other) :
     SimulationState(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method InitInitialConditions::InitInitialConditions  -----
 
@@ -83,6 +93,10 @@ void InitInitialConditions::execute_(Simulation * const a_simulation) const
 
 void InitInitialConditions::Execute_(Simulation * const a_simulation) const 
 {
+    std::string message("This InitInitialConditions::Execute executes a stud command! \n"); 
+    message += "The simulation is type: ";
+    message += typeid(a_simulation).name(); 
+    std::cout << message.c_str() << std::endl << std::flush;
     return;
 };
 

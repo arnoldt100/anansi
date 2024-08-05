@@ -12,6 +12,7 @@
 #include "DisabledMPIEnvironment.h"
 #include "EnabledMPIEnvironment.h"
 #include "MPIEnvironment.h"
+#include "ErrorInvalidMPIEnvironmentChange.h"
 
 namespace ANANSI {
 
@@ -95,8 +96,19 @@ EnabledMPIEnvironment& EnabledMPIEnvironment::operator= ( EnabledMPIEnvironment 
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
+std::string EnabledMPIEnvironment::currentState_() const
+{
+    return std::string(this->stateid_);
+}
 
 //============================= MUTATORS =====================================
+void EnabledMPIEnvironment::enable_(MPIEnvironment* const mpi_environment)
+{
+    std::string_view const original_state(mpi_environment->currentMPIEnvironmentState().c_str());
+    std::string_view const action{"'Enable MPI Environment'"};
+    throw ErrorInvalidMPIEnvironmentChange(original_state,action);
+    return;
+}
 
 void EnabledMPIEnvironment::disable_(MPIEnvironment* const mpi_environment)
 {

@@ -20,6 +20,12 @@ then
     echo "This variable must be set the the top level directory of anansi."
     echo "Anansi will not build correctly till this variable is set."
 else
+    #-----------------------------------------------------
+    # Define the directory to store the Anansi unit test -
+    # log files.                                         -
+    #                                                    -
+    #-----------------------------------------------------
+    export ANANSI_UNIT_TEST_LOG_DIRECTORY="${ANANSI_TOP_LEVEL}/unit_test_logs/${ANANSI_TEST_LOG_BASE_DIRECTORY}"
 
     # ----------------------------------------------------
     # The path to the Doxygen configuration file.
@@ -27,37 +33,53 @@ else
     # ----------------------------------------------------
     export ANANSI_DOXYGEN_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_doxgen.rc"
 
-    #-----------------------------------------------------
-    # Define the anansi bin directory.                   -
-    #                                                    -
-    #-----------------------------------------------------
+    # ----------------------------------------------------
+    # The path to the XML file that configures Anansi's unit 
+    # tests.
+    # 
+    # ----------------------------------------------------
+    export ANANSI_UNIT_TEST_CONFIGURATION="${ANANSI_TOP_LEVEL}/etc/anansi_unit_tests.xml"
+
+    # ----------------------------------------------------
+    # Define the anansi bin directory.
+    #
+    # ----------------------------------------------------
     export ANANSI_BIN_DIRECTORY=${ANANSI_TOP_LEVEL}/bin
 
+    # ----------------------------------------------------
+    # Defining the directory to run doygen.
+    # This is needed because doxygen tagfiles needs
+    # relative paths with respect to where doxygen
+    # is ran.
+    #
+    # ----------------------------------------------------
+    export ANANSI_DOXYGEN_RUN_DIRECTORY="${ANANSI_TOP_LEVEL}/doxygen_documentation"
+
     #-----------------------------------------------------
-    # The minimum cmake version required to build        -
-    # this project.                                      -
-    #                                                    -
-    # This variable is mandatory.                        -
+    # The minimum cmake version required to build
+    # this project.
+    #
+    # This variable is mandatory.
     #-----------------------------------------------------
     export ANANSI_MINIMUM_CMAKE_VERSION="3.16"
 
     #-----------------------------------------------------
-    # Define the path to Anansi cmake modules.           -
-    #                                                    -
-    # This variable is mandatory.                        -
+    # Define the path to Anansi cmake modules.
+    #
+    # This variable is mandatory.
     #-----------------------------------------------------
     export ANANSI_CMAKE_MODULE_PATH=${ANANSI_TOP_LEVEL}/cmake_macros_and_functions
 
     #-----------------------------------------------------
-    # Modify your path variable to include               -
-    # the Anansi's bin directory.                        -
-    #                                                    -
+    # Modify your path variable to include
+    # the Anansi's bin directory.
+    #
     #-----------------------------------------------------
     export PATH="${ANANSI_TOP_LEVEL}/bin":"$PATH"
 
     #-----------------------------------------------------
-    # The pylint runtime configuration file.             -
-    #                                                    -
+    # The pylint runtime configuration file.
+    #
     #-----------------------------------------------------
     export PYLINTR=${ANANSI_TOP_LEVEL}/etc/anansi_pylint.rc
 
@@ -66,4 +88,17 @@ else
     # 
     # ----------------------------------------------------
     export PYTHONPATH="${ANANSI_TOP_LEVEL}/bin/lib_python":"${PYTHONPATH}"
+
+    #-----------------------------------------------------
+    # Define the anansi precision
+    #
+    #-----------------------------------------------------
+    export ANANSI_COMPUTE_PRECISION=${ANANSI_PRECISION_POLICY}
+
+    # ---------------------------------------------------
+    # Define the data policy.
+    #
+    # --------------------------------------------------- 
+    export ANANSI_DATA_POLICY=${ANANSI_DATA_CENTRIC_POLICY}
 fi
+

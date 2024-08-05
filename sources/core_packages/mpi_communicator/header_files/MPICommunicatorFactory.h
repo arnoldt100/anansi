@@ -13,6 +13,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPICommunicator.h"
+#include "CommunicatorEmbryo.h"
 #include "CommunicatorFactory.h"
 
 namespace ANANSI {
@@ -61,8 +62,18 @@ private:
     std::unique_ptr<COMMUNICATOR::Communicator>
      createWorldCommunicator_() const override;
 
+    std::unique_ptr<COMMUNICATOR::Communicator>
+     createNullWorldCommunicator_() const override;
+
      std::unique_ptr<COMMUNICATOR::Communicator>
      cloneCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
+
+     std::unique_ptr<COMMUNICATOR::Communicator>
+     cloneCommunicator_(std::shared_ptr<COMMUNICATOR::Communicator> const & a_communicator) const override;
+
+     std::unique_ptr<COMMUNICATOR::Communicator>
+     createCommunicator_(std::unique_ptr<COMMUNICATOR::Communicator> const & a_communicator,
+                         COMMUNICATOR::CommunicatorEmbryo const & comm_embryo) const override;
 
     //===== MUTATORS =======
 

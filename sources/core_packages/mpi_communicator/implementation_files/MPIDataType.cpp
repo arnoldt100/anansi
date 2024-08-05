@@ -41,6 +41,11 @@ MPI_Datatype MPI_DATA_TYPE<int>::value()
     return MPI_INT;
 }
 
+MPI_Datatype MPI_DATA_TYPE<unsigned long>::value()
+{
+    return MPI_UNSIGNED_LONG;
+}
+
 MPI_Datatype MPI_DATA_TYPE<char>::value()
 {
     return MPI_CHAR;
@@ -50,6 +55,7 @@ MPI_Datatype MPI_DATA_TYPE<bool>::value()
 {
     return MPI_C_BOOL;
 }
+
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================

@@ -30,12 +30,20 @@ NullSimulation::NullSimulation() :
 NullSimulation::NullSimulation( NullSimulation const & other) :
     SimulationState()
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 NullSimulation::NullSimulation( NullSimulation && other) :
     SimulationState(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method NullSimulation::NullSimulation  -----
 
@@ -100,6 +108,10 @@ void NullSimulation::execute_(Simulation * const a_simulation) const
 
 void NullSimulation::Execute_(Simulation * const a_simulation) const 
 {
+    std::string message("This Simulation::Execute executes a stud command! \n"); 
+    message += "The simulation is type: ";
+    message += typeid(a_simulation).name(); 
+    std::cout << message.c_str() << std::endl << std::flush;
     return;
 };
 

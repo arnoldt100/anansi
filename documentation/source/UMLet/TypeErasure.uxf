@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text/>
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>27</x>
+      <y>54</y>
+      <w>288</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>Circle
+--
+- double radius_
+
+( Several more attributes )
+
+--
++ Circle(double radius)
++ void draw_circle() const
+_+ void draw_shape(Circle const &amp; aCircle)_
+
+( Several more methods ) </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>27</x>
+      <y>288</y>
+      <w>297</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>Square
+--
+- double sideLength_
+
+( Several more attributes )
+
+--
++ void draw_square () const
+
+_+ void draw_shape(Square const &amp; aSquare)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>603</x>
+      <y>45</y>
+      <w>396</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/ShapeConcept/
+--
++ virtual draw() const=0
++ virtual std::unique_ptr&lt;ShapeConcept&gt; clone() const = 0
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>576</x>
+      <y>225</y>
+      <w>468</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>template&lt;typename Shape_t&gt; 
+OwningShapeModel
+--
+- Shape_t shape_ 
+--
+
++ explicit OwningShapeModel(Shape_t aShape)
++ draw() const override : void {accessor}
++ clone () const override : std::unique_ptr&lt;ShapeConcept&gt; {accessor}
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>774</x>
+      <y>126</y>
+      <w>27</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1080</x>
+      <y>180</y>
+      <w>441</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>bg=white
+
+This is a templated constructor and
+takes a concrete shape (Circle, Square,...) which is assigned
+to member attribute shape_.
+
+explicit OwningShapeModel(Shape_t aShape) : 
+     shape_{aShape} { }</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>234</y>
+      <w>216</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;80.0;150.0;80.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>594</y>
+      <w>585</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Shape
+--
+- std::unique_ptr&lt;ShapeConcept&gt; valuePtr_
+
+--
++ template&lt;typename T&gt; CommandFiles(T &amp;&amp; value)
++ friend draw_shape (Shape const &amp; aShape) : void </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1089</x>
+      <y>351</y>
+      <w>432</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>bg=white
+
+The free function "Shape_t::draw_shape" of the 
+concrete Shape_t class is invoked.
+
+Shape_t::draw() const override
+{
+    shape_.draw_shape(shape_);
+}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>837</x>
+      <y>315</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0;280.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1134</x>
+      <y>738</y>
+      <w>324</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>bg=white
+friend void draw_shape (Shape const &amp; aShape)
+{
+     aShape.valuePtr_-&gt;draw();
+}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>837</x>
+      <y>666</y>
+      <w>315</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;20.0;330.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1134</x>
+      <y>603</y>
+      <w>495</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>bg=white
+
+value is a instance of a concrete shape, e.g. Circle, Square, ...
+
+template&lt;typename T&gt; CommandFiles(T &amp;&amp; value) : 
+     valuePtr_(new ShapeModel&lt;ShapeConcept&gt;(std::forward&lt;T&gt; value){ }</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>855</x>
+      <y>630</y>
+      <w>297</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;30.0;230.0;40.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>360</x>
+      <y>126</y>
+      <w>189</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>
+static Circle::draw_shape(
+     Circle const &amp; aCircle)
+{
+      aCircle.draw_circle();
+};
+
+bg=WHITE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>297</x>
+      <y>171</y>
+      <w>81</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>351</x>
+      <y>360</y>
+      <w>198</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>
+static Square::draw_shape(
+     Circle const &amp; aSquare)
+{
+     aSquare.draw_square();
+};
+
+bg=WHITE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>306</x>
+      <y>405</y>
+      <w>63</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>783</x>
+      <y>387</y>
+      <w>27</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+  </element>
+</diagram>

@@ -1,0 +1,72 @@
+<data>
+<tip3p-rigid-molecule>
+        <!--    This is the tip3p [1] rigid water molecule with the following parameters:
+                
+                H1----O
+                       \
+                        \       
+                         H2
+
+                O-H bond distance (Angstroms) :  0.9572 
+                H-O-H angle (radians) : 1.82421813
+
+                Lennard-Jones 12-6 interaction for O atoms.
+                V(r_OO) = 4*epsilon*( (sigma/r)^12 - (sigma/r)^6 ) where
+                    epsilon (Kilojoules/mole) : 0.6360
+                    sigma (Angstroms) : 3.15075
+                Charge of O atom (e) :  −0.834
+                Charge of H atom (e):   +0.417
+
+                [1] Comparison of simple potential functions for simulating liquid water
+                William L. Jorgensen; Jayaraman Chandrasekhar; Jeffry D. Madura; Roger W. Impey; Michael L. Klein
+                J. Chem. Phys. 79, 926–935 (1983)
+
+        -->
+        
+        <atoms>
+            <!-- Atom label    Mass (atomic mass units) -->
+            <!-- ----------    ------------------------ -->
+            <1>  tip3p-H2            1.00784 </1>
+            <2>  tip3p-O1            15.999  </2>
+            <3>  tip3p-H3            1.00784 </3>
+        </atoms>
+
+        <constraints>
+            <bonds>
+                <!-- Atom-1 label   Atom-2 label   Distance(Angstroms) -->
+                <!-- ------------   ------------   ------------------- -->
+                <1>  tip3p-O1       tip3p-H2             0.9572 </1>
+                <2>  tip3p-O1       tip3p-H3             0.9572 </2>
+            </bonds> 
+
+            <angles>
+                <!-- Atom-1 label   Atom-2 label    Atom-3 label   Angle (Radians) -->
+                <!-- ------------   ------------    ------------   --------------- -->
+                <1>  tip3p-H3          tip3p-O1     tip3p-H2       1.82421813  </1>
+            </angles>
+        </constraints>
+</tip3p-rigid-molecule>
+
+<argon-atom>
+        <!-- This is a solitary argon atom with the topology 
+             of a point atom. Argon atoms that are distance r apart
+             interact with a Lennard-Jones 12-6 interaction:
+
+                    Ar <-------r--------> Ar  
+
+                    V(r) = 4*epsilon*( (sigma/r)^12 - (sigma/r)^6 ) or
+                    epsilon (Kilojoules/mole) : 0.997
+                    sigma (Angstroms) : 3.40
+        -->
+
+        <atoms>
+            <!-- Atom label    Mass (atomic mass units) -->
+            <!-- ----------    ------------------------ -->
+            <1>  Ar            39.948 </1>
+        </atoms>
+
+        <constraints>
+            <--! No constraints -->
+        </constraints>
+</argon-atom>
+</data>

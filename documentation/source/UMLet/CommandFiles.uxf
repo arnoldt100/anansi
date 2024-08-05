@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text/>
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>135</y>
+      <w>594</w>
+      <h>369</h>
+    </coordinates>
+    <panel_attributes>/CommandFilesConcept/
+
+
+--
+
+--
+
++ clone () = 0 : std::unique_ptr&lt;CommandFilesConcept&gt; void {pure virtual}
+
++ pickle () const=0 : PICKLETYPE_t void {pure virtual}
+
++ getValue (in key: std::string) const=0 : std::string void {pure virtual}
+
++ getDefaultValue (in key: std::string) const=0 : std::string void {pure virtual}
+
++ writeFile (in filename: std::string) const=0 : void {pure virtual}
+
++ setFileName (in filename: CommandFileName) const=0 : void {pure virtual}
+
++ readFile () =0 : void {pure virtual}
+
++ unPickle (in pickled_obj: PICKLETYPE_t) =0 : void {pure virtual}
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

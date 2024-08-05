@@ -24,8 +24,21 @@ ErrorIllFormedOption::ErrorIllFormedOption()
     return;
 }
 
+ErrorIllFormedOption::ErrorIllFormedOption( ErrorIllFormedOption const & other)
+{
+    if (this != &other)
+    {
+
+    }
+    return;
+}		/* -----  end of method ErrorIllFormedOption::ErrorIllFormedOption  ----- */
+
 ErrorIllFormedOption::ErrorIllFormedOption( ErrorIllFormedOption && other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		/* -----  end of method ErrorIllFormedOption::ErrorIllFormedOption  ----- */
 

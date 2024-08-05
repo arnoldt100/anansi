@@ -1,6 +1,8 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <iostream>
+#include <typeinfo>
 #include <utility>
 
 //--------------------------------------------------------//
@@ -29,12 +31,20 @@ PerformSimulation::PerformSimulation() :
 PerformSimulation::PerformSimulation( PerformSimulation const & other) :
     SimulationState()
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
 PerformSimulation::PerformSimulation( PerformSimulation && other) :
     SimulationState(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method PerformSimulation::PerformSimulation  -----
 
@@ -83,6 +93,10 @@ void PerformSimulation::execute_(Simulation * const a_simulation) const
 
 void PerformSimulation::Execute_(Simulation * const a_simulation) const 
 {
+    std::string message("This PerformSimulation::Execute executes a stud command! \n"); 
+    message += "The simulation is type: ";
+    message += typeid(a_simulation).name(); 
+    std::cout << message.c_str() << std::endl << std::flush;
     return;
 };
 

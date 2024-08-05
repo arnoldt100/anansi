@@ -50,31 +50,6 @@ void Simulation::stud_function(std::string const & message) const
     std::cout << "Stud function: " << message << std::endl;
 }
 
-COMMUNICATOR::RegistryAnansiMDStatus Simulation::status() const
-{   
-    return this->status_();
-}
-
-COMMUNICATOR::RegistryAnansiMDStatus Simulation::globalStatus() const
-{   
-    return COMMUNICATOR::RegistryAnansiMDStatus::InitializingSimulationEnvironmentFailed;
-}
-
-bool Simulation::isISEStatusOkay() const
-{
-	return this->isISEStatusOkay_();
-}
-
-bool Simulation::isISEGlobalStatusOkay() const
-{   
-    return this->isISEGlobalStatusOkay_();
-}
-
-bool Simulation::isIICStatusOkay() const
-{
-	return this->isIICStatusOkay_();
-}
-
 bool Simulation::isHelpOnCommandLine() const
 {
     return this->isHelpOnCommandLine_();
@@ -117,15 +92,6 @@ void Simulation::terminateSimulationEnvironment(  )
     return;
 }		// -----  end of method Simulation::terminateSimulationEnvironment  -----
 
-void Simulation::setStatus(const COMMUNICATOR::RegistryAnansiMDStatus aStatus)
-{
-    this->setStatus_(aStatus);
-}
-
-void Simulation::setGlobalISEStatus()
-{
-    this->setGlobalISEStatus_();
-}
 //============================= OPERATORS ====================================
 
 //////////////////////////////////////////////////////////////////////////////
@@ -147,11 +113,6 @@ void Simulation::setGlobalISEStatus()
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
-
-COMMUNICATOR::RegistryAnansiMDStatus Simulation::status_() const
-{
-    return COMMUNICATOR::RegistryAnansiMDStatus::Undefined;
-}
 
 //============================= MUTATORS =====================================
 

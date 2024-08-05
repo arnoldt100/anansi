@@ -1,0 +1,197 @@
+# This CMakeLists.txt file creates the library libtasks.a
+# and its unit tests. To add source files, simply append the appropiate variable
+# tasks_header_files or tasks_implementation_files.
+#
+# The target for the library is tasks.
+#
+# The following properties are set for the target tasks.
+#
+#   Property                            Value                                               Description
+#----------------------------------------------------------------------------------------------------------------------------
+#   tasks_include                       ${CMAKE_CURRENT_SOURCE_DIR}/header_files            The location of the header files.
+#   PUBLIC_HEADER                       ${tasks_header_files}                               The list of headers files associated with this librarry.
+#
+# The build will abort unless the following variables are defined to
+# install the library archive, header files, and unit tests:
+#   tasks_install_lib_directory
+#   tasks_install_include_directory
+#   tasks_install_bin_directory
+#   tasks_cxx_standard
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# CMake preamble section.                                         @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    #-----------------------------------------------------
+    # Define the project.                                -
+    #                                                    -
+    #-----------------------------------------------------
+    set(my_project_name "tasks")
+    project(${my_project_name})
+
+    #-----------------------------------------------------
+    # Define the target name.                            -
+    #                                                    -
+    #-----------------------------------------------------
+    set(target ${my_project_name})
+
+    # Verify that prerequisite variables are defined.
+    set (my_variable_prerequisites 
+        "install_lib_directory"
+        "install_include_directory"
+        "install_bin_directory"
+        "cmake_c_compiler"
+        "cmake_cxx_compiler"
+        "cxx_standard"
+        "logfilepath" )
+    generic_target_build_prerequisites("${my_project_name}"  my_variable_prerequisites )
+
+    #-----------------------------------------------------
+    # Set various variables for include directories.     -
+    #                                                    -
+    #-----------------------------------------------------
+    get_target_property(my_command_line_arguments_include command_line_arguments command_line_arguments_include )
+    get_target_property(my_comm_include communicator communicator_include)
+    get_target_property(my_generic_object_factory_include generic_object_factory generic_object_factory_include)
+    get_target_property(my_typelist_aliases_include typelist_aliases typelist_aliases_include)
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of CMake preamble section.                                  @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# Here we define the sources and header files associated          @
+# with the various targets.                                       @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    
+    #-----------------------------------------------------
+    # Here we define the variable                        -
+    # command_line_arguments_header_files.               -
+    # A list of header files is stored in                -
+    # this variable.                                     -
+    #                                                    -
+    #-----------------------------------------------------
+    set (tasks_header_files
+         header_files/AnansiTaskParameters.h
+         header_files/AnansiTask.h
+         header_files/TaskLabelTraits.hpp
+         header_files/TaskLabel.hpp
+         header_files/AnansiTaskUtilities.hpp
+         header_files/MacroCommand.hpp
+         header_files/ConsoleLoggingTask.h
+         header_files/PrimaryFileLoggingTask.h
+         header_files/InterProcessCommEnv.h
+         header_files/CommunicatorTask.h
+         header_files/ControlFileTask.h
+         header_files/ControlFileCommunicator.h
+         header_files/ReadAtoms.h
+         header_files/AtomsDecomposer.h
+         header_files/AtomsCommunicator.h)
+
+    #-----------------------------------------------------
+    # Here we define the variable                        -
+    # command_line_arguments_implementation_files.       -
+    # A list of implementation files is stored in this   -
+    # variable.                                          -
+    #                                                    -
+    #-----------------------------------------------------
+    set (tasks_implementation_files
+         implementation_files/AnansiTaskParameters.cpp
+         implementation_files/AnansiTask.cpp
+         implementation_files/TaskLabelTraits.cpp
+         implementation_files/TaskLabel.cpp
+         implementation_files/AnansiTaskUtilities.cpp
+         implementation_files/MacroCommand.cpp
+         implementation_files/ConsoleLoggingTask.cpp
+         implementation_files/PrimaryFileLoggingTask.cpp
+         implementation_files/InterProcessCommEnv.cpp
+         implementation_files/CommunicatorTask.cpp
+         implementation_files/ControlFileTask.cpp
+         implementation_files/ControlFileCommunicator.cpp
+         implementation_files/ReadAtoms.cpp
+         implementation_files/AtomsDecomposer.cpp
+         implementation_files/AtomsCommunicator.cpp)
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#                                                                 @
+# End of defining the sources and header files associated         @
+# with the command_line_arguments targets.                        @
+#                                                                 @
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+#-----------------------------------------------------
+# Add the library associated with target             -
+# command_line_arguments.                            -
+#                                                    -
+#-----------------------------------------------------
+add_library( ${target} STATIC 
+             "")
+
+#-----------------------------------------------------
+#                                                    -
+# We associate the source files with the target.     -
+#                                                    -
+#-----------------------------------------------------
+target_sources(${target}
+    PRIVATE ${tasks_header_files} ${tasks_implementation_files} )
+
+#-----------------------------------------------------
+# Add the directory header_files to search for       -
+# header files.                                      -
+#                                                    -
+#-----------------------------------------------------
+target_include_directories(${target} 
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                           PRIVATE ${my_comm_include}
+                           PRIVATE ${my_command_line_arguments_include} 
+                           PRIVATE ${my_generic_object_factory_include}
+                           PRIVATE ${my_typelist_aliases_include} )
+
+
+#-----------------------------------------------------
+# The libraries to use when linking to target.       -
+#                                                    -
+#-----------------------------------------------------
+target_link_libraries( ${target}
+                       PUBLIC command_line_arguments
+                       PUBLIC communicator
+                       PUBLIC generic_object_factory
+                       PUBLIC typelist_aliases) 
+
+#-----------------------------------------------------
+# Enable compile warnings.                           -
+#                                                    -
+#-----------------------------------------------------
+enable_compile_warnings(${target})
+
+#-----------------------------------------------------
+# Enable debug code.
+#
+#-----------------------------------------------------
+enable_anansi_debug_flags(${target})
+
+#-----------------------------------------------------
+# Here we set the properties on target               -
+#                                                    -
+#-----------------------------------------------------
+set_target_properties(${target} PROPERTIES
+                      tasks_include ${CMAKE_CURRENT_SOURCE_DIR}/header_files
+                      CXX_STANDARD ${tasks_cxx_standard}
+                      PUBLIC_HEADER "${tasks_header_files}" )
+
+install( TARGETS ${target}
+         ARCHIVE DESTINATION "${tasks_install_lib_directory}" 
+         PUBLIC_HEADER DESTINATION "${tasks_install_include_directory}" )
+
+#-----------------------------------------------------
+# Add the subdirectory for creating the unit tests.  -
+#                                                    -
+#-----------------------------------------------------
+add_subdirectory(unit_tests)

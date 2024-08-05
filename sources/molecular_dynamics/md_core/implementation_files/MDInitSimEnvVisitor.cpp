@@ -11,6 +11,7 @@
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MDInitSimEnvVisitor.h"
+#include "GenericErrorClass.hpp"
 
 namespace ANANSI {
 
@@ -20,18 +21,33 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-MDInitSimEnvVisitor::MDInitSimEnvVisitor()
+MDInitSimEnvVisitor::MDInitSimEnvVisitor() :
+    MPL::BaseVisitor(),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>()
+
 {
     return;
 }
 
-MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor const & other)
+MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor const & other) :
+    MPL::BaseVisitor(other),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(other)
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }
 
-MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor && other)
+MDInitSimEnvVisitor::MDInitSimEnvVisitor( MDInitSimEnvVisitor && other) :
+    MPL::BaseVisitor(std::move(other)),
+    MPL::Visitor<ANANSI::AnansiMolecularDynamics>(std::move(other))
 {
+    if (this != &other)
+    {
+
+    }
     return;
 }		// -----  end of method MDInitSimEnvVisitor::MDInitSimEnvVisitor  -----
 
@@ -43,14 +59,36 @@ MDInitSimEnvVisitor::~MDInitSimEnvVisitor()
 //============================= ACCESSORS ====================================
 void MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim) const
 {
-    std::cout << "Visit(AnansiMolecularDynamics&)" << std::endl;
+    std::cout << "MDInitSimEnvVisitor::visit(AnansiMolecularDynamics& a_sim)" << std::endl;
 
-    // Initializing the communication environment.
-    a_sim.enableCommunicationEnvironment();
-    a_sim.enableWorldCommunicator();
+    try
+    {
+        // ---------------------------------------------------
+        // The communication environment must be first enabled for many other tasks
+        // are dependent on the communication environment.  
+        // ---------------------------------------------------
+        a_sim.enableCommunicationEnvironment();
+        
+        // ---------------------------------------------------
+        // The next step is to enable the world communicator.
+        // ---------------------------------------------------
+        a_sim.enableWorldCommunicator();
 
-    // Initialize the world task group.
-    a_sim.enableWorldTaskGroup();
+        // ---------------------------------------------------
+        // The next step is to enabke the core logger.
+        // ---------------------------------------------------
+        a_sim.enableCoreLoggingTasks();
+
+        // ---------------------------------------------------
+        // The next step is to enable the control file tasks.
+        // ---------------------------------------------------
+        a_sim.enableControlFileTasks();
+    }
+    catch (const MOUSEION::GenericErrorClass<ErrorGenericTaskInvoker> & my_error )
+    {
+    	  std::string message{my_error.what()};
+        throw MOUSEION::GenericErrorClass<AnansiMolecularDynamics>(message);
+    };
 
     return;
 }
@@ -63,7 +101,8 @@ MDInitSimEnvVisitor& MDInitSimEnvVisitor::operator= ( const MDInitSimEnvVisitor 
 {
     if (this != &other)
     {
-
+        MPL::BaseVisitor::operator=(other);
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(other);
     }
     return *this;
 } // assignment operator
@@ -72,6 +111,8 @@ MDInitSimEnvVisitor& MDInitSimEnvVisitor::operator= ( MDInitSimEnvVisitor && oth
 {
     if (this != &other)
     {
+        MPL::BaseVisitor::operator=(std::move(other));
+        MPL::Visitor<ANANSI::AnansiMolecularDynamics>::operator=(std::move(other));
 
     }
     return *this;

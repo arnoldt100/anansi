@@ -16,18 +16,21 @@
 //--------------------------------------------------------//
 #include "MPIEnvironmentState.h"
 #include "ClassInstanceLimiter.hpp"
+#include "CommandLineArguments.h"
 
 namespace ANANSI
 {
 
 constexpr auto MAX_MPIENVIRONMENT_INSTANCES = 1;
 
-class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
+class MPIEnvironment : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnvironment,MAX_MPIENVIRONMENT_INSTANCES>
 {
     public:
         /* ====================  LIFECYCLE     ======================================= */
 
         MPIEnvironment(); /* constructor */
+
+        MPIEnvironment(COMMANDLINE::CommandLineArguments & cmd_line_args);
 
         MPIEnvironment(const MPIEnvironment &other)=delete; /* copy constructor */
 
@@ -37,13 +40,15 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
 
         /* ====================  ACCESSORS     ======================================= */
 
+        std::string currentMPIEnvironmentState() const;
+
         /* ====================  MUTATORS      ======================================= */
-        void enableEnvironment(int const & argc, char const * const * const & argv);
+        template <typename T>
+        void addMember( const T & member);
 
         void enableEnvironment();
 
         void disableEnvironment();
-
 
         /* ====================  OPERATORS     ======================================= */
 
@@ -65,6 +70,8 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         /* ====================  DATA MEMBERS  ======================================= */
 
     private:
+        /* ====================  ACCESSORS     ======================================= */
+
         /* ====================  MUTATORS      ======================================= */
         void enable_(int const & argc, char const * const * const & argv);
 
@@ -79,9 +86,12 @@ class MPIEnvironment final : private COUNTERCLASSES::ClassInstanceLimiter<MPIEnv
         }
 
         /* ====================  DATA MEMBERS  ======================================= */
+
+        COMMANDLINE::CommandLineArguments cmdLineArgs_;
         std::shared_ptr<ANANSI::MPIEnvironmentState> mpistate_;
 
 }; /* -----  end of class MPIEnvironment  ----- */
+
 
 
 }; /* namespace ANANSI */

@@ -4,7 +4,7 @@
 #                                                    -
 #                                                    -
 #-----------------------------------------------------
-function(verify_key_environmental_are_set)
+function(verify_key_anansi_environmental_are_set)
 
     #-----------------------------------------------------
     # Verify environmental variable ANANSI_TOP_LEVEL is  -
@@ -92,6 +92,41 @@ function(verify_key_environmental_are_set)
     else()
         message( FATAL_ERROR "The environmental ANANSI_BOOST_TOP_LEVEL is not defined. This \
         variable defines the location to BOOST top level." )
+    endif()
+
+    #-----------------------------------------------------
+    # Verify environment variable                        -
+    # ANANSI_DEBUG_VALID_VALUES is defined.              -
+    #-----------------------------------------------------
+    if( DEFINED ENV{ANANSI_DEBUG_VALID_VALUES})
+        message("ANANSI_DEBUG_VALID_VALUES=$ENV{ANANSI_DEBUG_VALID_VALUES}")
+    else()
+        message( FATAL_ERROR "The environmental ANANSI_DEBUG_VALID_VALUES is not defined. This \
+        variable defines enables/disables debugging valid values for critical variable." )
+    endif()
+
+   # ---------------------------------------------------
+   # Verify environment variable
+   # ANANSI_COMPUTE_PRECISION is defined.
+   #
+   # --------------------------------------------------- 
+   if( DEFINED ENV{ANANSI_COMPUTE_PRECISION})
+       message("ANANSI_COMPUTE_PRECISION=$ENV{ANANSI_COMPUTE_PRECISION}")
+    else()
+        message( FATAL_ERROR "The environmental ANANSI_COMPUTE_PRECISION is not defined. This \
+        variable defines valid values for setting the precision of the simulation." )
+    endif()
+
+   # ---------------------------------------------------
+   # Verify environment variable
+   # ANANSI_DATA_POLICY is defined.
+   #
+   # --------------------------------------------------- 
+   if( DEFINED ENV{ANANSI_DATA_POLICY})
+       message("ANANSI_DATA_POLICY=$ENV{ANANSI_DATA_POLICY}")
+    else()
+        message( FATAL_ERROR "The environmental ANANSI_DATA_POLICY is not defined. This \
+        variable defines valid values for setting where the simulation is cpu or gpu centered." )
     endif()
 
 endfunction()

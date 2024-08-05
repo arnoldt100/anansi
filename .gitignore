@@ -1,3 +1,6 @@
+# Files ending with ~, e.g. foo.cpp~
+*~
+
 # Prerequisites
 *.d
 
@@ -39,12 +42,19 @@
 
 # Ignore the documentation build directory.
 documentation/build
+documentation/doxygen/html
+doxygen_documentation/html
 
 # Ignore the CMake build directory.
+build/*
 anansi_cmake_build_dir/*
 /anansi_log.txt
 
 # Ignore the stderr and stdout files.
 *stdout.txt
 *stderr.txt
+stderr.anansi.txt
+stdout.anansi.txt
 /mouseion_log.txt
+/.cache/**
+/build/**

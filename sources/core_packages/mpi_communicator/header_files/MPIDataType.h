@@ -1,17 +1,13 @@
-/*
- * MPIDataType.h
- *
- *  Created on: 12/15/18
- *      Authors: Arnold Tharrington
- */
-
-#ifndef ANANSI_MPIDATATYPE_
-#define ANANSI_MPIDATATYPE_
+//! \file MPI_Datatype.h
+#ifndef ANANSI_MPIDATATYPE_INC
+#define ANANSI_MPIDATATYPE_INC
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <cstddef>
 #include "mpi.h"
+#include <cstddef>
 
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
@@ -46,7 +42,7 @@ class MPI_DATA_TYPE<char>
 };
 
 template<>
-class MPI_DATA_TYPE<bool>
+class MPI_DATA_TYPE<unsigned long>
 {
 
     public:
@@ -56,6 +52,19 @@ class MPI_DATA_TYPE<bool>
 
         static MPI_Datatype value();
 };
+
+template<>
+class MPI_DATA_TYPE<bool>
+{
+    public:
+        MPI_DATA_TYPE();
+
+        ~MPI_DATA_TYPE();
+
+        static MPI_Datatype value();
+};
+
+
 } /* namespace ANANSI */
 
-#endif /* ANANSI_MPIDATATYPE_ */
+#endif /* ANANSI_MPIDATATYPE_ INC*/

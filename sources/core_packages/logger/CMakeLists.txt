@@ -43,6 +43,9 @@
     #-----------------------------------------------------
     get_target_property(my_comm_include communicator communicator_include)
 
+    include("${CMAKE_CURRENT_SOURCE_DIR}/cmake_macros_and_functions/logger_build_prerequisites.cmake")
+    verify_logger_build_prerequisites_are_met()
+
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #                                                                 @
 # End of CMake preamble section.                                  @
@@ -67,7 +70,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (logger_header_files
-         header_files/Logger.h
+         header_files/ConsoleMessageContainer.h
+         header_files/GeneralFileLogger.h
          header_files/ConsoleLogger.h )
 
     #-----------------------------------------------------
@@ -78,7 +82,8 @@
     #                                                    -
     #-----------------------------------------------------
     set (logger_implementation_files
-         implementation_files/Logger.cpp
+         implementation_files/ConsoleMessageContainer.cpp
+         implementation_files/GeneralFileLogger.cpp
          implementation_files/ConsoleLogger.cpp )
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -136,7 +141,7 @@ set_target_properties(${target} PROPERTIES
 
 install( TARGETS ${target}
          ARCHIVE DESTINATION "${logger_install_lib_directory}" 
-         PUBLIC_HEADER DESTINATION "${logger_install_lib_directory}" )
+         PUBLIC_HEADER DESTINATION "${logger_install_include_directory}" )
 
 #-----------------------------------------------------
 # Add the subdirectory for creating the unit tests.  -

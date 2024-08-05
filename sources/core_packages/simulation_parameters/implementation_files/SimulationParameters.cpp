@@ -21,6 +21,7 @@
 //--------------------------------------------------------//
 #include "SimulationParameters.h"
 #include "AllOptions.h"
+#include "Pointer2d.hpp"
 
 
 namespace ANANSI {

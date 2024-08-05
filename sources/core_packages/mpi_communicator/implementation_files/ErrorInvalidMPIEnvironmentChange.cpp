@@ -1,6 +1,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -19,7 +20,17 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange()
+ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange() :
+    originalState_{"'Original state not specified'"},
+    action_{"'Action not specified'"}
+{
+    return;
+}
+
+ErrorInvalidMPIEnvironmentChange::ErrorInvalidMPIEnvironmentChange(std::string_view const original_state,
+                                                                   std::string_view const action ) :
+    originalState_{original_state},
+    action_{action}
 {
     return;
 }
@@ -52,7 +63,11 @@ ErrorInvalidMPIEnvironmentChange::~ErrorInvalidMPIEnvironmentChange()
 
 const char* ErrorInvalidMPIEnvironmentChange::what() const noexcept
 {
-    return "Invalid change of MPIEnviromentState.";
+    std::string message("Invalid action on MPIEnviromentState: ");
+    message += std::string(this->originalState_) + std::string("\n");
+    message += std::string("Attempting to do action ") + std::string(this->action_);
+    message += std::string(" which is not a permitted action for state ") + std::string(this->originalState_) + std::string(".\n");
+    return message.c_str();
 }
 
 
