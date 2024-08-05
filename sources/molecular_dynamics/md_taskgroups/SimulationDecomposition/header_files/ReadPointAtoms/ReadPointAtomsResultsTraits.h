@@ -44,9 +44,7 @@ class ReadPointAtomsResultsTraits
         using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<PointAtomsConfigurationFileNodeKeys,
                                                                           XMLFileReader,
                                                                           XMLFileWriter,
-                                                                          FilePickler<boost::property_tree::ptree,
-                                                                                      Atoms<SimulationDecompositionExecutionPolicy::Type,
-                                                                                            SimulationDecompositionPrecisionPolicy::Type>>
+                                                                          FilePickler<boost::property_tree::ptree,Atoms>
                                                                          >;
 
         using copy_result_t = result_t;

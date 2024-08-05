@@ -25,8 +25,6 @@ namespace ANANSI
 //!          which then loses its type identity. The wrapped object
 //!          must implement the concepts interface or bad program behavior
 //!          will occur.
-template<typename DataStoragePolicy_t,
-         typename PrecisionPolicy_t>
 class Atoms
 {
     public:

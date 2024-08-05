@@ -13,15 +13,15 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "Atoms.hpp"
+#include "DataStoragePolicy.h"
+#include "PrecisionPolicy.h"
 
 namespace ANANSI
 {
 
 //! This class stores the point atoms in a spatial domain.
-//! \tparam DataStoragePolicy Specifies the data storage policy.
-//! \tparam DataPrecisionPolicy Specifies the data precision policy.
-template <typename DataStoragePolicy,
-          typename DataPrecisionPolicy>
+template <typename DataStoragePolicy_t,typename PrecisionPolicy_t>
 class PointAtoms
 {
     public:

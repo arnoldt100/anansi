@@ -20,13 +20,13 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>::FilePickler()
+FilePickler<boost::property_tree::ptree, Atoms>::FilePickler()
 {
     return;
 }
 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>::FilePickler( 
-        FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>> const & other)
+FilePickler<boost::property_tree::ptree, Atoms>::FilePickler( 
+        FilePickler<boost::property_tree::ptree, Atoms> const & other)
 {
     if (this != &other)
     {
@@ -35,8 +35,8 @@ FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy
     return;
 }
 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>::FilePickler( 
-        FilePickler<boost::property_tree::ptree,Atoms<DataStoragePolicy,PrecisionPolicy>> && other)
+FilePickler<boost::property_tree::ptree, Atoms>::FilePickler( 
+        FilePickler<boost::property_tree::ptree,Atoms> && other)
 {
     if (this != &other)
     {
@@ -45,26 +45,26 @@ FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy
 }		// -----  end of method FilePickler::FilePickler  -----
 
 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>::~FilePickler()
+FilePickler<boost::property_tree::ptree, Atoms>::~FilePickler()
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>> * 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>::clone() const
+FilePickler<boost::property_tree::ptree, Atoms> * 
+FilePickler<boost::property_tree::ptree, Atoms>::clone() const
 {
-    return new FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>(*this);
+    return new FilePickler<boost::property_tree::ptree, Atoms>(*this);
 }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>& 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>::operator=( 
-        const FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>> &other )
+FilePickler<boost::property_tree::ptree, Atoms>& 
+FilePickler<boost::property_tree::ptree, Atoms>::operator=( 
+        const FilePickler<boost::property_tree::ptree, Atoms> &other )
 {
     if (this != &other)
     {
@@ -72,9 +72,9 @@ FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy
     return *this;
 } // assignment operator
 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>& 
-FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>>::operator=(
-        FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy>> && other )
+FilePickler<boost::property_tree::ptree, Atoms>& 
+FilePickler<boost::property_tree::ptree, Atoms>::operator=(
+        FilePickler<boost::property_tree::ptree, Atoms> && other )
 {
     if (this != &other)
     {

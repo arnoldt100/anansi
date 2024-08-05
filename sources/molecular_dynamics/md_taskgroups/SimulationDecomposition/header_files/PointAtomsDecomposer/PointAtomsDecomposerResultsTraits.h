@@ -29,8 +29,7 @@ class PointAtomsDecomposerResultsTraits
 {
     public:
         // ====================  ALIASES       =======================================
-        using result_t = Atoms<SimulationDecompositionExecutionPolicy::Type,
-                               SimulationDecompositionPrecisionPolicy::Type>;
+        using result_t = Atoms;
         using Atoms_t = PointAtoms<SimulationDecompositionExecutionPolicy::Type,
                                    SimulationDecompositionPrecisionPolicy::Type>;
         using copy_result_t = result_t;

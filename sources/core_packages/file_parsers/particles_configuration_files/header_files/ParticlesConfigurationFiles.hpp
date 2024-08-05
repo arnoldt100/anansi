@@ -23,7 +23,7 @@
 #include "CommandFileName.h"
 #include "DataStoragePolicy.h"
 #include "PrecisionPolicy.h"
-#include "Atoms.hpp"
+#include "PointAtoms.hpp"
 
 namespace ANANSI
 {
@@ -46,7 +46,7 @@ class ParticlesConfigurationFiles
 {
     public:
 
-        using PICKLEDTYPE = Atoms<DataStoragePolicy,PrecisionPolicy>;
+        using PICKLEDTYPE = Atoms;
 
         // ====================  LIFECYCLE     =======================================
 

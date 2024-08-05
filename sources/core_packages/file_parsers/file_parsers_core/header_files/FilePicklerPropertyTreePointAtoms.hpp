@@ -17,14 +17,12 @@
 //--------------------------------------------------------//
 #include "FilePickler.hpp"
 #include "Atoms.hpp"
-#include "DataStoragePolicy.h"
-#include "PrecisionPolicy.h"
 
 namespace ANANSI
 {
 
 template<>
-class FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,PrecisionPolicy> >
+class FilePickler<boost::property_tree::ptree,Atoms>
 {
     public:
         // ====================  LIFECYCLE     =======================================
@@ -46,14 +44,14 @@ class FilePickler<boost::property_tree::ptree, Atoms<DataStoragePolicy,Precision
         FilePickler * clone () const;
 
         template<typename MasterPolicy_t>
-        Atoms<DataStoragePolicy,PrecisionPolicy> pickle(const boost::property_tree::ptree & tree) const 
+        Atoms pickle(const boost::property_tree::ptree & tree) const 
         {
-            Atoms<DataStoragePolicy,PrecisionPolicy> my_atoms{typename MasterPolicy_t::InternalRepresentationTrait()};
+            Atoms my_atoms{typename MasterPolicy_t::InternalRepresentationTrait()};
             return my_atoms;
         }
 
         template<typename MasterPolicy_t>
-        boost::property_tree::ptree unPickle( const Atoms<DataStoragePolicy,PrecisionPolicy> & my_point_atoms) const
+        boost::property_tree::ptree unPickle( const Atoms & my_point_atoms) const
         {
             boost::property_tree::ptree tree;
             return tree;

@@ -186,8 +186,7 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
     for ( auto filename : filenames)
     {
         CommandFileName file_name{filename};
-        CommandFiles<Atoms<SimulationDecompositionExecutionPolicy::Type,
-                           SimulationDecompositionPrecisionPolicy::Type>> myConfigurationFile{ReadPointAtomsResultsTraits::ParticlesConfigurationFiles_t()};
+        CommandFiles<Atoms> myConfigurationFile{ReadPointAtomsResultsTraits::ParticlesConfigurationFiles_t()};
         set_CommandFile_filename(myConfigurationFile, file_name);
         read_CommandFile(myConfigurationFile);
 
