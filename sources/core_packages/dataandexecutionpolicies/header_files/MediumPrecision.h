@@ -39,6 +39,9 @@ class MediumPrecision
         //! The precision for the forces of the particles.
         using ParticleForces_t = double;
 
+        //! Zero in medium precision
+        static constexpr auto ZERO = static_cast<double>(0.00);
+
 
         // ====================  LIFECYCLE     =======================================
 

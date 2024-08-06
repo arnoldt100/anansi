@@ -40,6 +40,9 @@ class HighPrecision
         //! The precision for the forces of the particles.
         using ParticleForces_t = long double;
 
+        //! Zero in High precision
+        static constexpr auto ZERO = static_cast<long double>(0.00);
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.

@@ -39,6 +39,10 @@ class LowPrecision
         //! The precision for the forces of the particles.
         using ParticleForces_t = float;
 
+        //! Zero in low precision
+        static constexpr auto ZERO = static_cast<float>(0.00);
+
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.

@@ -27,16 +27,34 @@ class PointAtoms
 
         //! The default constructor.
         PointAtoms () :
-                atomType_{"XXX"},
-                atomSymbol_{"XXX"},
-                atomGroupType_{"XXX"},
-                atomIndex_{-1}
+                atomType_{"ZZ"},
+                atomSymbol_{"ZZ"},
+                atomGroupType_{"ZZ"},
+                atomIndex_{0},
+				atomGroupIndex_{0},
+				atomXCoordinate_{PrecisionPolicy_t::ZERO},
+				atomYCoordinate_{PrecisionPolicy_t::ZERO},
+				atomZCoordinate_{PrecisionPolicy_t::ZERO},
+				atomXVelocity_{PrecisionPolicy_t::ZERO},
+				atomYVelocity_{PrecisionPolicy_t::ZERO},
+				atomZVelocity_{PrecisionPolicy_t::ZERO}
         {
             return;
         }
 
         //! The copy constructor.
-        PointAtoms (const PointAtoms & other)
+        PointAtoms (const PointAtoms & other) :
+                atomType_{other.atomType_},
+                atomSymbol_{other.atomSymbol_},
+                atomGroupType_{other.atomGroupType_},
+                atomIndex_{other.atomIndex_},
+				atomGroupIndex_{other.atomGroupIndex_},
+				atomXCoordinate_{other.atomXCoordinate_},
+				atomYCoordinate_{other.atomYCoordinate_},
+				atomZCoordinate_{other.atomZCoordinate_},
+				atomXVelocity_{other.atomXVelocity_},
+				atomYVelocity_{other.atomYVelocity_},
+				atomZVelocity_{other.atomZVelocity_}
         {
             if (this != &other)
             {
@@ -45,7 +63,18 @@ class PointAtoms
         }
 
         //! The move constructor.
-        PointAtoms (PointAtoms && other)  // copy-move constructor
+        PointAtoms (PointAtoms && other) :  // copy-move constructor
+                atomType_{std::move(other.atomType_)},
+                atomSymbol_{std::move(other.atomSymbol_)},
+                atomGroupType_{std::move(other.atomGroupType_)},
+                atomIndex_{std::move(other.atomIndex_)},
+				atomGroupIndex_{std::move(other.atomGroupIndex_)},
+				atomXCoordinate_{std::move(other.atomXCoordinate_)},
+				atomYCoordinate_{std::move(other.atomYCoordinate_)},
+				atomZCoordinate_{std::move(other.atomZCoordinate_)},
+				atomXVelocity_{std::move(other.atomXVelocity_)},
+				atomYVelocity_{std::move(other.atomYVelocity_)},
+				atomZVelocity_{std::move(other.atomZVelocity_)}
         {
             if (this != &other)
             {
@@ -76,6 +105,17 @@ class PointAtoms
         {
             if (this != &other)
             {
+                this->atomType_ = other.atomType_;
+                this->atomSymbol_ = other.atomSymbol_;
+                this->atomGroupType_ = other.atomGroupType_;
+                this->atomIndex_ = other.atomIndex_;
+				this->atomGroupIndex_ = other.atomGroupIndex_;
+				this->atomXCoordinate_ = other.atomXCoordinate_;
+				this->atomYCoordinate_ = other.atomYCoordinate_;
+				this->atomZCoordinate_ = other.atomZCoordinate_;
+				this->atomXVelocity_ = other.atomXVelocity_;
+				this->atomYVelocity_ = other.atomYVelocity_;
+				this->atomZVelocity_ = other.atomZVelocity_;
             }
             return *this;
         } // assignment operator
@@ -85,7 +125,17 @@ class PointAtoms
         {
             if (this != &other)
             {
-
+                this->atomType_ = std::move(other.atomType_);
+                this->atomSymbol_ = std::move(other.atomSymbol_);
+                this->atomGroupType_ = std::move(other.atomGroupType_);
+                this->atomIndex_ = std::move(other.atomIndex_);
+				this->atomGroupIndex_ = std::move(other.atomGroupIndex_);
+				this->atomXCoordinate_ = std::move(other.atomXCoordinate_);
+				this->atomYCoordinate_ = std::move(other.atomYCoordinate_);
+				this->atomZCoordinate_ = std::move(other.atomZCoordinate_);
+				this->atomXVelocity_ = std::move(other.atomXVelocity_);
+				this->atomYVelocity_ = std::move(other.atomYVelocity_);
+				this->atomZVelocity_ = std::move(other.atomZVelocity_);
             }
             return *this;
         } // assignment-move operator
