@@ -24,6 +24,7 @@
 #include "DataStoragePolicy.h"
 #include "PrecisionPolicy.h"
 #include "PointAtoms.hpp"
+#include "Atoms.hpp"
 
 namespace ANANSI
 {
@@ -101,8 +102,8 @@ class ParticlesConfigurationFiles
         PICKLEDTYPE pickleFile() const
         {
             const PicklerPolicy pickler;
-            PICKLEDTYPE a_map =  pickler.template pickle<MasterKeyPolicy>(ptree_);
-            return a_map;
+            PICKLEDTYPE pickled_object =  pickler.template pickle<MasterKeyPolicy>(ptree_);
+            return pickled_object;
         }
 
         //! Returns the node value in ptree_ for the corresponding key.

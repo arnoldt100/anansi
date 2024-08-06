@@ -51,7 +51,7 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
 
         //! The ownership policy for the result.
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
-        
+
         // \todo Place here the class data members required for doing the task.
 
     public:
@@ -218,6 +218,9 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 
             const auto global_key_atom_global_group_index = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Global_Group_Index),key_frmt_args);
             const auto global_group_index = std::stoul(get_value_CommandFile(myConfigurationFile,global_key_atom_global_group_index));
+
+            const auto global_key_group_type = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Group_Type),key_frmt_args);
+            const auto global_group_type = get_value_CommandFile(myConfigurationFile, global_key_group_type);
 
             const auto global_key_atom_x_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_X_Coordinate),key_frmt_args);
             const auto x_coordinate_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_x_coordinate);

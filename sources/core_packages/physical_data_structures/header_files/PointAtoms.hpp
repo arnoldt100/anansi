@@ -5,6 +5,7 @@
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
 //--------------------------------------------------------//
+#include <string>
 
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
@@ -13,9 +14,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "Atoms.hpp"
-#include "DataStoragePolicy.h"
-#include "PrecisionPolicy.h"
 
 namespace ANANSI
 {
@@ -28,7 +26,11 @@ class PointAtoms
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
-        PointAtoms ()   // constructor
+        PointAtoms () :
+                atomType_{"XXX"},
+                atomSymbol_{"XXX"},
+                atomGroupType_{"XXX"},
+                atomIndex_{-1}
         {
             return;
         }
@@ -97,7 +99,18 @@ class PointAtoms
         // ====================  METHODS       =======================================
 
         // ====================  DATA MEMBERS  =======================================
-        
+        std::string atomType_;
+        std::string atomSymbol_;
+        std::string atomGroupType_;
+        typename PrecisionPolicy_t::ParticleCounter_t atomIndex_;
+        typename PrecisionPolicy_t::ParticleCounter_t atomGroupIndex_;
+        typename PrecisionPolicy_t::ParticlePositions_t atomXCoordinate_;
+        typename PrecisionPolicy_t::ParticlePositions_t atomYCoordinate_;
+        typename PrecisionPolicy_t::ParticlePositions_t atomZCoordinate_;
+        typename PrecisionPolicy_t::ParticleVelocities_t atomXVelocity_;
+        typename PrecisionPolicy_t::ParticleVelocities_t atomYVelocity_;
+        typename PrecisionPolicy_t::ParticleVelocities_t atomZVelocity_;
+
 }; // -----  End of class PointAtoms  -----
 
 
