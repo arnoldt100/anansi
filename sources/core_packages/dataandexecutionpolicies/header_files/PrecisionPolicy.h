@@ -26,22 +26,26 @@ namespace ANANSI
 
 class PrecisionPolicy
 {
+    private: 
+#if ANANSI_COMPUTE_PRECISION == ANANSI_LOW_COMPUTE_PRECISION
+                using Type_ = LowPrecision;
+#elif ANANSI_COMPUTE_PRECISION == ANANSI_MEDIUM_COMPUTE_PRECISION
+                using Type_ = MediumPrecision;
+#elif ANANSI_COMPUTE_PRECISION == ANANSI_HIGH_COMPUTE_PRECISION
+                using Type_ = HighPrecision;
+#else 
+            using Type_ = MediumPrecision;
+#endif
+
     public:
         // ====================  LIFECYCLE     =======================================
 
-#if ANANSI_COMPUTE_PRECISION == ANANSI_LOW_COMPUTE_PRECISION
-        using Type = LowPrecision;
-#elif ANANSI_COMPUTE_PRECISION == ANANSI_MEDIUM_COMPUTE_PRECISION
-        using Type = MediumPrecision;
-#elif ANANSI_COMPUTE_PRECISION == ANANSI_HIGH_COMPUTE_PRECISION
-        using Type = HighPrecision;
-#else 
-    using Type = MediumPrecision;
-#endif
 
-        using PositionPrecision = Type::ParticlePositions_t;
-        using VelocityPrecision = Type::ParticleVelocities_t;
-        using ForcePrecision = Type::ParticleForces_t;
+        using ParticleCounter_t = Type_::ParticleCounter_t;
+        using PositionPrecision_t = Type_::ParticlePositions_t;
+        using VelocityPrecision_t = Type_::ParticleVelocities_t;
+        using ForcePrecision_t = Type_::ParticleForces_t;
+        static constexpr auto ZERO = Type_::ZERO;
 
         //! The default constructor.
         PrecisionPolicy ();   // constructor
@@ -73,17 +77,17 @@ class PrecisionPolicy
 
         static auto convertStringToPosition(const std::string & a_string)
         {
-            return Type::convertStringToPosition(a_string);
+            return Type_::convertStringToPosition(a_string);
         }
 
         static auto convertStringToVelocity(const std::string & a_string)
         {
-            return Type::convertStringToVelocity(a_string);
+            return Type_::convertStringToVelocity(a_string);
         }
 
         static auto convertStringToForce(const std::string & a_string)
         {
-            return Type::convertStringToForce(a_string);
+            return Type_::convertStringToForce(a_string);
         }
 
      protected:

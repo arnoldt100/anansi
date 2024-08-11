@@ -17,6 +17,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "DataStoragePolicy.h"
 #include "PrecisionPolicy.h"
 
 namespace ANANSI
@@ -25,7 +26,8 @@ namespace ANANSI
 class SimulationDecompositionPrecisionPolicy
 {
     public:
-        using Type = PrecisionPolicy::Type;
+        using DATA_STORAGE_POLICY = DataStoragePolicy;
+        using DATA_PRECISION_POLICY = PrecisionPolicy;
         
         // ====================  LIFECYCLE     =======================================
 

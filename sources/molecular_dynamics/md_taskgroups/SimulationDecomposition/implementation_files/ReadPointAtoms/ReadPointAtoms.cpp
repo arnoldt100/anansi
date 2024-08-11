@@ -101,12 +101,12 @@ void ReadPointAtoms::receiverModifyMyself_(int & alpha)
     return;
 }
 
-template<>
-void ReadPointAtoms::receiverModifyMyself_( PhysicalDataStructureAtoms<DataStoragePolicy::Type,PrecisionPolicy::Type> & my_atoms)
-{
-    this->results_ = my_atoms;
-    return;
-}
+// template<>
+// void ReadPointAtoms::receiverModifyMyself_( PhysicalDataStructureAtoms<DataStoragePolicy,PrecisionPolicy> & my_atoms)
+// {
+//     this->results_ = my_atoms;
+//     return;
+// }
 
 template<>
 void ReadPointAtoms::receiverModifyMyself_(InitialConfigurationFilenames & file_names)

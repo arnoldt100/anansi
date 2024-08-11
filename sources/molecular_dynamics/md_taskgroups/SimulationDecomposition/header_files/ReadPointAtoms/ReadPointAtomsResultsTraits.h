@@ -37,10 +37,10 @@ class ReadPointAtomsResultsTraits
     public:
         // ====================  ALIASES       =======================================
 
-        using result_t = PhysicalDataStructureAtoms<SimulationDecompositionExecutionPolicy::Type,
-                                   SimulationDecompositionPrecisionPolicy::Type>;
-        using Atoms_t = PointAtoms<SimulationDecompositionExecutionPolicy::Type,
-                                   SimulationDecompositionPrecisionPolicy::Type>;
+        using result_t = PhysicalDataStructureAtoms<SimulationDecompositionExecutionPolicy::DATA_STORAGE_POLICY,
+                                                    SimulationDecompositionPrecisionPolicy::DATA_PRECISION_POLICY>;
+        using Atoms_t = PointAtoms<SimulationDecompositionExecutionPolicy::DATA_STORAGE_POLICY,
+                                   SimulationDecompositionPrecisionPolicy::DATA_PRECISION_POLICY>;
         using ParticlesConfigurationFiles_t = ParticlesConfigurationFiles<PointAtomsConfigurationFileNodeKeys,
                                                                           XMLFileReader,
                                                                           XMLFileWriter,

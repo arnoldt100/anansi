@@ -14,6 +14,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "PrecisionPolicy.h"
+#include "DataStoragePolicy.h"
 #include "ReadAtoms.h"
 #include "CommonMDTaskGroupHeaders.h"
 #include "ReadPointAtomsResultsTraits.h"
@@ -245,6 +247,8 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
             const auto global_key_atom_z_velocity = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Velocity),key_frmt_args);
             const auto z_velocity_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_z_velocity);
             const auto z_velocity = PrecisionPolicy::convertStringToVelocity(z_velocity_as_str);
+
+            PointAtoms<DataStoragePolicy,PrecisionPolicy> point_atoms{};
         }
     }
     return;

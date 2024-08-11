@@ -25,12 +25,16 @@ namespace ANANSI
 
 class DataStoragePolicy
 {
-    public:
+    private:
 #if ANANSI_DATA_POLICY == ANANSI_DATA_STORAGE_CPU
-        using Type = CPUCentricStoragePolicy;
+        using Type_ = CPUCentricStoragePolicy;
 #elif ANANSI_DATA_POLICY == ANANSI_DATA_STORAGE_GPU
-        using TYPE = GPUCentricStoragePolicy;
-#endif 
+        using Type_ = GPUCentricStoragePolicy;
+#else
+        using Type_ = CPUCentricStoragePolicy;
+#endif
+
+    public:
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
