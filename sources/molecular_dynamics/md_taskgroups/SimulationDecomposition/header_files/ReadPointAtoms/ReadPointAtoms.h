@@ -14,8 +14,9 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "PrecisionPolicy.h"
-#include "DataStoragePolicy.h"
+// #include "PrecisionPolicy.h"
+// #include "DataStoragePolicy.h"
+#include "SimulationDecompositionExecutionPolicy.h"
 #include "ReadAtoms.h"
 #include "CommonMDTaskGroupHeaders.h"
 #include "ReadPointAtomsResultsTraits.h"
@@ -48,13 +49,15 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
                                                                       my_share_type_,
                                                                       my_transfer_type_>;
 
-        //! \todo Implement a policy class for the ownership implementation
+        //! Implement a policy class for the ownership implementation
         using MyOwnershipImpl_ = ReadPointAtomsResultsOwnershipImpl<MyOwnershipImplTraits_>;
 
         //! The ownership policy for the result.
         using MyOwnershipPolicy_ = ANANSI::CopyOwnershipPolicy<MyOwnershipImpl_>;
 
-        // \todo Place here the class data members required for doing the task.
+        //! Implement policy for data and execution precision.
+        using MyDataPrecisionPolicy = SimulationDecompositionExecutionPolicy::DATA_PRECISION_POLICY;
+        using MyDataStoragePolicy = SimulationDecompositionExecutionPolicy::DATA_STORAGE_POLICY;
 
     public:
 
@@ -226,27 +229,27 @@ void ReadPointAtoms::receiverDoAction_(Types & ... args) const
 
             const auto global_key_atom_x_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_X_Coordinate),key_frmt_args);
             const auto x_coordinate_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_x_coordinate);
-            const auto x_coordinate = PrecisionPolicy::convertStringToPosition(x_coordinate_as_str);
+            const auto x_coordinate = MyDataPrecisionPolicy::convertStringToPosition(x_coordinate_as_str);
 
             const auto global_key_atom_y_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Coordinate),key_frmt_args);
             const auto y_coordinate_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_y_coordinate);
-            const auto y_coordinate = PrecisionPolicy::convertStringToPosition(y_coordinate_as_str);
+            const auto y_coordinate = MyDataPrecisionPolicy::convertStringToPosition(y_coordinate_as_str);
 
             const auto global_key_atom_z_coordinate = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Coordinate),key_frmt_args);
             const auto z_coordinate_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_z_coordinate);
-            const auto z_coordinate = PrecisionPolicy::convertStringToPosition(z_coordinate_as_str);
+            const auto z_coordinate = MyDataPrecisionPolicy::convertStringToPosition(z_coordinate_as_str);
 
             const auto global_key_atom_x_velocity = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_X_Velocity),key_frmt_args);
             const auto x_velocity_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_x_velocity);
-            const auto x_velocity = PrecisionPolicy::convertStringToVelocity(x_velocity_as_str);
+            const auto x_velocity = MyDataPrecisionPolicy::convertStringToVelocity(x_velocity_as_str);
 
             const auto global_key_atom_y_velocity = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Velocity),key_frmt_args);
             const auto y_velocity_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_y_velocity);
-            const auto y_velocity = PrecisionPolicy::convertStringToVelocity(y_velocity_as_str);
+            const auto y_velocity = MyDataPrecisionPolicy::convertStringToVelocity(y_velocity_as_str);
 
             const auto global_key_atom_z_velocity = get_internal_node_key(x2,std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Velocity),key_frmt_args);
             const auto z_velocity_as_str = get_value_CommandFile(myConfigurationFile,global_key_atom_z_velocity);
-            const auto z_velocity = PrecisionPolicy::convertStringToVelocity(z_velocity_as_str);
+            const auto z_velocity = MyDataPrecisionPolicy::convertStringToVelocity(z_velocity_as_str);
 
             PointAtoms<DataStoragePolicy,PrecisionPolicy> point_atoms{};
         }

@@ -94,14 +94,23 @@ PointAtomsConfigurationFileNodeKeys::PointAtomsConfigurationFileNodeKeys() :
     // Adding node key for the i'th atom z coordinate.
     add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Coordinate),"Z-Coordinate");
 
-    // Adding node key for the i'th atom x velocity.
+    // Adding node key for the i'th atom x component of the velocity .
     add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_X_Velocity),"X-Velocity");
 
-    // Adding node key for the i'th atom y velocity.
+    // Adding node key for the i'th atom y component of the velocity.
     add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Velocity),"Y-Velocity");
 
-    // Adding node key for the i'th atom z velocity.
+    // Adding node key for the i'th atom z component of the velocity.
     add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Velocity),"Z-Velocity");
+
+    // Adding node key for the i'th atom x component of the force.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_X_Force),"X-Force");
+
+    // Adding node key for the i'th atom y component of the force.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Y_Force),"Y-Force");
+
+    // Adding node key for the i'th atom z component of the force.
+    add_key(std::string(PointAtomsInternalNodeKeys::i_Atom_Z_Force),"Z-Force");
 
     return;
 }

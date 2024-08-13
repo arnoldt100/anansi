@@ -74,6 +74,14 @@ class PointAtomsInternalNodeKeys
 
         static constexpr std::string_view i_Atom_Z_Velocity = "i_Atom_Z_velocity_atom";
 
+        static constexpr std::string_view i_Atom_X_Force = "i_Atom_X_Force";
+
+        static constexpr std::string_view i_Atom_Y_Force = "i_Atom_Y_Force";
+
+        static constexpr std::string_view i_Atom_Z_Force = "i_Atom_Z_Force";
+
+
+
         // ====================  LIFECYCLE     =======================================
 
         //! The default constructor.
