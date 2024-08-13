@@ -16,6 +16,10 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
+    </1>
     </1>
     <2>
       <Atom>tip3p-H2</Atom>
@@ -29,6 +33,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </2>
     <3>
       <Atom>tip3p-H3</Atom>
@@ -42,6 +49,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </3>
     <4>
       <Atom>tip3p-O1</Atom>
@@ -55,6 +65,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </4>
     <5>
       <Atom>tip3p-H2</Atom>
@@ -68,6 +81,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </5>
     <6>
       <Atom>tip3p-H3</Atom>
@@ -81,6 +97,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </6>
     <7>
       <Atom>tip3p-O1</Atom>
@@ -94,6 +113,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </7>
     <8>
       <Atom>tip3p-H2</Atom>
@@ -107,6 +129,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </8>
     <9>
       <Atom>tip3p-H3</Atom>
@@ -120,6 +145,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </9>
     <10>
       <Atom>tip3p-O1</Atom>
@@ -133,6 +161,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </10>
     <11>
       <Atom>tip3p-H2</Atom>
@@ -146,6 +177,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </11>
     <12>
       <Atom>tip3p-H3</Atom>
@@ -159,6 +193,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </12>
     <13>
       <Atom>tip3p-O1</Atom>
@@ -172,6 +209,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </13>
     <14>
       <Atom>tip3p-H2</Atom>
@@ -185,6 +225,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </14>
     <15>
       <Atom>tip3p-H3</Atom>
@@ -198,6 +241,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </15>
     <16>
       <Atom>tip3p-O1</Atom>
@@ -211,6 +257,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </16>
     <17>
       <Atom>tip3p-H2</Atom>
@@ -224,6 +273,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </17>
     <18>
       <Atom>tip3p-H3</Atom>
@@ -237,6 +289,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </18>
     <19>
       <Atom>tip3p-O1</Atom>
@@ -250,6 +305,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </19>
     <20>
       <Atom>tip3p-H2</Atom>
@@ -263,6 +321,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </20>
     <21>
       <Atom>tip3p-H3</Atom>
@@ -276,6 +337,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </21>
     <22>
       <Atom>tip3p-O1</Atom>
@@ -289,6 +353,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </22>
     <23>
       <Atom>tip3p-H2</Atom>
@@ -302,6 +369,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </23>
     <24>
       <Atom>tip3p-H3</Atom>
@@ -315,6 +385,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </24>
     <25>
       <Atom>tip3p-O1</Atom>
@@ -328,6 +401,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </25>
     <26>
       <Atom>tip3p-H2</Atom>
@@ -341,6 +417,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </26>
     <27>
       <Atom>tip3p-H3</Atom>
@@ -354,6 +433,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </27>
     <28>
       <Atom>tip3p-O1</Atom>
@@ -367,6 +449,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </28>
     <29>
       <Atom>tip3p-H2</Atom>
@@ -380,6 +465,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </29>
     <30>
       <Atom>tip3p-H3</Atom>
@@ -393,6 +481,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </30>
     <31>
       <Atom>tip3p-O1</Atom>
@@ -406,6 +497,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </31>
     <32>
       <Atom>tip3p-H2</Atom>
@@ -419,6 +513,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </32>
     <33>
       <Atom>tip3p-H3</Atom>
@@ -432,6 +529,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </33>
     <34>
       <Atom>tip3p-O1</Atom>
@@ -445,6 +545,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </34>
     <35>
       <Atom>tip3p-H2</Atom>
@@ -458,6 +561,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </35>
     <36>
       <Atom>tip3p-H3</Atom>
@@ -471,6 +577,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </36>
     <37>
       <Atom>tip3p-O1</Atom>
@@ -484,6 +593,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </37>
     <38>
       <Atom>tip3p-H2</Atom>
@@ -497,6 +609,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </38>
     <39>
       <Atom>tip3p-H3</Atom>
@@ -510,6 +625,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </39>
     <40>
       <Atom>tip3p-O1</Atom>
@@ -523,6 +641,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </40>
     <41>
       <Atom>tip3p-H2</Atom>
@@ -536,6 +657,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </41>
     <42>
       <Atom>tip3p-H3</Atom>
@@ -549,6 +673,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </42>
     <43>
       <Atom>tip3p-O1</Atom>
@@ -562,6 +689,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </43>
     <44>
       <Atom>tip3p-H2</Atom>
@@ -575,6 +705,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </44>
     <45>
       <Atom>tip3p-H3</Atom>
@@ -588,6 +721,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </45>
     <46>
       <Atom>tip3p-O1</Atom>
@@ -601,6 +737,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </46>
     <47>
       <Atom>tip3p-H2</Atom>
@@ -614,6 +753,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </47>
     <48>
       <Atom>tip3p-H3</Atom>
@@ -627,6 +769,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </48>
     <49>
       <Atom>tip3p-O1</Atom>
@@ -640,6 +785,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </49>
     <50>
       <Atom>tip3p-H2</Atom>
@@ -653,6 +801,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </50>
     <51>
       <Atom>tip3p-H3</Atom>
@@ -666,6 +817,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </51>
     <52>
       <Atom>tip3p-O1</Atom>
@@ -679,6 +833,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </52>
     <53>
       <Atom>tip3p-H2</Atom>
@@ -692,6 +849,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </53>
     <54>
       <Atom>tip3p-H3</Atom>
@@ -705,6 +865,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </54>
     <55>
       <Atom>tip3p-O1</Atom>
@@ -718,6 +881,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </55>
     <56>
       <Atom>tip3p-H2</Atom>
@@ -731,6 +897,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </56>
     <57>
       <Atom>tip3p-H3</Atom>
@@ -744,6 +913,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </57>
     <58>
       <Atom>tip3p-O1</Atom>
@@ -757,6 +929,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </58>
     <59>
       <Atom>tip3p-H2</Atom>
@@ -770,6 +945,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </59>
     <60>
       <Atom>tip3p-H3</Atom>
@@ -783,6 +961,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </60>
     <61>
       <Atom>tip3p-O1</Atom>
@@ -796,6 +977,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </61>
     <62>
       <Atom>tip3p-H2</Atom>
@@ -809,6 +993,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </62>
     <63>
       <Atom>tip3p-H3</Atom>
@@ -822,6 +1009,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </63>
     <64>
       <Atom>tip3p-O1</Atom>
@@ -835,6 +1025,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </64>
     <65>
       <Atom>tip3p-H2</Atom>
@@ -848,6 +1041,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </65>
     <66>
       <Atom>tip3p-H3</Atom>
@@ -861,6 +1057,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </66>
     <67>
       <Atom>tip3p-O1</Atom>
@@ -874,6 +1073,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </67>
     <68>
       <Atom>tip3p-H2</Atom>
@@ -887,6 +1089,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </68>
     <69>
       <Atom>tip3p-H3</Atom>
@@ -900,6 +1105,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </69>
     <70>
       <Atom>tip3p-O1</Atom>
@@ -913,6 +1121,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </70>
     <71>
       <Atom>tip3p-H2</Atom>
@@ -926,6 +1137,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </71>
     <72>
       <Atom>tip3p-H3</Atom>
@@ -939,6 +1153,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </72>
     <73>
       <Atom>tip3p-O1</Atom>
@@ -952,6 +1169,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </73>
     <74>
       <Atom>tip3p-H2</Atom>
@@ -965,6 +1185,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </74>
     <75>
       <Atom>tip3p-H3</Atom>
@@ -978,6 +1201,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </75>
     <76>
       <Atom>tip3p-O1</Atom>
@@ -991,6 +1217,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </76>
     <77>
       <Atom>tip3p-H2</Atom>
@@ -1004,6 +1233,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </77>
     <78>
       <Atom>tip3p-H3</Atom>
@@ -1017,6 +1249,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </78>
     <79>
       <Atom>tip3p-O1</Atom>
@@ -1030,6 +1265,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </79>
     <80>
       <Atom>tip3p-H2</Atom>
@@ -1043,6 +1281,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </80>
     <81>
       <Atom>tip3p-H3</Atom>
@@ -1056,6 +1297,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </81>
     <82>
       <Atom>tip3p-O1</Atom>
@@ -1069,6 +1313,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </82>
     <83>
       <Atom>tip3p-H2</Atom>
@@ -1082,6 +1329,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </83>
     <84>
       <Atom>tip3p-H3</Atom>
@@ -1095,6 +1345,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </84>
     <85>
       <Atom>tip3p-O1</Atom>
@@ -1108,6 +1361,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </85>
     <86>
       <Atom>tip3p-H2</Atom>
@@ -1121,6 +1377,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </86>
     <87>
       <Atom>tip3p-H3</Atom>
@@ -1134,6 +1393,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </87>
     <88>
       <Atom>tip3p-O1</Atom>
@@ -1147,6 +1409,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </88>
     <89>
       <Atom>tip3p-H2</Atom>
@@ -1160,6 +1425,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </89>
     <90>
       <Atom>tip3p-H3</Atom>
@@ -1173,6 +1441,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </90>
     <91>
       <Atom>tip3p-O1</Atom>
@@ -1186,6 +1457,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </91>
     <92>
       <Atom>tip3p-H2</Atom>
@@ -1199,6 +1473,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </92>
     <93>
       <Atom>tip3p-H3</Atom>
@@ -1212,6 +1489,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </93>
     <94>
       <Atom>tip3p-O1</Atom>
@@ -1225,6 +1505,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </94>
     <95>
       <Atom>tip3p-H2</Atom>
@@ -1238,6 +1521,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </95>
     <96>
       <Atom>tip3p-H3</Atom>
@@ -1251,6 +1537,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </96>
     <97>
       <Atom>tip3p-O1</Atom>
@@ -1264,6 +1553,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </97>
     <98>
       <Atom>tip3p-H2</Atom>
@@ -1277,6 +1569,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </98>
     <99>
       <Atom>tip3p-H3</Atom>
@@ -1290,6 +1585,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </99>
     <100>
       <Atom>tip3p-O1</Atom>
@@ -1303,6 +1601,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </100>
     <101>
       <Atom>tip3p-H2</Atom>
@@ -1316,6 +1617,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </101>
     <102>
       <Atom>tip3p-H3</Atom>
@@ -1329,6 +1633,9 @@
       <X-Velocity>0.0000000000000000e+00</X-Velocity>
       <Y-Velocity>0.0000000000000000e+00</Y-Velocity>
       <Z-Velocity>0.0000000000000000e+00</Z-Velocity>
+      <X-Force>0.0000000000000000e+00</X-Force>
+      <Y-Force>0.0000000000000000e+00</Y-Force>
+      <Z-Force>0.0000000000000000e+00</Z-Force>
     </102>
   </Coordinates_Velocities_etc>
 </data>
