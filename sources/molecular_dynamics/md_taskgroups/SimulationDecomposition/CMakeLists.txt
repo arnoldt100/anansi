@@ -118,7 +118,7 @@ add_library( ${target} STATIC
         # of target simulationdecomposition.
         #
         # --------------------------------------------------- 
-        list (APPEND simulationdecomposition_header_files ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionPrecisionPolicy.h
+        list (APPEND simulationdecomposition_header_files
               ${CMAKE_CURRENT_SOURCE_DIR}/header_files/SimulationDecompositionExecutionPolicy.h)
 
         # ----------------------------------------------------
@@ -210,7 +210,7 @@ add_library( ${target} STATIC
         # of target simulationdecomposition.
         #
         # --------------------------------------------------- 
-        list (APPEND simulationdecomposition_implementation_files ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionPrecisionPolicy.cpp
+        list (APPEND simulationdecomposition_implementation_files
             ${CMAKE_CURRENT_SOURCE_DIR}/implementation_files/SimulationDecompositionExecutionPolicy.cpp)
 
         # ----------------------------------------------------

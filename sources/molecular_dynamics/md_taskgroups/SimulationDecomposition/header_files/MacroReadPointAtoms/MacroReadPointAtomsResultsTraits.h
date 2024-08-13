@@ -19,7 +19,6 @@
 //--------------------------------------------------------//
 #include "Atoms.hpp"
 #include "PointAtoms.hpp"
-#include "SimulationDecompositionPrecisionPolicy.h"
 #include "SimulationDecompositionExecutionPolicy.h"
 
 namespace ANANSI
@@ -32,7 +31,7 @@ class MacroReadPointAtomsResultsTraits
         //! \todo  Fill in the result type.
         using result_t = Atoms;
         using Atoms_t = PointAtoms<SimulationDecompositionExecutionPolicy::DATA_STORAGE_POLICY,
-                                   SimulationDecompositionPrecisionPolicy::DATA_PRECISION_POLICY>;
+                                   SimulationDecompositionExecutionPolicy::DATA_PRECISION_POLICY>;
         using copy_result_t = result_t;
         using share_result_t = result_t;
         using transfer_result_t = result_t;
