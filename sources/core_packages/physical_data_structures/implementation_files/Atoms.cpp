@@ -19,47 +19,41 @@ namespace ANANSI {
 
 //============================= LIFECYCLE ====================================
 
-Atoms::Atoms() :     // constructor
-    valuePtr_(nullptr)
+Atoms::Atoms()
+    : // constructor
+      valuePtr_(nullptr) {
+    return;
+}
+
+//! The destructor.
+Atoms::~Atoms() // destructor
 {
     return;
 }
 
 //! The destructor.
-Atoms::~Atoms()  // destructor
-{
-    return;
-}
-
-//! The destructor.
-Atoms::AtomsConcept::~AtomsConcept()  // destructor
+Atoms::AtomsConcept::~AtomsConcept() // destructor
 {
     return;
 }
 
 //============================= ACCESSORS ====================================
-Atoms* Atoms::clone() const
-{
-    return new Atoms(*this);
-}
-
+Atoms *Atoms::clone() const { return new Atoms(*this); }
 
 //============================= MUTATORS =====================================
 
 //============================= OPERATORS ====================================
-Atoms& Atoms::operator=( const Atoms &other ) // assignment operator
+Atoms &Atoms::operator=(const Atoms &other) // assignment operator
 {
-    if (this != &other)
-    {
-        this->valuePtr_  = other.valuePtr_->clone();
+    if (this != &other) {
+        this->valuePtr_ = other.valuePtr_->clone();
     }
     return *this;
 } // assignment operator
 
-Atoms& Atoms::operator=( Atoms && other) // assignment-move operator
+Atoms &Atoms::operator=(Atoms &&other) // assignment-move operator
 {
-    if (this != &other)
-    {
+    if (this != &other) {
         this->valuePtr_ = std::move(other.valuePtr_);
     }
     return *this;
@@ -79,7 +73,7 @@ Atoms& Atoms::operator=( Atoms && other) // assignment-move operator
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// PRIVATE //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-    
+
 //============================= LIFECYCLE ====================================
 
 //============================= ACCESSORS ====================================
@@ -88,5 +82,4 @@ Atoms& Atoms::operator=( Atoms && other) // assignment-move operator
 
 //============================= OPERATORS ====================================
 
-
-}; // ----- End of namespace ANANSI -----
+}; // namespace ANANSI
