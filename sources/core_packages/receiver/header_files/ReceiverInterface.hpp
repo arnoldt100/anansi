@@ -70,8 +70,8 @@ class ReceiverInterface
 
         //! Provides access to the CRTP derived class member methods.
         //!
-        //! The goal of this stucture is to better encapsulate (i.e. hide) the
-        //! concrete CRTP receivers implementation details. The receievers
+        //! The goal of this structure is to better encapsulate (i.e. hide) the
+        //! concrete CRTP receivers implementation details. The receivers
         //! implement protected member functions as in ConcretReceiver::foo_. A
         //! function pointer to the address derived pointer member function is
         //! ConcretReceiver::foo_ is formed so that we can indirectly call
@@ -210,7 +210,7 @@ class ReceiverInterface
         //!
         //! The results are copied/clone and the result of the concrete 
         //! reciever are not modified. If the results are not allowed to be 
-        //! copied, an execption is thrown and a default copy of the receiver
+        //! copied, an exception is thrown and a default copy of the receiver
         //! results is returned.
         auto getCopyOfResults() const
         {
@@ -249,7 +249,7 @@ class ReceiverInterface
         //!
         //! The results are shared
         //! If the results are not allowed to be shared,
-        //! an execption is thrown and a default instance of the receiver
+        //! an exception is thrown and a default instance of the receiver
         //! results  is returned.
         auto shareOwnershipOfResults()
         {

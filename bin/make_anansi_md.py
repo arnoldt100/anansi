@@ -115,7 +115,6 @@ def run_build_command_(args):
         print ("The command " + "'" + make_install_cmd + "'" + " failed.\n")
         print ("The return code is " + str(process_make_install.returncode) + "\n\n")
         return
-  
 
 if __name__ == "__main__":
     _main()

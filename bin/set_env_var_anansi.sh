@@ -24,6 +24,8 @@
 
 export ANANSI_TOP_LEVEL=$(pwd)
 
+export ANANSI_TARGET_ARCHITECTURE="RuyLopez"
+
 export PATH="${ANANSI_TOP_LEVEL}/bin:${PATH}"
 
 export PYTHONPATH="${ANANSI_TOP_LEVEL}/python_packages:${PYTHONPATH}"
