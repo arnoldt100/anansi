@@ -24,8 +24,8 @@ def _parse_arguments():
 
     # Create a string of the description of the 
     # program
-    program_description = "Your program description" 
-
+    program_description = "This program creates directories and copies configuration files" 
+    program_description += " ...add some more ..."
     # Create an argument parser.
     my_parser = argparse.ArgumentParser(
             description=program_description,
