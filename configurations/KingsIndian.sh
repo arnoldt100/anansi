@@ -37,7 +37,7 @@ export ANANSI_MPI_RUN_COMMAND="mpirun -np"
 # Define the install prefix.                         -
 #                                                    -
 #-----------------------------------------------------
-export ANANSI_INSTALL_PREFIX="${HOME}/sw/Anansi"
+export ANANSI_INSTALL_PREFIX="${HOME}/sw/Anansi/KingsIndian"
 
 #-----------------------------------------------------
 # Define the anansi bin directory.                   -
