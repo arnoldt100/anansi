@@ -83,7 +83,8 @@ def run_build_command_(args):
     # Define the CMake build directory. This is 
     # the working directory for the make command
     anansi_top_level=os.getenv("ANANSI_TOP_LEVEL")
-    anansi_cmake_build_dir=os.path.join(anansi_top_level,"build")
+    anansi_target_dir=os.getenv("ANANSI_TARGET_ARCHITECTURE") 
+    anansi_cmake_build_dir=os.path.join(anansi_top_level,anansi_target_dir,"build")
     
     # Define the make options.
     options=""

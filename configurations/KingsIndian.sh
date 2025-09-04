@@ -27,7 +27,6 @@ export ANANSI_CMAKE_CXX_COMPILER=mpic++
 #-----------------------------------------------------
 export ANANSI_CMAKE_C_COMPILER=mpicc
 
-
 # ----------------------------------------------------
 #  Define the mpi run command.
 # 

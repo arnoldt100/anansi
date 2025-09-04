@@ -21,7 +21,7 @@
 
 macro(enable_mpi)
 
-    # Find the Boost package. If the mpi package is not found 
+    # Find the MPI package. If the mpi package is not found 
     # the generate a fatal error message and exit.
     find_package( MPI
                   REQUIRED)
