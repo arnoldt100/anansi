@@ -152,7 +152,8 @@ target_include_directories(${target}
                            PRIVATE ${my_comm_include}
                            PRIVATE ${my_command_line_arguments_include} 
                            PRIVATE ${my_generic_object_factory_include}
-                           PRIVATE ${my_typelist_aliases_include} )
+                           PRIVATE ${my_typelist_aliases_include} 
+                           PRIVATE ${Boost_INCLUDE_DIR})
 
 
 #-----------------------------------------------------

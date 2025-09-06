@@ -139,7 +139,8 @@ target_include_directories(${target}
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files/Exceptions
                            PRIVATE ${my_typelist_aliases_include}
                            PRIVATE ${my_tasks_include}
-                           PRIVATE ${my_debugging_utilities_include})
+                           PRIVATE ${my_debugging_utilities_include}
+                           PRIVATE ${Boost_INCLUDE_DIR})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -
@@ -148,7 +149,8 @@ target_include_directories(${target}
 target_link_libraries( ${target}
                        PUBLIC debugging_utilities
                        PUBLIC tasks
-                       PUBLIC typelist_aliases )
+                       PUBLIC typelist_aliases)
+
 #-----------------------------------------------------
 # Enable compile warnings.                           -
 #                                                    -

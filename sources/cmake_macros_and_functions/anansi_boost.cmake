@@ -35,7 +35,7 @@ macro(enable_boost MY_BOOST_ROOT)
     find_package( Boost
                   COMPONENTS program_options 
                              log
-                             system 
+                             # system 
                              unit_test_framework 
                              chrono
                   REQUIRED)
