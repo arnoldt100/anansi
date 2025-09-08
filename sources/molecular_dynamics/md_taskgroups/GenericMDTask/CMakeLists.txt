@@ -125,7 +125,8 @@ target_sources(${target}
 target_include_directories(${target} 
                            PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/header_files
                            PUBLIC ${my_tasks_include}
-                           PUBLIC ${my_receiver_include})
+                           PUBLIC ${my_receiver_include}
+                           PRIVATE ${Boost_INCLUDE_DIR})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -

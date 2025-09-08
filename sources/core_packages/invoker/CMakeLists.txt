@@ -125,7 +125,7 @@ target_include_directories(${target}
                            PRIVATE ${my_tasks_include}
                            PRIVATE ${my_receiver_include}
                            PRIVATE ${my_typelist_aliases_include}
-                           )
+                           PRIVATE ${Boost_INCLUDE_DIR})
 
 #-----------------------------------------------------
 # The libraries to use when linking to target.       -

@@ -204,7 +204,8 @@ target_include_directories(${target}
                            PRIVATE ${my_mm_include}
                            PRIVATE ${my_cc_include}
                            PRIVATE ${my_debbugging_utilities_include}
-                           PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details )
+                           PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/header_files/details
+                           PRIVATE ${Boost_INCLUDE_DIR} )
 
                        
 #-----------------------------------------------------
@@ -222,7 +223,8 @@ target_link_libraries( ${target}
                        PUBLIC communicator
                        PUBLIC memory_management 
                        PUBLIC counterclass
-                       PUBLIC debugging_utilities)
+                       PUBLIC debugging_utilities
+                   )
 
 #-----------------------------------------------------
 # Enable compile warnings.                           -
