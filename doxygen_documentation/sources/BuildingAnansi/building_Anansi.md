@@ -38,7 +38,9 @@ Unix/Linux variants the typical build commands are
     ./bootstrap.sh --prefix=${installation_path} \
                --without-libraries=mpi,coroutine,couroutine2 \
                --with-toolset=gcc
-  
+
+    ./b2 install
+
 where *installation_path* is the top level *Boost* installation directory.
 
 Even though we install nearly all *Boost* libraries, many are superfluous to
@@ -50,6 +52,42 @@ equal to the installation path of the *Boost* libraries.
 *ANANSI_BOOST_TOP_LEVEL* is used by *Anansi* CMake files to locate the *Boost*
 libraries.
 
-## Setting Runtime environment
+## Setting the runtime environment
+
+First set following environment variable 
+
+**ANANSI_TOP_LEVEL** The directory file path to the top level of the Anansi software package. 
+
+Then set the remaining environmental variables:
+
+**ANANSI_TARGET_ARCHITECTURE**
+
+**ANANSI_CMAKE_CXX_COMPILER**
+
+**ANANSI_CMAKE_C_COMPILER**
+
+**ANANSI_INSTALL_PREFIX**
+
+**ANANSI_INSTALL_INCLUDE_DIRECTORY**
+
+**ANANSI_INSTALL_BIN_DIRECTORY**
+
+**ANANSI_INSTALL_LIB_DIRECTORY**
+
+**ANANSI_TEST_LOG_BASE_DIRECTORY**
+
+**ANANSI_BOOST_TOP_LEVEL**
+
+**ANANSI_DEBUG_VALID_VALUES**
+
+**MOUSEION_DEBUG_VALID_VALUES**
+
+**ANANSI_PRECISION_POLICY**
+
+**ANANSI_MPI_RUN_COMMAND**
+
+To facilitate setting these variable, we have several sample config files located 
+in directory *./configurations*. The environmental variable *ANANSI_TOP_LEVEL*
+
 
 ## Running the Build Command 
