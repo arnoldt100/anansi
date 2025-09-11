@@ -103,7 +103,8 @@ Sourcing the configuration file must set the following environmental variables:
 * `ANANSI_MPI_RUN_COMMAND`
 
 To facilitate setting these variable, we have several sample configuration files located 
-in directory *${ANANSI_TOP_LEVEL}/configurations*.
+in directory *${ANANSI_TOP_LEVEL}/configurations*. For a more detailed explanation and use 
+of these environmental variables refer to [Anansi Environmental Variables](#AnansiEnvironmentalVariables) 
 
 
 ## Running the Build Command 

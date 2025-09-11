@@ -910,6 +910,7 @@ WARN_LOGFILE           =
 
 INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto \
+                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/AnansiEnvironmentalVariables \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/BuildingAnansi \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/NotationalConvention \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/DevelopersDocumentation \
