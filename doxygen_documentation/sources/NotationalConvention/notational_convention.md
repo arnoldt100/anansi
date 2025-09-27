@@ -20,6 +20,6 @@ Shell commands to be typed on the command line are as follows:
 &nbsp;&nbsp;&nbsp;&nbsp;<B>shell:</B> export ANANSI_TOP_LEVEL=\$\(pwd\) <BR/>
 &nbsp;&nbsp;&nbsp;&nbsp;<B>shell:</B> echo \$ANANSI_TOP_LEVEL
 
-Finally, filenames, URLs, email addresses, and file extensions are set in itlalics.
+Finally, filenames, URLs, email addresses, and file extensions are set in italics.
 
 &nbsp;&nbsp;&nbsp;&nbsp;Please email all questions to <EM>dummyemail@dummydomain.com</EM>

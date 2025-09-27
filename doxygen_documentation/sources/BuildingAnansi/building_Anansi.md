@@ -6,7 +6,7 @@ We first provide an overview of building `Anansi`.
 
 Building `Anansi` can be broadly separated into 3 stages. The first stage is to
 satisfy the library prerequisites.  The second stage is to set the build
-runtime environment which consists of setting critical environmental variables.
+and runtime environment by setting critical environmental variables.
 The last stage to run the `Anansi` build command.
 
 The mandatory library prerequisites 
@@ -65,20 +65,8 @@ located at
 
     ${ANANSI_TOP_LEVEL}/configurations/${ANANSI_TARGET_ARCHITECTURE}.sh 
 
-When this file is sourced from any working directory the runtime programming environment for `Anansi` 
-shall be fully set up. There are several sample architecture configurations that can serve as
-starting points for your machine.
-
-Sourcing the configuration file must set the following environmental variables: 
-
-* ANANSI_BOOST_TOP_LEVEL The top level of the *Boost* library where
-
-
-    ${ANANSI_BOOST_TOP_LEVEL}/boost/---lib
-                                    |
-                                    |--include
-                                    |
-                                    |--share
+When this file is sourced from any working directory, the runtime programming environment for `Anansi` 
+shall be fully set up and following environmental variables are defined: 
 
 * `ANANSI_CMAKE_CXX_COMPILER`
 
@@ -98,12 +86,18 @@ Sourcing the configuration file must set the following environmental variables:
 
 * `MOUSEION_DEBUG_VALID_VALUES`
 
-* `ANANSI_PRECISION_POLICY`
-
 * `ANANSI_MPI_RUN_COMMAND`
 
-To facilitate setting these variable, we have several sample configuration files located 
-in directory *${ANANSI_TOP_LEVEL}/configurations*. For a more detailed explanation and use 
+* `ANANSI_BOOST_TOP_LEVEL`
+
+* `ANANSI_PRECISION_POLICY` - Unused 
+
+* `ANANSI_DATA_CENTRIC_POLICY` - Unused
+
+* `ANANSI_PRECISION_POLICY` - Unused
+
+To facilitate setting these environmental variables, there are several sample configuration files located 
+in directory <em>${ANANSI_TOP_LEVEL}/configurations</em>. For a more detailed explanation and use 
 of these environmental variables refer to [Anansi Environmental Variables](#AnansiEnvironmentalVariables) 
 
 
