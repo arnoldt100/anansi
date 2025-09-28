@@ -16,6 +16,18 @@ fi
 source ${ANANSI_TOP_LEVEL}/configurations/anansi_core_variables.sh
 
 #-----------------------------------------------------
+# Define the Anansi build type                       -
+#                                                    -
+#-----------------------------------------------------
+export ANANSI_BUILD_TYPE=${ANANSI_BUILD_DEBUG}
+
+#-----------------------------------------------------
+# Define the c++ compiler.                           -
+#                                                    -
+#-----------------------------------------------------
+export ANANSI_CMAKE_CXX_COMPILER=mpic++
+
+#-----------------------------------------------------
 # Define the c++ compiler.                           -
 #                                                    -
 #-----------------------------------------------------
@@ -26,6 +38,12 @@ export ANANSI_CMAKE_CXX_COMPILER=mpic++
 #                                                    -
 #-----------------------------------------------------
 export ANANSI_CMAKE_C_COMPILER=mpicc
+
+# ----------------------------------------------------
+#  Define the path to the MPI directory
+# 
+# ----------------------------------------------------
+export ANANSI_MPICH_DIRECTORY="${MPICH_DIR}"
 
 # ----------------------------------------------------
 #  Define the mpi run command.

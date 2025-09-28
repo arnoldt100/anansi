@@ -44,6 +44,18 @@ A convenience environmental variable for setting the compile macro `-D ANANSI_PR
 to 3\. Setting the compute precision policy equal to 'ANANSI_HIGH_COMPUTE_PRECISION'
 has the semantics of computing in a high precision manner.
 
+`ANANSI_BUILD_DEBUG`="Debug" <br>
+A convenience variable for the `CMake` standard configuration Debug.
+
+`ANANSI_BUILD_RELAESE`="Release" <br>
+A convenience variable for the `CMake` standard configuration Release.
+
+`ANANSI_BUILD_RELAESE_WITH_DEBUG_INFO`="RelWithDebInfo" <br>
+A convenience variable for the `CMake` standard configuration RelWithDebInfo.  
+
+`ANANSI_BUILD_RELAESE_WITH_MIN_SIZE`="MinSizeRel" <br>
+A convenience variable for the `CMake` standard configuration MinSizeRel.
+
 
 ## Anansi Target Architecture Environmental Variables
 
@@ -52,18 +64,31 @@ The file path to the top level of the `Anansi` software package. The default val
 of this variable is the user's home directory. It is highly recommended that this
 variable be set - do not rely on the default value.
 
-`ANANSI_TARGET_ARCHITECTURE` : The suffix of the target architecture. This
+`ANANSI_TARGET_ARCHITECTURE` : <br>
+The suffix of the target architecture. This
 file corresponds to the file <EM>${ANANSI_TOP_LEVEL}/configurations/${ANANSI_TARGET_ARCHITECTURE}.sh</EM>
 
 When this file is sourced from any working directory, the runtime programming environment for `Anansi` 
 shall be fully set up. There are several sample architecture configurations that can serve as
 starting points for your machine.
 
+`ANANSI_BUILD_TYPE` : <br>
+The CMake build type. This variable can take one of the values Debug, RelWithDebInfo, Release, or MinSizeRel.
+
 `ANANSI_CMAKE_CXX_COMPILER` :<br>
 Sets the CMake variable `CMAKE_CXX_COMPILER` via `-D` on the command line.
 
 `ANANSI_CMAKE_C_COMPILER` :<br>
 Sets the CMake variable `CMAKE_C_COMPILER` via `-D` on the command line.
+
+`ANANSI_MPICH_DIR` :<br>
+Sets the directory file path to the  `MPI` directory. The `MPI`  `bin`, `lib`, `include`,  `etc`
+and `share` directories are located at 
+<em>${ANANSI_MPICH_DIR}/bin</em>,
+<em>${ANANSI_MPICH_DIR}/lib</em>,
+<em>${ANANSI_MPICH_DIR}/include</em>,
+<em>${ANANSI_MPICH_DIR}/etc</em> and 
+<em>${ANANSI_MPICH_DIR}/share</em> respectively.
 
 `ANANSI_MPI_RUN_COMMAND` :<br>
 Sets the command to launch `MPI` jobs for your target architecture. This variable is

@@ -7,12 +7,6 @@
 declare -r anansi_cmake_build_dir="${ANANSI_TOP_LEVEL}/${ANANSI_TARGET_ARCHITECTURE}/build"
 
 #-----------------------------------------------------
-# The number of make threads.                        -
-#                                                    -
-#-----------------------------------------------------
-declare -r -i NM_MAKE_THREADS=2
-
-#-----------------------------------------------------
 # Define a log file                                  -
 #                                                    -
 #-----------------------------------------------------
@@ -37,6 +31,6 @@ cmake ${ANANSI_TOP_LEVEL}/sources \
   -DCMAKE_CXX_COMPILER=${ANANSI_CMAKE_CXX_COMPILER} \
   -DCMAKE_C_COMPILER=${ANANSI_CMAKE_C_COMPILER} \
   -DCMAKE_INSTALL_PREFIX=${ANANSI_INSTALL_PREFIX} \
-  -DCMAKE_BUILD_TYPE=Debug \
-  -DCMAKE_PREFIX_PATH="${MPICH_DIR}" \
+  -DCMAKE_BUILD_TYPE=${ANANSI_BUILD_TYPE} \
+  -DCMAKE_PREFIX_PATH="${ANANSI_MPICH_DIR}" \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=1

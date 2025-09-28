@@ -68,6 +68,8 @@ located at
 When this file is sourced from any working directory, the runtime programming environment for `Anansi` 
 shall be fully set up and following environmental variables are defined: 
 
+* `ANANSI_BUILD_TYPE`
+
 * `ANANSI_CMAKE_CXX_COMPILER`
 
 * `ANANSI_CMAKE_C_COMPILER`
@@ -86,6 +88,8 @@ shall be fully set up and following environmental variables are defined:
 
 * `MOUSEION_DEBUG_VALID_VALUES`
 
+* `ANANSI_MPICH_DIR`
+
 * `ANANSI_MPI_RUN_COMMAND`
 
 * `ANANSI_BOOST_TOP_LEVEL`
@@ -101,4 +105,11 @@ in directory <em>${ANANSI_TOP_LEVEL}/configurations</em>. For a more detailed ex
 of these environmental variables refer to [Anansi Environmental Variables](#AnansiEnvironmentalVariables) 
 
 
-## Running the Build Command 
+## Running the Build Commands 
+
+
+### Building the Target Architecture
+
+The first step is the target architecture build stage. 
+![directories created in building target architecture stage](anansi-target-architecture.png) 
+

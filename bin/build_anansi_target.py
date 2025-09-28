@@ -4,11 +4,8 @@
 #  for the targeted architecture,
 #
 #  This program creates the directories
-#  ${ANANSI_TOP_LEVEL}|-----/build
-#                     |
-#                     |-----/configurations
-#                     |
-#                     |-----/documentation
+#  ${ANANSI_TARGET_ARCHITECTURE}
+#                     |-----/build
 #                     |
 #                     |-----/unit_test_logs
 # 
