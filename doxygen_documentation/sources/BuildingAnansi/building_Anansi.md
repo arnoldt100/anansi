@@ -90,7 +90,7 @@ shall be fully set up and following environmental variables are defined:
 
 * `ANANSI_BOOST_TOP_LEVEL`
 
-* `ANANSI_PRECISION_POLICY` - Unused 
+* `ANANSI_PRECISION_POLICY` - Unused
 
 * `ANANSI_DATA_CENTRIC_POLICY` - Unused
 

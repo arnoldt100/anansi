@@ -88,4 +88,6 @@ needed if one plans to run the unit tests.
 
 `ANANSI_BOOST_TOP_LEVEL`:<br>
 Sets the directory file path to the Boost library. The Boost `lib', 'include' , and 'share' directories must be located at
-<em>${ANANSI_BOOST_TOP_LEVEL}/boost/lib</em>, <en>${ANANSI_BOOST_TOP_LEVEL}/boost/include</em>, <em>${ANANSI_BOOST_TOP_LEVEL}/boost/share</em>.
+<em>${ANANSI_BOOST_TOP_LEVEL}/boost/lib</em>,
+<em>${ANANSI_BOOST_TOP_LEVEL}/boost/include</em>,
+<em>${ANANSI_BOOST_TOP_LEVEL}/boost/share</em>.
