@@ -110,6 +110,19 @@ of these environmental variables refer to [Anansi Environmental Variables](#Anan
 
 ### Building the Target Architecture
 
-The first step is the target architecture build stage. 
+The first step is the build the target architecture build system. Run the command
+
+&nbsp;&nbsp;&nbsp;&nbsp;<B>shell:</B> build_anansi_cmake_configure.sh<BR/>
+
+The will generate the directories show in the below figure.
 ![directories created in building target architecture stage](anansi-target-architecture.png) 
+The `build` directory is where the usual CMake build system files are located. The
+`unit_test_logs` directory is where the unit test results and log files are
+written.
+
+The last step is to run command 
+
+&nbsp;&nbsp;&nbsp;&nbsp;<B>shell:</B> make install<BR/>
+
+which will build and install Anansi.
 
