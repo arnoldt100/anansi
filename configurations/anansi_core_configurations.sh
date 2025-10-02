@@ -20,6 +20,14 @@ then
     echo "This variable must be set the the top level directory of anansi."
     echo "Anansi will not build correctly till this variable is set."
 else
+
+    #-----------------------------------------------------
+    # Define the Anansi directory layout via a Path      -
+    # Schema file.                                       -
+    #                                                    -
+    #-----------------------------------------------------
+    export ANANSI_PATH_SCHEMA=${ANANSI_TOP_LEVEL}/anansi.pathschema
+
     #-----------------------------------------------------
     # Define the directory to store the Anansi unit test -
     # log files.                                         -

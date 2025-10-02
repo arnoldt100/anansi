@@ -17,6 +17,7 @@ import argparse
 import logging
 import configparser
 import os
+from pathschema import validate
 
 # Local imports
 
@@ -60,6 +61,9 @@ def main():
 
     message = message_env_undef + "\n\n" + message_env_def
     logger.info(message)
+
+    _check_variable_anansi_top_level(critical_env_variables)
+
     logger.info("End of main program")
 
 #-----------------------------------------------------
@@ -162,7 +166,21 @@ def _check_variable_anansi_top_level(variable_list : List[str]):
     source file layout. 
 
     """
+    schema = ""
+    anansi_schema_file = os.getenv("ANANSI_PATH_SCHEMA")
+    with open(anansi_schema_file, 'r') as file_handle:
+        schema = file_handle.read()
+
+    path_to_validate = os.path.join(os.getenv("ANANSI_TOP_LEVEL"),"sources")
+    result = validate(path_to_validate, schema)
+    print(result)
+    if(result.has_error()):
+        print('Invalid')
+    else:
+        print('Valid')
+        return
     return
+
 
 
 #-----------------------------------------------------
