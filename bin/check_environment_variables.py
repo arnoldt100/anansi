@@ -12,6 +12,7 @@
 """
 
 # System imports
+from typing import List
 import argparse
 import logging
 import configparser
@@ -153,6 +154,16 @@ def _get_list_critical_env_var(env_config_file):
             a_list.append(env_var_name)
 
     return a_list
+
+def _check_variable_anansi_top_level(variable_list : List[str]):
+    """ Verifies that the environmnetal variable is properly defined.
+
+    This function checks directory $ANANSI_TOP_LEVEL for correct
+    source file layout. 
+
+    """
+    return
+
 
 #-----------------------------------------------------
 # Main entry point of module.                        -

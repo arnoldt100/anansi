@@ -1,9 +1,10 @@
 # Inheritance Patterns {#InheritancePatterns}
 
-This section describes the inheritance patterns used throughout Anansi. 
-Anansi uses the typical hierarchical inheritances and a Type Erasure Design Pattern.
-The hierarchical inheritance patterns used in Anansi are traditional inheritance with a single subclass,
-Curiously Recurring Template Pattern (CRTP) and Type Erasure.[1]
+This section describes the inheritance patterns used throughout Anansi.
+Anansi uses the typical hierarchical inheritances and a Type Erasure
+Design Pattern. The hierarchical inheritance patterns used in Anansi are
+traditional inheritance with a single subclass, and Type Erasure [1]
+combined with the Curiously Recurring Template Pattern (CRTP).
 
 
 

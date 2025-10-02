@@ -22,7 +22,7 @@ template parameters are of concrete shape types
     template <typename T> 
     class OwningShapeModel<T>;
 
-and `OwningShapeModel` constructor takes a concrete shape, e.g. `Circle`, `Square`, e.t.c., that is used to
+and constructor takes a concrete shape, e.g. `Circle`, `Square`, e.t.c., that is used to
 initialize the data member `OwningShapeModel::concreteShape_`. 
 
     template <typename T>

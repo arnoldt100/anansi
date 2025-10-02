@@ -28,7 +28,7 @@ class ReadControlFileResultsTraits
 {
     public:
         // ====================  ALIASES       =======================================
-        //! The type erasure for the input file. 
+        //! The type erasure for the inputfile.
         using result_t = CommandFiles<>;
 
         //! The input file stored in the type erasure.

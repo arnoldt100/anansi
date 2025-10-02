@@ -35,7 +35,7 @@ namespace RECEIVER
 //! - **shareOwnershipOfResults** Shares ownership of results of the action of of the concrete receiver
 //! - **transferOwnershipOfResults** Transfers sole ownership of results of the action of of the concrete receiver
 //! - **enable** (To be described later.)
-//! - **disable** After this is called, all other comamnds have an indeterminate effect.
+//! - **disable** After this is called, all other commands have an indeterminate effect.
 //! - **modifyReceiver** Modifies the concrete receiver.
 //!
 //! Some methods have const qualifiers so as to limit the methods side effects.

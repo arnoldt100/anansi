@@ -3,7 +3,7 @@
 //! \file CommandFiles.h
 //!
 //! Command files have entries that have the general form
-//! of a  key iand value where each key is unique. The key and value are
+//! of a key and value where each key is unique. The key and value are
 //! are strings, the key string contains no blank spaces, and the
 //! value is on 1 line in the file.
 //!
