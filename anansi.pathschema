@@ -1,6 +1,56 @@
-bin/
-	...
+# This path schema files requires consistent indentation. This file uses 4 spaces for 
++bin/
+    ...
 
-sources/
-	...
++etc/
+    ...
 
++sources/
+    ...
+
++configurations/
+    ...
+
++SpellFiles/
+    ...
+
++doxygen_documentation/
+    ...
+
++templates/
+    ...
+
++data_files/
+    ...
+
++documentation/
+    ...
+
++examples/
+    ...
+
++public/
+    ...
+
++.git/
+    ...
+
++docs/
+    ...
+
++README.md
+
++ .gitignore
+
++ .gitmodules
+
++ .github/
+    ...
+
++.astylerc
+
++.clang-format
+
++anansi.pathschema
+
++LICENSE
