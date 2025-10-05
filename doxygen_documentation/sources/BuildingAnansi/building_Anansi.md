@@ -9,6 +9,8 @@ satisfy the library prerequisites.  The second stage is to set the build
 and runtime environment by setting critical environmental variables.
 The last stage to run the `Anansi` build command.
 
+## Library Prerequisites
+
 The mandatory library prerequisites 
 
     Software | Version Requirements
@@ -17,7 +19,7 @@ The mandatory library prerequisites
     Boost    | >= 1.89.0
     MPI      | supports mpi 1, 2 and 3 standard 
     C++,     | supports c++20 
-    Python   | >= 3.7
+    Python   | >= 3.13
 
 are needed to build `Anansi`. The optional prerequisite
 
@@ -26,8 +28,6 @@ are needed to build `Anansi`. The optional prerequisite
     Doxygen  | >= 1.10.0
 
 is only needed for building documentation.
-
-## Building Library Prerequisites
 
 ### Boost Libraries
 The *Boost* library, *https://boost.org*, has excellent documentation. For
@@ -54,13 +54,10 @@ libraries.
 
 ## Setting the runtime environment
 
-First set environment variable `ANANSI_TOP_LEVEL`.
+First set environment variable `ANANSI_TOP_LEVEL`. `ANANSI_TOP_LEVEL` is the
+directory file path to the top level of the `Anansi` software package.
 
-**ANANSI_TOP_LEVEL** The directory file path to the top level of the `Anansi` software package. 
-
-Next set the environmental variable `ANANSI_TARGET_ARCHITECTURE`.
-
-**ANANSI_TARGET_ARCHITECTURE** The target machine to build. This variable corresponds to the file
+Next set the environmental variable `ANANSI_TARGET_ARCHITECTURE`. This variable corresponds to the file
 located at
 
     ${ANANSI_TOP_LEVEL}/configurations/${ANANSI_TARGET_ARCHITECTURE}.sh 
@@ -100,9 +97,12 @@ shall be fully set up and following environmental variables are defined:
 
 * `ANANSI_PRECISION_POLICY` - Unused
 
-To facilitate setting these environmental variables, there are several sample configuration files located 
-in directory <em>${ANANSI_TOP_LEVEL}/configurations</em>. For a more detailed explanation and use 
-of these environmental variables refer to [Anansi Environmental Variables](#AnansiEnvironmentalVariables) 
+To facilitate setting these environmental variables for your computer, there
+are several sample configuration files located in directory
+<em>${ANANSI_TOP_LEVEL}/configurations</em>. Copy and modify one of the sample
+configurations to suit your computer runtime environment. For a more detailed
+explanation and use of these environmental variables refer to [Anansi
+Environmental Variables](#AnansiEnvironmentalVariables) 
 
 
 ## Running the Build Commands 
@@ -114,7 +114,7 @@ The first step is the build the target architecture build system. Run the comman
 
 &nbsp;&nbsp;&nbsp;&nbsp;<B>shell:</B> build_anansi_cmake_configure.sh<BR/>
 
-The will generate the directories show in the below figure.
+The will generate the directories show in the figure below.<BR/>
 ![directories created in building target architecture stage](anansi-target-architecture.png) 
 The `build` directory is where the usual CMake build system files are located. The
 `unit_test_logs` directory is where the unit test results and log files are
@@ -125,4 +125,3 @@ The last step is to run command
 &nbsp;&nbsp;&nbsp;&nbsp;<B>shell:</B> make install<BR/>
 
 which will build and install Anansi.
-
