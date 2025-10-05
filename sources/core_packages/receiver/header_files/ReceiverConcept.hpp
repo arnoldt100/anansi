@@ -24,6 +24,7 @@ namespace RECEIVER
 {
 
 //! An abstract base class that provides the interface for concrete receiver objects.
+//! There should be no member data attributes in this abstract base class.
 //!
 //! ReceiverConcept provides the interface for all concrete receiver objects
 //! via the Curiously Recurring Template Pattern (CRTP). The class defines the 
@@ -34,13 +35,15 @@ namespace RECEIVER
 //! - **getCopyOfResults** Returns a copy of the results of the action of of the concrete receiver
 //! - **shareOwnershipOfResults** Shares ownership of results of the action of of the concrete receiver
 //! - **transferOwnershipOfResults** Transfers sole ownership of results of the action of of the concrete receiver
-//! - **enable** (To be described later.)
+//! - **enable** This method is called after the concrete receiver is fully initialized. The doAction method can be called
+//!    with the desired effect.
 //! - **disable** After this is called, all other commands have an indeterminate effect.
 //! - **modifyReceiver** Modifies the concrete receiver.
 //!
 //! Some methods have const qualifiers so as to limit the methods side effects.
 
-//! @tparam The derived class of the CRTP. The derived classes are the concrete receivers. 
+
+//! @tparam Derived The derived class of the CRTP. The derived classes are the concrete receivers.
 template<typename Derived> 
 class ReceiverConcept
 {
@@ -76,7 +79,7 @@ class ReceiverConcept
         //! function pointer to the address derived pointer member function is
         //! ConcretReceiver::foo_ is formed so that we can indirectly call
         //! ConcretReceiver::foo_.
-        struct Accessor_ : public Derived 
+        struct Accessor_ : public Derived
         {
             public: 
                 template<typename... Types>
@@ -158,11 +161,13 @@ class ReceiverConcept
         
         // ====================  LIFECYCLE     =======================================
 
+        //! The default constructor.
         ReceiverConcept ()
         {
             return;
         }
 
+        //! The copy constructor.
         ReceiverConcept (const ReceiverConcept & other)   // copy constructor
         {
             if (this != &other)
@@ -172,6 +177,7 @@ class ReceiverConcept
             return;
         }
 
+        //! The copy-move constructor.
         ReceiverConcept (ReceiverConcept && other)   // copy-move constructor
         {
             if (this != &other)
@@ -181,6 +187,7 @@ class ReceiverConcept
             return;
         }		// -----  end of method ReceiverConcept::ReceiverConcept  -----
 
+        //! The virtual destructor.
         virtual ~ReceiverConcept ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
@@ -229,7 +236,14 @@ class ReceiverConcept
             return Accessor_::disable_receiver(this->asDerived_());
         }
 
-        //! Modifies the concrete reciever.
+
+        //! Provides the interface for modifying the data members of the concrete receivers.
+        //!
+        //! Each value in the function parameter pack modifies the concrete in sequence - this is not a commutative
+        //! method.
+        //! @tparam T A template parameter pack of the types of values that will modify the concrete receiver.
+        //! @param args A function parameter pack containing the values that will modify data members of the
+        //! concrete receiver.
         template<typename... T>
         void modifyReceiver(T &... args)
         {
@@ -237,9 +251,11 @@ class ReceiverConcept
             return;
         }
 
-        //! Enables the concrete receiver.
+        //! Provides and interface for enabling a receiver.
         //!
-        //! An enabled reciever can perform actions.
+        //! An enabled receiver can do actions. Enabling a receiver has the semantics that
+        //! the concrete receiver is fully formed to properly do actions. If a receiver is
+        //! not enabled and it does actions, then the behavior will be indeterminate.
         void enable()
         {
             return Accessor_::enable_receiver(this->asDerived_());
@@ -247,10 +263,9 @@ class ReceiverConcept
 
         //! Returns a shared ownership of the action results.
         //!
-        //! The results are shared
         //! If the results are not allowed to be shared,
         //! an exception is thrown and a default instance of the receiver
-        //! results  is returned.
+        //! results is returned.
         auto shareOwnershipOfResults()
         {
             return Accessor_::get_share_of_results(this->asDerived_());
@@ -269,7 +284,7 @@ class ReceiverConcept
 
         // ====================  OPERATORS     =======================================
 
-        ReceiverConcept& operator= ( const ReceiverConcept &other ) // assignment operator
+        ReceiverConcept& operator=( const ReceiverConcept &other ) // assignment operator
         {
             if (this != &other)
             {
@@ -316,7 +331,7 @@ class ReceiverConcept
 }; // -----  end of class ReceiverConcept  -----
 
 template <typename Derived>
-ReceiverConcept<Derived>::~ReceiverConcept ()  // destructor
+ReceiverConcept<Derived>::~ReceiverConcept () // destructor
 {
     return;
 }
