@@ -31,7 +31,7 @@ initialize the data member `OwningShapeModel::concreteShape_`.
 
 In addition `OwningShapeModel` must override all virtual functions of `ShapeConcept`. `ShapeConcept`
 has virtual functions  `ShapeConcept::draw` and `ShapeConcept::clone`. A possible implementation 
-of the `OwningShapeModel::draw`is listed below.
+of the `OwningShapeModel::draw` is listed below.
 
     OwningShapeModel::draw() const override
     {

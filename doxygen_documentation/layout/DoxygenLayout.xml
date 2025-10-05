@@ -17,6 +17,9 @@
     </tab>
 
     <tab type="usergroup" title="Developer's Documentation" >
+        <tab type="usergroup" title="Naming Conventions" >
+            <tab type="user" visible="yes" url="@ref AnansiNamingConvention" title="Anansi's Naming Convention"/>
+        </tab>
         <tab type="usergroup" title="Inheritance Patterns" url="@ref InheritancePatterns">
                 <tab type="user" visible="yes" url="@ref TypeErasureInheritance" title="Type Erasure Inheritance"/>
         </tab>
