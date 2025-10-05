@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ReadPointAtoms::ReadPointAtoms() :
-    RECEIVER::ReceiverInterface<ReadPointAtoms>{},
+    RECEIVER::ReceiverConcept<ReadPointAtoms>{},
     enabledStatus_{false},
     results_{ReadPointAtomsResultsTraits::Atoms_t()},
     ownershipPolicy_{},
@@ -33,7 +33,7 @@ ReadPointAtoms::ReadPointAtoms() :
 }
 
 ReadPointAtoms::ReadPointAtoms( ReadPointAtoms && other) :
-    RECEIVER::ReceiverInterface<ReadPointAtoms>{std::move(other)},
+    RECEIVER::ReceiverConcept<ReadPointAtoms>{std::move(other)},
     enabledStatus_{std::move(other.enabledStatus_)},
     results_{std::move(other.results_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)},
@@ -63,7 +63,7 @@ ReadPointAtoms& ReadPointAtoms::operator= ( ReadPointAtoms && other )
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<ReadPointAtoms>::operator=(std::move(other));
+        RECEIVER::ReceiverConcept<ReadPointAtoms>::operator=(std::move(other));
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);

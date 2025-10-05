@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
-    ReceiverInterface<ControlFileXMLMPICommReceiver>(),
+    ReceiverConcept<ControlFileXMLMPICommReceiver>(),
     enabledStatus_{false},
     results_(ReadControlFileResultsTraits::ControlInputFile_t()),
     communicator_(),
@@ -31,7 +31,7 @@ ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver() :
 }
 
 ControlFileXMLMPICommReceiver::ControlFileXMLMPICommReceiver( ControlFileXMLMPICommReceiver && other) :
-    ReceiverInterface<ControlFileXMLMPICommReceiver>(std::move(other)),
+    ReceiverConcept<ControlFileXMLMPICommReceiver>(std::move(other)),
     enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     communicator_(std::move(other.communicator_)),
@@ -59,7 +59,7 @@ ControlFileXMLMPICommReceiver& ControlFileXMLMPICommReceiver::operator= ( Contro
 {
     if (this != &other)
     {
-        ReceiverInterface<ControlFileXMLMPICommReceiver>::operator=(std::move(other));
+        ReceiverConcept<ControlFileXMLMPICommReceiver>::operator=(std::move(other));
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->communicator_ = std::move(other.communicator_);

@@ -28,7 +28,7 @@
 namespace RECEIVER
 {
 
-//! The concept for concrete receiever classes derived from  class ReceiverInterface.
+//! The concept for concrete receiever classes derived from  class ReceiverConcept.
 //!
 //! The ConcreteReceiverConstraints concept requires the following of
 //! the class ConcreteReceiver_t:

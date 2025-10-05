@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
-    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(),
+    RECEIVER::ReceiverConcept<WriteTextToConsoleTaskReceiver>(),
     enabledStatus_{false},
     results_(0),
     communicator_(nullptr),
@@ -32,7 +32,7 @@ WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver() :
 }
 
 WriteTextToConsoleTaskReceiver::WriteTextToConsoleTaskReceiver( WriteTextToConsoleTaskReceiver && other) : 
-    RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>(std::move(other)),
+    RECEIVER::ReceiverConcept<WriteTextToConsoleTaskReceiver>(std::move(other)),
     enabledStatus_{other.enabledStatus_},
     results_(0),
     communicator_(std::move(other.communicator_)),
@@ -61,7 +61,7 @@ WriteTextToConsoleTaskReceiver& WriteTextToConsoleTaskReceiver::operator=( Write
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::operator=(std::move(other));
+        RECEIVER::ReceiverConcept<WriteTextToConsoleTaskReceiver>::operator=(std::move(other));
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);

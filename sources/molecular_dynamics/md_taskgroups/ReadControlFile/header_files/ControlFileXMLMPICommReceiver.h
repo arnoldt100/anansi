@@ -19,13 +19,13 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 
+#include "../../../../core_packages/receiver/header_files/ReceiverConcept.hpp"
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
 #include "MPICommunicator.h"
 #include "MPLAliases.hpp"
 #include "ReceiverResultTraits.hpp"
-#include "ReceiverInterface.hpp"
 #include "MasterControlInputFileNodeKeys.h"
 #include "ReadControlFileResultsTraits.h"
 #include "ControlFileTraits.h"
@@ -51,7 +51,7 @@
 namespace ANANSI
 {
 
-class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>
+class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverConcept<ControlFileXMLMPICommReceiver>
 {
     private:
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
@@ -85,8 +85,8 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE(ControlFileXMLMPICommReceiver::tmpstr);
+        RECEIVER::ReceiverConcept<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE(ControlFileXMLMPICommReceiver::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -132,7 +132,7 @@ class ControlFileXMLMPICommReceiver :  public RECEIVER::ReceiverInterface<Contro
         template<typename... Types>
         void receiverUndoAction_(Types & ... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<ControlFileXMLMPICommReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  ControlFileXMLMPICommReceiver::TASKLABEL;
         }

@@ -24,7 +24,7 @@ class AnansiTask;
 //============================= LIFECYCLE ====================================
 
 ControlFileMacroReceiver::ControlFileMacroReceiver() :
-    ReceiverInterface<ControlFileMacroReceiver>(),
+    ReceiverConcept<ControlFileMacroReceiver>(),
     enabledStatus_{false},
     results_(ReadControlFileResultsTraits::ControlInputFile_t()),
     componentTasks_{},
@@ -34,7 +34,7 @@ ControlFileMacroReceiver::ControlFileMacroReceiver() :
 }
 
 ControlFileMacroReceiver::ControlFileMacroReceiver( ControlFileMacroReceiver && other) :
-    ReceiverInterface<ControlFileMacroReceiver>(std::move(other)),
+    ReceiverConcept<ControlFileMacroReceiver>(std::move(other)),
     enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     componentTasks_{std::move(other.componentTasks_)},
@@ -62,7 +62,7 @@ ControlFileMacroReceiver& ControlFileMacroReceiver::operator= ( ControlFileMacro
 {
     if (this != &other)
     {
-        ReceiverInterface<ControlFileMacroReceiver>::operator=(std::move(other));
+        ReceiverConcept<ControlFileMacroReceiver>::operator=(std::move(other));
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->componentTasks_ = std::move(other.componentTasks_);

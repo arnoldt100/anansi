@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ReceiverInterface.hpp"
+#include "../header_files/ReceiverConcept.hpp"
 
 namespace RECEIVER {
 

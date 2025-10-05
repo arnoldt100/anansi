@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 __classname__::__classname__() :
-    ReceiverInterface<__classname__>(),
+    ReceiverConcept<__classname__>(),
     ownershipPolicy_(),
     results_(0),
 {
@@ -29,7 +29,7 @@ __classname__::__classname__() :
 }
 
 __classname__::__classname__( __classname__ && other) :
-    ReceiverInterface<__classname__>(std::move(other)),
+    ReceiverConcept<__classname__>(std::move(other)),
     ownershipPolicy_(std::move(other.ownershipPolicy_)),
     results_(std::move(other.results_))
 {
@@ -55,7 +55,7 @@ __classname__& __classname__::operator= ( __classname__ && other )
 {
     if (this != &other)
     {
-        ReceiverInterface<__classname__>::operator=(std::move(other));
+        ReceiverConcept<__classname__>::operator=(std::move(other));
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->results_ = std::move(other.results_);
     }

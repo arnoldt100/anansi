@@ -33,7 +33,7 @@
 namespace ANANSI
 {
 
-class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
+class ReadPointAtoms :  public RECEIVER::ReceiverConcept<ReadPointAtoms>
 {
     private:
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
@@ -80,8 +80,8 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<ReadPointAtoms>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<ReadPointAtoms>::TASK_LABEL_TYPE(ReadPointAtoms::tmpstr);
+        RECEIVER::ReceiverConcept<ReadPointAtoms>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<ReadPointAtoms>::TASK_LABEL_TYPE(ReadPointAtoms::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -127,7 +127,7 @@ class ReadPointAtoms :  public RECEIVER::ReceiverInterface<ReadPointAtoms>
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<ReadPointAtoms>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<ReadPointAtoms>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  ReadPointAtoms::TASKLABEL;
         }

@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 PointAtomsDecomposer::PointAtomsDecomposer() :
-    RECEIVER::ReceiverInterface<PointAtomsDecomposer>{},
+    RECEIVER::ReceiverConcept<PointAtomsDecomposer>{},
     enabledStatus_{false},
     results_{PointAtomsDecomposerResultsTraits::Atoms_t()},
     ownershipPolicy_{}
@@ -30,7 +30,7 @@ PointAtomsDecomposer::PointAtomsDecomposer() :
 }
 
 PointAtomsDecomposer::PointAtomsDecomposer( PointAtomsDecomposer && other) :
-    RECEIVER::ReceiverInterface<PointAtomsDecomposer>{std::move(other)},
+    RECEIVER::ReceiverConcept<PointAtomsDecomposer>{std::move(other)},
     enabledStatus_{std::move(other.enabledStatus_)},
     results_{std::move(other.results_)},
     ownershipPolicy_{std::move(other.ownershipPolicy_)}
@@ -57,7 +57,7 @@ PointAtomsDecomposer& PointAtomsDecomposer::operator= ( PointAtomsDecomposer && 
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<PointAtomsDecomposer>::operator=(std::move(other));
+        RECEIVER::ReceiverConcept<PointAtomsDecomposer>::operator=(std::move(other));
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);

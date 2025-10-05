@@ -1,7 +1,7 @@
-#ifndef RECEIVER_ReceiverInterface_INC
-#define RECEIVER_ReceiverInterface_INC
+#ifndef RECEIVER_ReceiverConcept_INC
+#define RECEIVER_ReceiverConcept_INC
 
-//! @file ReceiverInterface.hpp
+//! @file ReceiverConcept.hpp
 
 //--------------------------------------------------------//
 //-------------------- System includes -------------------//
@@ -25,7 +25,7 @@ namespace RECEIVER
 
 //! An abstract base class that provides the interface for concrete receiver objects.
 //!
-//! ReceiverInterface provides the interface for all concrete receiver objects
+//! ReceiverConcept provides the interface for all concrete receiver objects
 //! via the Curiously Recurring Template Pattern (CRTP). The class defines the 
 //! following public methods:
 //! - **getTaskLabel** Returns the task label of the concrete receiver.
@@ -42,7 +42,7 @@ namespace RECEIVER
 
 //! @tparam The derived class of the CRTP. The derived classes are the concrete receivers. 
 template<typename Derived> 
-class ReceiverInterface
+class ReceiverConcept
 {
     public : 
         //! Defines the label type for the task.
@@ -158,12 +158,12 @@ class ReceiverInterface
         
         // ====================  LIFECYCLE     =======================================
 
-        ReceiverInterface ()
+        ReceiverConcept ()
         {
             return;
         }
 
-        ReceiverInterface (const ReceiverInterface & other)   // copy constructor
+        ReceiverConcept (const ReceiverConcept & other)   // copy constructor
         {
             if (this != &other)
             {
@@ -172,16 +172,16 @@ class ReceiverInterface
             return;
         }
 
-        ReceiverInterface (ReceiverInterface && other)   // copy-move constructor
+        ReceiverConcept (ReceiverConcept && other)   // copy-move constructor
         {
             if (this != &other)
             {
                 
             }
             return;
-        }		// -----  end of method ReceiverInterface::ReceiverInterface  -----
+        }		// -----  end of method ReceiverConcept::ReceiverConcept  -----
 
-        virtual ~ReceiverInterface ()=0;  // destructor
+        virtual ~ReceiverConcept ()=0;  // destructor
 
         // ====================  ACCESSORS     =======================================
         
@@ -269,7 +269,7 @@ class ReceiverInterface
 
         // ====================  OPERATORS     =======================================
 
-        ReceiverInterface& operator= ( const ReceiverInterface &other ) // assignment operator
+        ReceiverConcept& operator= ( const ReceiverConcept &other ) // assignment operator
         {
             if (this != &other)
             {
@@ -278,7 +278,7 @@ class ReceiverInterface
             return *this;
         } // assignment operator
 
-        ReceiverInterface& operator= ( ReceiverInterface && other ) // assignment-move operator
+        ReceiverConcept& operator= ( ReceiverConcept && other ) // assignment-move operator
         {
             if (this != &other)
             {
@@ -313,14 +313,14 @@ class ReceiverInterface
 
         // ====================  DATA MEMBERS  =======================================
 
-}; // -----  end of class ReceiverInterface  -----
+}; // -----  end of class ReceiverConcept  -----
 
 template <typename Derived>
-ReceiverInterface<Derived>::~ReceiverInterface ()  // destructor
+ReceiverConcept<Derived>::~ReceiverConcept ()  // destructor
 {
     return;
 }
 
 }; // namespace RECEIVER
 
-#endif // RECEIVER_ReceiverInterface_INC
+#endif // RECEIVER_ReceiverConcept_INC

@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 __classname__::__classname__() :
-    RECEIVER::ReceiverInterface<__classname__>{},
+    RECEIVER::ReceiverConcept<__classname__>{},
     results_{},
     enabledStatus_{false},
     componentTasks_{},
@@ -32,7 +32,7 @@ __classname__::__classname__() :
 }
 
 __classname__::__classname__( __classname__ && other) :
-    RECEIVER::ReceiverInterface<__classname__>{std::move(other)},
+    RECEIVER::ReceiverConcept<__classname__>{std::move(other)},
     results_(std::move(other.results_)),
     enabledStatus_(std::move(other.enabledStatus_)),
     componentTasks_{std::move(other.componentTasks_)},
@@ -60,7 +60,7 @@ __classname__& __classname__::operator= ( __classname__ && other )
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<__classname__>::operator=(std::move(other));
+        RECEIVER::ReceiverConcept<__classname__>::operator=(std::move(other));
         this->results_ = std::move(other.results_);
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->componentTasks_ = std::move(other.componentTasks_);

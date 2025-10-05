@@ -38,7 +38,7 @@ namespace ANANSI
 //! The action of the reciever is to write a message to stdout.
 //! 
 //! The message store in messageContainer_ is written to stdout.
-class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>
+class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverConcept<WriteTextToConsoleTaskReceiver>
 {
     private:
 
@@ -73,8 +73,8 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(WriteTextToConsoleTaskReceiver::tmpstr_);
+        RECEIVER::ReceiverConcept<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE(WriteTextToConsoleTaskReceiver::tmpstr_);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -121,7 +121,7 @@ class WriteTextToConsoleTaskReceiver : public RECEIVER::ReceiverInterface<WriteT
         template<typename... Types>
         void receiverUndoAction_(Types & ... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<WriteTextToConsoleTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  WriteTextToConsoleTaskReceiver::TASKLABEL;
         }

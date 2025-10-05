@@ -26,7 +26,7 @@
 namespace __NAMESPACE__
 {
 
-class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
+class __classname__ :  public RECEIVER::ReceiverConcept<__classname__>
 {
     private:
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
@@ -76,8 +76,8 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE(__classname__::tmpstr);
+        RECEIVER::ReceiverConcept<__classname__>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<__classname__>::TASK_LABEL_TYPE(__classname__::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -123,7 +123,7 @@ class __classname__ :  public RECEIVER::ReceiverInterface<__classname__>
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<__classname__>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<__classname__>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  __classname__::TASKLABEL;
         }

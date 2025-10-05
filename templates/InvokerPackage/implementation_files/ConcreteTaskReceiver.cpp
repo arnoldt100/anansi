@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ConcreteTaskReceiver::ConcreteTaskReceiver() :
-    RECEIVER::ReceiverInterface<ConcreteTaskReceiver>(),
+    RECEIVER::ReceiverConcept<ConcreteTaskReceiver>(),
     ownershipPolicy_(),
     results_(nullptr),
     base_(0)
@@ -31,7 +31,7 @@ ConcreteTaskReceiver::ConcreteTaskReceiver() :
 }
 
 ConcreteTaskReceiver::ConcreteTaskReceiver( ConcreteTaskReceiver && other) : 
-    RECEIVER::ReceiverInterface<ConcreteTaskReceiver>(std::move(other)),
+    RECEIVER::ReceiverConcept<ConcreteTaskReceiver>(std::move(other)),
     ownershipPolicy_(std::move(other.ownershipPolicy_)),
     results_(std::move(other.results_)),
     base_(std::move(base_))
@@ -58,7 +58,7 @@ ConcreteTaskReceiver& ConcreteTaskReceiver::operator=( ConcreteTaskReceiver && o
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<ConcreteTaskReceiver>::operator=(std::move(other));
+        RECEIVER::ReceiverConcept<ConcreteTaskReceiver>::operator=(std::move(other));
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);
         this->results_ = std::move(other.results_);
         this->base_ = std::move(other.base_);

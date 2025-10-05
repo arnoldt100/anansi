@@ -33,7 +33,7 @@ namespace ANANSI
 //!
 //! The result of the task is an integer type which store no meaningful information - it is simply
 //! a placeholder.
-class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>
+class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverConcept<InitMPIEnvTaskReceiver>
 {
 
     private:
@@ -68,8 +68,8 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE TASKLABEL = 
-            RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE(InitMPIEnvTaskReceiver::tmpstr_);
+        RECEIVER::ReceiverConcept<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE TASKLABEL = 
+            RECEIVER::ReceiverConcept<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE(InitMPIEnvTaskReceiver::tmpstr_);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -114,7 +114,7 @@ class InitMPIEnvTaskReceiver : public RECEIVER::ReceiverInterface<InitMPIEnvTask
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<InitMPIEnvTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  InitMPIEnvTaskReceiver::TASKLABEL;
         }

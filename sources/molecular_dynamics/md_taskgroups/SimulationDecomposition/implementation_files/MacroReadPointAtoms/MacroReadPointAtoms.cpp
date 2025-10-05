@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 MacroReadPointAtoms::MacroReadPointAtoms() :
-    RECEIVER::ReceiverInterface<MacroReadPointAtoms>{},
+    RECEIVER::ReceiverConcept<MacroReadPointAtoms>{},
     enabledStatus_{false},
     results_{MacroReadPointAtomsResultsTraits::Atoms_t()},
     componentTasks_{},
@@ -32,7 +32,7 @@ MacroReadPointAtoms::MacroReadPointAtoms() :
 }
 
 MacroReadPointAtoms::MacroReadPointAtoms( MacroReadPointAtoms && other) :
-    RECEIVER::ReceiverInterface<MacroReadPointAtoms>{std::move(other)},
+    RECEIVER::ReceiverConcept<MacroReadPointAtoms>{std::move(other)},
     enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     componentTasks_{std::move(other.componentTasks_)},
@@ -60,7 +60,7 @@ MacroReadPointAtoms& MacroReadPointAtoms::operator= ( MacroReadPointAtoms && oth
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<MacroReadPointAtoms>::operator=(std::move(other));
+        RECEIVER::ReceiverConcept<MacroReadPointAtoms>::operator=(std::move(other));
         this->enabledStatus_ = {std::move(other.enabledStatus_)};
         this->results_ = std::move(other.results_);
         this->componentTasks_ = std::move(other.componentTasks_);

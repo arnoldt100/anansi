@@ -28,7 +28,7 @@
 namespace ANANSI
 {
 
-class PointAtomsDecomposer :  public RECEIVER::ReceiverInterface<PointAtomsDecomposer>
+class PointAtomsDecomposer :  public RECEIVER::ReceiverConcept<PointAtomsDecomposer>
 {
     private:
         static constexpr char tmpstr[ANANSI::TaskLabelTraits::MAX_NM_CHARS] = 
@@ -74,8 +74,8 @@ class PointAtomsDecomposer :  public RECEIVER::ReceiverInterface<PointAtomsDecom
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<PointAtomsDecomposer>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<PointAtomsDecomposer>::TASK_LABEL_TYPE(PointAtomsDecomposer::tmpstr);
+        RECEIVER::ReceiverConcept<PointAtomsDecomposer>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<PointAtomsDecomposer>::TASK_LABEL_TYPE(PointAtomsDecomposer::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -121,7 +121,7 @@ class PointAtomsDecomposer :  public RECEIVER::ReceiverInterface<PointAtomsDecom
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<PointAtomsDecomposer>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<PointAtomsDecomposer>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  PointAtomsDecomposer::TASKLABEL;
         }

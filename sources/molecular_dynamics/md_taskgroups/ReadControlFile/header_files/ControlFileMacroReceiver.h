@@ -32,7 +32,7 @@ namespace ANANSI
 //! These assembled commands will have the result of all MPI tasks in the
 //! communicator group of ControlFileXMLMPICommReceiver to contain the information
 //! contained in control file.
-class ControlFileMacroReceiver : public RECEIVER::ReceiverInterface<ControlFileMacroReceiver>
+class ControlFileMacroReceiver : public RECEIVER::ReceiverConcept<ControlFileMacroReceiver>
 {
     private:
         //! The command label for the task associated with this receiver.
@@ -77,8 +77,8 @@ class ControlFileMacroReceiver : public RECEIVER::ReceiverInterface<ControlFileM
         // ====================  STATIC       =======================================
 
         static constexpr
-        RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE(ControlFileMacroReceiver::commandlabel_);
+        RECEIVER::ReceiverConcept<ControlFileMacroReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<ControlFileMacroReceiver>::TASK_LABEL_TYPE(ControlFileMacroReceiver::commandlabel_);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -123,7 +123,7 @@ class ControlFileMacroReceiver : public RECEIVER::ReceiverInterface<ControlFileM
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<ControlFileMacroReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<ControlFileMacroReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  ControlFileMacroReceiver::TASKLABEL;
         }

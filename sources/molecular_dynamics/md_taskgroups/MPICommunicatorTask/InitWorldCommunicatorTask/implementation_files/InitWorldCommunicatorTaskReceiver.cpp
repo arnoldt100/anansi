@@ -22,7 +22,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver() :
-    RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(),
+    RECEIVER::ReceiverConcept<InitWorldCommunicatorTaskReceiver>(),
     enabledStatus_{false},
     results_(nullptr),
     ownershipPolicy_()
@@ -31,7 +31,7 @@ InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver() :
 }
 
 InitWorldCommunicatorTaskReceiver::InitWorldCommunicatorTaskReceiver( InitWorldCommunicatorTaskReceiver && other) :
-    RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>(std::move(other)),
+    RECEIVER::ReceiverConcept<InitWorldCommunicatorTaskReceiver>(std::move(other)),
     enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_))
@@ -59,7 +59,7 @@ InitWorldCommunicatorTaskReceiver& InitWorldCommunicatorTaskReceiver::operator= 
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::operator=(std::move(other));
+        RECEIVER::ReceiverConcept<InitWorldCommunicatorTaskReceiver>::operator=(std::move(other));
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->ownershipPolicy_ = std::move(other.ownershipPolicy_);

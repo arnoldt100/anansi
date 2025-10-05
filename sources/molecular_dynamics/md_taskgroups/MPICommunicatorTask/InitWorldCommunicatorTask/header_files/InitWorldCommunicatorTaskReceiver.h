@@ -9,6 +9,7 @@
 #include <iostream>
 #include <memory>
 
+#include "../../../../../core_packages/receiver/header_files/ReceiverConcept.hpp"
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
@@ -20,7 +21,6 @@
 #include "Communicator.h"
 #include "CommunicatorTask.h"
 #include "ReceiverResultTraits.hpp"
-#include "ReceiverInterface.hpp"
 #include "MPICommunicatorFactory.h"
 #include "TaskLabel.hpp"
 #include "InitWorldCommunicatorTaskOwnershipImpl.hpp"
@@ -51,7 +51,7 @@ namespace ANANSI
 //! Invoking method disableReceiver_ results in the destruction of the world
 //! communicator resource. After this call, all other calls will result in 
 //! an error being thrown.
-class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>
+class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverConcept<InitWorldCommunicatorTaskReceiver>
 {
     private:
 
@@ -85,8 +85,8 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
 
         // ====================  STATIC       =======================================
 
-        static constexpr RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE(InitWorldCommunicatorTaskReceiver::tmpstr);
+        static constexpr RECEIVER::ReceiverConcept<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE(InitWorldCommunicatorTaskReceiver::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -131,7 +131,7 @@ class InitWorldCommunicatorTaskReceiver:  public RECEIVER::ReceiverInterface<Ini
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<InitWorldCommunicatorTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  InitWorldCommunicatorTaskReceiver::TASKLABEL;
         }

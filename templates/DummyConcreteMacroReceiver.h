@@ -18,8 +18,8 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
+#include "../sources/core_packages/receiver/header_files/ReceiverConcept.hpp"
 #include "ReceiverResultTraits.hpp"
-#include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
 #include "DummyConcreteTaskOwnershipImpl.hpp"
 
@@ -39,7 +39,7 @@
 namespace ANANSI
 {
 
-class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
+class DummyConcreteTask :  public RECEIVER::ReceiverConcept<DummyConcreteTask>
 {
     private:
         static constexpr char tmpstr[RECEIVER::TaskLabelTraits::MAX_NM_CHARS] = 
@@ -67,8 +67,8 @@ class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
 
 
         static constexpr 
-        RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE(DummyConcreteTask::tmpstr);
+        RECEIVER::ReceiverConcept<DummyConcreteTask>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<DummyConcreteTask>::TASK_LABEL_TYPE(DummyConcreteTask::tmpstr);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -99,7 +99,7 @@ class DummyConcreteTask :  public RECEIVER::ReceiverInterface<DummyConcreteTask>
         template<typename... Types>
         void receiverUndoAction_(Types &... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<DummyConcreteTask>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<DummyConcreteTask>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  DummyConcreteTask::TASKLABEL;
         }

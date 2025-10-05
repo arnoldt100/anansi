@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
-    RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>(),
+    RECEIVER::ReceiverConcept<InitMPIEnvTaskReceiver>(),
     enabledStatus_{false},
     results_(0),
     ownershipPolicy_(),
@@ -31,7 +31,7 @@ InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver() :
 }
 
 InitMPIEnvTaskReceiver::InitMPIEnvTaskReceiver( InitMPIEnvTaskReceiver && other) :
-    RECEIVER::ReceiverInterface<InitMPIEnvTaskReceiver>(std::move(other)),
+    RECEIVER::ReceiverConcept<InitMPIEnvTaskReceiver>(std::move(other)),
     enabledStatus_{std::move(other.enabledStatus_)},
     results_(std::move(other.results_)),
     ownershipPolicy_(std::move(other.ownershipPolicy_)),
@@ -59,7 +59,7 @@ InitMPIEnvTaskReceiver& InitMPIEnvTaskReceiver::operator= ( InitMPIEnvTaskReceiv
 {
     if (this != &other)
     {
-        ReceiverInterface<InitMPIEnvTaskReceiver>::operator=(std::move(other));
+        ReceiverConcept<InitMPIEnvTaskReceiver>::operator=(std::move(other));
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->mpiEnvironment_ = std::move(other.mpiEnvironment_);

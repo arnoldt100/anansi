@@ -24,7 +24,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 PointAtomsCommunicator::PointAtomsCommunicator() :
-    RECEIVER::ReceiverInterface<PointAtomsCommunicator>{},
+    RECEIVER::ReceiverConcept<PointAtomsCommunicator>{},
     enabledStatus_{false},
     results_{PointAtomsCommunicatorResultsTraits::Atoms_t()},
     communicator_{},
@@ -34,7 +34,7 @@ PointAtomsCommunicator::PointAtomsCommunicator() :
 }
 
 PointAtomsCommunicator::PointAtomsCommunicator( PointAtomsCommunicator && other) :
-    RECEIVER::ReceiverInterface<PointAtomsCommunicator>{std::move(other)},
+    RECEIVER::ReceiverConcept<PointAtomsCommunicator>{std::move(other)},
     enabledStatus_{std::move(other.enabledStatus_)},
     results_{std::move(other.results_)},
     communicator_{std::move(other.communicator_)},
@@ -62,7 +62,7 @@ PointAtomsCommunicator& PointAtomsCommunicator::operator= ( PointAtomsCommunicat
 {
     if (this != &other)
     {
-        RECEIVER::ReceiverInterface<PointAtomsCommunicator>::operator=(std::move(other));
+        RECEIVER::ReceiverConcept<PointAtomsCommunicator>::operator=(std::move(other));
         this->enabledStatus_ = std::move(other.enabledStatus_);
         this->results_ = std::move(other.results_);
         this->communicator_ = std::move(other.communicator_);

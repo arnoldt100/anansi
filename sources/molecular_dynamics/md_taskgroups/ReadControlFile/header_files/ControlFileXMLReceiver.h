@@ -53,7 +53,7 @@ namespace ANANSI
 {
 
 //! Responsible for reading the control file.
-class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXMLReceiver>
+class ControlFileXMLReceiver :  public RECEIVER::ReceiverConcept<ControlFileXMLReceiver>
 {
     private:
 
@@ -89,8 +89,8 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE(ControlFileXMLReceiver::tmpstr_);
+        RECEIVER::ReceiverConcept<ControlFileXMLReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<ControlFileXMLReceiver>::TASK_LABEL_TYPE(ControlFileXMLReceiver::tmpstr_);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -134,7 +134,7 @@ class ControlFileXMLReceiver :  public RECEIVER::ReceiverInterface<ControlFileXM
         template<typename... Types>
         void receiverUndoAction_(Types & ... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<ControlFileXMLReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  ControlFileXMLReceiver::TASKLABEL;
         }

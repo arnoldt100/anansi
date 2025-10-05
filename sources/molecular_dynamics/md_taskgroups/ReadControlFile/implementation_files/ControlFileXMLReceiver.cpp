@@ -21,7 +21,7 @@ namespace ANANSI {
 //============================= LIFECYCLE ====================================
 
 ControlFileXMLReceiver::ControlFileXMLReceiver() :
-    RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(),
+    RECEIVER::ReceiverConcept<ControlFileXMLReceiver>(),
     commandFileName_(),
     masterProcess_(),
     enabledStatus_{false},
@@ -32,7 +32,7 @@ ControlFileXMLReceiver::ControlFileXMLReceiver() :
 }
 
 ControlFileXMLReceiver::ControlFileXMLReceiver( ControlFileXMLReceiver && other) :
-    RECEIVER::ReceiverInterface<ControlFileXMLReceiver>(std::move(other)),
+    RECEIVER::ReceiverConcept<ControlFileXMLReceiver>(std::move(other)),
     commandFileName_(std::move(other.commandFileName_)),
     masterProcess_(std::move(other.masterProcess_)),
     enabledStatus_{std::move(other.enabledStatus_)},
@@ -61,7 +61,7 @@ ControlFileXMLReceiver& ControlFileXMLReceiver::operator= ( ControlFileXMLReceiv
 {
     if (this != &other)
     {
-        ReceiverInterface<ControlFileXMLReceiver>::operator=(std::move(other));
+        ReceiverConcept<ControlFileXMLReceiver>::operator=(std::move(other));
         this->commandFileName_ = std::move(other.commandFileName_);
         this->masterProcess_ = std::move(other.masterProcess_);
         this->enabledStatus_ = std::move(other.enabledStatus_);

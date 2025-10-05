@@ -10,6 +10,7 @@
 //--------------------------------------------------------//
 #include <iostream>
 
+#include "../../../sources/core_packages/receiver/header_files/ReceiverConcept.hpp"
 //--------------------------------------------------------//
 //-------------------- External Library Files ------------//
 //--------------------------------------------------------//
@@ -17,7 +18,6 @@
 //--------------------------------------------------------//
 //--------------------- Package includes -----------------//
 //--------------------------------------------------------//
-#include "ReceiverInterface.hpp"
 #include "TaskLabel.hpp"
 #include "OwnershipImpl1.hpp"
 
@@ -40,7 +40,7 @@ namespace ANANSI
 //! The action of the reciever is to write a message to stdout.
 //! 
 //! The message store in messageContainer_ is written to stdout.
-class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskReceiver>
+class ConcreteTaskReceiver : public RECEIVER::ReceiverConcept<ConcreteTaskReceiver>
 {
     public:
       // ------------- //
@@ -86,8 +86,8 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         // ====================  STATIC       =======================================
 
         static constexpr 
-        RECEIVER::ReceiverInterface<ConcreteTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
-            RECEIVER::ReceiverInterface<ConcreteTaskReceiver>::TASK_LABEL_TYPE(ConcreteTaskReceiver::tmpstr_);
+        RECEIVER::ReceiverConcept<ConcreteTaskReceiver>::TASK_LABEL_TYPE TASKLABEL =
+            RECEIVER::ReceiverConcept<ConcreteTaskReceiver>::TASK_LABEL_TYPE(ConcreteTaskReceiver::tmpstr_);
 
         // ====================  LIFECYCLE     =======================================
 
@@ -117,7 +117,7 @@ class ConcreteTaskReceiver : public RECEIVER::ReceiverInterface<ConcreteTaskRece
         template<typename... Types>
         void receiverUndoAction_(Types & ... args) const;
 
-        constexpr RECEIVER::ReceiverInterface<ConcreteTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
+        constexpr RECEIVER::ReceiverConcept<ConcreteTaskReceiver>::TASK_LABEL_TYPE receiverGetTaskLabel_() const
         {
             return  ConcreteTaskReceiver::TASKLABEL;
         }
