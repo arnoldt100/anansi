@@ -908,12 +908,16 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
-                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto \
+# Adding markdown documentation
+INPUT =                  $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/Howto \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/AnansiEnvironmentalVariables \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/BuildingAnansi \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/NotationalConvention \
                          $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/DevelopersDocumentation \
+                         $(ANANSI_TOP_LEVEL)/doxygen_documentation/sources/References
+
+
+INPUT +=                 $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_main/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_core/header_files \
@@ -954,6 +958,7 @@ INPUT                  = $(ANANSI_TOP_LEVEL)/bin \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/file_parsers/file_parsers_core/implementation_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/header_files \
                          $(ANANSI_TOP_LEVEL)/sources/core_packages/mouseion/sources/command_line_arguments/implementation_files
+
 
 # Adding documentation for target "simulationdecomposition".
 INPUT +=                 $(ANANSI_TOP_LEVEL)/sources/molecular_dynamics/md_taskgroups/SimulationDecomposition/header_files \

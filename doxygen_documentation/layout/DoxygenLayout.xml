@@ -8,8 +8,7 @@
     
     <!-- User created documentation.          -->
 
-    <tab type="usergroup" title="Notational Convention" url="@ref NotationalConvention">
-    </tab>
+    <tab type="usergroup" title="Notational Convention" url="@ref NotationalConvention"> </tab>
 
     <tab type="usergroup" title="Building Anansi" >
         <tab type="user" visible="yes" url="@ref BuildingAnansi" title="Building Anansi"/>
@@ -22,6 +21,7 @@
         </tab>
         <tab type="usergroup" title="Inheritance Patterns" url="@ref InheritancePatterns">
                 <tab type="user" visible="yes" url="@ref TypeErasureInheritance" title="Type Erasure Inheritance"/>
+                <tab type="user" visible="yes" url="@ref CommandDesignPattern" title="Anansi's Command Design Patterns"/>
         </tab>
         <tab type="usergroup" title="How To Guides" >
             <tab type="user" visible="yes" url="@ref howtocreatereceiver" title="How to Create a Receiver"/>
@@ -32,6 +32,9 @@
             <tab type="user" visible="yes" url="@ref InternalNodeKeysConcept" title="The Internal Node Keys Concept"/>
         </tab>
     </tab>
+    
+    <tab type="usergroup" title="References" url="@ref AnansiReferences"> </tab>
+
 
     <!-- End of user created documentation.          -->
 

@@ -4,7 +4,7 @@
 ## File names
 Stud text
 
-## Classes 
+## Classes
 
 ### Class Names
 In general, all class names will follow the upper camel case

@@ -1,6 +1,6 @@
 # TypeErasure Inheritance {#TypeErasureInheritance}
 
-TypeErasure inheritance, as explained by Iglberger [1],
+TypeErasure inheritance, as explained by Iglberger[1]
 
 > Provides a value based, non-intrusive value based abstraction for an extendable
 > set of unrelated  potential non-polymorphic types with the same semantic behavior. (p. 301)
@@ -45,7 +45,7 @@ a TypeErasure. Note that only `Shape's` constructor is templated on a concrete s
     Shape::Shape(T && aConcreteShape) :
     valuePtr_(new ShapeModel<ShapeConcept>(std::forward<T>(aConcreteShape)));
 
-where the concrete shape is wrapped in `Shape::valuePtr_` 
+where the concrete shape is wrapped in `Shape::valuePtr_`
 
     std::unique_ptr<ShapeConcept> Shape::valuePtr_;
 
@@ -78,8 +78,3 @@ The below listing is an example of the use:
 
         return EXIT_SUCESS;
     }
-
----
-
-[1] Iglberger, K. (2022). <EM>C++ Software Design. </EM> (First Edition).  O'Reilly Media. ISBN: 9781098113162. <BR/>
-[2]  Williams, A. (2019, June 27). The Power of Hidden Friends in C++. Just Software Solutions. <EM>https://www.justsoftwaresolutions.co.uk/cplusplus/hidden-friends.html</EM> <BR/>
